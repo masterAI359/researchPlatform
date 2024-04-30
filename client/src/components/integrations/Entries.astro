@@ -1,0 +1,30 @@
+---
+const { integration, description,  url } = Astro.props;
+---
+
+<div
+  
+  class="bg-ebony shadow-inset rounded-3xl p-4 w-full inline-flex items-start">
+  <div class="text-left flex flex-col h-full justify-between">
+    <div class="text-left h-full flex flex-col justify-between">
+      <div>
+        <p class="font-medium leading-6 text-white">{integration}</p>
+        <p class="text-xs mt-2 text-zinc-300">
+          {description}
+        </p>
+      </div>
+
+      <div class="mt-24 ">
+
+        <a
+          href={url}
+          title={integration}
+          class="text-xs w-full py-2 px-4 border focus:ring-2 h-10 rounded-full border-transparent bg-white hover:bg-white/10 text-black duration-200 focus:ring-offset-2 focus:ring-white hover:text-white inline-flex items-center justify-center ring-1 ring-transparent">
+          More
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+

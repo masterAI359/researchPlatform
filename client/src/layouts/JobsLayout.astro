@@ -1,0 +1,247 @@
+---
+import LightLayout from "./LightLayout.astro";
+const { frontmatter } = Astro.props;
+---
+
+<LightLayout>
+  <section class="lg:p-8 overflow-hidden relative bg-white">
+    <div
+      class="mx-auto 2xl:max-w-7xl py-24 lg:px-16 md:px-12 px-8 xl:px-36 items-center relative w-full">
+      <div class="pb-12 border-b border-white/10">
+        <h1
+          class="text-3xl mt-6 tracking-tight font-light lg:text-4xl text-black">
+          {frontmatter.page}
+        </h1>
+      </div>
+      <div class="gap-12 grid grid-cols-1 lg:grid-cols-3 pt-12 w-full">
+        <div class="w-full mx-auto">
+          <div
+            class="text-left space-y-3 flex flex-col pb-12 border-b border-white/10">
+            {
+              Object.entries(frontmatter.details).map(([key, value]) => (
+                <div>
+                  <p class="text-base font-medium leading-6 text-black">
+                    {key}
+                  </p>
+                  <p class="text-zinc-500 text-sm">{value}</p>
+                </div>
+              ))
+            }
+
+          </div>
+        </div>
+        <div class="w-full lg:col-span-2">
+          <div
+            x-data="{
+          tabSelected: 1,
+          tabId: $id('tabs'),
+          tabButtonClicked(tabButton){
+              this.tabSelected = tabButton.id.replace(this.tabId + '-', '');
+              this.tabRepositionMarker(tabButton);
+          },
+          tabRepositionMarker(tabButton){
+              this.$refs.tabMarker.style.width=tabButton.offsetWidth + 'px';
+              this.$refs.tabMarker.style.height=tabButton.offsetHeight + 'px';
+              this.$refs.tabMarker.style.left=tabButton.offsetLeft + 'px';
+          },
+          tabContentActive(tabContent){
+              return this.tabSelected == tabContent.id.replace(this.tabId + '-content-', '');
+          }
+      }"
+            x-init="tabRepositionMarker($refs.tabButtons.firstElementChild);"
+            class="relative w-full text-black text-left">
+            <div
+              x-ref="tabButtons"
+              class="relative inline-grid items-center justify-center w-full h-8 grid-cols-2 select-none gap-3 border-b border-white/20 -mb-2">
+              <button
+                :id="$id(tabId)"
+                @click="tabButtonClicked($el);"
+                type="button"
+                class="relative z-20 inline-flex w-full h-8 text-sm font-medium transition-all rounded-md cursor-pointer whitespace-nowrap"
+                >Overview</button
+              >
+              <button
+                :id="$id(tabId)"
+                @click="tabButtonClicked($el);"
+                type="button"
+                class="relative z-20 inline-flex w-full h-8 text-sm font-medium transition-all rounded-md cursor-pointer whitespace-nowrap"
+                >Application form</button
+              >
+              <div
+                x-ref="tabMarker"
+                class="absolute left-0 z-10 w-1/2 h-full duration-300 ease-out"
+                x-cloak>
+                <div class="w-full lg:w-12 h-full border-b border-blue-400">
+                </div>
+              </div>
+            </div>
+            <div class="relative w-full mt-2 content">
+              <div
+                :id="$id(tabId + '-content')"
+                x-show="tabContentActive($el)"
+                class="relative">
+                <!-- Tab Content 1 - Replace with your content -->
+                <div class="pt-8">
+                  <div class="prose-styles">
+                    <slot />
+                  </div>
+                </div>
+                <!-- End Tab Content 1 -->
+              </div>
+              <div
+                :id="$id(tabId + '-content')"
+                x-show="tabContentActive($el)"
+                class="relative"
+                x-cloak>
+                <!-- Tab Content 2 - Replace with your content -->
+                <div class="w-full mx-auto pt-8">
+                  <form>
+                    <div class="mt-4 space-y-6">
+                      <div>
+                        <label
+                          for="name"
+                          class="block mb-3 text-sm font-medium text-black"
+                          >First name</label
+                        >
+                        <input
+                          id="name"
+                          name="name"
+                          type="text"
+                          placeholder="Your name"
+                          class="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-black placeholder-black/50 bg-white/5 focus:border-black focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10"
+                        />
+                      </div>
+                      <div>
+                        <label
+                          for="email"
+                          class="block mb-3 text-sm font-medium text-black"
+                          >Email</label
+                        >
+                        <input
+                          id="email"
+                          name="email"
+                          type="email"
+                          autocomplete="off"
+                          placeholder="email@example.com"
+                          class="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-black placeholder-black/50 bg-white/5 focus:border-black focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10"
+                        />
+                      </div>
+                      <div>
+                        <label
+                          for="message"
+                          class="block mb-3 text-sm font-medium text-black"
+                          >Cover letter</label
+                        >
+                        <textarea
+                          id="message"
+                          name="message"
+                          rows="4"
+                          placeholder="What are you working on?"
+                          class="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-black placeholder-black/50 bg-white/5 focus:border-black focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500"
+                        ></textarea>
+                      </div>
+                      <label
+                        for="cover-photo"
+                        class="block mb-3 text-sm font-medium text-black"
+                        >Cover photo</label
+                      >
+                      <div
+                        class="mt-2 flex justify-center rounded-lg border border-dashed border-zinc-900/25 px-6 py-10">
+                        <div class="text-center">
+                          <svg
+                            class="mx-auto h-12 w-12 text-zinc-300"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            aria-hidden="true">
+                            <path
+                              fill-rule="evenodd"
+                              d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z"
+                              clip-rule="evenodd"
+                            ></path>
+                          </svg>
+                          <div
+                            class="mt-4 flex text-sm leading-6 text-zinc-600">
+                            <label
+                              for="file-upload"
+                              class="relative cursor-pointer rounded-md bg-white font-semibold text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 hover:text-indigo-500">
+                              <span>Upload a file</span>
+                              <input
+                                id="file-upload"
+                                name="file-upload"
+                                type="file"
+                                class="sr-only"
+                              />
+                            </label>
+                            <p class="pl-1">or drag and drop</p>
+                          </div>
+                          <p class="text-xs leading-5 text-zinc-600">
+                            PNG, JPG, GIF up to 10MB
+                          </p>
+                        </div>
+                      </div>
+                      <div>
+                        <label
+                          for="portfolio"
+                          class="block mb-3 text-sm font-medium text-black"
+                          >Portfolio</label
+                        >
+                        <input
+                          id="portfolio"
+                          name="portfolio"
+                          type="text"
+                          autocomplete="off"
+                          placeholder="Your site"
+                          class="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-black placeholder-black/50 bg-white/5 focus:border-black focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10"
+                        />
+                      </div>
+                      <div>
+                        <label
+                          for="linkedin"
+                          class="block mb-3 text-sm font-medium text-black"
+                          >Linkedin</label
+                        >
+                        <input
+                          id="linkedin"
+                          name="linkedin"
+                          type="text"
+                          autocomplete="off"
+                          placeholder="your link"
+                          class="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-black placeholder-black/50 bg-white/5 focus:border-black focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10"
+                        />
+                      </div>
+
+                      <div>
+                        <label
+                          for="country"
+                          class="block mb-3 text-sm font-medium text-black"
+                          >What country are you based in?</label
+                        >
+                        <input
+                          id="country"
+                          name="country"
+                          type="text"
+                          autocomplete="off"
+                          placeholder="your country"
+                          class="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-black placeholder-black/50 bg-white/5 focus:border-black focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10"
+                        />
+                      </div>
+                      <div
+                        class="flex items-center justify-center gap-x-6 lg:justify-start">
+                        <button
+                          type="submit"
+                          class="text-sm py-2 px-4 border focus:ring-2 rounded-full border-transparent bg-black hover:bg-black/10 text-white duration-200 focus:ring-offset-2 focus:ring-black hover:text-black inline-flex items-center justify-center ring-1 ring-transparent">
+                          Submit application
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                  <!-- End Tab Content 2 -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</LightLayout>

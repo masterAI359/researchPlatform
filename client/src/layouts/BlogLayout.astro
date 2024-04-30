@@ -1,0 +1,79 @@
+---
+import { getCollection } from "astro:content";
+const allPosts = await getCollection("posts");
+import LightLayout from "./LightLayout.astro";
+import CtaTwo from "@/components/ctas/CtaTwo.astro";
+const { frontmatter } = Astro.props;
+---
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const headings = document.querySelectorAll(" h2,  h3");
+    const tocContainer = document.getElementById("table-of-contents");
+    if (tocContainer && headings.length > 0) {
+      const tocList = document.createElement("ul");
+      tocList.classList.add("space-y-3", "text-xs");
+      headings.forEach((heading) => {
+        const listItem = document.createElement("li");
+        const link = document.createElement("a");
+        link.textContent = heading.textContent;
+        link.href = `#${heading.id}`;
+        link.classList.add("text-black", "hover:underline");
+        listItem.appendChild(link);
+        tocList.appendChild(listItem);
+      });
+      tocContainer.appendChild(tocList);
+      tocContainer.classList.remove("hidden");
+    }
+  });
+</script>
+
+<LightLayout>
+  <section class="bg-white">
+    <div
+      class="px-8 py-24 lg:py-36 mx-auto md:px-12 lg:px-16 xl:px-36 2xl:max-w-7xl grid grid-cols-1 md:grid-cols-4">
+      <div class="hidden md:block">
+        <div
+          id="table-of-contents"
+          class="lg:sticker lg:sticky top-36 space-y-12">
+          <p>Table of Contents</p>
+        </div>
+      </div>
+      <div class="md:col-span-3 lg:col-span-2 pt-24 lg:pt-0">
+        <div class="prose-styles">
+          <div class="pb-12 border-b">
+            <div class="space-x-1 not-prose">
+              {
+                frontmatter.tags.map((tag) => (
+                  <a
+                    class="text-zinc-500 text-xs  capitalize"
+                    href={`/tags/${tag}`}>
+                    {tag}
+                  </a>
+                ))
+              }
+            </div>
+            <p
+              class="text-3xl tracking-tight mt-6 font-light lg:text-4xl text-black">
+              {frontmatter.title}
+            </p>
+            <p class="text-zinc-500 -mt-6 font-light">
+              {frontmatter.description}
+            </p>
+            <p class="text-black mt-3 font-medium text-sm">
+              By {frontmatter.author} ⏤
+              <time
+                class="text-xs"
+                datetime={frontmatter.pubDate.toString().slice(0, 10)}
+                >{frontmatter.pubDate.toString().slice(0, 10)}</time
+              >
+            </p>
+          </div>
+          <slot />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaTwo />
+</LightLayout>

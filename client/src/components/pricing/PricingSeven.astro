@@ -1,0 +1,1008 @@
+---
+// Define the pricing plans
+const pricingPlans = [
+  {
+    title: "Hobby",
+    price: "$0/month",
+    description: "Super for hobbist",
+    benefits: ["Create 10 charts", "10 Api connections", "1 user"],
+
+    buttonText: "Get started",
+    isPopular: false,
+  },
+  {
+    title: "Almost pro",
+    price: "$1,999/month",
+    description: "50% off for the 3 first clients!",
+    benefits: [
+      "Create 10 charts",
+      "Connect up to two websites",
+      "Email marketing",
+      "10 Api connections",
+      "1 user",
+    ],
+
+    buttonText: "Get started",
+    isPopular: true,
+  },
+  {
+    title: "Super pro",
+    price: "Custom pricing",
+    description: "Super for hobbist",
+    benefits: [
+      "Create 100 charts",
+      "Unlimited websites",
+      "Email marketing",
+      "100 Api connections",
+      "Unlimited user",
+    ],
+
+    buttonText: "Get started",
+    isPopular: false,
+  },
+];
+---
+
+<section class="lg:p-8">
+  <div
+    class="mx-auto 2xl:max-w-7xl py-24 lg:px-16 md:px-12 px-8 xl:px-36 items-center lg:py-24 relative w-full bg-gradientdown rounded-[3rem]">
+    <div class="text-center max-w-xl mx-auto">
+      <span class="text-lg text-white font-light"> Pricing</span>
+      <h2
+        class="text-3xl mt-6 tracking-tight font-light lg:text-4xl text-white">
+        Super Simple pricing <span class="block text-zinc-400"
+          >for practically everyrone</span
+        >
+      </h2>
+    </div>
+    <!-- xs to lg -->
+    <div class="mx-auto mt-12 max-w-md space-y-8 sm:mt-16 lg:hidden">
+      {
+        pricingPlans.map((plan) => (
+          <section
+            class={`flex flex-col px-6 py-8 bg-ebony shadow-inset rounded-3xl lg:order-none ${plan.isPopular ? "order-first" : ""}`}>
+            <div class="h-full">
+              <div class="gap-12 w-full">
+                <div>
+                  <h3
+                    class={`text-lg ${plan.isPopular ? "text-blue-400" : "text-white"}`}>
+                    {plan.title}
+                    {plan.isPopular && (
+                      <span class="font-medium inline-flex items-center bg-ebony border border-white/10 ml-4 px-3 py-0.5 rounded-full text-white text-xs">
+                        Popular
+                      </span>
+                    )}
+                  </h3>
+                  <p class="mt-4 text-2xl font-light text-white">
+                    {plan.price}
+                    <span class="text-sm text-zinc-400">/month</span>
+                  </p>
+                  <p class="mt-3 text-sm text-white">{plan.description}</p>
+                </div>
+              </div>
+              <div class="inline-flex flex-wrap items-center mt-8 w-full">
+                <button
+                  type="button"
+                  class="text-sm py-2 w-full px-4 border focus:ring-2 rounded-full border-transparent bg-white hover:bg-white/10 text-black duration-200 focus:ring-offset-2 focus:ring-white hover:text-white inline-flex items-center justify-center ring-1 ring-transparent">
+                  {plan.buttonText}
+                </button>
+              </div>
+
+              <ul
+                role="list"
+                class={`flex flex-col order-last text-sm mt-10 ${plan.isPopular ? "text-white" : "text-zinc-400"} divide-y divide-white/10`}>
+                {plan.benefits.map((benefit) => (
+                  <li class="inline-flex items-center py-3">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="icon icon-tabler icon-tabler-check"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path
+                        stroke="none"
+                        d="M0 0h24v24H0z"
+                        fill="none"
+                      />
+                      <path d="M5 12l5 5l10 -10" />
+                    </svg>
+                    <span class="ml-4">{benefit}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        ))
+      }
+    </div>
+
+    <!-- lg+ -->
+    <div class="isolate mt-20 hidden lg:block">
+      <div class="relative -mx-8">
+        <div class="absolute inset-x-4 inset-y-0 -z-10 flex">
+          <div
+            class="flex w-1/4 px-4"
+            style="margin-left: 50%"
+            aria-hidden="true">
+            <div
+              class="w-full rounded-xl ring-1 ring-white/5 bg-ebony shadow-inset">
+            </div>
+          </div>
+        </div>
+        <table
+          class="w-full table-fixed border-separate border-spacing-x-8 text-left">
+          <caption class="sr-only"> Pricing plan comparison</caption>
+          <colgroup>
+            <col class="w-1/4" />
+            <col class="w-1/4" />
+            <col class="w-1/4" />
+            <col class="w-1/4" />
+          </colgroup>
+          <thead>
+            <tr>
+              <td></td>
+              <th
+                scope="col"
+                class="px-6 pt-6 xl:px-8 xl:pt-8">
+                <div class="text-lg text-white font-light">Basic</div>
+              </th>
+              <th
+                scope="col"
+                class="px-6 pt-6 xl:px-8 xl:pt-8">
+                <div class="text-lg text-white font-light">Essential</div>
+              </th>
+              <th
+                scope="col"
+                class="px-6 pt-6 xl:px-8 xl:pt-8">
+                <div class="text-lg text-white font-light">Premium</div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row"><span class="sr-only">Price</span></th>
+              <td class="px-6 pt-2 xl:px-8">
+                <div class="flex items-baseline gap-x-1 text-white">
+                  <span class="text-2xl font-light text-white">$9</span>
+                  <span class="text-sm font-light text-zinc-400">/month</span>
+                </div>
+                <div class="mt-8">
+                  <button
+                    type="button"
+                    class="text-sm py-2 w-full px-4 border focus:ring-2 rounded-full border-transparent bg-white hover:bg-white/10 text-black duration-200 focus:ring-offset-2 focus:ring-white hover:text-white inline-flex items-center justify-center ring-1 ring-transparent">
+                    Get started
+                  </button>
+                </div>
+              </td>
+              <td class="px-6 pt-2 xl:px-8">
+                <div class="flex items-baseline gap-x-1 text-white">
+                  <span class="text-2xl font-light text-white">$29</span>
+                  <span class="text-sm font-light text-zinc-400">/month</span>
+                </div>
+                <div class="mt-8">
+                  <button
+                    type="button"
+                    class="text-sm py-2 w-full px-4 border focus:ring-2 rounded-full border-transparent bg-white hover:bg-white/10 text-black duration-200 focus:ring-offset-2 focus:ring-white hover:text-white inline-flex items-center justify-center ring-1 ring-transparent">
+                    Get started
+                  </button>
+                </div>
+              </td>
+              <td class="px-6 pt-2 xl:px-8">
+                <div class="flex items-baseline gap-x-1 text-white">
+                  <span class="text-2xl font-light text-white">$59</span>
+                  <span class="text-sm font-light text-zinc-400">/month</span>
+                </div>
+                <div class="mt-8">
+                  <button
+                    type="button"
+                    class="text-sm py-2 w-full px-4 border focus:ring-2 rounded-full border-transparent bg-white hover:bg-white/10 text-black duration-200 focus:ring-offset-2 focus:ring-white hover:text-white inline-flex items-center justify-center ring-1 ring-transparent">
+                    Get started
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th
+                scope="colgroup"
+                colspan="4"
+                class="pb-4 text-blue-400 font-light pt-8">
+                Features
+                <div class="absolute inset-x-8 mt-4 h-px bg-ebony/50"></div>
+              </th>
+            </tr>
+            <tr>
+              <th
+                scope="row"
+                class="py-4 text-sm font-normal leading-6 text-white">
+                Data Integrations
+                <div class="absolute inset-x-8 mt-4 h-px bg-wbony/50"></div>
+              </th>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-check text-white mx-auto"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path
+                    stroke="none"
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  ></path>
+                  <path d="M5 12l5 5l10 -10"></path>
+                </svg>
+                <span class="sr-only">Included in Basic</span>
+              </td>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-check text-white mx-auto"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path
+                    stroke="none"
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  ></path>
+                  <path d="M5 12l5 5l10 -10"></path>
+                </svg>
+                <span class="sr-only">Included in Essential</span>
+              </td>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-check text-white mx-auto"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path
+                    stroke="none"
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  ></path>
+                  <path d="M5 12l5 5l10 -10"></path>
+                </svg>
+                <span class="sr-only">Included in Premium</span>
+              </td>
+            </tr>
+            <tr>
+              <th
+                scope="row"
+                class="py-4 text-sm font-normal leading-6 text-white">
+                Shared links
+                <div class="absolute inset-x-8 mt-4 h-px bg-wbony/50"></div>
+              </th>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-check text-white mx-auto"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path
+                    stroke="none"
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  ></path>
+                  <path d="M5 12l5 5l10 -10"></path>
+                </svg>
+                <span class="sr-only">Included in Basic</span>
+              </td>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-check text-white mx-auto"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path
+                    stroke="none"
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  ></path>
+                  <path d="M5 12l5 5l10 -10"></path>
+                </svg>
+                <span class="sr-only">Included in Essential</span>
+              </td>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-check text-white mx-auto"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path
+                    stroke="none"
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  ></path>
+                  <path d="M5 12l5 5l10 -10"></path>
+                </svg>
+                <span class="sr-only">Included in Premium</span>
+              </td>
+            </tr>
+            <tr>
+              <th
+                scope="row"
+                class="py-4 text-sm font-normal leading-6 text-white">
+                Importing and exporting
+                <div class="absolute inset-x-8 mt-4 h-px bg-wbony/50"></div>
+              </th>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  class="mx-auto text-white"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true">
+                  <path
+                    fill-rule="evenodd"
+                    d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="sr-only">Not included in Basic</span>
+              </td>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-check text-white mx-auto"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path
+                    stroke="none"
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  ></path>
+                  <path d="M5 12l5 5l10 -10"></path>
+                </svg>
+                <span class="sr-only">Included in Essential</span>
+              </td>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-check text-white mx-auto"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path
+                    stroke="none"
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  ></path>
+                  <path d="M5 12l5 5l10 -10"></path>
+                </svg>
+                <span class="sr-only">Included in Premium</span>
+              </td>
+            </tr>
+            <tr>
+              <th
+                scope="row"
+                class="py-4 text-sm font-normal leading-6 text-white">
+                Team members
+                <div class="absolute inset-x-8 mt-4 h-px bg-wbony/50"></div>
+              </th>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  class="mx-auto text-white"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true">
+                  <path
+                    fill-rule="evenodd"
+                    d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="sr-only">Not included in Basic</span>
+              </td>
+              <td class="px-6 py-4 xl:px-8">
+                <div class="text-center text-sm leading-6 text-white">
+                  Up to 20 users
+                </div>
+              </td>
+              <td class="px-6 py-4 xl:px-8">
+                <div class="text-center text-sm leading-6 text-white">
+                  Up to 50 users
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <th
+                scope="colgroup"
+                colspan="4"
+                class="pb-4 text-blue-400 font-light pt-16">
+                Reporting
+                <div class="absolute inset-x-8 mt-4 h-px bg-ebony/50"></div>
+              </th>
+            </tr>
+            <tr>
+              <th
+                scope="row"
+                class="py-4 text-sm font-normal leading-6 text-white">
+                Advanced analytics
+                <div class="absolute inset-x-8 mt-4 h-px bg-wbony/50"></div>
+              </th>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-check text-white mx-auto"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path
+                    stroke="none"
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  ></path>
+                  <path d="M5 12l5 5l10 -10"></path>
+                </svg>
+                <span class="sr-only">Included in Basic</span>
+              </td>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-check text-white mx-auto"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path
+                    stroke="none"
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  ></path>
+                  <path d="M5 12l5 5l10 -10"></path>
+                </svg>
+                <span class="sr-only">Included in Essential</span>
+              </td>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-check text-white mx-auto"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path
+                    stroke="none"
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  ></path>
+                  <path d="M5 12l5 5l10 -10"></path>
+                </svg>
+                <span class="sr-only">Included in Premium</span>
+              </td>
+            </tr>
+            <tr>
+              <th
+                scope="row"
+                class="py-4 text-sm font-normal leading-6 text-white">
+                Collaborative Sharing
+                <div class="absolute inset-x-8 mt-4 h-px bg-wbony/50"></div>
+              </th>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  class="mx-auto text-white"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true">
+                  <path
+                    fill-rule="evenodd"
+                    d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="sr-only">Not included in Basic</span>
+              </td>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-check text-white mx-auto"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path
+                    stroke="none"
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  ></path>
+                  <path d="M5 12l5 5l10 -10"></path>
+                </svg>
+                <span class="sr-only">Included in Essential</span>
+              </td>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-check text-white mx-auto"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path
+                    stroke="none"
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  ></path>
+                  <path d="M5 12l5 5l10 -10"></path>
+                </svg>
+                <span class="sr-only">Included in Premium</span>
+              </td>
+            </tr>
+            <tr>
+              <th
+                scope="row"
+                class="py-4 text-sm font-normal leading-6 text-white">
+                Import/Export Functionality
+                <div class="absolute inset-x-8 mt-4 h-px bg-wbony/50"></div>
+              </th>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  class="mx-auto text-white"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true">
+                  <path
+                    fill-rule="evenodd"
+                    d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="sr-only">Not included in Basic</span>
+              </td>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  class="mx-auto text-white"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true">
+                  <path
+                    fill-rule="evenodd"
+                    d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="sr-only">Not included in Essential</span>
+              </td>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-check text-white mx-auto"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path
+                    stroke="none"
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  ></path>
+                  <path d="M5 12l5 5l10 -10"></path>
+                </svg>
+                <span class="sr-only">Included in Premium</span>
+              </td>
+            </tr>
+            <tr>
+              <th
+                scope="row"
+                class="py-4 text-sm font-normal leading-6 text-white">
+                Team Collaboration
+                <div class="absolute inset-x-8 mt-4 h-px bg-wbony/50"></div>
+              </th>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  class="mx-auto text-white"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true">
+                  <path
+                    fill-rule="evenodd"
+                    d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="sr-only">Not included in Basic</span>
+              </td>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  class="mx-auto text-white"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true">
+                  <path
+                    fill-rule="evenodd"
+                    d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="sr-only">Not included in Essential</span>
+              </td>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-check text-white mx-auto"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path
+                    stroke="none"
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  ></path>
+                  <path d="M5 12l5 5l10 -10"></path>
+                </svg>
+                <span class="sr-only">Included in Premium</span>
+              </td>
+            </tr>
+
+            <tr>
+              <th
+                scope="colgroup"
+                colspan="4"
+                class="pb-4 text-blue-400 font-light pt-16">
+                Support
+                <div class="absolute inset-x-8 mt-4 h-px bg-ebony/50"></div>
+              </th>
+            </tr>
+            <tr>
+              <th
+                scope="row"
+                class="py-4 text-sm font-normal leading-6 text-white">
+                Advanced Analytics
+                <div class="absolute inset-x-8 mt-4 h-px bg-wbony/50"></div>
+              </th>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-check text-white mx-auto"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path
+                    stroke="none"
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  ></path>
+                  <path d="M5 12l5 5l10 -10"></path>
+                </svg>
+                <span class="sr-only">Included in Basic</span>
+              </td>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-check text-white mx-auto"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path
+                    stroke="none"
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  ></path>
+                  <path d="M5 12l5 5l10 -10"></path>
+                </svg>
+                <span class="sr-only">Included in Essential</span>
+              </td>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-check text-white mx-auto"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path
+                    stroke="none"
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  ></path>
+                  <path d="M5 12l5 5l10 -10"></path>
+                </svg>
+                <span class="sr-only">Included in Premium</span>
+              </td>
+            </tr>
+            <tr>
+              <th
+                scope="row"
+                class="py-4 text-sm font-normal leading-6 text-white">
+                Standard Reports
+                <div class="absolute inset-x-8 mt-4 h-px bg-wbony/50"></div>
+              </th>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  class="mx-auto text-white"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true">
+                  <path
+                    fill-rule="evenodd"
+                    d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="sr-only">Not included in Basic</span>
+              </td>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-check text-white mx-auto"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path
+                    stroke="none"
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  ></path>
+                  <path d="M5 12l5 5l10 -10"></path>
+                </svg>
+                <span class="sr-only">Included in Essential</span>
+              </td>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-check text-white mx-auto"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path
+                    stroke="none"
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  ></path>
+                  <path d="M5 12l5 5l10 -10"></path>
+                </svg>
+                <span class="sr-only">Included in Premium</span>
+              </td>
+            </tr>
+            <tr>
+              <th
+                scope="row"
+                class="py-4 text-sm font-normal leading-6 text-white">
+                Professional Reports
+                <div class="absolute inset-x-8 mt-4 h-px bg-wbony/50"></div>
+              </th>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  class="mx-auto text-white"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true">
+                  <path
+                    fill-rule="evenodd"
+                    d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="sr-only">Not included in Basic</span>
+              </td>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-check text-white mx-auto"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path
+                    stroke="none"
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  ></path>
+                  <path d="M5 12l5 5l10 -10"></path>
+                </svg>
+                <span class="sr-only">Included in Essential</span>
+              </td>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-check text-white mx-auto"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path
+                    stroke="none"
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  ></path>
+                  <path d="M5 12l5 5l10 -10"></path>
+                </svg>
+                <span class="sr-only">Included in Premium</span>
+              </td>
+            </tr>
+            <tr>
+              <th
+                scope="row"
+                class="py-4 text-sm font-normal leading-6 text-white">
+                Custom Report Builder
+                <div class="absolute inset-x-8 mt-4 h-px bg-wbony/50"></div>
+              </th>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  class="mx-auto text-white"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true">
+                  <path
+                    fill-rule="evenodd"
+                    d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="sr-only">Not included in Basic</span>
+              </td>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  class="mx-auto text-white"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true">
+                  <path
+                    fill-rule="evenodd"
+                    d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="sr-only">Not included in Essential</span>
+              </td>
+              <td class="px-6 py-4 xl:px-8">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-check text-white mx-auto"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path
+                    stroke="none"
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  ></path>
+                  <path d="M5 12l5 5l10 -10"></path>
+                </svg>
+                <span class="sr-only">Included in Premium</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

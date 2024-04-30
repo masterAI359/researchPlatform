@@ -1,0 +1,51 @@
+---
+import LightLayout from "@/layouts/LightLayout.astro";
+---
+
+<LightLayout>
+  <section class="lg:p-8 overflow-hidden bg-white">
+    <div class="mx-auto 2xl:max-w-7xl py-24 lg:px-16 md:px-12 px-8 xl:px-36">
+      <div class="flex flex-col max-w-2xl mx-auto">
+        <span class="text-black">404</span>
+        <div class="prose-styles mt-6">
+          <h1>
+            Oh no! It seems like you've stumbled upon uncharted territory.
+          </h1>
+          <p>
+            The page you're looking for has gone missing, but fear not, we're
+            here to assist you.
+          </p>
+          <p>
+            Our team of digital explorers is on the case, working diligently to
+            bring back what was lost. In the meantime, feel free to:
+          </p>
+          <ul>
+            <li>
+              Navigate through our <a href="/">homepage</a> to explore our other
+              captivating pages.
+            </li>
+            <li>
+              Search for what you need using our website's search feature.
+            </li>
+            <li>
+              Read our latest articles or visit our blog for insights and
+              updates.
+            </li>
+            <li>
+              Contact our <a href="/forms/contact">support team</a> if you need further
+              assistance or have any queries.
+            </li>
+          </ul>
+          <p>Stay curious and keep exploring!</p>
+        </div>
+        <div class="mt-6">
+          <a
+            href="/"
+            class="text-sm py-2 px-4 border h-10 focus:ring-2 rounded-full border-zinc-100 bg-black hover:bg-black/10 text-white duration-200 focus:ring-offset-2 focus:ring-white hover:text-black w-auto inline-flex items-center justify-center ring-1 ring-transparent">
+            &larr; &nbsp; Explore all pages
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</LightLayout>

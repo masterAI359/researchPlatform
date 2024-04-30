@@ -1,0 +1,138 @@
+<section class="lg:p-8 overflow-hidden bg-white">
+  <div class="mx-auto 2xl:max-w-7xl py-24 lg:px-16 md:px-12 px-8 xl:px-36">
+    <div class="w-full max-w-md md:max-w-sm mx-auto">
+      <div class="flex flex-col">
+        <div class="border-b pb-12">
+          <p class="text-3xl tracking-tight font-light lg:text-4xl text-black">
+            Let's get started!
+          </p>
+          <p class="mt-2 text-sm text-zinc-400">
+            Complete the details below so Buio can process your request and then
+            schedule a time to discuss your goals.
+          </p>
+        </div>
+      </div>
+      <form class="mt-12">
+        <div class="space-y-6">
+          <div class="w-full flex flex-row gap-3">
+            <div class="w-full">
+              <label
+                for="first_name"
+                class="block mb-3 text-sm font-medium text-black"
+                >First name</label
+              >
+              <input
+                type="text"
+                id="first_name"
+                name="first_name"
+                placeholder="First name..."
+                autocomplete="given-name"
+                required
+                class="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-black placeholder-black/50 bg-white/5 focus:border-black focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10"
+              />
+            </div>
+            <div class="w-full">
+              <label
+                for="last_name"
+                class="block mb-3 text-sm font-medium text-black"
+                >Last name</label
+              >
+              <input
+                type="text"
+                id="last_name"
+                name="last_name"
+                placeholder="Last name..."
+                autocomplete="family-name"
+                required
+                class="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-black placeholder-black/50 bg-white/5 focus:border-black focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10"
+              />
+            </div>
+          </div>
+          <div>
+            <label
+              for="company"
+              class="text-sm block font-medium mb-3 text-black"
+              >Company</label
+            >
+            <input
+              type="text"
+              id="company"
+              name="company"
+              placeholder="Your Company..."
+              class="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-black placeholder-black/50 bg-white/5 focus:border-black focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10"
+            />
+          </div>
+          <div class="col-span-full">
+            <label
+              for="email"
+              class="text-sm block font-medium mb-3 text-black"
+              >Email</label
+            >
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Your Email..."
+              class="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-black placeholder-black/50 bg-white/5 focus:border-black focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10"
+            />
+          </div>
+          <div class="col-span-full">
+            <label
+              for="phone-number"
+              class="text-sm block font-medium mb-3 text-black"
+              >Phone Number</label
+            >
+            <div class="relative">
+              <select
+                id="country"
+                name="country"
+                class="absolute inset-y-0 left-0 text-sm bg-transparent border-transparent focus:border-blue-500 focus:ring-blue-500 h-full pl-3 pr-8 py-0 rounded-md text-black">
+                <option>US</option>
+                <option>CA</option>
+                <option>EU</option>
+              </select>
+              <input
+                type="text"
+                id="phone-number"
+                name="phone-number"
+                placeholder="+1 (555) 987-6543"
+                autocomplete="tel"
+                class="text-sm block w-full px-20 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-black placeholder-black/50 bg-white/5 focus:border-black focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10"
+              />
+            </div>
+          </div>
+          <div class="flex">
+            <div class="flex items-start">
+              <input
+                type="checkbox"
+                id="terms"
+                name="terms"
+                class="border-blue-500 focus:ring-blue-500 h-4 rounded text-blue-400 w-4"
+              />
+              <label
+                for="terms"
+                class="text-sm block font-medium leading-tight ml-2 text-black"
+                >I agree to the <a
+                  href="/terms"
+                  class="hover:text-blue-400 text-blue-400"
+                  >Terms of Service</a
+                > and <a
+                  href="/privacy"
+                  class="hover:text-blue-400 text-blue-400"
+                  >Privacy Policy</a
+                >.</label
+              >
+            </div>
+          </div>
+          <div class="col-span-full">
+            <button
+              type="submit"
+              class="text-sm py-2 px-4 border focus:ring-2 h-10 rounded-full border-zinc-100 bg-black hover:bg-black/10 text-white duration-200 focus:ring-offset-2 focus:ring-white hover:text-black w-full inline-flex items-center justify-center ring-1 ring-transparent"
+              >Submit</button
+            >
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,12 @@
+---
+const { page, url } = Astro.props;
+---
+
+<li class="py-4">
+  <a
+    href={url}
+    title={page}
+    class="text-zinc-500 hover:text-blue-400 duration-200">
+    {page}
+  </a>
+</li>

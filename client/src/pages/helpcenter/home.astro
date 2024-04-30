@@ -1,0 +1,39 @@
+---
+import { getCollection } from "astro:content";
+const allPosts = await getCollection("helpcenter");
+import LightLayout from "@/layouts/LightLayout.astro";
+import Entries from "@/components/helpcenter/Entries.astro";
+---
+
+<LightLayout>
+  <section class="lg:p-8 bg-white">
+    <div
+      class="px-8 py-12 lg:py-32 mx-auto md:px-12 lg:px-16 xl:px-36 2xl:max-w-7xl">
+      <div class="max-w-xl mx-auto">
+        <div>
+          <span class="text-black"> Help Center </span>
+          <h1
+            class="text-3xl mt-6 tracking-tight font-light text-balance text-black">
+            Welcome to the Help Center, where you can find all the information
+            you need to get started.
+          </h1>
+
+          <ul
+            role="list"
+            class="divide-y divide-black/20 text-black border-t border-black/10 mt-12">
+            {
+              allPosts.slice().map((post) => (
+                <Entries
+                  url={"/helpcenter/" + post.slug}
+                  page={post.data.page}
+                  alt={post.data.page}
+                  icon={post.data.icon.url}
+                />
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</LightLayout>

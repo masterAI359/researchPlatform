@@ -1,0 +1,41 @@
+---
+import "../styles/global.css";
+import Metas from "./seo/Metas.astro";
+import Favicons from "./seo/Favicons.astro";
+const {
+  title = "Lexington Starter",
+  description = "#",
+  url,
+  socialImage = "/social-preview-image.png",
+  twitterImage = "/twitter-preview-image.png", // Assuming you have a separate image for Twitter
+  author = "Lexington Themes",
+} = Astro.props;
+const sanitizedTitle = title.toLowerCase().replaceAll(" ", "-");
+---
+<Metas
+  title={title}
+  description={description.substring(0, 100)}
+  url={Astro.site
+    ? `${Astro.site}/${sanitizedTitle}`
+    : `https://lexingtonthemes.com/${sanitizedTitle}`}
+  image={socialImage}
+  author={author}
+  twitterImage={twitterImage}
+/>
+<Favicons/>
+
+
+<link rel="preconnect" href="https://rsms.me/" />
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
+
+<!---- Alpine integrations -->
+<script defer src="https://unpkg.com/@alpinejs/focus@3.12.3/dist/cdn.min.js"
+></script>
+<script defer src="https://unpkg.com/@alpinejs/intersect@3.12.3/dist/cdn.min.js"></script>
+<script defer src="https://unpkg.com/alpinejs@3.12.3/dist/cdn.min.js"></script>
+<!---- Smoothscroll -->
+<script
+  defer
+  src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.js"
+></script>

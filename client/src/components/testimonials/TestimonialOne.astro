@@ -1,0 +1,87 @@
+---
+const testimonials = [
+  {
+    img: "https://d33wubrfki0l68.cloudfront.net/1a2e935392c14749028729b21b20ddbd4c54b70e/1a932/images/testimonials/amrit.jpeg",
+    alt: "amrit",
+    name: "Amrit Nagi",
+    title: "CEO of Tailwind Toolbox",
+    content:
+      "It's amazing just how quickly the quality and variety of his work has developed and evolved!",
+  },
+  {
+    img: "https://d33wubrfki0l68.cloudfront.net/cabc8d70a84f6d78e56c5cd2db3f54ab6462325d/95045/images/testimonials/gabi.jpeg",
+    alt: "img",
+    name: "Gabriel Perales",
+    title: "Engineer at Cabify",
+    content:
+      "Mike has helped me with many designs, and I couldn't follow his working speed when we worked together.",
+  },
+  {
+    img: "https://pbs.twimg.com/profile_images/1039477099768295424/DkFxqf2V_400x400.jpg",
+    alt: "",
+    name: "Volkan Kaya",
+    title: "Founder of Versoly.com",
+    content:
+      "Mike leveraged his previous experience to build out a few landing pages very quickly for Versoly",
+  },
+  {
+    img: "https://d33wubrfki0l68.cloudfront.net/05a6c2e973f7b38e7b5f5fb1923ed9507d6fc68d/10e85/images/testimonials/mike.png",
+    alt: "gustavo",
+    name: "Mike Jones",
+    title: "Blogger at Raspada",
+    content:
+      "I have had the absolute pleasure of working with Mike in the past when building my blog Raspada. company.",
+  },
+];
+---
+
+<section class="lg:p-8">
+  <div
+    class="mx-auto 2xl:max-w-7xl py-12 lg:px-16 md:px-12 px-8 xl:px-36 items-center relative w-full">
+    <div class="max-w-xl mx-auto text-center">
+      <span class="text-blue-400"> Opinions</span>
+      <h2
+        class="text-3xl mt-6 tracking-tight font-light lg:text-4xl text-white">
+        Meet our customers
+      </h2>
+    </div>
+    <ul
+      role="list"
+      class="grid grid-cols-1 gap-2 lg:grid-cols-4 lg:space-y-0 mt-12">
+      {
+        testimonials.map((testimonial) => (
+          <li class="bg-ebony shadow-inset rounded-3xl lg:p-8 p-4 text-center">
+            <figure>
+              <div class="h-full group grid">
+                <figcaption class="relative flex items-center flex-col gap-4 pb-6">
+                  <div class="overflow-hidden shrink-0">
+                    <img
+                      alt={testimonial.alt}
+                      src={testimonial.img}
+                      class="object-cover rounded-full size-14 grayscale shrink-0"
+                    />
+                  </div>
+                  <div>
+                    <div class="text-lg font-medium leading-6 text-white">
+                      {testimonial.name}
+                    </div>
+                    <div class="mt-1">
+                      <a
+                        class="text-sm text-white/70 group-hover:text-white"
+                        href="#_">
+                        {testimonial.title}
+                      </a>
+                    </div>
+                  </div>
+                </figcaption>
+                <blockquote class="relative mt-2 ">
+                  <p class="text-sm text-white">"{testimonial.content}"</p>
+                </blockquote>
+              </div>
+            </figure>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

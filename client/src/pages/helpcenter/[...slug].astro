@@ -1,0 +1,22 @@
+---
+import { getCollection } from "astro:content";
+import HelpCenterLayout from "@/layouts/HelpCenterLayout.astro";
+export async function getStaticPaths() {
+  const helpcenter = await getCollection("helpcenter");
+  const paths = helpcenter.map((page) => {
+    return {
+      params: { slug: page.slug },
+      props: { page },
+
+      trailingSlash: false,
+    };
+  });
+  return paths;
+}
+const { page } = Astro.props;
+const { Content } = await page.render();
+---
+
+<HelpCenterLayout frontmatter={page.data}>
+  <Content />
+</HelpCenterLayout>

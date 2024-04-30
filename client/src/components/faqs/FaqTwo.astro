@@ -1,0 +1,85 @@
+---
+const faqs = [
+  {
+    question: "How does end-to-end encryption work?",
+    answer:
+      "End-to-end encryption ensures that only the sender and recipient can access the content of a message. The information is encrypted on the sender's device and can only be decrypted by the intended recipient, preventing any intermediaries, including the platform provider, from accessing the data.",
+  },
+  {
+    question: "Can I access my encrypted data if I forget my encryption key?",
+    answer:
+      "No, forgetting or losing your encryption key means that your encrypted data cannot be accessed. This is a crucial security measure to ensure that even if someone gains unauthorized access to your account, they won't be able to decrypt and view your messages or files.",
+  },
+  {
+    question:
+      "Are there any limitations to the self-destructing messages feature?",
+    answer:
+      "Self-destructing messages are designed to automatically delete themselves after a specific period or upon being read by the recipient. However, it's important to note that the feature only removes the message from the devices involved in the conversation. Recipients may take screenshots or use other means to capture the content, which is beyond the platform's control.",
+  },
+  {
+    question:
+      "What happens if I enable two-factor authentication and lose my device?",
+    answer:
+      "Losing your device doesn't automatically compromise your account's security. It's recommended to contact our support team as soon as possible to disable the two-factor authentication on your lost device and set up the authentication on your new device. This process will help protect your account from unauthorized access while ensuring you can regain access to it.",
+  },
+  {
+    question: "Is my personal information shared or sold to third parties?",
+    answer:
+      "No, we strictly adhere to a privacy-centric approach. Your personal information is never shared, sold, or monetized. We prioritize your privacy and ensure that your data remains confidential and only accessible to you.",
+  },
+  {
+    question: "Can I use this platform on multiple devices?",
+    answer:
+      "Yes, you can access our platform on multiple devices. Your encrypted data remains synced across all devices, allowing you to seamlessly communicate and access your files and messages from anywhere.",
+  },
+  {
+    question: "Are there any storage limitations for files and documents?",
+    answer:
+      "Our platform provides ample storage space for your files and documents. However, there may be storage limitations based on the pricing plan you choose. We offer flexible plans to suit your needs and provide options to upgrade if you require additional storage capacity.",
+  },
+  {
+    question: "Is it possible to export my data from the platform?",
+    answer:
+      "Yes, you can export your data from the platform. We offer export features that allow you to download your messages, files, and documents, ensuring you have a local copy for backup or migration purposes. It provides you with greater control and flexibility over your data.",
+  },
+];
+---
+
+<section class="lg:p-8">
+  <div
+    class="mx-auto 2xl:max-w-7xl py-12 lg:px-16 md:px-12 px-8 xl:px-36 items-center relative w-full">
+    <div class="max-w-xl mx-auto">
+      <span class="text-blue-400"> FAQ</span>
+      <h2
+        class="text-3xl mt-6 tracking-tight font-light lg:text-4xl text-white">
+        The answers to your <span class="block text-zinc-400"
+          >Frequent questions and answers</span
+        >
+      </h2>
+      <p class="mt-5 text-white">
+        If you can’t find what you’re looking for, email our support team and if
+        you’re lucky someone will get back to you.
+      </p>
+      <ul
+        role="list"
+        class="grid grid-cols1 mt-24 divide-y border-y border-white/10 divide-white/10">
+        {
+          faqs.map((faq) => (
+            <>
+              <li class="py-6">
+                <div>
+                  <p class="text-base font-medium leading-6 text-white">
+                    {faq.question}
+                  </p>
+                </div>
+                <div class="mt-4 text-sm text-white/70 text-pretty">
+                  {faq.answer}
+                </div>
+              </li>
+            </>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>

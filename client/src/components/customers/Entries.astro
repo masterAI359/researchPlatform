@@ -1,0 +1,14 @@
+---
+const { customer, logo, url } = Astro.props;
+---
+
+<a
+  href={url}
+  title={customer}
+  class="p-8 lg:p-20 rounded-3xl shadow-inset bg-ebony justify-center items-center aspect-square flex">
+  <img
+    class="mx-auto"
+    src={logo}
+    alt={customer}
+  />
+</a>

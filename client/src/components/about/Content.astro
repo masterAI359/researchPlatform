@@ -1,0 +1,57 @@
+---
+const contentBlocks = [
+  {
+    title: "For founders, by founders",
+    subtitle: "Some stats",
+    description:
+      "Buio was built by a team of passionate entrepreneurs who know the challenges and opportunities founders face when deciding how to finance their companies.",
+    image: "/images/assets/cube.png",
+    imageAlignment: "right", // Custom property to determine image positioning
+  },
+  {
+    title: "Flexible charts on your terms",
+    subtitle: "Some stats",
+    description:
+      "Our goal is to empower founders to scale companies without taking on restrictive debt or giving up ownership interest. We designed Buio to enable access to non-dilutive capital based on the health of your business—not based on who you know.",
+    image: "/images/assets/cubeTwo.png",
+    imageAlignment: "left", // Custom property to determine image positioning
+  },
+];
+---
+
+<section class="lg:p-8">
+  <div
+    class="mx-auto 2xl:max-w-7xl py-24 lg:px-16 md:px-12 px-8 xl:px-40 items-center lg:py-24 relative w-full">
+    <div class="space-y-6">
+      {
+        contentBlocks.map((block) => (
+          <div
+            class={`mt-12 h-full lg:mt-0 bg-gradientdown ring-1 grid grid-cols-1 md:grid-cols-2 ring-white/10 rounded-4xl p-8 lg:p-20 relative overflow-hidden`}>
+            <div
+              class={`relative z-10 ${block.imageAlignment === "right" ? "" : "md:col-start-2"}`}>
+              <span class="text-white">{block.subtitle}</span>
+              <h2 class="text-3xl mt-6 tracking-tight font-light lg:text-4xl text-white">
+                {block.title}{" "}
+                <span class="block text-zinc-300">
+                  {block.title.includes("by founders")
+                    ? "by founders"
+                    : "on your terms"}
+                </span>
+              </h2>
+              <p class="mt-4 text-sm text-white max-w-xl">
+                {block.description}
+              </p>
+            </div>
+            <img
+              class={`md:absolute opacity-30 ${block.imageAlignment === "right" ? "md:-right-64 md:-mt-32" : "md:-left-64 md:-mt-12"}`}
+              src={block.image}
+              alt=""
+            />
+          </div>
+        ))
+      }
+    </div>
+
+   
+  </div>
+</section>

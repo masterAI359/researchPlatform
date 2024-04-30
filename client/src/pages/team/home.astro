@@ -1,0 +1,40 @@
+---
+import { getCollection } from "astro:content";
+const allPosts = await getCollection("team");
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import TeamEntries from "@/components/team/TeamEntries.astro";
+---
+
+<BaseLayout>
+  <section class="lg:p-8">
+    <div
+      class="mx-auto 2xl:max-w-7xl py-24 lg:px-16 md:px-12 px-8 xl:px-36 items-center lg:py-24 relative w-full bg-gradientup rounded-[3rem]">
+      <div class="mx-auto max-w-2xl lg:mx-0 pb-12 border-b border-white/10">
+        <span class="text-white">Our team</span>
+        <h2
+          class="text-3xl mt-6 tracking-tight font-light lg:text-4xl text-white">
+          We are a super talented and creative team
+          <span class="md:block text-zinc-300">
+            ready to work on the first chart we find.
+          </span>
+        </h2>
+      </div>
+      <ul
+        role="list"
+        class="mx-auto mt-20 grid max-w-2xl grid-cols-2 gap-x-8 gap-y-16 text-center sm:grid-cols-3 md:grid-cols-4 lg:mx-0 lg:max-w-none lg:grid-cols-5 xl:grid-cols-6">
+        {
+          allPosts.map((post) => (
+            <TeamEntries
+              url={"/team/" + post.slug}
+              name={post.data.name}
+              role={post.data.role}
+              avatar={post.data.avatar.url}
+            />
+          ))
+        }
+
+      </ul>
+    </div>
+  </section>
+
+</BaseLayout>

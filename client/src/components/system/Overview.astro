@@ -1,0 +1,165 @@
+---
+const pageData = [
+  {
+    sectionTitle: "All pages",
+    categories: [
+      {
+        title: "Landing Pages",
+        links: [
+          { name: "Landing Page One", url: "/landingpages/landing-one" },
+          { name: "Landing Page Two", url: "/landingpages/landing-two" },
+          { name: "Landing Page Three", url: "/landingpages/landing-three" },
+          { name: "Download", url: "/forms/download" },
+          { name: "Status", url: "/helpcenter/status" },
+          { name: "About", url: "/about" },
+          { name: "404", url: "/404" },
+        ],
+      },
+
+      {
+        title: "Forms Pages",
+        links: [
+          { name: "Contact", url: "/forms/contact" },
+          { name: "Submit", url: "/forms/submit" },
+          { name: "Login", url: "/forms/login" },
+          { name: "Sign up", url: "/forms/signup" },
+          { name: "Forgot Password", url: "/forms/forgot" },
+        ],
+      },
+      {
+        title: "Pricing Pages",
+        links: [
+          { name: "Pricing Page One", url: "/pricingpages/pricing-one" },
+          { name: "Pricing Page Two", url: "/pricingpages/pricing-two" },
+          { name: "Pricing Page Three", url: "/pricingpages/pricing-three" },
+        ],
+      },
+      {
+        title: "Partnerships",
+        links: [{ name: "Partnerships home", url: "/partnerships" }],
+      },
+      {
+        title: "System Pages",
+        links: [
+          { name: "Style Guide", url: "/system/styleguide" },
+          { name: "License", url: "https://lexingtonthemes.com/license.html" },
+          { name: "All feature sections", url: "/components/all-features" },
+          { name: "All pricing", url: "/components/all-pricing" },
+        ],
+      },
+    ],
+  },
+  {
+    sectionTitle: "Content collections",
+    categories: [
+      {
+        title: "Blog Pages",
+        links: [
+          { name: "Blog home", url: "/blog/home" },
+          { name: "Blog post", url: "/posts/1" },
+          { name: "Tag index", url: "/tags" },
+          { name: "Tag slug", url: "/tags/astro" },
+          { name: "RSS", url: "/rss.xml" },
+        ],
+      },
+      {
+        title: "Utility Pages",
+        links: [
+          { name: "DPA", url: "/infopages/usdpaage" },
+          { name: "Usage", url: "/infopages/usage" },
+          { name: "Cookies", url: "/infopages/cookies" },
+          { name: "Bug Bounty", url: "/infopages/bug-bounty" },
+          { name: "Terms Of use", url: "/infopages/terms" },
+          { name: "Privacy Policy", url: "/infopages/privacy" },
+        ],
+      },
+      {
+        title: "Help Center",
+        links: [
+          { name: "Knowledge Base", url: "/helpcenter/knowledge-base" },
+          { name: "Home", url: "/helpcenter/home" },
+          { name: "Details", url: "/helpcenter/1" },
+
+        ],
+      },
+       {
+        title: "Integrations",
+        links: [
+
+          { name: "Home", url: "/integrations/home" },
+          { name: "Details", url: "/integrations/1" },
+
+        ],
+      },
+      {
+        title: "Changelog",
+        links: [
+          { name: "Home", url: "/changelog/home" },
+          { name: "Details", url: "/changelog/1" },
+        ],
+      },
+      {
+        title: "Jobs",
+        links: [
+          { name: "Home", url: "/jobs/home" },
+          { name: "Details", url: "/jobs/1" },
+
+        ],
+      },
+      {
+        title: "Customers",
+        links: [
+          { name: " Home", url: "/customers/home" },
+          { name: " Details", url: "/customers/1" },
+        ],
+      },
+        {
+        title: "Teams",
+        links: [
+          { name: "Home", url: "/team/home" },
+          { name: "Details", url: "/team/1" },
+        ],
+      },
+    ],
+  },
+];
+---
+
+<section class="lg:p-8 overflow-hidden">
+  <div
+    class="mx-auto 2xl:max-w-7xl py-24 lg:px-16 md:px-12 px-8 xl:px-40 items-center w-full bg-gradientdown rounded-[3rem]">
+    <div class="justify-center max-w-3xl">
+      <h2
+        class="text-3xl mt-6 tracking-tight font-light lg:text-6xl text-white">
+        Overview
+      </h2>
+    </div>
+    <div class="space-y-24 mt-12">
+      {
+        pageData.map((section) => (
+          <div>
+            <p class="mt-4 text-base text-white">{section.sectionTitle}</p>
+            <div class="grid grid-cols-2 gap-12 lg:grid-cols-5 md:grid-cols-3 mt-12 pt-12 border-t border-white/10">
+              {section.categories.map((category) => (
+                <div class="text-sm mt-10 lg:mt-0 ">
+                  <div class="flex flex-col justify-start text-sm text-white space-y-2">
+                    <p class="text-xl text-white">{category.title}</p>
+                    {category.links.map((link) => (
+                      <a
+                        class=" hover:text-white/80"
+                        href={link.url}
+                        title={link.name}
+                        aria-label={link.name}>
+                        {link.name}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

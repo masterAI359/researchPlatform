@@ -1,0 +1,106 @@
+---
+const testimonials = [
+  {
+    id: 1,
+    content:
+      "Mike is like a unicorn in a field of horses, magically bridging the gap between design and coding. His designs sparkle brighter than a disco ball at a 70s party, hitting that sweet spot between trendy and 'wow, did he really just pull that off?",
+    imageUrl: "https://alfred.lexingtonthemes.com/avatar1.png",
+    name: "Michael Andreuzza",
+    title: "Chief Wizard of Nowhere Land",
+  },
+  {
+    id: 2,
+    content:
+      "Working with Robert is like finding a needle in a haystack – except the needle comes to you, and it's golden. His design eye is sharper than my grandma's kitchen knives, and trust me, those can slice through anything. Can't wait to conjure up more projects with him, maybe something involving flying pigs next time?",
+    imageUrl: "https://alfred.lexingtonthemes.com/avatar2.png",
+    name: "Roberto Mancini",
+    title: "Grandmaster of Excuse Crafting",
+  },
+  {
+    id: 3,
+    content:
+      "Manuela is that rare blend of designer and developer who actually knows what 'deadline' means – a mythical creature in our industry. He whipped up landing pages faster than I could say Banana, with a flair that made me wonder if he moonlights as a magician. If he asks for a rabbit, just give it to him, no questions asked.",
+    imageUrl: "https://alfred.lexingtonthemes.com/avatar3.png",
+    name: "Manuela Gafotas",
+    title: "Professional Procrastinator & Part-Time Visionary",
+  },
+];
+---
+
+<section
+  class="lg:p-8"
+  x-data="{ testimonialActive: 2 }">
+  <div class="px-8 py-12 mx-auto md:px-12 lg:px-16 xl:px-36 2xl:max-w-7xl">
+    <div class="relative overflow-hidden">
+      <div class="text-center">
+        <span class="text-blue-400"> Our Customers Love Us</span>
+        <h2
+          class="text-2xl py-3 mt-6 tracking-tight font-light max-w-xl mx-auto text-white">
+          Used by design agencies, freelance practitioners, universities, and
+          numerous individuals representing companies across diverse industries
+          worldwide.
+        </h2>
+      </div>
+      <div>
+        <!-- Dynamically render testimonials -->
+        {
+          testimonials.map((testimonial, index) => (
+            <div
+              class="pb-6 text-zinc-200 font-medium mx-auto text-xl  italic serif text-balance items-center text-center lg:text-4xl "
+              x-show={`testimonialActive === ${index + 1}`}
+              style="display: none;">
+              <p class="text-zinc-400 text-sm mt-6 mx-auto text-center">
+                {testimonial.content}
+              </p>
+            </div>
+          ))
+        }
+
+        <div class="flex items-center justify-center mt-8">
+          <!--
+        Buttons to change the active testimonial
+        Dynamically render avatars
+      -->
+          {
+            testimonials.map((testimonial, index) => (
+              <button
+                @click.prevent={`testimonialActive = ${index + 1}`}
+                class="inline-block mx-2 font-bold text-center rounded-full shadow-xs focus:outline-none focus:ring-2 h-12 w-12  bg-gradientdown ring-1 ring-offset-4 focus:ring-blue-400 ring-white/20 ring-offset-black">
+                <img
+                  class="inline-block w-12 h-12 rounded-full"
+                  src={testimonial.imageUrl}
+                  alt="#_"
+                />
+              </button>
+            ))
+          }
+        </div>
+        <!-- Dynamically render name and role  -->
+        {
+          testimonials.map((testimonial, index) => (
+            <div
+              class="text-center py-6"
+              x-show={`testimonialActive === ${index + 1}`}
+              style="display: none;">
+              <p class="text-white text-sm font-medium lg:text-base">
+                {testimonial.name}
+              </p>
+              <a
+                href="#_"
+                class="text-xs text-zinc-400 hover:text-blue-400">
+                {testimonial.title}
+              </a>
+            </div>
+          ))
+        }
+        <div class="flex items-center mt-8 justify-center mx-auto">
+          <a
+            href="/customers/home"
+            class="text-sm py-2 px-4 border focus:ring-2 rounded-full border-transparent bg-white hover:bg-white/10 text-black duration-200 focus:ring-offset-2 focus:ring-white hover:text-white inline-flex items-center justify-center ring-1 ring-transparent">
+            Read all case studies &nbsp; &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

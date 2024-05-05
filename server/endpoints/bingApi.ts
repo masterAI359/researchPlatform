@@ -44,30 +44,27 @@ export const bingArticles = async (req: Request, res: Response) => {
 		}
 		const data = await response.json();
 
-		const values = Object.values(data.value);
-
-		const organizedValues = Object.values(values).map((value: any) => {
-			const newObj = {
+		const organizedData = Object.values(data.value).map((value: any) => {
+			return {
 				name: value.name,
 				url: value.url,
 				image: {
-					img: value.image.thumbnail.contentUrl,
-					width: value.image.thumbnail.width,
-					height: value.image.thumbnail.height,
+					img: value.image?.thumbnail ? value.image.thumbnail.contentUrl : null,
+					width: value.image?.thumbnail ? value.image.thumbnail.width : null,
+					height: value.image?.thumbnail ? value.image.thumbnail.height : null,
 				},
 				description: value.description,
 				keywords: [
-					value.about.map((keyword: any) => {
+					value?.about?.map((keyword: any) => {
 						return keyword.name;
 					}),
 				],
 				provider: value.provider[0].name,
 				datePublished: value.datePublished,
 			};
-			return newObj;
 		});
 
-		res.send(organizedValues);
+		res.send(organizedData);
 	} catch (err) {
 		console.error('error', err);
 		res.status(500).send('error fetching search result');

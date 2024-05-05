@@ -44,28 +44,27 @@ export const bingArticles = (req, res) => __awaiter(void 0, void 0, void 0, func
             throw new Error(`error: ${res.status}`);
         }
         const data = yield response.json();
-        const values = Object.values(data.value);
-        const organizedValues = Object.values(values).map((value) => {
-            const newObj = {
+        const organizedData = Object.values(data.value).map((value) => {
+            var _a, _b, _c, _d;
+            return {
                 name: value.name,
                 url: value.url,
                 image: {
-                    img: value.image.thumbnail.contentUrl,
-                    width: value.image.thumbnail.width,
-                    height: value.image.thumbnail.height,
+                    img: ((_a = value.image) === null || _a === void 0 ? void 0 : _a.thumbnail) ? value.image.thumbnail.contentUrl : null,
+                    width: ((_b = value.image) === null || _b === void 0 ? void 0 : _b.thumbnail) ? value.image.thumbnail.width : null,
+                    height: ((_c = value.image) === null || _c === void 0 ? void 0 : _c.thumbnail) ? value.image.thumbnail.height : null,
                 },
                 description: value.description,
                 keywords: [
-                    value.about.map((keyword) => {
+                    (_d = value === null || value === void 0 ? void 0 : value.about) === null || _d === void 0 ? void 0 : _d.map((keyword) => {
                         return keyword.name;
                     }),
                 ],
                 provider: value.provider[0].name,
                 datePublished: value.datePublished,
             };
-            return newObj;
         });
-        res.send(organizedValues);
+        res.send(organizedData);
     }
     catch (err) {
         console.error('error', err);

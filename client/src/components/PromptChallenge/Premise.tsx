@@ -8,7 +8,7 @@ interface PremiseProps {
 }
 
 
-export function Premise({biases, statement, identifier, dispatch}: PremiseProps) {
+export default function Premise({biases, statement, identifier, dispatch}: PremiseProps) {
 
     const [premise, setPremise] = useState("")
 

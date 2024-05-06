@@ -1,8 +1,8 @@
 import { useReducer } from "react"
 import InputStatement from "./InputStatement"
-import { Bias } from "./Bias"
-import { Premise } from "./Premise"
-import { SuggestQuery } from "./SuggestQuery"
+import Bias  from "./Bias"
+import Premise from "./Premise"
+import SuggestQuery from "./SuggestQuery"
 
 
 interface State {

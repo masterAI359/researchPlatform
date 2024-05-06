@@ -1,7 +1,8 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Overview from "@/components/system/Overview.astro";
+import SearchBox from "@/components/PromptChallenge/SearchBox";
+//import Prompt from "@/components/PromptChallenge/Prompt";
 ---
 <BaseLayout>
-  <Overview />
+<SearchBox client:load />
 </BaseLayout>

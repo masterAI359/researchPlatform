@@ -8,7 +8,7 @@ interface SuggestTypes {
     dispatch: any
 }
 
-export function SuggestQuery({ statement, biases, identifier, premise, dispatch }: SuggestTypes) {
+export default function SuggestQuery({ statement, biases, identifier, premise, dispatch }: SuggestTypes) {
 
     const [query, setQuery] = useState("");
 

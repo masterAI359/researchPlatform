@@ -33,23 +33,24 @@ var __awaiter =
 	};
 import express from 'express';
 const app = express();
-import keys from './keys.js';
-import fetch from 'node-fetch';
-const password =
-	keys.pgPassword !== undefined ? keys.pgPassword.toString() : undefined;
+import { bingArticles, bingGeneral } from '../endpoints/bingApi.js';
 import pkg from 'pg';
 const { Client } = pkg;
-const client = new Client({
-	user: keys.pgUser,
-	password: keys.pgPassword,
-	host: keys.pgHost,
-	port: keys.pgPort !== undefined ? parseInt(keys.pgPort, 10) : undefined,
-	database: keys.pgDatabase,
-});
+const client = new Client(
+	'postgresql://said:LWK2SWytsTGJFYIyWHBP3Q@cluster0-14450.7tt.aws-us-east-1.cockroachlabs.cloud:26257/elenchus?sslmode=verify-full'
+);
 client
 	.connect()
 	.then(() => console.log('Connected to the Elenchus Database'))
 	.catch((err) => console.error('Error connecting to database: ', err));
+(() =>
+	__awaiter(void 0, void 0, void 0, function* () {
+		try {
+			const results = yield client.query('SELECT NOW()');
+		} catch (err) {
+			console.error('error executing query:', err);
+		}
+	}))();
 const port = 5001;
 app.get('/', (req, res) => {
 	res.send('Hello World');
@@ -67,32 +68,9 @@ app.get('/api', (req, res) =>
 	})
 );
 //testing bing api search
-app.get('/search', (req, res) =>
-	__awaiter(void 0, void 0, void 0, function* () {
-		//declare search string from user's input
-		const search = req.query.q;
-		const apiKey = 'fe13aa45a7654f10b3f81e30f5e0b5ab';
-		//declare endpoint with the search
-		const endpoint = `https://api.bing.microsoft.com/v7.0/search?q=${encodeURIComponent(
-			search
-		)}&mkt=en-us`;
-		try {
-			const response = yield fetch(endpoint, {
-				//https request to get the search's response
-				method: 'GET',
-				headers: { 'Ocp-Apim-Subscription-Key': apiKey },
-			});
-			if (!response.ok) {
-				throw new Error(`error: ${res.status}`);
-			}
-			const data = yield response.json();
-			res.send(data);
-		} catch (err) {
-			console.error('error', err);
-			res.status(500).send('error fetching search result');
-		}
-	})
-);
+app.get('/search', bingGeneral);
+app.get('/search/articles', bingArticles);
+// app.get('/search/images', bingImages);
 app.listen(port, () => {
 	return console.log(`Express is listening at http://localhost:${port}`);
 });

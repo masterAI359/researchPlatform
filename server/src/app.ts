@@ -1,13 +1,32 @@
 import express, { Request, Response } from 'express';
+import cors from 'cors';
 const app = express();
 import fetch from 'node-fetch';
 import { bingArticles, bingGeneral } from '../endpoints/bingApi';
 import pkg from 'pg';
-const { Client } = pkg;
-const client = new Client(
-	'postgresql://said:LWK2SWytsTGJFYIyWHBP3Q@cluster0-14450.7tt.aws-us-east-1.cockroachlabs.cloud:26257/elenchus?sslmode=verify-full'
-);
 
+app.use(function (req, res, next) {
+    res.header(
+        'Access-Control-Allow-Methods',
+        'OPTIONS, HEAD, GET, PUT, POST, DELETE'
+    );
+    res.header(
+        'Access-Control-Allow-Headers',
+        'Origin, X-Requested-With, Content-Type, Accept'
+    );
+    next();
+});
+
+//const corsOptions: object = {
+//		origin: 'http://localhost:5173'
+//}
+
+// app.use(cors(corsOptions))
+
+ const { Client } = pkg;
+ const client = new Client(
+ 	'postgresql://said:LWK2SWytsTGJFYIyWHBP3Q@cluster0-14450.7tt.aws-us-east-1.cockroachlabs.cloud:26257/elenchus?sslmode=verify-full'
+ )
 client
 	.connect()
 	.then(() => console.log('Connected to the Elenchus Database'))
@@ -46,3 +65,6 @@ app.get('/search/articles', bingArticles);
 app.listen(port, () => {
 	return console.log(`Express is listening at http://localhost:${port}`);
 });
+
+console.log("test")
+console.log("log")

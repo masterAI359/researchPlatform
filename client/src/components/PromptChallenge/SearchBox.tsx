@@ -18,7 +18,6 @@ export default function SearchBox () {
 const [query, setQuery] = useState<Query>()
 const [isSubmitted, setIsSubmitted] = useState<SubmitType>(false)
 const [articles, setArticles] = useState<Articles[]>([])
-console.log(query)
 
 const options: OptionsTypes =  {
   method: 'GET',
@@ -30,16 +29,15 @@ const options: OptionsTypes =  {
 
 const fetchBingApi = async () => {
   try {
-    const response = await fetch(`http://localhost:5001/search/articles?q=${query}`,
+    const response = await fetch(`/search/articles?q=${query}`,
       options
     )
-    console.log(response)
     if(!response.ok) {
       throw new Error("There was a network response issue!")
     } 
     const jsonResponse = await response.json()
     setArticles(jsonResponse)
-    console.log(jsonResponse)
+    console.log(jsonResponse) // Logging successful JSON Response from endpoint
   } catch(err) {
 
     console.log({"Fetch Failed": err})
@@ -61,7 +59,7 @@ const fetchBingApi = async () => {
               setQuery(e.target.value)
         }
 
-      }, 5000)
+      }, 2000)
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

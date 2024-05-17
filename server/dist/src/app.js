@@ -8,18 +8,27 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import express from 'express';
+import cors from 'cors';
 const app = express();
 import { bingArticles, bingGeneral } from '../endpoints/bingApi.js';
 import pkg from 'pg';
+const corsOptions = {
+    origin: '*',
+    methods: 'OPTIONS, HEAD, GET, PUT, POST, DELETE',
+    allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept'
+};
+app.use(cors(corsOptions));
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Methods', 'OPTIONS, HEAD, GET, PUT, POST, DELETE');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     next();
 });
-//const corsOptions: object = {
-//		origin: 'http://localhost:5173'
-//}
-// app.use(cors(corsOptions))
+app.options('*', (req, res) => {
+    res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
+    res.header('Access-Control-Allow-Methods', 'OPTIONS, HEAD, GET, PUT, POST, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    res.sendStatus(200);
+});
 const { Client } = pkg;
 const client = new Client('postgresql://said:LWK2SWytsTGJFYIyWHBP3Q@cluster0-14450.7tt.aws-us-east-1.cockroachlabs.cloud:26257/elenchus?sslmode=verify-full');
 client

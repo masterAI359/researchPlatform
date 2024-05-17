@@ -9,4 +9,13 @@ export default defineConfig({
             '@': path.resolve(__dirname, './src'),
         },
     },
+    esbuild: {
+        loader: {
+            'js': 'jsx'
+        },
+        // Ensure JSX is processed
+        jsxFactory: 'React.createElement',
+        jsxFragment: 'React.Fragment',
+        jsxInject: `import React from 'react'`
+      }
 });

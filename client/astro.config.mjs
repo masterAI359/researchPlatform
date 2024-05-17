@@ -7,11 +7,20 @@ import react from "@astrojs/react";
 
 import node from "@astrojs/node";
 
-// https://astro.build/config
 export default defineConfig({
   server: { 
     port: 5173 
   },
+ vite: {
+  server: {
+    proxy: {
+      '/search': { //How can i make it so that the 'target' for all of our endpoints is port 5001?
+        target: 'http://localhost:5001',
+        changeOrigin: true
+      },
+    }
+  }
+ },
   markdown: {
     drafts: true,
     shikiConfig: {

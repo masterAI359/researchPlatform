@@ -1,5 +1,7 @@
 import { useState, useEffect, FormEvent } from "react"
 
+const server = import.meta.env.PUBLIC_SERVER_PORT;
+
 interface Articles {
   obj: any
 }
@@ -7,7 +9,6 @@ interface Articles {
 interface OptionsTypes {
   method: string,
   headers: HeadersInit,
-  body: string
 }
 
 type Query = string;
@@ -17,30 +18,26 @@ export default function SearchBox () {
 const [query, setQuery] = useState<Query>()
 const [isSubmitted, setIsSubmitted] = useState<SubmitType>(false)
 const [articles, setArticles] = useState<Articles[]>([])
-console.log(query)
 
 const options: OptionsTypes =  {
-  method: 'POST',
+  method: 'GET',
   headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(query)
+  }
 }
-//const url: string = `http://localhost:5001/search/articles?q=${options}`;
-
-// Goal: take localhost 5001, set up proxy for it so we can use this port without declaring it inside the file and exposing it
 
 const fetchBingApi = async () => {
   try {
-    const response = await fetch(`/search/articles?q=${query}`, options)
-    console.log(response)
+    const response = await fetch(`/search/articles?q=${query}`,
+      options
+    )
     if(!response.ok) {
       throw new Error("There was a network response issue!")
     } 
     const jsonResponse = await response.json()
     setArticles(jsonResponse)
-    console.log(jsonResponse)
+    console.log(jsonResponse) // Logging successful JSON Response from endpoint
   } catch(err) {
 
     console.log({"Fetch Failed": err})
@@ -62,7 +59,7 @@ const fetchBingApi = async () => {
               setQuery(e.target.value)
         }
 
-      }, 5000)
+      }, 2000)
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 const app = express();
 import fetch from 'node-fetch';
-import { bingArticles, bingGeneral } from '../endpoints/bingApi';
+import { bingArticles, bingGeneral } from '../endpoints/bingApi.js';
 import pkg from 'pg';
 
 const corsOptions: object = {

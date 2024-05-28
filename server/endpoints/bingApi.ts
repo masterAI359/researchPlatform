@@ -3,7 +3,7 @@ import express, { Request, Response } from 'express';
 export const bingGeneral = async (req: Request, res: Response) => {
 	//declare search string from user's input
 	const search = req.query.q as string;
-	const apiKey = 'fe13aa45a7654f10b3f81e30f5e0b5ab';
+	const apiKey = 'ce2d91d82a8749c3a4f0eb2a64d9c77a';
 	//declare endpoint with the search
 	const endpoint = `https://api.bing.microsoft.com/v7.0/search?q=${encodeURIComponent(
 		search
@@ -29,7 +29,7 @@ export const bingGeneral = async (req: Request, res: Response) => {
 
 export const bingArticles = async (req: Request, res: Response) => {
 	const search = req.query.q as string;
-	const apiKey = 'fe13aa45a7654f10b3f81e30f5e0b5ab';
+	const apiKey = 'ce2d91d82a8749c3a4f0eb2a64d9c77a';
 	const endpoint = `https://api.bing.microsoft.com/v7.0/news/search?q=${encodeURIComponent(
 		search
 	)}&mkt=en-us&freshness=Day&count=10&category=News&safeSearch=Strict&module=Images`;
@@ -40,7 +40,7 @@ export const bingArticles = async (req: Request, res: Response) => {
 			headers: { 'Ocp-Apim-Subscription-Key': apiKey },
 		});
 		if (!response.ok) {
-			throw new Error(`error: ${res.status}`);
+			throw new Error(`error: ${response.status}`);
 		}
 		const data = await response.json();
 

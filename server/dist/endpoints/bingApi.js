@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 export const bingGeneral = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     //declare search string from user's input
     const search = req.query.q;
-    const apiKey = 'fe13aa45a7654f10b3f81e30f5e0b5ab';
+    const apiKey = 'ce2d91d82a8749c3a4f0eb2a64d9c77a';
     //declare endpoint with the search
     const endpoint = `https://api.bing.microsoft.com/v7.0/search?q=${encodeURIComponent(search)}&mkt=en-us`;
     console.log('test123');
@@ -33,7 +33,7 @@ export const bingGeneral = (req, res) => __awaiter(void 0, void 0, void 0, funct
 });
 export const bingArticles = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const search = req.query.q;
-    const apiKey = 'fe13aa45a7654f10b3f81e30f5e0b5ab';
+    const apiKey = 'ce2d91d82a8749c3a4f0eb2a64d9c77a';
     const endpoint = `https://api.bing.microsoft.com/v7.0/news/search?q=${encodeURIComponent(search)}&mkt=en-us&freshness=Day&count=10&category=News&safeSearch=Strict&module=Images`;
     try {
         const response = yield fetch(endpoint, {
@@ -41,7 +41,7 @@ export const bingArticles = (req, res) => __awaiter(void 0, void 0, void 0, func
             headers: { 'Ocp-Apim-Subscription-Key': apiKey },
         });
         if (!response.ok) {
-            throw new Error(`error: ${res.status}`);
+            throw new Error(`error: ${response.status}`);
         }
         const data = yield response.json();
         const organizedData = Object.values(data.value).map((value) => {

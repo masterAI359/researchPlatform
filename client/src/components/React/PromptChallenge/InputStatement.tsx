@@ -35,15 +35,15 @@ export default function InputStatement ({ dispatch }: any) {
     <div className="relative isolate lg:flex-col overflow-hidden bg-gradientup ring-1 ring-white/10 rounded-4xl
      px-6 p-10 lg:flex lg:p-20 pb-0 lg:pb-0">
       <div className="lg:text-center max-w-xl lg:mx-auto">
-        <span className="text-white">We're in the era of hot takes</span>
+        <span className="text-white">We're in the climate of hot takes</span>
         <h2 className="text-3xl tracking-tight mt-6 font-light lg:text-4xl text-white">
           Let's take a grounded approach <span className="md:block text-zinc-300">and challenge them instead</span>
         </h2>
       </div>
       
 
-      <div className="flex flex-col items-center gap-y-12 w-full bg-black mt-12 py-20 px-10 relative rounded-t-2xl lg:rounded-t-[3rem] 
-      overflow-hidden shadow-thick">
+      <div className="flex flex-col items-center gap-y-12 w-full mt-12 py-20 px-10 relative lg:rounded-t-[3rem] 
+      overflow-hidden">
         
         <div className="text-center relative z-10 w-full">
          
@@ -54,9 +54,9 @@ export default function InputStatement ({ dispatch }: any) {
         onChange={handleStatement}
         type = "text"
         id="take" 
-        className="block p-2.5 w-full text-sm text-gray-900 bg-transparent 
-        rounded-lg border border-gray-300 focus:ring-blue-500 
-        focus:border-blue-500 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 
+        className="block p-2.5 w-full text-sm text-gray-900 bg-black 
+        rounded-4xl border border-gray-300 focus:ring-blue-500 
+        focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 
         dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
         placeholder="Write your thoughts here..."
         />
@@ -64,13 +64,13 @@ export default function InputStatement ({ dispatch }: any) {
               <div>
               <select 
               id = "perspective"
-              className = "rounded-2xl text-white bg-transparent m-auto hover:border-blue-500"
+              className = "rounded-4xl text-white bg-transparent m-auto hover:border-blue-500"
               onChange={assignOrigin}
               >
                   <option hidden className = "text-white bg-black">Perspective</option>
                 <option className = "text-white bg-black" value = {"opinion"}>My Opinion</option>
                 <option className = "text-white bg-black" value = {"opposition"}>Opposing Opinion</option>
-                <option className = "text-white bg-black" value = {"curious"}>Curious</option>
+                <option className = "text-white bg-black" value = {"agnostic"}>Curious</option>
               </select>
               </div>
               <button type = "submit" className="text-white w-16 p-2 bg-transparent 

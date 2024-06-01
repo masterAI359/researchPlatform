@@ -1,6 +1,11 @@
 import { useState, useEffect } from 'react';
 
 interface Articles {
+	description: string;
+	datePublished: string;
+	image: any;
+	url: string;
+	name: string;
 	obj: any;
 }
 
@@ -20,27 +25,30 @@ export default function ArticlesResult() {
 		},
 	};
 
-	console.log('wattup');
-
 	const fetchBingApi = async () => {
-		try {
-			const response = await fetch(`/search/articles?q=latest news`, options);
-			if (!response.ok) {
-				throw new Error('There was a network response issue!');
+		const storedArticles = JSON.parse(sessionStorage.getItem('articles'));
+		if (storedArticles || storedArticles?.date === new Date().getDate()) {
+			setArticles(storedArticles.data);
+			return;
+		} else {
+			try {
+				const response = await fetch(`/search/articles?q=latest news`, options);
+				if (!response.ok) {
+					throw new Error('There was a network response issue!');
+				}
+				const jsonResponse = await response.json();
+				setArticles(jsonResponse.data);
+				sessionStorage.setItem('articles', JSON.stringify(jsonResponse));
+			} catch (err) {
+				console.log({ 'Fetch Failed': err });
 			}
-			const jsonResponse = await response.json();
-			setArticles(jsonResponse);
-			console.log(jsonResponse); // Logging successful JSON Response from endpoint
-		} catch (err) {
-			console.log({ 'Fetch Failed': err });
 		}
 	};
 
+	console.log(articles);
+
 	useEffect(() => {
 		fetchBingApi();
-		if (articles.length > 0) {
-			console.log('hello');
-		}
 	}, []);
 
 	function splitArray(array) {
@@ -51,8 +59,6 @@ export default function ArticlesResult() {
 	}
 
 	const [firstHalf, secondHalf] = splitArray(articles);
-
-	console.log(firstHalf);
 
 	return (
 		<>
@@ -81,7 +87,7 @@ export default function ArticlesResult() {
 						<div className='relative mx-auto lg:px-16'>
 							<div className='items-center space-x-6 pb-12 lg:pb-0 lg:space-x-8 overflow-y-hidden relative lg:px-4 mx-auto grid grid-cols-1 lg:grid-cols-2'>
 								<div className='grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8 lg:animate-scroller'>
-									{secondHalf.map((article) => (
+									{firstHalf.map((article) => (
 										<div
 											key={article.name}
 											className='relative rounded-3xl shadow-inset sm:opacity-0 lg:opacity-100 p-4 bg-white/5 lg:p-8 ring-1 ring-white/5'
@@ -127,7 +133,7 @@ export default function ArticlesResult() {
 									))}
 								</div>
 								<div className='grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8 lg:animate-scroller'>
-									{firstHalf.map((article) => (
+									{secondHalf.map((article) => (
 										<div
 											key={article.name}
 											className='relative rounded-3xl shadow-inset sm:opacity-0 lg:opacity-100 p-4 bg-white/5 lg:p-8 ring-1 ring-white/5'

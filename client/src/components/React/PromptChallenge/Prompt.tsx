@@ -3,6 +3,7 @@ import InputStatement from "./InputStatement"
 import Bias  from "./Bias"
 import Premise from "./Premise"
 import SuggestQuery from "./SuggestQuery"
+import SearchBox from "@/components/PromptChallenge/SearchBox"
 
 
 interface State {
@@ -57,6 +58,11 @@ function reducer (state: State, action: Action): any {
                 status: "choose-query"
                 
             }
+        case "search":
+            return {
+                ...state,
+                status: "searchBox"
+            }
 
             default:
         return state
@@ -76,7 +82,7 @@ export default function Prompt() {
             dispatch = {dispatch}
             statement = {statement}
             identifier = {identifier}/> }
-       {status === "establish-premises" && <Premise 
+       {status === "establish-premises" && identifier !== "agnostic" && <Premise 
             dispatch = {dispatch}
             biases = {biases}
             statement = {statement}
@@ -88,6 +94,7 @@ export default function Prompt() {
             identifier = {identifier}
             premise = {premise}
             />}
+        {status === "searchBox" && <SearchBox />}
         </form>
     )
 }

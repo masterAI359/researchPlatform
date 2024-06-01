@@ -27,6 +27,7 @@ export const bingGeneral = async (req: Request, res: Response) => {
 	}
 };
 
+
 export const bingArticles = async (req: Request, res: Response) => {
 	const search = req.query.q as string;
 	const apiKey = 'ce2d91d82a8749c3a4f0eb2a64d9c77a';

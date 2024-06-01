@@ -13,7 +13,6 @@ const corsOptions: object = {
 
 app.use(cors(corsOptions))
 
-
 app.use(function (req, res, next) {
     res.header(
         'Access-Control-Allow-Methods',
@@ -77,6 +76,3 @@ app.get('/search/articles', bingArticles);
 app.listen(port, () => {
 	return console.log(`Express is listening at http://localhost:${port}`);
 });
-
-console.log("test")
-console.log("log")

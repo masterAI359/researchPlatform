@@ -65,6 +65,4 @@ app.get('/search/articles', bingArticles);
 app.listen(port, () => {
     return console.log(`Express is listening at http://localhost:${port}`);
 });
-console.log("test");
-console.log("log");
 //# sourceMappingURL=app.js.map

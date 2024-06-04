@@ -62,19 +62,16 @@ export default function ArticlesResult() {
 						<div className='lg:p-20 lg:pb-0'>
 							<div className='grid grid-cols-1 lg:grid-cols-2 lg:border-b items-end border-white/10 py-12'>
 								<div>
-									<span className='text-white'>Our wall of love</span>
+									<span className='text-white'>Current Events</span>
 									<h2 className='text-3xl mt-6 tracking-tight font-light lg:text-4xl text-white'>
-										We keep making{' '}
+										Top Stories{' '}
 										<span className='block text-zinc-400'>
-											peoples life better
+											
 										</span>
 									</h2>
 								</div>
 								<p className='text-white mt-6'>
-									We are loved by startups, marketing agencies, real estate
-									agencies, freelancers, Fortune 500 companies and many more.
-									Our customers' testimonialsOne are the best social proof we
-									can get!
+									
 								</p>
 							</div>
 						</div>

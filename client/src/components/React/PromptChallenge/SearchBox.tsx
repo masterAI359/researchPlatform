@@ -100,6 +100,7 @@ const fetchBingApi = async () => {
       >
       <input 
       onChange={handleQuery}
+      autoComplete="off"
       type="text" 
       name="q" 
       className="bg-transparent text-white w-full border h-12 shadow p-4 rounded-full" 

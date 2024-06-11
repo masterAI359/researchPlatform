@@ -25,16 +25,17 @@ export default function HeroImage() {
 					</div>
 					<div className='mk6'>
 						<h1 className='text-3xl tracking-tight mt-6 font-light lg:text-4xl text-white'>
-							<strong>ELENCHUS</strong>
+							<strong>Elenchus</strong>
 							<span className='block text-zinc-400'>
-								We never lose by learning
+								
 							</span>
 						</h1>
 						<p className='text-white mt-6 text-balance w-[80%]'>
-							This is just some random text that i wrote that has nothing to do
-							with what the website is about. I am just trying ot feel it out so
-							it looks full. So here I am writing this text instead of using
-							lorem ipsum because that looks like garbage
+							Inspired by Socrates' method of elenchus, more commonly known as 
+							the <em>Socratic Method</em>.  This app guides you through examining your beliefs 
+  							and uncovering the evidence behind them. Engage thoughtfully and rise above 
+  							the noise of public discourse.
+
 						</p>
 						<div className='relative w-[75%] mt-8'>
 							<input

@@ -1,17 +1,22 @@
-import { useReducer } from "react"
-import InputStatement from "./InputStatement"
-import Bias  from "./Bias"
-import Premise from "./Premise"
-import SuggestQuery from "./SuggestQuery"
-import SearchBox from "@/components/PromptChallenge/SearchBox"
+import { useReducer } from "react";
+import InputStatement from "./InputStatement";
+import Bias  from "./Bias";
+import Premise from "./Premise";
+import SuggestQuery from "./SuggestQuery";
+import SearchBox from "./SearchBox";
+import ArticlesGrid from "../ArticlesGrid";
 
+type Articles = {
+    articles: object
+}
 
 interface State {
     statement: string,
     status: string,
     identifier: string,
     biases: string,
-    premise: string
+    premise: string,
+    articles: Articles[]
 }
 
 const initialState: State = {
@@ -20,7 +25,8 @@ const initialState: State = {
     status: "prompt",
     identifier: "",
     biases: "",
-    premise: ""
+    premise: "",
+    articles: null
 }
 
 interface Action {
@@ -63,6 +69,12 @@ function reducer (state: State, action: Action): any {
                 ...state,
                 status: "searchBox"
             }
+        case "articles":
+            return {
+                ...state,
+                articles: action.payload,
+                status: "articles"
+            }
 
             default:
         return state
@@ -70,13 +82,17 @@ function reducer (state: State, action: Action): any {
     
 }
 
-export default function Prompt() {
-    //type error originating from which side of '=' operator? constructing SuggestQuery.tsx file
-    const [{ statement, status, identifier, biases, premise}, dispatch] = useReducer(reducer, initialState)
+export default function Prompt({ isLoading, setIsLoading }) {
+    const [{ statement, status, identifier, biases, premise, articles }, 
+        dispatch] = useReducer(reducer, initialState)
+
+        console.log(articles)
+        console.log(isLoading)
 
     return (
-        <form>
-        {status === "prompt" && <InputStatement 
+        <>
+
+        {status === "prompt" && <InputStatement
             dispatch = {dispatch}/>}
         {status === "assertion" && <Bias 
             dispatch = {dispatch}
@@ -94,9 +110,19 @@ export default function Prompt() {
             identifier = {identifier}
             premise = {premise}
             />}
-        {status === "searchBox" && <SearchBox />}
-        </form>
+        {status === "searchBox" && <SearchBox
+            isLoading = {isLoading}
+            setIsLoading = {setIsLoading}
+             dispatch = {dispatch}
+        />}
+        {status === "articles" && <ArticlesGrid
+        articles = {articles}
+        />}
+
+        </>
     )
+
+    
 }
 
 

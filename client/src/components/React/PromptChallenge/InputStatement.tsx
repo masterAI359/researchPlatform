@@ -35,7 +35,7 @@ export default function InputStatement ({ dispatch }: any) {
     <div className="relative isolate lg:flex-col overflow-hidden bg-gradientup ring-1 ring-white/10 rounded-4xl
      px-6 p-10 lg:flex lg:p-20 pb-0 lg:pb-0">
       <div className="lg:text-center max-w-xl lg:mx-auto">
-        <span className="text-white">We're in the climate of hot takes</span>
+        <span className="text-white">We're in a climate of hot takes</span>
         <h2 className="text-3xl tracking-tight mt-6 font-light lg:text-4xl text-white">
           Let's take a grounded approach <span className="md:block text-zinc-300">and challenge them instead</span>
         </h2>

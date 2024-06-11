@@ -13,8 +13,8 @@ export default function Bias ({ identifier, statement, dispatch }: BiasProps) {
 
     return (
         <div className="lg:p-8">
-        <div className="mx-auto 2xl:max-w-7xl py-12 lg:px-16 md:px-12 
-        px-8 xl:px-36 items-center relative w-full">
+        <div className="mx-auto 2xl:max-w-7xl py-12 
+      items-center relative w-full">
           <div className="relative isolate lg:flex-col overflow-hidden 
           bg-gradientup ring-1 ring-white/10 rounded-4xl
            px-6 p-10 lg:flex lg:p-20 pb-0 lg:pb-0">
@@ -34,7 +34,7 @@ export default function Bias ({ identifier, statement, dispatch }: BiasProps) {
               <label htmlFor="take" className="block mb-2 text-sm 
               text-white">
               Describe why you want to know more about this topic, 
-              what's motivating you to learn more?
+              what's motivating you to learn more?<br></br>
               <span>(Optional) Feel free to introspect and list your
                  own biases that may be at play here</span>
               </label>

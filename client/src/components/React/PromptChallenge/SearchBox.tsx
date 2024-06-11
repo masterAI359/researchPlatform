@@ -1,6 +1,5 @@
 import { useState, useEffect, FormEvent } from "react"
-
-const server = import.meta.env.PUBLIC_SERVER_PORT;
+import Loader from "../Loader";
 
 interface Articles {
   obj: any
@@ -14,10 +13,12 @@ interface OptionsTypes {
 type Query = string;
 type SubmitType = boolean;
 
-export default function SearchBox () {
+export default function SearchBox ({ dispatch, isLoading, setIsLoading }) {
 const [query, setQuery] = useState<Query>()
 const [isSubmitted, setIsSubmitted] = useState<SubmitType>(false)
 const [articles, setArticles] = useState<Articles[]>([])
+console.log(query)
+console.log(articles)
 
 const options: OptionsTypes =  {
   method: 'GET',
@@ -26,9 +27,10 @@ const options: OptionsTypes =  {
       'Content-Type': 'application/json',
   }
 }
-
+//Why is my isLoading state not updating here?
 const fetchBingApi = async () => {
   try {
+    setIsLoading(true)
     const response = await fetch(`/search/articles?q=${query}`,
       options
     )
@@ -38,9 +40,13 @@ const fetchBingApi = async () => {
     const jsonResponse = await response.json()
     setArticles(jsonResponse)
     console.log(jsonResponse) // Logging successful JSON Response from endpoint
+    
   } catch(err) {
 
     console.log({"Fetch Failed": err})
+  } finally {
+    setIsLoading(false)
+    console.log(isLoading)
   }
 };
 
@@ -49,6 +55,7 @@ const fetchBingApi = async () => {
     if(isSubmitted) {
       fetchBingApi()  
     }
+
   }, [isSubmitted])
 
   const handleQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -65,7 +72,11 @@ const fetchBingApi = async () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
         setIsSubmitted(true)
+       // dispatch({type:"articles", payload: articles})
   }
+
+  console.log(isSubmitted)
+  console.log(isLoading)
 
     return (
    <section className="p-8">
@@ -89,12 +100,16 @@ const fetchBingApi = async () => {
       >
       <input 
       onChange={handleQuery}
+      autoComplete="off"
       type="text" 
       name="q" 
       className="bg-transparent text-white w-full border h-12 shadow p-4 rounded-full" 
       placeholder="search" />
-      <button type="submit">
-        <svg className="text-white h-5 w-5 absolute top-3.5 right-3 fill-current"
+      <button type="submit"
+      >
+        {
+        isLoading ? <Loader />
+         :<svg className="text-white h-5 w-5 absolute top-3.5 right-3 fill-current"
          xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
           version="1.1" x="0px" y="0px" viewBox="0 0 56.966 56.966"
           xmlSpace="preserve">
@@ -103,7 +118,7 @@ const fetchBingApi = async () => {
            c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17
            s-17-7.626-17-17S14.61,6,23.984,6z">
           </path>
-        </svg>
+        </svg>}
       </button>
       </form>
     </div>

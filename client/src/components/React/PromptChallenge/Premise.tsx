@@ -18,8 +18,8 @@ export default function Premise({biases, statement, identifier, dispatch}: Premi
     
     return (
         <div className="lg:p-8">
-        <div className="mx-auto 2xl:max-w-7xl py-12 lg:px-16 md:px-12 
-        px-8 xl:px-36 items-center relative w-full">
+        <div className="mx-auto 2xl:max-w-7xl 
+       items-center relative w-full">
           <div className="relative isolate lg:flex-col overflow-hidden 
           bg-gradientup ring-1 ring-white/10 rounded-4xl
            px-6 p-10 lg:flex lg:p-20 pb-0 lg:pb-0">

@@ -1,6 +1,5 @@
 import { Article } from "./Article"
 
-
 interface Image {
     img: string,
     width: number,
@@ -21,11 +20,7 @@ interface GridProps {
     articles: Articles[]
 }
 
-
 const ArticlesGrid: React.FC<GridProps> = ({ articles }) => {
-
-    console.log(articles)
-
 
     return (
     <div className="px-8 py-24 mx-auto md:px-12 lg:px-16 xl:px-36 2xl:max-w-7xl">

@@ -1,20 +1,6 @@
-import { decoder } from "astro/dist/runtime/server/render/common";
-
 export function Article({ article }) {
 
-
-    const containsEncodedComponents = (data) => {
-
-        return decodeURI(data) !== decodeURIComponent(data)
-      }
-      
-
-
-    console.log(article)
-
     const { url, name, provider, image, description, datePublished } = article;
-
-    const formattedDate = 'June 12, 2024'
 
     return (
         <li>

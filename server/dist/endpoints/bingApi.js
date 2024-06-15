@@ -47,9 +47,8 @@ export const bingArticles = (req, res) => __awaiter(void 0, void 0, void 0, func
             throw new Error(`error: ${res.status}`);
         }
         const data = yield response.json();
-        //Cleaning up our data from the HTML encoding on each object within the array
         function decodeItem(item) {
-            if (item == undefined || item == null) { //early undefined/null check to save unneccessary recursive calls
+            if (item == undefined || item == null) {
                 return item;
             }
             if (Array.isArray(item)) {

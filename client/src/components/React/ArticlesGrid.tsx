@@ -1,25 +1,30 @@
 import { Article } from "./Article"
 
+
 interface Image {
-        img: string,
-        width: number,
-        height: number
+    img: string,
+    width: number,
+    height: number
+  }
+  
+  interface Articles {
+    datePublished: string,
+    description: string,
+    image: Image
+    keywords: string[]       
+    name: string,
+    provider: string,
+    url: string
+  }
+
+interface GridProps {
+    articles: Articles[]
 }
 
-interface Articles {
-        datePublished: string,
-        description: string,
-        image: Image       
-        name: string,
-        provider: string,
-        url: string
-}
 
+const ArticlesGrid: React.FC<GridProps> = ({ articles }) => {
 
-
-export default function ArticlesGrid({ articles }) {
-
-    const articleData:Articles[] = articles
+    console.log(articles)
 
 
     return (
@@ -27,9 +32,10 @@ export default function ArticlesGrid({ articles }) {
         <div className="space-y-24">
         <div className="mx-atuo text-lg lg:col-span-2 mt-12 lg:mt-0">
             <ol className="grid gap-12 mt-24">
-                {articleData.map((article) => 
+                {articles.map((article: Articles) => 
                 <Article
-                articles = {articleData}
+                key = {article.url}
+                article = {article}
                 />
                 )}
             </ol>
@@ -39,5 +45,7 @@ export default function ArticlesGrid({ articles }) {
     )
 }
 
+
+export default ArticlesGrid
 
 

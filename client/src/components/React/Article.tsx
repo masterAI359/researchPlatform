@@ -1,6 +1,20 @@
-export function Article({ articles }) {
+import { decoder } from "astro/dist/runtime/server/render/common";
 
-    const { url, name, provider, image, description, datePublished } = articles;
+export function Article({ article }) {
+
+
+    const containsEncodedComponents = (data) => {
+
+        return decodeURI(data) !== decodeURIComponent(data)
+      }
+      
+
+
+    console.log(article)
+
+    const { url, name, provider, image, description, datePublished } = article;
+
+    const formattedDate = 'June 12, 2024'
 
     return (
         <li>
@@ -14,23 +28,25 @@ export function Article({ articles }) {
                     <h3
                         className="text-3xl mt-6 tracking-tight font-light 
                     lg:text-4xl text-white"
-                    >{name}
+                    >
+                     <strong>{name}</strong>  
                     </h3>
                     <p
                         className="text-zinc-400 text-base mt-2"
                     >{description}
                     </p>
                     <p
-                        className="text-zinc-400 text-xs mt-6"
+                        className="text-white text-xs mt-6 mr-5"
                     >{provider}
-                     <span><time>{datePublished}</time></span>
+                     <span className="float-right text-zinc-400"><time>   {datePublished}</time></span>
                     </p>
                 </div>
                 <img
-                    className="rounded-3xl bg-zinc-100 sm:aspect-[2/1] lg:aspect-[3/2]"
-                   width="560"
-                   height="380"
-                   src={image.img} />
+                    className="rounded-2xl object-cover bg-zinc-100 sm:aspect-[2/1] lg:aspect-[3/2]"
+                   src={image.img}
+                   width={200}
+                   height={150}
+                   />
             </a>
         </li>
     );

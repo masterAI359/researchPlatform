@@ -1,5 +1,8 @@
+import { val } from 'cheerio/lib/api/attributes';
 import express, { Request, Response } from 'express';
-import cheerio from 'cheerio';
+import he from 'he'; //ran --save-dev @types/he... may need to change this to regular dependency instead of dev dependancy
+//import fetch from 'node-fetch';
+//import cheerio from 'cheerio';
 
 export const bingGeneral = async (req: Request, res: Response) => {
 	//declare search string from user's input
@@ -45,7 +48,52 @@ export const bingArticles = async (req: Request, res: Response) => {
 		}
 		const data = await response.json();
 
-		const organizedData = Object.values(data.value).map((value: any) => {
+		//Cleaning up our data from the HTML encoding on each object within the array
+		function decodeItem (item: any) {
+
+			if (item == undefined || item == null) { //early undefined/null check to save unneccessary recursive calls
+
+				return item;
+			}
+
+			if (Array.isArray(item)) {
+
+				const decodedItem: any = item.map((element: any) => {
+
+				return decodeItem(element);
+					
+				})
+				return decodedItem;
+
+			} else if(typeof item === "object") {
+
+				const decodedItem = Object.entries(item).reduce((acc: any, [key, value]) => {
+			
+					acc[key] = decodeItem(value);
+					return acc;
+				} , {})
+
+				return decodedItem;
+
+			} else if (typeof item === "string") {
+
+				const decodedItem = he.decode(item);
+
+				return decodedItem;
+			}
+		}
+
+		const dataValues = data.value;
+
+		const decodedData = dataValues.map((item: any) => decodeItem(item));
+
+		if (!Array.isArray(decodedData)) {
+
+			throw new Error ('expected an array of articles')
+		}
+
+		const organizedData = Object.values(decodedData).map((value: any) => {
+
 			return {
 				name: value.name,
 				url: value.url,

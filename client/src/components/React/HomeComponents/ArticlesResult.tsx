@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react';
 
+
+
+
+
 interface Articles {
 	description: string;
 	datePublished: string;
@@ -60,6 +64,9 @@ export default function ArticlesResult() {
 
 	const [firstHalf, secondHalf] = splitArray(articles);
 
+	
+
+
 	return (
 		<>
 			<section className='lg:p-8'>
@@ -106,13 +113,21 @@ export default function ArticlesResult() {
 															{article.name}
 														</div>
 														<div className='mt-1'>
-															<p className='text-sm text-white/70 group-hover:text-white'>
-																Published on{' '}
+															<span className='text-sm flex items-center gap-3 text-white/70 group-hover:text-white'>
+																<img 
+																className='h-8 w-auto'
+																src = {`../${article.logo}`}
+																alt = ''
+																/>
+
+																<p>{article.provider}</p>
+																
+															{/*}	Published on{' '}
 																{article.datePublished.substring(0, 10)} at{' '}
 																{article.datePublished
 																	.substring(10, 16)
-																	.replace('T', ' ')}
-															</p>
+																	.replace('T', ' ')}  {*/}
+															</span>
 														</div>
 													</div>
 												</figcaption>
@@ -148,13 +163,21 @@ export default function ArticlesResult() {
 															{article.name}
 														</div>
 														<div className='mt-1'>
-															<p className='text-sm text-white/70 group-hover:text-white'>
-																Published on{' '}
+															<span className='text-sm flex items-center gap-3 text-white/70 group-hover:text-white'>
+
+															<img 
+															className='h-8 w-auto'
+															src = {`../${article.logo}`}
+															alt = ''
+															/>
+
+															{article.provider}
+													{/*}			Published on{' '}
 																{article.datePublished.substring(0, 10)} at{' '}
 																{article.datePublished
 																	.substring(10, 16)
-																	.replace('T', ' ')}
-															</p>
+																	.replace('T', ' ')}  {*/}
+															</span>
 														</div>
 													</div>
 												</figcaption>

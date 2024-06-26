@@ -88,7 +88,7 @@ const fetchBingApi = async () => {
   bg-gradientdown rounded-[3rem]">
     <div className="text-center max-w-xl md:mx-auto">
       <h2 className="text-3xl my-11 tracking-tight font-light lg:text-4xl text-white">
-        Let's investigate <span className="block text-zinc-400">We never lose by learning</span>
+        Let's investigate <span className="block text-zinc-400">What we think, and what we know</span>
       </h2>
       <p className="mt-5 text-white my-11">
        Feel free to write your own search terms,

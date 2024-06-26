@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import he from 'he'; //ran --save-dev @types/he... may need to change this to regular dependency instead of dev dependancy
+import { logoMap } from './logoMap.js';
 //import fetch from 'node-fetch';
 //import cheerio from 'cheerio';
 export const bingGeneral = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -47,6 +48,7 @@ export const bingArticles = (req, res) => __awaiter(void 0, void 0, void 0, func
             throw new Error(`error: ${res.status}`);
         }
         const data = yield response.json();
+        const dataValues = data.value;
         function decodeItem(item) {
             if (item == undefined || item == null) {
                 return item;
@@ -69,12 +71,18 @@ export const bingArticles = (req, res) => __awaiter(void 0, void 0, void 0, func
                 return decodedItem;
             }
         }
-        const dataValues = data.value;
         const decodedData = dataValues.map((item) => decodeItem(item));
-        if (!Array.isArray(decodedData)) {
-            throw new Error('expected an array of articles');
-        }
-        const organizedData = Object.values(decodedData).map((value) => {
+        const articlesWithLogos = Object.values(decodedData).map((article) => {
+            const provider = article.provider[0].name.replace(/\s+/g, '').toLowerCase();
+            if (logoMap.has(provider)) {
+                article.logo = logoMap.get(provider);
+            }
+            else {
+                article.logo = logoMap.get("fallback");
+            }
+            return article;
+        });
+        const organizedData = Object.values(articlesWithLogos).map((value) => {
             var _a, _b, _c, _d;
             return {
                 name: value.name,
@@ -92,6 +100,7 @@ export const bingArticles = (req, res) => __awaiter(void 0, void 0, void 0, func
                 ],
                 provider: value.provider[0].name,
                 datePublished: value.datePublished,
+                logo: value.logo
             };
         });
         const result = {
@@ -105,6 +114,7 @@ export const bingArticles = (req, res) => __awaiter(void 0, void 0, void 0, func
         res.status(500).send('error fetching search result');
     }
 });
+//might need seperate endpoint file for tldr
 export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const query = req.query.q;
     const url = 'https://tldrthis.p.rapidapi.com/v1/model/extractive/summarize-url/';

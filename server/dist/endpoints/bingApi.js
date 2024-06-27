@@ -7,6 +7,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import he from 'he'; //ran --save-dev @types/he... may need to change this to regular dependency instead of dev dependancy
+import { logoMap } from './logoMap.js';
+//import fetch from 'node-fetch';
+//import cheerio from 'cheerio';
 export const bingGeneral = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     //declare search string from user's input
     const search = req.query.q;
@@ -44,7 +48,41 @@ export const bingArticles = (req, res) => __awaiter(void 0, void 0, void 0, func
             throw new Error(`error: ${res.status}`);
         }
         const data = yield response.json();
-        const organizedData = Object.values(data.value).map((value) => {
+        const dataValues = data.value;
+        function decodeItem(item) {
+            if (item == undefined || item == null) {
+                return item;
+            }
+            if (Array.isArray(item)) {
+                const decodedItem = item.map((element) => {
+                    return decodeItem(element);
+                });
+                return decodedItem;
+            }
+            else if (typeof item === "object") {
+                const decodedItem = Object.entries(item).reduce((acc, [key, value]) => {
+                    acc[key] = decodeItem(value);
+                    return acc;
+                }, {});
+                return decodedItem;
+            }
+            else if (typeof item === "string") {
+                const decodedItem = he.decode(item);
+                return decodedItem;
+            }
+        }
+        const decodedData = dataValues.map((item) => decodeItem(item));
+        const articlesWithLogos = Object.values(decodedData).map((article) => {
+            const provider = article.provider[0].name.replace(/\s+/g, '').toLowerCase();
+            if (logoMap.has(provider)) {
+                article.logo = logoMap.get(provider);
+            }
+            else {
+                article.logo = logoMap.get("fallback");
+            }
+            return article;
+        });
+        const organizedData = Object.values(articlesWithLogos).map((value) => {
             var _a, _b, _c, _d;
             return {
                 name: value.name,
@@ -62,6 +100,7 @@ export const bingArticles = (req, res) => __awaiter(void 0, void 0, void 0, func
                 ],
                 provider: value.provider[0].name,
                 datePublished: value.datePublished,
+                logo: value.logo
             };
         });
         const result = {
@@ -75,6 +114,7 @@ export const bingArticles = (req, res) => __awaiter(void 0, void 0, void 0, func
         res.status(500).send('error fetching search result');
     }
 });
+//might need seperate endpoint file for tldr
 export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const query = req.query.q;
     const url = 'https://tldrthis.p.rapidapi.com/v1/model/extractive/summarize-url/';

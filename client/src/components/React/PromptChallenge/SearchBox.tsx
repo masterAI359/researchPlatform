@@ -1,9 +1,8 @@
 import { useState, useEffect, FormEvent } from "react"
 import Loader from "../Loader";
 
-interface Articles {
-  obj: any
-}
+
+
 
 interface OptionsTypes {
   method: string,
@@ -13,10 +12,9 @@ interface OptionsTypes {
 type Query = string;
 type SubmitType = boolean;
 
-export default function SearchBox ({ dispatch, isLoading, setIsLoading }) {
-const [query, setQuery] = useState<Query>()
+export default function SearchBox ({ isLoading, setIsLoading, articles, setArticles }) {
+const [query, setQuery] = useState<Query>("")
 const [isSubmitted, setIsSubmitted] = useState<SubmitType>(false)
-const [articles, setArticles] = useState<Articles[]>([])
 console.log(query)
 console.log(articles)
 
@@ -27,7 +25,9 @@ const options: OptionsTypes =  {
       'Content-Type': 'application/json',
   }
 }
-//Why is my isLoading state not updating here?
+
+
+
 const fetchBingApi = async () => {
   try {
     setIsLoading(true)
@@ -38,8 +38,12 @@ const fetchBingApi = async () => {
       throw new Error("There was a network response issue!")
     } 
     const jsonResponse = await response.json()
-    setArticles(jsonResponse)
-    console.log(jsonResponse) // Logging successful JSON Response from endpoint
+    console.log(jsonResponse) 
+    const articleData = jsonResponse.data
+    const decodedData = jsonResponse.decodedData
+    console.log(decodedData)
+    console.log(articleData)
+    setArticles(articleData)
     
   } catch(err) {
 
@@ -47,6 +51,7 @@ const fetchBingApi = async () => {
   } finally {
     setIsLoading(false)
     console.log(isLoading)
+    setIsSubmitted(false)
   }
 };
 
@@ -72,7 +77,6 @@ const fetchBingApi = async () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
         setIsSubmitted(true)
-       // dispatch({type:"articles", payload: articles})
   }
 
   console.log(isSubmitted)
@@ -81,12 +85,12 @@ const fetchBingApi = async () => {
     return (
    <section className="p-8">
   <div className="mx-auto 2xl:max-w-7xl py-24 items-center lg:py-24 relative w-full 
-  bg-gradientup rounded-[3rem]">
+  bg-gradientdown rounded-[3rem]">
     <div className="text-center max-w-xl md:mx-auto">
-      <h2 className="text-3xl tracking-tight font-light lg:text-4xl text-white">
-        Let's investigate <span className="block text-zinc-400">We never lose by learning</span>
+      <h2 className="text-3xl my-11 tracking-tight font-light lg:text-4xl text-white">
+        Let's investigate <span className="block text-zinc-400">What we think, and what we know</span>
       </h2>
-      <p className="mt-5 text-white">
+      <p className="mt-5 text-white my-11">
        Feel free to write your own search terms,
        or kick back and leverage the power of AI and use one of 
        our suggested queries, just for you
@@ -103,7 +107,8 @@ const fetchBingApi = async () => {
       autoComplete="off"
       type="text" 
       name="q" 
-      className="bg-transparent text-white w-full border h-12 shadow p-4 rounded-full" 
+      className="bg-black text-white w-full border-black h-12 shadow  p-4 rounded-full 
+								 focus:border-white transition-colors"
       placeholder="search" />
       <button type="submit"
       >

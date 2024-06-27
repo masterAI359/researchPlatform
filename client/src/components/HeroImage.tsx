@@ -25,7 +25,7 @@ export default function HeroImage() {
 					</div>
 					<div className='mk6'>
 						<h1 className='text-3xl tracking-tight mt-6 font-light lg:text-4xl text-white'>
-							<strong>Elenchus</strong>
+							<strong>elenchus</strong>
 							<span className='block text-zinc-400'>
 								
 							</span>

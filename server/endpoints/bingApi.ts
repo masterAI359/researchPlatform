@@ -1,5 +1,9 @@
+import { val } from 'cheerio/lib/api/attributes';
 import express, { Request, Response } from 'express';
-import cheerio from 'cheerio';
+import he from 'he'; //ran --save-dev @types/he... may need to change this to regular dependency instead of dev dependancy
+import {logoMap} from './logoMap.js'
+//import fetch from 'node-fetch';
+//import cheerio from 'cheerio';
 
 export const bingGeneral = async (req: Request, res: Response) => {
 	//declare search string from user's input
@@ -28,6 +32,7 @@ export const bingGeneral = async (req: Request, res: Response) => {
 	}
 };
 
+
 export const bingArticles = async (req: Request, res: Response) => {
 	const search = req.query.q as string;
 	const apiKey = 'ce2d91d82a8749c3a4f0eb2a64d9c77a';
@@ -45,7 +50,52 @@ export const bingArticles = async (req: Request, res: Response) => {
 		}
 		const data = await response.json();
 
-		const organizedData = Object.values(data.value).map((value: any) => {
+	const dataValues = data.value;
+
+	
+
+	function decodeItem (item: any) {
+		if (item == undefined || item == null) {
+			return item;
+		}
+		if (Array.isArray(item)) {
+			const decodedItem: any = item.map((element: any) => {
+			return decodeItem(element);
+				
+			})
+			return decodedItem;
+		} else if(typeof item === "object") {
+			const decodedItem = Object.entries(item).reduce((acc: any, [key, value]) => {
+		
+				acc[key] = decodeItem(value);
+				return acc;
+			} , {})
+			return decodedItem;
+		} else if (typeof item === "string") {
+			const decodedItem = he.decode(item);
+			return decodedItem;
+		}
+	}
+
+	const decodedData = dataValues.map((item: any) => decodeItem(item));
+
+
+	const articlesWithLogos = Object.values(decodedData).map((article: any) => {
+
+		const provider = article.provider[0].name.replace(/\s+/g, '').toLowerCase(); 
+
+
+		if(logoMap.has(provider)) {
+			article.logo = logoMap.get(provider)
+		} else {
+			article.logo = logoMap.get("fallback")
+		}
+
+		return article
+	})
+
+		const organizedData = Object.values(articlesWithLogos).map((value: any) => {
+
 			return {
 				name: value.name,
 				url: value.url,
@@ -62,6 +112,7 @@ export const bingArticles = async (req: Request, res: Response) => {
 				],
 				provider: value.provider[0].name,
 				datePublished: value.datePublished,
+				logo: value.logo
 			};
 		});
 
@@ -76,6 +127,8 @@ export const bingArticles = async (req: Request, res: Response) => {
 		res.status(500).send('error fetching search result');
 	}
 };
+
+//might need seperate endpoint file for tldr
 
 export const tldrSummary = async (req: Request, res: Response) => {
 	const query = req.query.q as string;

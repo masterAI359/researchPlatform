@@ -16,7 +16,6 @@ interface State {
     identifier: string,
     biases: string,
     premise: string,
-    articles: Articles[]
 }
 
 const initialState: State = {
@@ -26,7 +25,6 @@ const initialState: State = {
     identifier: "",
     biases: "",
     premise: "",
-    articles: null
 }
 
 interface Action {
@@ -69,12 +67,7 @@ function reducer (state: State, action: Action): any {
                 ...state,
                 status: "searchBox"
             }
-        case "articles":
-            return {
-                ...state,
-                articles: action.payload,
-                status: "articles"
-            }
+       
 
             default:
         return state
@@ -82,8 +75,8 @@ function reducer (state: State, action: Action): any {
     
 }
 
-export default function Prompt({ isLoading, setIsLoading }) {
-    const [{ statement, status, identifier, biases, premise, articles }, 
+export default function Prompt({ isLoading, setIsLoading, articles, setArticles }) {
+    const [{ statement, status, identifier, biases, premise }, 
         dispatch] = useReducer(reducer, initialState)
 
         console.log(articles)
@@ -91,7 +84,6 @@ export default function Prompt({ isLoading, setIsLoading }) {
 
     return (
         <>
-
         {status === "prompt" && <InputStatement
             dispatch = {dispatch}/>}
         {status === "assertion" && <Bias 
@@ -111,14 +103,11 @@ export default function Prompt({ isLoading, setIsLoading }) {
             premise = {premise}
             />}
         {status === "searchBox" && <SearchBox
+            articles={articles}
+            setArticles={setArticles}
             isLoading = {isLoading}
             setIsLoading = {setIsLoading}
-             dispatch = {dispatch}
         />}
-        {status === "articles" && <ArticlesGrid
-        articles = {articles}
-        />}
-
         </>
     )
 

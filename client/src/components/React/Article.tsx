@@ -1,37 +1,66 @@
-export function Article({ articles }) {
+import elenchus from '../../public/images/logos/elenchus.svg'
 
-    const { url, name, provider, image, description, datePublished } = articles;
+ export default function Article ({ article }) {
+    
+
+
+    const { url, name, provider, image, description, datePublished, logo } = article;
+
+   
+    
+
 
     return (
-        <li>
-            <a
-                className="grid grid-cols-1 gap-12 lg:gap-24
-            md:grid-cols-2 items-center"
-                href={url}
-                title={name}
-            >
-                <div>
-                    <h3
-                        className="text-3xl mt-6 tracking-tight font-light 
-                    lg:text-4xl text-white"
-                    >{name}
-                    </h3>
-                    <p
-                        className="text-zinc-400 text-base mt-2"
-                    >{description}
-                    </p>
-                    <p
-                        className="text-zinc-400 text-xs mt-6"
-                    >{provider}
-                     <span><time>{datePublished}</time></span>
-                    </p>
+        <li
+        key={name}
+        className='relative mx-auto rounded-3xl shadow-inset sm:opacity-0 lg:opacity-100 p-4 bg-white/10 lg:p-8 ring-1 ring-white/5'
+    >
+        <a href={url} target='_blank'>
+            <figcaption className='relative flex flex-row items-center gap-4 pb-6 border-b border-white/10'>
+                <div className='overflow-hidden shrink-0'>
+                    <img
+                        src={image.img}
+                        className='object-cover rounded-full h-20 w-20 shrink-0'
+                    />
                 </div>
-                <img
-                    className="rounded-3xl bg-zinc-100 sm:aspect-[2/1] lg:aspect-[3/2]"
-                   width="560"
-                   height="380"
-                   src={image.img} />
-            </a>
-        </li>
+                <div>
+                    <div className='text-lg font-medium leading-6 text-white'>
+                        {name}
+                    </div>
+                    <div className='mt-1'>
+                    {/*()    <span className='text-sm mt-5 flex items-center text-white group-hover:text-white'>
+                          <img 
+                          className="mr-3 h-12 w-12"
+                          src = {getSVG(provider)}
+                          alt = {''}
+                          /> 
+                          {provider}
+                        </span> */}
+                    </div>
+                </div>
+            </figcaption>
+            <figure>
+                <div className='h-full group mt-2 pt-2'>
+                    <blockquote className='relative'>
+                    <span className='text-sm mb-5 flex items-center text-white group-hover:text-white'>
+                          <img 
+                          className="mr-3 h-12 w-12"
+                          src = {logo}
+                          alt = {''}
+                          /> 
+                          {provider}
+                        </span>
+                       <p className='text-base text-white'>
+                            "{description}"
+                        </p>
+                    </blockquote>
+                </div>
+            </figure>
+        </a>
+    </li>
     );
 }
+
+
+
+

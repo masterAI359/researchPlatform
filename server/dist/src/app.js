@@ -11,6 +11,7 @@ import express from 'express';
 import cors from 'cors';
 const app = express();
 import { bingArticles, bingGeneral, tldrSummary, } from '../endpoints/bingApi.js';
+//import { logoMap } from '../endpoints/logoMap.js'
 import pkg from 'pg';
 const corsOptions = {
     origin: '*',
@@ -62,6 +63,7 @@ app.get('/api', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 app.get('/search', bingGeneral);
 app.get('/search/articles', bingArticles);
 app.get('/summarize', tldrSummary);
+//app.get('/provider/logos', logoMap)
 // app.get('/search/images', bingImages);
 app.listen(port, () => {
     return console.log(`Express is listening at http://localhost:${port}`);

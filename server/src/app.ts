@@ -5,9 +5,8 @@ import fetch from 'node-fetch';
 import {
 	bingArticles,
 	bingGeneral,
-	tldrSummary,
 } from '../endpoints/bingApi.js';
-//import { logoMap } from '../endpoints/logoMap.js'
+import { tldrSummary } from '../endpoints/tldrSummary.js'
 import pkg from 'pg';
 
 
@@ -82,7 +81,6 @@ app.get('/api', async (req: Request, res: Response) => {
 app.get('/search', bingGeneral);
 app.get('/search/articles', bingArticles);
 app.get('/summarize', tldrSummary);
-//app.get('/provider/logos', logoMap)
 
 // app.get('/search/images', bingImages);
 

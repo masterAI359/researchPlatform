@@ -1,5 +1,5 @@
 import { useState, useEffect, FormEvent } from "react"
-import Loader from "../Loader";
+import Loader from "../Loaders/Loader";
 
 
 
@@ -12,11 +12,9 @@ interface OptionsTypes {
 type Query = string;
 type SubmitType = boolean;
 
-export default function SearchBox ({ isLoading, setIsLoading, articles, setArticles }) {
+export default function SearchBox ({ isLoading, setIsLoading, articles, setArticles, readyToSelect, setReadyToSelect }) {
 const [query, setQuery] = useState<Query>("")
 const [isSubmitted, setIsSubmitted] = useState<SubmitType>(false)
-console.log(query)
-console.log(articles)
 
 const options: OptionsTypes =  {
   method: 'GET',
@@ -38,19 +36,14 @@ const fetchBingApi = async () => {
       throw new Error("There was a network response issue!")
     } 
     const jsonResponse = await response.json()
-    console.log(jsonResponse) 
     const articleData = jsonResponse.data
-    const decodedData = jsonResponse.decodedData
-    console.log(decodedData)
-    console.log(articleData)
     setArticles(articleData)
-    
+    setReadyToSelect(true)
   } catch(err) {
 
     console.log({"Fetch Failed": err})
   } finally {
     setIsLoading(false)
-    console.log(isLoading)
     setIsSubmitted(false)
   }
 };
@@ -79,8 +72,7 @@ const fetchBingApi = async () => {
         setIsSubmitted(true)
   }
 
-  console.log(isSubmitted)
-  console.log(isLoading)
+
 
     return (
    <section className="p-8">

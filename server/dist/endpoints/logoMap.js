@@ -22,4 +22,5 @@ export { logoMap };
 export const getLogoMap = (req, res) => {
     res.send(Object.fromEntries(logoMap));
 };
+console.log(logoMap);
 //# sourceMappingURL=logoMap.js.map

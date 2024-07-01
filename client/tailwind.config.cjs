@@ -22,6 +22,7 @@ module.exports = {
         marquee: "marquee 25s linear infinite",
         marquee2: "marquee2 25s linear infinite",
         scroller3: "scroller3 25s linear infinite",
+        "spin-fast": "spin .3s linear infinite",
         "spin-slow": "spin 4s linear infinite",
         "spin-slower": "spin 6s linear infinite",
         "spin-reverse": "spin-reverse 1s linear infinite",
@@ -84,6 +85,8 @@ module.exports = {
         },
       },
       boxShadow: {
+        "blue-top": "0 -10px 20px -2px rgba(59, 130, 246, 0.5), 0 -6px 12px -4px rgba(59, 130, 246, 0.5)",
+        "blue-bottom": "0 4px 6px -1px rgba(59, 130, 246, 0.5), 0 2px 4px -2px rgba(59, 130, 246, 0.5)",
         thick: "0px 7px 32px rgb(0 0 0 / 35%);",
         inset:
           "inset 6px 84px 79px -40px hsla(0,0%,100%,.025), inset 0 -4px 1px -3px hsla(0,0%,100%,.25), inset 0 4px 1px -3px hsla(0,0%,100%,.25);",
@@ -92,6 +95,7 @@ module.exports = {
    
         black: "#0f1014",
         ebony: "#1a1c23",
+        rich_black: '#010203',
         mirage: "#27292D",
         blue: {
           50: "#ECEEFE",

@@ -4,7 +4,9 @@ import Bias  from "./Bias";
 import Premise from "./Premise";
 import SuggestQuery from "./SuggestQuery";
 import SearchBox from "./SearchBox";
-import ArticlesGrid from "../ArticlesGrid";
+import ArticlesGrid from "../ArticleComponents/ArticlesGrid";
+
+//Should install Redux on the container for these in Investigate.astro page
 
 type Articles = {
     articles: object
@@ -75,12 +77,9 @@ function reducer (state: State, action: Action): any {
     
 }
 
-export default function Prompt({ isLoading, setIsLoading, articles, setArticles }) {
+export default function Prompt({ isLoading, setIsLoading, articles, setArticles, readyToSelect, setReadyToSelect }) {
     const [{ statement, status, identifier, biases, premise }, 
         dispatch] = useReducer(reducer, initialState)
-
-        console.log(articles)
-        console.log(isLoading)
 
     return (
         <>
@@ -107,6 +106,9 @@ export default function Prompt({ isLoading, setIsLoading, articles, setArticles 
             setArticles={setArticles}
             isLoading = {isLoading}
             setIsLoading = {setIsLoading}
+            readyToSelect = {readyToSelect}
+            setReadyToSelect = {setReadyToSelect}
+
         />}
         </>
     )

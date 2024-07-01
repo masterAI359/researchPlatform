@@ -1,11 +1,10 @@
 import { useState } from "react";
-import Loader from "./React/Loader";
+import Loader from "./React/Loaders/Loader";
 
 export default function HeroImage() {
 
 	const [isLoading, setIsLoading] = useState(false)
 
-	console.log(isLoading)	
 	
 
 	return (

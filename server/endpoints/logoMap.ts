@@ -50,7 +50,7 @@ export const getLogoMap = (req: Request, res: Response) => {
 }
 
 
-
+console.log(logoMap)
 
 
 

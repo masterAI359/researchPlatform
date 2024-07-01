@@ -14,7 +14,6 @@ export default function Premise({biases, statement, identifier, dispatch}: Premi
 
     const handlePremise = (e: React.ChangeEvent<HTMLTextAreaElement>) => setPremise(e.target.value) 
         
-    console.log(typeof statement)
     
     return (
         <div className="lg:p-8">

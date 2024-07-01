@@ -1,54 +1,47 @@
 import Prompt from "./Prompt";
-import LoadArticles from "../LoadArticles";
-import ArticlesGrid from "../ArticlesGrid";
+import LoadArticles from "../Loaders/LoadArticles";
+import ArticlesGrid from "../ArticleComponents/ArticlesGrid";
+import SelectArticles from "../ArticleComponents/SelectArticles";
 import { useState } from "react";
+import { Articles } from '../../../env'
 
 
 
 type IsLoading = boolean;
 
-interface Image {
-    img: string,
-    width: number,
-    height: number
-  }
-  
-  interface Articles {
-    datePublished: string,
-    description: string,
-    image: Image
-    keywords: string[]       
-    name: string,
-    provider: string,
-    url: string
-  }
-  
-
-
-
 export default function InvestigateContainer () {
 
     const [isLoading, setIsLoading] = useState<IsLoading>(false)
     const [articles, setArticles] = useState<Articles[]>([])
-
-    console.log(articles)
+    const [readyToSelect, setReadyToSelect] = useState<boolean>(false)
+    const [selectedForSummary, setSelectedForSummary] = useState<Articles[]>([])
+  
 
     return (
-        <div className="grid grid-cols-1 h-auto mx-auto justify-center">
+        <div className="grid grid-cols-1 w-full h-auto mx-auto justify-center items-center">
         <div className="block">
         <Prompt
         isLoading = {isLoading}
         setIsLoading={setIsLoading}
         articles = {articles}
         setArticles={setArticles}
+        readyToSelect = {readyToSelect}
+        setReadyToSelect = {setReadyToSelect}
         />
         </div>
         <div className="block mx-auto">
         {isLoading ? <LoadArticles/> : ""}
         { articles.length > 0 ? <ArticlesGrid
         articles={articles}
+        selectedForSummary = {selectedForSummary}
+        setSelectedForSummary = {setSelectedForSummary}
         /> : "" }
         </div>
+        {articles?  <SelectArticles 
+        readyToSelect = {readyToSelect}
+        selectedForSummary = {selectedForSummary}
+        />
+         : ""}
         </div>
     )
 }

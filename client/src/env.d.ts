@@ -11,6 +11,23 @@ declare global {
     interface ImportMeta {
         readonly env: ImportMetaEnv;
     }
+
+    interface Image {
+        img: string,
+        width: number,
+        height: number
+      }
+
+    interface Articles {
+        datePublished: string,
+        description: string,
+        image: Image
+        keywords: string[]       
+        name: string,
+        provider: string,
+        url: string,
+        logo: string
+    }
   }
   
-  export {};
+  export { Articles };

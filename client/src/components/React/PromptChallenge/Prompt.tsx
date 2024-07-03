@@ -77,7 +77,8 @@ function reducer (state: State, action: Action): any {
     
 }
 
-export default function Prompt({ isLoading, setIsLoading, articles, setArticles, readyToSelect, setReadyToSelect }) {
+export default function Prompt({ isLoading, setIsLoading, articles, setArticles,
+     readyToSelect, setReadyToSelect, isSubmitted, setIsSubmitted, query, setQuery }) {
     const [{ statement, status, identifier, biases, premise }, 
         dispatch] = useReducer(reducer, initialState)
 
@@ -102,6 +103,10 @@ export default function Prompt({ isLoading, setIsLoading, articles, setArticles,
             premise = {premise}
             />}
         {status === "searchBox" && <SearchBox
+            query = {query}
+            setQuery={setQuery}
+            isSubmitted={isSubmitted}
+            setIsSubmitted={setIsSubmitted}            
             articles={articles}
             setArticles={setArticles}
             isLoading = {isLoading}

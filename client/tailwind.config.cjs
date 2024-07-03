@@ -94,6 +94,8 @@ module.exports = {
       colors: {
    
         black: "#0f1014",
+        loader_black:"#0f101b",
+        inner_loader_black: "#26272B",
         ebony: "#1a1c23",
         rich_black: '#010203',
         mirage: "#27292D",

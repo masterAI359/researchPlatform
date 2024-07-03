@@ -4,7 +4,7 @@ export default function SelectLoader () {
           <svg 
           aria-hidden="true" 
           className="w-6 h-6 absolute top-3 right-3
-          text-gray-400 animate-spin-fast dark:text-gray-600 fill-blue-600" 
+          text-black animate-spin-fast fill-blue-600" 
           viewBox="0 0 100 101" 
           fill="none" 
           xmlns="http://www.w3.org/2000/svg">

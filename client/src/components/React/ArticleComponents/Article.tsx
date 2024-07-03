@@ -17,7 +17,7 @@ import { Articles } from "@/env";
 
         setSelectedForSummary((selectedForSummary) => {
 
-            if(selectedForSummary.length <= 2 && !exists) { //just setting this to 2, as to limit the selectedForSummary array length to 3
+            if(selectedForSummary.length <= 2 && !exists) { 
 
                 setIsHighlighted(true)
                 return [...selectedForSummary, article]
@@ -41,7 +41,7 @@ import { Articles } from "@/env";
         <li
         onClick = {() => {chooseArticle(article)}}
         key={name}
-        className= {`cursor-pointer relative mx-auto rounded-3xl sm:opacity-0
+        className= {`cursor-pointer min-h-96 relative mx-auto rounded-3xl sm:opacity-0
                     lg:opacity-90 lg:hover:opacity-100 p-4 bg-white/10 
                     lg:p-8
                     ${isHighlighted ? "shadow-blue-top" : "shadow-inset"}`}

@@ -9,12 +9,10 @@ interface OptionsTypes {
   headers: HeadersInit,
 }
 
-type Query = string;
-type SubmitType = boolean;
+export default function SearchBox ({ isLoading, setIsLoading, articles, setArticles, readyToSelect,
+  setReadyToSelect, isSubmitted, setIsSubmitted, query, setQuery }) {
 
-export default function SearchBox ({ isLoading, setIsLoading, articles, setArticles, readyToSelect, setReadyToSelect }) {
-const [query, setQuery] = useState<Query>("")
-const [isSubmitted, setIsSubmitted] = useState<SubmitType>(false)
+
 
 const options: OptionsTypes =  {
   method: 'GET',
@@ -25,36 +23,6 @@ const options: OptionsTypes =  {
 }
 
 
-
-const fetchBingApi = async () => {
-  try {
-    setIsLoading(true)
-    const response = await fetch(`/search/articles?q=${query}`,
-      options
-    )
-    if(!response.ok) {
-      throw new Error("There was a network response issue!")
-    } 
-    const jsonResponse = await response.json()
-    const articleData = jsonResponse.data
-    setArticles(articleData)
-    setReadyToSelect(true)
-  } catch(err) {
-
-    console.log({"Fetch Failed": err})
-  } finally {
-    setIsLoading(false)
-    setIsSubmitted(false)
-  }
-};
-
-  useEffect(() => {
-   
-    if(isSubmitted) {
-      fetchBingApi()  
-    }
-
-  }, [isSubmitted])
 
   const handleQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
 

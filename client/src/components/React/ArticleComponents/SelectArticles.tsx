@@ -1,10 +1,5 @@
-
 import { useState } from "react"
 import SelectLoader from "../Loaders/SelectLoader"
-
-const show = "w-full mx-auto flex justify-center items-center"
-
-const hide = "hidden"
 
 export default function SelectArticles ({ readyToSelect, selectedForSummary }) {
     const [loadSummaries, setLoadSummaries] = useState<boolean>(false)
@@ -14,9 +9,10 @@ export default function SelectArticles ({ readyToSelect, selectedForSummary }) {
     const selectedArticles = `Summarize Articles ${selectedTotal}/3`
     const waiting = "Loading Stories..."
 
-    return (
-    <div className= {`transition-all duration-600 ${readyToSelect ? show : hide }`}>
-         <div className="bg-rich_black border border-blue-500 text-blue-100 lg:w-72 w-64 flex 
+
+    return (          //need to figure out how to make this translate-y when readyToSelect is true
+      <div className={`transition-all duration-1000 transform ${readyToSelect ? `translate-y-0` : `translate-y-32`} fixed bottom-5 w-full mx-auto flex justify-center items-center`}>
+         <div className="bg-rich_black border shadow-black border-blue-500 text-blue-100 lg:w-72 w-64 flex 
          p-3 rounded-full cursor-pointer mx-auto z-50 fixed bottom-5">
     <span>
         <p>{loadSummaries? waiting : selectedArticles }</p>

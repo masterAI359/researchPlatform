@@ -28,6 +28,11 @@ declare global {
         url: string,
         logo: string
     }
+    
+interface OptionsTypes {
+    method: string,
+    headers: HeadersInit,
+  }
   }
   
-  export { Articles };
+  export { Articles, OptionsTypes };

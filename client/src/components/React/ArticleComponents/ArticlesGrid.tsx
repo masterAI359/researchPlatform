@@ -3,8 +3,6 @@ import { Articles } from '../../../env'
 
 export default function ArticlesGrid ({ articles, selectedForSummary, setSelectedForSummary }) {
    
-    console.log(articles)
-
     return (
     <div className="px-8 py-24 mx-auto md:px-12 lg:px-16 xl:px-36 2xl:max-w-7xl">
         <div className="space-y-24">

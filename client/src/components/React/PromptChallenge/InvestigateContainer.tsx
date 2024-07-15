@@ -1,17 +1,10 @@
 import Prompt from "./Prompt";
-import LoadArticles from "../Loaders/LoadArticles";
+//import LoadArticles from "../Loaders/LoadArticles";
 import ArticleLoader from "../Loaders/ArticleLoader";
 import ArticlesGrid from "../ArticleComponents/ArticlesGrid";
 import SelectArticles from "../ArticleComponents/SelectArticles";
 import { useState, useEffect } from "react";
-import { Articles } from '../../../env'
-
-
-
-interface OptionsTypes {
-    method: string,
-    headers: HeadersInit,
-  }
+import { Articles, OptionsTypes } from '../../../env'
 
 
 export default function InvestigateContainer () {
@@ -21,9 +14,10 @@ export default function InvestigateContainer () {
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false)
     const [articles, setArticles] = useState<Articles[]>([])
     const [readyToSelect, setReadyToSelect] = useState<boolean>(false)
-    const [selectedForSummary, setSelectedForSummary] = useState<Articles[]>([])
-
-
+    const [selectedForSummary, setSelectedForSummary] = useState<string[]>([])
+    const [submittedForSummaries, setSubmittedForSummaries] = useState<boolean>()
+    const [loadingSummaries, setLoadingSummaries] = useState<boolean>()
+    const [summaries, setSummaries] = useState<object[]>([])
 
     const options: OptionsTypes =  {
         method: 'GET',
@@ -33,6 +27,29 @@ export default function InvestigateContainer () {
         }
       }
 
+  const articlesToSummarize = encodeURIComponent(JSON.stringify(selectedForSummary))
+
+    const fetchSummaries = async () => {
+
+      try {
+        setLoadingSummaries(true)
+        const tldrResponse = await fetch(`/summarize?q=${articlesToSummarize}`,
+          options
+         )
+      if(!tldrResponse.ok) {
+        throw new Error('There was an issue with TLDR API')
+      }
+      const tlderJSON = await tldrResponse.json()
+      setSummaries([tlderJSON])
+      } catch(err) {
+        console.error('Error: ' + err)
+      } finally {
+      setSubmittedForSummaries(false)
+      setLoadingSummaries(false)
+      }
+    }
+    console.log({"Chosen Articles: ": selectedForSummary})
+    console.log({"Summaries: ": summaries})
 
     const fetchBingApi = async () => {
         try {
@@ -56,21 +73,16 @@ export default function InvestigateContainer () {
         }
       };
 
-
       useEffect(() => {
-   
         if(isSubmitted) {
-          
           fetchBingApi()  
         }
+        if(submittedForSummaries) {
+          fetchSummaries()
+        }
+      }, [isSubmitted, submittedForSummaries])
 
-    
-      }, [isSubmitted])
 
-
-      //need to change the way in which i render the ArticlesLoader.tsx file, i need to change the class to
-      //display the component and keep it 'hidden' when isLoading is false
-  
 
     return (
         <div className="grid grid-cols-1 w-full h-auto mx-auto justify-center items-center">
@@ -101,6 +113,8 @@ export default function InvestigateContainer () {
         {articles?  <SelectArticles 
         readyToSelect = {readyToSelect}
         selectedForSummary = {selectedForSummary}
+        setSubmittedForSummaries = {setSubmittedForSummaries}
+        loadingSummaries = {loadingSummaries}
         />
          : ""}
         </div>

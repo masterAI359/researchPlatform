@@ -1,40 +1,24 @@
-import { useState } from "react";
 import { Articles } from "@/env";
 
-
-
  export default function Article ({ article, selectedForSummary, setSelectedForSummary }) {
-
-    const [isHighlighted, setIsHighlighted] = useState<boolean>(false)
-
     const { url, name, provider, image, description, datePublished, logo } = article;
     const thumbnail = image.img
     const articleURL = article.url
+    const highlighted = selectedForSummary.includes(articleURL)
 
     const chooseArticle = (article:Articles) => {
 
-        const exists = selectedForSummary.some(selectedArticle => selectedArticle.url === articleURL)
-
+        const exists:boolean = selectedForSummary.includes(selectedArticle => selectedArticle.url === articleURL)
+        let newArray:string[]
         setSelectedForSummary((selectedForSummary) => {
-
             if(selectedForSummary.length <= 2 && !exists) { 
-
-                setIsHighlighted(true)
-                return [...selectedForSummary, article]
+                newArray = [...selectedForSummary, article.url]
             } else if(exists) {
-
-                setIsHighlighted(false) 
-
-                const newArray = selectedForSummary.filter(selectedArticle => selectedArticle.url !== articleURL)
-                return newArray
+                newArray = selectedForSummary.filter(selectedArticle => selectedArticle.url !== articleURL)
             }
-
-            return selectedForSummary
+            return newArray
         })
-       
     }
-
-
 
 
     return (
@@ -44,7 +28,7 @@ import { Articles } from "@/env";
         className= {`cursor-pointer min-h-96 relative mx-auto rounded-3xl sm:opacity-0
                     lg:opacity-90 lg:hover:opacity-100 p-4 bg-white/10 
                     lg:p-8
-                    ${isHighlighted ? "shadow-blue-top" : "shadow-inset"}`}
+                    ${highlighted ? "shadow-blue-top" : "shadow-inset"}`}
     >
             <figcaption className='relative flex flex-row items-center gap-4 pb-6 border-b border-white/10'>
                 <div className='overflow-hidden shrink-0'>

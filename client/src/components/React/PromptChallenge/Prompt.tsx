@@ -78,12 +78,14 @@ function reducer (state: State, action: Action): any {
 }
 
 export default function Prompt({ isLoading, setIsLoading, articles, setArticles,
-     readyToSelect, setReadyToSelect, isSubmitted, setIsSubmitted, query, setQuery }) {
+     readyToSelect, setReadyToSelect, isSubmitted, setIsSubmitted, query, setQuery, summaries }) {
     const [{ statement, status, identifier, biases, premise }, 
         dispatch] = useReducer(reducer, initialState)
 
+
+
     return (
-        <>
+        <div className={`opacity-100 transition-all duration-700  ${summaries.length > 0 ? "opacity-0" : ""}`}>
         {status === "prompt" && <InputStatement
             dispatch = {dispatch}/>}
         {status === "assertion" && <Bias 
@@ -115,7 +117,7 @@ export default function Prompt({ isLoading, setIsLoading, articles, setArticles,
             setReadyToSelect = {setReadyToSelect}
 
         />}
-        </>
+        </div>
     )
 
     

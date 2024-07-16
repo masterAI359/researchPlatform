@@ -7,6 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import decodeItem from '../helpers/decodeItem.js';
 export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const recieved = req.query.q;
     const query = JSON.parse(decodeURIComponent(recieved));
@@ -38,7 +39,8 @@ export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, funct
             return data;
         }));
         const results = yield Promise.all(dataMap);
-        res.send(results);
+        const decodedResults = decodeItem(results);
+        res.send(decodedResults);
     }
     catch (error) {
         console.error("Error: " + error);

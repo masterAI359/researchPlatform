@@ -1,4 +1,5 @@
 import express, { Request, Response } from 'express'
+import decodeItem from '../helpers/decodeItem.js';
 
 export const tldrSummary = async (req: Request, res: Response) => {
 	const recieved = req.query.q as string
@@ -38,7 +39,8 @@ export const tldrSummary = async (req: Request, res: Response) => {
 			return data
 		})
 		const results = await Promise.all(dataMap)
-		res.send(results)
+		const decodedResults = decodeItem(results)
+		res.send(decodedResults)
 
 	} catch (error) {
 		console.error("Error: " + error)

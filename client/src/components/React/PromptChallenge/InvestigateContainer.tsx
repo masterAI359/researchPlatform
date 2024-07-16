@@ -46,14 +46,15 @@ export default function InvestigateContainer () {
       } finally {
       setSubmittedForSummaries(false)
       setLoadingSummaries(false)
+      setReadyToSelect(false)
       }
     }
-    console.log({"Chosen Articles: ": selectedForSummary})
-    console.log({"Summaries: ": summaries})
 
     const fetchBingApi = async () => {
         try {
           setIsLoading(true)  
+          setSummaries([])
+          setSelectedForSummary([])
           const response = await fetch(`/search/articles?q=${query}`,
             options
           )
@@ -82,8 +83,6 @@ export default function InvestigateContainer () {
         }
       }, [isSubmitted, submittedForSummaries])
 
-
-
     return (
         <div className="grid grid-cols-1 w-full h-auto mx-auto justify-center items-center">
         <div className="block">
@@ -98,6 +97,7 @@ export default function InvestigateContainer () {
         setReadyToSelect = {setReadyToSelect}
         isSubmitted = {isSubmitted}
         setIsSubmitted = {setIsSubmitted}
+        summaries={summaries}
         />
         </div>
         <div className="block w-full mx-auto">
@@ -105,6 +105,7 @@ export default function InvestigateContainer () {
         isLoading={isLoading}
         /> 
         { articles.length > 0 ? <ArticlesGrid
+        summaries={summaries}
         articles={articles}
         selectedForSummary = {selectedForSummary}
         setSelectedForSummary = {setSelectedForSummary}

@@ -7,19 +7,19 @@ import { Articles } from "@/env";
     const highlighted = selectedForSummary.includes(articleURL)
 
     const chooseArticle = (article:Articles) => {
-
-        const exists:boolean = selectedForSummary.includes(selectedArticle => selectedArticle.url === articleURL)
+        const exists:boolean = highlighted
         let newArray:string[]
         setSelectedForSummary((selectedForSummary) => {
             if(selectedForSummary.length <= 2 && !exists) { 
                 newArray = [...selectedForSummary, article.url]
             } else if(exists) {
-                newArray = selectedForSummary.filter(selectedArticle => selectedArticle.url !== articleURL)
+                newArray = selectedForSummary.filter((selectedArticle:string) => {
+                    return selectedArticle !== articleURL
+                })
             }
             return newArray
         })
     }
-
 
     return (
         <li

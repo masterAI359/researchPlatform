@@ -1,46 +1,29 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-//import axios from "@/services/axios-client.tsx";
 
-export default function InputStatement ({ dispatch }: any) {
+
+export default function InputStatement ({ dispatch, status }: any) {
     const [isExpressed, setIsExpressed] = useState('')
     const [origin, setOrigin] = useState('')
-    // useEffect(() => {
-    //     // Function to fetch data from the server
-    //     const fetchData = async () => {
-    //       try {
-    //         // Sending a GET request to the specified URL
-    //         const response = await axios.get('/users/all')
-    //         const data = await response; // Parse JSON response into native JavaScript objects
-    //         console.log(data); // Log the data
-    //       } catch (error) {
-    //         console.error('There was a problem with the fetch operation:', error);
-    //       }
-    //     };
-    //
-    //     fetchData(); // Call the fetchData function
-    //   }, []); //
 
-   
-    //interface SyntheticEvent<T> {
-    //    target: EventTarget & T;
-    //}
+    const interactive = status === 'prompt'
+
+    useEffect(() => {
+      console.log("Current State:", status);
+  }, [status]);
+  
     
     const handleStatement = (e: React.ChangeEvent<HTMLInputElement>) => {setIsExpressed(e.target.value)}
     const assignOrigin = (e: React.ChangeEvent<HTMLSelectElement>) => {setOrigin(e.target.value)}
     return (
-        <div className="lg:p-8">
-  <div className="mx-auto 2xl:max-w-7xl py-12 items-center relative w-full">
-    <div className="relative w-full isolate lg:flex-col overflow-hidden bg-gradientdown ring-1 ring-white/10 rounded-4xl
-     px-6 p-10 lg:flex lg:p-20 pb-0 lg:pb-0">
+      <div className={`mx-auto absolute w-[75rem] 2xl:h-full opacity-0 transition-all duration-500 ${interactive ? 'pointer-events-auto opacity-100' : 'pointer-events-none'  }`}>
       <div className="lg:text-center max-w-xl lg:mx-auto">
         <span className="text-white">We're in a climate of hot takes</span>
         <h2 className="text-3xl tracking-tight mt-6 font-light lg:text-4xl text-white">
           Let's take a grounded approach <span className="md:block text-zinc-300">and challenge them instead</span>
         </h2>
       </div>
-      
 
       <div className="flex flex-col items-center gap-y-12 w-full mt-12 py-20 px-10 relative lg:rounded-t-[3rem] 
       overflow-hidden">
@@ -73,14 +56,13 @@ export default function InputStatement ({ dispatch }: any) {
                 <option className = "text-white bg-black" value = {"agnostic"}>Curious</option>
               </select>
               </div>
-              <button type = "submit" className="text-white w-16 p-2 bg-transparent 
+              <button type = "submit" className="text-white w-16 p-2 bg-transparent
               rounded-2xl border border-white hover:border-blue-500 m-auto"
-                     onClick={() => dispatch({ type: "declared",
+                     onClick={() => dispatch({ type: "assertion",
                     payload:{userInput: isExpressed, origin: origin }})}>
                     Next</button>
             </div>
-          </div>
-        </div>
+
       </div>
     )
 }

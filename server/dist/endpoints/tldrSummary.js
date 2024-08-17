@@ -7,40 +7,54 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import * as dotenv from 'dotenv';
+import * as path from 'path';
+import { fileURLToPath } from 'url';
 import decodeItem from '../helpers/decodeItem.js';
+const envUrl = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(envUrl);
+const envPath = path.resolve(__dirname, '../../../.env');
+console.log('Loading .env from:', envPath);
+console.log(envPath);
+dotenv.config({ path: envPath });
+console.log({ 'TLDR Key': process.env.TLDR_KEY }); // TODO: Contacting my bank to allow payment for RapidAPI 
+const TLDRKey = process.env.TLDR_KEY; // Need to up the limit for TLDR.This API, ran through the free 100 credits
 export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const recieved = req.query.q;
     const query = JSON.parse(decodeURIComponent(recieved));
-    console.log(query);
-    const url = 'https://tldrthis.p.rapidapi.com/v1/model/extractive/summarize-url/';
+    const url = 'https://tldrthis.p.rapidapi.com/v1/model/abstractive/summarize-url/';
     if (!Array.isArray(query) || query.length === 0) {
         return res.status(400).send('Invalid query parameter. Please provide a list of URLs.');
     }
     try {
-        const dataMap = query.map((articleLink) => __awaiter(void 0, void 0, void 0, function* () {
+        const dataMap = query.map((article) => __awaiter(void 0, void 0, void 0, function* () {
+            console.log({ "fetching data for: ": article.url });
             const response = yield fetch(url, {
                 method: 'POST',
                 headers: {
-                    'x-rapidapi-key': '3e0ff041dcmsh136e954b7ef530bp1da9d4jsn1f72dfc74936',
+                    'x-rapidapi-key': TLDRKey,
                     'x-rapidapi-host': 'tldrthis.p.rapidapi.com',
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    url: articleLink,
+                    url: article.url,
                     num_sentences: 5,
                     is_detailed: true,
                 })
             });
             if (!response.ok) {
-                throw new Error(`Failed to fetch Summary for ${articleLink}`);
+                throw new Error(`Failed to fetch Summary for ${article.url}`);
             }
             const data = yield response.json();
-            console.log(data);
+            data.logo = article.logo;
+            data.source = article.source;
+            data.date = article.date;
             return data;
         }));
-        const results = yield Promise.all(dataMap);
-        const decodedResults = decodeItem(results);
-        res.send(decodedResults);
+        const results = yield Promise.allSettled(dataMap); // [{status: 'successful / failed', value: {...}}, {status: 'successful / failed', value: {...}}, {status: 'successful / failed', value: {...}}]
+        const resultsMap = results.filter((result) => result.status === 'fulfilled').map((result) => result.value);
+        const resultsDecoded = decodeItem(resultsMap);
+        res.send(resultsDecoded);
     }
     catch (error) {
         console.error("Error: " + error);

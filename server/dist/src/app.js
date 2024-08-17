@@ -9,10 +9,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import express from 'express';
 import cors from 'cors';
+import dotenv from 'dotenv';
 const app = express();
 import { bingArticles, bingGeneral, } from '../endpoints/bingApi.js';
 import { tldrSummary } from '../endpoints/tldrSummary.js';
 import pkg from 'pg';
+dotenv.config({ path: '../../.env' });
 const corsOptions = {
     origin: '*',
     methods: 'OPTIONS, HEAD, GET, PUT, POST, DELETE',

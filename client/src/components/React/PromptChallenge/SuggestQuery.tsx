@@ -14,7 +14,7 @@ export default function SuggestQuery({ statement, biases, identifier, premise, d
     return (
         <section className="p-8">
         <div className="mx-auto 2xl:max-w-7xl py-24 items-center lg:py-24 relative w-full 
-        bg-gradientup rounded-[3rem]">
+        bg-gradientdown rounded-[3rem]">
           <div className="text-center max-w-xl md:mx-auto">
             <h2 className="text-3xl tracking-tight font-light lg:text-4xl text-white">
                <span className="block text-zinc-400">We never lose by learning</span>

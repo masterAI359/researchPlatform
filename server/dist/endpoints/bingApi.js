@@ -63,6 +63,8 @@ export const bingArticles = (req, res) => __awaiter(void 0, void 0, void 0, func
         });
         const organizedData = Object.values(articlesWithLogos).map((value) => {
             var _a, _b, _c, _d;
+            const stringDate = new Date(value.datePublished).toString();
+            const formattedDate = stringDate.split(' ').splice(0, 4).join(' ');
             return {
                 name: value.name,
                 url: value.url,
@@ -78,7 +80,7 @@ export const bingArticles = (req, res) => __awaiter(void 0, void 0, void 0, func
                     }),
                 ],
                 provider: value.provider[0].name,
-                datePublished: value.datePublished,
+                datePublished: formattedDate,
                 logo: value.logo
             };
         });

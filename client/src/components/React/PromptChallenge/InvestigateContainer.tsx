@@ -3,8 +3,12 @@ import Prompt from "./Prompt";
 import ArticleLoader from "../Loaders/ArticleLoader";
 import ArticlesGrid from "../ArticleComponents/ArticlesGrid";
 import SelectArticles from "../ArticleComponents/SelectArticles";
+import SummaryContainer from "../SummaryComponents/SummaryContainer";
 import { useState, useEffect } from "react";
 import { Articles, OptionsTypes } from '../../../env'
+
+// TODO: implement twitter's API into the InvestigateContainer component to allow the user to 
+// either directly tackle a statement or to get the user thinking about something they wanted to dig in to
 
 
 export default function InvestigateContainer () {
@@ -27,6 +31,7 @@ export default function InvestigateContainer () {
         }
       }
 
+
   const articlesToSummarize = encodeURIComponent(JSON.stringify(selectedForSummary))
 
     const fetchSummaries = async () => {
@@ -40,7 +45,8 @@ export default function InvestigateContainer () {
         throw new Error('There was an issue with TLDR API')
       }
       const tlderJSON = await tldrResponse.json()
-      setSummaries([tlderJSON])
+      console.log(tlderJSON)
+      setSummaries(tlderJSON)
       } catch(err) {
         console.error('Error: ' + err)
       } finally {
@@ -53,8 +59,9 @@ export default function InvestigateContainer () {
     const fetchBingApi = async () => {
         try {
           setIsLoading(true)  
-          setSummaries([])
           setSelectedForSummary([])
+          setArticles([])
+          setSummaries([])
           const response = await fetch(`/search/articles?q=${query}`,
             options
           )
@@ -83,6 +90,8 @@ export default function InvestigateContainer () {
         }
       }, [isSubmitted, submittedForSummaries])
 
+
+
     return (
         <div className="grid grid-cols-1 w-full h-auto mx-auto justify-center items-center">
         <div className="block">
@@ -100,7 +109,7 @@ export default function InvestigateContainer () {
         summaries={summaries}
         />
         </div>
-        <div className="block w-full mx-auto">
+        <div className="block w-full mx-auto h-fit">
         <ArticleLoader 
         isLoading={isLoading}
         /> 
@@ -110,6 +119,10 @@ export default function InvestigateContainer () {
         selectedForSummary = {selectedForSummary}
         setSelectedForSummary = {setSelectedForSummary}
         /> : "" }
+        { <SummaryContainer 
+        summaries={summaries}
+        articles = {articles}
+        /> }
         </div>
         {articles?  <SelectArticles 
         readyToSelect = {readyToSelect}
@@ -118,6 +131,9 @@ export default function InvestigateContainer () {
         loadingSummaries = {loadingSummaries}
         />
          : ""}
+      
+
+        
         </div>
     )
 }

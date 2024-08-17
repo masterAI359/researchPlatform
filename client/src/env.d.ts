@@ -33,6 +33,13 @@ interface OptionsTypes {
     method: string,
     headers: HeadersInit,
   }
+
+  interface forSummaryData {
+    url: string,
+    source: string,
+    date: string,
+    logo: string
+  }
   }
   
   export { Articles, OptionsTypes };

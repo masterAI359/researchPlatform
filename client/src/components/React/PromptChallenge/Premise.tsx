@@ -5,30 +5,29 @@ interface PremiseProps {
     statement: string,
     identifier: string,
     dispatch: any,
+    status: string
 }
 
 
-export default function Premise({biases, statement, identifier, dispatch}: PremiseProps) {
+export default function Premise({biases, statement, identifier, dispatch, status}: PremiseProps) {
 
     const [premise, setPremise] = useState("")
 
     const handlePremise = (e: React.ChangeEvent<HTMLTextAreaElement>) => setPremise(e.target.value) 
+
+    const interactive = status === "establish-premises"
         
     
     return (
-        <div className="lg:p-8">
-        <div className="mx-auto 2xl:max-w-7xl 
-       items-center relative w-full">
-          <div className="relative isolate lg:flex-col overflow-hidden 
-          bg-gradientup ring-1 ring-white/10 rounded-4xl
-           px-6 p-10 lg:flex lg:p-20 pb-0 lg:pb-0">
-            <div className="lg:text-center max-w-xl lg:mx-auto">
+            <div className={`mx-auto absolute w-[75rem] 2xl:h-full opacity-0 transition-all ease-in-out delay-1000 duration-500  ${interactive ? 'pointer-events-auto opacity-100' : 'opacity-0 pointer-events-none'  }`}>
+              <div className="lg:text-center max-w-xl lg:mx-auto">
               <h2 className="text-3xl tracking-tight mt-6 font-light 
               lg:text-4xl text-white">
                 So you have a perspective<span className="md:block text-zinc-300"
                 >How'd you arrive here?</span>
               </h2>
             </div>
+
             <div className="flex flex-col items-center gap-y-12 w-full 
             mt-12 py-20 px-10 relative lg:rounded-t-[3rem] 
             overflow-hidden">
@@ -54,13 +53,15 @@ export default function Premise({biases, statement, identifier, dispatch}: Premi
                     </div>
                     <button type = "submit" className="text-white w-16 p-2 bg-transparent 
                     rounded-2xl border border-white hover:border-blue-500 m-auto"
-                    onClick={() => dispatch({ type: "suggest-query", payload: premise})}
+                    onClick={() => dispatch({ type: "search", payload: premise})}
                          >
                           Next</button>
                   </div>
-                </div>
-              </div>
             </div>
+            
+
+
+              
     );
 }
 

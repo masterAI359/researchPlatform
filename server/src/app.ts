@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
+import dotenv from 'dotenv';
 const app = express();
 import fetch from 'node-fetch';
 import {
@@ -9,6 +10,8 @@ import {
 import { tldrSummary } from '../endpoints/tldrSummary.js'
 import pkg from 'pg';
 
+
+dotenv.config({ path: '../../.env' })
 
 const corsOptions: object = {
 	origin: '*',

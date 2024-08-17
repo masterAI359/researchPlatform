@@ -1,24 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface BiasProps {
     dispatch: any,
     statement: string,
     identifier: string,
+    status: string
 }
 
-export default function Bias ({ identifier, statement, dispatch }: BiasProps) {
+export default function Bias ({ identifier, statement, dispatch, status }: BiasProps) {
     const [bias, setBias] = useState('')
     
     const handleBias = (e: React.ChangeEvent<HTMLTextAreaElement>) => setBias(e.target.value)
+                                                      
+    const interactive = status === "assertion"
+    console.log(interactive)
 
-    return (
-        <div className="lg:p-8">
-        <div className="mx-auto 2xl:max-w-7xl py-12 
-      items-center relative w-full">
-          <div className="relative isolate lg:flex-col overflow-hidden 
-          bg-gradientup ring-1 ring-white/10 rounded-4xl
-           px-6 p-10 lg:flex lg:p-20 pb-0 lg:pb-0">
-            <div className="lg:text-center max-w-xl lg:mx-auto">
+    useEffect(() => {
+      console.log("Current State:", status);
+      console.log(interactive)
+  }, [status]);
+
+    return (                            
+          <div className={`opacity-0 w-11/12 h-full transition-all delay-500 duration-500 mx-auto ${interactive ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+          <div className={`lg:text-center max-w-xl lg:mx-auto`}>
               <h2 className="text-3xl tracking-tight mt-6 font-light 
               lg:text-4xl text-white">
                 Zero in on it<span className="md:block text-zinc-300"
@@ -41,7 +45,7 @@ export default function Bias ({ identifier, statement, dispatch }: BiasProps) {
               <textarea
               onChange = {handleBias} 
               id="take" 
-              className="block p-2.5 w-full text-sm text-gray-900 bg-black 
+              className="block p-2.5 w-full h-1/2 text-sm text-gray-900 bg-black 
               rounded-2xl border border-gray-300 focus:ring-blue-500 
               focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 
               dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
@@ -57,9 +61,9 @@ export default function Bias ({ identifier, statement, dispatch }: BiasProps) {
                          >
                           Next</button>
                   </div>
-                </div>
-              </div>
-            </div>
+          </div>
+            
+              
     );
 }
 

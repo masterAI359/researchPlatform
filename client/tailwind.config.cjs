@@ -10,6 +10,8 @@ module.exports = {
       },
       fontFamily: {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
+        serif: ["Open Sans", "sans-serif"],
+        
       },
       backgroundImage: (theme) => ({
         // Blue Gradient

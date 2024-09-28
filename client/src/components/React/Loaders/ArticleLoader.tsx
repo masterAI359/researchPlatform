@@ -1,7 +1,32 @@
-export default function ArticleLoader ({ isLoading }) {
+import { motion } from "framer-motion"
+
+
+export default function ArticleLoader ({ isLoading, summaries }) {
+
+  const container = {
+
+    hidden: { opacity: 0},
+    show: {
+        opacity: 1,
+        transition: {
+            duration: 1,
+            ease: 'easeInOut',
+            delayChildren: 0.3,
+            staggerDirection: -1
+        }
+    }
+}
+  
 
     return (
-        <div className={isLoading ? `grid grid-cols-2 gap-24 mx-auto px-8 py-24 md:px-12 lg:px-16 xl:px-36 2xl:max-w-7xl w-full` : `hidden`}>
+      <motion.div
+      variants={container}
+      initial="hidden"
+      animate="show"
+      exit="hidden"
+      >
+   <div className={`grid lg:grid-cols-2 grid-cols-1 h-auto lg:gap-24 mx-auto pointer-events-none 
+        px-8 py-24 md:px-12 lg:px-16 xl:px-36 2xl:max-w-7xl w-full`}>
 
   <div className="relative p-4 w-full min-w-full bg-loader_black overflow-hidden shadow hover:shadow-md rounded-3xl">
     <div className="animate-pulse flex flex-col">
@@ -265,6 +290,8 @@ export default function ArticleLoader ({ isLoading }) {
   </div>
   
 </div>
+      </motion.div>
+     
 
     )
 }

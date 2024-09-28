@@ -15,7 +15,7 @@
     "@astrojs/tailwind": "^5.1.0",
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.12",
-    "@types/alpinejs": "^3.13.10",
+    "@types/react-lottie": "^1.2.10",
     "astro": "^4.5.16"
   },
   "dependencies": {
@@ -24,13 +24,16 @@
     "@astrojs/react": "^3.3.0",
     "@astrojs/rss": "^4.0.5",
     "@astrojs/sitemap": "^3.1.2",
-    "@types/react": "^18.2.79",
-    "@types/react-dom": "^18.2.25",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.2.1",
     "astro-devtool-breakpoints": "^0.3.0",
     "axios": "^1.6.8",
+    "framer-motion": "^11.3.31",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-lottie": "^1.2.4",
     "tailwind-scrollbar-hide": "^1.1.7"
   }
 }

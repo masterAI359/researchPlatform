@@ -71,6 +71,11 @@ interface OptionsTypes {
 
   interface WindowProps {
     currentStep: number,
+    setStartSearch: Function,
+    query: string,
+    setIsSubmitted: Function,
+    setQuery: Function,
+    isLoading: boolean
 }
   }
  

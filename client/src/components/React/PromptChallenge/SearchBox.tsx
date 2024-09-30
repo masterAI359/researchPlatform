@@ -9,9 +9,8 @@ interface OptionsTypes {
   headers: HeadersInit,
 }
 
-export default function SearchBox ({ isLoading, setIsSubmitted, setQuery, status, identifier, statement, premise }) {
+export default function SearchBox ({ isLoading, setIsSubmitted, setQuery }) {
 
-console.log({Premise: premise, Statement: statement, Origin: identifier})
 
 const options: OptionsTypes =  {
   method: 'GET',
@@ -39,56 +38,11 @@ const options: OptionsTypes =  {
         setIsSubmitted(true)
   }
 
-  const interactive = status === "searchBox"
 
 
     return (
-            <div className={`2xl:mx-auto absolute w-full ${statement? null : `pt-36`} 2xl:max-w-[75rem] 2xl:h-full md:max-h-11/12 opacity-0 left-1/2 transform -translate-x-1/2 transition-all ease-in delay-1000 duration-500 ${interactive ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'  }`}>
-             {statement ?
-              <div id="perspective_box"
-              className="grid-cols-1 items-center w-3/6 mx-auto text-zinc-400 font-serif mb-10 p-10 border border-zinc-400 rounded-4xl ">
-                <header id="Established Perspective"
-                className="mx-auto w-full text-center pb-5"
-                >
-                  <h2
-                  className="text-2xl text-zinc-400"
-                  >Established Perspective</h2>
-                </header>
-                <div id="argument_container"
-                className="flex items-center">
-                 <div id="argument"
-                 className="w-auto h-auto pr-5">
-                  Argument: 
-                 </div>
-                 <div id="user_statment"
-                 className="w-full h-auto bg-black rounded-full text-zinc-400 font-serif"
-                 >{statement} 
-                 </div>
-                </div>
-                <div id="premise_container"
-                className="flex items-center">
-                 <div id="premise"
-                 className="w-auto h-auto pr-5">
-                  Premise: 
-                 </div>
-                 <div id="user_premise"
-                 className="w-full h-auto bg-black rounded-full text-zinc-400 font-serif"
-                 >{premise} 
-                 </div>
-                </div>
-                <div id="pov_container"
-                className="flex items-center">
-                 <div id="pov"
-                 className="w-auto h-auto pr-5">
-                  Perspective: 
-                 </div>
-                 <div id="user_statment"
-                 className="w-full h-auto bg-black rounded-full text-zinc-400 font-serif"
-                 >{identifier} 
-                 </div>
-                </div>
-              </div> 
-              : null }
+<div className="inline-block box-border w-full 2xl:h-full md:max-h-11/12">
+            
 <div 
 className="text-center w-full md:mx-auto">
       <h2 
@@ -100,7 +54,7 @@ className="text-center w-full md:mx-auto">
   <div 
   className="2xl:w-2/3 w-full m-auto px-4">
     <div
-    className="relative">
+    className="relative mt-56">
       <form
       action = "post"
       onSubmit={handleSubmit}

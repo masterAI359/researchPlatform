@@ -1,5 +1,5 @@
 import { MutableRefObject, useState } from "react"
-
+import { AnimatePresence, motion } from "framer-motion";
 
 
 interface ButtonProps {
@@ -21,7 +21,7 @@ const handleBackStep = () => {
 onClick={handleBackStep}
 className={`col-span-1 justify-self-start self-center text-zinc-400 
 lg:w-20 mx-auto lg:h-12 p-2 transition-all 
-duration-200 bg-black/50 hover:bg-black hover:scale-110 flex items-center group
+duration-200 bg-white/5 hover:bg-white/10 hover:scale-110 flex items-center group
 rounded-2xl ${currentStep === 0 ? 'pointer-events-none opacity-50' : ''}`}>
     <span className="mx-auto">
     <svg 

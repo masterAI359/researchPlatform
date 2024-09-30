@@ -1,3 +1,5 @@
+import { AnimatePresence, motion } from "framer-motion";
+
 interface ButtonProps {
   currentStep: number,
   setCurrentStep: React.Dispatch<React.SetStateAction<number>>,
@@ -20,11 +22,15 @@ export default function NextButton ({ setCurrentStep, currentStep }: ButtonProps
  
 
     return (
+      <AnimatePresence>
+        {currentStep <= 4 && <motion.div
+        className="col-span-1 justify-self-end self-center"
+        >
         <button
         onClick={handleNextStep}
-          className="col-span-1 justify-self-end self-center text-white
+          className="text-white
           lg:w-20 lg:h-12 p-2 transition-all mx-auto
-          duration-200 bg-black/50 hover:bg-black hover:scale-110 flex items-center group
+          duration-200 bg-white/5 hover:bg-white/10 hover:scale-110 flex items-center group
           rounded-2xl">
             <span className="mx-auto">
               <svg 
@@ -44,5 +50,9 @@ export default function NextButton ({ setCurrentStep, currentStep }: ButtonProps
               </svg>
             </span>
           </button>
+        </motion.div>}
+
+      </AnimatePresence>
+        
     )
 }

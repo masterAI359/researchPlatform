@@ -5,14 +5,15 @@ import { AnimatePresence, motion } from "framer-motion";
 import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
+import Step4 from './Step4'
+import SearchBox from './SearchBox';
 
 
-export default function HeroWindow ({ currentStep }: WindowProps) {
+export default function HeroWindow ({ currentStep, setStartSearch, setQuery, isLoading, query, setIsSubmitted }: WindowProps) {
 const containerRef = useRef<HTMLDivElement>(null);
 const [containerWidth, setContainerWidth] = useState(0);
 const [origin, setOrigin] = useState<string>('')
 
-console.log(containerWidth)
 
     useEffect(() => {
         if (containerRef.current) {
@@ -51,7 +52,17 @@ console.log(containerWidth)
         <Step2 containerWidth = {containerWidth}/>
         </div>
         <div style={{ width: containerWidth, flexShrink: 0 }} className='text-center'>
-        <Step3 containerWidth = {containerWidth}/>
+        <Step3 containerWidth = {containerWidth} setStartSearch = {setStartSearch}/>
+        </div>
+        <div style={{ width: containerWidth, flexShrink: 0 }} className='text-center'>
+        <Step4  setStartSearch = {setStartSearch}/>
+        </div>
+        <div style={{ width: containerWidth, flexShrink: 0 }} className='text-center'>
+        <SearchBox
+        setQuery={setQuery}
+        setIsSubmitted={setIsSubmitted}
+        isLoading={isLoading}
+        />
         </div>
 
      </motion.div>

@@ -102,7 +102,12 @@ export default function InvestigateContainer () {
         <section className="w-full grid grid-cols-1 transition-all duration-300 ease-in-out h-auto mx-auto justify-center
          items-center animate-fade-in">
         <PromptContainer>
-          <InvestigateHero/>
+          <InvestigateHero
+          query = {query}
+          setQuery = {setQuery}
+          isLoading = {isLoading}
+          setIsSubmitted = {setIsSubmitted}
+          />
           <AnimatePresence>
            {articles.length > 0 && 
            <motion.div

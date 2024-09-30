@@ -4,7 +4,7 @@ import { useState } from "react";
 
 
 
-export default function Step3 ({ containerWidth }: any) {
+export default function Step3 ({ containerWidth, setStartSearch }: any) {
 
     const [statedPremise, setPremise] = useState("")
 
@@ -46,9 +46,8 @@ export default function Step3 ({ containerWidth }: any) {
               placeholder="Write your thoughts here..."
               ></textarea>
                     </div>
-                    <div>
                    
-                    </div>
+                    
                    
                   </div>
             </div>

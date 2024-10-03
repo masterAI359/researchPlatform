@@ -11,19 +11,10 @@ export default function Step1 ({ dispatch, status, origin, setOrigin, containerW
     const handleStatement = (e: React.ChangeEvent<HTMLTextAreaElement>) => {setIsExpressed(e.target.value)}
 
 return (
-<div className={`inline-block h-full opacity-100 transition-all duration-500 box-border w-full`}>
+<div className="inline-block h-full box-border w-full self-baseline">
 
-  <div className="lg:text-center text-center w-full lg:mt-10 lg:mx-auto sm:px-3 lg:border-b border-white/10 pb-6">
-    <span className="text-white">We're in a climate of hot takes</span>
-    <p className="tracking-tight mt-6 font-light lg:text-4xl sm:text-sm text-white">
-      Let's take a grounded approach 
-      <span className="md:block text-zinc-300">and challenge them instead
-     </span>
-    </p>
-  </div>
-
-<div className="flex-col w-full top-0 bottom-0 left-0 right-0">
-  <div className="bg-black w-full lg:mt-24 md:mb-3 rounded-lg">
+<div className="flex-col w-full">
+  <div className="bg-black w-full md:mb-3 rounded-lg">
         <p className="md:text-lg text-white p-3">Have you come across a post on social media, a statement made by somebody else, or otherwise a public perception that invoked some sort of skepticism in you?</p>
   </div>
   <div className="flex flex-row w-full sm:mt-3 relative">

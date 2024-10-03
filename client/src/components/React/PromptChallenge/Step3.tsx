@@ -16,15 +16,6 @@ export default function Step3 ({ containerWidth, setStartSearch }: any) {
     
     return (
             <div className="inline-block box-border mx-auto w-full 2xl:h-full">
-              <div className="lg:text-center max-w-xl mx-auto">
-              <h2 className="2xl:text-3xl text-2xl tracking-tight mt-6 font-light text-center
-              lg:text-4xl text-white">
-                So you have a perspective<div className="md:block text-zinc-300 whitespace-pre-line"
-                >
-                  How'd you arrive here?</div>
-              </h2>
-            </div>
-
             <div className="flex flex-col items-center w-full 
             mt-12 py-20 px-10 relative lg:rounded-t-[3rem] 
             overflow-hidden">

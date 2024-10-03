@@ -23,7 +23,10 @@ export default function NextButton ({ setCurrentStep, currentStep }: ButtonProps
 
     return (
       <AnimatePresence>
-        {currentStep <= 4 && <motion.div
+        {currentStep <= 3 && <motion.div
+         initial={{ opacity: 0, scale: 0 }}
+         animate={{ opacity: 1, scale: 1 }}
+         exit={{ opacity: 0, scale: 0 }}
         className="col-span-1 justify-self-end self-center"
         >
         <button

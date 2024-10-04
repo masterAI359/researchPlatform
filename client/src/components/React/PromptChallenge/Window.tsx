@@ -38,10 +38,10 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
   return (
     <section
       ref={containerRef}
-      className="col-span-6 overflow-hidden relative max-h-[42rem] w-full animate-fade-in delay-300">
+      className="col-span-6 overflow-hidden relative max-h-[48rem] w-full animate-fade-in delay-300">
       <div
         style={{ width: containerWidth }}
-        className="w-full flex justify-center items-center md:mt-16 md:mb-8"
+        className="w-full flex justify-center items-center md:mt-10"
       >
         <StepWizard currentStep={currentStep} />
       </div>
@@ -52,7 +52,7 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
         animate={{ opacity: 1, x: -currentStep * containerWidth }}
         transition={{ type: 'tween', duration: 0.3 }}>
 
-        <div style={{ width: containerWidth, height: containerHeight, flexShrink: 0 }} className='text-center box-border flex'>
+        <div style={{ width: containerWidth, height: containerHeight, flexShrink: 0 }} className='text-center box-border flex top-0 self-start'>
           <Step1
             containerWidth={containerWidth}
             origin={origin}

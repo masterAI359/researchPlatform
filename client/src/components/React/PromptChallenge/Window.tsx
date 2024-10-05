@@ -33,7 +33,7 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  console.log({ 'HeroWindow Width: ': containerWidth, 'HeroWindow Height: ': containerHeight })
+  // console.log({ 'HeroWindow Width: ': containerWidth, 'HeroWindow Height: ': containerHeight })
 
   return (
     <section

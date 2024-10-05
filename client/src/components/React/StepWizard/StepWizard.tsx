@@ -5,7 +5,7 @@ import { motion, useAnimate } from "framer-motion"
 
 export default function StepWizard({ currentStep }: any) {
 
-    console.log({ "Current Step: ": currentStep })
+    //  console.log({ "Current Step: ": currentStep })
 
     return (
         <section className="w-11/12 h-full  justify-self-center">
@@ -114,7 +114,7 @@ export default function StepWizard({ currentStep }: any) {
                         <motion.div
                             className="w-full h-1 grow"
                             initial={{ scaleX: 0, backgroundColor: "#374151" }}
-                            animate={{ scaleX: 1, backgroundColor: currentStep > 3 ? "#2563eb" : "#374151" }}
+                            animate={{ scaleX: 1, backgroundColor: currentStep > 2 ? "#2563eb" : "#374151" }}
                             exit={{ scale: 0 }}
                             transition={{ duration: 0.5 }}
                             style={{ transformOrigin: 'left' }}
@@ -152,7 +152,7 @@ export default function StepWizard({ currentStep }: any) {
                         <motion.div
                             className="w-full h-1 grow"
                             initial={{ scaleX: 0, backgroundColor: "#374151" }}
-                            animate={{ scaleX: 1, backgroundColor: currentStep > 4 ? "#2563eb" : "#374151" }}
+                            animate={{ scaleX: 1, backgroundColor: currentStep > 3 ? "#2563eb" : "#374151" }}
                             exit={{ scale: 0 }}
                             transition={{ duration: 0.5 }}
                             style={{ transformOrigin: 'left' }}

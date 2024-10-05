@@ -49,7 +49,6 @@ export default function ArticlesResult() {
 		}
 	};
 
-	console.log(articles);
 
 	useEffect(() => {
 		fetchBingApi();
@@ -94,7 +93,7 @@ export default function ArticlesResult() {
 									{firstHalf.map((article) => (
 										<div
 											key={article.name}
-											className='relative rounded-3xl shadow-inset sm:opacity-0 lg:opacity-100 p-4 bg-white/5 lg:p-8 ring-1 ring-white/5'
+											className='relative rounded-3xl shadow-inset sm:opacity-0 lg:opacity-90 lg:hover:opacity-100 p-4 bg-white/5 lg:p-8 ring-1 ring-white/5'
 										>
 											<a href={article.url} target='_blank'>
 												<figcaption className='relative flex flex-row gap-4 pb-6 border-b border-white/10'>
@@ -148,13 +147,17 @@ export default function ArticlesResult() {
 									{secondHalf.map((article) => (
 										<div
 											key={article.name}
-											className='relative rounded-3xl shadow-inset sm:opacity-0 lg:opacity-100 p-4 bg-white/5 lg:p-8 ring-1 ring-white/5'
+											className='relative rounded-3xl shadow-inset sm:opacity-0 lg:opacity-90 lg:hover:opacity-100 p-4 bg-white/5 lg:p-8 ring-1 ring-white/5'
 										>
 											<a href={article.url} target='_blank'>
 												<figcaption className='relative flex flex-row gap-4 pb-6 border-b border-white/10'>
 													<div className='overflow-hidden shrink-0'>
 														<img
-															src={article.image.img}
+															src={
+																article.image.img
+																	? article.image.img
+																	: 'public/images/assets/cube.png'
+															}
 															className='object-cover rounded-full h-20 w-20 shrink-0'
 														/>
 													</div>

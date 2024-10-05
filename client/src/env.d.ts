@@ -11,6 +11,72 @@ declare global {
     interface ImportMeta {
         readonly env: ImportMetaEnv;
     }
+
+    interface State {
+      statement: string,
+      status: string,
+      identifier: string,
+      biases: string,
+      premise: string,
   }
-  
-  export {};
+
+  interface PremiseProps {
+    biases: string,
+    statement: string,
+    identifier: string,
+    dispatch: any,
+    status: string
+}
+
+    interface Image {
+        img: string,
+        width: number,
+        height: number
+      }
+
+    interface Perspectives {
+      perspective: string
+    }
+
+    interface Articles {
+        datePublished: string,
+        description: string,
+        image: Image
+        keywords: string[]       
+        name: string,
+        provider: string,
+        url: string,
+        logo: string
+    }
+    
+interface OptionsTypes {
+    method: string,
+    headers: HeadersInit,
+  }
+
+  interface forSummaryData {
+    url: string,
+    source: string,
+    date: string,
+    logo: string
+  }
+
+  interface SelectedArticles {
+    url: string,
+    source: string,
+    date: string,
+    logo: string,
+    title: string
+  }
+
+  interface WindowProps {
+    currentStep: number,
+    setStartSearch: Function,
+    query: string,
+    setIsSubmitted: Function,
+    setQuery: Function,
+    isLoading: boolean
+}
+  }
+ 
+  export { Articles, OptionsTypes, SelectedArticles, WindowProps, Perspectives, State, PremiseProps };

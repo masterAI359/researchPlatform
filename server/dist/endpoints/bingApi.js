@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import he from 'he'; //ran --save-dev @types/he... may need to change this to regular dependency instead of dev dependancy
+import decodeItem from '../helpers/decodeItem.js';
 import { logoMap } from './logoMap.js';
 //import fetch from 'node-fetch';
 //import cheerio from 'cheerio';
@@ -35,6 +35,7 @@ export const bingGeneral = (req, res) => __awaiter(void 0, void 0, void 0, funct
         res.status(500).send('error fetching search result');
     }
 });
+//Do we even need the bingGeneral Search?
 export const bingArticles = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const search = req.query.q;
     const apiKey = 'ce2d91d82a8749c3a4f0eb2a64d9c77a';
@@ -48,29 +49,7 @@ export const bingArticles = (req, res) => __awaiter(void 0, void 0, void 0, func
             throw new Error(`error: ${res.status}`);
         }
         const data = yield response.json();
-        const dataValues = data.value;
-        function decodeItem(item) {
-            if (item == undefined || item == null) {
-                return item;
-            }
-            if (Array.isArray(item)) {
-                const decodedItem = item.map((element) => {
-                    return decodeItem(element);
-                });
-                return decodedItem;
-            }
-            else if (typeof item === "object") {
-                const decodedItem = Object.entries(item).reduce((acc, [key, value]) => {
-                    acc[key] = decodeItem(value);
-                    return acc;
-                }, {});
-                return decodedItem;
-            }
-            else if (typeof item === "string") {
-                const decodedItem = he.decode(item);
-                return decodedItem;
-            }
-        }
+        const dataValues = data.value; //JSON we want was stored in 'value' property
         const decodedData = dataValues.map((item) => decodeItem(item));
         const articlesWithLogos = Object.values(decodedData).map((article) => {
             const provider = article.provider[0].name.replace(/\s+/g, '').toLowerCase();
@@ -84,6 +63,8 @@ export const bingArticles = (req, res) => __awaiter(void 0, void 0, void 0, func
         });
         const organizedData = Object.values(articlesWithLogos).map((value) => {
             var _a, _b, _c, _d;
+            const stringDate = new Date(value.datePublished).toString();
+            const formattedDate = stringDate.split(' ').splice(0, 4).join(' ');
             return {
                 name: value.name,
                 url: value.url,
@@ -99,7 +80,7 @@ export const bingArticles = (req, res) => __awaiter(void 0, void 0, void 0, func
                     }),
                 ],
                 provider: value.provider[0].name,
-                datePublished: value.datePublished,
+                datePublished: formattedDate,
                 logo: value.logo
             };
         });
@@ -112,32 +93,6 @@ export const bingArticles = (req, res) => __awaiter(void 0, void 0, void 0, func
     catch (err) {
         console.error('error', err);
         res.status(500).send('error fetching search result');
-    }
-});
-//might need seperate endpoint file for tldr
-export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const query = req.query.q;
-    const url = 'https://tldrthis.p.rapidapi.com/v1/model/extractive/summarize-url/';
-    try {
-        const response = yield fetch(url, {
-            method: 'POST',
-            headers: {
-                //put api in a env after
-                'x-rapidapi-key': '3e0ff041dcmsh136e954b7ef530bp1da9d4jsn1f72dfc74936',
-                'x-rapidapi-host': 'tldrthis.p.rapidapi.com',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                url: query,
-                num_sentences: 5,
-                is_detailed: true,
-            }),
-        });
-        const result = yield response.text();
-        res.send(result);
-    }
-    catch (error) {
-        console.error(error);
     }
 });
 //# sourceMappingURL=bingApi.js.map

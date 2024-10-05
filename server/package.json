@@ -25,7 +25,9 @@
 		"he": "^1.2.0",
 		"ms-rest-azure": "^3.0.2",
 		"nodemon": "^3.1.0",
-		"pg": "^8.11.5"
+		"pg": "^8.11.5",
+		"sanitize-html": "^2.13.0",
+		"striptags": "^3.2.0"
 	},
 	"devDependencies": {
 		"@types/cors": "^2.8.17",
@@ -34,6 +36,7 @@
 		"@types/node": "^20.12.7",
 		"@types/node-fetch": "^2.6.11",
 		"@types/pg": "^8.11.5",
+		"@types/sanitize-html": "^2.13.0",
 		"ts-node": "^10.9.2",
 		"typescript": "^5.4.5"
 	}

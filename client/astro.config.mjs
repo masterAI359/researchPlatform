@@ -15,10 +15,13 @@ export default defineConfig({
 		server: {
 			proxy: {
 				'/search': {
-					//How can i make it so that the 'target' for all of our endpoints is port 5001?
 					target: 'http://localhost:5001',
 					changeOrigin: true,
 				},
+				'/summarize': {
+					target: 'http://localhost:5001',
+					changeOrigin: true,
+				}
 			},
 		},
 	},

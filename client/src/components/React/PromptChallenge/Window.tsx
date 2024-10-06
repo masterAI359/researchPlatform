@@ -58,7 +58,7 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
             origin={origin}
             setOrigin={setOrigin} />
         </div>
-        <div style={{ width: containerWidth, height: containerHeight, flexShrink: 0 }} className='text-center flex'>
+        <div style={{ width: containerWidth, height: containerHeight, flexShrink: 0 }} className='text-center flex grow'>
           <Step2 containerWidth={containerWidth} />
         </div>
         <div style={{ width: containerWidth, height: containerHeight, flexShrink: 0 }} className='text-center'>

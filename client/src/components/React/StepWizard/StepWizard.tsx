@@ -13,7 +13,7 @@ export default function StepWizard({ currentStep }: any) {
                 <li className="flex flex-col w-full lg:h-28 items-center">
                     <div className="flex  items-center justify-center w-full h-full">
                         <motion.div
-                            className="flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 shrink-0 z-40"
+                            className="flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 shrink-0 z-40 hover:cursor-pointer transition-all duration-500 hover:scale-105"
                             animate={{
                                 backgroundColor: currentStep === 0 ? "#374151" : "#2563eb",
                                 boxShadow: currentStep === 0
@@ -40,19 +40,19 @@ export default function StepWizard({ currentStep }: any) {
 
                     <motion.div
                         className="lg:-translate-x-4 text-sm text-center bg-transparent
-                        text-slate-200 self-start w-fit"
+                        text-white self-start w-fit"
                         animate={{ scale: 1, opacity: currentStep > 0 ? 0 : 1 }}
                         transition={{ duration: 0.7 }}
-                        style={{ translateX: '-18px' }}
+                        style={{ translateX: '-34px' }}
                     >
-                        Challenge an <br></br> idea
+                        Challenge an idea
                     </motion.div>
 
                 </li>
                 <li className="flex flex-col w-full lg:h-28 items-center">
                     <div className="flex  items-center justify-center w-full h-full">
                         <motion.div
-                            className="flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 shrink-0 z-40"
+                            className="flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 shrink-0 z-40 hover:cursor-pointer transition-all duration-500 hover:scale-105"
                             animate={{
                                 backgroundColor: currentStep >= 2 ? "#2563eb" : "#374151",
                                 boxShadow: currentStep === 1
@@ -85,19 +85,19 @@ export default function StepWizard({ currentStep }: any) {
                     </div>
                     <motion.div
                         className="left-0 text-sm text-center bg-transparent
-                        text-slate-200 self-start w-fit"
+                        text-white self-start w-fit"
                         animate={{ scale: 1, opacity: currentStep == 1 ? 1 : 0 }}
                         transition={{ duration: 0.7 }}
-                        style={{ translateX: '-10px' }}
+                        style={{ translateX: '-33px' }}
                     >
-                        Explore<br></br> our Biases
+                        Explore our Biases
                     </motion.div>
 
                 </li>
                 <li className="flex flex-col w-full lg:h-28 items-center">
                     <div className="flex  items-center justify-center w-full h-full">
                         <motion.div
-                            className="flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 shrink-0 z-40"
+                            className="flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 shrink-0 z-40 hover:cursor-pointer transition-all duration-500 hover:scale-105"
                             animate={{
                                 backgroundColor: currentStep >= 3 ? "#2563eb" : "#374151",
                                 boxShadow: currentStep === 2
@@ -123,19 +123,19 @@ export default function StepWizard({ currentStep }: any) {
 
                     <motion.div
                         className="text-sm text-center
-                        text-slate-200 self-start w-fit"
+                        text-white self-start w-fit"
                         animate={{ scale: 1, opacity: currentStep == 2 ? 1 : 0 }}
                         transition={{ duration: 0.7 }}
-                        style={{ translateX: '-4px' }}
+                        style={{ translateX: '-34px' }}
                     >
-                        Establish<br></br>Premises
+                        Establish Premises
                     </motion.div>
 
                 </li>
                 <li className="flex flex-col w-full lg:h-28 items-center">
                     <div className="flex  items-center justify-center w-full h-full">
                         <motion.div
-                            className="flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 shrink-0 z-40"
+                            className="flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 shrink-0 z-40 hover:cursor-pointer transition-all duration-500 hover:scale-105"
                             animate={{
                                 backgroundColor: currentStep <= 3 ? "#374151" : "#2563eb",
                                 boxShadow: currentStep === 3
@@ -161,18 +161,18 @@ export default function StepWizard({ currentStep }: any) {
 
                     <motion.div
                         className="text-sm text-center
-    text-slate-200 self-start w-fit"
+    text-white self-start w-fit"
                         animate={{ scale: 1, opacity: currentStep == 3 ? 1 : 0 }}
                         transition={{ duration: 0.7 }}
-                        style={{ translateX: '-4px' }}
+                        style={{ translateX: '-32px' }}
                     >
-                        Let's Self <br></br>Reflect
+                        Let's Self Reflect
                     </motion.div>
 
                 </li>
                 <li className="flex flex-col max-w-full lg:h-28 items-start justify-center">
                     <motion.div
-                        className="flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 shrink-0 z-40"
+                        className="flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 shrink-0 z-40 hover:cursor-pointer transition-all duration-500 hover:scale-105"
                         animate={{
                             backgroundColor: currentStep <= 4 ? "#374151" : "#2563eb",
                             boxShadow: currentStep === 4
@@ -188,12 +188,12 @@ export default function StepWizard({ currentStep }: any) {
 
 
                     <motion.div
-                        className="text-sm text-center mt-5 text-slate-200 self-start w-fit"
+                        className="text-sm text-center text-white self-start w-fit"
                         animate={{ scale: 1, opacity: currentStep == 4 ? 1 : 0 }}
                         transition={{ duration: 0.7 }}
                         style={{ translateX: '-4px' }}
                     >
-                        <div className="w-full translate-x-1">Search</div>
+                        <div className="w-full translate-x-1 translate-y-5">Search</div>
                     </motion.div>
 
                 </li>

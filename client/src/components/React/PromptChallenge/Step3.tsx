@@ -17,18 +17,16 @@ export default function Step3({ containerWidth, setStartSearch }: any) {
   return (
     <div className="inline-block box-border mx-auto w-full 2xl:h-full">
       <div className="flex flex-col items-center w-full 
-            mt-12 py-20 px-10 relative lg:rounded-t-[3rem] 
-            overflow-hidden">
+            mt-12 py-20 px-5 relative lg:rounded-t-[3rem]">
 
         <div className="text-center relative z-10 w-full">
-          <div className="w-full box-border border-b h-fit border-white/10 flex flex-row justify-center items-baseline pb-5 mb-5">
-            <div className="self-center w-full grow justify-self-center">
-              <h1 className="text-2xl tracking-tight font-light text-white p-4 self-end">
-                Explore our biases<br></br>
-                <span className="text-zinc-400">what influences your conclusions?</span>
+          <div className="w-full box-border border-b h-fit border-white/10 lg:mb-4 flex flex-row gap-x-8 items-baseline lg:mt-10">
+            <div className="w-fit flex justify-items-start">
+              <h1 className="text-2xl tracking-tight font-light text-white pb-4">
+                What informs your point of view?
               </h1>
             </div>
-            <div className="w-fit justify-self-end self-end h-full">
+            <div className="w-fit h-full justify-items-start translate-y-1 opacity-100">
               <HelpButton />
             </div>
 
@@ -41,8 +39,8 @@ export default function Step3({ containerWidth, setStartSearch }: any) {
             onChange={e => setPremise(e.target.value)}
             id="take"
             className="p-2.5 w-full md:h-56 text-md text-white bg-white/10 
-              rounded-lg resize-none text-wrap border-none
-            focus:border-zinc-500  placeholder-gray-40"
+              rounded-lg resize-none text-wrap border-none focus:ring-1 focus:ring-white
+            focus:border-none focus:outline-none  placeholder-gray-40"
             placeholder="Write your thoughts here..."
           ></textarea>
         </div>

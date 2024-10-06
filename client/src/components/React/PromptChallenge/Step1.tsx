@@ -22,25 +22,25 @@ export default function Step1({ dispatch, status, origin, setOrigin, containerWi
       return (
             <div className="inline-block h-full  box-border w-full self-start">
 
-                  <div className="flex-col justify-items-center w-full">
-                        <div className="w-full box-border border-b h-fit border-white/10 flex flex-row justify-center items-baseline m-0">
-                              <div className="self-center w-full grow justify-self-center">
-                                    <h1 className="text-2xl tracking-tight font-light text-white p-4 self-end">Tackle an idea<br></br>
-                                          <span className="text-zinc-400">from the top down </span>
+                  <div className="flex-col justify-items-center w-full px-5 lg:mt-8">
+                        <div className="w-full box-border border-b h-fit border-white/10 mb-4 flex flex-row gap-x-8 items-baseline">
+                              <div className="w-fit flex justify-items-start">
+                                    <h1 className="text-2xl tracking-tight font-light text-zinc-300 pb-1 pt-8">Tackle an idea
+                                          <span className="text-zinc-500"> from the top down </span>
                                     </h1>
                               </div>
-                              <div className="w-fit justify-self-end self-end h-full">
+                              <div className="w-fit h-full justify-items-start translate-y-1">
                                     <HelpButton />
                               </div>
 
 
                         </div>
-                        <div className="text-center z-10 w-full grow pl-3">
+                        <div className="flex justify-items-start z-10 w-full">
                               <textarea
                                     value={isExpressed}
                                     onChange={handleStatement}
                                     id="take"
-                                    className="p-2.5 mt-4 w-11/12 md:h-36 text-md text-gray-900 bg-white/10 
+                                    className="p-2 w-full md:h-40 text-md text-gray-900 bg-white/10 
         rounded-lg border-none focus:ring-white resize-none text-wrap
         focus:border-white dark:border-gray-600 dark:placeholder-gray-400 
         dark:text-white dark:focus:ring-white/80 dark:focus:border-white"
@@ -48,20 +48,19 @@ export default function Step1({ dispatch, status, origin, setOrigin, containerWi
                         </div>
                         <div className="h-full top-0 bottom-0 right-0 left-0">
 
-                              <div className="w-full box-border border-b h-fit border-white/10 flex flex-row justify-center items-baseline m-0">
-                                    <div className="self-center w-full grow justify-self-center">
-                                          <h1 className="text-2xl tracking-tight font-light text-white p-4 self-end">
-                                                What's your perspective?
+                              <div className="w-full box-border border-b h-fit border-white/10 flex flex-row gap-x-8 items-baseline lg:mt-10">
+                                    <div className="w-fit flex justify-items-start pb-2">
+                                          <h1 className="text-2xl tracking-tight font-light text-white">Establish the perspective of your approach
                                           </h1>
                                     </div>
-                                    <div className="w-fit justify-self-end self-end h-full">
+                                    <div className="w-fit h-full justify-items-start translate-y-1 z-1">
                                           <HelpButton />
                                     </div>
 
 
                               </div>
 
-                              <div className="h-full flex flex-row gap-x-11 w-11/12 justify-center mx-auto mt-4 bottom-0 right-0 left-0">
+                              <div className="h-full flex flex-row lg:gap-x-11 md:gap-x-6 w-11/12 justify-start mt-4 bottom-0 right-0 left-0">
                                     <Perspective
                                           setOrigin={setOrigin}
                                           origin={origin} />
@@ -70,9 +69,7 @@ export default function Step1({ dispatch, status, origin, setOrigin, containerWi
                                           setOrigin={setOrigin}
                                           origin={origin} />
 
-                                    <Perspective
-                                          setOrigin={setOrigin}
-                                          origin={origin} />
+
                               </div>
 
 

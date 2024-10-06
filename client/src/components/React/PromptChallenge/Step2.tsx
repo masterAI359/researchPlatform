@@ -23,7 +23,7 @@ export default function Step2({ containerWidth }: any) {
 
         <div className="w-full box-border border-b h-fit border-white/10 lg:mb-4 flex flex-row gap-x-8 items-baseline lg:mt-10">
           <div className="w-fit flex justify-items-start">
-            <h1 className="text-2xl tracking-tight font-light text-white pb-4">Explore our biases
+            <h1 className="text-2xl tracking-tight font-light text-white pb-2">Explore our biases
             </h1>
           </div>
           <div className="w-fit h-full justify-items-start translate-y-1 opacity-100">

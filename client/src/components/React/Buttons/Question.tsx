@@ -1,8 +1,11 @@
 import { AnimatePresence, motion } from "framer-motion"
 import { useState } from "react"
+import { Help } from "@/env"
 
 
-export default function HelpButton() {
+//TODO: within the <motion.div> map the props from each component displaying helpful information
+
+export default function HelpButton({ IdeaHelp }) {
     const [isOpen, setIsOpen] = useState<boolean>(false)
 
     return (
@@ -19,8 +22,11 @@ export default function HelpButton() {
                     exit={{ scale: 0, opacity: 0 }}
                     style={{ height: "200px", width: "350px", position: "absolute", marginTop: "10px", translateY: "25px", translateX: "30px" }}
                     className="bg-ebony rounded-xl pointer-events-none z-50"
-                >
-                    <p className="text-zinc-400">Help Button</p>
+                >   <div className="p-2">
+                        {IdeaHelp.map((element: Help) => (
+                            <h1 key={element.heading} className="text-zinc-300 text-md">{element.heading}</h1>
+                        ))}
+                    </div>
                 </motion.div>}
             </AnimatePresence>
         </div>

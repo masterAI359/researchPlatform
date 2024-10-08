@@ -38,10 +38,10 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
   return (
     <section
       ref={containerRef}
-      className="col-span-6 overflow-hidden relative max-h-[48rem] w-full animate-fade-in delay-300">
+      className="col-span-6 overflow-hidden relative max-h-[45rem] w-full animate-fade-in delay-300">
       <div
         style={{ width: containerWidth }}
-        className="w-full flex justify-center items-center md:mt-10"
+        className="w-full flex justify-center items-center"
       >
         <StepWizard currentStep={currentStep} />
       </div>
@@ -52,22 +52,22 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
         animate={{ opacity: 1, x: -currentStep * containerWidth }}
         transition={{ type: 'tween', duration: 0.3 }}>
 
-        <div style={{ width: containerWidth, height: containerHeight, flexShrink: 0 }} className='text-center box-border flex top-0 self-start'>
+        <div style={{ width: containerWidth, height: containerHeight, flexShrink: 0 }} className='text-center h-fit box-border flex top-0 self-start'>
           <Step1
             containerWidth={containerWidth}
             origin={origin}
             setOrigin={setOrigin} />
         </div>
-        <div style={{ width: containerWidth, height: containerHeight, flexShrink: 0 }} className='text-center flex grow'>
+        <div style={{ width: containerWidth, height: containerHeight, flexShrink: 0 }} className='h-fit text-center flex grow'>
           <Step2 containerWidth={containerWidth} />
         </div>
-        <div style={{ width: containerWidth, height: containerHeight, flexShrink: 0 }} className='text-center'>
+        <div style={{ width: containerWidth, height: containerHeight, flexShrink: 0 }} className='text-center h-fit'>
           <Step3 containerWidth={containerWidth} setStartSearch={setStartSearch} />
         </div>
-        <div style={{ width: containerWidth, height: containerHeight, flexShrink: 0 }} className='text-center'>
+        <div style={{ width: containerWidth, height: containerHeight, flexShrink: 0 }} className='text-center h-fit'>
           <Step4 setStartSearch={setStartSearch} />
         </div>
-        <div style={{ width: containerWidth, height: containerHeight, flexShrink: 0 }} className='text-center'>
+        <div style={{ width: containerWidth, height: containerHeight, flexShrink: 0 }} className='text-center h-fit'>
           <SearchBox
             setQuery={setQuery}
             setIsSubmitted={setIsSubmitted}

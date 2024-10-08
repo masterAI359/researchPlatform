@@ -1,4 +1,4 @@
-import HelpButton from "../Buttons/help"
+import HelpButton from "../Buttons/Question"
 
 export default function Step4({ setStartSearch }) {
 

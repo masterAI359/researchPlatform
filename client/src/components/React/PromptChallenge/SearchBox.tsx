@@ -41,18 +41,21 @@ export default function SearchBox({ isLoading, setIsSubmitted, setQuery }) {
 
 
   return (
-    <div className="block box-border w-full mt-24 2xl:h-full md:max-h-11/12">
+    <div className="block box-border w-full px-5 2xl:h-full md:max-h-11/12">
 
       <div
         className="text-center w-full md:mx-auto">
-        <h2
-          className="text-3xl tracking-tight font-light lg:text-4xl text-white">
-          Search for articles<span className="block text-zinc-400">what relevant information is available?</span>
-        </h2>
+        <div className="w-full flex justify-start border-b border-white/10">
+          <h2
+            className="text-3xl tracking-tight font-light lg:text-3xl mb-2 text-white">
+            Search for articles
+          </h2>
+        </div>
+
         <div
-          className="inline-flex flex-wrap items-center mt-8 w-full">
+          className="inline-flex flex-wrap items-center w-full">
           <div
-            className="2xl:w-5/6 w-full m-auto px-4">
+            className="w-full">
             <div
               className="relative mt-14">
               <form
@@ -64,7 +67,7 @@ export default function SearchBox({ isLoading, setIsSubmitted, setQuery }) {
                   autoComplete="off"
                   type="text"
                   name="q"
-                  className="bg-white/10 text-white w-full border-black h-12 shadow  p-4 rounded-full 
+                  className="bg-white/10 text-white w-full border-none focus:ring-1 focus:ring-white h-12  p-4 rounded-full 
 								 focus:border-white transition-colors"
                   placeholder="search" />
                 <button type="submit"

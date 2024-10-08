@@ -1,21 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion"
 import { ChangeEvent, ReactHTMLElement, useRef, useState } from "react"
-import Lottie from 'react-lottie';
-import checkMark from '../../../lotties/checkMark.json'
 
-interface lottieTypes {
-  loop: boolean,
-  autoplay: boolean,
-  animationData: any
-  rendererSettings: object
-}
-
-const defaultOptions: lottieTypes = {
-  loop: false,
-  autoplay: true,
-  animationData: checkMark,
-  rendererSettings: { preserveAspectRatio: 'xMidYMid slice' }
-}
 
 export default function Perspective({ setOrigin, origin }: any) {
   const animationRef = useRef(null)
@@ -50,11 +35,7 @@ export default function Perspective({ setOrigin, origin }: any) {
             onClick={(e) => { assignOrigin(e) }}
           > <p className="text-white justify-self-start pl-3">My Opinion</p>
             <div>
-              {origin === "My Opinion"
-                ? <Lottie
-                  options={defaultOptions}
-                ></Lottie>
-                : ''}
+
             </div>
           </div>
         </motion.div>
@@ -69,11 +50,7 @@ export default function Perspective({ setOrigin, origin }: any) {
             onClick={(e) => { assignOrigin(e) }}
           ><p className="text-white justify-self-start pl-3">Opposing Opinion</p>
             <div>
-              {origin === "Opposing Opinion"
-                ? <Lottie
-                  options={defaultOptions}
-                ></Lottie>
-                : ''}
+
             </div>
           </div>
         </motion.div>
@@ -88,11 +65,7 @@ export default function Perspective({ setOrigin, origin }: any) {
             onClick={(e) => { assignOrigin(e) }}
           ><p className="text-white justify-self-start pl-3">Just Curious</p>
             <div>
-              {origin === "Just Curious"
-                ? <Lottie
-                  options={defaultOptions}
-                ></Lottie>
-                : ''}
+
             </div>
           </div>
         </motion.div>

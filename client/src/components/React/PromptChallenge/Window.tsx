@@ -10,7 +10,7 @@ import Step4 from './Step4'
 import SearchBox from './SearchBox';
 
 
-export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLoading, query, setIsSubmitted }: WindowProps) {
+export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLoading, query, setIsSubmitted, setCurrentStep }: WindowProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState(0);
   const [containerHeight, setContainerHeight] = useState(0)
@@ -43,7 +43,7 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
         style={{ width: containerWidth }}
         className="w-full flex justify-center items-center"
       >
-        <StepWizard currentStep={currentStep} />
+        <StepWizard currentStep={currentStep} setCurrentStep={setCurrentStep} />
       </div>
 
       <motion.div

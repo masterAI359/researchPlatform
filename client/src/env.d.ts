@@ -71,6 +71,7 @@ declare global {
 
   interface WindowProps {
     currentStep: number,
+    setCurrentStep: Function
     setStartSearch: Function,
     query: string,
     setIsSubmitted: Function,

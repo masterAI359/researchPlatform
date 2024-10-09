@@ -25,6 +25,7 @@ export default function InvestigateHero({ query, isLoading, setIsSubmitted, setQ
         />
         <HeroWindow
           currentStep={currentStep}
+          setCurrentStep={setCurrentStep}
           query={query}
           setQuery={setQuery}
           isLoading={isLoading}

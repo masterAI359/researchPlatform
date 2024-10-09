@@ -3,9 +3,9 @@ import { motion, useAnimate } from "framer-motion"
 
 
 
-export default function StepWizard({ currentStep }: any) {
+export default function StepWizard({ currentStep, setCurrentStep }: any) {
 
-    //  console.log({ "Current Step: ": currentStep })
+
 
     return (
         <section className="w-11/12 h-full  justify-self-center">
@@ -13,6 +13,7 @@ export default function StepWizard({ currentStep }: any) {
                 <li className="flex flex-col w-full lg:h-28 items-center">
                     <div className="flex  items-center justify-center w-full h-full">
                         <motion.div
+                            onClick={() => setCurrentStep(0)}
                             className="flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 shrink-0 z-40 hover:cursor-pointer transition-all duration-300 hover:scale-125"
                             animate={{
                                 backgroundColor: currentStep === 0 ? "#374151" : "#2563eb",
@@ -49,6 +50,7 @@ export default function StepWizard({ currentStep }: any) {
                 <li className="flex flex-col w-full lg:h-28 items-center">
                     <div className="flex  items-center justify-center w-full h-full">
                         <motion.div
+                            onClick={() => setCurrentStep(1)}
                             className="flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 shrink-0 z-40 hover:cursor-pointer transition-all duration-300 hover:scale-125"
                             animate={{
                                 backgroundColor: currentStep >= 2 ? "#2563eb" : "#374151",
@@ -83,6 +85,7 @@ export default function StepWizard({ currentStep }: any) {
                 <li className="flex flex-col w-full lg:h-28 items-center">
                     <div className="flex  items-center justify-center w-full h-full">
                         <motion.div
+                            onClick={() => setCurrentStep(2)}
                             className="flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 shrink-0 z-40 hover:cursor-pointer transition-all duration-300 hover:scale-125"
                             animate={{
                                 backgroundColor: currentStep >= 3 ? "#2563eb" : "#374151",
@@ -118,6 +121,7 @@ export default function StepWizard({ currentStep }: any) {
                 <li className="flex flex-col w-full lg:h-28 items-center">
                     <div className="flex  items-center justify-center w-full h-full">
                         <motion.div
+                            onClick={() => setCurrentStep(3)}
                             className="flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 shrink-0 z-40 hover:cursor-pointer transition-all duration-300 hover:scale-125"
                             animate={{
                                 backgroundColor: currentStep <= 3 ? "#374151" : "#2563eb",
@@ -152,6 +156,7 @@ export default function StepWizard({ currentStep }: any) {
                 </li>
                 <li className="flex flex-col max-w-full lg:h-28 items-start justify-center">
                     <motion.div
+                        onClick={() => setCurrentStep(4)}
                         className="flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 shrink-0 z-40 hover:cursor-pointer transition-all duration-300 hover:scale-125"
                         animate={{
                             backgroundColor: currentStep <= 4 ? "#374151" : "#2563eb",

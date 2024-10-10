@@ -1,6 +1,7 @@
 import { useState } from "react";
 import HelpButton from "../Buttons/Question";
-
+import { PerspectiveHelp, IdeaHelp } from "@/helpInfo/help"
+import { Help } from "@/env"
 
 
 
@@ -27,7 +28,7 @@ export default function Step3({ containerWidth, setStartSearch }: any) {
               </h1>
             </div>
             <div className="w-fit h-full justify-items-start translate-y-1 opacity-100">
-              <HelpButton />
+              <HelpButton info={IdeaHelp} />
             </div>
 
 

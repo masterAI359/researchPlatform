@@ -23,7 +23,6 @@ export default function Step1({ dispatch, status, origin, setOrigin, containerWi
 
       return (
             <div className="inline-block h-fit box-border w-full self-start">
-
                   <div className="flex-col justify-items-center w-full px-5 lg:mt-8">
                         <div className="w-full box-border border-b h-fit border-white/10 mb-4 flex flex-row gap-x-8 items-baseline">
                               <div className="w-fit flex justify-items-start">
@@ -33,11 +32,9 @@ export default function Step1({ dispatch, status, origin, setOrigin, containerWi
                               </div>
                               <div className="w-fit h-full justify-items-start translate-y-1">
                                     <HelpButton
-                                          IdeaHelp={IdeaHelp}
+                                          info={IdeaHelp}
                                     />
                               </div>
-
-
                         </div>
                         <div className="flex justify-items-start z-10 w-full">
                               <textarea
@@ -45,37 +42,29 @@ export default function Step1({ dispatch, status, origin, setOrigin, containerWi
                                     onChange={handleStatement}
                                     id="take"
                                     className="p-2 w-full md:h-32 text-md text-gray-900 bg-white/10 
-        rounded-lg border-none focus:ring-white resize-none text-wrap
-        focus:border-white dark:border-gray-600 dark:placeholder-gray-400 
-        dark:text-white dark:focus:ring-white/80 dark:focus:border-white"
+                              rounded-lg border-none focus:ring-white resize-none text-wrap
+                              focus:border-white dark:border-gray-600 dark:placeholder-gray-400 
+                              dark:text-white dark:focus:ring-white/80 dark:focus:border-white"
                                     placeholder="Write it down here, let's examine it" />
                         </div>
                         <div className="h-auto top-0 bottom-0 right-0 left-0">
-
                               <div className="w-full box-border border-b h-fit border-white/10 flex flex-row gap-x-8 items-baseline lg:mt-10">
                                     <div className="w-fit flex justify-items-start pb-2">
-                                          <h1 className="text-2xl tracking-tight font-light text-white">Establish the perspective of your approach
+                                          <h1 className="text-2xl tracking-tight font-light text-white">Angle of approach
                                           </h1>
                                     </div>
                                     <div className="w-fit h-full justify-items-start translate-y-1 z-1">
                                           <HelpButton
-                                                IdeaHelp={IdeaHelp}
+                                                info={IdeaHelp}
                                           />
                                     </div>
-
-
                               </div>
-
                               <div className="h-full flex flex-row lg:gap-x-11 md:gap-x-6 w-11/12 justify-start mt-4 bottom-0 right-0 left-0">
                                     <Perspective
                                           setOrigin={setOrigin}
                                           origin={origin} />
-
                               </div>
-
-
                         </div>
-
                   </div>
             </div>
       )

@@ -19,7 +19,7 @@ export function Summary({ summaryData }) {
 
             <header className="h-1/3 mb-24 pt-1 2xl:mx-20 mx-7 border-b border-white/10 pb-10">
                 <figcaption className="my-10 ">
-                    <h1 className="text-white opacity-87 text-3xl font-light tracking-tight" >
+                    <h1 className="text-red-700 opacity-87 text-3xl tracking-tight" >
                         {article_title ? article_title : <div className="flex items-center animate-pulse"> <Warning /> <span className="pl-5">Issue retrieving resource</span></div>}
                     </h1>
                 </figcaption>

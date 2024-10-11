@@ -33,8 +33,8 @@ export default function Perspective({ setOrigin, origin }: any) {
           key="My Opinion"
         >
           <div
-            className="bg-white/10 text-white rounded-lg lg:w-[15rem] md:w-[12rem] h-12 
-                        cursor-pointer hover:bg-black flex justify-between items-center lg:px-4 grow-0 gap-5"
+            className="bg-white/5 text-white rounded-lg lg:w-[15rem] md:w-[12rem] h-12 
+                        cursor-pointer hover:bg-white/10 flex justify-between items-center lg:px-4 grow-0 gap-5"
             data-set="My Opinion"
             onClick={(e) => { assignOrigin(e) }}
           >My Opinion
@@ -48,8 +48,8 @@ export default function Perspective({ setOrigin, origin }: any) {
           key="Opposing Opinion"
         >
           <div
-            className="bg-white/10 text-white rounded-lg w-[15rem] h-12 
-                        cursor-pointer hover:bg-black flex justify-between items-center lg:px-4 grow-0 gap-5"
+            className="bg-white/5 text-white rounded-lg w-[15rem] h-12 
+                        cursor-pointer hover:bg-white/10 flex justify-between items-center lg:px-4 grow-0 gap-5"
             data-set="Opposing Opinion"
             onClick={(e) => { assignOrigin(e) }}
           >Opposing Opinion
@@ -63,8 +63,8 @@ export default function Perspective({ setOrigin, origin }: any) {
           key="Just Curious"
         >
           <div
-            className="bg-white/10 text-white rounded-lg w-[15rem] h-12 
-                        cursor-pointer hover:bg-black flex justify-between items-center lg:px-4 grow-0 gap-5"
+            className="bg-white/5 text-white rounded-lg w-[15rem] h-12 
+                        cursor-pointer hover:bg-white/10 flex justify-between items-center lg:px-4 grow-0 gap-5"
             data-set="Just Curious"
             onClick={(e) => { assignOrigin(e) }}
           >Just Curious

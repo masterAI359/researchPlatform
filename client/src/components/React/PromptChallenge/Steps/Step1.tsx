@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import Perspective from "./Perspective"
-import HelpButton from "../Buttons/Question"
+import Perspective from "../Perspective"
+import HelpButton from "../../Buttons/Question"
 import { PerspectiveHelp, IdeaHelp } from "@/helpInfo/help"
 import { Help } from "@/env"
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment

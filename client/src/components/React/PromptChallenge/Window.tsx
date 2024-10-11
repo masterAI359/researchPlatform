@@ -1,12 +1,12 @@
-import React from 'react'
+import React from 'react';
 import { useRef, useState, useEffect } from "react";
-import { WindowProps } from "@/env"
+import { WindowProps } from "@/env";
 import { AnimatePresence, motion } from "framer-motion";
 import StepWizard from '../StepWizard/StepWizard';
-import Step1 from './Step1';
-import Step2 from './Step2';
-import Step3 from './Step3';
-import Step4 from './Step4'
+import Step1 from './Steps/Step1';
+import Step2 from './Steps/Step2';
+import Step3 from './Steps/Step3';
+import Step4 from './Steps/Step4';
 import SearchBox from './SearchBox';
 
 
@@ -33,7 +33,6 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // console.log({ 'HeroWindow Width: ': containerWidth, 'HeroWindow Height: ': containerHeight })
 
   return (
     <section

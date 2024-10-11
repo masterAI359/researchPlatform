@@ -9,7 +9,6 @@ import NextButton from "../Buttons/Next";
 
 export default function InvestigateHero({ query, isLoading, setIsSubmitted, setQuery }) {
   const [currentStep, setCurrentStep] = useState<number>(0)
-  const [progress, setProgress] = useState<number>(null)
   const [startSearch, setStartSearch] = useState<boolean>(false)
 
 

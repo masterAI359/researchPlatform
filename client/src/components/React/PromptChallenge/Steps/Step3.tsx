@@ -1,5 +1,5 @@
 import { useState } from "react";
-import HelpButton from "../Buttons/Question";
+import HelpButton from "../../Buttons/Question";
 import { PerspectiveHelp, IdeaHelp } from "@/helpInfo/help"
 import { Help } from "@/env"
 

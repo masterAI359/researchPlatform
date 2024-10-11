@@ -25,7 +25,9 @@ export default function HelpButton({ info }) {
                 >   <div className="p-2">
                         {info.map((element: Help) => (
                             <div className="flex flex-col gap-3 mx-1">
-                                <h1 key={element.heading} className="text-zinc-300 text-md font-light tracking-tight">{element.heading}</h1>
+                                <div className="border-b border-zinc-200 w-full">
+                                    <h1 key={element.heading} className="text-zinc-300 text-md font-light tracking-tight pb-1">{element.heading}</h1>
+                                </div>
                                 <p className="text-zinc-200 text-sm font-light tracking-tight w-full text-left">{element.explanation}</p>
                             </div>
                         ))}

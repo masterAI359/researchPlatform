@@ -20,7 +20,7 @@ export default function Step2({ containerWidth }: any) {
 
 
   return (
-    <div className={`h-fit box-border mx-auto w-full inline-block`}>
+    <div className={`h-fit box-border content-center mx-auto w-full inline-block`}>
       <div className="flex flex-col items-center w-full px-5">
 
         <div className="w-full box-border border-b h-fit border-white/10 lg:mb-4 flex flex-row gap-x-8 items-baseline lg:mt-10">

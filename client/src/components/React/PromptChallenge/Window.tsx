@@ -46,7 +46,7 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
       </div> : null}
 
       {containerWidth > 0 ? <motion.div
-        className="flex items-baseline"
+        className="flex h-fit items-baseline"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, x: -currentStep * containerWidth }}
         transition={{ type: 'tween', duration: 0.2 }}>

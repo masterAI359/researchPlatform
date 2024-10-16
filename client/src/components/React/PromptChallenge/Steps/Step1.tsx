@@ -22,8 +22,8 @@ export default function Step1({ dispatch, status, origin, setOrigin, containerWi
       const handleStatement = (e: React.ChangeEvent<HTMLTextAreaElement>) => { setIsExpressed(e.target.value) }
 
       return (
-            <div className="inline-block h-fit py-40 box-border content-center w-full overflow-y-clip">
-                  <div className="flex-col items-center w-full px-3 box-border">
+            <div className="inline-block min-h-full box-border w-full overflow-y-clip">
+                  <div className="flex-col items-center h-full w-full px-3 box-border">
                         <div className="w-full box-border border-b h-fit border-white/10 mb-4 flex flex-row gap-x-8 items-baseline">
                               <div className="w-fit flex justify-items-start">
                                     <h1 className="text-3xl tracking-tight font-light text-zinc-300 pb-1">Tackle an idea

@@ -8,20 +8,13 @@ import SummaryContainer from "../SummaryComponents/SummaryContainer";
 import SummaryLoader from "../Loaders/SummaryLoader";
 import ScrollDown from "../ArticleComponents/ScrollDown";
 import InvestigateHero from "../PromptChallenge/InvestigateHero";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Articles, OptionsTypes, SelectedArticles } from '../../../env'
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useScroll } from "framer-motion";
 
-
-//TODO: component for page explanation
 
 
 export default function InvestigateContainer() {
-
-  //Redux toolkit might be necessary at this point
-
-
-  // state for SearchBox.tsx and Article rendering
   const [query, setQuery] = useState<string>("")
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false)
@@ -31,6 +24,8 @@ export default function InvestigateContainer() {
   const [submittedForSummaries, setSubmittedForSummaries] = useState<boolean>(false)
   const [loadingSummaries, setLoadingSummaries] = useState<boolean>(false)
   const [summaries, setSummaries] = useState<object[]>([])
+
+
 
   const articlesToSummarize = encodeURIComponent(JSON.stringify(selectedForSummary))
 
@@ -129,8 +124,14 @@ export default function InvestigateContainer() {
 
       </PromptContainer>
 
-      <StoryContainer>
-        <AnimatePresence>
+      <StoryContainer
+        readyToSelect={readyToSelect}
+        selectedForSummary={selectedForSummary}
+        submittedForSummaries={submittedForSummaries}
+        setSubmittedForSummaries={setSubmittedForSummaries}
+        loadingSummaries={loadingSummaries}
+      >
+        <AnimatePresence >
           {isLoading &&
             <motion.div
               key='loadingArticles'
@@ -185,18 +186,8 @@ export default function InvestigateContainer() {
                 articles={articles}
                 selectedForSummary={selectedForSummary} />
             </motion.div>}
-
         </AnimatePresence>
       </StoryContainer>
-
-      {articles.length > 0 && <SelectArticles
-        readyToSelect={readyToSelect}
-        selectedForSummary={selectedForSummary}
-        submittedForSummaries={submittedForSummaries}
-        setSubmittedForSummaries={setSubmittedForSummaries}
-        loadingSummaries={loadingSummaries}
-      />}
-
     </section>
   )
 }

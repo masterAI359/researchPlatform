@@ -8,14 +8,18 @@ interface SendForSummary {
   submittedForSummaries: boolean,
   setSubmittedForSummaries: Function,
   loadingSummaries: boolean,
-  readyToSelect: boolean
+  hideSelect: Function,
 }
 
-export default function SelectArticles({ readyToSelect, selectedForSummary, submittedForSummaries, setSubmittedForSummaries, loadingSummaries }: SendForSummary) {
+export default function SelectArticles({ hideSelect, selectedForSummary, submittedForSummaries, setSubmittedForSummaries, loadingSummaries }: SendForSummary) {
   const selectedTotal = selectedForSummary.length
   const selectedArticles = `Summarize Articles ${selectedTotal}/3`
   const waiting = "Loading Stories..."
   const mobileNotification = "Select Below"
+
+
+
+
 
   const handleSummaries = () => {
 
@@ -25,12 +29,14 @@ export default function SelectArticles({ readyToSelect, selectedForSummary, subm
       console.log("There's nothing to summarize yet")
     }
 
+    hideSelect()
+
   }
 
   return (
-    <div className={`transition-all delay-500 duration-1000 transform ${readyToSelect ? `translate-y-0` : `translate-y-32`} fixed bottom-5 w-full h-auto mx-auto flex justify-center items-center`}>
+    <div className="w-full h-auto mx-auto flex justify-center items-center">
       <div className="bg-rich_black border shadow-black border-blue-500 text-blue-100 lg:w-72 w-64 flex 
-         p-3 rounded-full cursor-pointer mx-auto z-50 fixed bottom-5">
+         p-3 rounded-full cursor-pointer mx-auto z-50 justify-between">
         <span>
           <p>{loadingSummaries ? waiting : selectedArticles}</p>
         </span>
@@ -39,7 +45,7 @@ export default function SelectArticles({ readyToSelect, selectedForSummary, subm
             onClick={handleSummaries}
           >
             {loadingSummaries ? <SelectLoader />
-              : <div className="rounded-full bg-white text-rich_black w-7 h-7 absolute 
+              : <div className="rounded-full bg-white text-rich_black w-7 h-7
         hover:bg-blue-300 hover:text-rich_black
         top-2.5 right-2.5 text-lg"> &rarr;</div>
             }

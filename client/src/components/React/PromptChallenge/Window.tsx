@@ -9,6 +9,8 @@ import Step3 from './Steps/Step3';
 import Step4 from './Steps/Step4';
 import SearchBox from './SearchBox';
 
+//TODO: subtract the height of the stepwizard from container height, and use that value as the maximum height for the <motion.div> containing the <Step/> components
+
 
 export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLoading, query, setIsSubmitted, setCurrentStep }: WindowProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -46,18 +48,19 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
       </div> : null}
 
       {containerWidth > 0 ? <motion.div
-        className="flex h-fit items-baseline"
+        style={{ maxHeight: containerHeight }}
+        className="flex items-baseline content-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, x: -currentStep * containerWidth }}
         transition={{ type: 'tween', duration: 0.2 }}>
 
-        <div style={{ width: containerWidth, height: containerHeight, flexShrink: 0 }} className='text-center h-fit box-border flex top-0 self-start'>
+        <div style={{ width: containerWidth, maxHeight: containerHeight, flexShrink: 0 }} className='text-center box-border flex'>
           <Step1
             containerWidth={containerWidth}
             origin={origin}
             setOrigin={setOrigin} />
         </div>
-        <div style={{ width: containerWidth, height: containerHeight, flexShrink: 0 }} className='h-fit text-center flex grow'>
+        <div style={{ width: containerWidth, maxHeight: containerHeight, flexShrink: 0 }} className='h-fit text-center flex grow content-center'>
           <Step2 containerWidth={containerWidth} />
         </div>
         <div style={{ width: containerWidth, height: containerHeight, flexShrink: 0 }} className='text-center h-fit'>

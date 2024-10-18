@@ -12,10 +12,12 @@ import SearchBox from './SearchBox';
 //TODO: subtract the height of the stepwizard from container height, and use that value as the maximum height for the <motion.div> containing the <Step/> components
 
 
-export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLoading, query, setIsSubmitted, setCurrentStep }: WindowProps) {
+export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLoading, query, setIsSubmitted, setCurrentStep, setCanProceed }: WindowProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const wizardRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState(0);
-  const [containerHeight, setContainerHeight] = useState(0)
+  const [wizardHeight, setWizardHeight] = useState(0);
+  const [containerHeight, setContainerHeight] = useState(0);
   const [origin, setOrigin] = useState<string>('');
 
 
@@ -24,7 +26,13 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
       setContainerWidth(containerRef.current.offsetWidth);
       setContainerHeight(containerRef.current.offsetHeight)
     }
-    // Recalculate on window resize
+
+    if (wizardRef.current) {
+      setWizardHeight(wizardRef.current.offsetHeight)
+      setWizardHeight(wizardRef.current.offsetHeight)
+      console.log(wizardHeight)
+    }
+
     const handleResize = () => {
       if (containerRef.current) {
         setContainerWidth(containerRef.current.offsetWidth);
@@ -35,41 +43,44 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const stepsHeight = containerHeight - wizardHeight
+
 
   return (
     <section
       ref={containerRef}
       className="col-span-6 overflow-hidden relative max-h-[45rem] w-full animate-fade-in delay-300">
       {containerWidth > 0 ? <div
-        style={{ width: containerWidth }}
         className="w-full flex justify-center items-center"
       >
         <StepWizard currentStep={currentStep} setCurrentStep={setCurrentStep} />
       </div> : null}
 
       {containerWidth > 0 ? <motion.div
-        style={{ maxHeight: containerHeight }}
+        ref={wizardRef}
+        style={{ maxHeight: stepsHeight }}
         className="flex items-baseline content-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, x: -currentStep * containerWidth }}
         transition={{ type: 'tween', duration: 0.2 }}>
 
-        <div style={{ width: containerWidth, maxHeight: containerHeight, flexShrink: 0 }} className='text-center box-border flex'>
+        <div style={{ width: containerWidth, flexShrink: 0 }} className='text-center max-h-fit box-border flex'>
           <Step1
+            setCanProceed={setCanProceed}
             containerWidth={containerWidth}
             origin={origin}
             setOrigin={setOrigin} />
         </div>
-        <div style={{ width: containerWidth, maxHeight: containerHeight, flexShrink: 0 }} className='h-fit text-center flex grow content-center'>
+        <div style={{ width: containerWidth, flexShrink: 0 }} className='max-h-fit text-center flex grow content-center'>
           <Step2 containerWidth={containerWidth} />
         </div>
-        <div style={{ width: containerWidth, height: containerHeight, flexShrink: 0 }} className='text-center h-fit'>
+        <div style={{ width: containerWidth, flexShrink: 0 }} className='text-center max-h-fit'>
           <Step3 containerWidth={containerWidth} setStartSearch={setStartSearch} />
         </div>
-        <div style={{ width: containerWidth, height: containerHeight, flexShrink: 0 }} className='text-center h-fit'>
+        <div style={{ width: containerWidth, flexShrink: 0 }} className='text-center max-h-fit'>
           <Step4 setStartSearch={setStartSearch} />
         </div>
-        <div style={{ width: containerWidth, height: containerHeight, flexShrink: 0 }} className='text-center h-fit'>
+        <div style={{ width: containerWidth, flexShrink: 0 }} className='text-center max-h-fit'>
           <SearchBox
             setQuery={setQuery}
             setIsSubmitted={setIsSubmitted}

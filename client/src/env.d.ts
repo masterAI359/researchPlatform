@@ -76,7 +76,8 @@ declare global {
     query: string,
     setIsSubmitted: Function,
     setQuery: Function,
-    isLoading: boolean
+    isLoading: boolean,
+    setCanProceed: Function
   }
   interface Help {
     heading: string,

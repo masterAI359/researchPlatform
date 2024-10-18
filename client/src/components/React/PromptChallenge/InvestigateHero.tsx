@@ -10,6 +10,8 @@ import NextButton from "../Buttons/Next";
 export default function InvestigateHero({ query, isLoading, setIsSubmitted, setQuery }) {
   const [currentStep, setCurrentStep] = useState<number>(0)
   const [startSearch, setStartSearch] = useState<boolean>(false)
+  const [canProceed, setCanProceed] = useState<boolean>(false)
+
 
 
 
@@ -30,10 +32,13 @@ export default function InvestigateHero({ query, isLoading, setIsSubmitted, setQ
           isLoading={isLoading}
           setIsSubmitted={setIsSubmitted}
           setStartSearch={setStartSearch}
+          setCanProceed={setCanProceed}
         />
         <NextButton
           currentStep={currentStep}
           setCurrentStep={setCurrentStep}
+          setCanProceed={setCanProceed}
+          canProceed={canProceed}
         />
 
       </div>

@@ -15,11 +15,6 @@ export default function SelectArticles({ hideSelect, selectedForSummary, submitt
   const selectedTotal = selectedForSummary.length
   const selectedArticles = `Summarize Articles ${selectedTotal}/3`
   const waiting = "Loading Stories..."
-  const mobileNotification = "Select Below"
-
-
-
-
 
   const handleSummaries = () => {
 

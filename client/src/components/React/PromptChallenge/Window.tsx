@@ -12,7 +12,8 @@ import SearchBox from './SearchBox';
 //TODO: subtract the height of the stepwizard from container height, and use that value as the maximum height for the <motion.div> containing the <Step/> components
 
 
-export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLoading, query, setIsSubmitted, setCurrentStep, setCanProceed }: WindowProps) {
+export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLoading,
+  query, setIsSubmitted, setCurrentStep, setCanProceed, notifyRequired, setNotifyRequired }: WindowProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const wizardRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState(0);
@@ -66,7 +67,9 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
 
         <div style={{ width: containerWidth, flexShrink: 0 }} className='text-center max-h-fit box-border flex'>
           <Step1
+            setNotifyRequired={setNotifyRequired}
             setCanProceed={setCanProceed}
+            notifyRequired={notifyRequired}
             containerWidth={containerWidth}
             origin={origin}
             setOrigin={setOrigin} />

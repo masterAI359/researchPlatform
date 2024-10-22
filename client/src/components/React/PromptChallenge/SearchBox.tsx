@@ -40,6 +40,7 @@ export default function SearchBox({ isLoading, setIsSubmitted, setQuery }) {
 
 
 
+
   return (
     <div className="block box-border w-full px-5 2xl:h-full md:max-h-11/12">
 

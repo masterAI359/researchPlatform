@@ -8,7 +8,7 @@ import { Help } from "@/env"
 // @ts-ignore
 
 
-export default function Step1({ origin, setOrigin, setCanProceed }: any) {
+export default function Step1({ origin, setOrigin, setCanProceed, notifyRequired, setNotifyRequired }: any) {
       const [isExpressed, setIsExpressed] = useState<string>('')
       const [accepted, setAccepted] = useState<boolean>(null)
 
@@ -16,9 +16,13 @@ export default function Step1({ origin, setOrigin, setCanProceed }: any) {
 
       let wordCount = (statement: string) => {
 
+            if (statement === '') {
+                  setAccepted(false)
+            }
+
             let trimmed: string[] = statement.trim().split(' ')
 
-            if (trimmed.length < 5) {
+            if (trimmed.length < 5 || statement === '') {
                   setAccepted(false)
             } else {
                   setAccepted(true)
@@ -31,18 +35,19 @@ export default function Step1({ origin, setOrigin, setCanProceed }: any) {
 
       useEffect(() => {
 
-            if (isExpressed !== '') {
+            if (isExpressed !== '' || notifyRequired === true) {
                   wordCount(isExpressed)
             }
 
-            if (accepted === true) {
+            if (accepted === true && isExpressed !== '') {
                   setCanProceed(true)
+                  setNotifyRequired(false)
 
             } else if (accepted === false) {
                   setCanProceed(false)
             }
 
-      }, [isExpressed])
+      }, [isExpressed, notifyRequired])
 
 
       return (
@@ -88,7 +93,7 @@ export default function Step1({ origin, setOrigin, setCanProceed }: any) {
                                                       : accepted === true
                                                             ? <p className="font-light tracking-tight text-green-500 text-md">Proceed</p>
                                                             : accepted === false
-                                                                  ? <p className="font-normal tracking-tight text-red-600 text-md">Statement must be a minimum of 5 words</p>
+                                                                  ? <p className="font-normal tracking-tight text-red-600 text-md">Input must be a minimum of 5 words</p>
                                                                   : null}
                                           </div>
 

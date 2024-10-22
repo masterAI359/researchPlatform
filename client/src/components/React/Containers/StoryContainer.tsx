@@ -2,6 +2,11 @@ import { forwardRef, HTMLAttributes, useEffect, useState, useRef } from "react"
 import { useMotionValueEvent, motion, useScroll, AnimatePresence, transform, animate } from "framer-motion"
 import SelectArticles from "../ArticleComponents/SelectArticles"
 import { SelectedArticles } from "@/env"
+import SummaryContainer from "../SummaryComponents/SummaryContainer"
+import ArticlesGrid from "../ArticleComponents/ArticlesGrid"
+import ArticleLoader from "../Loaders/ArticleLoader"
+import SummaryLoader from "../Loaders/SummaryLoader"
+
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode
@@ -19,19 +24,16 @@ const variants = {
 
 
 
-const StoryContainer = forwardRef<HTMLDivElement, Props>(function StoryContainer(props, ref) {
+export default function StoryContainer({ selectedForSummary, setSelectedForSummary, articles, summaries, isLoading, loadingSummaries,
+    readyToSelect, fetchedSummaries, submittedForSummaries, setSubmittedForSummaries, fetchedArticles
+}) {
     const [showSelect, setShowSelect] = useState<boolean>(false)
 
-    //framer-motion hook to track when SelectArticles.tsx should move into view
     const yRef = useRef(null)
     const { scrollYProgress } = useScroll({
         target: yRef,
         offset: ['start end', 'end start']
     })
-
-
-
-    const { children, selectedForSummary, readyToSelect, submittedForSummaries, setSubmittedForSummaries, loadingSummaries } = props
 
     function hideSelect() {
 
@@ -57,7 +59,63 @@ const StoryContainer = forwardRef<HTMLDivElement, Props>(function StoryContainer
             ref={yRef}
             className="relative w-full min-h-96 h-auto mx-auto">
             <div className="relative w-full h-auto mx-auto">
-                {children}
+
+                <AnimatePresence >
+                    {isLoading === true &&
+                        <motion.div
+                            key='loadingArticles'
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                        >
+                            <ArticleLoader
+
+                                isLoading={isLoading}
+                                summaries={summaries} />
+                        </motion.div>}
+
+                    {readyToSelect === true &&
+                        <motion.div
+                            key='presentArticles'
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <ArticlesGrid
+                                summaries={summaries}
+                                articles={articles}
+                                selectedForSummary={selectedForSummary}
+                                setSelectedForSummary={setSelectedForSummary} />
+                        </motion.div>}
+
+                    {loadingSummaries === true &&
+                        <motion.div
+                            key='loadingSummaries'
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 1 }}
+                        >
+                            <SummaryLoader />
+                        </motion.div>
+                    }
+
+                    {fetchedSummaries.length > 0 &&
+                        <motion.div
+                            key='presentSummaries'
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 1, delay: 1 }}
+                        >
+                            <SummaryContainer
+
+                                summaries={summaries}
+                                articles={articles}
+                                selectedForSummary={selectedForSummary} />
+                        </motion.div>}
+                </AnimatePresence>
             </div>
             <AnimatePresence>
                 {showSelect && <motion.div
@@ -80,6 +138,4 @@ const StoryContainer = forwardRef<HTMLDivElement, Props>(function StoryContainer
 
         </div>
     )
-})
-
-export default StoryContainer
+}

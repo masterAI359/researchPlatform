@@ -11,6 +11,7 @@ export default function InvestigateHero({ query, isLoading, setIsSubmitted, setQ
   const [currentStep, setCurrentStep] = useState<number>(0)
   const [startSearch, setStartSearch] = useState<boolean>(false)
   const [canProceed, setCanProceed] = useState<boolean>(false)
+  const [notifyRequired, setNotifyRequired] = useState<boolean>(false)
 
 
 
@@ -33,12 +34,16 @@ export default function InvestigateHero({ query, isLoading, setIsSubmitted, setQ
           setIsSubmitted={setIsSubmitted}
           setStartSearch={setStartSearch}
           setCanProceed={setCanProceed}
+          notifyRequired={notifyRequired}
+          setNotifyRequired={setNotifyRequired}
         />
         <NextButton
           currentStep={currentStep}
           setCurrentStep={setCurrentStep}
           setCanProceed={setCanProceed}
           canProceed={canProceed}
+          setNotifyRequired={setNotifyRequired}
+          notifyRequired={notifyRequired}
         />
 
       </div>

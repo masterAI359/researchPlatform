@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { ChangeEvent, ReactHTMLElement, useRef, useState } from "react"
 import Lottie from "lottie-react"
 import checkMark from '../../../../lotties/checkMark.json'
-import Rating from "./rating"
+import Rating from "./Rating"
 import { element } from "prop-types"
 
 const expertise: string[] = [

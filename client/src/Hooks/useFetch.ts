@@ -1,0 +1,79 @@
+import { Articles, SelectedArticles } from "@/env";
+import { useEffect, useState } from "react";
+
+
+
+const options: OptionsTypes = {
+    method: 'GET',
+    headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+    }
+}
+
+
+export const useFetch = () => {
+
+    const [fetchedArticles, setFetchedArticles] = useState<Articles[]>([])
+    const [fetchedSummaries, setFetchedSummaries] = useState<object[]>([])
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [loadingSummaries, setLoadingSummaries] = useState<boolean>(false)
+    const [readyToSelect, setReadyToSelect] = useState<boolean>(false)
+
+
+
+
+
+    const fetchArticles = async (query: string) => {
+        setIsLoading(true)
+        setFetchedArticles([])
+        console.log(fetchedArticles)
+        setFetchedSummaries([])
+
+        try {
+
+            const response = await fetch(`/search/articles?q=${query}`,
+                options
+            )
+            if (!response.ok) {
+                throw new Error("There was a network response issue!")
+            }
+            const jsonResponse = await response.json()
+            setFetchedArticles(jsonResponse.data)
+
+        } catch (err) {
+
+            console.log({ "Fetch Failed": err })
+        } finally {
+            setIsLoading(false)
+            setReadyToSelect(true)
+        }
+    };
+
+    const fetchSummaries = async (articlesToSummarize: any) => {
+        setFetchedArticles([])
+        setLoadingSummaries(true)
+        setReadyToSelect(false)
+        try {
+            const tldrResponse = await fetch(`/summarize?q=${articlesToSummarize}`,
+                options
+            )
+            if (!tldrResponse.ok) {
+                throw new Error('There was an issue with TLDR API')
+            }
+            const tlderJSON = await tldrResponse.json()
+            setFetchedSummaries(tlderJSON)
+            setLoadingSummaries(false)
+        } catch (err) {
+            console.error('Error: ' + err)
+        } finally {
+
+        }
+    }
+
+
+    return { fetchedArticles, fetchedSummaries, fetchArticles, fetchSummaries, isLoading, loadingSummaries, readyToSelect }
+
+
+}
+

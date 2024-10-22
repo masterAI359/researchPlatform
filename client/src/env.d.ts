@@ -1,6 +1,8 @@
 /// <reference path="../.astro/types.d.ts" />
 /// <reference types="astro/client" />
 
+import SelectArticles from "./components/React/ArticleComponents/SelectArticles";
+
 
 declare global {
   interface ImportMetaEnv {
@@ -54,7 +56,7 @@ declare global {
     headers: HeadersInit,
   }
 
-  interface forSummaryData {
+  interface ForSummaryData {
     url: string,
     source: string,
     date: string,
@@ -77,12 +79,15 @@ declare global {
     setIsSubmitted: Function,
     setQuery: Function,
     isLoading: boolean,
-    setCanProceed: Function
+    setCanProceed: Function,
+    notifyRequired: boolean,
+    setNotifyRequired: Function,
   }
   interface Help {
     heading: string,
     explanation: string
   }
+
 }
 
 export { Articles, OptionsTypes, SelectedArticles, WindowProps, Perspectives, State, PremiseProps, Help };

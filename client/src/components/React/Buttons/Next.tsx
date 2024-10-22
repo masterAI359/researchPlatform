@@ -5,11 +5,15 @@ interface ButtonProps {
   currentStep: number,
   setCurrentStep: React.Dispatch<React.SetStateAction<number>>,
   canProceed: boolean
-  setCanProceed: Function
+  setCanProceed: Function,
+  setNotifyRequired: Function,
+  notifyRequired: boolean
 }
 
 
-export default function NextButton({ setCurrentStep, currentStep, setCanProceed, canProceed }: ButtonProps) {
+export default function NextButton({ setCurrentStep, currentStep, setCanProceed, canProceed, setNotifyRequired, notifyRequired }: ButtonProps) {
+
+  console.log(canProceed)
 
 
   const handleNextStep = () => {
@@ -26,6 +30,7 @@ export default function NextButton({ setCurrentStep, currentStep, setCanProceed,
   const checkRequirements = (e: React.MouseEvent) => {
 
     while (canProceed === false) {
+      setNotifyRequired(true)
       return currentStep
     }
 
@@ -34,6 +39,7 @@ export default function NextButton({ setCurrentStep, currentStep, setCanProceed,
     }
   }
 
+  console.log(notifyRequired)
 
   return (
     <AnimatePresence>

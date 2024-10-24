@@ -11,7 +11,7 @@ module.exports = {
       fontFamily: {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
         serif: ["Open Sans", "sans-serif"],
-        
+
       },
       backgroundImage: (theme) => ({
         // Blue Gradient
@@ -94,9 +94,9 @@ module.exports = {
           "inset 6px 84px 79px -40px hsla(0,0%,100%,.025), inset 0 -4px 1px -3px hsla(0,0%,100%,.25), inset 0 4px 1px -3px hsla(0,0%,100%,.25);",
       },
       colors: {
-   
+
         black: "#0f1014",
-        loader_black:"#0f101b",
+        loader_black: "#0f101b",
         inner_loader_black: "#26272B",
         ebony: "#1a1c23",
         rich_black: '#010203',
@@ -126,5 +126,20 @@ module.exports = {
     require("@tailwindcss/forms"),
     require("@tailwindcss/typography"),
     require("tailwind-scrollbar-hide"),
+    function ({ addUtilities }) {
+      const newUtilities = {
+        '.no-scrollbar': {
+          /* Hide scrollbar for Chrome, Safari and Opera */
+          '-webkit-overflow-scrolling': 'touch',
+          '&::-webkit-scrollbar': {
+            display: 'none',
+          },
+          /* Hide scrollbar for IE, Edge and Firefox */
+          '-ms-overflow-style': 'none',
+          'scrollbar-width': 'none',
+        },
+      }
+      addUtilities(newUtilities, ['responsive'])
+    }
   ],
 };

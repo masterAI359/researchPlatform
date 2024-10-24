@@ -1,6 +1,6 @@
 import HeroContainer from "./PromptContainer";
 import StoryContainer from "./StoryContainer";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SelectedArticles } from '../../../env'
 import { useFetch } from "@/Hooks/useFetch";
 
@@ -9,6 +9,7 @@ export default function InvestigateContainer() {
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false)
   const [selectedForSummary, setSelectedForSummary] = useState<SelectedArticles[]>([])
   const [submittedForSummaries, setSubmittedForSummaries] = useState<boolean>(false)
+  const storyRef = useRef(null)
   const articlesToSummarize = encodeURIComponent(JSON.stringify(selectedForSummary))
 
   const { fetchArticles, fetchSummaries, fetchedArticles, fetchedSummaries, isLoading, loadingSummaries, readyToSelect } = useFetch()
@@ -16,16 +17,22 @@ export default function InvestigateContainer() {
   const articles: Articles[] = fetchedArticles
   const summaries: object[] = fetchedSummaries
 
+  function scrollToView() {
+
+    storyRef.current.scrollIntoView({ behavior: "smooth", alignToTop: false })
+  }
+
   useEffect(() => {
     if (isSubmitted) {
       fetchArticles(query)
       setIsSubmitted(false)
     }
     if (submittedForSummaries) {
-
       fetchSummaries(articlesToSummarize)
+      scrollToView()
       setSubmittedForSummaries(false)
       setSelectedForSummary([])
+
     }
 
   }, [isSubmitted, submittedForSummaries])
@@ -44,21 +51,24 @@ export default function InvestigateContainer() {
         loadingSummaries={loadingSummaries}
         summaries={summaries}
       />
+      <div className="w-full h-auto mx-auto" ref={storyRef}>
+        <StoryContainer
+          articles={articles}
+          summaries={summaries}
+          isLoading={isLoading}
+          readyToSelect={readyToSelect}
+          setSelectedForSummary={setSelectedForSummary}
+          selectedForSummary={selectedForSummary}
+          submittedForSummaries={submittedForSummaries}
+          setSubmittedForSummaries={setSubmittedForSummaries}
+          loadingSummaries={loadingSummaries}
+          fetchedSummaries={fetchedSummaries}
+          fetchedArticles={fetchedArticles}
 
-      <StoryContainer
-        articles={articles}
-        summaries={summaries}
-        isLoading={isLoading}
-        readyToSelect={readyToSelect}
-        setSelectedForSummary={setSelectedForSummary}
-        selectedForSummary={selectedForSummary}
-        submittedForSummaries={submittedForSummaries}
-        setSubmittedForSummaries={setSubmittedForSummaries}
-        loadingSummaries={loadingSummaries}
-        fetchedSummaries={fetchedSummaries}
-        fetchedArticles={fetchedArticles}
+        />
+      </div>
 
-      />
+
     </section>
   )
 }

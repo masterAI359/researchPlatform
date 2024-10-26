@@ -47,7 +47,7 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
 
     useMotionValueEvent(scrollYProgress, "change", (latest) => {
 
-        if (latest > 0.15 && !showSelect && readyToSelect) {
+        if (latest > 0.15 && !showSelect && readyToSelect === true) {
             setShowSelect(true);
         } else if (latest === 0 && showSelect) {
             setShowSelect(false);

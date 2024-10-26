@@ -14,12 +14,14 @@ export default function InvestigateContainer() {
 
   const { fetchArticles, fetchSummaries, fetchedArticles, fetchedSummaries, isLoading, loadingSummaries, readyToSelect } = useFetch()
 
+  console.log(readyToSelect)
+
   const articles: Articles[] = fetchedArticles
   const summaries: object[] = fetchedSummaries
 
   function scrollToView() {
 
-    storyRef.current.scrollIntoView({ behavior: "smooth", alignToTop: false })
+    storyRef.current.scrollIntoView({ behavior: "smooth", alignToTop: true })
   }
 
   useEffect(() => {

@@ -13,9 +13,6 @@ interface ButtonProps {
 
 export default function NextButton({ setCurrentStep, currentStep, setCanProceed, canProceed, setNotifyRequired, notifyRequired }: ButtonProps) {
 
-  console.log(canProceed)
-
-
   const handleNextStep = () => {
 
     if (currentStep <= 3) {
@@ -39,7 +36,6 @@ export default function NextButton({ setCurrentStep, currentStep, setCanProceed,
     }
   }
 
-  console.log(notifyRequired)
 
   return (
     <AnimatePresence>

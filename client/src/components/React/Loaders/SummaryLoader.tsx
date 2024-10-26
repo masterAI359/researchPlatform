@@ -3,20 +3,8 @@ import squareCircle from '../../../lotties/SquareCircle.json'
 
 export default function SummaryLoader() {
 
-    {/* interface lottieTypes {
-        loop: boolean,
-        autoplay: boolean,
-        animationData: any
-    }
-
-    const defaultOptions: lottieTypes = {
-        loop: true,
-        autoplay: true,
-        animationData: SquareCircle,
-    }
-*/}
     return (
-        <div className='w-full h-2/3 2xl:max-w-7xl mx-auto grid grid-cols-1 2xl:mt-16 justify-center' >
+        <div className='w-full h-full 2xl:max-w-7xl mx-auto grid grid-cols-1 2xl:mt-16 pb-44 justify-center' >
 
             <header className='w-full mx-auto mb-24'>
                 <h1

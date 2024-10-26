@@ -1,7 +1,7 @@
-import SummaryImage from '../Fallbacks/SummaryImage.jsx';
 import Warning from '../Fallbacks/Warning.jsx';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { createPortal } from 'react-dom';
 
 export function Summary({ summaryData, handleClick, isSelected, index }) {
     const [fullStory, setFullStory] = useState(false);
@@ -26,31 +26,29 @@ export function Summary({ summaryData, handleClick, isSelected, index }) {
     }
 
 
-    //TODO: change select toggle so that we can still allow the user to change the summary/full story view without closing it
-
     return (
+
         <motion.div
             whileHover={{
                 scale: isSelected ? 1 : 1.10,
                 transition: { type: 'tween', duration: 0.2, ease: 'easeInOut' }
             }}
-            whileTap={{ scale: 0.9 }}
-            onClick={() => {
+            whileTap={!failed && !isSelected ? { scale: 0.9 } : null}
+            onClick={!failed && !isSelected ? () => {
                 handleClick(index);
-            }}
-            className={`box-border w-auto flex flex-col 2xl:mx-auto cursor-pointer ${failed ? 'bg-ebony' : ''
+            } : null}
+            className={`box-border w-auto flex flex-col 2xl:mx-auto cursor-pointer ${failed ? 'bg-ebony' : null
                 }
              rounded-4xl ${isSelected
-                    ? 'fixed top-24 lg:inset-x-36 xl:left-60 xl:right-60 2xl:left-[20rem] 2xl:right-[20rem] bottom-12 box-border overflow-y-auto no-scrollbar z-50 bg-ebony'
+                    ? 'fixed top-24 lg:inset-x-36 xl:left-60 xl:right-60 2xl:left-[18rem] 2xl:right-[18rem] bottom-1 box-border overflow-y-auto no-scrollbar z-50 bg-ebony'
                     : 'mx-auto xl:h-[25rem] xl:w-[25rem]'
                 }`}
         >
             {/* Header Section */}
             <header
-                className={`relative flex flex-col-reverse items-baseline box-border w-full ${isSelected
-                    ? 'pb-10 min-h-[32rem] max-h-11/12'
-                    : 'mx-4 rounded-4xl px-4 py-4 h-full'
-                    }`}
+                className={`relative flex flex-col-reverse box-border w-full 
+                    ${isSelected ? 'pb-10 min-h-[32rem] max-h-11/12' : 'mx-4 rounded-4xl px-4 py-4 h-full'}
+                    ${failed ? null : 'mx-auto'}`}
             >
                 {/* Background Image with Lower Opacity */}
                 <div
@@ -78,50 +76,105 @@ export function Summary({ summaryData, handleClick, isSelected, index }) {
                         </figcaption>
                     )}
                 </div>
-                <figcaption className="relative">
-                    <h1 className={`text-white font-serif opacity-100 text-4xl font-light tracking-tight w-4/5 mx-auto ${isSelected ? 'text-4xl' : 'text-lg'}`}>
+                <figcaption className={`relative w-full h-full flex
+                    ${failed ? 'items-end flex-col mt-5' : 'flex-col-reverse mx-auto justify-between'}
+                    `}>
+                    <h1 className={`text-white font-serif opacity-100 text-4xl
+                        font-light tracking-tight w-11/12 ${isSelected ? 'text-4xl' : 'text-lg'}`}>
                         {article_title ? (
                             article_title
                         ) : (
-                            <div className="flex items-start animate-pulse h-full">
-                                <Warning />
-                                <span className="pl-5 text-red-600">
-                                    Access to {source} article denied
-                                </span>
+                            <div className='w-11/12 h-full flex-col mx-auto'>
+                                <div className="flex w-full self-center">
+                                    <Warning />
+                                    <span className="pl-2 text-white/50 text-lg">
+                                        Access to article from <span className='text-white'>{source}</span>  denied
+                                    </span>
+                                </div>
+                                <button
+                                    className={`text-sm py-2 px-4 mt-12 border focus:ring-2 rounded-full border-transparent bg-white
+                     hover:bg-white/10 text-black duration-200 focus:ring-offset-2 focus:ring-white
+                      hover:text-white inline-flex items-center justify-center ring-1 ring-transparent`}
+                                    onClick={handleArticleView}
+                                >
+                                    <p>
+                                        <a href={article_url} target="_blank">
+                                            Visit Source
+                                        </a>
+
+                                    </p>
+                                </button>
                             </div>
+
                         )}
                     </h1>
+                    {isSelected ? <div className='flex flex-row w-full h-fit justify-end'>
+                        <div
+                            onClick={() => handleClick(index)}
+                            className="w-fit h-fit relative cursor-pointer p-2 top-5 right-5 rounded-lg hover:bg-white/10
+                     hover:text-white group transition-all ease-in-out duration-200">
+                            <svg className="text-zinc-200 cursor-pointer opacity-55 group-hover:opacity-100 transition-opacity duration-200 ease-in-out" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="40px" height="40px">
+                                <path d="M 39.486328 6.9785156 A 1.50015 1.50015 0 0 0 38.439453 7.4394531 L 24 21.878906 L 9.5605469 7.4394531 A 1.50015 1.50015 0 0 0 8.484375 6.984375 A 1.50015 1.50015 0 0 0 7.4394531 9.5605469 L 21.878906 24 L 7.4394531 38.439453 A 1.50015 1.50015 0 1 0 9.5605469 40.560547 L 24 26.121094 L 38.439453 40.560547 A 1.50015 1.50015 0 1 0 40.560547 38.439453 L 26.121094 24 L 40.560547 9.5605469 A 1.50015 1.50015 0 0 0 39.486328 6.9785156 z" fill="currentColor" />
+                            </svg>
+                        </div>
+                    </div> : null}
+
                 </figcaption>
             </header>
 
             <AnimatePresence>
                 {isSelected && <motion.div>
                     <figcaption className="pb-7 pt-3 border-b border-slate-300 w-11/12 mx-auto mb-7">
-                        <div className="flex items-center">
-                            <p className="text-slate-300 opacity-100 text-xl flex items-center mb-3">
-                                <img className="mr-3 h-12 w-12" src={logo} alt={''} />
+                        <div className='flex flex-row h-full w-full box-border justify-between items-center'>
+                            <div className='w-full h-full box-border'>
+                                <div className="flex items-center">
+                                    <p className="text-slate-300 opacity-100 text-xl flex items-center mb-3">
+                                        <img className="mr-3 h-12 w-12" src={logo} alt={''} />
 
-                                {isSelected ? `${source}` : null}
-                            </p>
-                        </div>
-                        <div className='max-w-96 flex flex-wrap mb-3'>
-                            <p className='text-white text-xl mr-2'>Written by: </p>
-                            {article_authors.map((author: string) => (
-                                <p className="text-white text-xl font-serif mr-2">
-                                    {author}
-                                </p>
-                            ))}
+                                        {isSelected ? `${source}` : null}
+                                    </p>
+                                </div>
+                                <div>
+                                    <p className="text-slate-300 text-xl font-serif">
+                                        {date ? date : article_pub_date}{' '}
+                                    </p>
+                                </div>
+                                <div className='max-w-[40rem] flex flex-wrap mt-3'>
+                                    <p className='text-slate-300 text-xl mr-2'>Authors: </p>
+                                    {article_authors !== undefined ? article_authors.map((author: string, index: number) => {
 
+                                        if (index + 1 < article_authors.length) {
+                                            return (<p className="text-slate-300 text-xl font-serif mr-2">
+                                                {author},
+                                            </p>)
+                                        } else if (index + 1 === article_authors.length) {
+                                            return (<p className="text-slate-300 text-xl font-serif mr-2">
+                                                {author}
+                                            </p>)
+                                        }
+                                    }) : null}
+                                </div>
+                            </div>
+
+                            <div className='w-fit h-fit '>
+                                <div className='box-border flex flex-col gap-2 items-center justify-center'>
+                                    <button
+                                        onClick={handleArticleView}
+                                        className='bg-white/20 hover:scale-110 text-white hover:text-white transition-all duration-200 ease-in-out p-3 rounded-lg lg:w-36 h-full'
+                                    >{fullStory ? 'Summary' : 'Full Story'}</button>
+                                    <button
+                                        className='bg-white/20 hover:scale-110 text-white transition-all duration-200 ease-in-out p-3 rounded-lg lg:w-36 h-full'
+                                    >   <a href={article_url} target='_blank'></a>
+                                        Visit Source</button>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <p className="text-white text-xl font-serif">
-                                {date ? date : article_pub_date}{' '}
-                            </p>
-                        </div>
+
+
                     </figcaption>
 
                     {isSelected ? (
-                        <main className="display-block 2xl:mx-20 mx-5 opacity-87 h-fit 2xl:w-4/5">
+                        <main className="display-block mx-auto opacity-87 h-fit 2xl:w-11/12">
                             <div className="">
                                 <div
                                     className={` text-white 2xl:text-2xl leading-10 whitespace-pre-wrap pb-7 transition-all duration-300 ease-in-out ${fullStory ? 'opacity-0 hidden' : 'opacity-100'
@@ -170,25 +223,7 @@ export function Summary({ summaryData, handleClick, isSelected, index }) {
                                     {article_text}
                                 </div>
                             </div>
-                            <div>
-                                <button
-                                    className={`text-sm py-2 px-4 mb-10 border focus:ring-2 rounded-full border-transparent bg-white
-                     hover:bg-white/10 text-black duration-200 focus:ring-offset-2 focus:ring-white
-                      hover:text-white inline-flex items-center justify-center ring-1 ring-transparent`}
-                                    onClick={handleArticleView}
-                                >
-                                    <p>
-                                        {failed ? (
-                                            <a href={article_url} target="_blank">
-                                                {' '}
-                                                Visit Source &nbsp; &rarr;
-                                            </a>
-                                        ) : (
-                                            `View ${fullStory ? 'Summary' : 'full article'}`
-                                        )}
-                                    </p>
-                                </button>
-                            </div>
+
                         </main>
                     ) : null}
                 </motion.div>}

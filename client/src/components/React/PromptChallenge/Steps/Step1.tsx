@@ -2,8 +2,7 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Perspective from "../Appproach/Perspective"
 import HelpButton from "../../Buttons/Question"
-import { PerspectiveHelp, IdeaHelp } from "@/helpInfo/help"
-import { Help } from "@/env"
+import { Step1Help } from "@/helpInfo/help"
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 
@@ -61,7 +60,7 @@ export default function Step1({ origin, setOrigin, setCanProceed, notifyRequired
                               </div>
                               <div className="w-fit h-full justify-items-start translate-y-1">
                                     <HelpButton
-                                          info={IdeaHelp}
+                                          info={Step1Help}
                                           setGettingHelp={setGettingHelp}
                                     />
                               </div>

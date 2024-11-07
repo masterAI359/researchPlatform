@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import HelpButton from "../../Buttons/Question";
-import { PerspectiveHelp, IdeaHelp } from "@/helpInfo/help"
+import { Step2Help } from "@/helpInfo/help"
 import { Help } from "@/env"
 
 interface BiasProps {
@@ -29,7 +29,7 @@ export default function Step2({ containerWidth, setGettingHelp }: any) {
             </h1>
           </div>
           <div className="w-fit h-full justify-items-start translate-y-1 opacity-100">
-            <HelpButton info={IdeaHelp} setGettingHelp={setGettingHelp} />
+            <HelpButton info={Step2Help} setGettingHelp={setGettingHelp} />
           </div>
 
 

@@ -46,7 +46,7 @@ export default function HelpButton({ info, setGettingHelp }) {
                     <div className="bg-white/5 rounded-xl h-auto xl:w-44 flex flex-col mx-auto">
                         <div className="w-full h-fit flex justify-between bg-mirage">
                             <div className="w-4/5 ml-2 h-full flex ">
-                                <p className="text-white self-start text-lg font-light tracking-tight h-full">confused?</p>
+                                <p className="text-white self-start text-lg font-light tracking-tight h-full">Need help?</p>
                             </div>
                             <div
                                 className="w-fit h-fit p-1 hover:bg-white/20 transition-all ease-in-out rounded-md cursor-pointer flex justify-center"
@@ -63,7 +63,7 @@ export default function HelpButton({ info, setGettingHelp }) {
                                 setGettingHelp(true)
                             }}
                             className="w-full h-full px-2 py-4 transition-opacity ease-in-out duration-200 border-box grow basis-3/4 bg-white/10 hover:bg-white/5">
-                            <h1 className="text-white text-center justify-self-start">Click for help
+                            <h1 className="text-white text-center font-light tracking-tight justify-self-start">Click for info
                             </h1>
                         </div>
                     </div>

@@ -1,5 +1,5 @@
 import HelpButton from "../../Buttons/Question"
-import { PerspectiveHelp, IdeaHelp } from "@/helpInfo/help"
+import { Step4Help } from "@/helpInfo/help"
 import { Help } from "@/env"
 import Expertise from "../Appproach/expertise"
 
@@ -15,7 +15,7 @@ export default function Step4({ setStartSearch, setGettingHelp }) {
                         </h1>
                     </div>
                     <div className="w-fit h-full justify-items-start translate-y-1 opacity-100">
-                        <HelpButton info={IdeaHelp} setGettingHelp={setGettingHelp} />
+                        <HelpButton info={Step4Help} setGettingHelp={setGettingHelp} />
                     </div>
 
 

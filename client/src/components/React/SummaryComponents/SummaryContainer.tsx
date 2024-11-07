@@ -5,9 +5,6 @@ import { motion } from "framer-motion"
 export default function SummaryContainer({ summaries, articles, selectedForSummary }) {
   const [selectedStory, setSelectedStory] = useState<number>(null)
 
-  console.log(summaries)
-
-
   const container = {
 
     hidden: { opacity: 0 },

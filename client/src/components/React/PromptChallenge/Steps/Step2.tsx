@@ -12,7 +12,7 @@ interface BiasProps {
 
 //{ identifier, statement, status }
 
-export default function Step2({ containerWidth }: any) {
+export default function Step2({ containerWidth, setGettingHelp }: any) {
   const [bias, setBias] = useState('')
 
   const handleBias = (e: React.ChangeEvent<HTMLTextAreaElement>) => setBias(e.target.value)
@@ -29,7 +29,7 @@ export default function Step2({ containerWidth }: any) {
             </h1>
           </div>
           <div className="w-fit h-full justify-items-start translate-y-1 opacity-100">
-            <HelpButton info={IdeaHelp} />
+            <HelpButton info={IdeaHelp} setGettingHelp={setGettingHelp} />
           </div>
 
 

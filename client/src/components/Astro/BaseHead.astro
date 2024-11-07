@@ -1,5 +1,4 @@
 ---
-import "../../styles/global.css";
 import Metas from "../Astro/seo/Metas.astro";
 import Favicons from "../Astro/seo/Favicons.astro";
 const {
@@ -12,30 +11,30 @@ const {
 } = Astro.props;
 const sanitizedTitle = title.toLowerCase().replaceAll(" ", "-");
 ---
-<Metas
-  title={title}
-  description={description.substring(0, 100)}
-  url={Astro.site
-    ? `${Astro.site}/${sanitizedTitle}`
-    : `https://lexingtonthemes.com/${sanitizedTitle}`}
-  image={socialImage}
-  author={author}
-  twitterImage={twitterImage}
-/>
-<Favicons/>
+  <head>
+    <Metas
+      title={title}
+      description={description.substring(0, 100)}
+      url={Astro.site
+        ? `${Astro.site}/${sanitizedTitle}`
+        : `https://lexingtonthemes.com/${sanitizedTitle}`}
+      image={socialImage}
+      author={author}
+      twitterImage={twitterImage}
+    />
+    <Favicons />
+
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <link rel="stylesheet" href="@/styles/global.css" />
 
 
-<link rel="preconnect" href="https://rsms.me/" />
-<link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <script defer src="https://unpkg.com/@alpinejs/focus@3.12.3/dist/cdn.min.js"></script>
+    <script defer src="https://unpkg.com/@alpinejs/intersect@3.12.3/dist/cdn.min.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.12.3/dist/cdn.min.js"></script>
+    <script
+      defer
+      src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.js"
+    ></script>
+  </head>
 
-
-<!---- Alpine integrations -->
-<script defer src="https://unpkg.com/@alpinejs/focus@3.12.3/dist/cdn.min.js"
-></script>
-<script defer src="https://unpkg.com/@alpinejs/intersect@3.12.3/dist/cdn.min.js"></script>
-<script defer src="https://unpkg.com/alpinejs@3.12.3/dist/cdn.min.js"></script>
-<!---- Smoothscroll -->
-<script
-  defer
-  src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.js"
-></script>

@@ -126,6 +126,7 @@ module.exports = {
     require("@tailwindcss/forms"),
     require("@tailwindcss/typography"),
     require("tailwind-scrollbar-hide"),
+    require('tailwind-scrollbar')({ nocompatible: true, preferredStrategy: 'pseudoelements' }),
     function ({ addUtilities }) {
       const newUtilities = {
         '.no-scrollbar': {
@@ -142,4 +143,7 @@ module.exports = {
       addUtilities(newUtilities, ['responsive'])
     }
   ],
+  variants: {
+    scrollbar: ['rounded', 'hover'], // Enable variants as needed
+  }
 };

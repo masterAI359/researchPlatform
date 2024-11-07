@@ -13,7 +13,7 @@ import SearchBox from './SearchBox';
 
 
 export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLoading,
-  query, setIsSubmitted, setCurrentStep, setCanProceed, notifyRequired, setNotifyRequired }: WindowProps) {
+  query, setIsSubmitted, setCurrentStep, setCanProceed, notifyRequired, setNotifyRequired, setGettingHelp }: WindowProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const wizardRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState(0);
@@ -50,7 +50,7 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
   return (
     <section
       ref={containerRef}
-      className="col-span-6 overflow-hidden relative max-h-[45rem] w-full animate-fade-in delay-300">
+      className="col-span-6 overflow-hidden relative md:min-h-full h-fit max-h-[45rem] w-full animate-fade-in delay-300">
       {containerWidth > 0 ? <div
         className="w-full flex justify-center items-center"
       >
@@ -60,7 +60,7 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
       {containerWidth > 0 ? <motion.div
         ref={wizardRef}
         style={{ maxHeight: stepsHeight }}
-        className="flex items-baseline content-center"
+        className="flex items-baseline content-center md:min-h-full"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, x: -currentStep * containerWidth }}
         transition={{ type: 'tween', duration: 0.2 }}>
@@ -72,16 +72,20 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
             notifyRequired={notifyRequired}
             containerWidth={containerWidth}
             origin={origin}
-            setOrigin={setOrigin} />
+            setOrigin={setOrigin}
+            setGettingHelp={setGettingHelp}
+          />
         </div>
         <div style={{ width: containerWidth, flexShrink: 0 }} className='max-h-fit text-center flex grow content-center'>
-          <Step2 containerWidth={containerWidth} />
+          <Step2 containerWidth={containerWidth}
+            setGettingHelp={setGettingHelp}
+          />
         </div>
         <div style={{ width: containerWidth, flexShrink: 0 }} className='text-center max-h-fit'>
-          <Step3 containerWidth={containerWidth} setStartSearch={setStartSearch} />
+          <Step3 containerWidth={containerWidth} setStartSearch={setStartSearch} setGettingHelp={setGettingHelp} />
         </div>
         <div style={{ width: containerWidth, flexShrink: 0 }} className='text-center max-h-fit'>
-          <Step4 setStartSearch={setStartSearch} />
+          <Step4 setStartSearch={setStartSearch} setGettingHelp={setGettingHelp} />
         </div>
         <div style={{ width: containerWidth, flexShrink: 0 }} className='text-center max-h-fit'>
           <SearchBox

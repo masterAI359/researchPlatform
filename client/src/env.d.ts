@@ -82,6 +82,7 @@ declare global {
     setCanProceed: Function,
     notifyRequired: boolean,
     setNotifyRequired: Function,
+    setGettingHelp: Function
   }
   interface Help {
     heading: string,

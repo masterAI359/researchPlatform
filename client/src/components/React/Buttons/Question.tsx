@@ -1,13 +1,76 @@
 import { AnimatePresence, motion } from "framer-motion"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { createPortal } from "react-dom"
 import { Help } from "@/env"
 
-export default function HelpButton({ info }) {
+export default function HelpButton({ info, setGettingHelp }) {
     const [isOpen, setIsOpen] = useState<boolean>(false)
+    const [hovering, setHovering] = useState<boolean>(false)
+
+
+    const handleHoverStart = () => {
+
+        if (!isOpen) {
+            setHovering(true)
+        }
+    }
+
+    const handleExpand = () => {
+
+        setIsOpen(isOpen => !isOpen);
+
+    }
+
+
+    useEffect(() => {
+
+        if (isOpen) setHovering(false);
+
+    }, [isOpen])
+
 
     return (
-        <div className="w-full flex flex-row items-center gap-2">
+        <motion.div
+            onHoverStart={handleHoverStart}
+            className="w-full flex flex-row items-center gap-2 relative">
+
+            <AnimatePresence>
+                {hovering && <motion.div
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0, opacity: 0 }}
+                    transition={{ type: 'tween', duration: 0.2 }}
+                    style={{ translateY: -55, translateX: 20, position: 'absolute' }}
+                    className="overflow-hidden cursor-pointer rounded-xl bg-white/5"
+                >
+                    <div className="bg-white/5 rounded-xl h-auto xl:w-44 flex flex-col mx-auto">
+                        <div className="w-full h-fit flex justify-between bg-mirage">
+                            <div className="w-4/5 ml-2 h-full flex ">
+                                <p className="text-white self-start text-lg font-light tracking-tight h-full">confused?</p>
+                            </div>
+                            <div
+                                className="w-fit h-fit p-1 hover:bg-white/20 transition-all ease-in-out rounded-md cursor-pointer flex justify-center"
+                                onClick={() => setHovering(false)}
+                            >
+                                <svg className="text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="20px" height="20px">
+                                    <path d="M 24 4 C 12.972066 4 4 12.972074 4 24 C 4 35.027926 12.972066 44 24 44 C 35.027934 44 44 35.027926 44 24 C 44 12.972074 35.027934 4 24 4 z M 24 7 C 33.406615 7 41 14.593391 41 24 C 41 33.406609 33.406615 41 24 41 C 14.593385 41 7 33.406609 7 24 C 7 14.593391 14.593385 7 24 7 z M 15.5 22.5 A 1.50015 1.50015 0 1 0 15.5 25.5 L 32.5 25.5 A 1.50015 1.50015 0 1 0 32.5 22.5 L 15.5 22.5 z" fill="currentColor" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div
+                            onClick={() => {
+                                setIsOpen(isOpen => !isOpen)
+                                setGettingHelp(true)
+                            }}
+                            className="w-full h-full px-2 py-4 transition-opacity ease-in-out duration-200 border-box grow basis-3/4 bg-white/10 hover:bg-white/5">
+                            <h1 className="text-white text-center justify-self-start">Click for help
+                            </h1>
+                        </div>
+                    </div>
+                </motion.div>}
+            </AnimatePresence>
+
+
 
             {createPortal(
                 <AnimatePresence>
@@ -17,22 +80,25 @@ export default function HelpButton({ info }) {
                         animate={{ scale: 1, opacity: 1 }}
                         exit={{ scale: 0, opacity: 0 }}
                         transition={{ type: 'tween', duration: 0.15 }}
-                        className="bg-ebony shadow-black shadow-thick rounded-4xl z-50 fixed top-24 bottom-20
-                        md:left-16 md:right-16 lg:right-20 lg:left-20 2xl:right-72 2xl:left-72"
-                    >   <div className="p-2">
+                        className="bg-mirage opacity-100 h-auto shadow-black shadow-thick rounded-4xl z-50 fixed xl:bottom-10
+                      lg:left-20 xl:w-[38rem]"
+                    >   <div className="pb-2">
                             {info.map((element: Help) => (
                                 <div className="flex flex-col gap-5">
-                                    <div className="border-b border-zinc-200 w-11/12 mx-auto flex h-fit justify-between items-center py-2 my-auto">
-                                        <h1 key={element.heading} className="text-zinc-300 text-3xl font-light tracking-tight">{element.heading}</h1>
+                                    <div className="w-full mx-auto bg-ebony flex h-full justify-between items-center py-2 my-auto rounded-t-4xl">
+                                        <h1 key={element.heading} className="text-white text-2xl font-light tracking-tight ml-4">{element.heading}</h1>
                                         <div
-                                            onClick={() => setIsOpen(isOpen => !isOpen)}
-                                            className="w-fit h-fit cursor-pointer p-2 rounded-lg hover:bg-white/10 transition-all ease-in-out duration-200 justify-self-center">
-                                            <svg className="text-zinc-200 cursor-pointer opacity-55 hover:opacity-100 transition-opacity duration-200 ease-in-out" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="40px" height="40px">
+                                            onClick={() => {
+                                                handleExpand();
+                                                { isOpen ? setGettingHelp(false) : null }
+                                            }}
+                                            className="w-fit h-fit cursor-pointer p-1 mr-4 rounded-lg hover:bg-white/10 transition-all ease-in-out duration-200 justify-self-center">
+                                            <svg className="text-zinc-200 cursor-pointer opacity-55 hover:opacity-100 transition-opacity duration-200 ease-in-out" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="28px" height="28px">
                                                 <path d="M 39.486328 6.9785156 A 1.50015 1.50015 0 0 0 38.439453 7.4394531 L 24 21.878906 L 9.5605469 7.4394531 A 1.50015 1.50015 0 0 0 8.484375 6.984375 A 1.50015 1.50015 0 0 0 7.4394531 9.5605469 L 21.878906 24 L 7.4394531 38.439453 A 1.50015 1.50015 0 1 0 9.5605469 40.560547 L 24 26.121094 L 38.439453 40.560547 A 1.50015 1.50015 0 1 0 40.560547 38.439453 L 26.121094 24 L 40.560547 9.5605469 A 1.50015 1.50015 0 0 0 39.486328 6.9785156 z" fill="currentColor" />
                                             </svg>
                                         </div>
                                     </div>
-                                    <p className="text-zinc-200 2xl:text-2xl xl:text-xl lg:text-lg md:text-md font-light tracking-tight w-11/12 mx-auto text-left md:leading-9 lg:leading-10">{element.explanation}</p>
+                                    <p key={element.explanation} className="text-zinc-200 2xl:text-xl xl:text-lg lg:text-md md:text-md font-light tracking-tight w-11/12 mx-auto text-left md:leading-9 lg:leading-10">{element.explanation}</p>
                                 </div>
                             ))}
                         </div>
@@ -40,11 +106,10 @@ export default function HelpButton({ info }) {
                 </AnimatePresence>,
                 document.body)}
             <div
-                onClick={() => setIsOpen(isOpen => !isOpen)}
                 className="hover:cursor-pointer rounded-full w-fit h-fit bg-white/10">
                 <svg className="text-white " xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0,0,256,256" width="23px" height="23px" fillRule="nonzero"><g fill="currentColor" fillRule="nonzero" stroke="none" strokeWidth={1} strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit={10} strokeDasharray="" strokeDashoffset={0} fontFamily="none" fontWeight="none" fontSize="none" textAnchor="none" style={{ mixBlendMode: 'normal' }}><g transform="scale(5.12,5.12)"><path d="M25,2c-12.6907,0 -23,10.3093 -23,23c0,12.69071 10.3093,23 23,23c12.69071,0 23,-10.30929 23,-23c0,-12.6907 -10.30929,-23 -23,-23zM25,4c11.60982,0 21,9.39018 21,21c0,11.60982 -9.39018,21 -21,21c-11.60982,0 -21,-9.39018 -21,-21c0,-11.60982 9.39018,-21 21,-21zM25.28906,12.50781c-3.73,0 -6.20319,2.26013 -6.74219,5.70313c-0.035,0.216 0.07111,0.35853 0.28711,0.39453l2.25977,0.39648c0.216,0.036 0.35853,-0.07211 0.39453,-0.28711c0.43,-2.188 1.72052,-3.4082 3.72852,-3.4082c2.045,0 3.47852,1.29194 3.47852,3.33594c0,1.22 -0.42959,2.04463 -1.68359,3.76563l-2.4043,3.29883c-0.753,1.041 -1.07422,1.79447 -1.07422,3.23047v1.46875c0,0.215 0.14242,0.35947 0.35742,0.35547h2.36719c0.215,0 0.35742,-0.14242 0.35742,-0.35742v-1.14648c0,-1.219 0.21659,-1.72145 0.93359,-2.68945l2.40234,-3.30078c1.22,-1.686 1.82813,-2.94011 1.82813,-4.66211c0,-3.551 -2.61823,-6.09766 -6.49023,-6.09766zM23.71289,33.49219c-0.216,0 -0.35937,0.14437 -0.35937,0.35937v3.08398c0,0.215 0.14238,0.35742 0.35938,0.35742h2.72656c0.214,0 0.35742,-0.14142 0.35742,-0.35742v-3.08398c0,-0.214 -0.14242,-0.35937 -0.35742,-0.35937z" /></g></g></svg>
             </div>
-        </div>
+        </motion.div>
 
     )
 }

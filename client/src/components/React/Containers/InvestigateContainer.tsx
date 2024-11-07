@@ -14,7 +14,6 @@ export default function InvestigateContainer() {
 
   const { fetchArticles, fetchSummaries, fetchedArticles, fetchedSummaries, isLoading, loadingSummaries, readyToSelect } = useFetch()
 
-  console.log(readyToSelect)
 
   const articles: Articles[] = fetchedArticles
   const summaries: object[] = fetchedSummaries
@@ -37,12 +36,12 @@ export default function InvestigateContainer() {
 
     }
 
-  }, [isSubmitted, submittedForSummaries])
+  }, [isSubmitted, submittedForSummaries,])
 
 
   return (
-    <section className="w-full grid grid-cols-1 transition-all duration-300 ease-in-out h-auto mx-auto justify-center
-         items-center animate-fade-in">
+    <section className={`w-full grid grid-cols-1 transition-all duration-300 ease-in-out h-auto mx-auto justify-center
+         items-center animate-fade-in`}>
       <HeroContainer
         query={query}
         setQuery={setQuery}

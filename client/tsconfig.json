@@ -9,6 +9,7 @@
     "baseUrl": ".",
     "allowImportingTsExtensions": true,
     "allowSyntheticDefaultImports": true,
+    "checkJs": false,
     "allowJs": true,
     "paths": {
       "@/*": [
@@ -17,8 +18,5 @@
     },
     "jsx": "react-jsx",
     "jsxImportSource": "react",
-    
   }
 }
-
-

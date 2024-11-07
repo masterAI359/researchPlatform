@@ -5,7 +5,7 @@ import { Help } from "@/env"
 
 
 
-export default function Step3({ containerWidth, setStartSearch }: any) {
+export default function Step3({ containerWidth, setStartSearch, setGettingHelp }: any) {
 
   const [statedPremise, setPremise] = useState("")
 
@@ -28,7 +28,7 @@ export default function Step3({ containerWidth, setStartSearch }: any) {
               </h1>
             </div>
             <div className="w-fit h-full justify-items-start translate-y-1 opacity-100">
-              <HelpButton info={IdeaHelp} />
+              <HelpButton info={IdeaHelp} setGettingHelp={setGettingHelp} />
             </div>
 
 

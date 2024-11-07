@@ -3,7 +3,7 @@ import { PerspectiveHelp, IdeaHelp } from "@/helpInfo/help"
 import { Help } from "@/env"
 import Expertise from "../Appproach/expertise"
 
-export default function Step4({ setStartSearch }) {
+export default function Step4({ setStartSearch, setGettingHelp }) {
 
     return (
         <div className="block h-full w-full ">
@@ -15,7 +15,7 @@ export default function Step4({ setStartSearch }) {
                         </h1>
                     </div>
                     <div className="w-fit h-full justify-items-start translate-y-1 opacity-100">
-                        <HelpButton info={IdeaHelp} />
+                        <HelpButton info={IdeaHelp} setGettingHelp={setGettingHelp} />
                     </div>
 
 

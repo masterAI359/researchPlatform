@@ -41,7 +41,7 @@ export function Summary({ summaryData, handleClick, isSelected, index }) {
         className={`box-border w-auto flex flex-col 2xl:mx-auto  ${failed ? 'bg-ebony' : null
             }
               ${isSelected
-                ? 'fixed pb-1 rounded-t-4xl rounded-b-xl z-50 top-2 lg:inset-x-36 xl:left-60 xl:right-60 2xl:left-[16rem] 2xl:right-[16rem] overflow-y-scroll scrollbar-hide bottom-2 box-border bg-ebony '
+                ? 'fixed pb-1 rounded-t-4xl rounded-b-xl z-50 top-0 lg:inset-x-36 xl:left-60 xl:right-60 2xl:left-[16rem] 2xl:right-[16rem] overflow-y-scroll scrollbar-hide bottom-1 box-border bg-google_bg '
                 : 'mx-auto xl:h-[25rem] xl:w-[25rem] rounded-4xl cursor-pointer'}`}
     >
         {/* Header Section */}
@@ -124,7 +124,7 @@ export function Summary({ summaryData, handleClick, isSelected, index }) {
 
         <AnimatePresence>
             {isSelected && <motion.div className={`${fullStory ? `overflow-y-scroll scrollbar-thin scrollbar-track-rounded-full 
-                        scrollbar-thumb-rounded-full scrollbar-thumb-gray-600 scrollbar-track-gray-300 mx-1 my-1` : null} cursor-text`}>
+                        scrollbar-thumb-rounded-full scrollbar-thumb-gray-600 scrollbar-track-gray-300 scroll-smooth mx-1 my-1` : null} cursor-text`}>
                 <figcaption className="pb-7 pt-3 border-b border-slate-300 w-11/12 mx-auto mb-7">
                     <div className='flex flex-row h-full w-full box-border justify-between items-center'>
                         <div className='w-full h-full box-border'>
@@ -204,14 +204,14 @@ export function Summary({ summaryData, handleClick, isSelected, index }) {
                                                     ''
                                                 ) : (
                                                     <div className="w-full">
-                                                        <h1 className="text-2xl text-white pt-10 pb-5 font-serif">
+                                                        <h1 className="text-3xl font-light tracking-tight text-white pt-10 pb-5 font-serif">
                                                             {' '}
                                                             {obj.heading}{' '}
                                                         </h1>
                                                     </div>
                                                 )}
 
-                                                <p className="font-serif indent-5 text-xl">
+                                                <p className="font-serif font-light tracking-tight indent-5 2xl:text-2xl text-xl">
                                                     {obj.text}
                                                 </p>
                                             </div>
@@ -219,7 +219,7 @@ export function Summary({ summaryData, handleClick, isSelected, index }) {
                                     })}
                             </div>
                             <div
-                                className={`text-white font-serif text-2xl font-thin leading-10 whitespace-pre-wrap pb-16 transition-all duration-1000 ease-in-out ${fullStory ? 'block opacity-100' : 'hidden'
+                                className={`text-white font-serif text-2xl font-light tracking-tight leading-10 whitespace-pre-wrap pb-16 transition-all duration-1000 ease-in-out ${fullStory ? 'block opacity-100' : 'hidden'
                                     }`}
                             >
                                 {article_text}

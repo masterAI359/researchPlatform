@@ -101,6 +101,7 @@ module.exports = {
         ebony: "#1a1c23",
         rich_black: '#010203',
         mirage: "#27292D",
+        google_bg: "#1f1f1f",
         blue: {
           50: "#ECEEFE",
           100: "#D8DDFD",

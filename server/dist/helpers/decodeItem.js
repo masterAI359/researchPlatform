@@ -1,5 +1,6 @@
 import he from 'he'; //ran --save-dev @types/he... may need to change this to dependency instead of dev dependancy
 import sanitizeHtml from 'sanitize-html';
+//TODO: implement the string-strip-html library to deal with malformed HTML
 export default function decodeItem(item) {
     if (item === null || item === undefined) {
         return item;

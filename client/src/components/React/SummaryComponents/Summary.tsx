@@ -25,30 +25,25 @@ export function Summary({ summaryData, handleClick, isSelected, index }) {
         setFullStory((fullStory) => !fullStory);
     }
 
-    console.log(article_authors)
-
-
 
     const content = (<motion.div
         whileHover={{
             scale: isSelected ? 1 : 1.10,
             transition: { type: 'tween', duration: 0.2, ease: 'easeInOut' }
         }}
-        whileTap={!failed && !isSelected ? { scale: 0.9 } : null}
-        onClick={!failed && !isSelected ? () => {
+        whileTap={!isSelected ? { scale: 0.9 } : null}
+        onClick={!isSelected ? () => {
             handleClick(index);
         } : null}
-        className={`box-border w-auto flex flex-col 2xl:mx-auto  ${failed ? 'bg-ebony' : null
-            }
+        className={`box-border w-auto flex flex-col 2xl:mx-auto
               ${isSelected
                 ? 'fixed pb-1 rounded-t-4xl rounded-b-xl z-50 top-0 lg:inset-x-36 xl:left-60 xl:right-60 2xl:left-[16rem] 2xl:right-[16rem] overflow-y-scroll scrollbar-hide bottom-1 box-border bg-google_bg '
                 : 'mx-auto xl:h-[25rem] xl:w-[25rem] rounded-4xl cursor-pointer'}`}
     >
         {/* Header Section */}
         <header
-            className={`relative flex flex-col-reverse box-border w-full 
-                    ${isSelected ? 'pb-10 min-h-[23rem] max-h-9/12' : 'mx-4 rounded-4xl px-4 py-4 h-full'}
-                    ${failed ? null : 'mx-auto'}`}
+            className={`relative flex flex-col-reverse box-border w-full mx-auto
+                    ${isSelected ? 'pb-10 min-h-[23rem] max-h-9/12' : 'mx-4 rounded-4xl px-4 py-4 h-full'}`}
         >
             {/* Background Image with Lower Opacity */}
             <div
@@ -76,37 +71,12 @@ export function Summary({ summaryData, handleClick, isSelected, index }) {
                     </figcaption>
                 )}
             </div>
-            <figcaption className={`relative w-full h-full flex
-                    ${failed ? 'items-end flex-col mt-5' : 'flex-col-reverse mx-auto justify-between'}
-                    `}>
+            <figcaption className={`relative w-full h-full flex flex-col-reverse mx-auto justify-between`}>
                 <h1 className={`text-white font-serif opacity-100 text-4xl
                         font-light tracking-tight w-11/12 ${isSelected ? 'text-4xl text-center' : 'text-lg'}`}>
                     {article_title ? (
                         article_title
-                    ) : (
-                        <div className='w-11/12 h-full flex-col mx-auto'>
-                            <div className="flex w-full self-center">
-                                <Warning />
-                                <span className="pl-2 text-white/50 text-lg">
-                                    Access to article from <span className='text-white'>{source}</span>  denied
-                                </span>
-                            </div>
-                            <button
-                                className={`text-sm py-2 px-4 mt-12 border focus:ring-2 rounded-full border-transparent bg-white
-                     hover:bg-white/10 text-black duration-200 focus:ring-offset-2 focus:ring-white
-                      hover:text-white inline-flex items-center justify-center ring-1 ring-transparent`}
-                                onClick={handleArticleView}
-                            >
-                                <p>
-                                    <a href={article_url} target="_blank">
-                                        Visit Source
-                                    </a>
-
-                                </p>
-                            </button>
-                        </div>
-
-                    )}
+                    ) : null}
                 </h1>
                 {isSelected ? <div className='flex flex-row w-full h-fit justify-end'>
                     <div
@@ -187,19 +157,6 @@ export function Summary({ summaryData, handleClick, isSelected, index }) {
                                     : summary.map((obj, index) => {
                                         return (
                                             <div key={index}>
-                                                {failed ? (
-                                                    <div>
-                                                        <p>
-                                                            {' '}
-                                                            {obj.denied}{' '}
-                                                            <span className="text-blue-400 font-bold">
-                                                                {obj.failedArticle}
-                                                            </span>
-                                                        </p>
-                                                    </div>
-                                                ) : (
-                                                    ''
-                                                )}
                                                 {obj.heading === '' ? (
                                                     ''
                                                 ) : (
@@ -236,7 +193,7 @@ export function Summary({ summaryData, handleClick, isSelected, index }) {
         return (
             createPortal(content, document.body)
         )
-    } else {
+    } else if (!failed) {
         return content
     }
 }

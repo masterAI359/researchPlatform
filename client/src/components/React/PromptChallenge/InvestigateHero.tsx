@@ -3,20 +3,12 @@ import HeroWindow from "./Window";
 import BackButton from "../Buttons/Back";
 import NextButton from "../Buttons/Next";
 
-
-
-
-
 export default function InvestigateHero({ query, isLoading, setIsSubmitted, setQuery }) {
   const [currentStep, setCurrentStep] = useState<number>(0)
   const [startSearch, setStartSearch] = useState<boolean>(false)
   const [canProceed, setCanProceed] = useState<boolean>(false)
   const [notifyRequired, setNotifyRequired] = useState<boolean>(false)
   const [gettingHelp, setGettingHelp] = useState<boolean>(false)
-
-
-  console.log(gettingHelp)
-
 
 
 

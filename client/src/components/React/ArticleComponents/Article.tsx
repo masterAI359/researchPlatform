@@ -12,8 +12,6 @@ export default function Article({ article, selectedForSummary, setSelectedForSum
     const thumbnail = image.img
     const isHilighted = selectedForSummary.some(item => item.url === article.url)
 
-    console.log(article)
-
     const forSummaryData = {
         url: article.url,
         source: article.provider,

@@ -1,9 +1,14 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { createPortal } from "react-dom"
 import { Summary } from "./Summary"
 import { motion } from "framer-motion"
+import FailedSummary from "./FailedSummary"
+import { element } from "prop-types"
 
 export default function SummaryContainer({ summaries, articles, selectedForSummary }) {
   const [selectedStory, setSelectedStory] = useState<number>(null)
+  const [failedNotifications, setFailedNotifications] = useState<object[]>([])
+  const [showNotifications, setShowNotifications] = useState<boolean>(false)
 
   const container = {
 
@@ -27,6 +32,34 @@ export default function SummaryContainer({ summaries, articles, selectedForSumma
     }
   }
 
+
+  const failedData = (data: any) => {
+    const hasFailed = data.map((element: any) => {
+      if (Object.hasOwn(element, 'failed')) {
+
+        return (failedNotifications.push(element))
+
+      } else {
+        return null
+      }
+    })
+
+    if (failedNotifications.length > 0) {
+      setShowNotifications(true)
+    }
+    return hasFailed
+  }
+
+
+  useEffect(() => {
+
+    failedData(summaries)
+
+
+  }, [summaries])
+
+  console.log(failedNotifications)
+
   return (
     <motion.div
       variants={container}
@@ -49,6 +82,11 @@ export default function SummaryContainer({ summaries, articles, selectedForSumma
           )}
         </ul>
       </div>
+      {showNotifications &&
+        <FailedSummary
+          failedNotifications={failedNotifications}
+        />
+      }
     </motion.div>
 
 

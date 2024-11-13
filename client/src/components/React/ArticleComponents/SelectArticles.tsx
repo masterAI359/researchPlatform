@@ -29,20 +29,20 @@ export default function SelectArticles({ hideSelect, selectedForSummary, submitt
   }
 
   return (
-    <div className="w-full h-auto mx-auto flex justify-center items-center">
-      <div className="bg-rich_black border shadow-black border-blue-500 text-blue-100 lg:w-72 w-64 flex 
-         p-3 rounded-full cursor-pointer mx-auto z-50 justify-between">
-        <span>
-          <p>{loadingSummaries ? waiting : selectedArticles}</p>
+    <div className="w-fit h-auto flex justify-center items-center">
+      <div className="bg-black border border-blue-500 shadow-black text-white font-light tracking-tight lg:w-72 w-64 flex 
+         p-3 rounded-full cursor-pointer mx-auto z-50 justify-between group group-hover:bg-white transition-all duration-200 ease-in-out">
+        <span className="h-full my-auto">
+          <p className="text-lg">{loadingSummaries ? waiting : selectedArticles}</p>
         </span>
         <span >
           <button
             onClick={handleSummaries}
           >
             {loadingSummaries ? <SelectLoader />
-              : <div className="rounded-full bg-white text-rich_black w-7 h-7
-        hover:bg-blue-300 hover:text-rich_black
-        top-2.5 right-2.5 text-lg"> &rarr;</div>
+              : <div className="flex items-center rounded-full bg-white/10 transition-all ease-in-out duration-200 text-rich_black w-16 h-10
+        hover:bg-white hover:text-rich_black
+        top-2.5 right-2.5 text-lg"><div className="w-full">&rarr;</div> </div>
             }
           </button>
         </span>

@@ -42,13 +42,13 @@ export default function SearchBox({ isLoading, setIsSubmitted, setQuery }) {
 
 
   return (
-    <div className="block box-border w-full px-5 2xl:h-full md:max-h-11/12">
+    <div className="block box-border w-full px-2 2xl:max-h-fit">
 
       <div
         className="text-center w-full md:mx-auto">
-        <div className="w-full flex justify-start border-b border-white/10">
+        <div className="w-full flex justify-center">
           <h2
-            className="text-3xl tracking-tight font-light lg:text-3xl mb-2 text-white">
+            className="text-xl tracking-tight font-light lg:text-2xl text-white">
             Search for articles
           </h2>
         </div>
@@ -58,7 +58,7 @@ export default function SearchBox({ isLoading, setIsSubmitted, setQuery }) {
           <div
             className="w-full">
             <div
-              className="relative mt-14">
+              className="relative mt-4">
               <form
                 action="post"
                 onSubmit={handleSubmit}

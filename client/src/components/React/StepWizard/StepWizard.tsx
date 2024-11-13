@@ -8,7 +8,7 @@ export default function StepWizard({ currentStep, setCurrentStep }: any) {
 
 
     return (
-        <section className="w-11/12 h-full  justify-self-center">
+        <section className="w-11/12 h-full justify-self-center">
             <ol className="flex items-center w-full h-full lg:min-h-28">
                 <li className="flex flex-col w-full lg:h-28 items-center">
                     <div className="flex  items-center justify-center w-full h-full">

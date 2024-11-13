@@ -20,7 +20,7 @@ export default function Step2({ containerWidth, setGettingHelp }: any) {
 
 
   return (
-    <div className={`h-fit box-border content-center mx-auto w-full inline-block`}>
+    <div className={`h-fit box-border content-start mx-auto w-full inline-block`}>
       <div className="flex flex-col items-center w-full px-5">
 
         <div className="w-full box-border border-b h-fit border-white/10 lg:mb-4 flex flex-row gap-x-8 items-baseline lg:mt-10">
@@ -38,7 +38,7 @@ export default function Step2({ containerWidth, setGettingHelp }: any) {
           <textarea
             onChange={handleBias}
             id="take"
-            className="block w-full md:h-52 lg:mb-24 text-md text-white bg-white/10 border-none focus:ring-1 focus:ring-white
+            className="block w-full md:h-44 lg:mb-12 text-md text-white bg-white/10 border-none focus:ring-1 focus:ring-white
     rounded-lg resize-none text-wrap"
             placeholder="Describe why you want to know more about this topic">
           </textarea>

@@ -20,6 +20,8 @@ export function Summary({ summaryData, handleClick, isSelected, index }) {
         failed,
     } = summaryData;
 
+    console.log(article_authors)
+
 
     function handleArticleView() {
         setFullStory((fullStory) => !fullStory);
@@ -126,7 +128,6 @@ export function Summary({ summaryData, handleClick, isSelected, index }) {
                                 }) : null}
                             </div>
                         </div>
-
                         <div className='w-fit h-fit '>
                             <div className='box-border flex flex-col gap-2 items-center justify-center'>
                                 <button
@@ -140,8 +141,6 @@ export function Summary({ summaryData, handleClick, isSelected, index }) {
                             </div>
                         </div>
                     </div>
-
-
                 </figcaption>
 
                 {isSelected ? (

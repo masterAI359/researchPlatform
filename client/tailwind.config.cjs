@@ -95,6 +95,8 @@ module.exports = {
       },
       colors: {
 
+        button_gray: '#374151',
+        button_blue: '#2563eb',
         black: "#0f1014",
         loader_black: "#0f101b",
         inner_loader_black: "#26272B",

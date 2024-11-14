@@ -28,7 +28,7 @@ export default function Notification({ notification }) {
                                 </p>
                             </div>
                             <div>
-                                <button className="bg-white/10 text-white rounded-full w-28 border-transparent py-2 px-2 
+                                <button className="bg-button_gray text-white rounded-full w-28 border-transparent py-2 px-2 
                                 hover:bg-white hover:text-black hover:scale-110 transition-all duration-300 ease-in-out cursor-pointer text-sm"
                                 > <a href={notification.article_url} target="_blank">Visit Source</a>
                                 </button>

@@ -55,7 +55,7 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
   return (
     <section
       ref={containerRef}
-      className="col-span-6 overflow-hidden relative md:min-h-full h-fit max-h-[45rem] w-full transition-all duration-400 animate-fade-in delay-300">
+      className="col-span-6 overflow-hidden relative md:min-h-full h-fit w-full transition-all duration-400 animate-fade-in delay-300">
       {containerWidth > 0
         ? <div
           className="w-full flex justify-center items-center"

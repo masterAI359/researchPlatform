@@ -1,4 +1,4 @@
-import { forwardRef, HTMLAttributes, useEffect, useState, useRef } from "react"
+import { HTMLAttributes, useState, useRef } from "react"
 import { useMotionValueEvent, motion, useScroll, AnimatePresence, transform, animate } from "framer-motion"
 import SelectArticles from "../ArticleComponents/SelectArticles"
 import { SelectedArticles } from "@/env"
@@ -6,7 +6,7 @@ import SummaryContainer from "../SummaryComponents/SummaryContainer"
 import ArticlesGrid from "../ArticleComponents/ArticlesGrid"
 import ArticleLoader from "../Loaders/ArticleLoader"
 import SummaryLoader from "../Loaders/SummaryLoader"
-
+import TakeNotes from "../Buttons/TakeNotes"
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode
@@ -24,10 +24,13 @@ const variants = {
 
 
 
+
 export default function StoryContainer({ selectedForSummary, setSelectedForSummary, articles, summaries, isLoading, loadingSummaries,
-    readyToSelect, fetchedSummaries, submittedForSummaries, setSubmittedForSummaries, fetchedArticles
+    readyToSelect, fetchedSummaries, submittedForSummaries, setSubmittedForSummaries, fetchedArticles, setTakingNotes
 }) {
     const [showSelect, setShowSelect] = useState<boolean>(false)
+
+
 
     const yRef = useRef(null)
     const { scrollYProgress } = useScroll({
@@ -119,24 +122,45 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
                 </AnimatePresence>
             </div>
             <AnimatePresence>
-                {showSelect && <motion.div
-                    className="w-full h-fit mx-auto fixed xl:left-44 xl:top-96"
-                    variants={variants}
-                    initial="hidden"
-                    animate="visible"
-                    exit="hidden"
-                    transition={{ type: "spring", damping: 10, duration: 0.3 }}
-                >
-                    <SelectArticles
-                        hideSelect={hideSelect}
-                        selectedForSummary={selectedForSummary}
-                        submittedForSummaries={submittedForSummaries}
-                        setSubmittedForSummaries={setSubmittedForSummaries}
-                        loadingSummaries={loadingSummaries} />
-                </motion.div>}
+                {showSelect &&
+                    <div className="relative w-full h-auto flex justify-start">
+                        <motion.div
+                            className="w-full h-fit fixed xl:left-12 xl:top-72"
+                            variants={variants}
+                            initial="hidden"
+                            animate="visible"
+                            exit="hidden"
+                            transition={{ type: "spring", damping: 10, duration: 0.3 }}
+
+                        >
+                            <SelectArticles
+                                hideSelect={hideSelect}
+                                selectedForSummary={selectedForSummary}
+                                submittedForSummaries={submittedForSummaries}
+                                setSubmittedForSummaries={setSubmittedForSummaries}
+                                loadingSummaries={loadingSummaries} />
+                        </motion.div>
+                    </div>
+                }
 
             </AnimatePresence>
 
+            <AnimatePresence>
+                {summaries.length > 0 &&
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0 }}
+                        transition={{ type: 'tween', duration: 0.2 }}
+                        className="w-full h-auto relative mx-auto"
+                    >
+                        <TakeNotes
+                            setTakingNotes={setTakingNotes}
+                        />
+                    </motion.div>
+                }
+
+            </AnimatePresence>
         </div>
     )
 }

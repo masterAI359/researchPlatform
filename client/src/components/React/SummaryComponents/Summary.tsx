@@ -20,7 +20,7 @@ export function Summary({ summaryData, handleClick, isSelected, index }) {
         failed,
     } = summaryData;
 
-    console.log(article_authors)
+    console.log({ "Article: ": article_title, "Authors: ": article_authors })
 
 
     function handleArticleView() {
@@ -114,7 +114,7 @@ export function Summary({ summaryData, handleClick, isSelected, index }) {
                             </div>
                             <div className='max-w-[40rem] flex flex-wrap mt-3 items-center'>
                                 <p className='text-slate-300 text-xl mr-2'>Authors - </p>
-                                {article_authors !== undefined ? article_authors.map((author: string, index: number) => {
+                                {article_authors !== undefined && article_authors !== null ? article_authors.map((author: string, index: number) => {
 
                                     if (index + 1 < article_authors.length) {
                                         return (<p className="text-slate-300 text-xl font-serif mr-2">
@@ -125,7 +125,7 @@ export function Summary({ summaryData, handleClick, isSelected, index }) {
                                             {author}
                                         </p>)
                                     }
-                                }) : null}
+                                }) : (<p className='text-slate-300 text-xl font serif mr-2'>Could not determine. Visit the source to determine authors.</p>)}
                             </div>
                         </div>
                         <div className='w-fit h-fit '>

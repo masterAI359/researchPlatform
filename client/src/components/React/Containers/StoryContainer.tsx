@@ -61,7 +61,8 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
         <div
             ref={yRef}
             className="relative w-full h-auto mx-auto">
-            <div className="relative w-full h-auto box-border mx-auto">
+            <div
+                className="relative w-full h-auto box-border mx-auto">
 
                 <AnimatePresence >
                     {isLoading === true &&
@@ -125,7 +126,7 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
                 {showSelect &&
                     <div className="relative w-full h-auto flex justify-start">
                         <motion.div
-                            className="w-full h-fit fixed xl:left-12 xl:top-72"
+                            className="w-full h-fit relative"
                             variants={variants}
                             initial="hidden"
                             animate="visible"

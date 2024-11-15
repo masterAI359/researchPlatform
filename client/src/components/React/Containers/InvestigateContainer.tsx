@@ -14,8 +14,10 @@ export default function InvestigateContainer() {
   const storyRef = useRef(null)
   const articlesToSummarize = encodeURIComponent(JSON.stringify(selectedForSummary))
   const [takingNotes, setTakingNotes] = useState<boolean>(false)
-
-
+  const [notePosition, setNotePosition] = useState({ x: 0, y: 100 })
+  const [constraints, setConstraints] = useState(null)
+  const containerRef = useRef(null)
+  const notesRef = useRef(null)
   const { fetchArticles, fetchSummaries, fetchedArticles, fetchedSummaries, isLoading, loadingSummaries, readyToSelect } = useFetch()
 
 
@@ -25,6 +27,19 @@ export default function InvestigateContainer() {
   function scrollToView() {
 
     storyRef.current.scrollIntoView({ behavior: "smooth", alignToTop: true })
+  }
+
+  function handleDragConstraints() {
+
+    const constraintsRect = containerRef.current.getBoundingClientRect();
+    const notesRect = notesRef.current.getBoundingClientRect();
+
+    setConstraints({
+      top: 0,
+      left: 30,
+      right: constraintsRect.width - notesRect.width,
+      bottom: constraintsRect.height - notesRect.height
+    })
   }
 
   useEffect(() => {
@@ -40,12 +55,22 @@ export default function InvestigateContainer() {
 
     }
 
+    if (containerRef.current && notesRef.current) {
+
+      handleDragConstraints()
+    }
+
+
   }, [isSubmitted, submittedForSummaries,])
+
+  console.log(constraints)
 
 
   return (
-    <section className={`w-full grid grid-cols-1 transition-all duration-300 ease-in-out h-auto mx-auto justify-center
-         items-center animate-fade-in pb-52`}>
+    <section
+      ref={containerRef}
+      className={`w-full grid grid-cols-1 transition-all duration-300 ease-in-out h-auto mx-auto justify-center
+         items-center animate-fade-in pb-52 relative box-border overflow-hidden`}>
       <HeroContainer
         query={query}
         setQuery={setQuery}
@@ -75,7 +100,12 @@ export default function InvestigateContainer() {
 
       <AnimatePresence>
         {takingNotes &&
-          <Notes />
+          <Notes
+            notesRef={notesRef}
+            constraints={constraints}
+            notePosition={notePosition}
+            setNotePosition={setNotePosition}
+          />
         }
       </AnimatePresence>
 

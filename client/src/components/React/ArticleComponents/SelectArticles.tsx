@@ -29,14 +29,14 @@ export default function SelectArticles({ hideSelect, selectedForSummary, submitt
   }
 
   return (
-    <motion.div whileHover={{ scale: 1.1 }} transition={{ type: 'tween', duration: 0.1 }} className="bg-black border border-blue-500 shadow-black text-white font-light tracking-tight lg:w-72 w-64 flex 
+    <motion.div onClick={handleSummaries} whileHover={{ scale: 1.1 }} transition={{ type: 'tween', duration: 0.1 }} className="bg-black fixed xl:right-52 xl:top-96 border border-blue-500 shadow-black text-white font-light tracking-tight lg:w-72 w-64 flex 
          p-3 rounded-full cursor-pointer mx-auto z-50 justify-between content-center group group-hover:bg-white transition-all duration-200 ease-in-out">
       <div className="h-full my-auto">
         <p className="text-lg">{loadingSummaries ? waiting : selectedArticles}</p>
       </div>
       <div >
         <button
-          onClick={handleSummaries}
+
         >
           {loadingSummaries ? <SelectLoader />
             : <div className="flex items-center rounded-full bg-rich_black transition-all ease-in-out duration-200 text-white w-16 h-10

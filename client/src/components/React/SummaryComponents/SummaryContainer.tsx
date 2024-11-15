@@ -69,7 +69,7 @@ export default function SummaryContainer({ summaries, articles, selectedForSumma
       <div
         className="2xl:max-w-7xl h-auto w-full mx-auto  
                  transition-all duration-1000 animate-fade-in mb-96">
-        <ul className="w-full flex flex-wrap gap-x-6 gap-y-8 h-auto">
+        <ul className="w-full flex flex-wrap gap-y-8 h-auto">
           {summaries.map((summaryData: any, index: number) =>
             <Summary
               key={index}

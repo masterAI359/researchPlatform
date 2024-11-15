@@ -40,7 +40,7 @@ export function Summary({ summaryData, handleClick, isSelected, index }) {
         className={`box-border w-auto flex flex-col 2xl:mx-auto
               ${isSelected
                 ? 'fixed pb-1 rounded-t-4xl rounded-b-xl z-50 top-0 lg:inset-x-36 xl:left-60 xl:right-60 2xl:left-[16rem] 2xl:right-[16rem] overflow-y-scroll scrollbar-hide bottom-1 box-border bg-google_bg '
-                : 'mx-auto xl:h-[25rem] xl:w-[25rem] rounded-4xl cursor-pointer'}`}
+                : 'mx-auto xl:h-[22rem] xl:w-[20rem] rounded-4xl cursor-pointer'}`}
     >
         {/* Header Section */}
         <header

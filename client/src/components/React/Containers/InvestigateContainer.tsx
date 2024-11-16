@@ -105,6 +105,7 @@ export default function InvestigateContainer() {
             constraints={constraints}
             notePosition={notePosition}
             setNotePosition={setNotePosition}
+            setTakingNotes={setTakingNotes}
           />
         }
       </AnimatePresence>

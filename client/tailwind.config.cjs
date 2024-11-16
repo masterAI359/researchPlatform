@@ -5,6 +5,16 @@ module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            ':focus': {
+              outline: 'none',
+              boxShadow: 'none',
+            }
+          }
+        }
+      },
       height: {
         '380': '23.75rem'
       },
@@ -129,6 +139,7 @@ module.exports = {
     require("@tailwindcss/forms"),
     require("@tailwindcss/typography"),
     require("tailwind-scrollbar-hide"),
+    require('@tailwindcss/typography'),
     require('tailwind-scrollbar')({ nocompatible: true, preferredStrategy: 'pseudoelements' }),
     function ({ addUtilities }) {
       const newUtilities = {

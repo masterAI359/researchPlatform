@@ -145,23 +145,18 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
                 }
 
             </AnimatePresence>
+            <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0 }}
+                transition={{ type: 'tween', duration: 0.2 }}
+                className="w-full h-auto relative mx-auto"
+            >
+                <TakeNotes
+                    setTakingNotes={setTakingNotes}
+                />
+            </motion.div>
 
-            <AnimatePresence>
-                {summaries.length > 0 &&
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0 }}
-                        transition={{ type: 'tween', duration: 0.2 }}
-                        className="w-full h-auto relative mx-auto"
-                    >
-                        <TakeNotes
-                            setTakingNotes={setTakingNotes}
-                        />
-                    </motion.div>
-                }
-
-            </AnimatePresence>
         </div>
     )
 }

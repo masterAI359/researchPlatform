@@ -1,54 +1,51 @@
 import { useEffect, useState } from "react"
 import SelectLoader from "../Loaders/SelectLoader"
 import { SelectedArticles } from "@/env"
-
+import { motion } from "framer-motion"
 
 interface SendForSummary {
-  selectedForSummary:SelectedArticles[],
+  selectedForSummary: SelectedArticles[],
   submittedForSummaries: boolean,
   setSubmittedForSummaries: Function,
   loadingSummaries: boolean,
-  readyToSelect:boolean
+  hideSelect: Function,
 }
 
-export default function SelectArticles ({ readyToSelect, selectedForSummary, submittedForSummaries, setSubmittedForSummaries, loadingSummaries }: SendForSummary ) {
-    const selectedTotal = selectedForSummary.length
-    const selectedArticles = `Summarize Articles ${selectedTotal}/3`
-    const waiting = "Loading Stories..."
-    const mobileNotification = "Select Below"
+export default function SelectArticles({ hideSelect, selectedForSummary, submittedForSummaries, setSubmittedForSummaries, loadingSummaries }: SendForSummary) {
+  const selectedTotal = selectedForSummary.length
+  const selectedArticles = `Summarize Articles ${selectedTotal}/3`
+  const waiting = "Loading Stories..."
 
-   const handleSummaries = () => {
+  const handleSummaries = () => {
 
-    setSubmittedForSummaries(!submittedForSummaries)
-   }
+    if (selectedForSummary.length > 0) {
+      setSubmittedForSummaries(!submittedForSummaries)
+    } else {
+      console.log("There's nothing to summarize yet")
+    }
 
+    hideSelect()
 
-    useEffect (() => {
-    
-      console.log({'Selected Articles': selectedForSummary})
-      console.log(selectedForSummary.length)
-    }, [selectedForSummary])
+  }
 
-    return (         
-      <div className={`transition-all delay-500 duration-1000 transform ${readyToSelect ? `translate-y-0` : `translate-y-32`} fixed bottom-5 w-full h-auto mx-auto flex justify-center items-center`}>
-         <div className="bg-rich_black border shadow-black border-blue-500 text-blue-100 lg:w-72 w-64 flex 
-         p-3 rounded-full cursor-pointer mx-auto z-50 fixed bottom-5">
-    <span>
-        <p>{loadingSummaries? waiting : selectedArticles }</p>
-    </span>
-    <span >
-      <button 
-      onClick={handleSummaries}
-      >
-        {loadingSummaries ? <SelectLoader/>
-         : <div className="rounded-full bg-white text-rich_black w-7 h-7 absolute 
-        hover:bg-blue-300 hover:text-rich_black
-        top-2.5 right-2.5 text-lg"> &rarr;</div> 
-         }
-      </button>
-    </span>
-    </div>   
-    </div>
- )
+  return (
+    <motion.div onClick={handleSummaries} whileHover={{ scale: 1.1 }} transition={{ type: 'tween', duration: 0.1 }} className="bg-black fixed xl:right-52 xl:top-96 border border-blue-500 shadow-black text-white font-light tracking-tight lg:w-72 w-64 flex 
+         p-3 rounded-full cursor-pointer mx-auto z-50 justify-between content-center group group-hover:bg-white transition-all duration-200 ease-in-out">
+      <div className="h-full my-auto">
+        <p className="text-lg">{loadingSummaries ? waiting : selectedArticles}</p>
+      </div>
+      <div >
+        <button
+
+        >
+          {loadingSummaries ? <SelectLoader />
+            : <div className="flex items-center rounded-full bg-rich_black transition-all ease-in-out duration-200 text-white w-16 h-10
+        group-hover:bg-white group-hover:text-rich_black
+        top-2.5 right-2.5 text-lg"><div className="w-full">&rarr;</div> </div>
+          }
+        </button>
+      </div>
+    </motion.div>
+  )
 }
 

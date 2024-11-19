@@ -5,13 +5,23 @@ module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            ':focus': {
+              outline: 'none',
+              boxShadow: 'none',
+            }
+          }
+        }
+      },
       height: {
         '380': '23.75rem'
       },
       fontFamily: {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
         serif: ["Open Sans", "sans-serif"],
-        
+
       },
       backgroundImage: (theme) => ({
         // Blue Gradient
@@ -94,13 +104,16 @@ module.exports = {
           "inset 6px 84px 79px -40px hsla(0,0%,100%,.025), inset 0 -4px 1px -3px hsla(0,0%,100%,.25), inset 0 4px 1px -3px hsla(0,0%,100%,.25);",
       },
       colors: {
-   
+
+        button_gray: '#374151',
+        button_blue: '#2563eb',
         black: "#0f1014",
-        loader_black:"#0f101b",
+        loader_black: "#0f101b",
         inner_loader_black: "#26272B",
         ebony: "#1a1c23",
         rich_black: '#010203',
         mirage: "#27292D",
+        google_bg: "#1f1f1f",
         blue: {
           50: "#ECEEFE",
           100: "#D8DDFD",
@@ -126,5 +139,25 @@ module.exports = {
     require("@tailwindcss/forms"),
     require("@tailwindcss/typography"),
     require("tailwind-scrollbar-hide"),
+    require('@tailwindcss/typography'),
+    require('tailwind-scrollbar')({ nocompatible: true, preferredStrategy: 'pseudoelements' }),
+    function ({ addUtilities }) {
+      const newUtilities = {
+        '.no-scrollbar': {
+          /* Hide scrollbar for Chrome, Safari and Opera */
+          '-webkit-overflow-scrolling': 'touch',
+          '&::-webkit-scrollbar': {
+            display: 'none',
+          },
+          /* Hide scrollbar for IE, Edge and Firefox */
+          '-ms-overflow-style': 'none',
+          'scrollbar-width': 'none',
+        },
+      }
+      addUtilities(newUtilities, ['responsive'])
+    }
   ],
+  variants: {
+    scrollbar: ['rounded', 'hover'], // Enable variants as needed
+  }
 };

@@ -1,218 +1,114 @@
-import Prompt from "../PromptChallenge/Prompt";
-import PromptContainer from "./PromptContainer";
+import HeroContainer from "./PromptContainer";
 import StoryContainer from "./StoryContainer";
-import ArticleLoader from "../Loaders/ArticleLoader";
-import ArticlesGrid from "../ArticleComponents/ArticlesGrid";
-import SelectArticles from "../ArticleComponents/SelectArticles";
-import SummaryContainer from "../SummaryComponents/SummaryContainer";
-import SummaryLoader from "../Loaders/SummaryLoader";
-import ScrollDown from "../ArticleComponents/ScrollDown";
-import InvestigateHero from "../PromptChallenge/InvestigateHero";
-import { useState, useEffect } from "react";
-import { Articles, OptionsTypes, SelectedArticles } from '../../../env'
+import { useEffect, useRef, useState } from "react";
+import { SelectedArticles } from '../../../env'
+import { useFetch } from "@/Hooks/useFetch";
 import { AnimatePresence, motion } from "framer-motion";
-
-
-//TODO: component for page explanation
-
+import Notes from "../PromptChallenge/Notes";
 
 export default function InvestigateContainer() {
-
-  //Redux toolkit might be necessary at this point
-
-
-  // state for SearchBox.tsx and Article rendering
   const [query, setQuery] = useState<string>("")
-  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false)
-  const [articles, setArticles] = useState<Articles[]>([])
-  const [readyToSelect, setReadyToSelect] = useState<boolean>(false)
   const [selectedForSummary, setSelectedForSummary] = useState<SelectedArticles[]>([])
   const [submittedForSummaries, setSubmittedForSummaries] = useState<boolean>(false)
-  const [loadingSummaries, setLoadingSummaries] = useState<boolean>(false)
-  const [summaries, setSummaries] = useState<object[]>([])
-
+  const storyRef = useRef(null)
   const articlesToSummarize = encodeURIComponent(JSON.stringify(selectedForSummary))
+  const [takingNotes, setTakingNotes] = useState<boolean>(false)
+  const [notePosition, setNotePosition] = useState({ x: 0, y: 100 })
+  const [constraints, setConstraints] = useState(null)
+  const containerRef = useRef(null)
+  const notesRef = useRef(null)
+  const { fetchArticles, fetchSummaries, fetchedArticles, fetchedSummaries, isLoading, loadingSummaries, readyToSelect } = useFetch()
 
-  const options: OptionsTypes = {
-    method: 'GET',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    }
+
+  const articles: Articles[] = fetchedArticles
+  const summaries: object[] = fetchedSummaries
+
+  function scrollToView() {
+
+    storyRef.current.scrollIntoView({ behavior: "smooth", alignToTop: true })
   }
 
+  function handleDragConstraints() {
 
-  const fetchSummaries = async () => {
-    setLoadingSummaries(true)
-    setReadyToSelect(false)
-    setArticles([])
-    try {
-      const tldrResponse = await fetch(`/summarize?q=${articlesToSummarize}`,
-        options
-      )
-      if (!tldrResponse.ok) {
-        throw new Error('There was an issue with TLDR API')
-      }
-      setArticles([])
-      const tlderJSON = await tldrResponse.json()
-      console.log(tlderJSON)
-      setSummaries(tlderJSON)
-      setSubmittedForSummaries(false)
-    } catch (err) {
-      console.error('Error: ' + err)
-    } finally {
-      setLoadingSummaries(false)
-    }
+    const constraintsRect = containerRef.current.getBoundingClientRect();
+    const notesRect = notesRef.current.getBoundingClientRect();
+
+    setConstraints({
+      top: 0,
+      left: 30,
+      right: constraintsRect.width - notesRect.width,
+      bottom: constraintsRect.height - notesRect.height
+    })
   }
-
-  const fetchBingApi = async () => {
-    try {
-      setIsLoading(true)
-      setSelectedForSummary([])
-      setArticles([])
-      setSummaries([])
-      const response = await fetch(`/search/articles?q=${query}`,
-        options
-      )
-      if (!response.ok) {
-        throw new Error("There was a network response issue!")
-      }
-      const jsonResponse = await response.json()
-      const articleData = jsonResponse.data
-      setArticles(articleData)
-      setReadyToSelect(true)
-    } catch (err) {
-
-      console.log({ "Fetch Failed": err })
-    } finally {
-      setIsSubmitted(false)
-      setIsLoading(false)
-    }
-  };
 
   useEffect(() => {
     if (isSubmitted) {
-      fetchBingApi()
+      fetchArticles(query)
+      setIsSubmitted(false)
     }
     if (submittedForSummaries) {
-      fetchSummaries()
+      fetchSummaries(articlesToSummarize)
+      scrollToView()
+      setSubmittedForSummaries(false)
+      setSelectedForSummary([])
+
     }
-  }, [isSubmitted, submittedForSummaries])
+
+    if (containerRef.current && notesRef.current) {
+
+      handleDragConstraints()
+    }
+
+
+  }, [isSubmitted, submittedForSummaries,])
+
 
 
   return (
-    <section className="w-full grid grid-cols-1 transition-all duration-300 ease-in-out h-auto mx-auto justify-center
-         items-center animate-fade-in">
-      <PromptContainer>
-        <InvestigateHero
-          query={query}
-          setQuery={setQuery}
-          isLoading={isLoading}
-          setIsSubmitted={setIsSubmitted}
-        />
-        <AnimatePresence>
-          {articles.length > 0 &&
-            <motion.div
-              key='scrollDown'
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <ScrollDown
-                selectedForSummary={selectedForSummary}
-                articles={articles}
-                loadingSummaries={loadingSummaries}
-                summaries={summaries} />
-            </motion.div>}
-        </AnimatePresence>
-
-      </PromptContainer>
-
-      <StoryContainer>
-        <AnimatePresence>
-          {isLoading &&
-            <motion.div
-              key='loadingArticles'
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <ArticleLoader
-
-                isLoading={isLoading}
-                summaries={summaries} />
-            </motion.div>}
-
-          {readyToSelect &&
-            <motion.div
-              key='presentArticles'
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <ArticlesGrid
-                summaries={summaries}
-                articles={articles}
-                selectedForSummary={selectedForSummary}
-                setSelectedForSummary={setSelectedForSummary} />
-            </motion.div>}
-
-          {submittedForSummaries &&
-            <motion.div
-              key='loadingSummaries'
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1 }}
-            >
-              <SummaryLoader />
-            </motion.div>
-          }
-
-          {summaries.length > 0 &&
-            <motion.div
-              key='presentSummaries'
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1, delay: 1 }}
-            >
-              <SummaryContainer
-
-                summaries={summaries}
-                articles={articles}
-                selectedForSummary={selectedForSummary} />
-            </motion.div>}
-
-        </AnimatePresence>
-      </StoryContainer>
-
-      {articles.length > 0 && <SelectArticles
-        readyToSelect={readyToSelect}
+    <section
+      ref={containerRef}
+      className={`w-full grid grid-cols-1 transition-all duration-300 ease-in-out h-auto mx-auto justify-center
+         items-center animate-fade-in pb-52 relative box-border overflow-hidden pb-[40rem]`}>
+      <HeroContainer
+        query={query}
+        setQuery={setQuery}
+        isLoading={isLoading}
+        setIsSubmitted={setIsSubmitted}
         selectedForSummary={selectedForSummary}
-        submittedForSummaries={submittedForSummaries}
-        setSubmittedForSummaries={setSubmittedForSummaries}
+        articles={articles}
         loadingSummaries={loadingSummaries}
-      />}
+        summaries={summaries}
+      />
+      <div className="w-full h-auto mx-auto" ref={storyRef}>
+        <StoryContainer
+          articles={articles}
+          summaries={summaries}
+          isLoading={isLoading}
+          readyToSelect={readyToSelect}
+          setSelectedForSummary={setSelectedForSummary}
+          selectedForSummary={selectedForSummary}
+          submittedForSummaries={submittedForSummaries}
+          setSubmittedForSummaries={setSubmittedForSummaries}
+          loadingSummaries={loadingSummaries}
+          fetchedSummaries={fetchedSummaries}
+          fetchedArticles={fetchedArticles}
+          setTakingNotes={setTakingNotes}
+        />
+      </div>
+
+      <AnimatePresence>
+        {takingNotes &&
+          <Notes
+            notesRef={notesRef}
+            constraints={constraints}
+            notePosition={notePosition}
+            setNotePosition={setNotePosition}
+            setTakingNotes={setTakingNotes}
+          />
+        }
+      </AnimatePresence>
 
     </section>
   )
 }
-
-
-
-//<Prompt
-//query = {query}
-//setQuery = {setQuery}
-//isLoading = {isLoading}
-//setIsLoading={setIsLoading}
-//articles = {articles}
-//setArticles={setArticles}
-//readyToSelect = {readyToSelect}
-//setReadyToSelect = {setReadyToSelect}
-//isSubmitted = {isSubmitted}
-//setIsSubmitted = {setIsSubmitted}
-//summaries={summaries}
-///>

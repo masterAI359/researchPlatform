@@ -16,14 +16,14 @@ const envPath = path.resolve(__dirname, '../../../.env');
 
 dotenv.config({ path: envPath })
 
-const TLDRKey = process.env.TLDR_KEY as string  
+const TLDRKey = process.env.TLDR_KEY as string
 
 interface QueryType {
-	url: string,
-	source: string,
-	date: string,
-	logo: string,
-	title: string
+    url: string,
+    source: string,
+    date: string,
+    logo: string,
+    title: string
 }
 
 
@@ -43,7 +43,7 @@ export const tldrSummary = async (req: Request, res: Response) => {
     try {
         const dataMap = query.map(async (article) => {
             try {
-                console.log({"fetching data for: ": article.url});
+                console.log({ "fetching data for: ": article.url });
 
                 const response = await fetch(url, {
                     method: 'POST',
@@ -68,15 +68,15 @@ export const tldrSummary = async (req: Request, res: Response) => {
                 data.logo = article.logo;
                 data.source = article.source;
                 data.date = article.date;
-				const decodedData = decodeItem(data)
+                const decodedData = decodeItem(data)
                 return decodedData;
-            } catch (error:any) {
+            } catch (error: any) {
                 console.error(`Error processing article ${article.url}:`, error);
                 // Return an object with the original article data plus the error message
-                return  { 
-					failed: true,
-					title: article.title,
-                    summary:[{denied: 'We were denied access to the article from', failedArticle: `${article.source} - ${article.title}`}],
+                return {
+                    failed: true,
+                    title: article.title,
+                    summary: [{ denied: 'We were denied access to the article from', failedArticle: `${article.source} - ${article.title}` }],
                     logo: article.logo,
                     source: article.source,
                     date: article.date,
@@ -86,12 +86,12 @@ export const tldrSummary = async (req: Request, res: Response) => {
         });
 
         const results = await Promise.allSettled(dataMap);
-		const returnValues = results.map((result:any) => { //this is returning null | Why?
+        const returnValues = results.map((result: any) => { //this is returning null | Why?
 
-			const resultData = result.value ? result.value : result.reason
-			
-			return resultData
-		})
+            const resultData = result.value ? result.value : result.reason
+
+            return resultData
+        })
         res.json(returnValues);
 
     } catch (error) {

@@ -1,36 +1,27 @@
-import PropTypes from 'prop-types'
-import Lottie from 'react-lottie';
-import SquareCircle from '../../../lotties/SquareCircle.json'
+import Lottie from "lottie-react"
+import squareCircle from '../../../lotties/SquareCircle.json'
 
-
-export default function SummaryLoader () {
-
-    interface lottieTypes {
-        loop: boolean,
-        autoplay: boolean,
-        animationData: any
-    }
-
-    const defaultOptions: lottieTypes = {
-        loop: true,
-        autoplay: true,
-        animationData: SquareCircle,
-    }
+export default function SummaryLoader() {
 
     return (
-        <div className='w-full h-2/3 2xl:max-w-7xl mx-auto grid-cols-1 2xl:mt-16' >
+        <div className='w-full h-full 2xl:max-w-7xl mx-auto grid grid-cols-1 2xl:mt-16 justify-center' >
 
             <header className='w-full mx-auto mb-24'>
-                <h1 
-                className='text-center font-serif text-4xl text-slate-400'
+                <h1
+                    className='text-center font-serif text-4xl text-slate-400'
                 >Just a few moments while we gather those articles</h1>
             </header>
+            <div className="w-full mx-auto">
+                <Lottie
+                    className="mx-auto"
+                    animationData={squareCircle}
+                    autoPlay={true}
+                    loop={true}
+                    style={{ height: 400, width: 400 }}
+                />
+            </div>
 
-            <Lottie 
-            options = {defaultOptions}
-            height = {400}
-            width = {400}
-            ></Lottie>
+
         </div>
     )
 }

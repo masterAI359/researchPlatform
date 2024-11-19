@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import StepsEditor from "../../TipTap/StepsEditor"
 import Perspective from "../Appproach/Perspective"
 import HelpButton from "../../Buttons/Question"
 import { Step1Help } from "@/helpInfo/help"
@@ -11,7 +12,6 @@ export default function Step1({ origin, setOrigin, setCanProceed, notifyRequired
       const [isExpressed, setIsExpressed] = useState<string>('')
       const [accepted, setAccepted] = useState<boolean>(null)
 
-      const handleStatement = (e: React.ChangeEvent<HTMLTextAreaElement>) => { setIsExpressed(e.target.value) }
 
       let wordCount = (statement: string) => {
 
@@ -27,9 +27,6 @@ export default function Step1({ origin, setOrigin, setCanProceed, notifyRequired
                   setAccepted(true)
             }
       }
-
-
-      //TODO: Add setTimeOut on wordCount function call, otherwise the textarea is prematurely lighting up red 
 
 
       useEffect(() => {
@@ -68,13 +65,7 @@ export default function Step1({ origin, setOrigin, setCanProceed, notifyRequired
                         <div className="flex justify-items-start gap-2 z-10 w-full">
                               <div className={`w-full bg-white/10 md:h-40 pb-8 pt-2 rounded-lg border border-solid box-border
                                     ${accepted === null ? 'border-transparent' : accepted === true ? 'border-green-500' : 'border-red-800'}`}>
-                                    <textarea
-                                          value={isExpressed}
-                                          onChange={handleStatement}
-                                          id="take"
-                                          className="w-full h-full text-md text-white 
-                                          bg-transparent resize-none focus:ring-0 border-none"
-                                          placeholder="Write it down here, let's examine it" />
+                                    <StepsEditor setterFunction={setIsExpressed} />
                                     <div
                                           className={`flex flex-row-reverse items-center w-full h-fit`}>
                                           <div className="justify-self-end h-fit w-auto rounded-full">

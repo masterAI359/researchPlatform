@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import HelpButton from "../../Buttons/Question";
 import { Step2Help } from "@/helpInfo/help"
+import StepsEditor from "../../TipTap/StepsEditor";
 import { Help } from "@/env"
 
 interface BiasProps {
@@ -15,8 +16,7 @@ interface BiasProps {
 export default function Step2({ containerWidth, setGettingHelp }: any) {
   const [bias, setBias] = useState('')
 
-  const handleBias = (e: React.ChangeEvent<HTMLTextAreaElement>) => setBias(e.target.value)
-
+  console.log(bias)
 
 
   return (
@@ -35,13 +35,14 @@ export default function Step2({ containerWidth, setGettingHelp }: any) {
 
         </div>
         <div className="text-center w-full">
-          <textarea
-            onChange={handleBias}
+
+          <div
             id="take"
-            className="block w-full md:h-44 lg:mb-12 text-md text-white bg-white/10 border-none focus:ring-1 focus:ring-white
-    rounded-lg resize-none text-wrap"
-            placeholder="Describe why you want to know more about this topic">
-          </textarea>
+            className="block w-full md:h-52 lg:mb-12 text-md text-white bg-white/10 border-none focus:ring-1 focus:ring-white
+    rounded-lg resize-none text-wrap flex justify-items-start"
+          >
+            <StepsEditor setterFunction={setBias} />
+          </div>
         </div>
       </div>
     </div>

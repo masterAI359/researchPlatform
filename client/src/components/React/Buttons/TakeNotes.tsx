@@ -5,7 +5,7 @@ export default function TakeNotes({ setTakingNotes }) {
     return (
         <button
             onClick={() => setTakingNotes(prev => !prev)}
-            className="bg-button_gray w-auto h-auto fixed lg:left-[27rem] lg:bottom-12 
+            className="bg-button_gray w-auto h-auto p-1 fixed lg:left-[27rem] lg:bottom-12 
         rounded-lg hover:scale-125 hover:bg-white transition-all duration-300 
         ease-in-out group">
             <div className="h-full w-full box-border">

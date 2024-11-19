@@ -37,7 +37,7 @@
 }
 
 .prose-styles {
-  @apply mx-auto focus:outline-none prose text-zinc-500 prose-a:font-semibold prose-a:text-blue-300 hover:prose-a:text-black prose-headings:text-black prose-blockquote:text-blue-400 prose-code:text-blue-400 prose-strong:text-blue-500 prose-img:rounded-3xl prose-pre:rounded-2xl prose-headings:font-normal;
+  @apply focus:outline-none prose text-zinc-500 prose-a:font-semibold prose-a:text-blue-300 hover:prose-a:text-black prose-headings:text-black prose-blockquote:text-blue-400 prose-code:text-blue-400 prose-strong:text-blue-500 prose-img:rounded-3xl prose-pre:rounded-2xl prose-headings:font-normal;
 }
 
 :root {

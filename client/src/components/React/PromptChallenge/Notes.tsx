@@ -1,8 +1,11 @@
+import { useState } from "react"
 import { motion } from "framer-motion"
-import TipTap from "../NoteTaking/TipTap"
+import TipTap from "../TipTap/TipTap"
 
 export default function Notes({ notePosition, setNotePosition, constraints, notesRef, setTakingNotes }) {
+    const [content, setContent] = useState(null)
 
+    console.log(content)
 
     return (
         <motion.div
@@ -17,7 +20,7 @@ export default function Notes({ notePosition, setNotePosition, constraints, note
                     y: prev.y + info.delta.y
                 }))
             }}
-            style={{ position: 'absolute', left: notePosition.x, top: notePosition.y, width: 500, height: 300 }}
+            style={{ position: 'absolute', left: notePosition.x, top: notePosition.y, width: 500, height: 400 }}
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
@@ -40,7 +43,9 @@ export default function Notes({ notePosition, setNotePosition, constraints, note
                     </div>
                 </div>
                 <div className=" h-full w-full pb-1 mx-auto bg-transparent">
-                    <TipTap />
+                    <TipTap
+                        setContent={setContent}
+                    />
                 </div>
 
             </div>

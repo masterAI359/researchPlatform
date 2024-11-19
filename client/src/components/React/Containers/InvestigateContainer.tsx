@@ -63,14 +63,13 @@ export default function InvestigateContainer() {
 
   }, [isSubmitted, submittedForSummaries,])
 
-  console.log(constraints)
 
 
   return (
     <section
       ref={containerRef}
       className={`w-full grid grid-cols-1 transition-all duration-300 ease-in-out h-auto mx-auto justify-center
-         items-center animate-fade-in pb-52 relative box-border overflow-hidden`}>
+         items-center animate-fade-in pb-52 relative box-border overflow-hidden pb-[40rem]`}>
       <HeroContainer
         query={query}
         setQuery={setQuery}

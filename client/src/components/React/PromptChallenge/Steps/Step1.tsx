@@ -63,7 +63,7 @@ export default function Step1({ origin, setOrigin, setCanProceed, notifyRequired
                               </div>
                         </div>
                         <div className="flex justify-items-start gap-2 z-10 w-full">
-                              <div className={`w-full bg-white/10 md:h-40 pb-8 pt-2 rounded-lg border border-solid box-border
+                              <div className={`w-full bg-white/10 md:h-40 pb-8 rounded-lg border border-solid box-border
                                     ${accepted === null ? 'border-transparent' : accepted === true ? 'border-green-500' : 'border-red-800'}`}>
                                     <StepsEditor setterFunction={setIsExpressed} />
                                     <div

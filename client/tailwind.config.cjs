@@ -11,6 +11,25 @@ module.exports = {
             ':focus': {
               outline: 'none',
               boxShadow: 'none',
+            },
+            h1: {
+              color: '#ffffff',
+              fontFamily: {
+                serif: ["Open Sans", "sans-serif"]
+              },
+              fontWeight: {
+                thin: '50'
+              },
+              fontSize: '24px'
+            },
+            h2: {
+              color: '#ffffff',
+              fontFamily: {
+                serif: ["Open Sans", "sans-serif"]
+              },
+              fontWeight: {
+                thin: '50'
+              },
             }
           }
         }
@@ -22,6 +41,9 @@ module.exports = {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
         serif: ["Open Sans", "sans-serif"],
 
+      },
+      fontWeight: {
+        thin: '100'
       },
       backgroundImage: (theme) => ({
         // Blue Gradient

@@ -2,7 +2,6 @@ import { useState } from "react";
 import HelpButton from "../../Buttons/Question";
 import { Step3Help } from "@/helpInfo/help"
 import StepsEditor from "../../TipTap/StepsEditor";
-import { Help } from "@/env"
 
 
 
@@ -11,9 +10,6 @@ export default function Step3({ containerWidth, setStartSearch, setGettingHelp }
   const [statedPremise, setPremise] = useState("")
 
   console.log(statedPremise)
-
-
-
 
   return (
     <div className="inline-block box-border mx-auto w-full 2xl:h-full">
@@ -37,10 +33,6 @@ export default function Step3({ containerWidth, setStartSearch, setGettingHelp }
         </div>
       </div>
     </div>
-
-
-
-
   );
 }
 

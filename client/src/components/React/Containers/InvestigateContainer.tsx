@@ -36,7 +36,7 @@ export default function InvestigateContainer() {
 
     setConstraints({
       top: 0,
-      left: 30,
+      left: 0,
       right: constraintsRect.width - notesRect.width,
       bottom: constraintsRect.height - notesRect.height
     })

@@ -39,13 +39,15 @@ export function Summary({ summaryData, handleClick, isSelected, index }) {
         } : null}
         className={`box-border w-auto flex flex-col 2xl:mx-auto
               ${isSelected
-                ? 'fixed pb-1 rounded-t-4xl rounded-b-xl z-50 top-0 lg:inset-x-36 xl:left-60 xl:right-60 2xl:left-[16rem] 2xl:right-[16rem] overflow-y-scroll scrollbar-hide bottom-1 box-border bg-google_bg '
+                ? `fixed mx-auto pb-1 rounded-t-4xl z-40 top-24 lg:inset-x-36 
+                xl:inset-x-[29rem] overflow-y-scroll
+                 scrollbar-hide box-border bg-mirage ${fullStory ? `bottom-1 rounded-b-xl` : `bottom-44 rounded-b-4xl`}`
                 : 'mx-auto xl:h-[22rem] xl:w-[20rem] rounded-4xl cursor-pointer'}`}
     >
         {/* Header Section */}
         <header
             className={`relative flex flex-col-reverse box-border w-full mx-auto
-                    ${isSelected ? 'pb-10 min-h-[23rem] max-h-9/12' : 'mx-4 rounded-4xl px-4 py-4 h-full'}`}
+                    ${isSelected ? 'pb-10 min-h-[18rem] max-h-9/12' : 'mx-4 rounded-4xl px-4 py-4 h-full'}`}
         >
             {/* Background Image with Lower Opacity */}
             <div
@@ -80,10 +82,10 @@ export function Summary({ summaryData, handleClick, isSelected, index }) {
                         article_title
                     ) : null}
                 </h1>
-                {isSelected ? <div className='flex flex-row w-full h-fit justify-end'>
+                {isSelected ? <div className='flex flex-row w-full h-fit justify-end relative'>
                     <div
                         onClick={() => handleClick(index)}
-                        className="w-fit h-fit relative cursor-pointer p-2 top-5 right-5 rounded-lg hover:bg-white/10
+                        className="w-fit h-fit absolute cursor-pointer p-2 top-5 right-5 rounded-lg hover:bg-white/10
                      hover:text-white group transition-all ease-in-out duration-200">
                         <svg className="text-zinc-200 cursor-pointer opacity-55 group-hover:opacity-100 transition-opacity duration-200 ease-in-out" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="40px" height="40px">
                             <path d="M 39.486328 6.9785156 A 1.50015 1.50015 0 0 0 38.439453 7.4394531 L 24 21.878906 L 9.5605469 7.4394531 A 1.50015 1.50015 0 0 0 8.484375 6.984375 A 1.50015 1.50015 0 0 0 7.4394531 9.5605469 L 21.878906 24 L 7.4394531 38.439453 A 1.50015 1.50015 0 1 0 9.5605469 40.560547 L 24 26.121094 L 38.439453 40.560547 A 1.50015 1.50015 0 1 0 40.560547 38.439453 L 26.121094 24 L 40.560547 9.5605469 A 1.50015 1.50015 0 0 0 39.486328 6.9785156 z" fill="currentColor" />
@@ -144,11 +146,11 @@ export function Summary({ summaryData, handleClick, isSelected, index }) {
                 </figcaption>
 
                 {isSelected ? (
-                    <main className={`display-block mx-auto opacity-87 h-fit 2xl:w-11/12
+                    <main className={`display-block xl:ml-8 opacity-87 h-fit 2xl:w-2/3
                        `}>
                         <div className="">
                             <div
-                                className={` text-white 2xl:text-2xl leading-10 whitespace-pre-wrap pb-7 transition-all duration-300 ease-in-out ${fullStory ? 'opacity-0 hidden' : 'opacity-100'
+                                className={` text-white 2xl:text-xl leading-10 whitespace-pre-wrap pb-7 transition-all duration-300 ease-in-out ${fullStory ? 'opacity-0 hidden' : 'opacity-100'
                                     }`}
                             >
                                 {typeof summary[0] === 'string'
@@ -160,14 +162,14 @@ export function Summary({ summaryData, handleClick, isSelected, index }) {
                                                     ''
                                                 ) : (
                                                     <div className="w-full">
-                                                        <h1 className="text-3xl font-light tracking-tight text-white pt-10 pb-5 font-serif">
+                                                        <h1 className="text-2xl font-thin tracking-tight text-white pt-10 pb-5 font-serif">
                                                             {' '}
                                                             {obj.heading}{' '}
                                                         </h1>
                                                     </div>
                                                 )}
 
-                                                <p className="font-serif font-light tracking-tight indent-5 2xl:text-2xl text-xl">
+                                                <p className="font-serif font-thin 2xl:text-lg ">
                                                     {obj.text}
                                                 </p>
                                             </div>
@@ -175,7 +177,7 @@ export function Summary({ summaryData, handleClick, isSelected, index }) {
                                     })}
                             </div>
                             <div
-                                className={`text-white font-serif text-2xl font-light tracking-tight leading-10 whitespace-pre-wrap pb-16 transition-all duration-1000 ease-in-out ${fullStory ? 'block opacity-100' : 'hidden'
+                                className={`text-white font-serif text-xl font-light tracking-tight leading-10 whitespace-pre-wrap pb-16 transition-all duration-1000 ease-in-out ${fullStory ? 'block opacity-100' : 'hidden'
                                     }`}
                             >
                                 {article_text}
@@ -190,7 +192,8 @@ export function Summary({ summaryData, handleClick, isSelected, index }) {
 
     if (isSelected === true) {
         return (
-            createPortal(content, document.body)
+            content
+            // createPortal(content, document.body)
         )
     } else if (!failed) {
         return content

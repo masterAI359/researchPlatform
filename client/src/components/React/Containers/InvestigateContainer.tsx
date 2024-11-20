@@ -14,7 +14,7 @@ export default function InvestigateContainer() {
   const storyRef = useRef(null)
   const articlesToSummarize = encodeURIComponent(JSON.stringify(selectedForSummary))
   const [takingNotes, setTakingNotes] = useState<boolean>(false)
-  const [notePosition, setNotePosition] = useState({ x: 0, y: 100 })
+  const [notePosition, setNotePosition] = useState({ x: 0, y: 500 })
   const [constraints, setConstraints] = useState(null)
   const containerRef = useRef(null)
   const notesRef = useRef(null)

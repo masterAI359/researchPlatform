@@ -1,7 +1,15 @@
-export default function Navigation() {
+import { useEffect, useLayoutEffect, useState } from "react"
+import MobileMenu from "./MobileMenu"
 
 
-	const deskTopContent = (<div className="fixed w-full inset-x-0 z-30">
+export default function Navigation({ width }) {
+	const [mobileView, setMobileView] = useState(false)
+
+
+
+
+	{/*   Menu for Laptop/Desktop   */ }
+	const deskTopContent = (<div className="fixed top-0 w-full inset-x-0 z-30">
 		<div className="lg:max-w-7xl mx-auto">
 			<div className="w-full mx-auto">
 				<div x-data="{ open: false }" className="relative flex flex-col w-full shadow-black mt-5 p-2 mx-auto bg-black border
@@ -96,7 +104,12 @@ c-73.1,86.1-213,87.5-312.5,3.1s-121-222.7-47.9-308.8S314.3-7.8,413.8,76.6z" />
 		</div>
 	</div>)
 
-	const mobileContent = (<></>)
 
-	return deskTopContent
+
+	if (width > 700) {
+		return deskTopContent
+	} else {
+		return <MobileMenu />
+	}
+
 }

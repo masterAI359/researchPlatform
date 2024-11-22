@@ -43,7 +43,7 @@ export default function NextButton({ setCurrentStep, currentStep, setCanProceed,
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0 }}
-        className="col-span-1 justify-self-end self-center"
+        className="col-span-1 justify-self-end self-center "
       >
         <button
           onClick={(e) => checkRequirements(e)}

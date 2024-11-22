@@ -16,7 +16,7 @@ export default function InvestigateHero({ query, isLoading, setIsSubmitted, setQ
     <section className={`py-8 transition-all animate-fade-in delay-1000 duration-500 ease-in-out `}>
       <div className={`grid grid-cols-8 mx-auto 2xl:max-w-7xl 
     md:px-12 w-full rounded-[3rem] bg-gradientdown
-    overflow-hidden relative lg:pt-20 sm:pt-20 opacity-100 transition-all duration-700 ease-in-out
+    overflow-hidden relative xs:h-[28rem] lg:pt-20 sm:pt-20 opacity-100 transition-all duration-700 ease-in-out
     ${currentStep < 4 ? 'lg:h-[40rem] ' : 'lg:h-[26rem]'} 
     ${gettingHelp ? 'opacity-65 pointer-events-none' : null}`}>
         <BackButton

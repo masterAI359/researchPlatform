@@ -51,7 +51,7 @@ export default function Step1({ origin, setOrigin, setCanProceed, notifyRequired
                   <div className="flex-col items-center h-full w-full px-3 box-border">
                         <div className="w-full box-border border-b h-fit border-white/10 mb-4 flex flex-row gap-x-8 items-baseline">
                               <div className="w-fit flex justify-items-start">
-                                    <h1 className="text-3xl tracking-tight font-light text-zinc-300 pb-1">Tackle an idea
+                                    <h1 className="md:text-3xl xs:text-xl tracking-tight font-light text-zinc-300 pb-1">Tackle an idea
                                           <span className="text-zinc-500"> from the top down </span>
                                     </h1>
                               </div>
@@ -63,7 +63,7 @@ export default function Step1({ origin, setOrigin, setCanProceed, notifyRequired
                               </div>
                         </div>
                         <div className="flex justify-items-start gap-2 z-10 w-full">
-                              <div className={`w-full bg-white/10 md:h-40 pb-8 rounded-lg border border-solid box-border
+                              <div className={`w-full bg-white/10 md:h-52 pb-8 rounded-lg border border-solid box-border
                                     ${accepted === null ? 'border-transparent' : accepted === true ? 'border-green-500' : 'border-red-800'}`}>
                                     <StepsEditor setterFunction={setIsExpressed} />
                                     <div
@@ -90,9 +90,9 @@ export default function Step1({ origin, setOrigin, setCanProceed, notifyRequired
 
                                     </div>
                               </div>
-                              <Perspective
+                              {/*<Perspective
                                     setOrigin={setOrigin}
-                                    origin={origin} />
+                                    origin={origin} /> */}
                         </div>
                   </div>
             </div>

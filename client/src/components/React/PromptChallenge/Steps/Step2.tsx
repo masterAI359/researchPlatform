@@ -38,7 +38,7 @@ export default function Step2({ containerWidth, setGettingHelp }: any) {
 
           <div
             id="take"
-            className="block w-full md:h-52 lg:mb-12 text-md text-white bg-white/10 border-none focus:ring-1 focus:ring-white
+            className="block w-full xs:h-44 md:h-52 lg:mb-12 text-md text-white bg-white/10 border-none focus:ring-1 focus:ring-white
     rounded-lg resize-none text-wrap flex justify-items-start"
           >
             <StepsEditor setterFunction={setBias} />

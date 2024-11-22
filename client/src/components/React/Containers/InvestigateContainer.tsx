@@ -4,7 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import { SelectedArticles } from '../../../env'
 import { useFetch } from "@/Hooks/useFetch";
 import { AnimatePresence, motion } from "framer-motion";
+import ControlPanel from "../Buttons/ButtonWrappers/ControlPanel";
 import Notes from "../PromptChallenge/Notes";
+import Navigation from "@/components/Astro/global/Navigation";
 
 export default function InvestigateContainer() {
   const [query, setQuery] = useState<string>("")
@@ -15,6 +17,7 @@ export default function InvestigateContainer() {
   const articlesToSummarize = encodeURIComponent(JSON.stringify(selectedForSummary))
   const [takingNotes, setTakingNotes] = useState<boolean>(false)
   const [notePosition, setNotePosition] = useState({ x: 0, y: 500 })
+  const [windowWidth, setWindowWidth] = useState<number>(null)
   const [constraints, setConstraints] = useState(null)
   const containerRef = useRef(null)
   const notesRef = useRef(null)
@@ -23,6 +26,13 @@ export default function InvestigateContainer() {
 
   const articles: Articles[] = fetchedArticles
   const summaries: object[] = fetchedSummaries
+
+  const resize = () => {
+
+    if (containerRef.current) {
+      setWindowWidth(containerRef.current.offsetWidth)
+    }
+  }
 
   function scrollToView() {
 
@@ -60,6 +70,13 @@ export default function InvestigateContainer() {
       handleDragConstraints()
     }
 
+    if (containerRef.current) {
+      setWindowWidth(containerRef.current.offsetWidth)
+      console.log(windowWidth)
+    }
+
+    window.addEventListener('resize', resize);
+
 
   }, [isSubmitted, submittedForSummaries,])
 
@@ -68,9 +85,11 @@ export default function InvestigateContainer() {
   return (
     <section
       ref={containerRef}
-      className={`w-full grid grid-cols-1 transition-all duration-300 ease-in-out h-auto mx-auto justify-center
+      className={`w-full grid grid-cols-1 transition-all duration-300 ease-in-out h-auto mx-auto justify-center relative
          items-center animate-fade-in pb-52 relative box-border overflow-hidden pb-[40rem]`}>
-      <HeroContainer
+      <Navigation width={windowWidth} />
+
+      {windowWidth !== null && <HeroContainer
         query={query}
         setQuery={setQuery}
         isLoading={isLoading}
@@ -79,7 +98,7 @@ export default function InvestigateContainer() {
         articles={articles}
         loadingSummaries={loadingSummaries}
         summaries={summaries}
-      />
+      />}
       <div className="w-full h-auto mx-auto" ref={storyRef}>
         <StoryContainer
           articles={articles}

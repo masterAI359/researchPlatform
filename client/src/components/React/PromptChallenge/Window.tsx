@@ -71,7 +71,7 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
         animate={{ opacity: 1, x: -currentStep * containerWidth }}
         transition={{ type: 'tween', duration: 0.2, ease: 'easeInOut' }}>
 
-        <div style={{ width: containerWidth, flexShrink: 0 }} className='text-center max-h-fit box-border flex'>
+        <div style={{ width: containerWidth, flexShrink: 0 }} className='text-center mx-auto max-h-fit box-border flex'>
           <Step1
             setNotifyRequired={setNotifyRequired}
             setCanProceed={setCanProceed}

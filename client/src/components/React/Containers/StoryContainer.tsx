@@ -6,6 +6,7 @@ import SummaryContainer from "../SummaryComponents/SummaryContainer"
 import ArticlesGrid from "../ArticleComponents/ArticlesGrid"
 import ArticleLoader from "../Loaders/ArticleLoader"
 import SummaryLoader from "../Loaders/SummaryLoader"
+import ControlPanel from "../Buttons/ButtonWrappers/ControlPanel"
 import TakeNotes from "../Buttons/TakeNotes"
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
@@ -152,9 +153,10 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
                 transition={{ type: 'tween', duration: 0.2 }}
                 className="w-full h-auto relative mx-auto"
             >
-                <TakeNotes
+                <ControlPanel setTakingNotes={setTakingNotes} />
+                {/*() <TakeNotes
                     setTakingNotes={setTakingNotes}
-                />
+                /> */}
             </motion.div>
 
         </div>

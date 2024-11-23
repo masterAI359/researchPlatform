@@ -63,13 +63,13 @@ export default function ArticlesResult() {
 
 	const [firstHalf, secondHalf] = splitArray(articles);
 
-	
+
 
 
 	return (
 		<>
 			<section className='lg:p-8'>
-				<div className='px-8 py-12 mx-auto md:px-12 lg:px-0 xl:px-0 2xl:max-w-7xl'>
+				<div className='xs:p-4 md:px-8 py-12 mx-auto md:px-12 lg:px-0 xl:px-0 2xl:max-w-7xl'>
 					<div className='relative flex flex-col bg-gradientup ring-1 ring-white/10 rounded-4xl px-6 md:pt-24 lg:flex lg:pt-0'>
 						<div className='lg:p-20 lg:pb-0'>
 							<div className='grid grid-cols-1 lg:grid-cols-2 lg:border-b items-end border-white/10 py-12'>
@@ -78,12 +78,12 @@ export default function ArticlesResult() {
 									<h2 className='text-3xl mt-6 tracking-tight font-light lg:text-4xl text-white'>
 										Top Stories{' '}
 										<span className='block text-zinc-400'>
-											
+
 										</span>
 									</h2>
 								</div>
 								<p className='text-white mt-6'>
-									
+
 								</p>
 							</div>
 						</div>
@@ -113,15 +113,15 @@ export default function ArticlesResult() {
 														</div>
 														<div className='mt-1'>
 															<span className='text-sm flex items-center gap-3 text-white/70 group-hover:text-white'>
-																<img 
-																className='h-8 w-auto'
-																src = {`../${article.logo}`}
-																alt = ''
+																<img
+																	className='h-8 w-auto'
+																	src={`../${article.logo}`}
+																	alt=''
 																/>
 
 																<p>{article.provider}</p>
-																
-															{/*}	Published on{' '}
+
+																{/*}	Published on{' '}
 																{article.datePublished.substring(0, 10)} at{' '}
 																{article.datePublished
 																	.substring(10, 16)
@@ -168,14 +168,14 @@ export default function ArticlesResult() {
 														<div className='mt-1'>
 															<span className='text-sm flex items-center gap-3 text-white/70 group-hover:text-white'>
 
-															<img 
-															className='h-8 w-auto'
-															src = {`../${article.logo}`}
-															alt = ''
-															/>
+																<img
+																	className='h-8 w-auto'
+																	src={`../${article.logo}`}
+																	alt=''
+																/>
 
-															{article.provider}
-													{/*}			Published on{' '}
+																{article.provider}
+																{/*}			Published on{' '}
 																{article.datePublished.substring(0, 10)} at{' '}
 																{article.datePublished
 																	.substring(10, 16)

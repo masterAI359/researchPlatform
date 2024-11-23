@@ -43,11 +43,11 @@ export default function NextButton({ setCurrentStep, currentStep, setCanProceed,
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0 }}
-        className="col-span-1 justify-self-end self-center "
+        className="absolute right-12 xs:bottom-3 h-auto w-auto lg:bottom-1/2 justify-self-end self-center"
       >
         <button
           onClick={(e) => checkRequirements(e)}
-          className="text-white
+          className="text-white xs:w-14 xs:h-10
           lg:w-20 lg:h-12 p-2 transition-all mx-auto
           duration-200 bg-white/5 hover:bg-white/10 hover:scale-110 flex items-center group
           rounded-2xl">

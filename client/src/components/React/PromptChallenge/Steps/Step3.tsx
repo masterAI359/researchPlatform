@@ -18,7 +18,7 @@ export default function Step3({ containerWidth, setStartSearch, setGettingHelp }
         <div className="text-center relative z-10 w-full">
           <div className="w-full box-border border-b h-fit border-white/10 lg:mb-4 flex flex-row gap-x-8 items-baseline lg:mt-10">
             <div className="w-fit flex justify-items-start">
-              <h1 className="text-2xl tracking-tight font-light text-white pb-2">
+              <h1 className="lg:text-2xl xs:text-xl tracking-tight font-light text-white pb-2">
                 What informs your point of view?
               </h1>
             </div>
@@ -26,7 +26,7 @@ export default function Step3({ containerWidth, setStartSearch, setGettingHelp }
               <HelpButton info={Step3Help} setGettingHelp={setGettingHelp} />
             </div>
           </div>
-          <div className="block w-full md:h-52 lg:mb-12 text-md text-white bg-white/10 border-none focus:ring-1 focus:ring-white
+          <div className="block w-full xs:h-40 md:h-52 lg:mb-12 text-md text-white bg-white/10 border-none focus:ring-1 focus:ring-white
     rounded-lg resize-none text-wrap flex justify-items-start">
             <StepsEditor setterFunction={setPremise} />
           </div>

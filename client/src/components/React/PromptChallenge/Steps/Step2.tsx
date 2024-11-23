@@ -25,7 +25,7 @@ export default function Step2({ containerWidth, setGettingHelp }: any) {
 
         <div className="w-full box-border border-b h-fit border-white/10 lg:mb-4 flex flex-row gap-x-8 items-baseline lg:mt-10">
           <div className="w-fit flex justify-items-start">
-            <h1 className="text-2xl tracking-tight font-light text-white pb-2">Explore our biases
+            <h1 className="text-2xl tracking-tight font-light text-white pb-2 xs:text-xl">Explore our biases
             </h1>
           </div>
           <div className="w-fit h-full justify-items-start translate-y-1 opacity-100">
@@ -38,7 +38,7 @@ export default function Step2({ containerWidth, setGettingHelp }: any) {
 
           <div
             id="take"
-            className="block w-full xs:h-44 md:h-52 lg:mb-12 text-md text-white bg-white/10 border-none focus:ring-1 focus:ring-white
+            className="block w-full xs:h-40 md:h-52 lg:mb-12 text-md text-white bg-white/10 border-none focus:ring-1 focus:ring-white
     rounded-lg resize-none text-wrap flex justify-items-start"
           >
             <StepsEditor setterFunction={setBias} />

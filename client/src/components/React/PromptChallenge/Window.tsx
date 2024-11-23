@@ -35,7 +35,6 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
     if (wizardRef.current) {
       setWizardHeight(wizardRef.current.offsetHeight)
       setWizardHeight(wizardRef.current.offsetHeight)
-      console.log(wizardHeight)
     }
 
     const handleResize = () => {
@@ -48,21 +47,12 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // not sure where the transition for the height of the components in the Window.tsx file is coming from. The transition is too snappy
 
-  console.log(stepsHeight)
 
   return (
     <section
       ref={containerRef}
-      className="col-span-6 overflow-hidden relative md:min-h-full h-fit w-full transition-all duration-400 animate-fade-in delay-300">
-      {containerWidth > 0
-        ? <div
-          className="w-full flex justify-center items-center"
-        >
-          <StepWizard currentStep={currentStep} setCurrentStep={setCurrentStep} />
-        </div> : null}
-
+      className="overflow-x-hidden relative xs:h-5/6 md:min-h-full mx-auto h-fit xs:w-12/12 xl:w-3/4 transition-all duration-400 animate-fade-in delay-300">
       {containerWidth > 0 ? <motion.div
         ref={wizardRef}
         style={{ maxHeight: "fit" }}

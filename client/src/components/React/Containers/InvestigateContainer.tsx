@@ -1,6 +1,6 @@
 import HeroContainer from "./PromptContainer";
 import StoryContainer from "./StoryContainer";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { SelectedArticles } from '../../../env'
 import { useFetch } from "@/Hooks/useFetch";
 import { AnimatePresence, motion } from "framer-motion";
@@ -69,16 +69,20 @@ export default function InvestigateContainer() {
 
       handleDragConstraints()
     }
-
-    if (containerRef.current) {
-      setWindowWidth(containerRef.current.offsetWidth)
-      console.log(windowWidth)
-    }
-
-    window.addEventListener('resize', resize);
-
-
   }, [isSubmitted, submittedForSummaries,])
+
+  if (typeof window !== 'undefined') {
+
+    useLayoutEffect(() => {
+      if (containerRef.current) {
+        setWindowWidth(containerRef.current.offsetWidth)
+        console.log(windowWidth)
+      }
+
+      window.addEventListener('resize', resize);
+
+    }, [])
+  }
 
 
 

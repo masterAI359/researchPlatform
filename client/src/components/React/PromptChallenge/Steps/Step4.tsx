@@ -6,7 +6,7 @@ import Expertise from "../Appproach/expertise"
 export default function Step4({ setStartSearch, setGettingHelp }) {
 
     return (
-        <div className="block h-full w-full ">
+        <div className="block 2xl:h-full 2xl:w-full xs:w-auto xs:h-auto ">
             <div className="px-5">
                 <div className="w-full box-border border-b h-fit border-white/10 lg:mb-4 flex flex-row gap-x-8 items-baseline lg:mt-10">
                     <div className="w-fit flex justify-items-start">

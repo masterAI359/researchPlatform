@@ -11,6 +11,7 @@ import decodeItem from '../helpers/decodeItem.js';
 import { logoMap } from './logoMap.js';
 //import fetch from 'node-fetch';
 //import cheerio from 'cheerio';
+//CONSIDERATION: DiffBot API might be a better alternative, it seems to have a much lower failure rate than TLDRThis api
 //TODO: We should refine the bingArticles search to only return print media, and ensure that we're returning bigger image sizes
 export const bingGeneral = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     //declare search string from user's input
@@ -40,7 +41,7 @@ export const bingGeneral = (req, res) => __awaiter(void 0, void 0, void 0, funct
 export const bingArticles = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const search = req.query.q;
     const apiKey = 'ce2d91d82a8749c3a4f0eb2a64d9c77a';
-    const endpoint = `https://api.bing.microsoft.com/v7.0/news/search?q=${encodeURIComponent(search)}+-site:msn.com&mkt=en-us&freshness=month&count=10&category=Articles&safeSearch=Strict&module=Images&responseFilter=News&textFormat=HTML`;
+    const endpoint = `https://api.bing.microsoft.com/v7.0/news/search?q=${encodeURIComponent(search)}+-site:msn.com&mkt=en-us&freshness=month&count=10&category=Articles&safeSearch=Strict&module=Images&responseFilter=News&textFormat-videos=HTML`;
     try {
         const response = yield fetch(endpoint, {
             method: 'GET',

@@ -52,7 +52,7 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
   return (
     <section
       ref={containerRef}
-      className="overflow-x-hidden relative xs:h-5/6 md:min-h-full mx-auto h-fit xs:w-12/12 xl:w-3/4 transition-all duration-400 animate-fade-in delay-300">
+      className="overflow-x-hidden relative xs:h-5/6 md:min-h-full mx-auto h-fit xs:w-12/12 xl:w-3/4 transition-all duration-400 animate-fade-in delay-300 no-scrollbar">
       {containerWidth > 0 ? <motion.div
         ref={wizardRef}
         style={{ maxHeight: "fit" }}

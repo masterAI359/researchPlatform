@@ -60,8 +60,9 @@ export const tldrSummary = async (req: Request, res: Response) => {
                 });
 
                 if (!response.ok) {
-                    console.error(`Failed to fetch Summary for ${article.url}`);
-                    throw new Error(`Failed to fetch Summary for ${article.url}`);
+                    const errorText = await response.text();
+                    console.error(`Failed to fetch summary for ${article.url}: ${response.status} ${response.statusText} - ${errorText}`);
+                    throw new Error(`Failed to fetch summary for ${article.url}: ${response.status} ${response.statusText}`);
                 }
 
                 const data = await response.json();

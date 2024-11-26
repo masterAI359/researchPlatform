@@ -44,8 +44,9 @@ export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, funct
                     })
                 });
                 if (!response.ok) {
-                    console.error(`Failed to fetch Summary for ${article.url}`);
-                    throw new Error(`Failed to fetch Summary for ${article.url}`);
+                    const errorText = yield response.text();
+                    console.error(`Failed to fetch summary for ${article.url}: ${response.status} ${response.statusText} - ${errorText}`);
+                    throw new Error(`Failed to fetch summary for ${article.url}: ${response.status} ${response.statusText}`);
                 }
                 const data = yield response.json();
                 data.logo = article.logo;

@@ -3,6 +3,7 @@ import { useRef, useState, useEffect } from "react";
 import { WindowProps } from "@/env";
 import { AnimatePresence, motion } from "framer-motion";
 import StepWizard from '../StepWizard/StepWizard';
+import Perspective from './Appproach/Perspective';
 import Step1 from './Steps/Step1';
 import Step2 from './Steps/Step2';
 import Step3 from './Steps/Step3';
@@ -73,15 +74,15 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
           />
         </div>
         <div style={{ width: containerWidth, flexShrink: 0, maxHeight: 'fit' }} className='text-center flex grow content-center'>
-          <Step2 containerWidth={containerWidth}
-            setGettingHelp={setGettingHelp}
-          />
+          <Perspective setGettingHelp={setGettingHelp} />
         </div>
         <div style={{ width: containerWidth, flexShrink: 0, maxHeight: 'fit' }} className='text-center max-h-fit'>
-          <Step3 containerWidth={containerWidth} setStartSearch={setStartSearch} setGettingHelp={setGettingHelp} />
+          <Step2 containerWidth={containerWidth}
+            setGettingHelp={setGettingHelp} />
         </div>
         <div style={{ width: containerWidth, flexShrink: 0 }} className='text-center max-h-fit'>
-          <Step4 setStartSearch={setStartSearch} setGettingHelp={setGettingHelp} />
+          <Step3 containerWidth={containerWidth} setStartSearch={setStartSearch} setGettingHelp={setGettingHelp} />
+
         </div>
         <div style={{ width: containerWidth, flexShrink: 0 }} className='text-center h-fit'>
           <SearchBox

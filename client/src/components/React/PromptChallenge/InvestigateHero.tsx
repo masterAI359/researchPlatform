@@ -1,17 +1,18 @@
 import { Children, useState, useRef, useEffect } from "react";
+import Angle from "./Appproach/Angle";
 import HeroWindow from "./Window";
 import BackButton from "../Buttons/Back";
 import NextButton from "../Buttons/Next";
 import StepWizard from "../StepWizard/StepWizard";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function InvestigateHero({ query, isLoading, setIsSubmitted, setQuery }) {
+  const [approachSet, setApproach] = useState<boolean>(true)
   const [currentStep, setCurrentStep] = useState<number>(0)
   const [startSearch, setStartSearch] = useState<boolean>(false)
   const [canProceed, setCanProceed] = useState<boolean>(false)
   const [notifyRequired, setNotifyRequired] = useState<boolean>(false)
   const [gettingHelp, setGettingHelp] = useState<boolean>(false)
-
-  console.log(currentStep)
 
   return (
     <section className={`py-8 transition-all animate-fade-in delay-1000 duration-500 ease-in-out `}>
@@ -21,32 +22,52 @@ export default function InvestigateHero({ query, isLoading, setIsSubmitted, setQ
     ${currentStep < 4 ? 'lg:h-[40rem] ' : 'lg:h-[26rem]'} 
     ${gettingHelp ? 'opacity-65 pointer-events-none' : null}`}>
 
-        <StepWizard currentStep={currentStep} setCurrentStep={setCurrentStep} />
-        <BackButton
-          currentStep={currentStep}
-          setCurrentStep={setCurrentStep}
-        />
-        <HeroWindow
-          currentStep={currentStep}
-          setCurrentStep={setCurrentStep}
-          query={query}
-          setQuery={setQuery}
-          isLoading={isLoading}
-          setIsSubmitted={setIsSubmitted}
-          setStartSearch={setStartSearch}
-          setCanProceed={setCanProceed}
-          notifyRequired={notifyRequired}
-          setNotifyRequired={setNotifyRequired}
-          setGettingHelp={setGettingHelp}
-        />
-        <NextButton
-          currentStep={currentStep}
-          setCurrentStep={setCurrentStep}
-          setCanProceed={setCanProceed}
-          canProceed={canProceed}
-          setNotifyRequired={setNotifyRequired}
-          notifyRequired={notifyRequired}
-        />
+        <AnimatePresence>
+          {/*   {approachSet === false && <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ type: 'tween', duration: 0.4 }}
+            className="h-11/12 w-11/12 mx-auto flex content-center"
+          >
+            <Angle setApproach={setApproach} />
+          </motion.div>} */}
+          {approachSet && <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ type: 'tween', duration: 0.4 }}
+          >
+            <StepWizard currentStep={currentStep} setCurrentStep={setCurrentStep} />
+            <BackButton
+              currentStep={currentStep}
+              setCurrentStep={setCurrentStep}
+            />
+            <HeroWindow
+              currentStep={currentStep}
+              setCurrentStep={setCurrentStep}
+              query={query}
+              setQuery={setQuery}
+              isLoading={isLoading}
+              setIsSubmitted={setIsSubmitted}
+              setStartSearch={setStartSearch}
+              setCanProceed={setCanProceed}
+              notifyRequired={notifyRequired}
+              setNotifyRequired={setNotifyRequired}
+              setGettingHelp={setGettingHelp}
+            />
+            <NextButton
+              currentStep={currentStep}
+              setCurrentStep={setCurrentStep}
+              setCanProceed={setCanProceed}
+              canProceed={canProceed}
+              setNotifyRequired={setNotifyRequired}
+              notifyRequired={notifyRequired}
+            />
+          </motion.div>}
+        </AnimatePresence>
+
+
 
       </div>
     </section>

@@ -19,6 +19,8 @@ export default function InvestigateContainer() {
   const [notePosition, setNotePosition] = useState({ x: 0, y: 500 })
   const [windowWidth, setWindowWidth] = useState<number>(null)
   const [constraints, setConstraints] = useState(null)
+  const [finished, setFinished] = useState<boolean>(false)
+  const [showMapModal, setShowMapModal] = useState<boolean>(false)
   const containerRef = useRef(null)
   const notesRef = useRef(null)
   const { fetchArticles, fetchSummaries, fetchedArticles, fetchedSummaries, isLoading, loadingSummaries, readyToSelect } = useFetch()
@@ -84,6 +86,7 @@ export default function InvestigateContainer() {
     }, [])
   }
 
+  console.log({ "Finished Reading?": finished })
 
 
   return (
@@ -103,7 +106,7 @@ export default function InvestigateContainer() {
         loadingSummaries={loadingSummaries}
         summaries={summaries}
       />}
-      <div className="w-full h-auto mx-auto" ref={storyRef}>
+      <div className="w-full h-auto mx-auto xl:mt-36" ref={storyRef}>
         <StoryContainer
           articles={articles}
           summaries={summaries}
@@ -117,6 +120,8 @@ export default function InvestigateContainer() {
           fetchedSummaries={fetchedSummaries}
           fetchedArticles={fetchedArticles}
           setTakingNotes={setTakingNotes}
+          setFinished={setFinished}
+          finished={finished}
         />
       </div>
 

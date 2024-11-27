@@ -33,6 +33,12 @@ export default function StepsEditor({ setterFunction }) {
 
     editor.on('update', handleContent)
 
+    const handleContainerClick = () => {
+        if (editor && !editor.isFocused) {
+            editor.commands.focus('end')
+        }
+    }
+
 
 
     return (
@@ -102,10 +108,14 @@ export default function StepsEditor({ setterFunction }) {
                 </div>
             </div>
 
-            <EditorContent style={{ textAlign: 'left', verticalAlign: 'top', height: '100%', color: '#ffffff' }} editor={editor}
-                className="text-white text-lg focus:outline-none px-1 focus:border-none font-thin font-serif tracking-tight cursor-text
+            <div onClick={handleContainerClick} className="h-full w-full">
+                <EditorContent style={{ textAlign: 'left', verticalAlign: 'top', minHeight: '90%', height: '100%', color: '#ffffff' }} editor={editor}
+                    className="text-white text-lg focus:outline-none px-1 focus:border-none font-thin font-serif tracking-tight cursor-text
              font-serif min-w-full h-full prose"
-            />
+                />
+            </div>
+
+
 
         </div>
 

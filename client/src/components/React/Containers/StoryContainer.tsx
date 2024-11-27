@@ -7,6 +7,7 @@ import ArticlesGrid from "../ArticleComponents/ArticlesGrid"
 import ArticleLoader from "../Loaders/ArticleLoader"
 import SummaryLoader from "../Loaders/SummaryLoader"
 import ControlPanel from "../Buttons/ButtonWrappers/ControlPanel"
+
 import TakeNotes from "../Buttons/TakeNotes"
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
@@ -27,7 +28,7 @@ const variants = {
 
 
 export default function StoryContainer({ selectedForSummary, setSelectedForSummary, articles, summaries, isLoading, loadingSummaries,
-    readyToSelect, fetchedSummaries, submittedForSummaries, setSubmittedForSummaries, fetchedArticles, setTakingNotes
+    readyToSelect, fetchedSummaries, submittedForSummaries, setSubmittedForSummaries, fetchedArticles, setTakingNotes, finished, setFinished
 }) {
     const [showSelect, setShowSelect] = useState<boolean>(false)
 
@@ -153,10 +154,7 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
                 transition={{ type: 'tween', duration: 0.2 }}
                 className="w-full h-auto relative mx-auto"
             >
-                <ControlPanel setTakingNotes={setTakingNotes} />
-                {/*() <TakeNotes
-                    setTakingNotes={setTakingNotes}
-                /> */}
+                <ControlPanel setTakingNotes={setTakingNotes} setFinished={setFinished} />
             </motion.div>
 
         </div>

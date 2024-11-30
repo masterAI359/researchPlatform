@@ -1,6 +1,7 @@
 import TakeNotes from "../TakeNotes"
 import { CompareStories } from "./CompareStories"
 import { FinishedReading } from "../FinishedReading"
+import ReturnToSearch from "../ReturnToSearch"
 import HelpButton from "../Question"
 
 
@@ -13,7 +14,7 @@ export default function ControlPanel({ setTakingNotes, setFinished }) {
          h-auto bg-astro_black rounded-full border border-border_gray overflow-x-hidden">
 
             <div className="shrink-0 w-fit h-full py-1.5 px-2.5  hover:bg-border_gray transition-all ease-in-out border-r border-border_gray flex justify-center">
-                <TakeNotes setTakingNotes={setTakingNotes} />
+                <ReturnToSearch />
             </div>
 
             <div className="shrink-0 w-fit h-auto py-1.5 px-2.5 hover:bg-border_gray transition-all ease-in-out flex justify-center border-r border-border_gray">

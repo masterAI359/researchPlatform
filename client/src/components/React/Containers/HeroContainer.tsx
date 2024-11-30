@@ -2,7 +2,7 @@ import InvestigateHero from "../PromptChallenge/InvestigateHero"
 import ScrollDown from "../ArticleComponents/ScrollDown"
 import { motion, AnimatePresence } from "framer-motion"
 
-export default function HeroContainer({ query, setQuery, isLoading, setIsSubmitted, articles, selectedForSummary, loadingSummaries, summaries }) {
+export default function HeroContainer({ query, setQuery, isLoading, setIsSubmitted, articles, selectedForSummary, loadingSummaries, summaries, gettingHelp, setGettingHelp }) {
 
     return (
         <AnimatePresence>
@@ -12,9 +12,12 @@ export default function HeroContainer({ query, setQuery, isLoading, setIsSubmitt
                     setQuery={setQuery}
                     isLoading={isLoading}
                     setIsSubmitted={setIsSubmitted}
+                    gettingHelp={gettingHelp}
+                    setGettingHelp={setGettingHelp}
+                    summaries={summaries}
                 />
                 <AnimatePresence>
-                    {articles.length > 0 &&
+                    {/*     {articles.length > 0 &&
                         <motion.div
                             key='scrollDown'
                             initial={{ opacity: 0 }}
@@ -26,7 +29,7 @@ export default function HeroContainer({ query, setQuery, isLoading, setIsSubmitt
                                 articles={articles}
                                 loadingSummaries={loadingSummaries}
                                 summaries={summaries} />
-                        </motion.div>}
+                        </motion.div>} */}
                 </AnimatePresence>
             </div>}
         </AnimatePresence>

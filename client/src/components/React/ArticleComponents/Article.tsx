@@ -44,47 +44,49 @@ export default function Article({ article, selectedForSummary, setSelectedForSum
         <li
             onClick={() => { chooseArticle(article) }}
             key={name}
-            className={`group cursor-pointer min-h-96 relative mx-auto rounded-3xl text-white 
-                    lg:opacity-90 lg:hover:opacity-100 p-4 bg-ebony 2xl:hover:scale-110 transition-all ease-in-out duration-300
-                    lg:p-8
-                    ${isHilighted ? "border-2 border-blue-400" : "shadow"}`}
+            className={`group cursor-pointer lg:min-h-96 lg:max-h-96 lg:min-w-96 xs:max-h-60 xs:min-h-60 xs:max-w-60 pb-6 relative mx-auto rounded-3xl text-white 
+            lg:opacity-90 lg:hover:opacity-100 bg-ebony 2xl:hover:scale-110 transition-all ease-in-out duration-300 overflow-y-hidden
+            
+            ${isHilighted ? "border-2 border-blue-400" : "shadow"}`}
         >
-            <figcaption className='relative flex flex-row items-center gap-4 pb-6 border-b border-white/10'>
-                <div className='overflow-hidden shrink-0'>
-                    <img
-                        src={thumbnail}
-                        className='object-cover rounded-full h-20 w-20 shrink-0'
-                    />
-                </div>
-                <div>
-                    <h1 className='text-xl leading-6 text-white font-serif'>
-                        {name}
-                    </h1>
-                    <div className='mt-1'>
+            <figcaption className='relative w-full lg:max-h-40 lg:min-h-40 xs:min-h-24 xs:max-h-24  overflow-hidden'>
+                <div
+                    style={{ backgroundImage: `url(${thumbnail})` }}
+                    className='absolute inset-0 bg-cover bg-center opacity-60 rounded-t-3xl'
+                ></div>
+                <div className='relative z-10 p-4'>
+
+                    <div className="flex flex-col lg:gap-y-6">
+                        <h1 className='lg:text-lg xs:text-xs leading-6 text-white font-light tracking-tight font-serif'>
+                            {name}
+                        </h1>
                     </div>
                 </div>
             </figcaption>
-            <figure className="hover:">
-                <div className={`h-full group mt-2 pt-2 group-hover: transition-colors duration-200 ${isHilighted ? 'opacity-100' : null}`}>
-                    <blockquote className='relative'>
-                        <span className={`text-sm font-serif mb-5 flex items-center ${isHilighted ? 'opacity-100' : null}`}>
-                            <img
-                                className="mr-3 h-12 w-12"
-                                src={logo}
-                                alt={''}
-                            />
-                            {provider}
-                        </span>
-                        <p className='text-base transition-colors duration-100 font-serif'>
+            <figure className="relative w-full h-auto box-border pt-2">
+                <div className="flex gap-3 items-center relative bottom-0 left-0 px-4">
+                    <img
+                        className="mr-3 lg:h-8 lg:w-8 xs:h-6 xs:w-6"
+                        src={logo}
+                        alt=""
+                    />
+                    <span className='text-sm xs:text-xs lg:text-lg font-serif text-white'>
+                        {provider}
+                    </span>
+                </div>
+                <div className={`h-full group mt-2 pt-2 ${isHilighted ? 'opacity-100' : ''}`}>
+                    <blockquote className='relative px-4'>
+                        <p className='lg:text-base xs:text-xs transition-colors duration-100 font-serif font-light'>
                             "{description}"
                         </p>
                     </blockquote>
                 </div>
             </figure>
         </li>
+
+
     );
 }
-
 
 
 

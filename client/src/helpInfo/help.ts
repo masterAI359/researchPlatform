@@ -36,4 +36,9 @@ const Step4Help: Help[] = [{
     the impressions we've formed prior as opposed to the evidence we've sifted through.`
 }]
 
-export { Step1Help, Step2Help, Step3Help, Step4Help };
+const SummaryHelp: Help[] = [{
+    heading: "Test",
+    explanation: "test"
+}]
+
+export { Step1Help, Step2Help, Step3Help, Step4Help, SummaryHelp };

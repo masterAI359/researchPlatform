@@ -20,7 +20,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 }
 
 const variants = {
-    hidden: { opacity: 0, y: 80 },
+    hidden: { opacity: 0, y: 100 },
     visible: { opacity: 1, y: 0 }
 }
 
@@ -28,7 +28,8 @@ const variants = {
 
 
 export default function StoryContainer({ selectedForSummary, setSelectedForSummary, articles, summaries, isLoading, loadingSummaries,
-    readyToSelect, fetchedSummaries, submittedForSummaries, setSubmittedForSummaries, fetchedArticles, setTakingNotes, finished, setFinished
+    readyToSelect, fetchedSummaries, submittedForSummaries, setSubmittedForSummaries, fetchedArticles, setTakingNotes, finished, setFinished,
+    setGettingHelp, gettingHelp
 }) {
     const [showSelect, setShowSelect] = useState<boolean>(false)
 
@@ -117,7 +118,8 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
                             transition={{ duration: 1, delay: 1 }}
                         >
                             <SummaryContainer
-
+                                gettingHelp={gettingHelp}
+                                setGettingHelp={setGettingHelp}
                                 summaries={summaries}
                                 articles={articles}
                                 selectedForSummary={selectedForSummary} />
@@ -125,18 +127,11 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
                 </AnimatePresence>
             </div>
             <AnimatePresence>
-                {showSelect &&
+                {articles.length > 0 &&
                     <div className="relative w-full h-auto flex justify-start">
-                        <motion.div
-                            className="w-full h-fit relative"
-                            variants={variants}
-                            initial="hidden"
-                            animate="visible"
-                            exit="hidden"
-                            transition={{ type: "spring", damping: 10, duration: 0.3 }}
-
-                        >
+                        <motion.div>
                             <SelectArticles
+                                showSelect={showSelect}
                                 hideSelect={hideSelect}
                                 selectedForSummary={selectedForSummary}
                                 submittedForSummaries={submittedForSummaries}
@@ -147,15 +142,19 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
                 }
 
             </AnimatePresence>
-            <motion.div
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0 }}
-                transition={{ type: 'tween', duration: 0.2 }}
-                className="w-full h-auto relative mx-auto"
-            >
-                <ControlPanel setTakingNotes={setTakingNotes} setFinished={setFinished} />
-            </motion.div>
+
+            <AnimatePresence>
+                {summaries.length >= 1 && <motion.div
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0 }}
+                    transition={{ type: 'tween', duration: 0.2 }}
+                    className="w-full h-auto relative mx-auto"
+                >
+                    <ControlPanel setTakingNotes={setTakingNotes} setFinished={setFinished} />
+                </motion.div>}
+            </AnimatePresence>
+
 
         </div>
     )

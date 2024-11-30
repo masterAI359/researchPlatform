@@ -5,6 +5,9 @@ module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
+      backgroundImage: {
+        'fallback': 'url(src/public/images/fallbacks/fallbackImage.svg)'
+      },
       screens: {
         'xs': '375px',   // e.g., iPhone SE
         'sm': '640px',   // Tailwind's default

@@ -3,9 +3,10 @@ import { createPortal } from "react-dom"
 import { Summary } from "./Summary"
 import { motion } from "framer-motion"
 import FailedSummary from "./FailedSummary"
+import SummaryHeading from "./SummaryHeading"
 import { element } from "prop-types"
 
-export default function SummaryContainer({ summaries, articles, selectedForSummary }) {
+export default function SummaryContainer({ summaries, articles, selectedForSummary, gettingHelp, setGettingHelp }) {
   const [selectedStory, setSelectedStory] = useState<number>(null)
   const [failedNotifications, setFailedNotifications] = useState<object[]>([])
   const [showNotifications, setShowNotifications] = useState<boolean>(false)
@@ -61,11 +62,13 @@ export default function SummaryContainer({ summaries, articles, selectedForSumma
 
   return (
     <motion.div
+      className="h-full 2xl:max-w-7xl px-8 py-12 shadow-black inset rounded-4xl mx-auto border-white/10 mt-20"
       variants={container}
       initial="hidden"
       animate="show"
       exit="hidden"
     >
+      <SummaryHeading setGettingHelp={setGettingHelp} gettingHelp={gettingHelp} />
       <div
         className="2xl:max-w-7xl h-auto w-full mx-auto  
                  transition-all duration-1000 animate-fade-in mb-12">

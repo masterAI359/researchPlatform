@@ -21,7 +21,10 @@ export default function BackButton({ setCurrentStep, currentStep }: ButtonProps)
 
     return (
 
-        <div className="absolute xs:left-12 xs:bottom-3 h-auto w-auto lg:left-4 lg:bottom-1/2 my-auto justify-self-start self-center" >
+        <div className={`absolute   h-auto w-auto 
+        lg:left-4  my-auto justify-self-start self-center
+        ${currentStep < 4 ? 'lg:bottom-1/2 xs:bottom-3 xs:left-10' : 'lg:bottom-1/3 xs:bottom-36 xs:left-2'}
+        `} >
             <AnimatePresence>
                 {currentStep !== 0 && <motion.div
                     className="self-center"

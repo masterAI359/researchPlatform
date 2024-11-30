@@ -1,4 +1,4 @@
-import HeroContainer from "./PromptContainer";
+import HeroContainer from "./HeroContainer";
 import StoryContainer from "./StoryContainer";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { SelectedArticles } from '../../../env'
@@ -20,6 +20,7 @@ export default function InvestigateContainer() {
   const [windowWidth, setWindowWidth] = useState<number>(null)
   const [constraints, setConstraints] = useState(null)
   const [finished, setFinished] = useState<boolean>(false)
+  const [gettingHelp, setGettingHelp] = useState<boolean>(false)
   const [showMapModal, setShowMapModal] = useState<boolean>(false)
   const containerRef = useRef(null)
   const notesRef = useRef(null)
@@ -97,6 +98,8 @@ export default function InvestigateContainer() {
       <Navigation width={windowWidth} />
 
       {windowWidth !== null && <HeroContainer
+        gettingHelp={gettingHelp}
+        setGettingHelp={setGettingHelp}
         query={query}
         setQuery={setQuery}
         isLoading={isLoading}
@@ -106,7 +109,7 @@ export default function InvestigateContainer() {
         loadingSummaries={loadingSummaries}
         summaries={summaries}
       />}
-      <div className="w-full h-auto mx-auto xl:mt-36" ref={storyRef}>
+      <div className="w-full h-auto mx-auto xl:mt-12" ref={storyRef}>
         <StoryContainer
           articles={articles}
           summaries={summaries}
@@ -120,6 +123,8 @@ export default function InvestigateContainer() {
           fetchedSummaries={fetchedSummaries}
           fetchedArticles={fetchedArticles}
           setTakingNotes={setTakingNotes}
+          gettingHelp={gettingHelp}
+          setGettingHelp={setGettingHelp}
           setFinished={setFinished}
           finished={finished}
         />

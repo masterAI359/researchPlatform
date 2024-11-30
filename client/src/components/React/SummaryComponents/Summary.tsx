@@ -2,6 +2,7 @@ import Warning from '../Fallbacks/Warning.jsx';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { createPortal } from 'react-dom';
+import fallback from '../../../../public/images/fallbacks/fallbackImage.svg'
 
 export function Summary({ summaryData, handleClick, isSelected, index }) {
     const [fullStory, setFullStory] = useState(false);
@@ -42,7 +43,7 @@ export function Summary({ summaryData, handleClick, isSelected, index }) {
                 ? `fixed mx-auto pb-1 rounded-t-4xl z-40 top-24 lg:inset-x-36 
                 xl:inset-x-[29rem] overflow-y-scroll
                  scrollbar-hide box-border bg-mirage ${fullStory ? `bottom-1 rounded-b-xl` : `bottom-44 rounded-b-4xl`}`
-                : 'mx-auto xl:h-[22rem] xl:w-[20rem] rounded-4xl cursor-pointer'}`}
+                : 'mx-auto xl:h-[16rem] xl:w-[30rem] rounded-4xl cursor-pointer'}`}
     >
         {/* Header Section */}
         <header
@@ -52,8 +53,10 @@ export function Summary({ summaryData, handleClick, isSelected, index }) {
             {/* Background Image with Lower Opacity */}
             <div
                 className={`absolute inset-0 bg-cover bg-center opacity-50 hover:opacity-75
-                         transition-opacity duration-200 ease-in-out ${isSelected ? 'rounded-t-4xl' : 'rounded-4xl'}`}
-                style={{ backgroundImage: `url(${article_image})` }}
+                         transition-opacity duration-200 ease-in-out ${isSelected ? 'rounded-t-4xl' : 'rounded-4xl'}
+                         ${article_image ? null : 'bg-fallbackImage'}
+                         `}
+                style={{ backgroundImage: `${article_image ? `url(${article_image})` : `url(${fallback})`}` }}
             ></div>
 
             {/* Content Over Background */}

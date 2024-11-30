@@ -36,15 +36,26 @@ export const tldrSummary = async (req: Request, res: Response) => {
     const url =
         'https://tldrthis.p.rapidapi.com/v1/model/abstractive/summarize-url/';
 
+
+    function delay(t: number) {
+        return new Promise(resolve => setTimeout(resolve, t));
+    }
+
+    //TODO: figure out how to implement the delay, taking each concurrent request, and multiplying their index by the chosen amount in milliseconds to stagger requests
+
+
     if (!Array.isArray(query) || query.length === 0) {
         return res.status(400).send('Invalid query parameter. Please provide a list of URLs.');
     }
 
     try {
-        const dataMap = query.map(async (article) => {
-            try {
-                console.log({ "fetching data for: ": article.url });
+        const dataMap = query.map(async (article, index) => {
 
+            // console.log({ "fetching data for: ": article.url });
+
+            await delay(index * 1000);
+
+            try {
                 const response = await fetch(url, {
                     method: 'POST',
                     headers: {

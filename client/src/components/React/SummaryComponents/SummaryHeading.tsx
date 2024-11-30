@@ -4,7 +4,7 @@ import HelpButton from "../Buttons/Question"
 export default function ({ setGettingHelp, gettingHelp }) {
 
     return (
-        <header className="w-2/3 h-auto mx-auto flex items-center border-b border-white/10 xl:mb-12 xl:mt-6">
+        <header className="w-full h-auto mx-auto flex items-center border-b border-white/10 xl:mb-16 xl:mt-6">
 
             <div className="w-auto my-auto flex gap-x-8">
                 <h1 className="xl:text-3xl text-left text-white font-light tracking-tight xl:mb-4">

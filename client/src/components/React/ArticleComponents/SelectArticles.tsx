@@ -38,7 +38,7 @@ export default function SelectArticles({ hideSelect, selectedForSummary, submitt
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 140 }}
           transition={{ type: "spring", bounce: 0.45, duration: 0.6 }}
-          className="bg-black fixed xl:left-24 xl:bottom-12 xs:bottom-0 xs:left-0 xs:right-0 xs:w-52 border border-gray_border shadow-black 
+          className="bg-black fixed xl:left-24 xl:bottom-12 xs:bottom-0 xs:w-52 border border-gray_border shadow-black 
       text-white font-light tracking-tight lg:w-fit flex gap-x-2 py-2 px-2 rounded-full cursor-pointer
        mx-auto z-50 justify-between content-center group">
           <div className="h-full my-auto">

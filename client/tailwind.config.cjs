@@ -5,12 +5,42 @@ module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
+      backgroundImage: {
+        'fallback': 'url(src/public/images/fallbacks/fallbackImage.svg)'
+      },
+      screens: {
+        'xs': '375px',   // e.g., iPhone SE
+        'sm': '640px',   // Tailwind's default
+        'md': '768px',   // Tailwind's default
+        'lg': '1024px',  // Tailwind's default
+        'xl': '1280px',  // Tailwind's default
+        '2xl': '1536px', // Tailwind's default
+      },
       typography: {
         DEFAULT: {
           css: {
             ':focus': {
               outline: 'none',
               boxShadow: 'none',
+            },
+            h1: {
+              color: '#ffffff',
+              fontFamily: {
+                serif: ["Open Sans", "sans-serif"]
+              },
+              fontWeight: {
+                thin: '50'
+              },
+              fontSize: '24px'
+            },
+            h2: {
+              color: '#ffffff',
+              fontFamily: {
+                serif: ["Open Sans", "sans-serif"]
+              },
+              fontWeight: {
+                thin: '50'
+              },
             }
           }
         }
@@ -22,6 +52,9 @@ module.exports = {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
         serif: ["Open Sans", "sans-serif"],
 
+      },
+      fontWeight: {
+        thin: '100'
       },
       backgroundImage: (theme) => ({
         // Blue Gradient
@@ -105,11 +138,16 @@ module.exports = {
       },
       colors: {
 
+
         button_gray: '#374151',
+        pearl: "#EDEADE",
         button_blue: '#2563eb',
         black: "#0f1014",
+        astro_black: "linear-gradient(180deg, #13151A 0%, rgba(19, 21, 26, 0.88) 100%)",
         loader_black: "#0f101b",
         inner_loader_black: "#26272B",
+        border_gray: "#343841",
+        bone_white: "#F9F6EE",
         ebony: "#1a1c23",
         rich_black: '#010203',
         mirage: "#27292D",

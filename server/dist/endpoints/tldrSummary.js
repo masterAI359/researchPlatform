@@ -23,13 +23,18 @@ export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, funct
     const query = JSON.parse(decodeURIComponent(received));
     const numArticles = query.length;
     const url = 'https://tldrthis.p.rapidapi.com/v1/model/abstractive/summarize-url/';
+    function delay(t) {
+        return new Promise(resolve => setTimeout(resolve, t));
+    }
+    //TODO: figure out how to implement the delay, taking each concurrent request, and multiplying their index by the chosen amount in milliseconds to stagger requests
     if (!Array.isArray(query) || query.length === 0) {
         return res.status(400).send('Invalid query parameter. Please provide a list of URLs.');
     }
     try {
-        const dataMap = query.map((article) => __awaiter(void 0, void 0, void 0, function* () {
+        const dataMap = query.map((article, index) => __awaiter(void 0, void 0, void 0, function* () {
+            // console.log({ "fetching data for: ": article.url });
+            yield delay(index * 1000);
             try {
-                console.log({ "fetching data for: ": article.url });
                 const response = yield fetch(url, {
                     method: 'POST',
                     headers: {
@@ -44,8 +49,9 @@ export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, funct
                     })
                 });
                 if (!response.ok) {
-                    console.error(`Failed to fetch Summary for ${article.url}`);
-                    throw new Error(`Failed to fetch Summary for ${article.url}`);
+                    const errorText = yield response.text();
+                    console.error(`Failed to fetch summary for ${article.url}: ${response.status} ${response.statusText} - ${errorText}`);
+                    throw new Error(`Failed to fetch summary for ${article.url}: ${response.status} ${response.statusText}`);
                 }
                 const data = yield response.json();
                 data.logo = article.logo;

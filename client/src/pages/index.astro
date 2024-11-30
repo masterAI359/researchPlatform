@@ -1,16 +1,8 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import HeroImage from '@/components/React/HomeComponents/HeroImage';
-import ArticlesResult from '@/components/React/HomeComponents/ArticlesResult';
-import Challenge from '@/components/Astro/Challenge.astro';
+import HomeContainer from '@/components/React/Containers/HomeContainer'
 ---
 
-<BaseLayout>
-	<HeroImage client:load/>
-	<Challenge/> 
-	<ArticlesResult client:load/> <!-- Saving API transactions by not 
-	hydrating the ArticlesResult component unless deemed 
-	necessary
-	 -->
-	<!-- article search page end -->
-</BaseLayout>
+	<BaseLayout>
+		<HomeContainer client:only />
+	</BaseLayout>

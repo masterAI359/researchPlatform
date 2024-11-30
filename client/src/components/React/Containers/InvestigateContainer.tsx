@@ -1,10 +1,12 @@
-import HeroContainer from "./PromptContainer";
+import HeroContainer from "./HeroContainer";
 import StoryContainer from "./StoryContainer";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { SelectedArticles } from '../../../env'
 import { useFetch } from "@/Hooks/useFetch";
 import { AnimatePresence, motion } from "framer-motion";
+import ControlPanel from "../Buttons/ButtonWrappers/ControlPanel";
 import Notes from "../PromptChallenge/Notes";
+import Navigation from "@/components/Astro/global/Navigation";
 
 export default function InvestigateContainer() {
   const [query, setQuery] = useState<string>("")
@@ -14,8 +16,12 @@ export default function InvestigateContainer() {
   const storyRef = useRef(null)
   const articlesToSummarize = encodeURIComponent(JSON.stringify(selectedForSummary))
   const [takingNotes, setTakingNotes] = useState<boolean>(false)
-  const [notePosition, setNotePosition] = useState({ x: 0, y: 100 })
+  const [notePosition, setNotePosition] = useState({ x: 0, y: 500 })
+  const [windowWidth, setWindowWidth] = useState<number>(null)
   const [constraints, setConstraints] = useState(null)
+  const [finished, setFinished] = useState<boolean>(false)
+  const [gettingHelp, setGettingHelp] = useState<boolean>(false)
+  const [showMapModal, setShowMapModal] = useState<boolean>(false)
   const containerRef = useRef(null)
   const notesRef = useRef(null)
   const { fetchArticles, fetchSummaries, fetchedArticles, fetchedSummaries, isLoading, loadingSummaries, readyToSelect } = useFetch()
@@ -23,6 +29,13 @@ export default function InvestigateContainer() {
 
   const articles: Articles[] = fetchedArticles
   const summaries: object[] = fetchedSummaries
+
+  const resize = () => {
+
+    if (containerRef.current) {
+      setWindowWidth(containerRef.current.offsetWidth)
+    }
+  }
 
   function scrollToView() {
 
@@ -36,7 +49,7 @@ export default function InvestigateContainer() {
 
     setConstraints({
       top: 0,
-      left: 30,
+      left: 0,
       right: constraintsRect.width - notesRect.width,
       bottom: constraintsRect.height - notesRect.height
     })
@@ -59,18 +72,34 @@ export default function InvestigateContainer() {
 
       handleDragConstraints()
     }
-
-
   }, [isSubmitted, submittedForSummaries,])
 
+  if (typeof window !== 'undefined') {
+
+    useLayoutEffect(() => {
+      if (containerRef.current) {
+        setWindowWidth(containerRef.current.offsetWidth)
+        console.log(windowWidth)
+      }
+
+      window.addEventListener('resize', resize);
+
+    }, [])
+  }
+
+  console.log({ "Finished Reading?": finished })
 
 
   return (
     <section
       ref={containerRef}
-      className={`w-full grid grid-cols-1 transition-all duration-300 ease-in-out h-auto mx-auto justify-center
+      className={`w-full grid grid-cols-1 transition-all duration-300 ease-in-out h-auto mx-auto justify-center relative
          items-center animate-fade-in pb-52 relative box-border overflow-hidden pb-[40rem]`}>
-      <HeroContainer
+      <Navigation width={windowWidth} />
+
+      {windowWidth !== null && <HeroContainer
+        gettingHelp={gettingHelp}
+        setGettingHelp={setGettingHelp}
         query={query}
         setQuery={setQuery}
         isLoading={isLoading}
@@ -79,8 +108,8 @@ export default function InvestigateContainer() {
         articles={articles}
         loadingSummaries={loadingSummaries}
         summaries={summaries}
-      />
-      <div className="w-full h-auto mx-auto" ref={storyRef}>
+      />}
+      <div className="w-full h-auto mx-auto xl:mt-12" ref={storyRef}>
         <StoryContainer
           articles={articles}
           summaries={summaries}
@@ -94,6 +123,10 @@ export default function InvestigateContainer() {
           fetchedSummaries={fetchedSummaries}
           fetchedArticles={fetchedArticles}
           setTakingNotes={setTakingNotes}
+          gettingHelp={gettingHelp}
+          setGettingHelp={setGettingHelp}
+          setFinished={setFinished}
+          finished={finished}
         />
       </div>
 

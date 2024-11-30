@@ -1,194 +1,25 @@
 import { useState, useEffect } from "react"
 import { motion, useAnimate } from "framer-motion"
-
-
+import Node1 from "./Node1"
+import Node2 from "./Node2"
+import Node3 from "./Node3"
+import Node4 from "./Node4"
+import Node5 from "./Node5"
 
 export default function StepWizard({ currentStep, setCurrentStep }: any) {
 
 
 
     return (
-        <section className="w-11/12 h-full justify-self-center">
-            <ol className="flex items-center w-full h-full lg:min-h-28">
-                <li className="flex flex-col w-full lg:h-28 items-center">
-                    <div className="flex  items-center justify-center w-full h-full">
-                        <motion.div
-                            onClick={() => setCurrentStep(0)}
-                            className="flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 shrink-0 z-40 hover:cursor-pointer transition-all duration-300 hover:scale-125"
-                            animate={{
-                                backgroundColor: currentStep === 0 ? "#374151" : "#2563eb",
-                                boxShadow: currentStep === 0
-                                    ? "0 0 0 4px rgba(37, 99, 235, 1)"
-                                    : "none"
-                            }}
-                            transition={{ duration: 0.4 }}
-                            style={{ transformOrigin: 'left' }}>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="28px" height="28px">
-                                <path d="M 6.78125 1.78125 A 1.50015 1.50015 0 0 0 5.7363281 4.3574219 L 7.1503906 5.7714844 A 1.50015 1.50015 0 1 0 9.2714844 3.6503906 L 7.8574219 2.2363281 A 1.50015 1.50015 0 0 0 6.78125 1.78125 z M 41.173828 1.7832031 A 1.50015 1.50015 0 0 0 40.142578 2.2363281 L 38.728516 3.6503906 A 1.50015 1.50015 0 1 0 40.849609 5.7714844 L 42.263672 4.3574219 A 1.50015 1.50015 0 0 0 41.173828 1.7832031 z M 24 4.015625 C 16.289774 4.0178592 10 10.286931 10 18 C 10 21.999465 11.691407 25.619495 14.388672 28.167969 C 14.705917 28.467557 14.938931 28.889561 15.046875 29.373047 L 17.513672 40.476562 C 17.969216 42.527257 19.805576 44 21.90625 44 L 24 44 L 26.09375 44 C 28.194629 44 30.030487 42.527102 30.486328 40.476562 L 32.955078 29.373047 L 32.955078 29.371094 C 33.062069 28.888989 33.293691 28.469343 33.611328 28.169922 L 33.611328 28.167969 L 33.613281 28.167969 C 36.309356 25.619613 38 21.999465 38 18 C 38 10.286931 31.710226 4.0178592 24 4.015625 z M 24 7.015625 C 30.093774 7.0173908 35 11.909069 35 18 C 35 21.156535 33.67466 23.980731 31.550781 25.988281 C 30.753594 26.740588 30.250209 27.709621 30.025391 28.722656 L 28.853516 34 L 19.146484 34 L 17.974609 28.720703 C 17.748553 27.708189 17.245974 26.740693 16.449219 25.988281 C 14.324484 23.980755 13 21.156535 13 18 C 13 11.909069 17.906226 7.0173908 24 7.015625 z M 1.5 15 A 1.50015 1.50015 0 1 0 1.5 18 L 4.5 18 A 1.50015 1.50015 0 1 0 4.5 15 L 1.5 15 z M 43.5 15 A 1.50015 1.50015 0 1 0 43.5 18 L 46.5 18 A 1.50015 1.50015 0 1 0 46.5 15 L 43.5 15 z M 39.773438 26.773438 A 1.50015 1.50015 0 0 0 38.728516 29.349609 L 40.142578 30.763672 A 1.50015 1.50015 0 1 0 42.263672 28.642578 L 40.849609 27.228516 A 1.50015 1.50015 0 0 0 39.773438 26.773438 z M 8.1816406 26.775391 A 1.50015 1.50015 0 0 0 7.1503906 27.228516 L 5.7363281 28.642578 A 1.50015 1.50015 0 1 0 7.8574219 30.763672 L 9.2714844 29.349609 A 1.50015 1.50015 0 0 0 8.1816406 26.775391 z M 19.814453 37 L 28.185547 37 L 27.558594 39.826172 C 27.404435 40.519634 26.804871 41 26.09375 41 L 24 41 L 21.90625 41 C 21.192924 41 20.595862 40.521478 20.441406 39.826172 L 19.814453 37 z" fill="#ffffff" />
-                            </svg>
-                        </motion.div>
-                        <motion.div
-                            className="w-full h-1 grow"
-                            initial={{ scaleX: 0, backgroundColor: "#374151" }}
-                            animate={{ scaleX: 1, backgroundColor: currentStep > 0 ? "#2563eb" : "#374151" }}
-                            exit={{ scale: 0 }}
-                            transition={{ duration: 0.5 }}
-                            style={{ transformOrigin: 'left' }}
-                        />
-                    </div>
-
-                    <motion.div
-                        className="lg:-translate-x-4 text-sm text-center bg-transparent
-                        text-white self-start w-fit"
-                        animate={{ scale: 1, opacity: currentStep > 0 ? 0 : 1 }}
-                        transition={{ duration: 0.7 }}
-                        style={{ translateX: '-34px' }}
-                    >
-                        Challenge an idea
-                    </motion.div>
-
-                </li>
-                <li className="flex flex-col w-full lg:h-28 items-center">
-                    <div className="flex  items-center justify-center w-full h-full">
-                        <motion.div
-                            onClick={() => setCurrentStep(1)}
-                            className="flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 shrink-0 z-40 hover:cursor-pointer transition-all duration-300 hover:scale-125"
-                            animate={{
-                                backgroundColor: currentStep >= 2 ? "#2563eb" : "#374151",
-                                boxShadow: currentStep === 1
-                                    ? "0 0 0 4px rgba(37, 99, 235, 1)"
-                                    : "none"
-                            }}
-                            transition={{ duration: 0.4 }}
-                            style={{ transformOrigin: 'left' }}
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="28px" height="28px">
-                                <path d="M 24.34375 5.0703125 C 14.23245 4.880049 6 13.432641 6 23.5 L 6 38.5 C 6 40.967501 8.0324991 43 10.5 43 L 11.5 43 C 13.967501 43 16 40.967501 16 38.5 L 16 23.404297 C 16 19.338919 18.864634 15.723804 22.808594 15.154297 C 27.795106 14.434278 32 18.251669 32 23.066406 L 32 38.5 C 32 40.967501 34.032499 43 36.5 43 L 37.5 43 C 39.967501 43 42 40.967501 42 38.5 L 42 23.068359 C 42 13.259183 34.111687 5.2533184 24.34375 5.0703125 z M 24.287109 8.0703125 C 32.453171 8.2233066 39 14.861536 39 23.068359 L 39 34 L 35 34 L 35 23.066406 C 35 16.481143 29.112347 11.211612 22.380859 12.183594 C 16.878819 12.978087 13 17.925675 13 23.404297 L 13 34 L 9 34 L 9 23.5 C 9 15.069359 15.904408 7.912576 24.287109 8.0703125 z M 25.285156 20 C 25.078156 20 24.875328 20.090813 24.736328 20.257812 L 18.166016 29.828125 C 17.989016 30.041125 17.950359 30.339844 18.068359 30.589844 C 18.185359 30.840844 18.437844 31 18.714844 31 L 24 31 L 22.021484 37.109375 C 21.938484 37.433375 22.091672 37.769875 22.388672 37.921875 C 22.491672 37.974875 22.604844 38 22.714844 38 C 22.921844 38 23.124672 37.909188 23.263672 37.742188 L 29.833984 28.171875 C 30.011984 27.957875 30.050594 27.662109 29.933594 27.412109 C 29.815594 27.160109 29.562156 27 29.285156 27 L 24 27 L 25.978516 20.890625 C 26.061516 20.566625 25.908328 20.230125 25.611328 20.078125 C 25.508328 20.025125 25.395156 20 25.285156 20 z M 9 37 L 13 37 L 13 38.5 C 13 39.346499 12.346499 40 11.5 40 L 10.5 40 C 9.6535009 40 9 39.346499 9 38.5 L 9 37 z M 35 37 L 39 37 L 39 38.5 C 39 39.346499 38.346499 40 37.5 40 L 36.5 40 C 35.653501 40 35 39.346499 35 38.5 L 35 37 z" fill="#ffffff" />
-                            </svg>
-                        </motion.div>
-                        <motion.div
-                            className="w-full h-1"
-                            initial={{ scaleX: 0 }}
-                            animate={{ scaleX: 1, backgroundColor: currentStep > 1 ? "#2563eb" : "#374151" }}
-                            transition={{ duration: 0.5 }}
-                            style={{ transformOrigin: 'left' }}
-                        />
-                    </div>
-                    <motion.div
-                        className="left-0 text-sm text-center bg-transparent
-                        text-white self-start w-fit"
-                        animate={{ scale: 1, opacity: currentStep == 1 ? 1 : 0 }}
-                        transition={{ duration: 0.7 }}
-                        style={{ translateX: '-33px' }}
-                    >
-                        Explore our Biases
-                    </motion.div>
-
-                </li>
-                <li className="flex flex-col w-full lg:h-28 items-center">
-                    <div className="flex  items-center justify-center w-full h-full">
-                        <motion.div
-                            onClick={() => setCurrentStep(2)}
-                            className="flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 shrink-0 z-40 hover:cursor-pointer transition-all duration-300 hover:scale-125"
-                            animate={{
-                                backgroundColor: currentStep >= 3 ? "#2563eb" : "#374151",
-                                boxShadow: currentStep === 2
-                                    ? "0 0 0 4px rgba(37, 99, 235, 1)"
-                                    : "none"
-                            }}
-                            transition={{ duration: 0.4 }}
-                            style={{ transformOrigin: 'left' }}>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="28px" height="28px">
-                                <path d="M 10.5 5 C 9.1250003 5 7.9038151 5.5696334 7.1289062 6.4414062 C 6.3539974 7.3131791 6 8.4166668 6 9.5 C 6 10.583333 6.3539975 11.686821 7.1289062 12.558594 C 7.9038151 13.430367 9.1250003 14 10.5 14 C 11.875 14 13.096185 13.430367 13.871094 12.558594 C 14.285091 12.092847 14.569984 11.559615 14.753906 11 L 37.5 11 C 38.346499 11 39 11.653501 39 12.5 L 39 20.5 C 39 21.346499 38.346499 22 37.5 22 L 26.121094 22 L 28.060547 20.060547 A 1.50015 1.50015 0 0 0 26.970703 17.486328 A 1.50015 1.50015 0 0 0 25.939453 17.939453 L 21.439453 22.439453 A 1.50015 1.50015 0 0 0 21.439453 24.560547 L 25.939453 29.060547 A 1.50015 1.50015 0 1 0 28.060547 26.939453 L 26.121094 25 L 37.5 25 C 39.967501 25 42 22.967501 42 20.5 L 42 12.5 C 42 10.032499 39.967501 8 37.5 8 L 14.753906 8 C 14.569984 7.4403854 14.285091 6.9071534 13.871094 6.4414062 C 13.096185 5.5696334 11.875 5 10.5 5 z M 10.5 8 C 11.124999 8 11.403816 8.1803665 11.628906 8.4335938 C 11.82641 8.6557848 11.957761 8.989968 11.988281 9.3496094 A 1.50015 1.50015 0 0 0 11.986328 9.6542969 C 11.955129 10.012384 11.825668 10.345049 11.628906 10.566406 C 11.403816 10.819633 11.124999 11 10.5 11 C 9.8750006 11 9.5961843 10.819633 9.3710938 10.566406 C 9.146003 10.313179 9 9.9166668 9 9.5 C 9 9.0833332 9.1460031 8.6868209 9.3710938 8.4335938 C 9.5961843 8.1803665 9.8750006 8 10.5 8 z M 7.5 22 A 1.5 1.5 0 0 0 7.5 25 A 1.5 1.5 0 0 0 7.5 22 z M 12.5 22 A 1.5 1.5 0 0 0 12.5 25 A 1.5 1.5 0 0 0 12.5 22 z M 17.5 22 A 1.5 1.5 0 0 0 17.5 25 A 1.5 1.5 0 0 0 17.5 22 z M 7.5 27 A 1.5 1.5 0 0 0 7.5 30 A 1.5 1.5 0 0 0 7.5 27 z M 7.5 32 A 1.5 1.5 0 0 0 7.5 35 A 1.5 1.5 0 0 0 7.5 32 z M 37.5 34 C 36.125 34 34.903815 34.569633 34.128906 35.441406 C 33.714909 35.907153 33.430016 36.440385 33.246094 37 L 32.5 37 A 1.50015 1.50015 0 1 0 32.5 40 L 33.246094 40 C 33.430016 40.559615 33.714909 41.092847 34.128906 41.558594 C 34.903815 42.430367 36.125 43 37.5 43 C 38.875 43 40.096185 42.430367 40.871094 41.558594 C 41.646003 40.686821 42 39.583333 42 38.5 C 42 37.416667 41.646003 36.313179 40.871094 35.441406 C 40.096185 34.569633 38.875 34 37.5 34 z M 7.5 37 A 1.5 1.5 0 0 0 7.5 40 A 1.5 1.5 0 0 0 7.5 37 z M 12.5 37 A 1.5 1.5 0 0 0 12.5 40 A 1.5 1.5 0 0 0 12.5 37 z M 17.5 37 A 1.5 1.5 0 0 0 17.5 40 A 1.5 1.5 0 0 0 17.5 37 z M 22.5 37 A 1.5 1.5 0 0 0 22.5 40 A 1.5 1.5 0 0 0 22.5 37 z M 27.5 37 A 1.5 1.5 0 0 0 27.5 40 A 1.5 1.5 0 0 0 27.5 37 z M 37.5 37 C 38.124999 37 38.403816 37.180367 38.628906 37.433594 C 38.853997 37.686821 39 38.083333 39 38.5 C 39 38.916667 38.853997 39.313179 38.628906 39.566406 C 38.403816 39.819633 38.124999 40 37.5 40 C 36.875001 40 36.596184 39.819633 36.371094 39.566406 C 36.17359 39.344215 36.042239 39.010032 36.011719 38.650391 A 1.50015 1.50015 0 0 0 36.013672 38.345703 C 36.044871 37.987616 36.174332 37.654951 36.371094 37.433594 C 36.596184 37.180367 36.875001 37 37.5 37 z" fill="#ffffff" />
-                            </svg>
-                        </motion.div>
-                        <motion.div
-                            className="w-full h-1 grow"
-                            initial={{ scaleX: 0, backgroundColor: "#374151" }}
-                            animate={{ scaleX: 1, backgroundColor: currentStep > 2 ? "#2563eb" : "#374151" }}
-                            exit={{ scale: 0 }}
-                            transition={{ duration: 0.5 }}
-                            style={{ transformOrigin: 'left' }}
-                        />
-                    </div>
-
-                    <motion.div
-                        className="text-sm text-center
-                        text-white self-start w-fit"
-                        animate={{ scale: 1, opacity: currentStep == 2 ? 1 : 0 }}
-                        transition={{ duration: 0.7 }}
-                        style={{ translateX: '-34px' }}
-                    >
-                        Establish Premises
-                    </motion.div>
-
-                </li>
-                <li className="flex flex-col w-full lg:h-28 items-center">
-                    <div className="flex  items-center justify-center w-full h-full">
-                        <motion.div
-                            onClick={() => setCurrentStep(3)}
-                            className="flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 shrink-0 z-40 hover:cursor-pointer transition-all duration-300 hover:scale-125"
-                            animate={{
-                                backgroundColor: currentStep <= 3 ? "#374151" : "#2563eb",
-                                boxShadow: currentStep === 3
-                                    ? "0 0 0 4px rgba(37, 99, 235, 1)"
-                                    : "none"
-                            }}
-                            transition={{ duration: 0.4 }}
-                            style={{ transformOrigin: 'left' }}>
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0,0,256,256" width="28px" height="28px" fillRule="nonzero"><g fill="#ffffff" fillRule="nonzero" stroke="none" strokeWidth={1} strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit={10} strokeDasharray="" strokeDashoffset={0} fontFamily="none" fontWeight="none" fontSize="none" textAnchor="none" style={{ mixBlendMode: 'normal' }}><g transform="scale(5.12,5.12)"><path d="M23,0c-7.22656,0 -12.55469,2.49609 -16,6.40625c-3.44531,3.91016 -5,9.15234 -5,14.59375c0,4.40625 1.375,8.51563 3.6875,11.875c2.09375,3.04688 3.3125,6.63281 3.3125,10.3125v6.8125h2v-6.8125c0,-4.08594 -1.35937,-8.04297 -3.625,-11.375l-0.0625,-0.09375c-2.08984,-3.03906 -3.3125,-6.72656 -3.3125,-10.71875c0,-5.05859 1.44531,-9.81641 4.5,-13.28125c3.05469,-3.46484 7.72656,-5.71875 14.5,-5.71875c6.80078,0 11.21484,1.97266 14.125,5c2.91016,3.02734 4.33984,7.20703 4.875,11.71875l0.03125,0.21875l0.09375,0.15625l4.71875,8.09375h-0.03125c0.25,0.44922 0.125,0.88281 -0.3125,1.125v0.03125l-4.5,2.25v6c0,3.74219 -3.08594,6.66016 -6.8125,6.3125h-0.03125l-3.09375,-0.21875l-1.0625,-0.0625v7.375h2v-5.25l2,0.15625c0.01172,0 0.01953,0 0.03125,0c4.85938,0.43359 8.96875,-3.46484 8.96875,-8.3125v-4.78125l3.4375,-1.71875h0.03125l0.03125,-0.03125c1.36328,-0.75781 1.8125,-2.49219 1.0625,-3.84375v-0.03125l-4.625,-8c-0.59375,-4.68359 -2.12891,-9.18359 -5.375,-12.5625c-3.31641,-3.44922 -8.36328,-5.625 -15.5625,-5.625zM19.65625,6l-0.15625,0.84375l-0.5,2.96875c-0.46484,0.14063 -0.91406,0.33594 -1.34375,0.5625l-2.46875,-1.78125l-0.6875,-0.5l-0.59375,0.59375l-2.125,2.09375l-0.59375,0.625l0.5,0.6875l1.78125,2.46875c-0.21094,0.40625 -0.39844,0.85547 -0.5625,1.34375l-3.09375,0.625l-0.8125,0.15625v4.65625l0.84375,0.15625l2.96875,0.5c0.16406,0.48828 0.35156,0.9375 0.5625,1.34375l-1.78125,2.46875l-0.5,0.6875l0.59375,0.59375l2.09375,2.125l0.625,0.59375l0.6875,-0.5l2.46875,-1.78125c0.40625,0.21094 0.85547,0.39844 1.34375,0.5625l0.5,2.96875l0.15625,0.84375h4.6875l0.125,-0.84375l0.53125,-3.0625c0.46875,-0.16797 0.91797,-0.35156 1.34375,-0.5625l2.5625,1.78125l0.6875,0.46875l0.59375,-0.59375l2.125,-2.09375l0.59375,-0.59375l-0.5,-0.6875l-1.78125,-2.46875c0.20703,-0.39844 0.39844,-0.83594 0.5625,-1.3125l3.03125,-0.4375l0.875,-0.125v-4.71875l-0.84375,-0.15625l-3.0625,-0.5c-0.14453,-0.45312 -0.32812,-0.91406 -0.5625,-1.375l1.78125,-2.5625l0.5,-0.6875l-0.59375,-0.59375l-2.125,-2.09375l-0.59375,-0.59375l-0.6875,0.5l-2.46875,1.78125c-0.40625,-0.21094 -0.85547,-0.39844 -1.34375,-0.5625l-0.5,-2.96875l-0.15625,-0.84375zM21.34375,8h1.3125l0.46875,2.65625l0.09375,0.6875l0.65625,0.125c0.74609,0.16406 1.46094,0.52734 2.125,0.90625l0.5625,0.3125l0.53125,-0.375l2.21875,-1.59375l0.875,0.90625l-1.59375,2.3125l-0.40625,0.53125l0.375,0.5625c0.4375,0.69922 0.69531,1.40234 0.875,2.125l0.15625,0.625l0.65625,0.09375l2.75,0.46875v1.28125l-3.4375,0.46875l-0.125,0.6875c-0.16406,0.74609 -0.52734,1.46094 -0.90625,2.125l-0.3125,0.5625l0.375,0.53125l1.59375,2.1875l-0.90625,0.90625l-2.3125,-1.625l-0.46875,-0.34375l-0.5625,0.28125c-0.80078,0.39844 -1.53906,0.77734 -2.1875,0.9375l-0.625,0.15625l-0.125,0.625l-0.46875,2.78125h-1.28125l-0.46875,-2.6875l-0.09375,-0.65625l-0.65625,-0.125c-0.74609,-0.16406 -1.46094,-0.52734 -2.125,-0.90625l-0.5625,-0.3125l-0.53125,0.375l-2.1875,1.59375l-0.90625,-0.875l1.59375,-2.21875l0.375,-0.53125l-0.3125,-0.5625c-0.37891,-0.66406 -0.74219,-1.37891 -0.90625,-2.125l-0.125,-0.65625l-0.6875,-0.09375l-2.65625,-0.46875v-1.34375l2.78125,-0.53125l0.65625,-0.125l0.125,-0.625c0.16406,-0.74609 0.52734,-1.46094 0.90625,-2.125l0.3125,-0.5625l-0.375,-0.53125l-1.59375,-2.1875l0.875,-0.90625l2.21875,1.59375l0.59375,0.40625l0.59375,-0.40625c0.5625,-0.40234 1.21484,-0.66406 2.03125,-0.84375l0.65625,-0.125l0.09375,-0.6875zM22,14c-2.74609,0 -5,2.25391 -5,5c0,2.74609 2.25391,5 5,5c2.74609,0 5,-2.25391 5,-5c0,-2.74609 -2.25391,-5 -5,-5zM22,16c1.65625,0 3,1.34375 3,3c0,1.65625 -1.34375,3 -3,3c-1.65625,0 -3,-1.34375 -3,-3c0,-1.65625 1.34375,-3 3,-3z" /></g></g></svg>
-                        </motion.div>
-                        <motion.div
-                            className="w-full h-1 grow"
-                            initial={{ scaleX: 0, backgroundColor: "#374151" }}
-                            animate={{ scaleX: 1, backgroundColor: currentStep > 3 ? "#2563eb" : "#374151" }}
-                            exit={{ scale: 0 }}
-                            transition={{ duration: 0.5 }}
-                            style={{ transformOrigin: 'left' }}
-                        />
-                    </div>
-
-                    <motion.div
-                        className="text-sm text-center
-    text-white self-start w-fit"
-                        animate={{ scale: 1, opacity: currentStep == 3 ? 1 : 0 }}
-                        transition={{ duration: 0.7 }}
-                        style={{ translateX: '-32px' }}
-                    >
-                        Let's Self Reflect
-                    </motion.div>
-
-                </li>
-                <li className="flex flex-col max-w-full lg:h-28 items-start justify-center">
-                    <motion.div
-                        onClick={() => setCurrentStep(4)}
-                        className="flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 shrink-0 z-40 hover:cursor-pointer transition-all duration-300 hover:scale-125"
-                        animate={{
-                            backgroundColor: currentStep <= 4 ? "#374151" : "#2563eb",
-                            boxShadow: currentStep === 4
-                                ? "0 0 0 4px rgba(37, 99, 235, 1)"
-                                : "none"
-                        }}
-                        transition={{ duration: 0.4 }}
-                        style={{ transformOrigin: 'left' }}>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="28px" height="28px"><path d="M 20.5 6 C 12.509634 6 6 12.50964 6 20.5 C 6 28.49036 12.509634 35 20.5 35 C 23.956359 35 27.133709 33.779044 29.628906 31.75 L 39.439453 41.560547 A 1.50015 1.50015 0 1 0 41.560547 39.439453 L 31.75 29.628906 C 33.779044 27.133709 35 23.956357 35 20.5 C 35 12.50964 28.490366 6 20.5 6 z M 20.5 9 C 26.869047 9 32 14.130957 32 20.5 C 32 23.602612 30.776198 26.405717 28.791016 28.470703 A 1.50015 1.50015 0 0 0 28.470703 28.791016 C 26.405717 30.776199 23.602614 32 20.5 32 C 14.130953 32 9 26.869043 9 20.5 C 9 14.130957 14.130953 9 20.5 9 z" fill="#FFFFFF" /></svg>
-
-                    </motion.div>
-
-                    <motion.div
-                        className="text-sm text-center text-white self-start w-fit"
-                        animate={{ scale: 1, opacity: currentStep == 4 ? 1 : 0 }}
-                        transition={{ duration: 0.7 }}
-                    >
-                        <div className="w-full translate-y-5">Search</div>
-                    </motion.div>
-
-                </li>
-
-
-
-            </ol>
-        </section>
+        <motion.ol
+            className="flex items-center my-auto justify-center justify-between relative xs:top-6
+         xs:w-full xs:px-2 lg:w-5/6 lg:mx-auto xs:h-28 lg:min-h-28 mx-auto">
+            <Node1 setCurrentStep={setCurrentStep} currentStep={currentStep} />
+            <Node2 setCurrentStep={setCurrentStep} currentStep={currentStep} />
+            <Node3 setCurrentStep={setCurrentStep} currentStep={currentStep} />
+            <Node4 setCurrentStep={setCurrentStep} currentStep={currentStep} />
+            <Node5 setCurrentStep={setCurrentStep} currentStep={currentStep} />
+        </motion.ol>
 
     )
 }

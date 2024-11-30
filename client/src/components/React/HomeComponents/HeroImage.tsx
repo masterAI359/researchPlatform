@@ -8,9 +8,9 @@ export default function HeroImage() {
 
 
 	return (
-		<section className='p-8 animate-fade-in duration-700 ease-in'>
-			<div className='mx-auto 2xl:max-w-7xl py-24 lg:px-16 md:px-12 px-8 xl:px-40 items-center 
-			lg:py-40 w-full bg-gradientdown rounded-[3rem] overflow-hidden relative'>
+		<section className='md:p-8 xs:p-4 animate-fade-in duration-700 ease-in'>
+			<div className='md:mx-auto 2xl:max-w-7xl py-24 lg:px-16 md:px-12 sm:px-8 xs:px-6 xl:px-40 xs:w-full items-center 
+			lg:py-40 bg-gradientdown rounded-[3rem] overflow-hidden relative'>
 				<img
 					className='sr-only lg:not-sr-only lg:absolute -mt-16 lg:left-80 opacity-70 top-20'
 					src='public/images/assets/cubeTwo.png'>

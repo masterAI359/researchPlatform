@@ -3,6 +3,7 @@ import { useRef, useState, useEffect } from "react";
 import { WindowProps } from "@/env";
 import { AnimatePresence, motion } from "framer-motion";
 import StepWizard from '../StepWizard/StepWizard';
+import Perspective from './Appproach/Perspective';
 import Step1 from './Steps/Step1';
 import Step2 from './Steps/Step2';
 import Step3 from './Steps/Step3';
@@ -35,7 +36,6 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
     if (wizardRef.current) {
       setWizardHeight(wizardRef.current.offsetHeight)
       setWizardHeight(wizardRef.current.offsetHeight)
-      console.log(wizardHeight)
     }
 
     const handleResize = () => {
@@ -48,21 +48,12 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // not sure where the transition for the height of the components in the Window.tsx file is coming from. The transition is too snappy
 
-  console.log(stepsHeight)
 
   return (
     <section
       ref={containerRef}
-      className="col-span-6 overflow-hidden relative md:min-h-full h-fit w-full transition-all duration-400 animate-fade-in delay-300">
-      {containerWidth > 0
-        ? <div
-          className="w-full flex justify-center items-center"
-        >
-          <StepWizard currentStep={currentStep} setCurrentStep={setCurrentStep} />
-        </div> : null}
-
+      className="overflow-x-hidden relative xs:h-5/6 md:min-h-full mx-auto h-fit xs:w-12/12 xl:w-3/4 transition-all duration-400 animate-fade-in delay-300 no-scrollbar">
       {containerWidth > 0 ? <motion.div
         ref={wizardRef}
         style={{ maxHeight: "fit" }}
@@ -71,7 +62,7 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
         animate={{ opacity: 1, x: -currentStep * containerWidth }}
         transition={{ type: 'tween', duration: 0.2, ease: 'easeInOut' }}>
 
-        <div style={{ width: containerWidth, flexShrink: 0 }} className='text-center max-h-fit box-border flex'>
+        <div style={{ width: containerWidth, flexShrink: 0 }} className='text-center mx-auto max-h-fit box-border flex'>
           <Step1
             setNotifyRequired={setNotifyRequired}
             setCanProceed={setCanProceed}
@@ -83,15 +74,15 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
           />
         </div>
         <div style={{ width: containerWidth, flexShrink: 0, maxHeight: 'fit' }} className='text-center flex grow content-center'>
-          <Step2 containerWidth={containerWidth}
-            setGettingHelp={setGettingHelp}
-          />
+          <Perspective setGettingHelp={setGettingHelp} />
         </div>
         <div style={{ width: containerWidth, flexShrink: 0, maxHeight: 'fit' }} className='text-center max-h-fit'>
-          <Step3 containerWidth={containerWidth} setStartSearch={setStartSearch} setGettingHelp={setGettingHelp} />
+          <Step2 containerWidth={containerWidth}
+            setGettingHelp={setGettingHelp} />
         </div>
         <div style={{ width: containerWidth, flexShrink: 0 }} className='text-center max-h-fit'>
-          <Step4 setStartSearch={setStartSearch} setGettingHelp={setGettingHelp} />
+          <Step3 containerWidth={containerWidth} setStartSearch={setStartSearch} setGettingHelp={setGettingHelp} />
+
         </div>
         <div style={{ width: containerWidth, flexShrink: 0 }} className='text-center h-fit'>
           <SearchBox

@@ -42,7 +42,7 @@ export default function SearchBox({ isLoading, setIsSubmitted, setQuery }) {
 
 
   return (
-    <div className="block box-border w-full px-2 2xl:h-full no-scrollbar">
+    <div className="block box-border w-11/12 mx-auto px-2 2xl:h-full no-scrollbar">
 
       <div
         className="text-center w-full md:mx-auto">

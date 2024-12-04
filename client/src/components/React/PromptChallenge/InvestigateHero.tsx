@@ -1,10 +1,13 @@
 import { Children, useState, useRef, useEffect } from "react";
 import Angle from "./Appproach/Angle";
 import HeroWindow from "./Window";
-import BackButton from "../Buttons/Back";
-import NextButton from "../Buttons/Next";
+import BackButton from "../Buttons/StepButtons/Back";
+import NextButton from "../Buttons/StepButtons/Next";
 import StepWizard from "../StepWizard/StepWizard";
+import MapContainer from "../Map/MapContainer";
 import { AnimatePresence, motion } from "framer-motion";
+import WindowContainer from "../Containers/WindowContainer";
+import HeroWrapper from "../Containers/HeroWrapper";
 
 export default function InvestigateHero({ query, isLoading, setIsSubmitted, setQuery, gettingHelp, setGettingHelp, summaries }) {
   const [approachSet, setApproach] = useState<boolean>(true)
@@ -16,54 +19,67 @@ export default function InvestigateHero({ query, isLoading, setIsSubmitted, setQ
 
   return (
     <section className={`py-8 transition-all animate-fade-in delay-1000 duration-500 ease-in-out `}>
-      <div className={`mx-auto 2xl:max-w-7xl xs:w-dvw
-    md:px-12 w-full rounded-[3rem] no-scrollbar
+      <div className={`mx-auto 2xl:max-w-[90rem] xs:w-dvw
+   w-full rounded-[3rem] no-scrollbar flex items-center px-8
     relative xs:h-[28rem] lg:pt-20 sm:pt-20 opacity-100 transition-all duration-700 ease-in-out
-    ${currentStep < 4 ? 'lg:h-[40rem] bg-gradientdown' : 'lg:h-[26rem] bg-transparent'} 
+    ${currentStep < 4 ? 'lg:h-[42rem] bg-gradientdown' : 'lg:h-[26rem] bg-transparent'} 
     ${gettingHelp ? 'opacity-65 pointer-events-none' : null}`}>
 
-        <AnimatePresence>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ type: 'tween', duration: 0.4 }}
-          >
-            <StepWizard currentStep={currentStep} setCurrentStep={setCurrentStep} />
-            <BackButton
-              currentStep={currentStep}
-              setCurrentStep={setCurrentStep}
-            />
-            {summaries.length < 1 && <HeroWindow
-              currentStep={currentStep}
-              setCurrentStep={setCurrentStep}
-              query={query}
-              setQuery={setQuery}
-              isLoading={isLoading}
-              setIsSubmitted={setIsSubmitted}
-              setStartSearch={setStartSearch}
-              setCanProceed={setCanProceed}
-              notifyRequired={notifyRequired}
-              setNotifyRequired={setNotifyRequired}
-              setGettingHelp={setGettingHelp}
-            />}
-
-            <NextButton
-              currentStep={currentStep}
-              setCurrentStep={setCurrentStep}
-              setCanProceed={setCanProceed}
-              canProceed={canProceed}
-              setNotifyRequired={setNotifyRequired}
-              notifyRequired={notifyRequired}
-            />
-          </motion.div>
-        </AnimatePresence>
-
-
-
+        <HeroWrapper
+          summaries={summaries}
+          currentStep={currentStep}
+          setCurrentStep={setCurrentStep}
+          query={query}
+          setQuery={setQuery}
+          isLoading={isLoading}
+          setIsSubmitted={setIsSubmitted}
+          setStartSearch={setStartSearch}
+          setCanProceed={setCanProceed}
+          notifyRequired={notifyRequired}
+          setNotifyRequired={setNotifyRequired}
+          setGettingHelp={setGettingHelp}
+          canProceed={canProceed}
+        />
       </div>
     </section>
   )
 }
 
 
+//<AnimatePresence>
+//<motion.div
+//  initial={{ opacity: 0 }}
+//  animate={{ opacity: 1 }}
+//  exit={{ opacity: 0 }}
+//  transition={{ type: 'tween', duration: 0.4 }}
+//>
+//  <StepWizard currentStep={currentStep} setCurrentStep={setCurrentStep} />
+//  <BackButton
+//    currentStep={currentStep}
+//    setCurrentStep={setCurrentStep}
+//  />
+//  { /*  <MapContainer /> */}
+//  {summaries.length < 1 && <HeroWindow
+//    currentStep={currentStep}
+//    setCurrentStep={setCurrentStep}
+//    query={query}
+//    setQuery={setQuery}
+//    isLoading={isLoading}
+//    setIsSubmitted={setIsSubmitted}
+//    setStartSearch={setStartSearch}
+//    setCanProceed={setCanProceed}
+//    notifyRequired={notifyRequired}
+//    setNotifyRequired={setNotifyRequired}
+//    setGettingHelp={setGettingHelp}
+//  />}
+//
+//  <NextButton
+//    currentStep={currentStep}
+//    setCurrentStep={setCurrentStep}
+//    setCanProceed={setCanProceed}
+//    canProceed={canProceed}
+//    setNotifyRequired={setNotifyRequired}
+//    notifyRequired={notifyRequired}
+//  />
+//</motion.div>
+//</AnimatePresence>

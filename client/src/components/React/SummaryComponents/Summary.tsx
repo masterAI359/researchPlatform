@@ -2,7 +2,7 @@ import Warning from '../Fallbacks/Warning.jsx';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { createPortal } from 'react-dom';
-import fallback from '../../../../public/images/fallbacks/fallbackImage.svg'
+import fallback from '../../../fallbacks/fallbackImage.svg'
 
 export function Summary({ summaryData, handleClick, isSelected, index }) {
     const [fullStory, setFullStory] = useState(false);

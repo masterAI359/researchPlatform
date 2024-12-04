@@ -21,9 +21,9 @@ export default function BackButton({ setCurrentStep, currentStep }: ButtonProps)
 
     return (
 
-        <div className={`absolute   h-auto w-auto 
-        lg:left-4  my-auto justify-self-start self-center
-        ${currentStep < 4 ? 'lg:bottom-1/2 xs:bottom-3 xs:left-10' : 'lg:bottom-1/3 xs:bottom-36 xs:left-2'}
+        <div className={`relative h-auto w-auto 
+          my-auto justify-self-start self-center
+    
         `} >
             <AnimatePresence>
                 {currentStep !== 0 && <motion.div
@@ -31,6 +31,7 @@ export default function BackButton({ setCurrentStep, currentStep }: ButtonProps)
                     initial={{ opacity: 0, scale: 0 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0 }}
+                    transition={{ type: 'tween', duration: 0.2 }}
                 >
                     <button
                         onClick={handleBackStep}

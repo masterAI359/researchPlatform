@@ -40,7 +40,7 @@ export default function HelpButton({ info, setGettingHelp }) {
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0, opacity: 0 }}
                     transition={{ type: 'tween', duration: 0.2 }}
-                    style={{ translateY: -55, translateX: 20, position: 'absolute' }}
+                    style={{ translateY: -55, translateX: -180, position: 'absolute' }}
                     className="overflow-hidden cursor-pointer rounded-xl bg-white/5"
                 >
                     <div className="bg-white/5 rounded-xl h-auto xl:w-44 flex flex-col mx-auto">

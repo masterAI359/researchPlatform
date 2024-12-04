@@ -17,14 +17,14 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
   query, setIsSubmitted, setCurrentStep, setCanProceed, notifyRequired, setNotifyRequired, setGettingHelp }: WindowProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const wizardRef = useRef<HTMLDivElement>(null);
-  const [containerWidth, setContainerWidth] = useState(0);
+  const [containerWidth, setContainerWidth] = useState(null);
   const [wizardHeight, setWizardHeight] = useState(0);
   const [containerHeight, setContainerHeight] = useState(0);
   const [origin, setOrigin] = useState<string>('');
 
   let stepsHeight = containerHeight - wizardHeight
 
-
+  console.log(containerWidth)
 
   useEffect(() => {
     if (containerRef.current) {
@@ -53,8 +53,8 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
   return (
     <section
       ref={containerRef}
-      className="overflow-x-hidden relative xs:h-5/6 md:min-h-full mx-auto h-fit xs:w-12/12 xl:w-3/4 transition-all duration-400 animate-fade-in delay-300 no-scrollbar">
-      {containerWidth > 0 ? <motion.div
+      className="overflow-x-hidden relative xs:h-5/6 md:min-h-full h-fit mx-auto xs:w-12/12 xl:w-4/5 transition-all duration-400 animate-fade-in delay-300 no-scrollbar">
+      {containerWidth !== null ? <motion.div
         ref={wizardRef}
         style={{ maxHeight: "fit" }}
         className="flex items-baseline md:min-h-full lg:max-h-fit"
@@ -62,7 +62,7 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
         animate={{ opacity: 1, x: -currentStep * containerWidth }}
         transition={{ type: 'tween', duration: 0.2, ease: 'easeInOut' }}>
 
-        <div style={{ width: containerWidth, flexShrink: 0 }} className='text-center mx-auto max-h-fit box-border flex'>
+        <div style={{ maxWidth: containerWidth, minWidth: containerWidth, flexShrink: 0 }} className='text-center mx-auto max-h-fit box-border flex'>
           <Step1
             setNotifyRequired={setNotifyRequired}
             setCanProceed={setCanProceed}
@@ -73,18 +73,18 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
             setGettingHelp={setGettingHelp}
           />
         </div>
-        <div style={{ width: containerWidth, flexShrink: 0, maxHeight: 'fit' }} className='text-center flex grow content-center'>
+        <div style={{ minWidth: containerWidth, maxWidth: containerWidth, flexShrink: 0, maxHeight: 'fit' }} className='text-center flex grow content-center'>
           <Perspective setGettingHelp={setGettingHelp} />
         </div>
-        <div style={{ width: containerWidth, flexShrink: 0, maxHeight: 'fit' }} className='text-center max-h-fit'>
+        <div style={{ maxWidth: containerWidth, minWidth: containerWidth, flexShrink: 0, maxHeight: 'fit' }} className='text-center max-h-fit'>
           <Step2 containerWidth={containerWidth}
             setGettingHelp={setGettingHelp} />
         </div>
-        <div style={{ width: containerWidth, flexShrink: 0 }} className='text-center max-h-fit'>
+        <div style={{ minWidth: containerWidth, maxWidth: containerWidth, flexShrink: 0 }} className='text-center max-h-fit'>
           <Step3 containerWidth={containerWidth} setStartSearch={setStartSearch} setGettingHelp={setGettingHelp} />
 
         </div>
-        <div style={{ width: containerWidth, flexShrink: 0 }} className='text-center h-fit'>
+        <div style={{ minWidth: containerWidth, maxWidth: containerWidth, flexShrink: 0 }} className='text-center h-fit'>
           <SearchBox
             setQuery={setQuery}
             setIsSubmitted={setIsSubmitted}

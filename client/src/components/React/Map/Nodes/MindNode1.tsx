@@ -4,7 +4,7 @@ export default function MindNode1({ currentStep, setCurrentStep }) {
 
     return (
         <div className="h-fit w-fit flex flex-col justify-center absolute top-2 left-1/2 left-1/2 transform -translate-x-1/2 mx-auto">
-            <div className={`${currentStep === 0 ? 'scale-100' : null} transition-all
+            <div className={`${currentStep === 0 ? 'scale-110' : null} transition-all
             ease-in-out duration-200 bg-ebony w-52 h-20 p-3  flex items-center 
             justify-beetween
             border border-2 border-button_blue rounded-3xl`}>

@@ -7,11 +7,21 @@ export default function BottomPath({ currentStep }) {
 
     return (
         <div className="z-1 mx-auto w-72 flex flex-col-reverse">
-            <motion.div
-                animate={{ backgroundColor: currentStep <= 2 ? "#374151" : "#2563eb" }}
-                transition={{ type: 'tween', duration: 0.8 }}
-                style={{ transformOrigin: 'bottom' }}
-                className="w-1 h-44 mb-16 bg-button_gray mx-auto self-start" />
+            <div className="h-44 w-auto flex flex-col justify-center mb-16">
+                <motion.div
+                    className="h-22 w-1 mx-auto"
+                    animate={{ backgroundColor: currentStep <= 2 ? "#374151" : "#2563eb" }}
+                    transition={{ type: 'tween', duration: 0.6 }}
+                    style={{ transformOrigin: 'top' }}
+                />
+                <motion.div
+                    className="h-22 w-1 mx-auto"
+                    animate={{ backgroundColor: currentStep < 4 ? "#374151" : "#2563eb" }}
+                    transition={{ type: 'tween', duration: 0.6 }}
+                    style={{ transformOrigin: 'top' }}
+                />
+            </div>
+
             <motion.div
                 animate={{ backgroundColor: currentStep <= 2 ? "#374151" : "#2563eb" }}
                 transition={{ type: 'tween', duration: 0.8 }}

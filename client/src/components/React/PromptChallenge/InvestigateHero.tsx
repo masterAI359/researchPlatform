@@ -1,12 +1,4 @@
-import { Children, useState, useRef, useEffect } from "react";
-import Angle from "./Appproach/Angle";
-import HeroWindow from "./Window";
-import BackButton from "../Buttons/StepButtons/Back";
-import NextButton from "../Buttons/StepButtons/Next";
-import StepWizard from "../StepWizard/StepWizard";
-import MapContainer from "../Map/MapContainer";
-import { AnimatePresence, motion } from "framer-motion";
-import WindowContainer from "../Containers/WindowContainer";
+import { useState } from "react";
 import HeroWrapper from "../Containers/HeroWrapper";
 
 export default function InvestigateHero({ query, isLoading, setIsSubmitted, setQuery, gettingHelp, setGettingHelp, summaries }) {
@@ -44,42 +36,3 @@ export default function InvestigateHero({ query, isLoading, setIsSubmitted, setQ
     </section>
   )
 }
-
-
-//<AnimatePresence>
-//<motion.div
-//  initial={{ opacity: 0 }}
-//  animate={{ opacity: 1 }}
-//  exit={{ opacity: 0 }}
-//  transition={{ type: 'tween', duration: 0.4 }}
-//>
-//  <StepWizard currentStep={currentStep} setCurrentStep={setCurrentStep} />
-//  <BackButton
-//    currentStep={currentStep}
-//    setCurrentStep={setCurrentStep}
-//  />
-//  { /*  <MapContainer /> */}
-//  {summaries.length < 1 && <HeroWindow
-//    currentStep={currentStep}
-//    setCurrentStep={setCurrentStep}
-//    query={query}
-//    setQuery={setQuery}
-//    isLoading={isLoading}
-//    setIsSubmitted={setIsSubmitted}
-//    setStartSearch={setStartSearch}
-//    setCanProceed={setCanProceed}
-//    notifyRequired={notifyRequired}
-//    setNotifyRequired={setNotifyRequired}
-//    setGettingHelp={setGettingHelp}
-//  />}
-//
-//  <NextButton
-//    currentStep={currentStep}
-//    setCurrentStep={setCurrentStep}
-//    setCanProceed={setCanProceed}
-//    canProceed={canProceed}
-//    setNotifyRequired={setNotifyRequired}
-//    notifyRequired={notifyRequired}
-//  />
-//</motion.div>
-//</AnimatePresence>

@@ -5,7 +5,10 @@ export default function SearchNode({ currentStep, setCurrentStep }) {
 
     return (
         <div className="w-fit h-fit absolute bottom-6 left-1/2 left-1/2 transform -translate-x-1/2">
-            <div className="w-52 h-20 p-3 bg-ebony border border-3 border-button_blue rounded-3xl flex items-center shadow-material">
+            <div className={`w-52 h-20 p-3 bg-ebony border border-3 border-button_blue
+                 rounded-3xl flex items-center shadow-material transition-all duration-200 ease-in-out
+                 ${currentStep === 4 ? 'scale-110 pointer-events-auto' : 'scale-100 pointer-events-none'}
+                 `}>
                 <motion.div
                     onClick={() => setCurrentStep(4)}
                     whileHover={{ scale: 1.15 }}

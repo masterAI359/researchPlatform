@@ -12,7 +12,8 @@ export default function WindowContainer({ currentStep, setStartSearch, setQuery,
 
 
     return (
-        <main className="w-3/5 h-full relative flex items-center">
+        <main className={`w-3/5 h-full relative flex items-center 
+        `}>
             <section className="w-full h-full relative">
                 <AnimatePresence>
                     <motion.div

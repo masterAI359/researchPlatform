@@ -49,12 +49,12 @@ export default function NextButton({ setCurrentStep, currentStep, setCanProceed,
       >
         <button
           onClick={(e) => checkRequirements(e)}
-          className="text-white text-xs font-light xs:w-14 xs:h-10
+          className="text-white text-md font-light xs:w-14 xs:h-10
           lg:w-20 lg:h-12 p-2 transition-all mx-auto
           duration-200 bg-white/5 hover:bg-white/10 items-center group
           rounded-2xl">
           <span className="mx-auto flex items-center justify-center">
-            {currentStep === 3 ? "Begin Search" : (
+            {currentStep === 3 ? "Search" : (
               <svg
                 className="text-white group-hover:text-white"
                 xmlns="http://www.w3.org/2000/svg"

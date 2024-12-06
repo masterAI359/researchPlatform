@@ -16,6 +16,12 @@ module.exports = {
         'xl': '1280px',  // Tailwind's default
         '2xl': '1536px', // Tailwind's default
       },
+      spacing: {
+        '18': '72px',
+      },
+      width: {
+        '168': '656px'
+      },
       minWidth: {
         '128': '32rem',
       },

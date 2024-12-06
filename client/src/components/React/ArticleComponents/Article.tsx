@@ -63,14 +63,14 @@ export default function Article({ article, selectedForSummary, setSelectedForSum
                     </div>
                 </div>
             </figcaption>
-            <figure className="relative w-full h-auto box-border pt-2">
+            <figure className="relative w-full mx-auto h-auto box-border pt-2">
                 <div className="flex gap-3 items-center relative bottom-0 left-0 px-4">
                     <img
                         className="mr-3 lg:h-8 lg:w-8 xs:h-6 xs:w-6"
                         src={logo}
                         alt=""
                     />
-                    <span className='text-sm xs:text-xs lg:text-lg font-serif text-white'>
+                    <span className='text-sm xs:text-xs lg:text-lg font-serif text-white mb-4'>
                         {provider}
                     </span>
                 </div>

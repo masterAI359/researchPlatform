@@ -1,5 +1,5 @@
 import { useState } from "react"
-import Perspective from "./Perspective"
+import Perspective from "../Steps/Step2"
 import Expertise from "./expertise"
 
 export default function Angle({ setApproach }) {

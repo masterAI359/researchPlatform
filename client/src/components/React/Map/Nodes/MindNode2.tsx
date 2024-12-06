@@ -4,9 +4,10 @@ import { motion } from "framer-motion"
 export default function MindNode2({ currentStep, setCurrentStep }) {
 
     return (
-        <div className={`${currentStep >= 3 ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-60'} transition-all duration-200 ease-in-out
-         bg-ebony w-52 h-fit p-3 relative left-20 top-24 flex items-center gap-x-6
-        border border-2 border-button_blue rounded-3xl cursor-pointer shadow-material`}>
+        <div className={`${currentStep >= 3 ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-100'} 
+        ${currentStep === 3 ? 'scale-125' : null} transition-all duration-200 ease-in-out
+         bg-ebony w-52 h-fit p-3 absolute bottom-40 left-1/2 left-1/2 transform -translate-x-1/2
+        flex items-center gap-x-6 border border-2 border-button_blue rounded-3xl cursor-pointer shadow-material`}>
             <motion.div
                 onClick={() => setCurrentStep(3)}
                 className="flex items-center justify-center rounded-full xs:max-w-7 xs:max-h-7

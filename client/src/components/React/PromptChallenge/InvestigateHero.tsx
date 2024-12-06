@@ -21,8 +21,8 @@ export default function InvestigateHero({ query, isLoading, setIsSubmitted, setQ
     <section className={`py-8 transition-all animate-fade-in delay-1000 duration-500 ease-in-out `}>
       <div className={`mx-auto 2xl:max-w-[90rem] xs:w-dvw
    w-full rounded-[3rem] no-scrollbar flex items-center px-8
-    relative xs:h-[28rem] lg:pt-20 sm:pt-20 opacity-100 transition-all duration-700 ease-in-out
-    ${currentStep < 4 ? 'lg:h-[42rem] bg-gradientdown' : 'lg:h-[26rem] bg-transparent'} 
+    relative xs:h-[28rem] lg:pt-20 sm:pt-20 opacity-100 transition-all duration-700 ease-in-out 
+    lg:h-[42rem] bg-gradientdown
     ${gettingHelp ? 'opacity-65 pointer-events-none' : null}`}>
 
         <HeroWrapper

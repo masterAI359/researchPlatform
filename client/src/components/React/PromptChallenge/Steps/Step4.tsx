@@ -1,35 +1,39 @@
-import HelpButton from "../../Buttons/Question"
-import { Step4Help } from "@/helpInfo/help"
-import { Help } from "@/env"
-import Expertise from "../Appproach/expertise"
-
-export default function Step4({ setStartSearch, setGettingHelp }) {
-
-    return (
-        <div className="block 2xl:h-full 2xl:w-full xs:w-auto xs:h-auto ">
-            <div className="px-5">
-                <div className="w-full box-border border-b h-fit border-white/10 lg:mb-4 flex flex-row gap-x-8 items-baseline lg:mt-10">
-                    <div className="w-fit flex justify-items-start">
-                        <h1 className="text-2xl tracking-tight font-light text-white pb-2">
-                            Share your feelings and insight
-                        </h1>
-                    </div>
-                    <div className="w-fit h-full justify-items-start translate-y-1 opacity-100">
-                        <HelpButton info={Step4Help} setGettingHelp={setGettingHelp} />
-                    </div>
+import { useState } from "react";
+import HelpButton from "../../Buttons/Question";
+import { Step3Help } from "@/helpInfo/help"
+import StepsEditor from "../../TipTap/StepsEditor";
 
 
-                </div>
-                <div className="w-full flex gap-2 items-center">
 
-                    <div className="w-fit ">
-                        <Expertise />
-                    </div>
-                </div>
+export default function Step4({ containerWidth, setStartSearch, setGettingHelp }: any) {
 
+  const [statedPremise, setPremise] = useState("")
+
+  console.log(statedPremise)
+
+  return (
+    <div className="inline-block box-border mx-auto w-full 2xl:h-full">
+      <div className="flex flex-col items-center w-full 
+            mt-12 px-5 relative lg:rounded-t-[3rem]">
+        <div className="text-center relative z-10 w-full">
+          <div className="w-full box-border border-b h-fit border-white/10 lg:mb-4 flex flex-row gap-x-8 items-baseline lg:mt-10">
+            <div className="w-fit flex justify-items-start">
+              <h1 className="lg:text-2xl xs:text-xl tracking-tight font-light text-white pb-2">
+                What would support this claim?
+              </h1>
             </div>
-
+            <div className="w-fit h-full justify-items-start translate-y-1 opacity-100">
+              <HelpButton info={Step3Help} setGettingHelp={setGettingHelp} />
+            </div>
+          </div>
+          <div className="block w-full xs:h-40 md:h-52 lg:mb-12 text-md text-white bg-white/10 border-none focus:ring-1 focus:ring-white
+    rounded-lg resize-none text-wrap flex justify-items-start">
+            <StepsEditor setterFunction={setPremise} />
+          </div>
         </div>
-    )
+      </div>
+    </div>
+  );
 }
+
 

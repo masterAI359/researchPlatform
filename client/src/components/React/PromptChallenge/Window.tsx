@@ -1,16 +1,13 @@
 import React from 'react';
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useLayoutEffect } from "react";
 import { WindowProps } from "@/env";
-import { AnimatePresence, motion } from "framer-motion";
-import StepWizard from '../StepWizard/StepWizard';
-import Perspective from './Appproach/Perspective';
+import { motion } from "framer-motion";
+import Perspective from './Steps/Step2';
 import Step1 from './Steps/Step1';
-import Step2 from './Steps/Step2';
-import Step3 from './Steps/Step3';
+import Step2 from './Steps/Step3';
+import Step3 from './Steps/Step4';
 import Step4 from './Steps/Step4';
 import SearchBox from './SearchBox';
-
-//TODO: subtract the height of the stepwizard from container height, and use that value as the maximum height for the <motion.div> containing the <Step/> components
 
 
 export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLoading,
@@ -22,22 +19,17 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
   const [containerHeight, setContainerHeight] = useState(0);
   const [origin, setOrigin] = useState<string>('');
 
-  let stepsHeight = containerHeight - wizardHeight
 
-  console.log(containerWidth)
-
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (containerRef.current) {
       setContainerWidth(containerRef.current.offsetWidth);
       setContainerHeight(containerRef.current.offsetHeight)
 
     }
-
     if (wizardRef.current) {
       setWizardHeight(wizardRef.current.offsetHeight)
       setWizardHeight(wizardRef.current.offsetHeight)
     }
-
     const handleResize = () => {
       if (containerRef.current) {
         setContainerWidth(containerRef.current.offsetWidth);
@@ -54,7 +46,7 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
     <section
       ref={containerRef}
       className="overflow-x-hidden relative xs:h-5/6 md:min-h-full h-fit mx-auto xs:w-12/12 xl:w-4/5 transition-all duration-400 animate-fade-in delay-300 no-scrollbar">
-      {containerWidth !== null ? <motion.div
+      {typeof window !== 'undefined' ? <motion.div
         ref={wizardRef}
         style={{ maxHeight: "fit" }}
         className="flex items-baseline md:min-h-full lg:max-h-fit"
@@ -62,7 +54,7 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
         animate={{ opacity: 1, x: -currentStep * containerWidth }}
         transition={{ type: 'tween', duration: 0.2, ease: 'easeInOut' }}>
 
-        <div style={{ maxWidth: containerWidth, minWidth: containerWidth, flexShrink: 0 }} className='text-center mx-auto max-h-fit box-border flex'>
+        <div style={{ flexShrink: 0 }} className='xl:w-168 text-center mx-auto max-h-fit box-border flex'>
           <Step1
             setNotifyRequired={setNotifyRequired}
             setCanProceed={setCanProceed}
@@ -73,18 +65,18 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
             setGettingHelp={setGettingHelp}
           />
         </div>
-        <div style={{ minWidth: containerWidth, maxWidth: containerWidth, flexShrink: 0, maxHeight: 'fit' }} className='text-center flex grow content-center'>
-          <Perspective setGettingHelp={setGettingHelp} />
+        <div style={{ flexShrink: 0, maxHeight: 'fit' }} className='xl:w-168 text-center flex grow content-center'>
+          <Step2 setGettingHelp={setGettingHelp} />
         </div>
-        <div style={{ maxWidth: containerWidth, minWidth: containerWidth, flexShrink: 0, maxHeight: 'fit' }} className='text-center max-h-fit'>
-          <Step2 containerWidth={containerWidth}
+        <div style={{ flexShrink: 0, maxHeight: 'fit' }} className='xl:w-168 text-center max-h-fit'>
+          <Step3 containerWidth={containerWidth}
             setGettingHelp={setGettingHelp} />
         </div>
-        <div style={{ minWidth: containerWidth, maxWidth: containerWidth, flexShrink: 0 }} className='text-center max-h-fit'>
-          <Step3 containerWidth={containerWidth} setStartSearch={setStartSearch} setGettingHelp={setGettingHelp} />
+        <div style={{ flexShrink: 0 }} className='xl:w-168 text-center max-h-fit'>
+          <Step4 containerWidth={containerWidth} setStartSearch={setStartSearch} setGettingHelp={setGettingHelp} />
 
         </div>
-        <div style={{ minWidth: containerWidth, maxWidth: containerWidth, flexShrink: 0 }} className='text-center h-fit'>
+        <div style={{ flexShrink: 0 }} className='xl:w-168 text-center h-fit'>
           <SearchBox
             setQuery={setQuery}
             setIsSubmitted={setIsSubmitted}

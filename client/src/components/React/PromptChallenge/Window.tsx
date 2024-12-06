@@ -4,8 +4,8 @@ import { WindowProps } from "@/env";
 import { motion } from "framer-motion";
 import Perspective from './Steps/Step2';
 import Step1 from './Steps/Step1';
-import Step2 from './Steps/Step3';
-import Step3 from './Steps/Step4';
+import Step2 from './Steps/Step2';
+import Step3 from './Steps/Step3';
 import Step4 from './Steps/Step4';
 import SearchBox from './SearchBox';
 
@@ -66,7 +66,8 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
           />
         </div>
         <div style={{ flexShrink: 0, maxHeight: 'fit' }} className='xl:w-168 text-center flex grow content-center'>
-          <Step2 setGettingHelp={setGettingHelp} />
+          <Step2 setGettingHelp={setGettingHelp} origin={origin}
+            setOrigin={setOrigin} />
         </div>
         <div style={{ flexShrink: 0, maxHeight: 'fit' }} className='xl:w-168 text-center max-h-fit'>
           <Step3 containerWidth={containerWidth}

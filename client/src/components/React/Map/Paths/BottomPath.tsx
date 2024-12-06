@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 
 
+//TODO: break the bottom motion.div into two pieces to animate the last path of the map
+
 export default function BottomPath({ currentStep }) {
 
     return (

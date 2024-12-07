@@ -2,7 +2,7 @@ import Warning from '../Fallbacks/Warning.jsx';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { createPortal } from 'react-dom';
-import fallback from '../../../fallbacks/fallbackImage.svg'
+import fallback from 'public/images/fallbacks/fallbackImage.svg'
 
 export function Summary({ summaryData, handleClick, isSelected, index }) {
     const [fullStory, setFullStory] = useState(false);
@@ -21,7 +21,11 @@ export function Summary({ summaryData, handleClick, isSelected, index }) {
         failed,
     } = summaryData;
 
-    console.log({ "Article: ": article_title, "Authors: ": article_authors })
+
+
+
+
+    console.log({ "Article Image: ": article_image })
 
 
     function handleArticleView() {
@@ -56,7 +60,7 @@ export function Summary({ summaryData, handleClick, isSelected, index }) {
                          transition-opacity duration-200 ease-in-out ${isSelected ? 'rounded-t-4xl' : 'rounded-4xl'}
                          ${article_image ? null : 'bg-fallbackImage'}
                          `}
-                style={{ backgroundImage: `${article_image ? `url(${article_image})` : `url(${fallback})`}` }}
+                style={{ backgroundImage: typeof article_image === 'undefined' ? `url(${fallback})` : `url(${article_image})` }}
             ></div>
 
             {/* Content Over Background */}

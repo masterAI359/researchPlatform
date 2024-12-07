@@ -6,9 +6,6 @@ import decodeItem from '../helpers/decodeItem.js'
 import { logoMap } from './logoMap.js'
 import { hostname } from 'os'
 
-//TODO: Implelemnt some progress values when fetching summary data, we must display
-//to the user how long they'll be waiting or it feels even more drawn out while nothing happens 
-
 
 const envUrl = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(envUrl)
@@ -77,6 +74,11 @@ export const tldrSummary = async (req: Request, res: Response) => {
                 }
 
                 const data = await response.json();
+
+                if (data.article_image === 'undefined') {
+                    console.log(data.article_image)
+                }
+
                 data.logo = article.logo;
                 data.source = article.source;
                 data.date = article.date;
@@ -98,7 +100,7 @@ export const tldrSummary = async (req: Request, res: Response) => {
         });
 
         const results = await Promise.allSettled(dataMap);
-        const returnValues = results.map((result: any) => { //this is returning null | Why?
+        const returnValues = results.map((result: any) => {
 
             const resultData = result.value ? result.value : result.reason
 

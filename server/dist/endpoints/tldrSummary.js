@@ -11,8 +11,6 @@ import * as dotenv from 'dotenv';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
 import decodeItem from '../helpers/decodeItem.js';
-//TODO: Implelemnt some progress values when fetching summary data, we must display
-//to the user how long they'll be waiting or it feels even more drawn out while nothing happens 
 const envUrl = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(envUrl);
 const envPath = path.resolve(__dirname, '../../../.env');
@@ -54,6 +52,9 @@ export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, funct
                     throw new Error(`Failed to fetch summary for ${article.url}: ${response.status} ${response.statusText}`);
                 }
                 const data = yield response.json();
+                if (data.article_image === 'undefined') {
+                    console.log(data.article_image);
+                }
                 data.logo = article.logo;
                 data.source = article.source;
                 data.date = article.date;

@@ -44,7 +44,7 @@ export default function Notes({ notePosition, setNotePosition, constraints, note
                         </svg>
                     </div>
                 </div>
-                <div className=" h-full w-full pb-1 mx-auto bg-ebony/70">
+                <div className=" h-full w-full pb-1 mx-auto bg-ebony/70 rounded-b-md">
                     <StepsEditor setterFunction={setContent} />
                 </div>
 

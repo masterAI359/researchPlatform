@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import { createPortal } from "react-dom"
-import { Summary } from "./Summary"
+import { Summary } from "./SuccessFull/Summary"
 import { motion } from "framer-motion"
-import FailedSummary from "./FailedSummary"
-import SummaryHeading from "./SummaryHeading"
+import FailedSummary from "./Failed/FailedSummary"
+import SummaryHeading from "./SuccessFull/SummaryHeading"
 import { element } from "prop-types"
 
 export default function SummaryContainer({ summaries, articles, selectedForSummary, gettingHelp, setGettingHelp }) {

@@ -5,7 +5,7 @@ export default function HeroWrapper({ currentStep, setStartSearch, setQuery, isL
     query, setIsSubmitted, setCurrentStep, setCanProceed, notifyRequired, setNotifyRequired, setGettingHelp, summaries, canProceed }) {
 
     return (
-        <main className="flex relative box-border w-full h-full justify-between">
+        <main className="flex mx-auto box-border w-full h-full justify-start">
             <WindowContainer
                 summaries={summaries}
                 currentStep={currentStep}

@@ -8,6 +8,7 @@ export default function Navigation({ width }) {
 
 
 
+
 	{/*   Menu for Laptop/Desktop   */ }
 	const deskTopContent = (<div className="fixed top-0 w-full inset-x-0 z-30">
 		<div className="lg:max-w-7xl mx-auto">

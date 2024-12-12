@@ -16,21 +16,7 @@ export default function HeroContainer({ query, setQuery, isLoading, setIsSubmitt
                     setGettingHelp={setGettingHelp}
                     summaries={summaries}
                 />
-                <AnimatePresence>
-                    {/*     {articles.length > 0 &&
-                        <motion.div
-                            key='scrollDown'
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                        >
-                            <ScrollDown
-                                selectedForSummary={selectedForSummary}
-                                articles={articles}
-                                loadingSummaries={loadingSummaries}
-                                summaries={summaries} />
-                        </motion.div>} */}
-                </AnimatePresence>
+
             </div>}
         </AnimatePresence>
 

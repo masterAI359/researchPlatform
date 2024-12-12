@@ -20,6 +20,9 @@ export default function Article({ article, selectedForSummary, setSelectedForSum
         title: article.name
     }
 
+    const resizedImage = thumbnail + '&w=300&p=0&c=7';
+    console.log(resizedImage)
+
     const chooseArticle = (article: Articles) => {
         setSelectedForSummary((prevSelectedForSummary: SelectedArticles[]) => {
 
@@ -51,7 +54,7 @@ export default function Article({ article, selectedForSummary, setSelectedForSum
         >
             <figcaption className='relative w-full lg:max-h-40 lg:min-h-40 xs:min-h-24 xs:max-h-24  overflow-hidden'>
                 <div
-                    style={{ backgroundImage: `url(${thumbnail})` }}
+                    style={{ backgroundImage: `url(${resizedImage})` }}
                     className='absolute inset-0 bg-cover bg-center opacity-60 rounded-t-3xl'
                 ></div>
                 <div className='relative z-10 p-4'>

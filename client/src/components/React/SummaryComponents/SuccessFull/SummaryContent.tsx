@@ -1,21 +1,29 @@
+import { useState } from "react";
 import { motion } from "framer-motion"
 import FullText from "./FullText"
 import SummarizedText from "./SummarizedText"
 
 
 export default function SummaryContent({
-    fullStory,
     logo,
     source,
     isSelected,
     date,
     article_pub_date,
     article_authors,
-    handleArticleView,
     article_url,
     article_text,
-    summary
+    summary,
+    setFullStory,
+    fullStory
 }: any) {
+
+
+
+
+    function handleArticleView() {
+        setFullStory((fullStory) => !fullStory);
+    }
 
     return (
         <motion.div className={`${fullStory ? `overflow-y-scroll scrollbar-thin scrollbar-track-rounded-full 

@@ -7,8 +7,7 @@ import ArticlesGrid from "../ArticleComponents/ArticlesGrid"
 import ArticleLoader from "../Loaders/ArticleLoader"
 import SummaryLoader from "../Loaders/SummaryLoader"
 import ControlPanel from "../Buttons/ButtonWrappers/ControlPanel"
-
-import TakeNotes from "../Buttons/TakeNotes"
+import ELWrapper from "../Loaders/ELWrapper"
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode
@@ -24,7 +23,7 @@ const variants = {
     visible: { opacity: 1, y: 0 }
 }
 
-
+{/*  */ }
 
 
 export default function StoryContainer({ selectedForSummary, setSelectedForSummary, articles, summaries, isLoading, loadingSummaries,
@@ -107,6 +106,7 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
                         >
                             <SummaryLoader />
                         </motion.div>
+
                     }
 
                     {fetchedSummaries.length > 0 &&

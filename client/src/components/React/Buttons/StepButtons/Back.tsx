@@ -35,7 +35,7 @@ export default function BackButton({ setCurrentStep, currentStep }: ButtonProps)
                 >
                     <button
                         onClick={handleBackStep}
-                        className={`text-zinc-400 xs:w-14 xs:h-10
+                        className={`text-zinc-400 xs:w-14 xs:h-8
          lg:w-20 mx-auto lg:h-12 p-2 transition-all 
          duration-200 bg-white/5 hover:bg-white/10 hover:scale-110 flex items-center group
          rounded-2xl ${currentStep !== 0 ? 'pointer-events-auto' : ' pointer-events-none opacity-50'}`}>

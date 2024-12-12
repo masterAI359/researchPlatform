@@ -12,8 +12,10 @@ export default function WindowContainer({ currentStep, setStartSearch, setQuery,
 
 
     return (
-        <main className={`w-3/5 h-full relative flex items-center 
+        <main className={`xl:w-3/5 xs:w-11/12 h-full relative flex flex-col items-center
         `}>
+
+            <StepWizard currentStep={currentStep} setCurrentStep={setCurrentStep} />
             <section className="w-full h-full relative">
                 <AnimatePresence>
                     <motion.div
@@ -22,7 +24,6 @@ export default function WindowContainer({ currentStep, setStartSearch, setQuery,
                         exit={{ opacity: 0 }}
                         transition={{ type: 'tween', duration: 0.4 }}
                     >
-                        <StepWizard currentStep={currentStep} setCurrentStep={setCurrentStep} />
 
                         {summaries.length < 1 && <HeroWindow
                             currentStep={currentStep}

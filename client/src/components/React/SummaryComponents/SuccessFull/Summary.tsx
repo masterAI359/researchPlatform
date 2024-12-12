@@ -20,10 +20,8 @@ export function Summary({ summaryData, handleClick, isSelected, index }) {
         failed,
     } = summaryData;
 
-    function handleArticleView() {
-        setFullStory((fullStory) => !fullStory);
-    }
 
+    console.log(article_url)
 
     const content = (<motion.div
         whileHover={{
@@ -65,7 +63,7 @@ export function Summary({ summaryData, handleClick, isSelected, index }) {
                 summary={summary}
                 fullStory={fullStory}
                 article_url={article_url}
-
+                setFullStory={setFullStory}
             />}
         </AnimatePresence>
     </motion.div>)

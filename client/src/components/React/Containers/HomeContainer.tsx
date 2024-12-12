@@ -2,7 +2,8 @@ import Navigation from '@/components/Astro/global/Navigation';
 import HeroImage from '@/components/React/HomeComponents/HeroImage';
 import ArticlesResult from '@/components/React/HomeComponents/ArticlesResult';
 import Challenge from '../HomeComponents/Challenge';
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { ReactNode, useEffect, useLayoutEffect, useRef, useState } from 'react';
+
 
 
 export default function HomeContainer({ }) {
@@ -36,6 +37,7 @@ export default function HomeContainer({ }) {
             <HeroImage />
             <Challenge />
             <ArticlesResult />
+
         </section>
     )
 }

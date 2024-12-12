@@ -38,14 +38,16 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
+
   }, []);
 
+  console.log(containerWidth)
 
 
   return (
     <section
       ref={containerRef}
-      className="overflow-x-hidden relative xs:h-5/6 md:min-h-full h-fit mx-auto xs:w-12/12 xl:w-4/5 transition-all duration-400 animate-fade-in delay-300 no-scrollbar">
+      className="overflow-x-hidden relative xs:h-5/6 md:min-h-full h-fit mx-auto xs:w-full xl:w-168 xs:mb-2 transition-all duration-400 animate-fade-in delay-300 no-scrollbar">
       {typeof window !== 'undefined' ? <motion.div
         ref={wizardRef}
         style={{ maxHeight: "fit" }}
@@ -65,11 +67,11 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
             setGettingHelp={setGettingHelp}
           />
         </div>
-        <div style={{ flexShrink: 0, maxHeight: 'fit' }} className='xl:w-168 text-center flex grow content-center'>
+        <div style={{ flexShrink: 0, maxHeight: 'fit' }} className='xl:w-168 text-center flex content-center'>
           <Step2 setGettingHelp={setGettingHelp} origin={origin}
             setOrigin={setOrigin} />
         </div>
-        <div style={{ flexShrink: 0, maxHeight: 'fit' }} className='xl:w-168 text-center max-h-fit'>
+        <div style={{ flexShrink: 0, maxHeight: 'fit' }} className='xl:w-168  text-center max-h-fit'>
           <Step3 containerWidth={containerWidth}
             setGettingHelp={setGettingHelp} />
         </div>

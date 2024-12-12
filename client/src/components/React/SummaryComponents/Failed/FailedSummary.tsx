@@ -1,4 +1,3 @@
-import { motion, AnimatePresence } from "framer-motion"
 import Notification from "./Notification"
 
 export default function FailedSummary({ failedNotifications }) {

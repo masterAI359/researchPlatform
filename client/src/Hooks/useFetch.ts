@@ -22,8 +22,6 @@ export const useFetch = () => {
 
 
 
-
-
     const fetchArticles = async (query: string) => {
         setIsLoading(true)
         setFetchedArticles([])

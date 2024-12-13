@@ -20,12 +20,12 @@ export default function Step3({ containerWidth, setGettingHelp }: any) {
 
 
   return (
-    <div className={`h-fit box-border content-start mx-auto w-full inline-block`}>
-      <div className="flex flex-col items-center w-full px-5">
+    <div className={`h-fit box-border content-start mx-auto min-w-full max-w-full inline-block`}>
+      <div className="flex flex-col items-center w-full md:px-5 xs:px-0">
 
-        <div className="w-full box-border border-b h-fit border-white/10 lg:mb-4 flex flex-row gap-x-8 items-baseline lg:mt-10">
+        <div className="w-full box-border border-b h-fit border-white/10 rounded-lg xs:mb-2 lg:mb-4 flex flex-row xs:gap-x-4 md:gap-x-8 items-baseline lg:mt-10">
           <div className="w-fit flex justify-items-start">
-            <h1 className="text-2xl tracking-tight font-light text-white pb-2 xs:text-xl">Explore our biases
+            <h1 className="md:text-2xl tracking-tight font-light text-white pb-2 xs:text-sm">Explore our biases
             </h1>
           </div>
           <div className="w-fit h-full justify-items-start translate-y-1 opacity-100">

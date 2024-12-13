@@ -42,13 +42,13 @@ export default function SearchBox({ isLoading, setIsSubmitted, setQuery }) {
 
 
   return (
-    <div className="block box-border w-11/12 mx-auto px-2 2xl:h-full no-scrollbar">
+    <div className="block box-border min-w-full max-w-full mx-auto xs:px-0 md:px-2 2xl:h-full no-scrollbar">
 
       <div
         className="text-center w-full md:mx-auto">
         <div className="w-full flex justify-center">
           <h2
-            className="text-xl tracking-tight font-light lg:text-2xl text-white">
+            className="xs:text-sm md:text-xl lg:text-2xl tracking-tight font-light  text-white">
             Search for articles
           </h2>
         </div>
@@ -58,7 +58,7 @@ export default function SearchBox({ isLoading, setIsSubmitted, setQuery }) {
           <div
             className="w-full">
             <div
-              className="relative mt-4">
+              className="relative mt-4 xs:p-1">
               <form
                 action="post"
                 onSubmit={handleSubmit}
@@ -68,15 +68,15 @@ export default function SearchBox({ isLoading, setIsSubmitted, setQuery }) {
                   autoComplete="off"
                   type="text"
                   name="q"
-                  className="bg-white/10 text-white w-full border-none focus:ring-1 focus:ring-white h-12  p-4 rounded-full 
-								 focus:border-white transition-colors"
+                  className="bg-white/10 text-white w-full h-fit border-none focus:ring-1 focus:ring-white h-12 xs:p-2  md:p-4 rounded-full 
+								 focus:border-white transition-colors xs:text-sm md:text-lg flex items-center"
                   placeholder="search" />
                 <button type="submit"
                 >
                   {
                     isLoading ? <Loader />
                       : <svg
-                        className="text-white h-5 w-5 absolute top-3.5 right-3 fill-current"
+                        className="text-white xs:h-3.5 xs:w-3.5 md:h-5 md:w-5 absolute xs:top-4 xs:right-4 md:top-3.5 md:right-3 fill-current"
                         xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
                         version="1.1" x="0px" y="0px" viewBox="0 0 56.966 56.966"
                         xmlSpace="preserve">

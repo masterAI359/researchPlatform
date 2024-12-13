@@ -43,7 +43,7 @@ export default function StepsEditor({ setterFunction }) {
 
     return (
         <div className="w-full h-full box-border mx-auto">
-            <div className="control-group w-full flex px-1 bg-white/10">
+            <div className="control-group w-full flex px-1 bg-white/10 rounded-t-lg">
                 <div className="button-group w-full mx-auto text-white flex gap-x-2 pt-1">
 
                     <button

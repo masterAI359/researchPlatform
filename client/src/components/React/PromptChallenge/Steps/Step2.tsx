@@ -48,25 +48,25 @@ export default function Step2({ setOrigin, origin, setGettingHelp }: any) {
 
   return (
     <div
-      className="w-auto lg:h-full content-center mx-auto box-border flex flex-col justify-center my-auto md:px-0 xs:px-2">
+      className="min-w-full lg:h-full content-center mx-auto box-border flex flex-col justify-center my-auto md:px-0">
 
-      <header className="w-full h-auto mx-auto border-b border-white/10 xl:mb-4 flex gap-x-8 items-baseline">
-        <h1 className="text-white xl:text-2xl font-light tracking-tight mb-2 text-left">
+      <header className="w-full h-auto mx-auto border-b border-white/10 xs:mb-2 xl:mb-4 flex md:gap-x-8 xs:gap-x-0 items-baseline">
+        <h1 className="text-white xl:text-2xl xs:text-sm font-light tracking-tight xs:mb-1 md:mb-2 text-left xs:w-2/3">
           Before we dive in <span className="text-zinc-500">define your angle of approach</span>
         </h1>
-        <div className="w-fit">
+        <div className="w-fit self-end xs:mb-5 md:mb-0">
           <HelpButton info={Step2Help} setGettingHelp={setGettingHelp} />
 
         </div>
       </header>
       <div className="w-full flex items-center">
 
-        <div className="flex w-full mx-auto justify-between">
+        <div className="flex w-fit mx-auto xs:gap-x-16 box-border">
           <motion.div
             className="flex flex-col md:gap-y-2 xs:gap-y-1 items-center text-center my-auto"
           >
             <header className="w-full">
-              <h1 className="xl:text-lg xs:text-xs  font-light tracking tight text-slate-400 mb-2">Perspective to Examine</h1>
+              <h1 className="xl:text-lg xs:text-xs  font-light tracking tight text-slate-400 mb-2">Your Perspective</h1>
             </header>
             {opinions.map((opinion) => (
               <motion.div
@@ -76,7 +76,7 @@ export default function Step2({ setOrigin, origin, setGettingHelp }: any) {
                 <div
                   ref={animationRef}
                   className="bg-white/10 text-white lg:text-[0.8rem] xs:text-[0.6rem] font-light tracking-tight
-              rounded-lg lg:w-[12rem] md:w-[12rem] md:h-12 xs:w-28 xs:h-11
+              rounded-lg lg:w-[12rem] md:w-[12rem] md:h-12 xs:w-28 xs:h-9
                cursor-pointer hover:bg-white/20 flex justify-between items-center lg:px-4 xs:px-2 grow-0 gap-3"
                   data-set={opinion}
                   onClick={(e) => { assignOrigin(e) }}
@@ -103,8 +103,9 @@ export default function Step2({ setOrigin, origin, setGettingHelp }: any) {
               >
                 <div
                   ref={animationRef}
-                  className="bg-white/10 text-white lg:text-[0.8rem] xs:text-[0.6rem] font-light tracking-tight rounded-lg lg:w-[12rem] md:w-[12rem] md:h-12 xs:w-auto xs:h-auto
-               cursor-pointer hover:bg-white/20 flex justify-between items-center lg:px-4 xs:px-2 grow-0 gap-5 xs:h-11 xs:w-28"
+                  className="bg-white/10 text-white lg:text-[0.8rem] xs:text-[0.6rem] font-light tracking-tight
+              rounded-lg lg:w-[12rem] md:w-[12rem] md:h-12 xs:w-28 xs:h-9
+               cursor-pointer hover:bg-white/20 flex justify-between items-center lg:px-4 xs:px-2 grow-0 gap-3"
                   data-set={item}
                   onClick={(e) => { assignKnowledge(e) }}
                 >{item}

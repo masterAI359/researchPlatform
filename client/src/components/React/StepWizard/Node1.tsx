@@ -2,7 +2,7 @@ import { motion } from "framer-motion"
 
 export default function Node1({ setCurrentStep, currentStep }) {
 
-    const title = "Challenge \n an idea"
+
 
     return (
         <li className="flex flex-col md:w-full xs:w-full xs:h-20 lg:h-28 items-center">
@@ -34,12 +34,12 @@ export default function Node1({ setCurrentStep, currentStep }) {
             </div>
 
             <motion.div
-                className="md:text-sm xs:text-[0.5rem] text-left bg-transparent
+                className="md:text-sm xs:text-[0.6rem] text-left bg-transparent
                         text-white self-start w-fit "
                 animate={{ scale: 1, opacity: currentStep > 0 ? 0 : 1 }}
                 transition={{ duration: 0.7 }}
             >
-                {title}
+                Argument
             </motion.div>
 
         </li>

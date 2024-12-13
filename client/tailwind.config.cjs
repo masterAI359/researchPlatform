@@ -18,10 +18,12 @@ module.exports = {
       },
       spacing: {
         '18': '72px',
-        '22': '88px'
+        '22': '88px',
+        '76': '310px',
+        '168': '656px'
       },
       width: {
-        '168': '656px'
+
       },
       minWidth: {
         '128': '32rem',

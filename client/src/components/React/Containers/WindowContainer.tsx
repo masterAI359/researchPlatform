@@ -12,7 +12,7 @@ export default function WindowContainer({ currentStep, setStartSearch, setQuery,
 
 
     return (
-        <main className={`xl:w-3/5 xs:w-11/12 h-full relative flex flex-col items-center
+        <main className={`xl:w-3/5 xs:w-full h-full relative flex flex-col items-center
         `}>
 
             <StepWizard currentStep={currentStep} setCurrentStep={setCurrentStep} />

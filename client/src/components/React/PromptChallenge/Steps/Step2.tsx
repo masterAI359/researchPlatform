@@ -51,17 +51,17 @@ export default function Step2({ setOrigin, origin, setGettingHelp }: any) {
       className="min-w-full lg:h-full content-center mx-auto box-border flex flex-col justify-center my-auto md:px-0">
 
       <header className="w-full h-auto mx-auto border-b border-white/10 xs:mb-2 xl:mb-4 flex md:gap-x-8 xs:gap-x-0 items-baseline">
-        <h1 className="text-white xl:text-2xl xs:text-sm font-light tracking-tight xs:mb-1 md:mb-2 text-left xs:w-2/3">
+        <h1 className="text-white xl:text-2xl xs:text-sm font-light tracking-tight xs:mb-1 md:mb-2 text-left xs:w-2/3 md:w-auto">
           Before we dive in <span className="text-zinc-500">define your angle of approach</span>
         </h1>
-        <div className="w-fit self-end xs:mb-5 md:mb-0">
+        <div className="w-fit self-end xs:mb-5 md:mb-4">
           <HelpButton info={Step2Help} setGettingHelp={setGettingHelp} />
 
         </div>
       </header>
       <div className="w-full flex items-center">
 
-        <div className="flex w-fit mx-auto xs:gap-x-16 box-border">
+        <div className="flex w-fit mx-auto xs:gap-x-16 xl:gap-x-44 box-border">
           <motion.div
             className="flex flex-col md:gap-y-2 xs:gap-y-1 items-center text-center my-auto"
           >
@@ -82,9 +82,10 @@ export default function Step2({ setOrigin, origin, setGettingHelp }: any) {
                   onClick={(e) => { assignOrigin(e) }}
                 >
                   {opinion}
-                  <div className="lg:h-10 lg:w-10 xs:max-w-7 xs:max-h-7 xs:min-w-7 xs:min-h-7 absolute xs:right-1 z-0 flex items-center justify-center">
-                    {pov === opinion ? <Lottie className="box-content" lottieRef={animationRef} animationData={blueCheck} loop={false} autoPlay={false} style={{ height: "100%", width: "100%", position: "relative" }} /> : (
-                      <div className="h-5 w-5 bg-white/30 box-content rounded-full xs:max-w-4 xs:max-h-4 xs:min-w-4 xs:min-h-4 absolute xs:right-1"></div>
+                  <div className="lg:min-h-10 lg:min-w-10 lg:max-h-10 lg:min-w-10 lg:p-0.5 xs:max-w-7 xs:max-h-7 xs:min-w-7 xs:min-h-7 absolute xs:right-1 z-0 flex items-center justify-center">
+                    {opinion === pov ? <Lottie className="box-content absolute xs:right-0 xl:translate-x-1.5" lottieRef={animationRef} animationData={blueCheck} loop={false} autoPlay={false} style={{ height: "100%", width: "100%", position: "relative" }} /> : (
+                      <div className="xl:max-h-5 xl:max-w-5 xl:min-w-5 xl:min-h-5 xs:max-w-4 xs:max-h-4 xs:min-w-4 xs:min-h-4 bg-white/30 box-content rounded-full  absolute xs:right-1"></div>
+
                     )}
                   </div>
                 </div>
@@ -109,9 +110,9 @@ export default function Step2({ setOrigin, origin, setGettingHelp }: any) {
                   data-set={item}
                   onClick={(e) => { assignKnowledge(e) }}
                 >{item}
-                  <div className="lg:h-10 lg:w-10 xs:max-w-7 xs:max-h-7 xs:min-w-7 xs:min-h-7 absolute xs:right-1 z-0 flex items-center justify-center">
-                    {item === knowledge ? <Lottie className="box-content" lottieRef={animationRef} animationData={blueCheck} loop={false} autoPlay={false} style={{ height: "100%", width: "100%", position: "relative" }} /> : (
-                      <div className="h-5 w-5 bg-white/30 box-content rounded-full xs:max-w-4 xs:max-h-4 xs:min-w-4 xs:min-h-4 absolute xs:right-1"></div>
+                  <div className="lg:min-h-10 lg:min-w-10 lg:max-h-10 lg:min-w-10 lg:p-0.5 xs:max-w-7 xs:max-h-7 xs:min-w-7 xs:min-h-7 absolute xs:right-1 z-0 flex items-center justify-center">
+                    {item === knowledge ? <Lottie className="box-content absolute xs:right-0 xl:translate-x-1.5" lottieRef={animationRef} animationData={blueCheck} loop={false} autoPlay={false} style={{ height: "100%", width: "100%", position: "relative" }} /> : (
+                      <div className="xl:max-h-5 xl:max-w-5 xl:min-w-5 xl:min-h-5 xs:max-w-4 xs:max-h-4 xs:min-w-4 xs:min-h-4 bg-white/30 box-content rounded-full  absolute xs:right-1"></div>
                     )}
                   </div>
                 </div>

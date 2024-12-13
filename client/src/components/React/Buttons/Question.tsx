@@ -49,7 +49,7 @@ export default function HelpButton({ info, setGettingHelp }) {
                                 <p className="text-white self-start text-sm my-auto font-light tracking-tight pl-1 h-full">Need help?</p>
                             </div>
                             <div
-                                className="w-fit h-fit p-1 hover:bg-white/20 transition-all ease-in-out rounded-md cursor-pointer flex justify-center"
+                                className="xl:h-7 xs:w-auto p-1 hover:bg-white/20 transition-all ease-in-out rounded-md cursor-pointer flex justify-center"
                                 onClick={() => setHovering(false)}
                             >
                                 <svg className="text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="100%" height="100%">
@@ -84,7 +84,7 @@ export default function HelpButton({ info, setGettingHelp }) {
                       lg:left-20 xl:w-[38rem]"
                     >   <div className="pb-2">
                             {info.map((element: Help) => (
-                                <div className="flex flex-col gap-5">
+                                <div key={element.explanation} className="flex flex-col gap-5">
                                     <div className="w-full mx-auto bg-ebony flex h-full justify-between items-center py-2 my-auto rounded-t-4xl">
                                         <h1 key={element.heading} className="text-white text-2xl font-light tracking-tight ml-4">{element.heading}</h1>
                                         <div

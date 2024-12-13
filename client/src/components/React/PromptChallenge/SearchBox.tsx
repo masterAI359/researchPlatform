@@ -76,7 +76,8 @@ export default function SearchBox({ isLoading, setIsSubmitted, setQuery }) {
                   {
                     isLoading ? <Loader />
                       : <svg
-                        className="text-white xs:h-3.5 xs:w-3.5 md:h-5 md:w-5 absolute xs:top-4 xs:right-4 md:top-3.5 md:right-3 fill-current"
+                        className="text-white xs:h-3.5 xs:w-3.5 md:h-6 md:w-6 absolute 
+                        xs:top-4 xs:right-4 md:top-5 md:right-5 fill-current"
                         xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
                         version="1.1" x="0px" y="0px" viewBox="0 0 56.966 56.966"
                         xmlSpace="preserve">

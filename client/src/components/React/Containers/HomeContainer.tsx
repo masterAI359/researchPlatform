@@ -1,4 +1,4 @@
-import Navigation from '@/components/Astro/global/Navigation';
+import Navigation from '@/components/React/Navigation/Navigation';
 import HeroImage from '@/components/React/HomeComponents/HeroImage';
 import ArticlesResult from '@/components/React/HomeComponents/ArticlesResult';
 import Challenge from '../HomeComponents/Challenge';

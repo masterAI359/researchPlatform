@@ -6,7 +6,8 @@ import { useFetch } from "@/Hooks/useFetch";
 import { AnimatePresence, motion } from "framer-motion";
 import ControlPanel from "../Buttons/ButtonWrappers/ControlPanel";
 import Notes from "../PromptChallenge/Notes";
-import Navigation from "@/components/Astro/global/Navigation";
+import Navigation from "../Navigation/Navigation";
+
 
 export default function InvestigateContainer() {
   const [query, setQuery] = useState<string>("")

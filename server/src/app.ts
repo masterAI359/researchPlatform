@@ -1,8 +1,12 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
-import fetch from 'node-fetch';
 import {
 	bingArticles,
 	bingGeneral,
@@ -32,6 +36,8 @@ app.use(function (req, res, next) {
 	);
 	next();
 });
+
+app.use(express.static(path.join(__dirname, 'dist')));
 
 app.options('*', (req, res) => {
 	res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
@@ -69,6 +75,9 @@ app.get('/', (req: Request, res: Response) => {
 	res.send('Hello World');
 });
 
+
+
+
 app.get('/api', async (req: Request, res: Response) => {
 	try {
 		const queryResult = await client.query('SELECT NOW() as current_time;');
@@ -80,12 +89,15 @@ app.get('/api', async (req: Request, res: Response) => {
 	}
 });
 
-//testing bing api search
 app.get('/search', bingGeneral);
 app.get('/search/articles', bingArticles);
 app.get('/summarize', tldrSummary);
 
-// app.get('/search/images', bingImages);
+// handling unkown routes, allowing client side routing on refresh with react-router-dom library
+app.get('*', (req: Request, res: Response) => {
+	res.sendFile(path.join(__dirname, 'dist', 'index.html'))
+})
+
 
 app.listen(port, () => {
 	return console.log(`Express is listening at http://localhost:${port}`);

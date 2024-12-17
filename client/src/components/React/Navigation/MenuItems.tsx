@@ -1,5 +1,7 @@
 import { motion } from "framer-motion"
 import { useState } from "react"
+import { Link } from "react-router-dom";
+
 
 
 export default function MenuItem({ id, text, link, isOpen }) {
@@ -33,10 +35,9 @@ export default function MenuItem({ id, text, link, isOpen }) {
             whileTap={{ scale: 0.95 }}
             className="w-auto mx-auto z-50"
         >
-            <div className="w-auto h-auto mx-auto">
-                <p className="text-sm font-light tracking-tight">
-
-                    <a className={`${isActive ? 'text-blue-400' : 'text-white'}`} href={link}> {text} </a>
+            <div className="w-32 text-center border border-4 border-astro_gray rounded-md h-auto mx-auto py-1.5">
+                <p className="text-sm text-white font-light tracking-tight">
+                    <Link to={link}>{text}</Link>
                 </p>
             </div>
 

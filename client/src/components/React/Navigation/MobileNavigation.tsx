@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import MenuItem from "./MenuItems";
-
+import { Link } from "react-router-dom";
 
 const variants = {
     open: {
@@ -17,7 +17,7 @@ const items = [
     { id: 0, text: 'Home', link: '/' },
     { id: 1, text: 'Investigate', link: '/Investigate' },
     { id: 2, text: 'Current Events', link: '#' },
-    { id: 3, text: 'About', link: '/about' },
+    { id: 3, text: 'About', link: '#' },
     { id: 4, text: 'My Account', link: '#' },
 
 ]
@@ -31,9 +31,26 @@ export default function MobileNavigation({ isOpen }) {
         variants={variants}
         animate={isOpen ? 'open' : 'closed'}
     >
+        <motion.li
+            key='Home'
+            variants={variants}
+            animate={isOpen ? 'open' : 'closed'}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            className="w-auto mx-auto z-50"
+        >
+            <div className="w-auto h-auto mx-auto">
+                <p className="text-sm font-light tracking-tight">
+                    <Link to='/Investigate' />
+                </p>
+            </div>
+
+        </motion.li>
+
         {items.map((item) => (
-            <MenuItem isOpen={isOpen} id={item.id} key={item.id} text={item.text} link={item.link} />
+            <MenuItem id={item.id} text={item.text} link={item.link} isOpen={isOpen} />
         ))}
+
     </motion.ul>)
 
 }

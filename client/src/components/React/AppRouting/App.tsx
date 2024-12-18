@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom"
 import HomeContainer from "../Containers/HomeContainer"
 import InvestigateContainer from "../Containers/InvestigateContainer"
 import Navigation from "../Navigation/Navigation"
+import AboutContainer from "../Containers/AboutContainer"
 
 
 export default function App() {
@@ -11,6 +12,7 @@ export default function App() {
                 <Route path='/' element={<Structure />}>
                     <Route index element={<HomeContainer />} />
                     <Route path='/Investigate' element={<InvestigateContainer />} />
+                    <Route path='/About' element={<AboutContainer />} />
                 </Route>
             </Routes>
         </BrowserRouter>)

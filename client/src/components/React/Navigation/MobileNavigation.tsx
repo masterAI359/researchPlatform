@@ -17,7 +17,7 @@ const items = [
     { id: 0, text: 'Home', link: '/' },
     { id: 1, text: 'Investigate', link: '/Investigate' },
     { id: 2, text: 'Current Events', link: '#' },
-    { id: 3, text: 'About', link: '#' },
+    { id: 3, text: 'About', link: '/About' },
     { id: 4, text: 'My Account', link: '#' },
 
 ]

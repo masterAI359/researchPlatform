@@ -1,8 +1,4 @@
-import { useState, useEffect, FormEvent } from "react"
-import Loader from "../Loaders/Loader";
-
-
-
+import Loader from "../../Loaders/Loader";
 
 interface OptionsTypes {
   method: string,
@@ -11,7 +7,6 @@ interface OptionsTypes {
 
 export default function SearchBox({ isLoading, setIsSubmitted, setQuery }) {
 
-
   const options: OptionsTypes = {
     method: 'GET',
     headers: {
@@ -19,8 +14,6 @@ export default function SearchBox({ isLoading, setIsSubmitted, setQuery }) {
       'Content-Type': 'application/json',
     }
   }
-
-
 
   const handleQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
 
@@ -37,9 +30,6 @@ export default function SearchBox({ isLoading, setIsSubmitted, setQuery }) {
     e.preventDefault()
     setIsSubmitted(true)
   }
-
-
-
 
   return (
     <div className="block box-border min-w-full max-w-full mx-auto xs:px-0 md:px-2 2xl:h-full no-scrollbar">

@@ -1,8 +1,7 @@
-import Navigation from '@/components/React/Navigation/Navigation';
 import HeroImage from '@/components/React/HomeComponents/HeroImage';
 import ArticlesResult from '@/components/React/HomeComponents/ArticlesResult';
 import Challenge from '../HomeComponents/Challenge';
-import { ReactNode, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 
 
 

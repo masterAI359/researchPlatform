@@ -1,6 +1,5 @@
 import { useState } from "react";
-import HeroWrapper from "../Containers/HeroWrapper";
-import StepWizard from "../StepWizard/StepWizard";
+import HeroWrapper from "../../Containers/HeroWrapper";
 
 export default function InvestigateHero({ query, isLoading, setIsSubmitted, setQuery, gettingHelp, setGettingHelp, summaries }) {
   const [approachSet, setApproach] = useState<boolean>(true)

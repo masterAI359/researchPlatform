@@ -5,7 +5,7 @@ import { SelectedArticles } from '../../../env'
 import { useFetch } from "@/Hooks/useFetch";
 import { AnimatePresence, motion } from "framer-motion";
 import ControlPanel from "../Buttons/ButtonWrappers/ControlPanel";
-import Notes from "../PromptChallenge/Notes";
+import Notes from "../Investigate/Notes/Notes";
 import Navigation from "../Navigation/Navigation";
 
 

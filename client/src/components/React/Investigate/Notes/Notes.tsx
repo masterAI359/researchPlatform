@@ -1,8 +1,6 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { createPortal } from "react-dom"
-import TipTap from "../TipTap/TipTap"
-import StepsEditor from "../TipTap/StepsEditor"
+import StepsEditor from "../../TipTap/StepsEditor"
 
 export default function Notes({ notePosition, setNotePosition, constraints, notesRef, setTakingNotes }) {
     const [content, setContent] = useState(null)

@@ -1,29 +1,11 @@
-import { HTMLAttributes, useState, useRef } from "react"
+import { useState, useRef } from "react"
 import { useMotionValueEvent, motion, useScroll, AnimatePresence, transform, animate } from "framer-motion"
 import SelectArticles from "../ArticleComponents/SelectArticles"
-import { SelectedArticles } from "@/env"
 import SummaryContainer from "../SummaryComponents/SummaryContainer"
 import ArticlesGrid from "../ArticleComponents/ArticlesGrid"
 import ArticleLoader from "../Loaders/ArticleLoader"
 import SummaryLoader from "../Loaders/SummaryLoader"
 import ControlPanel from "../Buttons/ButtonWrappers/ControlPanel"
-import ELWrapper from "../Loaders/ELWrapper"
-
-interface Props extends HTMLAttributes<HTMLDivElement> {
-    children: React.ReactNode
-    selectedForSummary: SelectedArticles[],
-    readyToSelect: boolean,
-    submittedForSummaries: boolean,
-    setSubmittedForSummaries: Function,
-    loadingSummaries: boolean
-}
-
-const variants = {
-    hidden: { opacity: 0, y: 100 },
-    visible: { opacity: 1, y: 0 }
-}
-
-{/*  */ }
 
 
 export default function StoryContainer({ selectedForSummary, setSelectedForSummary, articles, summaries, isLoading, loadingSummaries,

@@ -36,7 +36,7 @@ export default function MenuItem({ id, text, link, isOpen, toggle }) {
             className="w-auto mx-auto z-50"
             onClick={toggle}
         >
-            <div className="w-32 text-center border border-4 border-mirage rounded-xl h-auto mx-auto py-1.5">
+            <div className="w-32 text-center border border-4 border-mirage rounded- h-auto mx-auto py-1.5">
                 <p className="text-sm text-white font-light tracking-tight">
                     <Link to={link}>{text}</Link>
                 </p>

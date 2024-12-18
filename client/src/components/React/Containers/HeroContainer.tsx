@@ -1,4 +1,4 @@
-import InvestigateHero from "../PromptChallenge/InvestigateHero"
+import InvestigateHero from "../Investigate/Wrappers/InvestigateHero"
 import ScrollDown from "../ArticleComponents/ScrollDown"
 import { motion, AnimatePresence } from "framer-motion"
 

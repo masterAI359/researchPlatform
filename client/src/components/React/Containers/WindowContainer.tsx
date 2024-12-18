@@ -1,7 +1,5 @@
-import HeroWindow from "../PromptChallenge/Window";
-import BackButton from "../Buttons/StepButtons/Back";
+import HeroWindow from "../Investigate/Wrappers/Window";
 import StepControl from "../Buttons/StepButtons/StepControl";
-import NextButton from "../Buttons/StepButtons/Next";
 import StepWizard from "../StepWizard/StepWizard";
 import { AnimatePresence, motion } from "framer-motion";
 

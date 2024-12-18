@@ -1,13 +1,11 @@
-import React from 'react';
 import { useRef, useState, useLayoutEffect } from "react";
 import { WindowProps } from "@/env";
 import { motion } from "framer-motion";
-import Perspective from './Steps/Step2';
-import Step1 from './Steps/Step1';
-import Step2 from './Steps/Step2';
-import Step3 from './Steps/Step3';
-import Step4 from './Steps/Step4';
-import SearchBox from './SearchBox';
+import Step1 from '../Steps/Step1';
+import Step2 from '../Steps/Step2';
+import Step3 from '../Steps/Step3';
+import Step4 from '../Steps/Step4';
+import SearchBox from '../Steps/SearchBox';
 
 
 export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLoading,

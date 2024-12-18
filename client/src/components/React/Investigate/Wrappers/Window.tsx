@@ -1,11 +1,11 @@
 import { useRef, useState, useLayoutEffect } from "react";
 import { WindowProps } from "@/env";
 import { motion } from "framer-motion";
-import Step1 from '../Steps/Step1';
-import Step2 from '../Steps/Step2';
-import Step3 from '../Steps/Step3';
-import Step4 from '../Steps/Step4';
-import SearchBox from '../Steps/SearchBox';
+import Slide1 from "./Slider/Slide1";
+import Slide2 from "./Slider/Slide2";
+import Slide3 from "./Slider/Slide3";
+import Slide4 from "./Slider/Slide4";
+import Slide5 from "./Slider/Slide5";
 
 
 export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLoading,
@@ -46,9 +46,9 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
     <section
       ref={containerRef}
       className="overflow-x-hidden relative xs:h-fit md:min-h-full h-fit 
-      mx-auto xs:min-w-full xs:max-w-full xl:min-w-168 xl:max-w-168 xs:mb-4 
-      transition-all duration-400 animate-fade-in delay-300 no-scrollbar">
-      {containerWidth >= 311 ? <motion.div
+      mx-auto xs:min-w-full xl:min-w-168 xl:max-w-168 xs:mb-4 
+      transition-all duration-400 animate-fade-in delay-300 no-scrollbar box-border">
+      <motion.div
         ref={wizardRef}
         style={{ maxHeight: "fit" }}
         className="flex xs:items-center md:items-baseline xs:h-fit md:min-h-full lg:max-h-fit"
@@ -56,38 +56,36 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
         animate={{ opacity: 1, x: -currentStep * containerWidth }}
         transition={{ type: 'tween', duration: 0.2, ease: 'easeInOut' }}>
 
-        <div style={{ flexShrink: 0, maxWidth: containerWidth }} className='xl:w-168 xs:w-76 xs:min-w-76  text-center mx-auto max-h-fit box-border flex xs:px-2'>
-          <Step1
-            setNotifyRequired={setNotifyRequired}
-            setCanProceed={setCanProceed}
-            notifyRequired={notifyRequired}
-            containerWidth={containerWidth}
-            origin={origin}
-            setOrigin={setOrigin}
-            setGettingHelp={setGettingHelp}
-          />
-        </div>
-        <div style={{ flexShrink: 0, maxHeight: 'fit', maxWidth: containerWidth }} className='xl:w-168 xs:w-76 xs:min-w-76 text-center flex content-center xs:px-2'>
-          <Step2 setGettingHelp={setGettingHelp} origin={origin}
-            setOrigin={setOrigin} />
-        </div>
-        <div style={{ flexShrink: 0, maxHeight: 'fit', maxWidth: containerWidth }} className='xl:w-168 xs:w-76 xs:min-w-76 text-center max-h-fit xs:px-2'>
-          <Step3 containerWidth={containerWidth}
-            setGettingHelp={setGettingHelp} />
-        </div>
-        <div style={{ flexShrink: 0, maxHeight: 'fit', maxWidth: containerWidth }} className='xl:w-168 xs:w-76 xs:min-w-76 text-center max-h-fit xs:px-2'>
-          <Step4 containerWidth={containerWidth} setStartSearch={setStartSearch} setGettingHelp={setGettingHelp} />
+        <Slide1
+          containerWidth={containerWidth}
+          setOrigin={setOrigin}
+          setNotifyRequired={setNotifyRequired}
+          notifyRequired={notifyRequired}
+          origin={origin}
+          setGettingHelp={setGettingHelp}
+          setCanProceed={setCanProceed}
+        />
+        <Slide2
+          containerWidth={containerWidth}
+          setGettingHelp={setGettingHelp}
+          setOrigin={setOrigin}
+        />
+        <Slide3
+          setGettingHelp={setGettingHelp}
+          containerWidth={containerWidth}
+        />
+        <Slide4
+          setGettingHelp={setGettingHelp}
+          containerWidth={containerWidth}
+        />
+        <Slide5
+          containerWidth={containerWidth}
+          setQuery={setQuery}
+          isLoading={isLoading}
+          setIsSubmitted={setIsSubmitted}
+        />
 
-        </div>
-        <div style={{ flexShrink: 0, maxHeight: 'fit', maxWidth: containerWidth }} className='xl:w-168 xs:w-76 xs:min-w-76 text-center h-fit xs:px-2'>
-          <SearchBox
-            setQuery={setQuery}
-            setIsSubmitted={setIsSubmitted}
-            isLoading={isLoading}
-          />
-        </div>
-
-      </motion.div> : null}
+      </motion.div>
     </section>
   )
 }

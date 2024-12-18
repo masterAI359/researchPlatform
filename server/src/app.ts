@@ -38,6 +38,7 @@ app.use(function (req, res, next) {
 });
 
 app.use(express.static(path.join(__dirname, 'dist')));
+console.log("Serving: " + path.join(__dirname, '../../../client/dist', 'index.html'))
 
 app.options('*', (req, res) => {
 	res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
@@ -71,9 +72,9 @@ client
 
 const port = 5001;
 
-app.get('/', (req: Request, res: Response) => {
-	res.send('Hello World');
-});
+//app.get('/', (req: Request, res: Response) => {
+//	res.send('Hello World');
+//});
 
 
 
@@ -95,6 +96,7 @@ app.get('/summarize', tldrSummary);
 
 // handling unkown routes, allowing client side routing on refresh with react-router-dom library
 app.get('*', (req: Request, res: Response) => {
+	console.log("Serving: " + path.join(__dirname, 'dist', 'index.html'))
 	res.sendFile(path.join(__dirname, 'dist', 'index.html'))
 })
 

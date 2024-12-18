@@ -31,6 +31,7 @@ app.use(function (req, res, next) {
     next();
 });
 app.use(express.static(path.join(__dirname, 'dist')));
+console.log("Serving: " + path.join(__dirname, '../../../client/dist', 'index.html'));
 app.options('*', (req, res) => {
     res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
     res.header('Access-Control-Allow-Methods', 'OPTIONS, HEAD, GET, PUT, POST, DELETE');
@@ -52,9 +53,9 @@ client
     }
 }))();
 const port = 5001;
-app.get('/', (req, res) => {
-    res.send('Hello World');
-});
+//app.get('/', (req: Request, res: Response) => {
+//	res.send('Hello World');
+//});
 app.get('/api', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const queryResult = yield client.query('SELECT NOW() as current_time;');
@@ -71,6 +72,7 @@ app.get('/search/articles', bingArticles);
 app.get('/summarize', tldrSummary);
 // handling unkown routes, allowing client side routing on refresh with react-router-dom library
 app.get('*', (req, res) => {
+    console.log("Serving: " + path.join(__dirname, 'dist', 'index.html'));
     res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 app.listen(port, () => {

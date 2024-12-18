@@ -25,6 +25,7 @@
     "@astrojs/react": "^3.3.0",
     "@astrojs/rss": "^4.0.5",
     "@astrojs/sitemap": "^3.1.2",
+    "@astrojs/ts-plugin": "^1.10.4",
     "@atlaskit/pragmatic-drag-and-drop": "^1.4.0",
     "@tiptap/pm": "^2.9.1",
     "@tiptap/react": "^2.9.1",

@@ -33,7 +33,6 @@ export default function HomeContainer({ }) {
 
     return (
         <section ref={windowRef} className='flex h-auto flex-col w-full grow'>
-            <Navigation width={windowWidth} />
             <HeroImage />
             <Challenge />
             <ArticlesResult />

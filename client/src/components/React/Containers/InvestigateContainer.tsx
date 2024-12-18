@@ -96,7 +96,6 @@ export default function InvestigateContainer() {
       ref={containerRef}
       className={`w-full grid grid-cols-1 transition-all duration-300 ease-in-out h-auto mx-auto justify-center relative
          items-center animate-fade-in pb-52 relative box-border overflow-hidden pb-[40rem]`}>
-      <Navigation width={windowWidth} />
 
       {windowWidth !== null && <HeroContainer
         gettingHelp={gettingHelp}

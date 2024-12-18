@@ -1,17 +1,29 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom"
 import HomeContainer from "../Containers/HomeContainer"
 import InvestigateContainer from "../Containers/InvestigateContainer"
-
+import Navigation from "../Navigation/Navigation"
 
 
 export default function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path='/' element={<HomeContainer />} />
-                <Route path='/Investigate' element={<InvestigateContainer />} />
+                <Route path='/' element={<Structure />}>
+                    <Route index element={<HomeContainer />} />
+                    <Route path='/Investigate' element={<InvestigateContainer />} />
+                </Route>
             </Routes>
         </BrowserRouter>)
 }
 
+
+function Structure() {
+
+    return (
+        <>
+            <Navigation />
+            <Outlet />
+        </>
+    )
+}
 

@@ -43,7 +43,7 @@ export default function MobileMenu() {
         <motion.nav
             initial={false}
             animate={isOpen ? 'open' : 'closed'}
-            className=""
+            className="sm:block md:hidden"
             custom='100%'
         >
             <motion.div className="bg-black z-40 min-h-svh min-w-full top-0 left-0 bottom-0 fixed" variants={sidebar} />

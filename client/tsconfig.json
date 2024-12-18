@@ -3,6 +3,11 @@
     "types": [
       "astro/client"
     ],
+    "plugins": [
+      {
+        "name": "@astrojs/ts-plugin"
+      }
+    ],
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "node",

@@ -1,5 +1,5 @@
 import { motion, Transition, SVGMotionProps, useCycle } from "framer-motion"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { createPortal } from "react-dom";
 import MenuButton from "./MenuButton";
 import MobileNavigation from "./MobileNavigation";
@@ -32,9 +32,10 @@ const sidebar = {
 export default function MobileMenu() {
     const [isOpen, setIsOpen] = useState<boolean>(false)
 
+    useEffect(() => { }, [isOpen])
 
     const toggleMenu = () => {
-        setIsOpen(!isOpen)
+        setIsOpen(isOpen => !isOpen)
     }
 
     console.log(isOpen)
@@ -51,7 +52,7 @@ export default function MobileMenu() {
                 toggle={toggleMenu}
                 isOpen={isOpen}
             />
-            <MobileNavigation isOpen={isOpen} />
+            <MobileNavigation isOpen={isOpen} toggle={toggleMenu} />
         </motion.nav>
     )
 

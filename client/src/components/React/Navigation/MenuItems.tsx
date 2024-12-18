@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 
 
-export default function MenuItem({ id, text, link, isOpen }) {
+export default function MenuItem({ id, text, link, isOpen, toggle }) {
 
     const currentPath = window.location.pathname;
     const isActive = currentPath === link
@@ -34,6 +34,7 @@ export default function MenuItem({ id, text, link, isOpen }) {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             className="w-auto mx-auto z-50"
+            onClick={toggle}
         >
             <div className="w-32 text-center border border-4 border-astro_gray rounded-md h-auto mx-auto py-1.5">
                 <p className="text-sm text-white font-light tracking-tight">

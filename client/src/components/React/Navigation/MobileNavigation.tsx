@@ -22,33 +22,17 @@ const items = [
 
 ]
 
-export default function MobileNavigation({ isOpen }) {
+export default function MobileNavigation({ isOpen, toggle }) {
 
-    console.log(items)
 
     return (<motion.ul
         className="z-50 w-2/3 flex flex-col gap-y-8 items-center absolute left-16 top-24"
         variants={variants}
         animate={isOpen ? 'open' : 'closed'}
     >
-        <motion.li
-            key='Home'
-            variants={variants}
-            animate={isOpen ? 'open' : 'closed'}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            className="w-auto mx-auto z-50"
-        >
-            <div className="w-auto h-auto mx-auto">
-                <p className="text-sm font-light tracking-tight">
-                    <Link to='/Investigate' />
-                </p>
-            </div>
-
-        </motion.li>
 
         {items.map((item) => (
-            <MenuItem id={item.id} text={item.text} link={item.link} isOpen={isOpen} />
+            <MenuItem id={item.id} text={item.text} link={item.link} isOpen={isOpen} toggle={toggle} />
         ))}
 
     </motion.ul>)

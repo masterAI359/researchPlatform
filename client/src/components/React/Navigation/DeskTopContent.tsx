@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 export default function DeskTopContent() {
     return (
-        <div className="fixed top-0 w-full inset-x-0 z-30 md:block">
+        <div className="fixed top-0 w-full inset-x-0 z-30 md:block xs:hidden sm:hidden">
             <div className="lg:max-w-7xl mx-auto">
                 <div className="w-full mx-auto">
                     <div x-data="{ open: false }" className="relative flex flex-col w-full shadow-black mt-5 p-2 mx-auto bg-black border

@@ -14,15 +14,16 @@ export default function Step4({ containerWidth, setStartSearch, setGettingHelp }
   return (
     <div className="inline-block h-fit box-border mx-auto min-w-full max-w-full 2xl:h-full">
       <div className="flex flex-col items-center w-full 
-            mt-12 xs:px-0 md:px-5 relative lg:rounded-t-[3rem]">
+       xs:px-0 md:px-5 relative lg:rounded-t-[3rem]">
         <div className="text-center relative z-10 w-full">
-          <div className="w-full box-border border-b h-fit border-white/10 lg:mb-4 xs:mb-2 flex flex-row gap-x-8 xs:items-center  md:items-baseline lg:mt-10">
+          <div className="w-full box-border border-b h-fit border-white/10 lg:mb-4 xs:mb-2
+           flex flex-row gap-x-8 xs:items-center  md:items-baseline lg:mt-10">
             <div className="w-fit flex justify-items-start">
-              <h1 className="lg:text-2xl xs:text-sm tracking-tight font-light text-white pb-2">
+              <h1 className="lg:text-2xl xs:text-md tracking-tight font-light text-white pb-2">
                 What would support this claim?
               </h1>
             </div>
-            <div className="w-fit h-full justify-items-start translate-y-1 opacity-100">
+            <div className="w-fit h-full justify-items-start xs:mb-2 opacity-100">
               <HelpButton info={Step3Help} setGettingHelp={setGettingHelp} />
             </div>
           </div>

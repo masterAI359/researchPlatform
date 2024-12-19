@@ -4,10 +4,6 @@ import { createPortal } from "react-dom";
 import MenuButton from "./MenuButton";
 import MobileNavigation from "./MobileNavigation";
 
-
-//TODO: reconfigure this into the return option for the mobile return value in Navigation.tsx
-
-
 const sidebar = {
     open: (height = 1000) => ({
         clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
@@ -32,7 +28,7 @@ const sidebar = {
 export default function MobileMenu() {
     const [isOpen, setIsOpen] = useState<boolean>(false)
 
-    useEffect(() => { }, [isOpen])
+    useEffect(() => { }, [])
 
     const toggleMenu = () => {
         setIsOpen(isOpen => !isOpen)
@@ -42,7 +38,7 @@ export default function MobileMenu() {
 
     const mobileContent = (
         <motion.nav
-            initial={false}
+            initial='closed'
             animate={isOpen ? 'open' : 'closed'}
             className="sm:block md:hidden"
             custom='100%'

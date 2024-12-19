@@ -26,7 +26,8 @@ export default function MobileNavigation({ isOpen, toggle }) {
 
 
     return (<motion.ul
-        className="z-50 w-2/3 flex flex-col gap-y-8 items-center absolute left-16 top-24"
+        className={`z-50 w-2/3 flex flex-col gap-y-8 items-center absolute left-16 top-24
+            ${isOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}
         variants={variants}
         animate={isOpen ? 'open' : 'closed'}
     >

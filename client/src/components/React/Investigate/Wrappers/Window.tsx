@@ -39,19 +39,18 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
 
   }, []);
 
-  console.log(containerWidth)
 
 
   return (
     <section
       ref={containerRef}
       className="overflow-x-hidden relative xs:h-fit md:min-h-full h-fit 
-      mx-auto xs:min-w-full xl:min-w-168 xl:max-w-168 xs:mb-4 
+      mx-auto xs:min-w-full xs:max-w-full xl:min-w-168 xl:max-w-168 xs:mb-4 
       transition-all duration-400 animate-fade-in delay-300 no-scrollbar box-border">
       <motion.div
         ref={wizardRef}
         style={{ maxHeight: "fit" }}
-        className="flex xs:items-center md:items-baseline xs:h-fit md:min-h-full lg:max-h-fit"
+        className="flex xs:items-center md:items-baseline xs:h-fit md:min-h-full lg:max-h-fit xs:mt-8"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, x: -currentStep * containerWidth }}
         transition={{ type: 'tween', duration: 0.2, ease: 'easeInOut' }}>
@@ -80,9 +79,8 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
         />
         <Slide5
           containerWidth={containerWidth}
-          setQuery={setQuery}
-          isLoading={isLoading}
-          setIsSubmitted={setIsSubmitted}
+          setGettingHelp={setGettingHelp}
+          setStartSearch={setStartSearch}
         />
 
       </motion.div>

@@ -38,7 +38,7 @@ export default function SearchBox({ isLoading, setIsSubmitted, setQuery }) {
         className="text-center w-full md:mx-auto">
         <div className="w-full flex justify-center">
           <h2
-            className="xs:text-sm md:text-xl lg:text-2xl tracking-tight font-light  text-white">
+            className="xs:text-lg md:text-xl lg:text-2xl tracking-tight font-light  text-white">
             Search for articles
           </h2>
         </div>

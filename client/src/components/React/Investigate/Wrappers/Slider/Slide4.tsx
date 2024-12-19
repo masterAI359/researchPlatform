@@ -10,7 +10,7 @@ export default function Slide4({
     return (
         <div
             style={{ flexShrink: 0, maxHeight: 'fit', maxWidth: containerWidth }}
-            className='xl:w-168 xs:w-full text-center max-h-fit xs:px-2'>
+            className='xl:w-168 xs:w-full text-center h-fit xs:px-2'>
             <Step4 containerWidth={containerWidth} setGettingHelp={setGettingHelp} />
         </div>
     )

@@ -1,10 +1,9 @@
 import { useState } from "react";
 import HeroWrapper from "../../Containers/HeroWrapper";
 
-export default function InvestigateHero({ query, isLoading, setIsSubmitted, setQuery, gettingHelp, setGettingHelp, summaries }) {
+export default function InvestigateHero({ query, isLoading, setIsSubmitted, setQuery, gettingHelp, setGettingHelp, summaries, setStartSearch }) {
   const [approachSet, setApproach] = useState<boolean>(true)
   const [currentStep, setCurrentStep] = useState<number>(0)
-  const [startSearch, setStartSearch] = useState<boolean>(false)
   const [canProceed, setCanProceed] = useState<boolean>(false)
   const [notifyRequired, setNotifyRequired] = useState<boolean>(false)
 

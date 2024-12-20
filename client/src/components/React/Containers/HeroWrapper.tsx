@@ -5,7 +5,8 @@ export default function HeroWrapper({ currentStep, setStartSearch, setQuery, isL
     query, setIsSubmitted, setCurrentStep, setCanProceed, notifyRequired, setNotifyRequired, setGettingHelp, summaries, canProceed }) {
 
     return (
-        <main className="flex mx-auto box-border w-full h-full justify-start">
+        <main
+            className="flex mx-auto box-border w-full h-full justify-start">
             <WindowContainer
                 summaries={summaries}
                 currentStep={currentStep}
@@ -21,7 +22,10 @@ export default function HeroWrapper({ currentStep, setStartSearch, setQuery, isL
                 setGettingHelp={setGettingHelp}
                 canProceed={canProceed}
             />
-            <MapContainer currentStep={currentStep} setCurrentStep={setCurrentStep} />
+            <div className="xs:hidden md:block w-fit h-fit flex items-center">
+                <MapContainer currentStep={currentStep} />
+
+            </div>
         </main>
     )
 }

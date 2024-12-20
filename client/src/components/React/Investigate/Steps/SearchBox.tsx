@@ -58,8 +58,9 @@ export default function SearchBox({ isLoading, setIsSubmitted, setQuery }) {
                   autoComplete="off"
                   type="text"
                   name="q"
-                  className="bg-white/10 text-white w-full h-fit border-none focus:ring-1 focus:ring-white h-12 xs:p-2  md:p-4 rounded-full 
-								 focus:border-white transition-colors xs:text-sm md:text-lg flex items-center"
+                  className="bg-white/10 text-white w-full h-fit 
+                  border-none focus:ring-white h-12 xs:p-2  md:p-4 rounded-full 
+		              transition-colors xs:text-sm md:text-lg flex items-center"
                   placeholder="search" />
                 <button type="submit"
                 >

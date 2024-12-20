@@ -22,6 +22,7 @@ export default function InvestigateContainer() {
   const [constraints, setConstraints] = useState(null)
   const [finished, setFinished] = useState<boolean>(false)
   const [gettingHelp, setGettingHelp] = useState<boolean>(false)
+  const [currentStep, setCurrentStep] = useState<number>(0)
   const [showMapModal, setShowMapModal] = useState<boolean>(false)
   const containerRef = useRef(null)
   const notesRef = useRef(null)
@@ -98,6 +99,8 @@ export default function InvestigateContainer() {
          items-center animate-fade-in pb-52 relative box-border overflow-hidden pb-[40rem]`}>
 
       {windowWidth !== null && <HeroContainer
+        currentStep={currentStep}
+        setCurrentStep={setCurrentStep}
         gettingHelp={gettingHelp}
         setGettingHelp={setGettingHelp}
         query={query}

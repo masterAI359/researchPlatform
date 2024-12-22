@@ -1,8 +1,8 @@
 import WindowContainer from "./WindowContainer"
 import MapContainer from "../Map/MapContainer"
 
-export default function HeroWrapper({ currentStep, setStartSearch, setQuery, isLoading,
-    query, setIsSubmitted, setCurrentStep, setCanProceed, notifyRequired, setNotifyRequired, setGettingHelp, summaries, canProceed }) {
+export default function ContentWrapper({ currentStep, setStartSearch, setQuery, isLoading,
+    query, setIsSubmitted, setCurrentStep, setCanProceed, notifyRequired, setNotifyRequired, setGettingHelp, gettingHelp, summaries, canProceed }) {
 
     return (
         <main
@@ -19,6 +19,7 @@ export default function HeroWrapper({ currentStep, setStartSearch, setQuery, isL
                 setCanProceed={setCanProceed}
                 notifyRequired={notifyRequired}
                 setNotifyRequired={setNotifyRequired}
+                gettingHelp={gettingHelp}
                 setGettingHelp={setGettingHelp}
                 canProceed={canProceed}
             />

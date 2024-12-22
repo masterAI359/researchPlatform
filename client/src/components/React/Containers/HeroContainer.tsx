@@ -9,8 +9,6 @@ export default function HeroContainer({
     setQuery,
     isLoading,
     setIsSubmitted,
-    articles,
-    selectedForSummary,
     loadingSummaries,
     summaries,
     gettingHelp,
@@ -34,7 +32,7 @@ export default function HeroContainer({
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ type: 'tween', duration: 0.2 }}
-                className="grid grid-cols-1 w-full h-auto mx-auto items-center">
+                className={`grid grid-cols-1 w-full h-auto mx-auto items-center`}>
                 <InvestigateHero
                     currentStep={currentStep}
                     setCurrentStep={setCurrentStep}

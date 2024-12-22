@@ -2,7 +2,7 @@ import NextButton from "./Next";
 import BackButton from "./Back";
 
 
-export default function StepControl({ currentStep, setCurrentStep, setCanProceed, canProceed, setNotifyRequired, notifyRequired }) {
+export default function StepControl({ currentStep, setCurrentStep, setCanProceed, canProceed, setNotifyRequired, notifyRequired, gettingHelp }) {
 
 
     return (
@@ -11,6 +11,7 @@ export default function StepControl({ currentStep, setCurrentStep, setCanProceed
                 <BackButton
                     currentStep={currentStep}
                     setCurrentStep={setCurrentStep}
+                    gettingHelp={gettingHelp}
                 />
                 <NextButton
                     currentStep={currentStep}
@@ -19,6 +20,7 @@ export default function StepControl({ currentStep, setCurrentStep, setCanProceed
                     canProceed={canProceed}
                     setNotifyRequired={setNotifyRequired}
                     notifyRequired={notifyRequired}
+                    gettingHelp={gettingHelp}
                 />
             </div>
 

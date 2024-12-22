@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 export default function WindowContainer({ currentStep, setStartSearch, setQuery, isLoading,
     query, setIsSubmitted, setCurrentStep, setCanProceed, notifyRequired, setNotifyRequired,
-    setGettingHelp, summaries, canProceed }: any) {
+    setGettingHelp, summaries, canProceed, gettingHelp }: any) {
 
 
     return (
@@ -43,6 +43,7 @@ export default function WindowContainer({ currentStep, setStartSearch, setQuery,
                             canProceed={canProceed}
                             setNotifyRequired={setNotifyRequired}
                             notifyRequired={notifyRequired}
+                            gettingHelp={gettingHelp}
                         />
 
                     </motion.div>

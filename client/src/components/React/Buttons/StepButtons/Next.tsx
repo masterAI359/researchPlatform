@@ -7,11 +7,12 @@ interface ButtonProps {
   canProceed: boolean
   setCanProceed: Function,
   setNotifyRequired: Function,
-  notifyRequired: boolean
+  notifyRequired: boolean,
+  gettingHelp: boolean
 }
 
 
-export default function NextButton({ setCurrentStep, currentStep, setCanProceed, canProceed, setNotifyRequired, notifyRequired }: ButtonProps) {
+export default function NextButton({ setCurrentStep, currentStep, setCanProceed, canProceed, setNotifyRequired, notifyRequired, gettingHelp }: ButtonProps) {
 
   const handleNextStep = () => {
 
@@ -48,7 +49,7 @@ export default function NextButton({ setCurrentStep, currentStep, setCanProceed,
         className="relative h-auto w-auto justify-self-end self-center"
       >
         <button
-          onClick={(e) => checkRequirements(e)}
+          onClick={gettingHelp === false ? (e) => checkRequirements(e) : null}
           className="text-white text-md font-light xs:w-14 xs:h-8
           lg:w-20 lg:h-12 p-2 transition-all mx-auto
           duration-200 bg-white/5 hover:bg-white/10 items-center group

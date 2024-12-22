@@ -1,5 +1,5 @@
 import { useState } from "react";
-import HeroWrapper from "../../Containers/HeroWrapper";
+import ContentWrapper from "../../Containers/ContentWrapper";
 
 export default function InvestigateHero({ query, isLoading, setIsSubmitted, setQuery, gettingHelp, setGettingHelp, summaries, setStartSearch, currentStep, setCurrentStep }) {
   const [approachSet, setApproach] = useState<boolean>(true)
@@ -13,11 +13,11 @@ export default function InvestigateHero({ query, isLoading, setIsSubmitted, setQ
    w-full rounded-[3rem] no-scrollbar flex flex-col items-center px-8
     relative xs:h-[28rem] lg:pt-20 sm:pt-20 opacity-100 transition-all duration-700 ease-in-out 
     lg:h-[42rem] bg-gradientdown
-    ${gettingHelp ? 'opacity-65 pointer-events-none' : null}`}>
+    ${gettingHelp ? 'opacity-65 pointer-events-none' : 'pointer-events-auto'}`}>
 
 
 
-        <HeroWrapper
+        <ContentWrapper
           summaries={summaries}
           currentStep={currentStep}
           setCurrentStep={setCurrentStep}
@@ -30,6 +30,7 @@ export default function InvestigateHero({ query, isLoading, setIsSubmitted, setQ
           notifyRequired={notifyRequired}
           setNotifyRequired={setNotifyRequired}
           setGettingHelp={setGettingHelp}
+          gettingHelp={gettingHelp}
           canProceed={canProceed}
         />
       </div>

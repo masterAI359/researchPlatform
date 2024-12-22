@@ -107,8 +107,6 @@ export default function InvestigateContainer() {
         setQuery={setQuery}
         isLoading={isLoading}
         setIsSubmitted={setIsSubmitted}
-        selectedForSummary={selectedForSummary}
-        articles={articles}
         loadingSummaries={loadingSummaries}
         summaries={summaries}
       />}

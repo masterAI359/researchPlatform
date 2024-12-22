@@ -11,7 +11,7 @@ export default function StepWizard({ currentStep, setCurrentStep }: any) {
 
 
     return (
-        <motion.div className="w-full h-fit flex items-baseline mx-auto relative">
+        <motion.div className="w-full h-fit flex items-baseline mx-auto relative sm:block md:hidden">
             <motion.ol
                 className="flex items-center my-auto justify-center justify-between
          xs:w-full lg:w-5/6 lg:mx-auto xs:h-28 lg:min-h-28 mx-auto">

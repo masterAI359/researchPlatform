@@ -9,11 +9,12 @@ interface ButtonProps {
 
     currentStep: number,
     setCurrentStep: React.Dispatch<React.SetStateAction<number>>,
+    gettingHelp: boolean
 
 }
 
 
-export default function BackButton({ setCurrentStep, currentStep }: ButtonProps) {
+export default function BackButton({ setCurrentStep, currentStep, gettingHelp }: ButtonProps) {
 
     const handleBackStep = () => {
         setCurrentStep(currentStep => currentStep - 1)
@@ -22,9 +23,7 @@ export default function BackButton({ setCurrentStep, currentStep }: ButtonProps)
     return (
 
         <div className={`relative h-auto w-auto 
-          my-auto justify-self-start self-center
-    
-        `} >
+        my-auto justify-self-start self-center`} >
             <AnimatePresence>
                 {currentStep !== 0 && <motion.div
                     className="self-center"
@@ -34,7 +33,7 @@ export default function BackButton({ setCurrentStep, currentStep }: ButtonProps)
                     transition={{ type: 'tween', duration: 0.2 }}
                 >
                     <button
-                        onClick={handleBackStep}
+                        onClick={gettingHelp === false ? handleBackStep : null}
                         className={`text-zinc-400 xs:w-14 xs:h-8
          lg:w-20 mx-auto lg:h-12 p-2 transition-all 
          duration-200 bg-white/5 hover:bg-white/10 hover:scale-110 flex items-center group

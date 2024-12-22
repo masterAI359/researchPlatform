@@ -31,6 +31,7 @@ export default function HelpButton({ info, setGettingHelp }) {
 
     return (
         <motion.div
+
             onHoverStart={handleHoverStart}
             className="w-full flex flex-row items-center gap-2 relative">
 
@@ -40,16 +41,13 @@ export default function HelpButton({ info, setGettingHelp }) {
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0, opacity: 0 }}
                     transition={{ type: 'tween', duration: 0.2 }}
-                    style={{ translateY: -55, translateX: -180, position: 'absolute' }}
-                    className="overflow-hidden cursor-pointer rounded-xl bg-white/5"
+                    style={{ translateY: -50, translateX: -70, position: 'absolute' }}
+                    className="overflow-hidden cursor-pointer rounded-md bg-black border border-astro_gray z-30"
                 >
-                    <div className="bg-white/5 rounded-xl h-auto xl:w-44 flex flex-col mx-auto">
-                        <div className="w-full h-fit flex justify-between bg-mirage">
-                            <div className="w-4/5 ml-2 h-full flex my-auto">
-                                <p className="text-white self-start text-sm my-auto font-light tracking-tight pl-1 h-full">Need help?</p>
-                            </div>
+                    <div className="rounded-md xl:h-16 xl:w-32 flex flex-col mx-auto">
+                        <div className="w-full max-h-fit flex flex-row-reverse justify-between">
                             <div
-                                className="xl:h-7 xs:w-auto p-1 hover:bg-white/20 transition-all ease-in-out rounded-md cursor-pointer flex justify-center"
+                                className="xl:h-5 xs:w-auto p-0.5 hover:bg-white/20 transition-all ease-in-out rounded-md cursor-pointer flex justify-center"
                                 onClick={() => setHovering(false)}
                             >
                                 <svg className="text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="100%" height="100%">
@@ -62,8 +60,8 @@ export default function HelpButton({ info, setGettingHelp }) {
                                 setIsOpen(isOpen => !isOpen)
                                 setGettingHelp(true)
                             }}
-                            className="w-full h-full px-2 py-4 transition-opacity ease-in-out duration-200 border-box grow basis-3/4 bg-white/10 hover:bg-white/5">
-                            <h1 className="text-white text-center font-light tracking-tight justify-self-start text-center w-full">Click for more info
+                            className="w-fit h-fit px-2 py-2 transition-opacity ease-in-out duration-200 border-box basis-3/4">
+                            <h1 className="text-white xl:text-xs text-center font-light tracking-tight justify-self-start text-center w-full">Click for more info
                             </h1>
                         </div>
                     </div>
@@ -80,12 +78,12 @@ export default function HelpButton({ info, setGettingHelp }) {
                         animate={{ scale: 1, opacity: 1 }}
                         exit={{ scale: 0, opacity: 0 }}
                         transition={{ type: 'tween', duration: 0.15 }}
-                        className="bg-mirage opacity-100 h-auto shadow-black shadow-thick rounded-4xl z-50 fixed xl:bottom-10
-                      lg:left-20 xl:w-[38rem]"
+                        className="bg-black opacity-100 h-auto shadow-black border border-astro_gray shadow-thick rounded-xl z-50 fixed xl:bottom-10
+                      lg:left-1/3 xl:w-[38rem]"
                     >   <div className="pb-2">
                             {info.map((element: Help) => (
                                 <div key={element.explanation} className="flex flex-col gap-5">
-                                    <div className="w-full mx-auto bg-ebony flex h-full justify-between items-center py-2 my-auto rounded-t-4xl">
+                                    <div className="w-full mx-auto bg-black/50 flex h-full justify-between items-center py-2 my-auto rounded-t-lg">
                                         <h1 key={element.heading} className="text-white text-2xl font-light tracking-tight ml-4">{element.heading}</h1>
                                         <div
                                             onClick={() => {

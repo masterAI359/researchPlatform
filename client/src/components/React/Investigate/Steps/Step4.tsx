@@ -27,7 +27,7 @@ export default function Step4({ containerWidth, setStartSearch, setGettingHelp }
               <HelpButton info={Step3Help} setGettingHelp={setGettingHelp} />
             </div>
           </div>
-          <div className="block w-full xs:h-40 md:h-52 lg:mb-12 text-md text-white bg-white/10 border-none focus:ring-1 focus:ring-white
+          <div className="block w-full xs:h-40 md:h-52 xl:h-96 text-md text-white bg-white/10 border-none focus:ring-1 focus:ring-white
     rounded-lg resize-none text-wrap flex justify-items-start">
             <StepsEditor setterFunction={setPremise} />
           </div>

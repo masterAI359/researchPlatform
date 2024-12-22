@@ -24,25 +24,28 @@ export default function Step5({
                         />
                     </div>
                 </header>
-                <main className="w-full h-full mx-auto flex flex-col xs:gap-y-4">
+                <main className="w-full h-full mx-auto flex flex-col xs:gap-y-4 xl:mt-12">
                     <div className="w-full h-full">
-                        <p className="xs:text-xs text-white font-light text-left">
+                        <p className="xs:text-xs xl:text-lg text-white font-light tracking-tight text-left">
+                            Let's seek out evidence that would
+                            support the premises you submitted or the statement examined itself
+
+                            <br></br>
+                            <br></br>
                             If you want to adjust any of your answers,
                             please do so now before we begin searching for articles.
-                            <br></br>
-                            <br></br>
-                            When you're ready, let's search for evidence that would
-                            support the premises you submitted or the statement examined itself
                         </p>
                     </div>
                     <div className="w-full h-fit mx-auto xs:mt-4">
-                        <button
+                        <motion.button
+                            whileHover={{ scale: 1.10 }}
+                            transition={{ type: 'tween', duration: 0.2 }}
                             onClick={() => setStartSearch(prev => !prev)}
-                            className="bg-white/10 rounded-full xs:p-2 xs:w-36 xs:h-12 mx-auto flex items-center">
+                            className="bg-white/10 rounded-full xs:p-2 xs:w-36 xs:h-12 xl:w-52 xl:h-12 mx-auto flex items-center text-center hover:bg-white/20 transition-opacity ease-in-out">
                             <div className="w-full h-full flex justify-between items-center xs:px-4">
-                                <div className="w-auto h-auto">
-                                    <p className="text-white xs:text-sm font-light tracking-tight">
-                                        Ready to Start
+                                <div className="w-auto h-auto mx-auto">
+                                    <p className="text-white xs:text-xs xl:text-lg font-light xs:tracking-tight w-fit">
+                                        Ready to Search
                                     </p>
                                 </div>
                                 {/* <div className="w-auto h-auto relative top-0 right-1 bottom-0 box-border">
@@ -50,7 +53,7 @@ export default function Step5({
                                 </div> */}
                             </div>
 
-                        </button>
+                        </motion.button>
                     </div>
                 </main>
             </div>

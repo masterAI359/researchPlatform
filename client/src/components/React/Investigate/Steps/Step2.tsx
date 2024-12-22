@@ -1,6 +1,6 @@
 import React from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { ChangeEvent, ReactHTMLElement, useRef, useState } from "react"
+import { motion } from "framer-motion"
+import { useRef, useState } from "react"
 import Lottie from "lottie-react"
 import blueCheck from '../../../../lotties/blueCheck.json'
 import HelpButton from "../../Buttons/Question"
@@ -59,14 +59,14 @@ export default function Step2({ setOrigin, origin, setGettingHelp }: any) {
 
         </div>
       </header>
-      <div className="w-full flex items-center">
+      <div className="w-full flex items-center xl:mt-12">
 
-        <div className="flex w-fit mx-auto xs:gap-x-16 xl:gap-x-44 box-border">
+        <div className="flex w-fit mx-auto xs:gap-x-16 xl:gap-x-36 box-border">
           <motion.div
             className="flex flex-col md:gap-y-2 xs:gap-y-1 items-center text-center my-auto"
           >
             <header className="w-full">
-              <h1 className="xl:text-lg xs:text-xs  font-light tracking tight text-slate-400 mb-2">Your Perspective</h1>
+              <h1 className="xl:text-xl xs:text-xs  font-light tracking tight text-slate-400 mb-2">Your Perspective</h1>
             </header>
             {opinions.map((opinion) => (
               <motion.div
@@ -75,8 +75,8 @@ export default function Step2({ setOrigin, origin, setGettingHelp }: any) {
               >
                 <div
                   ref={animationRef}
-                  className="bg-white/10 text-white lg:text-[0.8rem] xs:text-[0.6rem] font-light tracking-tight
-              rounded-lg lg:w-[12rem] md:w-[12rem] md:h-12 xs:w-28 xs:h-9
+                  className="bg-white/10 text-white xl:text-lg lg:text-[0.8rem] xs:text-[0.6rem] font-light tracking-tight
+              rounded-lg xl:w-60 xl:h-16 lg:w-[12rem] md:w-[12rem] md:h-12 xs:w-28 xs:h-9
                cursor-pointer hover:bg-white/20 flex justify-between items-center lg:px-4 xs:px-2 grow-0 gap-3"
                   data-set={opinion}
                   onClick={(e) => { assignOrigin(e) }}
@@ -95,7 +95,7 @@ export default function Step2({ setOrigin, origin, setGettingHelp }: any) {
 
           <motion.div className="flex flex-col md:gap-y-2 xs:gap-y-1 items-center text-center my-auto">
             <header className="w-full">
-              <h1 className="xl:text-lg xs:text-xs font-light tracking tight text-slate-400 mb-2">Prior Knowledge</h1>
+              <h1 className="xl:text-xl xs:text-xs font-light tracking tight text-slate-400 mb-2">Prior Knowledge</h1>
             </header>
             {expertise.map((item) => (
               <motion.div
@@ -104,8 +104,8 @@ export default function Step2({ setOrigin, origin, setGettingHelp }: any) {
               >
                 <div
                   ref={animationRef}
-                  className="bg-white/10 text-white lg:text-[0.8rem] xs:text-[0.6rem] font-light tracking-tight
-              rounded-lg lg:w-[12rem] md:w-[12rem] md:h-12 xs:w-28 xs:h-9
+                  className="bg-white/10 text-white xl:text-lg lg:text-[0.8rem] xs:text-[0.6rem] font-light tracking-tight
+              rounded-lg xl:w-60 xl:h-16 lg:w-[12rem] md:w-[12rem] md:h-12 xs:w-28 xs:h-9
                cursor-pointer hover:bg-white/20 flex justify-between items-center lg:px-4 xs:px-2 grow-0 gap-3"
                   data-set={item}
                   onClick={(e) => { assignKnowledge(e) }}

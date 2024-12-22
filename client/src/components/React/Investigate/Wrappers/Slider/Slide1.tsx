@@ -13,7 +13,7 @@ export default function Slide1({
 
     return (
         <div style={{ flexShrink: 0, maxWidth: containerWidth }}
-            className='xl:w-168 xs:w-full
+            className='xs:w-full
         text-center mx-auto max-h-fit box-border flex xs:px-2'>
             <Step1
                 setNotifyRequired={setNotifyRequired}

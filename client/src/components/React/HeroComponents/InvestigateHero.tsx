@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ContentWrapper from "../../Containers/ContentWrapper";
+import ContentWrapper from "../Containers/ContentWrapper";
 
 export default function InvestigateHero({ query, isLoading, setIsSubmitted, setQuery, gettingHelp, setGettingHelp, summaries, setStartSearch, currentStep, setCurrentStep }) {
   const [approachSet, setApproach] = useState<boolean>(true)

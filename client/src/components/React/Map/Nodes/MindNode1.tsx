@@ -5,12 +5,11 @@ export default function MindNode1({ currentStep }) {
     return (
         <div className="h-fit w-fit flex flex-col justify-center absolute top-2 left-1/2 left-1/2 transform -translate-x-1/2 mx-auto">
             <div className={`${currentStep === 0 ? 'scale-110' : null} transition-all
-            ease-in-out duration-200 bg-ebony xs:h-12 xs:w-36 lg:w-52 lg:h-20 p-3  flex items-center 
-            justify-beetween
-            border border-2 border-button_blue rounded-3xl`}>
+            ease-in-out duration-200 bg-ebony xs:h-12 xs:w-36 lg:w-44 lg:h-16 p-3  flex items-center 
+            justify-beetween  ${currentStep < 0 ? 'border border-2 border-button_gray' : 'border border-2 border-button_blue'}
+            rounded-3xl`}>
 
                 <motion.div
-                    whileHover={{ scale: 1.15 }}
                     className="flex items-center justify-self-start justify-center shrink-0 box-border xs:max-w-7 xs:max-h-7
                             lg:max-h-11 lg:max-w-11 xs:p-0.5 sm:p-1 md:1.5 lg:p-2 rounded-full z-10 hover:cursor-pointer"
                     animate={{

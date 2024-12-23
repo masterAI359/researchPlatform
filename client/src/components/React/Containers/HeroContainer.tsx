@@ -1,5 +1,5 @@
 import { useState } from "react"
-import InvestigateHero from "../Investigate/Wrappers/InvestigateHero"
+import InvestigateHero from "../HeroComponents/InvestigateHero"
 import SearchHero from "../HeroComponents/SearchHero"
 import { AnimatePresence, motion } from "framer-motion"
 

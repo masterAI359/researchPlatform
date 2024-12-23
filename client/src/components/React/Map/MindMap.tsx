@@ -3,8 +3,9 @@ import MiddlePath from "./Paths/MiddlePath"
 import BottomPath from "./Paths/BottomPath"
 import MindNode1 from "./Nodes/MindNode1"
 import MindNode2 from "./Nodes/MindNode2"
-import Prejudgements from "./Nodes/Prejudgements"
-import BiasNode from "./Nodes/BiasNode"
+import MindNode3 from "./Nodes/MindNode3"
+import MindNode4 from "./Nodes/MindNode4"
+
 import SearchNode from "./Nodes/SearchNode"
 
 export default function MindMap({ currentStep }) {
@@ -17,9 +18,9 @@ export default function MindMap({ currentStep }) {
             <MiddlePath currentStep={currentStep} />
             <BottomPath currentStep={currentStep} />
             <MindNode1 currentStep={currentStep} />
-            <Prejudgements currentStep={currentStep} />
-            <BiasNode currentStep={currentStep} />
             <MindNode2 currentStep={currentStep} />
+            <MindNode3 currentStep={currentStep} />
+            <MindNode4 currentStep={currentStep} />
             <SearchNode currentStep={currentStep} />
         </div>
     )

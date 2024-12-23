@@ -62,7 +62,7 @@ export default function SummaryContainer({ summaries, articles, selectedForSumma
 
   return (
     <motion.div
-      className="h-full 2xl:max-w-7xl px-8 py-12 shadow-black inset rounded-4xl mx-auto border-white/10 mt-20"
+      className="h-full 2xl:max-w-7xl px-8 py-12 shadow-black inset rounded-4xl mx-auto border-white/10 xs:mt-2 xl:mt-20"
       variants={container}
       initial="hidden"
       animate="show"

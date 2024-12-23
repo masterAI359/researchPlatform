@@ -107,8 +107,8 @@ export default function InvestigateContainer() {
         setQuery={setQuery}
         isLoading={isLoading}
         setIsSubmitted={setIsSubmitted}
-        loadingSummaries={loadingSummaries}
         summaries={summaries}
+        finished={finished}
       />}
       <div className="w-full h-auto mx-auto xl:mt-12" ref={storyRef}>
         <StoryContainer

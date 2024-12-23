@@ -1,6 +1,7 @@
 import { useState } from "react"
 import InvestigateHero from "../HeroComponents/InvestigateHero"
 import SearchHero from "../HeroComponents/SearchHero"
+import FinishLine from "../Investigate/Finished/FinishLine"
 import { AnimatePresence, motion } from "framer-motion"
 
 
@@ -9,20 +10,19 @@ export default function HeroContainer({
     setQuery,
     isLoading,
     setIsSubmitted,
-    loadingSummaries,
     summaries,
     gettingHelp,
     setGettingHelp,
     currentStep,
-    setCurrentStep
+    setCurrentStep,
+    finished
 }) {
     const [startSearch, setStartSearch] = useState<boolean>(false)
 
-    const openHero = summaries.length < 1 && startSearch === false
-    const hideComponents = summaries.length >= 1 || loadingSummaries === true
+    const test = summaries.length === 0
 
-    console.log(openHero)
-    console.log(hideComponents)
+    console.log(test)
+
     return (
         <AnimatePresence mode="wait">
 
@@ -48,7 +48,7 @@ export default function HeroContainer({
 
             </motion.div>)}
 
-            {startSearch &&
+            {test && startSearch ?
                 (<motion.div
                     key='Search'
                     initial={{ opacity: 0 }}
@@ -63,7 +63,17 @@ export default function HeroContainer({
                         currentStep={currentStep}
                     />
                 </motion.div>)
-            }
+                : null}
+
+            {finished && <motion.div
+                key='Finished'
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0, scale: 0 }}
+                transition={{ type: 'tween', duration: 0.5, ease: 'easeInOut' }}
+            >
+                <FinishLine />
+            </motion.div>}
 
         </AnimatePresence>
 

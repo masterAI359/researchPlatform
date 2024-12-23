@@ -1,0 +1,46 @@
+import { useState } from "react"
+import Checks from "./Checks"
+
+
+export default function NewKnowledge() {
+    const [newConcept, setNewConcept] = useState<boolean>(null)
+    const [fullyCovered, setFullyCovered] = useState<boolean>(null)
+    const [expandedViews, setExpandedViews] = useState<boolean>(null)
+
+    console.log({
+        LearnedSomething: newConcept,
+        FullyCovered: fullyCovered,
+        ExpandedPerspective: expandedViews
+    })
+
+    return (
+        <section className="xs:w-full xs:h-full xs:px-6 flex flex-col xs:gap-y-6 items-center content-center mx-auto">
+            <header className="xs:w-11/12 border-b border-white/10 flex justify-start">
+                <h1 className="xs:text-md text-white font-light tracking-tight">Now that you've dug into the details,
+                    <span className="text-zinc-500">what did you learn?</span>
+                </h1>
+            </header>
+            <main className="h-full mx-auto flex flex-col gap-y-2 text-white">
+                <div className="h-auto w-full flex flex-col items-center">
+                    <figcaption className="xs:text-sm text-left font-light">
+                        Was there anything you read that you hadn't heard before?
+                    </figcaption>
+                    <Checks setterFunction={setNewConcept} answer={newConcept} />
+                </div>
+                <div className="h-auto w-full flex flex-col items-center">
+                    <figcaption className="xs:text-sm text-left font-light">
+                        Was there anything you felt that didn't get addressed?
+                    </figcaption>
+                    <Checks setterFunction={setFullyCovered} answer={fullyCovered} />
+                </div>
+                <div className="h-auto w-full flex flex-col items-center">
+                    <figcaption className="xs:text-sm text-left font-light">
+                        Did this add to your perspective on the issue?
+                    </figcaption>
+                    <Checks setterFunction={setExpandedViews} answer={expandedViews} />
+                </div>
+
+            </main>
+        </section>
+    )
+}

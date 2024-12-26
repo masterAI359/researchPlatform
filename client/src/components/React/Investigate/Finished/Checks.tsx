@@ -1,27 +1,23 @@
+import { useRef, useState } from "react"
 import ChecksButton from "../../Buttons/ChecksButton"
 
-const truthiness: boolean[] = [true, false]
-
-
-//TODO: Control the animation play here at the Checks top level
+const answerButtons: boolean[] = [true, false];
 
 export default function Checks({ setterFunction, answer }: any) {
 
     return (
         <div
             className="xs:w-full flex items-center justify-between">
-            <ChecksButton
-                index={0}
-                buttonValue={truthiness[0]}
-                setterFunction={setterFunction}
-                answer={answer}
-            />
-            <ChecksButton
-                index={1}
-                buttonValue={truthiness[1]}
-                setterFunction={setterFunction}
-                answer={answer}
-            />
+
+            {answerButtons.map((button, index) => (
+                <ChecksButton
+                    key={index}
+                    button={button}
+                    index={index}
+                    answer={answer}
+                    setterFunction={setterFunction}
+                />
+            ))}
 
         </div>
     )

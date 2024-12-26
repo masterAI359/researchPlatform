@@ -1,17 +1,12 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Checks from "./Checks"
 
 
 export default function NewKnowledge() {
-    const [newConcept, setNewConcept] = useState<boolean>(null)
-    const [fullyCovered, setFullyCovered] = useState<boolean>(null)
-    const [expandedViews, setExpandedViews] = useState<boolean>(null)
+    const [newConcept, setNewConcept] = useState<boolean | null>(null)
+    const [fullyCovered, setFullyCovered] = useState<boolean | null>(null)
+    const [expandedViews, setExpandedViews] = useState<boolean | null>(null)
 
-    console.log({
-        LearnedSomething: newConcept,
-        FullyCovered: fullyCovered,
-        ExpandedPerspective: expandedViews
-    })
 
     return (
         <section className="xs:w-full xs:h-full xs:px-6 flex flex-col xs:gap-y-6 items-center content-center mx-auto">

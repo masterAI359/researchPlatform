@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react"
+import { useRef } from "react"
 import Lottie from "lottie-react"
 import blueCheck from '../../../lotties/blueCheck.json'
 
@@ -6,7 +6,6 @@ import blueCheck from '../../../lotties/blueCheck.json'
 
 export default function ChecksButton({ index, button, answer, setterFunction }) {
     const animationRef = useRef<any>(null)
-
 
     const setAnswer = (button: boolean) => {
         setterFunction(button)

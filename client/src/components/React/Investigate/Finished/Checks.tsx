@@ -1,4 +1,3 @@
-import { useRef, useState } from "react"
 import ChecksButton from "../../Buttons/ChecksButton"
 
 const answerButtons: boolean[] = [true, false];

@@ -11,13 +11,13 @@ export default function Step5({
     return (
         <div className="block box-border min-w-full max-w-full mx-auto xs:px-0 md:px-2 2xl:h-full no-scrollbar">
             <div className="w-full h-full mx-auto flex flex-col">
-                <header className="w-full box-border border-b h-fit border-white/10 mb-4 flex flex-row gap-x-8 items-baseline">
+                <header className="w-full box-border border-b h-fit border-white/10 mb-4 flex flex-row xs:gap-x-4 md:gap-x-8 items-baseline">
                     <div className="w-fit flex justify-items-start">
-                        <h1 className="md:text-2xl xs:text-md tracking-tight font-light text-zinc-300 pb-1 xs:text-left sm:text-center">We've established your perspective
-                            <span className="text-zinc-500"> let's search for evidence </span>
+                        <h1 className="md:text-2xl xs:text-md tracking-tight font-light text-zinc-300 pb-1 xs:text-left sm:text-center">We've set your perspective<br></br>
+                            <span className="text-zinc-500"> now to search for evidence </span>
                         </h1>
                     </div>
-                    <div className="w-fit h-full justify-items-start translate-y-1">
+                    <div className="w-fit h-full justify-items-start xs:place-self-start translate-y-1">
                         <HelpButton
                             info={Step5Help}
                             setGettingHelp={setGettingHelp}

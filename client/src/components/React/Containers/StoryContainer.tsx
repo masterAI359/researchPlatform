@@ -100,6 +100,7 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
                             transition={{ duration: 1, delay: 1 }}
                         >
                             <SummaryContainer
+                                finished={finished}
                                 gettingHelp={gettingHelp}
                                 setGettingHelp={setGettingHelp}
                                 summaries={summaries}

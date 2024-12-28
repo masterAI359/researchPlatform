@@ -28,6 +28,8 @@ export default function InvestigateContainer() {
   const notesRef = useRef(null)
   const { fetchArticles, fetchSummaries, fetchedArticles, fetchedSummaries, isLoading, loadingSummaries, readyToSelect } = useFetch()
 
+  console.log(gettingHelp)
+
 
   const articles: Articles[] = fetchedArticles
   const summaries: object[] = fetchedSummaries

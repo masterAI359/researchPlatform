@@ -37,8 +37,10 @@ const Step4Help: Help[] = [{
 }]
 
 const Step5Help: Help[] = [{
-    heading: "Test",
-    explanation: "Testing Step 5 Help Information"
+    heading: "What exaclty am i looking for?",
+    explanation: `While we're searching for evidence, intentionally seeking an answer for the premises (i.e. what must be true to support the idea you're tackling) is the 
+    most direct persuit of the truth. What we as human beings tend to look for is what will make us feel good/what we ~want~ to be true. But we're not typically wired to be 
+    perfectly rational truth seeking machines. `
 }]
 
 const SummaryHelp: Help[] = [{

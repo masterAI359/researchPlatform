@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 import { createPortal } from "react-dom"
 import { Summary } from "./SuccessFull/Summary"
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import FailedSummary from "./Failed/FailedSummary"
 import SummaryHeading from "./SuccessFull/SummaryHeading"
 import { element } from "prop-types"
 
-export default function SummaryContainer({ summaries, articles, selectedForSummary, gettingHelp, setGettingHelp }) {
+export default function SummaryContainer({ summaries, articles, selectedForSummary, gettingHelp, setGettingHelp, finished }) {
   const [selectedStory, setSelectedStory] = useState<number>(null)
   const [failedNotifications, setFailedNotifications] = useState<object[]>([])
   const [showNotifications, setShowNotifications] = useState<boolean>(false)
@@ -68,7 +68,13 @@ export default function SummaryContainer({ summaries, articles, selectedForSumma
       animate="show"
       exit="hidden"
     >
-      <SummaryHeading setGettingHelp={setGettingHelp} gettingHelp={gettingHelp} />
+      <AnimatePresence >
+        <motion.div>
+          {!finished && <SummaryHeading setGettingHelp={setGettingHelp} gettingHelp={gettingHelp} />}
+
+        </motion.div>
+
+      </AnimatePresence>
       <div
         className="2xl:max-w-7xl h-auto w-full mx-auto  
                  transition-all duration-1000 animate-fade-in mb-12">

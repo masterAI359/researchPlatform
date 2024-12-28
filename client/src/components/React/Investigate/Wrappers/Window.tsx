@@ -44,7 +44,7 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
   return (
     <section
       ref={containerRef}
-      className="overflow-x-hidden relative xs:h-fit md:min-h-full h-fit 
+      className="overflow-x-hidden overflow-y-hidden relative xs:h-fit md:min-h-full h-fit 
       mx-auto xs:min-w-full xs:max-w-full xl:min-w-168 xl:w-11/12 xs:mb-4 
       transition-all duration-400 animate-fade-in delay-300 no-scrollbar box-border">
       <motion.div

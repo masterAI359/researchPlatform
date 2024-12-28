@@ -59,7 +59,7 @@ export default function SearchBox({ isLoading, setIsSubmitted, setQuery }) {
                   type="text"
                   name="q"
                   className="bg-white/10 text-white w-full h-fit 
-                  border-none focus:ring-white h-12 xs:p-2  md:p-4 rounded-full 
+                  border-none focus:ring-white h-12 xs:p-3  md:p-4 rounded-full 
 		              transition-colors xs:text-sm md:text-lg flex items-center"
                   placeholder="search" />
                 <button type="submit"
@@ -67,7 +67,7 @@ export default function SearchBox({ isLoading, setIsSubmitted, setQuery }) {
                   {
                     isLoading ? <Loader />
                       : <svg
-                        className="text-white xs:h-3.5 xs:w-3.5 md:h-6 md:w-6 absolute 
+                        className="text-white xs:h-5 xs:w-5 md:h-6 md:w-6 absolute 
                         xs:top-4 xs:right-4 md:top-5 md:right-5 fill-current"
                         xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
                         version="1.1" x="0px" y="0px" viewBox="0 0 56.966 56.966"

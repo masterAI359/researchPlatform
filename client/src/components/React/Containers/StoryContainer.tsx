@@ -44,7 +44,7 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
     return (
         <div
             ref={yRef}
-            className="relative w-full h-auto mx-auto">
+            className="relative w-full h-auto mx-auto xs:px-2">
             <div
                 className="relative w-full h-auto box-border mx-auto">
 

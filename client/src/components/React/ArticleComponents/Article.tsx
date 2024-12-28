@@ -20,8 +20,42 @@ export default function Article({ article, selectedForSummary, setSelectedForSum
         title: article.name
     }
 
+    const limitDescription = (string: string) => {
+
+        if (string.length >= 111) {
+            let newArr = string.split('')
+
+            let count = 0
+
+            let stringArr = []
+
+            for (let i = 0; i < newArr.length; i++) {
+
+                count++
+                stringArr.push(newArr[i])
+
+                if (count >= 110) {
+                    break
+                }
+            }
+
+            const newString = stringArr.join('')
+
+            const presentation = newString + '...'
+
+            return presentation
+        } else {
+
+        }
+    }
+
+    const test = limitDescription(description)
+
+
+    console.log(test)
+
+
     const resizedImage = thumbnail + '&w=300&p=0&c=7';
-    console.log(resizedImage)
 
     const chooseArticle = (article: Articles) => {
         setSelectedForSummary((prevSelectedForSummary: SelectedArticles[]) => {
@@ -79,8 +113,11 @@ export default function Article({ article, selectedForSummary, setSelectedForSum
                 </div>
                 <div className={`h-full group mt-2 pt-2 ${isHilighted ? 'opacity-100' : ''}`}>
                     <blockquote className='relative px-4'>
-                        <p className='lg:text-base xs:text-xs transition-colors duration-100 font-serif font-light'>
+                        <p className='lg:text-base xs:text-xs transition-colors duration-100 font-serif font-light xs:hidden md:block'>
                             "{description}"
+                        </p>
+                        <p className='lg:text-base xs:text-xs transition-colors duration-100 font-serif font-light xs:block md:hidden'>
+                            {test}
                         </p>
                     </blockquote>
                 </div>

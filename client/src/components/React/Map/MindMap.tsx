@@ -5,7 +5,6 @@ import MindNode1 from "./Nodes/MindNode1"
 import MindNode2 from "./Nodes/MindNode2"
 import MindNode3 from "./Nodes/MindNode3"
 import MindNode4 from "./Nodes/MindNode4"
-
 import SearchNode from "./Nodes/SearchNode"
 
 export default function MindMap({ currentStep }) {

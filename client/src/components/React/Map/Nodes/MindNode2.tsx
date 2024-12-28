@@ -1,9 +1,5 @@
 import { motion } from 'framer-motion'
 
-
-//TODO: Make the connecting lines to the nodes in our mind map
-
-
 export default function MindNode2({ currentStep }) {
 
     return (
@@ -31,9 +27,7 @@ export default function MindNode2({ currentStep }) {
                     <div className='flex flex-col justify-center xs:gap-1 lg:gap-2 items-center w-full h-full box-border'>
                         <h2 className="text-white xs:text-xs lg:text-sm font-light tracking tight">POV</h2>
                     </div>
-
                 </div>
-
             </div>
         </div>
 

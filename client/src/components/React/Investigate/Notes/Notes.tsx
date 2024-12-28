@@ -20,11 +20,11 @@ export default function Notes({ notePosition, setNotePosition, constraints, note
                     y: prev.y + info.delta.y
                 }))
             }}
-            style={{ position: 'absolute', left: notePosition.x, top: notePosition.y, width: 500, height: 400 }}
+            style={{ position: 'absolute', left: notePosition.x, top: notePosition.y }}
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
-            className="bg-ebony z-50 
+            className="bg-ebony z-50 2xl:w-[29rem] 2xl:h-96 xs:h-60 xs:w-72
             shadow shadow-black rounded-lg inset cursor-pointer
             flex flex-col">
             <div className="h-full w-full box-border flex flex-col justify-start">

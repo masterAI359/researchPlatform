@@ -3,8 +3,8 @@ export default function Loader() {
   return (
     <svg
       aria-hidden="true"
-      className="w-7 h-7 absolute top-2.5 right-3 
-          text-black animate-spin-fast fill-blue-600"
+      className="w-7 h-7 absolute top-5 right-5 
+          text-black animate-spin-fast fill-white"
       viewBox="0 0 100 101"
       fill="none"
       xmlns="http://www.w3.org/2000/svg">

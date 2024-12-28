@@ -3,7 +3,7 @@ import { motion } from "framer-motion"
 export default function MindNode1({ currentStep }) {
 
     return (
-        <div className="h-fit w-fit flex flex-col justify-center absolute top-2 left-1/2 left-1/2 transform -translate-x-1/2 mx-auto">
+        <div className="h-fit w-fit flex flex-col justify-center absolute xl:top-3 xs:top-2 left-1/2 left-1/2 transform -translate-x-1/2 mx-auto">
             <div className={`${currentStep === 0 ? 'scale-110' : null} transition-all
             ease-in-out duration-200 bg-ebony xs:h-12 xs:w-36 lg:w-44 lg:h-16 p-3  flex items-center 
             justify-beetween  ${currentStep < 0 ? 'border border-2 border-button_gray' : 'border border-2 border-button_blue'}

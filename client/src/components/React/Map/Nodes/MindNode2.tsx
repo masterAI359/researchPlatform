@@ -7,7 +7,7 @@ import { motion } from 'framer-motion'
 export default function MindNode2({ currentStep }) {
 
     return (
-        <div className='h-full w-fit absolute xs:left-1 xs:top-24 md:left-4 md:top-44'>
+        <div className='h-full w-fit absolute xs:left-1 xs:top-24 md:left-4 md:top-40 2xl:top-36'>
 
             <div className={`${currentStep < 1 ? 'opacity-100 pointer-events-none' : 'opacity-100 pointer-events-auto'} 
         transition-all duration-200 ease-in-out ${currentStep === 1 ? 'scale-110' : null}
@@ -16,7 +16,7 @@ export default function MindNode2({ currentStep }) {
                 <div className='flex gap-2 items-center w-full h-full box-border'>
                     <motion.div
                         className="flex items-center justify-center rounded-full xs:max-w-7 xs:max-h-7
-                 lg:max-h-12 lg:max-w-12 xs:p-0.5 sm:p-1 md:1.5  shrink-0 z-10 hover:cursor-pointer transition-all duration-300 hover:scale-110"
+                 lg:max-h-12 lg:max-w-12 xs:p-0.5 sm:p-1 md:1.5  shrink-0 z-10 hover:cursor-pointer transition-all duration-300"
                         animate={{
                             backgroundColor: currentStep >= 2 ? "#2563eb" : "#374151",
                             boxShadow: currentStep === 1

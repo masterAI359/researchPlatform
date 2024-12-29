@@ -7,7 +7,7 @@ export default function ReturnToSearch() {
         <button
             className="my-auto mx-auto rounded-lg transition-all 
         duration-300 xs:max-w-8 xs:max-h-8 2xl:max-w-8 
-        2xl:max-h-8 p-0.5 ease-in-out group relative"
+        2xl:max-h-8 p-0.5 ease-in-out group relative xs:pointer-events-none"
         >
             <div
                 className="fixed rounded-md z-50 -translate-y-16 -translate-x-4 mx-auto

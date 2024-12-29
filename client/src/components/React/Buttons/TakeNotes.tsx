@@ -7,7 +7,7 @@ export default function TakeNotes({ setTakingNotes }) {
             onClick={() => setTakingNotes(prev => !prev)}
             className="md:w-auto md:h-auto xs:max-w-8 xs:max-h-8 2xl:max-w-8 2xl:max-h-8 p-0.5
         rounded-lg transition-all duration-300 m-auto
-        ease-in-out group">
+        ease-in-out group xs:pointer-events-none">
 
             <div className="fixed rounded-md z-50 -translate-y-16 -translate-x-4 mx-auto border border-slate-500 xl:p-2 opacity-0 group-hover:opacity-100 bg-astro_black shadow-black transition-opacity duration-300 ease-in-out">
                 <p className="text-white" >Take Notes</p>

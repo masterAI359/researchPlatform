@@ -6,7 +6,7 @@ export default function MindNode4({ currentStep }) {
     return (
         <div className={`${currentStep >= 3 ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-100'} 
         ${currentStep === 3 ? 'scale-110' : null} transition-all duration-200 ease-in-out
-        bg-ebony xs:h-12 xs:w-28 lg:w-44 lg:h-16 p-3 absolute xs:bottom-20 md:bottom-40 2xl:bottom-32 left-1/2 left-1/2 transform -translate-x-1/2
+        bg-ebony xs:h-12 xs:w-28 lg:w-44 lg:h-16 p-3 absolute xs:bottom-20 md:bottom-40 2xl:bottom-36 left-1/2 left-1/2 transform -translate-x-1/2
         flex items-center xs:gap-x-2 md:gap-x-6 rounded-3xl cursor-pointer shadow-material
          ${currentStep < 3 ? 'border border-2 border-button_gray' : 'border border-2 border-button_blue'}`}>
             <motion.div

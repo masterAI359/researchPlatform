@@ -51,7 +51,7 @@ export default function Step2({ setOrigin, origin, setGettingHelp }: any) {
       className="min-w-full lg:h-full content-center mx-auto box-border flex flex-col justify-center my-auto md:px-0">
 
       <header className="w-full h-auto mx-auto border-b border-white/10 xs:mb-2 xl:mb-4 flex md:gap-x-8 xs:gap-x-0 items-baseline">
-        <h1 className="text-white xl:text-2xl xs:text-md font-light tracking-tight xs:mb-1 md:mb-2 text-left xs:w-2/3 md:w-auto">
+        <h1 className="text-white 2xl:text-3xl md:text-2xl xs:text-md font-light tracking-tight xs:mb-1 md:mb-2 text-left xs:w-2/3 md:w-auto">
           Before we dive in <span className="text-zinc-500">define your angle of approach</span>
         </h1>
         <div className="w-fit self-end xs:mb-5 md:mb-4">

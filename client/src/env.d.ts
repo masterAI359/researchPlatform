@@ -75,10 +75,6 @@ declare global {
     currentStep: number,
     setCurrentStep: Function
     setStartSearch: Function,
-    query: string,
-    setIsSubmitted: Function,
-    setQuery: Function,
-    isLoading: boolean,
     setCanProceed: Function,
     notifyRequired: boolean,
     setNotifyRequired: Function,

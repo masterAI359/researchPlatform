@@ -51,7 +51,7 @@ export default function Step1({ origin, setOrigin, setCanProceed, notifyRequired
                   <div className="flex-col items-center h-full w-full box-border">
                         <div className="w-full box-border border-b h-fit border-white/10 mb-4 flex flex-row gap-x-8 items-baseline">
                               <div className="w-fit flex justify-items-start">
-                                    <h1 className="md:text-2xl xs:text-sm tracking-tight font-light text-zinc-300 pb-1">Tackle an idea
+                                    <h1 className="2xl:text-3xl md:text-2xl xs:text-sm tracking-tight font-light text-zinc-300 pb-1">Tackle an idea
                                           <span className="text-zinc-500"> from the top down </span>
                                     </h1>
                               </div>

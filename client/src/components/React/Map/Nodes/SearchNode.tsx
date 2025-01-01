@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 export default function SearchNode({ currentStep }) {
 
     return (
-        <div className="w-fit h-fit absolute xs:bottom-3 md:bottom-6 lg:bottom-7 left-1/2 left-1/2 transform -translate-x-1/2">
+        <div className="w-fit h-fit absolute xs:bottom-3 md:bottom-6 lg:bottom-9 left-1/2 left-1/2 transform -translate-x-1/2">
             <div className={`xs:h-12 xs:w-32 lg:w-44 lg:h-16 p-3 bg-ebony border border-3 border-button_blue
                  rounded-3xl flex items-center xs:gap-x-2 md:gap-x-6 shadow-material transition-all duration-200 ease-in-out
                  ${currentStep === 4 ? 'scale-110 pointer-events-auto' : 'scale-100 pointer-events-none'}

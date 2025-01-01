@@ -40,13 +40,13 @@ export default function NextButton({ setCurrentStep, currentStep, setCanProceed,
 
   return (
     <AnimatePresence>
-      {currentStep <= 3 && <motion.div
+      {currentStep >= 0 && <motion.div
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0 }}
         whileHover={{ scale: 1.1 }}
         transition={{ type: 'tween', duration: 0.2 }}
-        className="relative h-auto w-auto justify-self-end self-center"
+        className={`relative h-auto w-auto justify-self-end self-center ${currentStep >= 4 ? 'pointer-events-none' : 'pointer-events-auto'}`}
       >
         <button
           onClick={gettingHelp === false ? (e) => checkRequirements(e) : null}
@@ -56,7 +56,7 @@ export default function NextButton({ setCurrentStep, currentStep, setCanProceed,
           rounded-2xl">
           <span className="mx-auto flex items-center justify-center">
             <svg
-              className="text-white group-hover:text-white"
+              className={`text-white group-hover:text-white ${currentStep >= 4 ? 'opacity-50' : null}`}
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 48 48"
               width="20px"

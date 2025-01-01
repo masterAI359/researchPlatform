@@ -23,9 +23,9 @@ export default function BackButton({ setCurrentStep, currentStep, gettingHelp }:
     return (
 
         <div className={`relative h-auto w-auto 
-        my-auto justify-self-start self-center`} >
+        my-auto justify-self-start self-center ${currentStep === 0 ? 'pointer-events-none' : 'pointer-events-auto'}`} >
             <AnimatePresence>
-                {currentStep !== 0 && <motion.div
+                {currentStep >= 0 && <motion.div
                     className="self-center"
                     initial={{ opacity: 0, scale: 0 }}
                     animate={{ opacity: 1, scale: 1 }}

@@ -4,8 +4,7 @@ import StepWizard from "../StepWizard/StepWizard";
 import { AnimatePresence, motion } from "framer-motion";
 
 
-export default function WindowContainer({ currentStep, setStartSearch, setQuery, isLoading,
-    query, setIsSubmitted, setCurrentStep, setCanProceed, notifyRequired, setNotifyRequired,
+export default function WindowContainer({ currentStep, setStartSearch, setCurrentStep, setCanProceed, notifyRequired, setNotifyRequired,
     setGettingHelp, summaries, canProceed, gettingHelp }: any) {
 
 
@@ -26,10 +25,6 @@ export default function WindowContainer({ currentStep, setStartSearch, setQuery,
                         {summaries.length < 1 && <HeroWindow
                             currentStep={currentStep}
                             setCurrentStep={setCurrentStep}
-                            query={query}
-                            setQuery={setQuery}
-                            isLoading={isLoading}
-                            setIsSubmitted={setIsSubmitted}
                             setStartSearch={setStartSearch}
                             setCanProceed={setCanProceed}
                             notifyRequired={notifyRequired}

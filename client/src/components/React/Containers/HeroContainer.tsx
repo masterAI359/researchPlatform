@@ -36,10 +36,6 @@ export default function HeroContainer({
                 <InvestigateHero
                     currentStep={currentStep}
                     setCurrentStep={setCurrentStep}
-                    query={query}
-                    setQuery={setQuery}
-                    isLoading={isLoading}
-                    setIsSubmitted={setIsSubmitted}
                     gettingHelp={gettingHelp}
                     setGettingHelp={setGettingHelp}
                     summaries={summaries}

@@ -1,5 +1,3 @@
-import fallback from 'public/images/fallbacks/fallbackImage.svg'
-
 
 export default function SummaryHeader({
     isSelected,
@@ -25,7 +23,7 @@ export default function SummaryHeader({
                            transition-opacity duration-200 ease-in-out ${isSelected ? 'rounded-t-4xl' : 'rounded-4xl'}
                            ${article_image ? null : 'bg-fallbackImage'}
                            `}
-                style={{ backgroundImage: typeof article_image === 'undefined' ? `url(${fallback})` : `url(${article_image})` }}
+                style={{ backgroundImage: `url(${article_image})` }}
             ></div>
 
             {/* Content Over Background */}

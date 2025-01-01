@@ -63,6 +63,7 @@ export default function InvestigateContainer() {
     if (isSubmitted) {
       fetchArticles(query)
       setIsSubmitted(false)
+      setSelectedForSummary([])
     }
     if (submittedForSummaries) {
       fetchSummaries(articlesToSummarize)

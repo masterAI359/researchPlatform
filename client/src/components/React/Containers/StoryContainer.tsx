@@ -72,7 +72,6 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
                             transition={{ duration: 0.3 }}
                         >
                             <ArticlesGrid
-                                summaries={summaries}
                                 articles={articles}
                                 selectedForSummary={selectedForSummary}
                                 setSelectedForSummary={setSelectedForSummary} />

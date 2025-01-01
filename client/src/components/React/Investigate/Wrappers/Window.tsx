@@ -8,30 +8,22 @@ import Slide4 from "./Slider/Slide4";
 import Slide5 from "./Slider/Slide5";
 
 
-export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLoading,
-  query, setIsSubmitted, setCurrentStep, setCanProceed, notifyRequired, setNotifyRequired, setGettingHelp }: WindowProps) {
+export default function HeroWindow({ currentStep, setStartSearch, setCanProceed, notifyRequired, setNotifyRequired, setGettingHelp }: WindowProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const wizardRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState(null);
-  const [wizardHeight, setWizardHeight] = useState(0);
-  const [containerHeight, setContainerHeight] = useState(0);
   const [origin, setOrigin] = useState<string>('');
 
 
   useLayoutEffect(() => {
     if (containerRef.current) {
       setContainerWidth(containerRef.current.offsetWidth);
-      setContainerHeight(containerRef.current.offsetHeight)
 
     }
-    if (wizardRef.current) {
-      setWizardHeight(wizardRef.current.offsetHeight)
-      setWizardHeight(wizardRef.current.offsetHeight)
-    }
     const handleResize = () => {
+      console.log("change in window width", containerWidth)
       if (containerRef.current) {
         setContainerWidth(containerRef.current.offsetWidth);
-        setContainerHeight(containerRef.current.offsetHeight)
       }
     };
     window.addEventListener('resize', handleResize);
@@ -50,7 +42,7 @@ export default function HeroWindow({ currentStep, setStartSearch, setQuery, isLo
       <motion.div
         ref={wizardRef}
         style={{ maxHeight: "fit" }}
-        className="flex xs:items-center md:items-baseline xs:h-fit md:min-h-full lg:max-h-fit xl:mt-4 xs:mt-0"
+        className="flex xs:items-center md:items-baseline w-full xs:h-fit md:min-h-full lg:max-h-fit"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, x: -currentStep * containerWidth }}
         transition={{ type: 'tween', duration: 0.2, ease: 'easeInOut' }}>

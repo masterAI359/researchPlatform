@@ -1,20 +1,14 @@
 import WindowContainer from "./WindowContainer"
 import MapContainer from "../Map/MapContainer"
 
-export default function ContentWrapper({ currentStep, setStartSearch, setQuery, isLoading,
-    query, setIsSubmitted, setCurrentStep, setCanProceed, notifyRequired, setNotifyRequired, setGettingHelp, gettingHelp, summaries, canProceed }) {
+export default function ContentWrapper({ currentStep, setCurrentStep, setStartSearch, setCanProceed, notifyRequired, setNotifyRequired, setGettingHelp, gettingHelp, summaries, canProceed }) {
 
     return (
         <main
-            className="flex mx-auto box-border w-full h-full justify-start">
+            className="flex mx-auto my-auto box-border w-full h-fit justify-start">
             <WindowContainer
                 summaries={summaries}
                 currentStep={currentStep}
-                setCurrentStep={setCurrentStep}
-                query={query}
-                setQuery={setQuery}
-                isLoading={isLoading}
-                setIsSubmitted={setIsSubmitted}
                 setStartSearch={setStartSearch}
                 setCanProceed={setCanProceed}
                 notifyRequired={notifyRequired}
@@ -22,6 +16,7 @@ export default function ContentWrapper({ currentStep, setStartSearch, setQuery, 
                 gettingHelp={gettingHelp}
                 setGettingHelp={setGettingHelp}
                 canProceed={canProceed}
+                setCurrentStep={setCurrentStep}
             />
             <div className="xs:hidden md:block w-fit h-fit flex items-center">
                 <MapContainer currentStep={currentStep} />

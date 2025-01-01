@@ -93,6 +93,7 @@ export default function SummaryContainer({ summaries, articles, selectedForSumma
       {showNotifications &&
         <FailedSummary
           failedNotifications={failedNotifications}
+          setFailedNotifications={setFailedNotifications}
         />
       }
     </motion.div>

@@ -19,7 +19,7 @@ export default function Step4({ containerWidth, setStartSearch, setGettingHelp }
           <div className="w-full box-border border-b h-fit border-white/10 lg:mb-4 xs:mb-2
            flex flex-row gap-x-8 xs:items-center  md:items-baseline lg:mt-10">
             <div className="w-fit flex justify-items-start">
-              <h1 className="lg:text-2xl xs:text-md tracking-tight font-light text-white pb-2">
+              <h1 className="2xl:text-3xl md:text-2xl xs:text-md tracking-tight font-light text-white pb-2">
                 What would support this claim?
               </h1>
             </div>
@@ -27,7 +27,7 @@ export default function Step4({ containerWidth, setStartSearch, setGettingHelp }
               <HelpButton info={Step3Help} setGettingHelp={setGettingHelp} />
             </div>
           </div>
-          <div className="block w-full xs:h-40 md:h-52 xl:h-96 text-md text-white bg-white/10 border-none focus:ring-1 focus:ring-white
+          <div className="block w-full xs:h-40 md:h-52 xl:h-80 text-md text-white bg-white/10 border-none focus:ring-1 focus:ring-white
     rounded-lg resize-none text-wrap flex justify-items-start">
             <StepsEditor setterFunction={setPremise} />
           </div>

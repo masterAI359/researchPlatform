@@ -1,68 +1,99 @@
 
 export default function SummaryHeader({
-    isSelected,
     article_image,
     logo,
     source,
     date,
     article_pub_date,
     article_title,
-    handleClick,
-    index
+    index,
+    article_authors,
+    fullStory,
+    setFullStory,
+    article_url
 }) {
+
+
+    function handleArticleView() {
+        setFullStory((fullStory) => !fullStory);
+    }
+
+
+    const limitArray = (arr: any) => {
+
+        let shortenedAuthors = []
+
+        for (let i = 0; i < arr.length; i++) {
+
+            if (i < 3) {
+                shortenedAuthors.push(arr[i])
+            } else if (i > 3) {
+                break
+            }
+
+        }
+
+        return shortenedAuthors
+    }
+
+
+    const authShortened = limitArray(article_authors)
+
+    console.log(authShortened)
 
 
     return (
         <header
-            className={`relative flex flex-col-reverse box-border w-full mx-auto
-                      ${isSelected ? 'pb-10 min-h-[18rem] max-h-9/12' : 'mx-4 rounded-4xl px-4 py-4 h-full'}`}
-        >
-            {/* Background Image with Lower Opacity */}
-            <div
-                className={`absolute inset-0 bg-cover bg-center opacity-50 hover:opacity-75
-                           transition-opacity duration-200 ease-in-out ${isSelected ? 'rounded-t-4xl' : 'rounded-4xl'}
-                           ${article_image ? null : 'bg-fallbackImage'}
-                           `}
-                style={{ backgroundImage: `url(${article_image})` }}
-            ></div>
-
-            {/* Content Over Background */}
-            <div className="relative w-full h-auto box-border">
-                {isSelected ? null : (
-                    <figcaption className="relative pt-20">
+            className="relative flex flex-col box-border w-full mx-auto 2xl:mb-6">
+            <div className="w-full flex justify-items-start items-center">
+                <div className="w-1/3">
+                    <img className="w-full h-full rounded-lg" src={article_image} />
+                </div>
+            </div>
+            <figcaption className="pb-7 pt-3 border-b border-slate-300 w-full mx-auto">
+                <div className='flex flex-row h-full w-10/12 box-border justify-between items-center'>
+                    <div className='w-full h-full box-border'>
                         <div className="flex items-center">
                             <p className="text-slate-300 opacity-100 text-sm flex items-center mb-3">
-                                <img className="mr-3 h-12 w-12" src={logo} alt={''} />
+                                <img className="mr-3 h-8 w-8" src={logo} alt={''} />
 
                                 {source}
                             </p>
                         </div>
                         <div>
-                            {isSelected ? <p className="text-white text-md font-serif opacity-100">
-                                {date ? date : article_pub_date}
-                            </p> : null}
+                            <p className="text-slate-300 text-lg font-serif">
+                                Published - {date ? date : article_pub_date}{' '}
+                            </p>
                         </div>
-                    </figcaption>
-                )}
-            </div>
-            <figcaption className={`relative w-full h-full flex flex-col-reverse mx-auto justify-between`}>
-                <h1 className={`text-white font-serif opacity-100 text-4xl
-                          font-light tracking-tight w-11/12 ${isSelected ? 'text-4xl text-center' : 'text-lg'}`}>
-                    {article_title ? (
-                        article_title
-                    ) : null}
-                </h1>
-                {isSelected ? <div className='flex flex-row w-full h-fit justify-end relative'>
-                    <div
-                        onClick={() => handleClick(index)}
-                        className="w-fit h-fit absolute cursor-pointer p-2 top-5 right-5 rounded-lg hover:bg-white/10
-                       hover:text-white group transition-all ease-in-out duration-200">
-                        <svg className="text-zinc-200 cursor-pointer opacity-55 group-hover:opacity-100 transition-opacity duration-200 ease-in-out" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="40px" height="40px">
-                            <path d="M 39.486328 6.9785156 A 1.50015 1.50015 0 0 0 38.439453 7.4394531 L 24 21.878906 L 9.5605469 7.4394531 A 1.50015 1.50015 0 0 0 8.484375 6.984375 A 1.50015 1.50015 0 0 0 7.4394531 9.5605469 L 21.878906 24 L 7.4394531 38.439453 A 1.50015 1.50015 0 1 0 9.5605469 40.560547 L 24 26.121094 L 38.439453 40.560547 A 1.50015 1.50015 0 1 0 40.560547 38.439453 L 26.121094 24 L 40.560547 9.5605469 A 1.50015 1.50015 0 0 0 39.486328 6.9785156 z" fill="currentColor" />
-                        </svg>
-                    </div>
-                </div> : null}
+                        <div className='max-w-3/4 flex flex-wrap mt-3 items-center'>
+                            <p className='text-slate-300 text-sm mr-2'>Authors - </p>
+                            {article_authors !== undefined && article_authors !== null ? authShortened.map((author: string, index: number) => {
 
+                                if (index + 1 < authShortened.length) {
+                                    return (<p className="text-slate-300 text-sm font-serif mr-2">
+                                        {author},
+                                    </p>)
+                                } else if (index + 1 === authShortened.length) {
+                                    return (<p className="text-slate-300 text-sm font-serif mr-2">
+                                        {author}
+                                    </p>)
+                                }
+                            }) : (<p className='text-slate-300 text-sm font serif mr-2'>Could not determine. Visit the source to determine authors.</p>)}
+                        </div>
+                    </div>
+                    <div className='w-fit h-fit '>
+                        <div className='box-border flex flex-col gap-2 items-center justify-center'>
+                            <button
+                                onClick={handleArticleView}
+                                className='bg-white/10 hover:scale-110 text-white text-sm hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full lg:w-32 h-full'
+                            >{fullStory ? 'Summary' : 'Full Story'}</button>
+                            <button
+                                className='bg-white/10 hover:scale-110 text-white text-sm transition-all duration-200 ease-in-out p-3 rounded-full lg:w-32 h-full'
+                            >   <a href={article_url} target='_blank'></a>
+                                Visit Source</button>
+                        </div>
+                    </div>
+                </div>
             </figcaption>
         </header>
     )

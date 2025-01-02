@@ -1,22 +1,13 @@
 import { motion } from "framer-motion"
-import { useState } from "react"
 
 
 
 export default function Notification({ notification, failedNotifications, setFailedNotifications }) {
 
-
-
     const closeNotification = () => {
         const articleLink: string = notification.article_url
-        //
-        //   const location = failedNotifications.findIndex((item: any) => item.article_url === articleLink)
-
         setFailedNotifications(failedNotifications.filter((item: any) => item.article_url !== articleLink))
     }
-
-
-
 
     return (
         <motion.li

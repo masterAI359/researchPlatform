@@ -103,8 +103,7 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
                                 gettingHelp={gettingHelp}
                                 setGettingHelp={setGettingHelp}
                                 summaries={summaries}
-                                articles={articles}
-                                selectedForSummary={selectedForSummary} />
+                            />
                         </motion.div>}
                 </AnimatePresence>
             </div>

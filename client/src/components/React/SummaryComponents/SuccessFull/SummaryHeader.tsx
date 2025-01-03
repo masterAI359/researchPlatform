@@ -107,7 +107,7 @@ export default function SummaryHeader({
                         </div>
 
                     </div>
-                    <MoreButton article_url={article_url} />
+                    <MoreButton key={article_title} article_url={article_url} />
                 </figcaption>
             </section>
         </header>

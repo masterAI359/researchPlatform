@@ -196,16 +196,28 @@ module.exports = {
     function ({ addUtilities }) {
       const newUtilities = {
         '.no-scrollbar': {
-          /* Hide scrollbar for Chrome, Safari and Opera */
+          /* Hide scrollbar for Chrome, Safari, and Opera */
           '-webkit-overflow-scrolling': 'touch',
           '&::-webkit-scrollbar': {
             display: 'none',
           },
-          /* Hide scrollbar for IE, Edge and Firefox */
+          /* Hide scrollbar for IE, Edge, and Firefox */
           '-ms-overflow-style': 'none',
           'scrollbar-width': 'none',
         },
+        '.show-scrollbar': {
+          /* Re-enable scrollbar behavior */
+          '-webkit-overflow-scrolling': 'auto',
+          '&::-webkit-scrollbar': {
+            // You can also set width, color, etc. here if desired
+            display: 'initial',
+          },
+          /* Re-enable scrollbar for IE, Edge, and Firefox */
+          '-ms-overflow-style': 'auto',
+          'scrollbar-width': 'auto',
+        },
       }
+
       addUtilities(newUtilities, ['responsive'])
     }
   ],

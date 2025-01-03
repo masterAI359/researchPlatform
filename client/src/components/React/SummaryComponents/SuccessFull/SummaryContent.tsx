@@ -11,14 +11,10 @@ export default function SummaryContent({
 }: any) {
 
 
-
-
-
-
     return (
-        <motion.div className={`${fullStory ? `overflow-y-scroll scrollbar-thin scrollbar-track-rounded-full 
-            scrollbar-thumb-rounded-full scrollbar-thumb-gray-600 scrollbar-track-gray-300 scroll-smooth mx-1 my-1` : null} cursor-text`}>
-            <main className={`display-block opacity-87 2xl:max-h-[40rem] 2xl:w-3/4`}>
+        <motion.div className={`${fullStory ? `xs:no-scrollbar md:show-scrollbar md:overflow-y-scroll md:scrollbar-thin md:scrollbar-track-rounded-full 
+            scrollbar-thumb-rounded-full md:scrollbar-thumb-gray-600 md:scrollbar-track-gray-300 scroll-smooth md:mx-1 my-1` : null} cursor-text`}>
+            <main className={`display-block opacity-87 xl:max-h-[43rem] 2xl:w-3/4`}>
                 {fullStory ? <FullText article_text={article_text} /> : <SummarizedText summary={summary} />}
 
             </main>

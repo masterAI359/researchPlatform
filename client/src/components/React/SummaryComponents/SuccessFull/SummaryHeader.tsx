@@ -1,3 +1,5 @@
+import MoreButton from "../../Buttons/MoreButton";
+
 
 export default function SummaryHeader({
     article_image,
@@ -26,7 +28,13 @@ export default function SummaryHeader({
         for (let i = 0; i < arr.length; i++) {
 
             if (i < 3) {
-                shortenedAuthors.push(arr[i])
+
+                if (arr[i].length < 25) {
+                    shortenedAuthors.push(arr[i])
+                } else {
+                    continue
+                }
+
             } else if (i > 3) {
                 break
             }
@@ -44,57 +52,64 @@ export default function SummaryHeader({
 
     return (
         <header
-            className="relative flex flex-col box-border w-full mx-auto 2xl:mb-6">
-            <div className="w-full flex justify-items-start items-center">
-                <div className="w-1/3">
-                    <img className="w-full h-full rounded-lg" src={article_image} />
-                </div>
-            </div>
-            <figcaption className="pb-7 pt-3 border-b border-slate-300 w-full mx-auto">
-                <div className='flex flex-row h-full w-10/12 box-border justify-between items-center'>
-                    <div className='w-full h-full box-border'>
-                        <div className="flex items-center">
-                            <p className="text-slate-300 opacity-100 text-sm flex items-center mb-3">
-                                <img className="mr-3 h-8 w-8" src={logo} alt={''} />
+            className="relative  border-b flex border-slate-300 mx-auto box-border w-full mx-auto 2xl:mb-2">
+            <section className="flex xs:flex-col xs:gap-y-2 md:flex-row md:gap-x-4 items-center w-full h-full mx-auto xs:pb-2 xl:pb-6">
+                <div className="w-fit flex items-center">
+                    <div className="xs:h-full xs:h-full flex flex-row justify-start relative">
+                        <div
+                            style={{ backgroundImage: `url(${article_image})` }}
+                            className='absolute inset-0 xs:w-full xs:h-full xl:w-full
+                            bg-cover bg-center opacity-50 xs:rounded-xl xl:rounded-lg xl:w-full'
+                        >
+                        </div>
+                        <div className='relative z-10 xs:p-2 md:p-4 flex flex-col gap-y-10 xs:py-6 md:py-12'>
 
-                                {source}
-                            </p>
-                        </div>
-                        <div>
-                            <p className="text-slate-300 text-lg font-serif">
-                                Published - {date ? date : article_pub_date}{' '}
-                            </p>
-                        </div>
-                        <div className='max-w-3/4 flex flex-wrap mt-3 items-center'>
-                            <p className='text-slate-300 text-sm mr-2'>Authors - </p>
-                            {article_authors !== undefined && article_authors !== null ? authShortened.map((author: string, index: number) => {
+                            <div className="w-auto h-full">
+                                <h1 className='lg:text-lg xs:text-md leading-6 text-white font-light tracking-tight font-serif'>
+                                    {article_title}
+                                </h1>
+                            </div>
+                            <div className="flex items-center">
+                                <p className="text-slate-300 opacity-100 xs:text-xs md:text-md flex items-center">
+                                    <img className="mr-3 h-9 w-9" src={logo} alt={''} />
 
-                                if (index + 1 < authShortened.length) {
-                                    return (<p className="text-slate-300 text-sm font-serif mr-2">
-                                        {author},
-                                    </p>)
-                                } else if (index + 1 === authShortened.length) {
-                                    return (<p className="text-slate-300 text-sm font-serif mr-2">
-                                        {author}
-                                    </p>)
-                                }
-                            }) : (<p className='text-slate-300 text-sm font serif mr-2'>Could not determine. Visit the source to determine authors.</p>)}
-                        </div>
-                    </div>
-                    <div className='w-fit h-fit '>
-                        <div className='box-border flex flex-col gap-2 items-center justify-center'>
-                            <button
-                                onClick={handleArticleView}
-                                className='bg-white/10 hover:scale-110 text-white text-sm hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full lg:w-32 h-full'
-                            >{fullStory ? 'Summary' : 'Full Story'}</button>
-                            <button
-                                className='bg-white/10 hover:scale-110 text-white text-sm transition-all duration-200 ease-in-out p-3 rounded-full lg:w-32 h-full'
-                            >   <a href={article_url} target='_blank'></a>
-                                Visit Source</button>
+                                    {source}
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </figcaption>
+
+                <figcaption className="w-full h-full flex">
+                    <div className='flex md:flex-col h-full w-full box-border xl:gap-y-4 items-center self-end'>
+                        <div className='w-full h-full box-border xs:flex xs:flex-col md:gap-y-2 justify-end'>
+
+                            <div>
+                                <p className="text-slate-300 font-light xs:text-sm md:text-lg font-serif">
+                                    Published - {date ? date : article_pub_date}{' '}
+                                </p>
+                            </div>
+                            <div className='max-w-3/4 flex flex-wrap mt-3 items-center'>
+                                <p className='text-slate-300 md:text-lg font-light mr-2'>Authors - </p>
+                                {article_authors !== undefined && article_authors !== null ? authShortened.map((author: string, index: number) => {
+
+                                    if (index + 1 < authShortened.length) {
+                                        return (<p className="text-slate-300 md:text-lg font-serif mr-2">
+                                            {author},
+                                        </p>)
+                                    } else if (index + 1 === authShortened.length) {
+                                        return (<p className="text-slate-300 md:text-lg font-serif mr-2">
+                                            {author}
+                                        </p>)
+                                    }
+                                }) : (<p className='text-slate-300 md:text-lg font serif mr-2'>Could not determine. Visit the source to determine authors.</p>)}
+                            </div>
+                        </div>
+
+                    </div>
+                    <MoreButton article_url={article_url} />
+                </figcaption>
+            </section>
         </header>
     )
 }

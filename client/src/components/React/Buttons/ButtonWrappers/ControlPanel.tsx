@@ -10,8 +10,8 @@ import HelpButton from "../Question"
 export default function ControlPanel({ setTakingNotes, setFinished }) {
 
     return (
-        <div className="fixed md:left-12 md:bottom-12 xs:bottom-0 xs:left-0 z-50 flex md:w-[13.22rem] xs:w-auto shadow-black
-         h-auto bg-astro_black rounded-full border border-border_gray overflow-x-hidden">
+        <div className="fixed md:left-12 md:bottom-12 xs:bottom-0 xs:left-0 right-0 z-50 flex md:w-[13.22rem] shadow-black
+         h-auto xs:bg-black xl:bg-astro_black md:rounded-full xs:border-t md:border border-border_gray overflow-x-hidden">
 
             <div className="shrink-0 w-fit h-auto xs:px-2 xs:py-0.5  md:py-1.5 md:px-2.5  hover:bg-border_gray transition-all ease-in-out border-r border-border_gray flex justify-center">
                 <ReturnToSearch />

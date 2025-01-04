@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Summary } from "./SuccessFull/Summary"
 import { AnimatePresence, motion } from "framer-motion"
 import FailedSummary from "./Failed/FailedSummary"
@@ -9,6 +9,7 @@ export default function SummaryContainer({ summaries, gettingHelp, setGettingHel
   const [failedNotifications, setFailedNotifications] = useState<object[]>([])
   const [showNotifications, setShowNotifications] = useState<boolean>(false)
   const [currentStory, setCurrentStory] = useState<number>(0)
+  const containerRef = useRef(null)
 
   const container = {
 
@@ -50,9 +51,12 @@ export default function SummaryContainer({ summaries, gettingHelp, setGettingHel
   }, [summaries])
 
 
+  //TODO: implement a slider animation to paginate the rendered stories
+
+
   return (
     <motion.div
-      className="h-full 2xl:max-w-7xl xs:px-2 md:px-8 shadow-black inset rounded-4xl mx-auto border-white/10 xs:mt-10 xl:mt-8"
+      className="h-full 2xl:max-w-7xl xs:px-2 md:px-8 shadow-black inset rounded-4xl mx-auto border-white/10 xs:mt-10 xl:mt-12"
       variants={container}
       initial="hidden"
       animate="show"
@@ -62,10 +66,14 @@ export default function SummaryContainer({ summaries, gettingHelp, setGettingHel
         <SummaryHeading setGettingHelp={setGettingHelp} gettingHelp={gettingHelp} currentStory={currentStory} setCurrentStory={setCurrentStory} />
       </header>
       <main
-        className="2xl:max-w-7xl h-auto w-full mx-auto 
+        ref={containerRef}
+        className="2xl:max-w-6xl h-auto w-full mx-auto 
                  transition-all duration-1000 animate-fade-in mb-12 
                  overflow-x-hidden overflow-y-hidden">
-        <div className="w-full flex h-auto items-center">
+        <motion.div
+          animate={{ x: -currentStory * containerRef.current.offsetWidth }}
+          transition={{ type: 'tween', duration: 0.2 }}
+          className="w-full flex h-auto items-center">
           {availableStories.map((summaryData: any, index: number) =>
             <Summary
               key={index}
@@ -73,7 +81,7 @@ export default function SummaryContainer({ summaries, gettingHelp, setGettingHel
               summaryData={summaryData}
             />
           )}
-        </div>
+        </motion.div>
       </main>
       {showNotifications &&
         <FailedSummary
@@ -86,13 +94,3 @@ export default function SummaryContainer({ summaries, gettingHelp, setGettingHel
 
   )
 }
-
-
-
-//<AnimatePresence >
-//<motion.div>
-//  {!finished && <SummaryHeading setGettingHelp={setGettingHelp} gettingHelp={gettingHelp} />}
-//
-//</motion.div>
-//
-//</AnimatePresence>

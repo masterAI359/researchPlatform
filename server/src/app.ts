@@ -96,11 +96,21 @@ app.get('/summarize', tldrSummary);
 
 // handling unkown routes, allowing client side routing on refresh with react-router-dom library
 app.get('*', (req: Request, res: Response) => {
-	console.log("Serving: " + path.join(__dirname, 'dist', 'index.html'))
-	res.sendFile(path.join(__dirname, 'dist', 'index.html'))
+	try {
+		console.log("Serving: " + path.join(__dirname, 'dist', 'index.html'))
+		res.sendFile(path.join(__dirname, 'dist', 'index.html'))
+
+	} catch (err: any) {
+		if (err.code === 'ECONNRESET') {
+			console.error('Connection reset by client')
+			res.status(500).send('Lost Network Connection')
+		}
+	}
+
 })
 
 
 app.listen(port, () => {
+
 	return console.log(`Express is listening at http://localhost:${port}`);
 });

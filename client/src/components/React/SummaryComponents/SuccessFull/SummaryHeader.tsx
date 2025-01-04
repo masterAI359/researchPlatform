@@ -46,8 +46,9 @@ export default function SummaryHeader({
 
 
     const authShortened = limitArray(article_authors)
+    const fallbackImage = '/images/logos/fallback.jpg'
 
-    console.log(authShortened)
+    const storyImage = article_image || fallbackImage
 
 
     return (
@@ -57,20 +58,20 @@ export default function SummaryHeader({
                 <div className="w-fit flex items-center">
                     <div className="xs:h-full xs:h-full flex flex-row justify-start relative">
                         <div
-                            style={{ backgroundImage: `url(${article_image})` }}
+                            style={{ backgroundImage: `url(${storyImage})` }}
                             className='absolute inset-0 xs:w-full xs:h-full xl:w-full
                             bg-cover bg-center opacity-50 xs:rounded-xl xl:rounded-lg xl:w-full'
                         >
                         </div>
-                        <div className='relative z-10 xs:p-2 md:p-4 flex flex-col gap-y-10 xs:py-6 md:py-10'>
+                        <div className='relative z-10 xs:p-2 flex flex-col gap-y-10 xs:py-6 md:py-6'>
 
                             <div className="w-auto h-full">
                                 <h1 className='lg:text-lg xs:text-md leading-6 text-white font-light tracking-tight font-serif'>
                                     {article_title}
                                 </h1>
                             </div>
-                            <div className="flex items-center">
-                                <p className="text-slate-300 opacity-100 xs:text-xs md:text-md flex items-center">
+                            <div className="flex items-center self-end">
+                                <p className="text-white opacity-100 xs:text-xs md:text-md flex items-center">
                                     <img className="mr-3 h-9 w-9" src={logo} alt={''} />
 
                                     {source}

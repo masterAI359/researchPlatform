@@ -19,6 +19,7 @@ export const useFetch = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [loadingSummaries, setLoadingSummaries] = useState<boolean>(false)
     const [readyToSelect, setReadyToSelect] = useState<boolean>(false)
+    const [errorMessage, setErrorMessage] = useState<string>(null)
 
 
 
@@ -34,6 +35,7 @@ export const useFetch = () => {
                 options
             )
             if (!response.ok) {
+                setErrorMessage(`${response.status}`)
                 throw new Error("There was a network response issue!")
             }
             const jsonResponse = await response.json()
@@ -70,7 +72,7 @@ export const useFetch = () => {
     }
 
 
-    return { fetchedArticles, fetchedSummaries, fetchArticles, fetchSummaries, isLoading, loadingSummaries, readyToSelect }
+    return { fetchedArticles, fetchedSummaries, fetchArticles, fetchSummaries, isLoading, loadingSummaries, readyToSelect, errorMessage }
 
 
 }

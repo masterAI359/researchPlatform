@@ -4,10 +4,8 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { SelectedArticles } from '../../../env'
 import { useFetch } from "@/Hooks/useFetch";
 import { AnimatePresence, motion } from "framer-motion";
-import ControlPanel from "../Buttons/ButtonWrappers/ControlPanel";
 import Notes from "../Investigate/Notes/Notes";
-import Navigation from "../Navigation/Navigation";
-
+import LostConnection from "../ErrorMessages/LostConnection";
 
 export default function InvestigateContainer() {
   const [query, setQuery] = useState<string>("")
@@ -26,7 +24,7 @@ export default function InvestigateContainer() {
   const [hideHeroContainer, setHide] = useState<boolean>(false)
   const containerRef = useRef(null)
   const notesRef = useRef(null)
-  const { fetchArticles, fetchSummaries, fetchedArticles, fetchedSummaries, isLoading, loadingSummaries, readyToSelect } = useFetch()
+  const { fetchArticles, fetchSummaries, fetchedArticles, fetchedSummaries, isLoading, loadingSummaries, readyToSelect, errorMessage } = useFetch()
 
   console.log(gettingHelp)
 
@@ -104,6 +102,7 @@ export default function InvestigateContainer() {
          items-center animate-fade-in pb-52 relative box-border overflow-hidden pb-[40rem]`}>
       <AnimatePresence mode="wait">
         {windowWidth !== null && !hideHeroContainer ? <HeroContainer
+          key={'HeroContainer'}
           currentStep={currentStep}
           setCurrentStep={setCurrentStep}
           gettingHelp={gettingHelp}
@@ -115,6 +114,7 @@ export default function InvestigateContainer() {
           finished={finished}
           hideSearch={submittedForSummaries}
         /> : null}
+        {errorMessage !== null && <LostConnection errorMessage={errorMessage} />}
       </AnimatePresence>
 
       <div className="w-full h-auto mx-auto xl:mt-12" ref={storyRef}>

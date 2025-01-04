@@ -9,10 +9,11 @@ interface SendForSummary {
   setSubmittedForSummaries: Function,
   loadingSummaries: boolean,
   hideSelect: Function,
-  showSelect: boolean
+  showSelect: boolean,
+  setHide: Function
 }
 
-export default function SelectArticles({ hideSelect, selectedForSummary, submittedForSummaries, setSubmittedForSummaries, loadingSummaries, showSelect }: SendForSummary) {
+export default function SelectArticles({ hideSelect, selectedForSummary, submittedForSummaries, setSubmittedForSummaries, loadingSummaries, showSelect, setHide }: SendForSummary) {
   const selectedTotal = selectedForSummary.length
   const selectedArticles = `Summarize Articles ${selectedTotal}/3`
   const waiting = "Loading Stories..."
@@ -21,6 +22,7 @@ export default function SelectArticles({ hideSelect, selectedForSummary, submitt
 
     if (selectedForSummary.length > 0) {
       setSubmittedForSummaries(!submittedForSummaries)
+      setHide(true)
     } else {
       console.log("There's nothing to summarize yet")
     }

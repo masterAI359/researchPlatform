@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "framer-motion"
 
 
 export default function HeroContainer({
-    query,
+    hideSearch,
     setQuery,
     isLoading,
     setIsSubmitted,
@@ -18,10 +18,6 @@ export default function HeroContainer({
     finished
 }) {
     const [startSearch, setStartSearch] = useState<boolean>(false)
-
-    const test = summaries.length === 0
-
-    console.log(test)
 
     return (
         <AnimatePresence mode="wait">
@@ -44,7 +40,7 @@ export default function HeroContainer({
 
             </motion.div>)}
 
-            {test && startSearch ?
+            {!hideSearch && startSearch ?
                 (<motion.div
                     key='Search'
                     initial={{ opacity: 0 }}

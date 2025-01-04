@@ -4,7 +4,7 @@
 export default function More({ article_url, setOpen }) {
 
     return (
-        <div className="bg-black border border-white/40 z-30 rounded-md xs:w-36 xl:w-40 h-auto p-5 absolute xs:right-12">
+        <div className="bg-black border border-white/40 z-30 rounded-md xs:w-36 xl:w-40 h-auto p-5 absolute xs:-translate-x-36">
             <div
                 onClick={() => { setOpen(false) }}
                 className="absolute right-1 top-1 hover:bg-white/10 rounded-md p-1 xs:h-7 xs:w-7 md:h-8 md:w-8 cursor-pointer">
@@ -14,12 +14,12 @@ export default function More({ article_url, setOpen }) {
             </div>
             <div className="w-full mx-auto flex flex-col gap-y-2">
                 <div className="text-white text-left hover:text-blue-400 transition-all cursor-pointer 
-                duration-200 ease-in-out xs:text-xs md:text-md font-light tracking-tight">
+                duration-200 ease-in-out xs:text-xs md:text-lg font-light tracking-tight">
                     <a href={article_url} target="_blank">
                         Visit source
                     </a>
                 </div>
-                <div className="text-white text-left xs:text-xs hover:text-blue-400 transition-all cursor-pointer duration-200 ease-in-out md:text-md font-light tracking-tight">
+                <div className="text-white text-left xs:text-xs hover:text-blue-400 transition-all cursor-pointer duration-200 ease-in-out md:text-lg font-light tracking-tight">
                     <a href="#">
                         All authors
                     </a>

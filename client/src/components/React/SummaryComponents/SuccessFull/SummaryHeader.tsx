@@ -52,8 +52,8 @@ export default function SummaryHeader({
 
     return (
         <header
-            className="relative  border-b flex border-slate-300 mx-auto box-border w-full mx-auto 2xl:mb-2">
-            <section className="flex xs:flex-col xs:gap-y-2 md:flex-row md:gap-x-4 items-center w-full h-full mx-auto xs:pb-2 xl:pb-6">
+            className="relative flex mx-auto box-border border-b border-white/20 w-full mx-auto 2xl:mb-1">
+            <section className="flex xs:flex-col xs:gap-y-2 md:flex-row md:gap-x-4 items-center w-full h-full mx-auto xs:pb-2 xl:pb-2">
                 <div className="w-fit flex items-center">
                     <div className="xs:h-full xs:h-full flex flex-row justify-start relative">
                         <div
@@ -62,7 +62,7 @@ export default function SummaryHeader({
                             bg-cover bg-center opacity-50 xs:rounded-xl xl:rounded-lg xl:w-full'
                         >
                         </div>
-                        <div className='relative z-10 xs:p-2 md:p-4 flex flex-col gap-y-10 xs:py-6 md:py-12'>
+                        <div className='relative z-10 xs:p-2 md:p-4 flex flex-col gap-y-10 xs:py-6 md:py-10'>
 
                             <div className="w-auto h-full">
                                 <h1 className='lg:text-lg xs:text-md leading-6 text-white font-light tracking-tight font-serif'>
@@ -80,7 +80,7 @@ export default function SummaryHeader({
                     </div>
                 </div>
 
-                <figcaption className="w-full h-full flex">
+                <figcaption className="w-full h-full flex items-baseline">
                     <div className='flex md:flex-col h-full w-full box-border xl:gap-y-4 items-center self-end'>
                         <div className='w-full h-full box-border xs:flex xs:flex-col md:gap-y-2 justify-end'>
 
@@ -107,8 +107,9 @@ export default function SummaryHeader({
                         </div>
 
                     </div>
-                    <MoreButton key={article_title} article_url={article_url} />
                 </figcaption>
+                <MoreButton key={article_title} article_url={article_url} />
+
             </section>
         </header>
     )

@@ -23,7 +23,7 @@ export default function InvestigateContainer() {
   const [finished, setFinished] = useState<boolean>(false)
   const [gettingHelp, setGettingHelp] = useState<boolean>(false)
   const [currentStep, setCurrentStep] = useState<number>(0)
-  const [showMapModal, setShowMapModal] = useState<boolean>(false)
+  const [hideHeroContainer, setHide] = useState<boolean>(false)
   const containerRef = useRef(null)
   const notesRef = useRef(null)
   const { fetchArticles, fetchSummaries, fetchedArticles, fetchedSummaries, isLoading, loadingSummaries, readyToSelect } = useFetch()
@@ -95,24 +95,28 @@ export default function InvestigateContainer() {
   console.log({ "Finished Reading?": finished })
 
 
+
+
   return (
     <section
       ref={containerRef}
       className={`w-full grid grid-cols-1 transition-all duration-300 ease-in-out h-auto mx-auto justify-center relative
          items-center animate-fade-in pb-52 relative box-border overflow-hidden pb-[40rem]`}>
+      <AnimatePresence mode="wait">
+        {windowWidth !== null && !hideHeroContainer ? <HeroContainer
+          currentStep={currentStep}
+          setCurrentStep={setCurrentStep}
+          gettingHelp={gettingHelp}
+          setGettingHelp={setGettingHelp}
+          setQuery={setQuery}
+          isLoading={isLoading}
+          setIsSubmitted={setIsSubmitted}
+          summaries={summaries}
+          finished={finished}
+          hideSearch={submittedForSummaries}
+        /> : null}
+      </AnimatePresence>
 
-      {windowWidth !== null && <HeroContainer
-        currentStep={currentStep}
-        setCurrentStep={setCurrentStep}
-        gettingHelp={gettingHelp}
-        setGettingHelp={setGettingHelp}
-        query={query}
-        setQuery={setQuery}
-        isLoading={isLoading}
-        setIsSubmitted={setIsSubmitted}
-        summaries={summaries}
-        finished={finished}
-      />}
       <div className="w-full h-auto mx-auto xl:mt-12" ref={storyRef}>
         <StoryContainer
           articles={articles}
@@ -131,6 +135,7 @@ export default function InvestigateContainer() {
           setGettingHelp={setGettingHelp}
           setFinished={setFinished}
           finished={finished}
+          setHide={setHide}
         />
       </div>
 

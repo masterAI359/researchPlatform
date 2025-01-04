@@ -8,6 +8,7 @@ export default function SummaryContainer({ summaries, gettingHelp, setGettingHel
   const [availableStories, setAvailableStories] = useState<object[]>([])
   const [failedNotifications, setFailedNotifications] = useState<object[]>([])
   const [showNotifications, setShowNotifications] = useState<boolean>(false)
+  const [currentStory, setCurrentStory] = useState<number>(0)
 
   const container = {
 
@@ -57,17 +58,14 @@ export default function SummaryContainer({ summaries, gettingHelp, setGettingHel
       animate="show"
       exit="hidden"
     >
-      { /*    <AnimatePresence >
-        <motion.div>
-          {!finished && <SummaryHeading setGettingHelp={setGettingHelp} gettingHelp={gettingHelp} />}
-
-        </motion.div>
-
-      </AnimatePresence> */}
+      <header>
+        <SummaryHeading setGettingHelp={setGettingHelp} gettingHelp={gettingHelp} currentStory={currentStory} setCurrentStory={setCurrentStory} />
+      </header>
       <main
-        className="2xl:max-w-7xl h-auto w-full mx-auto  
-                 transition-all duration-1000 animate-fade-in mb-12">
-        <div className="w-full flex flex-wrap gap-y-8 h-auto">
+        className="2xl:max-w-7xl h-auto w-full mx-auto 
+                 transition-all duration-1000 animate-fade-in mb-12 
+                 overflow-x-hidden overflow-y-hidden">
+        <div className="w-full flex h-auto items-center">
           {availableStories.map((summaryData: any, index: number) =>
             <Summary
               key={index}
@@ -91,3 +89,10 @@ export default function SummaryContainer({ summaries, gettingHelp, setGettingHel
 
 
 
+//<AnimatePresence >
+//<motion.div>
+//  {!finished && <SummaryHeading setGettingHelp={setGettingHelp} gettingHelp={gettingHelp} />}
+//
+//</motion.div>
+//
+//</AnimatePresence>

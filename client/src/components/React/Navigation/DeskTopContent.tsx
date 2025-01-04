@@ -6,7 +6,7 @@ export default function DeskTopContent() {
         <div className="fixed top-0 w-full inset-x-0 z-30 md:block xs:hidden sm:hidden">
             <div className="lg:max-w-7xl mx-auto">
                 <div className="w-full mx-auto">
-                    <div x-data="{ open: false }" className="relative flex flex-col w-full shadow-black mt-0 p-2 mx-auto bg-black border
+                    <div x-data="{ open: false }" className="relative flex flex-col w-full shadow-black mt-0 p-1.5 mx-auto bg-black border
 			 border-white/10 shadow-thick backdrop-blur-xl backdrop-filter rounded-xl md:rounded-full 
 			 md:items-center md:justify-between md:flex-row md:px-6">
                         <div className="flex flex-row items-center justify-between md:justify-start">

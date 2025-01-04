@@ -25,8 +25,8 @@ export function Summary({ summaryData, index }) {
 
 
     return (<motion.div
-        className="box-border w-auto flex flex-col 2xl:mx-auto
-        mx-auto pb-1 xl:w-full h-auto 
+        className="shrink-0 box-border w-auto flex flex-col 2xl:mx-auto
+        mx-auto pb-1 xl:w-full h-auto
         overflow-y-scroll scrollbar-hide box-border bg-black"
     >
         <SummaryHeader

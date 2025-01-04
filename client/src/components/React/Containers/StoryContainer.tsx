@@ -10,7 +10,7 @@ import ControlPanel from "../Buttons/ButtonWrappers/ControlPanel"
 
 export default function StoryContainer({ selectedForSummary, setSelectedForSummary, articles, summaries, isLoading, loadingSummaries,
     readyToSelect, fetchedSummaries, submittedForSummaries, setSubmittedForSummaries, fetchedArticles, setTakingNotes, finished, setFinished,
-    setGettingHelp, gettingHelp
+    setGettingHelp, gettingHelp, setHide
 }) {
     const [showSelect, setShowSelect] = useState<boolean>(false)
 
@@ -42,7 +42,11 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
     });
 
     return (
-        <div
+        <motion.div
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ type: 'tween', duration: 0.2 }}
             ref={yRef}
             className="relative w-full h-auto mx-auto xs:px-2">
             <div
@@ -117,7 +121,8 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
                                 selectedForSummary={selectedForSummary}
                                 submittedForSummaries={submittedForSummaries}
                                 setSubmittedForSummaries={setSubmittedForSummaries}
-                                loadingSummaries={loadingSummaries} />
+                                loadingSummaries={loadingSummaries}
+                                setHide={setHide} />
                         </motion.div>
                     </div>
                 }
@@ -137,6 +142,6 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
             </AnimatePresence>
 
 
-        </div>
+        </motion.div>
     )
 }

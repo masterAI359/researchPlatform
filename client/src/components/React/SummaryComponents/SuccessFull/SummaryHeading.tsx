@@ -1,10 +1,11 @@
 import { SummaryHelp } from "@/helpInfo/help"
+import Paginate from "../../Buttons/ButtonWrappers/Paginate"
 import HelpButton from "../../Buttons/Question"
 
-export default function ({ setGettingHelp, gettingHelp }) {
+export default function ({ setGettingHelp, gettingHelp, setCurrentStory, currentStory }) {
 
     return (
-        <header className="w-full h-auto mx-auto flex items-center border-b border-white/10 xl:mb-16 xl:mt-6">
+        <header className="w-full h-auto mx-auto flex items-center justify-between border-b border-white/10 xl:mb-10 xl:mt-6">
 
             <div className="w-auto my-auto flex xl:gap-x-6 xs:gap-x-4 items-center">
                 <h1 className="xl:text-3xl xs:text-md text-left text-white font-light tracking-tight xs:mb-2 xl:mb-4">
@@ -17,6 +18,7 @@ export default function ({ setGettingHelp, gettingHelp }) {
                     />
                 </div>
             </div>
+            <Paginate setCurrentStory={setCurrentStory} currentStory={currentStory} />
 
         </header>
     )

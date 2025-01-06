@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import SummaryHeader from './SummaryHeader';
 import SummaryContent from './SummaryContent';
 
-export function Summary({ summaryData, index }) {
+export function Summary({ summaryData, index, currentStory }) {
     const [fullStory, setFullStory] = useState(true);
 
     const {
@@ -24,30 +24,38 @@ export function Summary({ summaryData, index }) {
 
 
 
-    return (<motion.div
-        className="shrink-0 box-border w-auto flex flex-col 2xl:mx-auto
-        mx-auto pb-1 xl:w-full h-auto
-        overflow-y-scroll scrollbar-hide box-border bg-black"
-    >
-        <SummaryHeader
-            date={date}
-            index={index}
-            logo={logo}
-            source={source}
-            article_title={article_title}
-            article_pub_date={article_pub_date}
-            article_image={article_image}
-            article_authors={article_authors}
-            fullStory={fullStory}
-            article_url={article_url}
-            setFullStory={setFullStory}
-        />
-        <SummaryContent
-            article_text={article_text}
-            summary={summary}
-            fullStory={fullStory}
-        />
-    </motion.div>)
+    return (
+        <AnimatePresence>
+            {currentStory === index && <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ type: 'tween', duration: 0.2 }}
+                className="shrink-0 box-border w-auto flex flex-col 2xl:mx-auto
+                mx-auto pb-1 xl:w-full h-auto
+                overflow-y-scroll scrollbar-hide box-border bg-black"
+            >
+                <SummaryHeader
+                    date={date}
+                    index={index}
+                    logo={logo}
+                    source={source}
+                    article_title={article_title}
+                    article_pub_date={article_pub_date}
+                    article_image={article_image}
+                    article_authors={article_authors}
+                    fullStory={fullStory}
+                    article_url={article_url}
+                    setFullStory={setFullStory}
+                />
+                <SummaryContent
+                    article_text={article_text}
+                    summary={summary}
+                    fullStory={fullStory}
+                />
+            </motion.div>}
+        </AnimatePresence>
+    )
 
 
 }

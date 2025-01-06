@@ -1,8 +1,8 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import App from '@/components/React/AppRouting/App.tsx';
+import AppContainer from '@/components/App/AppContainer'
 ---
 
     <BaseLayout>
-        <App client:only />
+        <AppContainer client:only />
     </BaseLayout>

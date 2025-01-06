@@ -1,6 +1,8 @@
 import { useRef, useState, useLayoutEffect } from "react";
 import { WindowProps } from "@/env";
 import { motion } from "framer-motion";
+import { useSelector } from "react-redux";
+import type { RootState } from '@/ReduxToolKit/store'
 import Slide1 from "./Slider/Slide1";
 import Slide2 from "./Slider/Slide2";
 import Slide3 from "./Slider/Slide3";
@@ -13,6 +15,7 @@ export default function HeroWindow({ currentStep, setStartSearch, setCanProceed,
   const wizardRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState(null);
   const [origin, setOrigin] = useState<string>('');
+  const step = useSelector((state: RootState) => state.stepper.step)
 
 
   useLayoutEffect(() => {
@@ -44,7 +47,7 @@ export default function HeroWindow({ currentStep, setStartSearch, setCanProceed,
         style={{ maxHeight: "fit" }}
         className="flex xs:items-center md:items-baseline w-full xs:h-fit md:min-h-full lg:max-h-fit"
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1, x: -currentStep * containerWidth }}
+        animate={{ opacity: 1, x: -step * containerWidth }}
         transition={{ type: 'tween', duration: 0.2, ease: 'easeInOut' }}>
 
         <Slide1

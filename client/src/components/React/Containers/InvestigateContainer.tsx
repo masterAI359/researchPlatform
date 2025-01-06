@@ -26,7 +26,6 @@ export default function InvestigateContainer() {
   const notesRef = useRef(null)
   const { fetchArticles, fetchSummaries, fetchedArticles, fetchedSummaries, isLoading, loadingSummaries, readyToSelect, errorMessage } = useFetch()
 
-  console.log(gettingHelp)
 
 
   const articles: Articles[] = fetchedArticles
@@ -82,18 +81,12 @@ export default function InvestigateContainer() {
     useLayoutEffect(() => {
       if (containerRef.current) {
         setWindowWidth(containerRef.current.offsetWidth)
-        console.log(windowWidth)
       }
 
       window.addEventListener('resize', resize);
 
     }, [])
   }
-
-  console.log({ "Finished Reading?": finished })
-
-
-
 
   return (
     <section

@@ -76,9 +76,6 @@ c-73.1,86.1-213,87.5-312.5,3.1s-121-222.7-47.9-308.8S314.3-7.8,413.8,76.6z" />
                                 <Link to='/Investigate'>Investigate</Link>
                             </li>
                             <li>
-                                <Link to='#'>Current Events</Link>
-                            </li>
-                            <li>
                                 <Link to='/About'>About</Link>
                             </li>
                         </ul>

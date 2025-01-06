@@ -1,6 +1,8 @@
 import { MutableRefObject, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion";
-
+import type { RootState } from '@/ReduxToolKit/store'
+import { useSelector, useDispatch } from 'react-redux'
+import { decrement, incrementBy } from "@/ReduxToolKit/Reducers/Steps";
 
 //TODO: implement a useEffect to only show the back/next buttons when using a medium sized screen or higher
 
@@ -15,6 +17,8 @@ interface ButtonProps {
 
 
 export default function BackButton({ setCurrentStep, currentStep, gettingHelp }: ButtonProps) {
+    const step = useSelector((state: RootState) => (state.stepper.step))
+    const dispatch = useDispatch()
 
     const handleBackStep = () => {
         setCurrentStep(currentStep => currentStep - 1)
@@ -23,7 +27,7 @@ export default function BackButton({ setCurrentStep, currentStep, gettingHelp }:
     return (
 
         <div className={`relative h-auto w-auto 
-        my-auto justify-self-start self-center ${currentStep === 0 ? 'pointer-events-none' : 'pointer-events-auto'}`} >
+        my-auto justify-self-start self-center`} >
             <AnimatePresence>
                 {currentStep >= 0 && <motion.div
                     className="self-center"
@@ -33,14 +37,14 @@ export default function BackButton({ setCurrentStep, currentStep, gettingHelp }:
                     transition={{ type: 'tween', duration: 0.2 }}
                 >
                     <button
-                        onClick={gettingHelp === false ? handleBackStep : null}
+                        onClick={gettingHelp === false ? () => dispatch(decrement()) : null}
                         className={`text-zinc-400 xs:w-14 xs:h-8
          lg:w-20 mx-auto lg:h-12 p-2 transition-all 
          duration-200 bg-white/5 hover:bg-white/10 hover:scale-110 flex items-center group
-         rounded-2xl ${currentStep !== 0 ? 'pointer-events-auto' : ' pointer-events-none opacity-50'}`}>
+         rounded-2xl ${step !== 0 ? 'pointer-events-auto opacity-100' : ' pointer-events-none opacity-50'}`}>
                         <span className="mx-auto">
                             <svg
-                                className={`${currentStep === 0 ? 'text-zinc-400' : 'text-white'}`}
+                                className={`${step === 0 ? 'text-zinc-400' : 'text-white'}`}
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 48 48"
                                 width="20px"

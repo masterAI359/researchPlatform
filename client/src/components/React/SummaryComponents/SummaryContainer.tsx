@@ -51,8 +51,6 @@ export default function SummaryContainer({ summaries, gettingHelp, setGettingHel
   }, [summaries])
 
 
-  //TODO: implement a slider animation to paginate the rendered stories
-
 
   return (
     <motion.div
@@ -71,12 +69,12 @@ export default function SummaryContainer({ summaries, gettingHelp, setGettingHel
                  transition-all duration-1000 animate-fade-in mb-12 
                  overflow-x-hidden overflow-y-hidden">
         <motion.div
-          animate={{ x: -currentStory * containerRef.current.offsetWidth }}
           transition={{ type: 'tween', duration: 0.2 }}
           className="w-full flex h-auto items-center">
           {availableStories.map((summaryData: any, index: number) =>
             <Summary
               key={index}
+              currentStory={currentStory}
               index={index}
               summaryData={summaryData}
             />

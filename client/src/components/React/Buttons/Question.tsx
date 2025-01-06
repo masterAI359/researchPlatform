@@ -45,7 +45,7 @@ export default function HelpButton({ info, setGettingHelp }) {
                         initial={{ scale: 0, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         exit={{ scale: 0, opacity: 0 }}
-                        transition={{ type: 'tween', duration: 0.2 }}
+                        transition={{ type: 'tween', duration: 0.15 }}
                         className="bg-black opacity-100 h-auto shadow-black
                          border border-2 border-border_gray shadow-thick rounded-4xl 
                          z-50 fixed xs:bottom-4 xs:left-4 xl:pb-2 xl:bottom-24 lg:left-1/3 xl:w-[38rem]"

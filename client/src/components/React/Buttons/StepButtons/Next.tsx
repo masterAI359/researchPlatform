@@ -1,4 +1,7 @@
 import React from "react";
+import type { RootState } from '@/ReduxToolKit/store'
+import { useSelector, useDispatch } from 'react-redux'
+import { increment, incrementBy } from "@/ReduxToolKit/Reducers/Steps";
 import { AnimatePresence, motion } from "framer-motion";
 
 interface ButtonProps {
@@ -11,31 +14,38 @@ interface ButtonProps {
   gettingHelp: boolean
 }
 
+//TODO: Implement the Redux Toolkit store to manage the steps for the InvestigateHero
+// We need to extract away much of the state management from InvestigateHero
+//, we have far too much being drilled down from the top level to manage properly
+
 
 export default function NextButton({ setCurrentStep, currentStep, setCanProceed, canProceed, setNotifyRequired, notifyRequired, gettingHelp }: ButtonProps) {
+  const step = useSelector((state: RootState) => (state.stepper.step))
+  const dispatch = useDispatch()
 
-  const handleNextStep = () => {
 
-    if (currentStep <= 3) {
-      setCurrentStep(currentStep => currentStep + 1)
-    } else if (currentStep === 1) {
-      setCurrentStep(currentStep => currentStep + 2)
-    } else {
-      return currentStep
-    }
-  }
-
-  const checkRequirements = (e: React.MouseEvent) => {
-
-    while (canProceed === false) {
-      setNotifyRequired(true)
-      return currentStep
-    }
-
-    if (canProceed === true) {
-      handleNextStep()
-    }
-  }
+  //const handleNextStep = () => {
+  //
+  //  if (step <= 3) {
+  //    dispatch(increment())
+  //  } else {
+  //    return step
+  //  }
+  //
+  //  console.log(step)
+  //}
+  //
+  //const checkRequirements = (e: React.MouseEvent) => {
+  //
+  //  while (canProceed === false) {
+  //    setNotifyRequired(true)
+  //    return step
+  //  }
+  //
+  //  if (canProceed === true) {
+  //    handleNextStep()
+  //  }
+  //}
 
 
   return (
@@ -46,10 +56,10 @@ export default function NextButton({ setCurrentStep, currentStep, setCanProceed,
         exit={{ opacity: 0, scale: 0 }}
         whileHover={{ scale: 1.1 }}
         transition={{ type: 'tween', duration: 0.2 }}
-        className={`relative h-auto w-auto justify-self-end self-center ${currentStep >= 4 ? 'pointer-events-none' : 'pointer-events-auto'}`}
+        className={`relative h-auto w-auto justify-self-end self-center ${step >= 4 ? 'pointer-events-none' : 'pointer-events-auto'}`}
       >
         <button
-          onClick={gettingHelp === false ? (e) => checkRequirements(e) : null}
+          onClick={() => dispatch(increment())}
           className="text-white text-md font-light xs:w-14 xs:h-8
           lg:w-20 lg:h-12 p-2 transition-all mx-auto
           duration-200 bg-white/5 hover:bg-white/10 items-center group
@@ -78,3 +88,5 @@ export default function NextButton({ setCurrentStep, currentStep, setCanProceed,
 
   )
 }
+
+// onClick={gettingHelp === false ? (e) => checkRequirements(e) : null}

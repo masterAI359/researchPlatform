@@ -6,7 +6,6 @@ export default function SearchHero({
     setQuery,
     setIsSubmitted,
     isLoading,
-    currentStep,
 }) {
 
     return (

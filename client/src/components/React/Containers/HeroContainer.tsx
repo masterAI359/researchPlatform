@@ -13,8 +13,6 @@ export default function HeroContainer({
     summaries,
     gettingHelp,
     setGettingHelp,
-    currentStep,
-    setCurrentStep,
     finished
 }) {
     const [startSearch, setStartSearch] = useState<boolean>(false)
@@ -30,8 +28,6 @@ export default function HeroContainer({
                 transition={{ type: 'tween', duration: 0.2 }}
                 className={`grid grid-cols-1 w-full h-auto mx-auto items-center`}>
                 <InvestigateHero
-                    currentStep={currentStep}
-                    setCurrentStep={setCurrentStep}
                     gettingHelp={gettingHelp}
                     setGettingHelp={setGettingHelp}
                     summaries={summaries}
@@ -52,7 +48,6 @@ export default function HeroContainer({
                         setQuery={setQuery}
                         isLoading={isLoading}
                         setIsSubmitted={setIsSubmitted}
-                        currentStep={currentStep}
                     />
                 </motion.div>)
                 : null}

@@ -3,7 +3,7 @@ import StoryContainer from "./StoryContainer";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { SelectedArticles } from '../../../env'
 import { useFetch } from "@/Hooks/useFetch";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import Notes from "../Investigate/Notes/Notes";
 import LostConnection from "../ErrorMessages/LostConnection";
 
@@ -20,7 +20,6 @@ export default function InvestigateContainer() {
   const [constraints, setConstraints] = useState(null)
   const [finished, setFinished] = useState<boolean>(false)
   const [gettingHelp, setGettingHelp] = useState<boolean>(false)
-  const [currentStep, setCurrentStep] = useState<number>(0)
   const [hideHeroContainer, setHide] = useState<boolean>(false)
   const containerRef = useRef(null)
   const notesRef = useRef(null)
@@ -96,8 +95,6 @@ export default function InvestigateContainer() {
       <AnimatePresence mode="wait">
         {windowWidth !== null && !hideHeroContainer ? <HeroContainer
           key={'HeroContainer'}
-          currentStep={currentStep}
-          setCurrentStep={setCurrentStep}
           gettingHelp={gettingHelp}
           setGettingHelp={setGettingHelp}
           setQuery={setQuery}

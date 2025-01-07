@@ -25,6 +25,7 @@ export default function SummaryHeader({
 
         let shortenedAuthors = []
 
+
         if (arr !== null || arr !== undefined) {
 
             for (let i = 0; i < arr.length; i++) {
@@ -110,7 +111,6 @@ export default function SummaryHeader({
                                 }) : (<p className='text-slate-300 md:text-lg font serif mr-2'>Could not determine. Visit the source to determine authors.</p>)}
                             </div>
                         </div>
-
                     </div>
                 </figcaption>
                 <MoreButton key={article_title} article_url={article_url} />

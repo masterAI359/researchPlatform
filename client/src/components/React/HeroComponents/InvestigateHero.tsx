@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ContentWrapper from "../Containers/ContentWrapper";
 
-export default function InvestigateHero({ gettingHelp, setGettingHelp, summaries, setStartSearch, currentStep, setCurrentStep }) {
+export default function InvestigateHero({ gettingHelp, setGettingHelp, summaries, setStartSearch }) {
   const [approachSet, setApproach] = useState<boolean>(true)
   const [canProceed, setCanProceed] = useState<boolean>(false)
   const [notifyRequired, setNotifyRequired] = useState<boolean>(false)
@@ -15,12 +15,8 @@ export default function InvestigateHero({ gettingHelp, setGettingHelp, summaries
     lg:h-[42rem] bg-gradientdown
     ${gettingHelp ? 'opacity-65 pointer-events-none' : 'pointer-events-auto'}`}>
 
-
-
         <ContentWrapper
           summaries={summaries}
-          currentStep={currentStep}
-          setCurrentStep={setCurrentStep}
           setStartSearch={setStartSearch}
           setCanProceed={setCanProceed}
           notifyRequired={notifyRequired}

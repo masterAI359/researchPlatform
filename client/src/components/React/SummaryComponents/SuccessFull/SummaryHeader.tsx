@@ -25,23 +25,27 @@ export default function SummaryHeader({
 
         let shortenedAuthors = []
 
-        for (let i = 0; i < arr.length; i++) {
+        if (arr !== null || arr !== undefined) {
 
-            if (i < 3) {
+            for (let i = 0; i < arr.length; i++) {
 
-                if (arr[i].length < 25) {
-                    shortenedAuthors.push(arr[i])
-                } else {
-                    continue
+                if (i < 3) {
+
+                    if (arr[i].length < 25) {
+                        shortenedAuthors.push(arr[i])
+                    } else {
+                        continue
+                    }
+                } else if (i > 3) {
+                    break
                 }
-
-            } else if (i > 3) {
-                break
             }
-
+        } else {
+            shortenedAuthors.push("The authors of this article couldn't be determined. Visit the provider for author information")
         }
 
         return shortenedAuthors
+
     }
 
 

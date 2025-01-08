@@ -34,8 +34,6 @@ export default function MobileMenu() {
         setIsOpen(isOpen => !isOpen)
     }
 
-    console.log(isOpen)
-
     const mobileContent = (
         <motion.nav
             initial='closed'

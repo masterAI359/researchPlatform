@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import StepsReducer from './Reducers/Steps'
+import UserPOVReducer from './Reducers/UserPOV'
 
 export const store = configureStore({
     reducer: {
-        stepper: StepsReducer
+        stepper: StepsReducer,
+        pov: UserPOVReducer
     },
 })
 

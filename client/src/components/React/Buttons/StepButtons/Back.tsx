@@ -27,7 +27,10 @@ export default function BackButton({ gettingHelp }) {
                     hover:scale-110 flex items-center group rounded-2xl
                     ${step !== 0 ? 'pointer-events-auto opacity-100' : ' pointer-events-none opacity-50'}`}>
                     <span className="mx-auto">
-                        <svg className={`${step === 0 ? 'text-zinc-400' : 'text-white'}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="20px" height="20px"> <path d="M 13.470703 12.986328 A 1.50015 1.50015 0 0 0 12.439453 13.439453 L 2.4394531 23.439453 A 1.50015 1.50015 0 0 0 2.4394531 25.560547 L 12.439453 35.560547 A 1.50015 1.50015 0 1 0 14.560547 33.439453 L 7.1210938 26 L 44.5 26 A 1.50015 1.50015 0 1 0 44.5 23 L 7.1210938 23 L 14.560547 15.560547 A 1.50015 1.50015 0 0 0 13.470703 12.986328 z" fill="currentColor" /></svg>
+                        <svg className={`p-3 ${step === 0 ? 'text-zinc-400' : 'text-white'}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="100%" height="100%">
+                            <path d="M 33.960938 2.9804688 A 2.0002 2.0002 0 0 0 32.585938 3.5859375 L 13.585938 22.585938 A 2.0002 2.0002 0 0 0 13.585938 25.414062 L 32.585938 44.414062 A 2.0002 2.0002 0 1 0 35.414062 41.585938 L 17.828125 24 L 35.414062 6.4140625 A 2.0002 2.0002 0 0 0 33.960938 2.9804688 z" fill="currentColor" />
+                        </svg>
+
                     </span>
                 </button>
             </motion.div>

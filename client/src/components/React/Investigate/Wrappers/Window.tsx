@@ -24,7 +24,6 @@ export default function HeroWindow({ currentStep, setStartSearch, setCanProceed,
 
     }
     const handleResize = () => {
-      console.log("change in window width", containerWidth)
       if (containerRef.current) {
         setContainerWidth(containerRef.current.offsetWidth);
       }

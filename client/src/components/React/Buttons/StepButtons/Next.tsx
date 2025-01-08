@@ -1,8 +1,7 @@
-import React from "react";
 import type { RootState } from '@/ReduxToolKit/store'
 import { useSelector, useDispatch } from 'react-redux'
 import { increment, incrementBy } from "@/ReduxToolKit/Reducers/Steps";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 interface ButtonProps {
   canProceed: boolean
@@ -28,29 +27,15 @@ export default function NextButton({ setCanProceed, canProceed, setNotifyRequire
       <button
         onClick={() => dispatch(increment())}
         className="text-white text-md font-light xs:w-14 xs:h-8
-          lg:w-14 lg:h-12 p-1.5 transition-all mx-auto
+          lg:w-14 lg:h-12 p-1.5 transition-all mx-auto flex
           duration-200 bg-white/5 hover:bg-white/10 items-center group
           rounded-2xl">
         <span className="mx-auto flex items-center justify-center">
-          <svg
-            className={`text-white group-hover:text-white ${step >= 4 ? 'opacity-50' : null}`}
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 48 48"
-            width="20px"
-            height="20px">
-            <path
-              d="M 34.484375 11.984375 A 1.50015 1.50015 0 0 0 33.439453
-                 14.560547 L 40.878906 22 L 3.5 22 A 1.50015 1.50015 0 1 0 
-                 3.5 25 L 40.878906 25 L 33.439453 32.439453 A 1.50015 1.50015 
-                 0 1 0 35.560547 34.560547 L 45.560547 24.560547 A 1.50015 
-                 1.50015 0 0 0 45.560547 22.439453 L 35.560547 12.439453 A 
-                 1.50015 1.50015 0 0 0 34.484375 11.984375 z"
-              fill="currentColor" />
+          <svg className={`p-3 ${step >= 4 ? 'text-zinc-400' : 'text-white'}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="100%" height="100%">
+            <path d="M17.586,44.414C17.977,44.805,18.488,45,19,45s1.023-0.195,1.414-0.586l19-19c0.781-0.781,0.781-2.047,0-2.828l-19-19 c-0.781-0.781-2.047-0.781-2.828,0s-0.781,2.047,0,2.828L35.172,24L17.586,41.586C16.805,42.367,16.805,43.633,17.586,44.414z" fill="currentColor" />
           </svg>
         </span>
       </button>
     </motion.div>
   )
 }
-
-// onClick={gettingHelp === false ? (e) => checkRequirements(e) : null}

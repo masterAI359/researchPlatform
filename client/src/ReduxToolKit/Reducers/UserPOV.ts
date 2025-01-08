@@ -28,6 +28,24 @@ export const UserPOVSlice = createSlice({
     name: "UserPOV",
     initialState: initialState,
     reducers: {
-
+        getIdea: (state, action) => {
+            state.idea = action.payload
+        },
+        getPerspective: (state, action) => {
+            state.perspective = action.payload
+        },
+        getExpertise: (state, action) => {
+            state.expertise = action.payload
+        },
+        getBiases: (state, action) => {
+            state.biases = action.payload
+        },
+        getQuery: (state, action) => {
+            state.query = action.payload
+        }
     }
 })
+
+export const { getIdea, getPerspective, getExpertise, getBiases, getQuery } = UserPOVSlice.actions
+
+export default UserPOVSlice.reducer

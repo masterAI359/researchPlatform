@@ -1,32 +1,43 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { motion } from "framer-motion"
 import { useRef, useState } from "react"
 import Lottie from "lottie-react"
 import blueCheck from '../../../../lotties/blueCheck.json'
 import HelpButton from "../../Buttons/Question"
 import { Step2Help } from "@/helpInfo/help"
-
-
-
-//TODO: add state that will describe the users point of view here 
+import { getPerspective, getExpertise } from "@/ReduxToolKit/Reducers/UserPOV"
+import { useSelector, useDispatch } from "react-redux"
+import { RootState } from "@/ReduxToolKit/store"
 
 export default function Step2({ setOrigin, origin, setGettingHelp }: any) {
   const [pov, setPov] = useState<string>(null)
   const [knowledge, setKnowledge] = useState<string>(null)
+  const perspective = useSelector((state: RootState) => state.pov.perspective)
+  const userExpertise = useSelector((state: RootState) => state.pov.expertise)
+  const dispatch = useDispatch()
 
   const animationRef = useRef(null)
 
   const assignOrigin = (e: React.MouseEvent<HTMLDivElement>) => {
     const targetDiv = e.target as HTMLDivElement
     setPov(targetDiv.getAttribute('data-set'))
-    animationRef.current.play()
+    //animationRef.current.play()
+    dispatch(getPerspective(pov))
 
   }
 
   const assignKnowledge = (e: React.MouseEvent<HTMLDivElement>) => {
     const divTarget = e.target as HTMLDivElement;
     setKnowledge(divTarget.getAttribute('data-set'))
+    dispatch(getExpertise(knowledge))
   }
+
+  useEffect(() => {
+
+    console.log({ "Point of view": perspective }, { "Expertise": userExpertise })
+
+  }, [pov, knowledge])
+
 
   const opinions: string[] = [
     "My Opinion",

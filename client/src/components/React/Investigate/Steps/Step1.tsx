@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
 import StepsEditor from "../../TipTap/StepsEditor"
-import Perspective from "./Step2"
 import HelpButton from "../../Buttons/Question"
 import { Step1Help } from "@/helpInfo/help"
+import { getIdea } from "@/ReduxToolKit/Reducers/UserPOV"
+import { useSelector, useDispatch } from "react-redux"
+import { RootState } from "@/ReduxToolKit/store"
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 
@@ -11,7 +12,10 @@ import { Step1Help } from "@/helpInfo/help"
 export default function Step1({ origin, setOrigin, setCanProceed, notifyRequired, setNotifyRequired, setGettingHelp }: any) {
       const [isExpressed, setIsExpressed] = useState<string>('')
       const [accepted, setAccepted] = useState<boolean>(null)
+      const idea = useSelector((state: RootState) => state.pov.idea)
+      const dispatch = useDispatch()
 
+      console.log(idea)
 
       let wordCount = (statement: string) => {
 
@@ -38,6 +42,8 @@ export default function Step1({ origin, setOrigin, setCanProceed, notifyRequired
             if (accepted === true && isExpressed !== '') {
                   setCanProceed(true)
                   setNotifyRequired(false)
+
+                  dispatch(getIdea(isExpressed))
 
             } else if (accepted === false) {
                   setCanProceed(false)

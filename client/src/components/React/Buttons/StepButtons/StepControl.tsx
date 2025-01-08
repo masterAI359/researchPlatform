@@ -7,7 +7,7 @@ export default function StepControl({ currentStep, setCurrentStep, setCanProceed
 
     return (
         <div className={`relative lg:bottom-0 w-full h-fit flex items-center`}>
-            <div className="w-auto mx-auto flex items-center xl:gap-x-72 xs:gap-x-16">
+            <div className="w-auto mx-auto flex items-center xl:gap-x-60 xs:gap-x-16">
                 <BackButton
                     gettingHelp={gettingHelp}
                 />

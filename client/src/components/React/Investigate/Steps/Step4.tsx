@@ -9,8 +9,6 @@ export default function Step4({ containerWidth, setStartSearch, setGettingHelp }
 
   const [statedPremise, setPremise] = useState("")
 
-  console.log(statedPremise)
-
   return (
     <div className="inline-block h-fit box-border mx-auto min-w-full max-w-full 2xl:h-full">
       <div className="flex flex-col items-center w-full 

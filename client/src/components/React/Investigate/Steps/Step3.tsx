@@ -2,22 +2,9 @@ import { useState, useEffect } from "react";
 import HelpButton from "../../Buttons/Question";
 import { Step2Help } from "@/helpInfo/help"
 import StepsEditor from "../../TipTap/StepsEditor";
-import { Help } from "@/env"
-
-interface BiasProps {
-  statement: string,
-  identifier: string,
-  status: string,
-  contianerWidth: number
-}
-
-//{ identifier, statement, status }
 
 export default function Step3({ containerWidth, setGettingHelp }: any) {
   const [bias, setBias] = useState('')
-
-  console.log(bias)
-
 
   return (
     <div className={`h-fit box-border content-start mx-auto min-w-full max-w-full inline-block`}>

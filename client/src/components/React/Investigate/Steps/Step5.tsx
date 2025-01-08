@@ -13,7 +13,7 @@ export default function Step5({
             <div className="w-full h-full mx-auto flex flex-col">
                 <header className="w-full box-border border-b h-fit border-white/10 mb-4 flex flex-row xs:gap-x-4 md:gap-x-2 items-center">
                     <div className="w-fit flex justify-items-start">
-                        <h1 className="2xl:text-3xl md:text-2xl xs:text-md tracking-tight font-light text-zinc-300 pb-1 xs:text-left">
+                        <h1 className="2xl:text-2xl md:text-2xl xs:text-md tracking-tight font-light text-zinc-300 pb-1 xs:text-left">
                             You've expressed your perspective,
                             <span className="text-zinc-500"> what does the evidence say? </span>
                         </h1>
@@ -25,13 +25,12 @@ export default function Step5({
                         />
                     </div>
                 </header>
-                <main className="w-full h-full mx-auto flex flex-col xs:gap-y-4 xl:mt-12">
+                <main className="w-full h-full mx-auto flex flex-col xs:gap-y-4 xl:mt-6">
                     <div className="w-full h-full">
                         <p className="xs:text-xs xl:text-lg text-white font-light tracking-tight text-left">
                             Let's seek out evidence that would
                             support the premises you submitted or the statement examined itself
 
-                            <br></br>
                             <br></br>
                             If you want to adjust any of your answers,
                             please do so now before we begin searching for articles.
@@ -42,16 +41,13 @@ export default function Step5({
                             whileHover={{ scale: 1.10 }}
                             transition={{ type: 'tween', duration: 0.2 }}
                             onClick={() => setStartSearch(prev => !prev)}
-                            className="bg-white/10 rounded-full xs:p-2 xs:w-36 xs:h-12 xl:w-52 xl:h-12 mx-auto flex items-center text-center hover:bg-white/20 transition-opacity ease-in-out">
+                            className="bg-white/10 rounded-full xs:p-2 xl:mt-8 xs:w-36 xs:h-12 xl:w-44 xl:h-14 mx-auto flex items-center text-center hover:bg-white/20 transition-opacity ease-in-out">
                             <div className="w-full h-full flex justify-between items-center xs:px-4">
                                 <div className="w-auto h-auto mx-auto">
                                     <p className="text-white xs:text-xs xl:text-lg font-light xs:tracking-tight w-fit">
-                                        Ready to Search
+                                        Ready
                                     </p>
                                 </div>
-                                {/* <div className="w-auto h-auto relative top-0 right-1 bottom-0 box-border">
-                                    <svg className="xs:h-6 xsw:w-7 text-white" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0,0,256,256" width="100%" height="100%" fillRule="nonzero"><g fill="currentColor" fillRule="nonzero" stroke="none" strokeWidth={1} strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit={10} strokeDasharray="" strokeDashoffset={0} fontFamily="none" fontWeight="none" fontSize="none" textAnchor="none" style={{ mixBlendMode: 'normal' }}><g transform="scale(10.66667,10.66667)"><path d="M3.5,3c-0.27613,0.00003 -0.49997,0.22387 -0.5,0.5v17c0.00003,0.27613 0.22387,0.49997 0.5,0.5h17c0.27613,-0.00003 0.49997,-0.22387 0.5,-0.5v-17c-0.00003,-0.27613 -0.22387,-0.49997 -0.5,-0.5zM4,4h16v16h-16zM9.61914,8c-0.08737,-0.00138 -0.17445,0.02045 -0.25195,0.06445c-0.157,0.089 -0.25586,0.25455 -0.25586,0.43555v7c0,0.181 0.09886,0.34655 0.25586,0.43555c0.076,0.043 0.15914,0.06445 0.24414,0.06445c0.09,0 0.18077,-0.02427 0.25977,-0.07227l5.77539,-3.5c0.149,-0.091 0.24024,-0.25273 0.24024,-0.42773c0,-0.175 -0.09023,-0.33673 -0.24024,-0.42773l-5.77539,-3.5c-0.077,-0.0465 -0.16458,-0.07089 -0.25195,-0.07227z" /></g></g></svg>
-                                </div> */}
                             </div>
 
                         </motion.button>

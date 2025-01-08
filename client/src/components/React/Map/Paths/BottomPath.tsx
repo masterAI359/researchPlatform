@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 export default function BottomPath({ currentStep }) {
 
     return (
-        <div className="z-1 mx-auto xs:w-52 md:w-72 flex flex-col-reverse 2xl:h-60">
+        <div className="z-1 mx-auto xs:w-52 md:w-60 flex flex-col-reverse 2xl:h-52">
             <div className="xs:h-28 md:h-44 w-auto flex flex-col justify-center xs:mb-6 md:mb-16">
                 <motion.div
                     className="xs:h-full w-1 mx-auto grow"

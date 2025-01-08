@@ -28,7 +28,7 @@ export default function NextButton({ setCanProceed, canProceed, setNotifyRequire
       <button
         onClick={() => dispatch(increment())}
         className="text-white text-md font-light xs:w-14 xs:h-8
-          lg:w-20 lg:h-12 p-2 transition-all mx-auto
+          lg:w-14 lg:h-12 p-1.5 transition-all mx-auto
           duration-200 bg-white/5 hover:bg-white/10 items-center group
           rounded-2xl">
         <span className="mx-auto flex items-center justify-center">

@@ -15,7 +15,7 @@ export default function MindMap({ }) {
 
     return (
         <div
-            className="text-white xs:h-fit md:h-full w-full bg-white/10
+            className="text-white xs:h-fit md:h-full w-10/12 bg-white/10
         mx-auto flex flex-col rounded-4xl relative">
             <TopPath currentStep={step} />
             <MiddlePath currentStep={step} />

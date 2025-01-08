@@ -5,7 +5,7 @@ export default function ContentWrapper({ setStartSearch, setCanProceed, notifyRe
 
     return (
         <main
-            className="flex mx-auto my-auto box-border w-full h-fit justify-start">
+            className="flex mx-auto items-center my-auto box-border w-full h-fit justify-start">
             <WindowContainer
                 summaries={summaries}
                 setStartSearch={setStartSearch}

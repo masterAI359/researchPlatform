@@ -12,7 +12,7 @@ export interface UserPOVState {
     query: string | null
 }
 
-const initialState = {
+const initialState: UserPOVState = {
 
     idea: null,
     perspective: null,
@@ -23,3 +23,11 @@ const initialState = {
 }
 
 
+export const UserPOVSlice = createSlice({
+
+    name: "UserPOV",
+    initialState: initialState,
+    reducers: {
+
+    }
+})

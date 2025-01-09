@@ -40,12 +40,15 @@ export const UserPOVSlice = createSlice({
         getBiases: (state, action) => {
             state.biases = action.payload
         },
+        getPremises: (state, action) => {
+            state.premises = action.payload
+        },
         getQuery: (state, action) => {
             state.query = action.payload
         }
     }
 })
 
-export const { getIdea, getPerspective, getExpertise, getBiases, getQuery } = UserPOVSlice.actions
+export const { getIdea, getPerspective, getExpertise, getBiases, getPremises, getQuery } = UserPOVSlice.actions
 
 export default UserPOVSlice.reducer

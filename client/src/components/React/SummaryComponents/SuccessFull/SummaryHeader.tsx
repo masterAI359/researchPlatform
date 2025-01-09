@@ -21,36 +21,36 @@ export default function SummaryHeader({
     }
 
 
-    const limitArray = (arr: any) => {
+    //   const limitArray = (arr: any) => {
+    //
+    //       let shortenedAuthors = []
+    //
+    //
+    //       if (arr !== undefined || arr !== null) {
+    //
+    //           for (let i = 0; i < arr.length; i++) {
+    //
+    //               if (i < 3) {
+    //
+    //                   if (arr[i].length < 25) {
+    //                       shortenedAuthors.push(arr[i])
+    //                   } else {
+    //                       continue
+    //                   }
+    //               } else if (i > 3) {
+    //                   break
+    //               }
+    //           }
+    //       } else {
+    //           shortenedAuthors.push("The authors of this article couldn't be determined. Visit the provider for author information")
+    //       }
+    //
+    //       return shortenedAuthors
+    //
+    //   }
 
-        let shortenedAuthors = []
 
-
-        if (arr !== null || arr !== undefined) {
-
-            for (let i = 0; i < arr.length; i++) {
-
-                if (i < 3) {
-
-                    if (arr[i].length < 25) {
-                        shortenedAuthors.push(arr[i])
-                    } else {
-                        continue
-                    }
-                } else if (i > 3) {
-                    break
-                }
-            }
-        } else {
-            shortenedAuthors.push("The authors of this article couldn't be determined. Visit the provider for author information")
-        }
-
-        return shortenedAuthors
-
-    }
-
-
-    const authShortened = limitArray(article_authors)
+    //  const authShortened = limitArray(article_authors)
     const fallbackImage = '/images/logos/fallback.jpg'
 
     const storyImage = article_image || fallbackImage
@@ -97,13 +97,13 @@ export default function SummaryHeader({
                             </div>
                             <div className='max-w-3/4 flex flex-wrap mt-3 items-center'>
                                 <p className='text-slate-300 md:text-lg font-light mr-2'>Authors - </p>
-                                {article_authors !== undefined && article_authors !== null ? authShortened.map((author: string, index: number) => {
+                                {article_authors !== undefined && article_authors !== null ? article_authors.map((author: string, index: number) => {
 
-                                    if (index + 1 < authShortened.length) {
+                                    if (index + 1 < article_authors.length) {
                                         return (<p className="text-slate-300 md:text-lg font-serif mr-2">
                                             {author},
                                         </p>)
-                                    } else if (index + 1 === authShortened.length) {
+                                    } else if (index + 1 === article_authors.length) {
                                         return (<p className="text-slate-300 md:text-lg font-serif mr-2">
                                             {author}
                                         </p>)

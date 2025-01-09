@@ -3,8 +3,6 @@ import * as dotenv from 'dotenv'
 import * as path from 'path'
 import { fileURLToPath } from 'url';
 import decodeItem from '../helpers/decodeItem.js'
-import { logoMap } from './logoMap.js'
-import { hostname } from 'os'
 
 
 const envUrl = fileURLToPath(import.meta.url)
@@ -14,6 +12,7 @@ const envPath = path.resolve(__dirname, '../../../.env');
 dotenv.config({ path: envPath })
 
 const TLDRKey = process.env.TLDR_KEY as string
+
 
 interface QueryType {
     url: string,
@@ -27,8 +26,6 @@ interface QueryType {
 export const tldrSummary = async (req: Request, res: Response) => {
     const received = req.query.q as string;
     const query: QueryType[] = JSON.parse(decodeURIComponent(received));
-
-    const numArticles = query.length;
 
     const url =
         'https://tldrthis.p.rapidapi.com/v1/model/abstractive/summarize-url/';
@@ -48,9 +45,9 @@ export const tldrSummary = async (req: Request, res: Response) => {
     try {
         const dataMap = query.map(async (article, index) => {
 
-            // console.log({ "fetching data for: ": article.url });
+            console.log({ "fetching data for: ": article.url });
 
-            await delay(index * 1000);
+            // await delay(index * 1000);
 
             try {
                 const response = await fetch(url, {

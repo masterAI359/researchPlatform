@@ -48,7 +48,7 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
             exit={{ opacity: 0 }}
             transition={{ type: 'tween', duration: 0.2 }}
             ref={yRef}
-            className="relative w-full h-auto mx-auto xs:px-2">
+            className="relative w-full h-auto mx-auto xl:mt-24 xs:px-2">
             <div
                 className="relative w-full h-auto box-border mx-auto">
 
@@ -61,10 +61,7 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
                             exit={{ opacity: 0 }}
                             transition={{ type: "tween", duration: 0.5 }}
                         >
-                            <ArticleLoader
-
-                                isLoading={isLoading}
-                                summaries={summaries} />
+                            <ArticleLoader />
                         </motion.div>}
 
                     {readyToSelect === true &&

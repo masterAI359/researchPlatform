@@ -2,9 +2,16 @@ import { useState, useEffect } from "react";
 import HelpButton from "../../Buttons/Question";
 import { Step2Help } from "@/helpInfo/help"
 import StepsEditor from "../../TipTap/StepsEditor";
+import { RootState } from "@/ReduxToolKit/store";
+import { useSelector, useDispatch } from "react-redux";
+import { getPremises } from "@/ReduxToolKit/Reducers/UserPOV";
+import { stat } from "fs";
 
 export default function Step3({ containerWidth, setGettingHelp }: any) {
   const [bias, setBias] = useState('')
+  const biases = useSelector((state: RootState) => state.pov.biases)
+  const dispatch = useDispatch()
+
 
   return (
     <div className={`h-fit box-border content-start mx-auto min-w-full max-w-full inline-block`}>

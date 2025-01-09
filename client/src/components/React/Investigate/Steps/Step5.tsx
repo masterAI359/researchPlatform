@@ -11,20 +11,21 @@ export default function Step5({
     return (
         <div className="block box-border min-w-full max-w-full mx-auto xs:px-0 md:px-2 2xl:h-full no-scrollbar">
             <div className="w-full h-full mx-auto flex flex-col">
-                <header className="w-full box-border border-b h-fit border-white/10 mb-4 flex flex-row xs:gap-x-4 md:gap-x-2 items-center">
-                    <div className="w-fit flex justify-items-start">
-                        <h1 className="2xl:text-2xl md:text-2xl xs:text-md tracking-tight font-light text-zinc-300 pb-1 xs:text-left">
-                            You've expressed your perspective,
-                            <span className="text-zinc-500"> what does the evidence say? </span>
-                        </h1>
-                    </div>
-                    <div className="w-fit h-full translate-y-1">
-                        <HelpButton
-                            info={Step5Help}
-                            setGettingHelp={setGettingHelp}
-                        />
-                    </div>
-                </header>
+                <div className="w-full h-auto border-b border-white/10 mb-4">
+                    <header className="w-full box-border h-auto flex flex-row xs:gap-x-4 md:gap-x-8 items-center">
+                        <div className="w-fit flex justify-items-start">
+                            <h1 className="2xl:text-3xl md:text-2xl xs:text-md tracking-tight font-light text-zinc-300 pb-1 xs:text-left">
+                                It's time to investigate the premises
+                            </h1>
+                        </div>
+                        <div className="w-fit h-full">
+                            <HelpButton
+                                info={Step5Help}
+                                setGettingHelp={setGettingHelp}
+                            />
+                        </div>
+                    </header>
+                </div>
                 <main className="w-full h-full mx-auto flex flex-col xs:gap-y-4 xl:mt-6">
                     <div className="w-full h-full">
                         <p className="xs:text-xs xl:text-lg text-white font-light tracking-tight text-left">

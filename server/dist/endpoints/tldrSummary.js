@@ -16,10 +16,10 @@ const __dirname = path.dirname(envUrl);
 const envPath = path.resolve(__dirname, '../../../.env');
 dotenv.config({ path: envPath });
 const TLDRKey = process.env.TLDR_KEY;
+const test = '745b77b3ebmsh1f7132956e5f10fp1cd41ajsnf600a847fb87';
 export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const received = req.query.q;
     const query = JSON.parse(decodeURIComponent(received));
-    const numArticles = query.length;
     const url = 'https://tldrthis.p.rapidapi.com/v1/model/abstractive/summarize-url/';
     function delay(t) {
         return new Promise(resolve => setTimeout(resolve, t));
@@ -30,8 +30,8 @@ export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, funct
     }
     try {
         const dataMap = query.map((article, index) => __awaiter(void 0, void 0, void 0, function* () {
-            // console.log({ "fetching data for: ": article.url });
-            yield delay(index * 1000);
+            console.log({ "fetching data for: ": article.url });
+            // await delay(index * 1000);
             try {
                 const response = yield fetch(url, {
                     method: 'POST',

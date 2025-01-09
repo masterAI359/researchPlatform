@@ -16,7 +16,6 @@ const __dirname = path.dirname(envUrl);
 const envPath = path.resolve(__dirname, '../../../.env');
 dotenv.config({ path: envPath });
 const TLDRKey = process.env.TLDR_KEY;
-const test = '745b77b3ebmsh1f7132956e5f10fp1cd41ajsnf600a847fb87';
 export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const received = req.query.q;
     const query = JSON.parse(decodeURIComponent(received));
@@ -24,14 +23,13 @@ export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, funct
     function delay(t) {
         return new Promise(resolve => setTimeout(resolve, t));
     }
-    //TODO: figure out how to implement the delay, taking each concurrent request, and multiplying their index by the chosen amount in milliseconds to stagger requests
     if (!Array.isArray(query) || query.length === 0) {
         return res.status(400).send('Invalid query parameter. Please provide a list of URLs.');
     }
     try {
         const dataMap = query.map((article, index) => __awaiter(void 0, void 0, void 0, function* () {
             console.log({ "fetching data for: ": article.url });
-            // await delay(index * 1000);
+            yield delay(index * 2000);
             try {
                 const response = yield fetch(url, {
                     method: 'POST',

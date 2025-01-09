@@ -112,7 +112,7 @@ export default function Article({ article, selectedForSummary, setSelectedForSum
                 <div className={`h-full group mt-2 pt-2 ${isHilighted ? 'opacity-100' : ''}`}>
                     <blockquote className='relative px-4'>
                         <p className='lg:text-base xs:text-xs transition-colors duration-100 font-serif font-light xs:hidden md:block'>
-                            {description}
+                            {mobileDescription}
                         </p>
                         <p className='lg:text-base xs:text-xs transition-colors duration-100 font-serif font-light xs:block md:hidden'>
                             {mobileDescription}

@@ -4,14 +4,18 @@ import { Step2Help } from "@/helpInfo/help"
 import StepsEditor from "../../TipTap/StepsEditor";
 import { RootState } from "@/ReduxToolKit/store";
 import { useSelector, useDispatch } from "react-redux";
-import { getPremises } from "@/ReduxToolKit/Reducers/UserPOV";
-import { stat } from "fs";
+import { getBiases } from "@/ReduxToolKit/Reducers/UserPOV";
 
-export default function Step3({ containerWidth, setGettingHelp }: any) {
-  const [bias, setBias] = useState('')
+export default function Step3({ setGettingHelp }: any) {
+  const [bias, setBias] = useState<string>(null)
   const biases = useSelector((state: RootState) => state.pov.biases)
   const dispatch = useDispatch()
 
+  useEffect(() => {
+
+    if (bias !== null) dispatch(getBiases(bias))
+
+  }, [bias])
 
   return (
     <div className={`h-fit box-border content-start mx-auto min-w-full max-w-full inline-block`}>
@@ -26,13 +30,9 @@ export default function Step3({ containerWidth, setGettingHelp }: any) {
           <div className="w-fit h-full justify-items-start translate-y-1 opacity-100">
             <HelpButton info={Step2Help} setGettingHelp={setGettingHelp} />
           </div>
-
-
         </div>
         <div className="text-center w-full">
-
           <div
-            id="take"
             className="block w-full xs:h-40 md:h-52 xl:h-80 text-md text-white bg-white/10 border-none focus:ring-1 focus:ring-white
     rounded-lg resize-none text-wrap flex justify-items-start"
           >

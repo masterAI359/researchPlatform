@@ -1,10 +1,14 @@
-//TODO: add popup saying 'take note'
+import { useDispatch, useSelector } from "react-redux"
+import { RootState } from "@/ReduxToolKit/store"
+import { writingNote } from "@/ReduxToolKit/Reducers/NoteTaking"
 
-export default function TakeNotes({ setTakingNotes }) {
+export default function TakeNotes({ }) {
+    const takingNotes = useSelector((state: RootState) => state.notes.takingNotes)
+    const dispatch = useDispatch()
 
     return (
         <button
-            onClick={() => setTakingNotes(prev => !prev)}
+            onClick={() => dispatch(writingNote(takingNotes === false ? true : false))}
             className="md:w-auto md:h-auto xs:max-w-8 xs:max-h-8 2xl:max-w-8 2xl:max-h-8 p-0.5
         rounded-lg transition-all duration-300 m-auto
         ease-in-out group">

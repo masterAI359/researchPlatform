@@ -3,7 +3,6 @@ import MapContainer from "../Map/MapContainer"
 import { motion } from "framer-motion"
 
 export default function SearchHero({
-    setQuery,
     setIsSubmitted,
     isLoading,
 }) {
@@ -17,7 +16,6 @@ export default function SearchHero({
             <main className="xs:w-4/5 xl:w-2/5 h-auto xs:mx-auto xs:mt-6 xl:mt-44">
                 <SearchBox
                     setIsSubmitted={setIsSubmitted}
-                    setQuery={setQuery}
                     isLoading={isLoading}
                 />
             </main>

@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import StepsReducer from './Reducers/Steps'
 import UserPOVReducer from './Reducers/UserPOV'
+import NoteReducer from './Reducers/NoteTaking'
 
 export const store = configureStore({
     reducer: {
         stepper: StepsReducer,
-        pov: UserPOVReducer
+        pov: UserPOVReducer,
+        notes: NoteReducer
     },
 })
 

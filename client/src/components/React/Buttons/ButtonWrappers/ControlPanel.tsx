@@ -7,7 +7,7 @@ import HelpButton from "../Question"
 
 
 
-export default function ControlPanel({ setTakingNotes, setFinished }) {
+export default function ControlPanel({ setFinished }) {
 
     return (
         <div className="fixed md:left-12 md:bottom-12 xs:bottom-0 xs:left-0 right-0 z-50 flex md:w-[13.22rem] shadow-black
@@ -25,7 +25,7 @@ export default function ControlPanel({ setTakingNotes, setFinished }) {
 
             </div>
             <div className="w-fit h-auto py-1.5 px-2.5 hover:bg-border_gray transition-all ease-in-out flex justify-center xs:border-r border-border_gray">
-                <TakeNotes setTakingNotes={setTakingNotes} />
+                <TakeNotes />
             </div>
         </div>
     )

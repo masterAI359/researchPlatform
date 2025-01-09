@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom"
 
 
+
 export default function DeskTopContent() {
+
     return (
         <div className="fixed top-0 w-full inset-x-0 z-30 md:block xs:hidden sm:hidden">
             <div className="lg:max-w-7xl mx-auto">
@@ -68,14 +70,14 @@ c-73.1,86.1-213,87.5-312.5,3.1s-121-222.7-47.9-308.8S314.3-7.8,413.8,76.6z" />
                                 <span>elenchus</span>
                             </a>
                         </div>
-                        <ul className="space-y-2 text-sm list-none md:space-y-0 text-white md:m-auto inline-flex flex-nowrap justify-center md:items-center text-center md:h-8 gap-8">
-                            <li>
+                        <ul className="space-y-2 text-md list-none md:space-y-0 text-white md:m-auto inline-flex flex-nowrap justify-center md:items-center text-center md:h-8 gap-8">
+                            <li className="text-white hover:text-blue-300 transition-all duration-200 ease-in-out">
                                 <Link to='/'>Home</Link>
                             </li>
-                            <li>
+                            <li className="text-white hover:text-blue-300 transition-all duration-200 ease-in-out">
                                 <Link to='/Investigate'>Investigate</Link>
                             </li>
-                            <li>
+                            <li className="text-white hover:text-blue-300 transition-all duration-200 ease-in-out">
                                 <Link to='/About'>About</Link>
                             </li>
                         </ul>

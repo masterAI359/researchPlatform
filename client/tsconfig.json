@@ -26,5 +26,12 @@
     },
     "jsx": "react-jsx",
     "jsxImportSource": "react",
-  }
+  },
+  "include": [
+    "src/**/*",
+    "astro.config.mjs"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

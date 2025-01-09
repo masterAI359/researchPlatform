@@ -1,13 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import HelpButton from "../../Buttons/Question";
 import { Step3Help } from "@/helpInfo/help"
 import StepsEditor from "../../TipTap/StepsEditor";
+import { RootState } from "@/ReduxToolKit/store";
+import { useSelector, useDispatch } from "react-redux";
+import { getPremises } from "@/ReduxToolKit/Reducers/UserPOV";
 
 
 
-export default function Step4({ containerWidth, setStartSearch, setGettingHelp }: any) {
+export default function Step4({ setGettingHelp }: any) {
+  const [statedPremise, setPremise] = useState<string>(null)
+  const premises = useSelector((state: RootState) => state.pov.premises)
+  const dispatch = useDispatch()
 
-  const [statedPremise, setPremise] = useState("")
+  useEffect(() => {
+
+    if (statedPremise !== null) dispatch(getPremises(statedPremise))
+
+  }, [statedPremise])
+
 
   return (
     <div className="inline-block h-fit box-border mx-auto min-w-full max-w-full 2xl:h-full">

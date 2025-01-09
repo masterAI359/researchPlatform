@@ -1,5 +1,5 @@
-import { Articles, SelectedArticles } from "@/env";
-import { useEffect, useState } from "react";
+import { Articles } from "@/env";
+import { useState } from "react";
 
 
 
@@ -13,7 +13,6 @@ const options: OptionsTypes = {
 
 
 export const useFetch = () => {
-
     const [fetchedArticles, setFetchedArticles] = useState<Articles[]>([])
     const [fetchedSummaries, setFetchedSummaries] = useState<object[]>([])
     const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -24,9 +23,9 @@ export const useFetch = () => {
 
 
     const fetchArticles = async (query: string) => {
+        console.log(query)
         setIsLoading(true)
         setFetchedArticles([])
-        console.log(fetchedArticles)
         setFetchedSummaries([])
 
         try {

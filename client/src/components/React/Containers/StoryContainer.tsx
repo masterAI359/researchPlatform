@@ -9,7 +9,7 @@ import ControlPanel from "../Buttons/ButtonWrappers/ControlPanel"
 
 
 export default function StoryContainer({ selectedForSummary, setSelectedForSummary, articles, summaries, isLoading, loadingSummaries,
-    readyToSelect, fetchedSummaries, submittedForSummaries, setSubmittedForSummaries, fetchedArticles, setTakingNotes, finished, setFinished,
+    readyToSelect, fetchedSummaries, submittedForSummaries, setSubmittedForSummaries, finished, setFinished,
     setGettingHelp, gettingHelp, setHide
 }) {
     const [showSelect, setShowSelect] = useState<boolean>(false)
@@ -34,7 +34,7 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
 
     useMotionValueEvent(scrollYProgress, "change", (latest) => {
 
-        if (latest > 0.15 && !showSelect && readyToSelect === true) {
+        if (latest > 0 && !showSelect && readyToSelect === true) {
             setShowSelect(true);
         } else if (latest === 0 && showSelect) {
             setShowSelect(false);
@@ -134,7 +134,7 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
                     transition={{ type: 'tween', duration: 0.2 }}
                     className="w-full h-auto relative mx-auto"
                 >
-                    <ControlPanel setTakingNotes={setTakingNotes} setFinished={setFinished} />
+                    <ControlPanel setFinished={setFinished} />
                 </motion.div>}
             </AnimatePresence>
 

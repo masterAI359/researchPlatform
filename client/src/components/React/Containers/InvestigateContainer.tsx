@@ -6,15 +6,18 @@ import { useFetch } from "@/Hooks/useFetch";
 import { AnimatePresence } from "framer-motion";
 import Notes from "../Investigate/Notes/Notes";
 import LostConnection from "../ErrorMessages/LostConnection";
-
+import { RootState } from "@/ReduxToolKit/store";
+import { useSelector } from "react-redux";
+//TODO: create reducers to handle the state variables we've created here at the top level 
+// our prop drilling is getting ridiculous
 export default function InvestigateContainer() {
-  const [query, setQuery] = useState<string>("")
+  const query = useSelector((state: RootState) => state.pov.query)
+  const takingNotes = useSelector((state: RootState) => state.notes.takingNotes)
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false)
   const [selectedForSummary, setSelectedForSummary] = useState<SelectedArticles[]>([])
   const [submittedForSummaries, setSubmittedForSummaries] = useState<boolean>(false)
   const storyRef = useRef(null)
   const articlesToSummarize = encodeURIComponent(JSON.stringify(selectedForSummary))
-  const [takingNotes, setTakingNotes] = useState<boolean>(false)
   const [notePosition, setNotePosition] = useState({ x: 0, y: 500 })
   const [windowWidth, setWindowWidth] = useState<number>(null)
   const [constraints, setConstraints] = useState(null)
@@ -24,8 +27,6 @@ export default function InvestigateContainer() {
   const containerRef = useRef(null)
   const notesRef = useRef(null)
   const { fetchArticles, fetchSummaries, fetchedArticles, fetchedSummaries, isLoading, loadingSummaries, readyToSelect, errorMessage } = useFetch()
-
-
 
   const articles: Articles[] = fetchedArticles
   const summaries: object[] = fetchedSummaries
@@ -97,7 +98,6 @@ export default function InvestigateContainer() {
           key={'HeroContainer'}
           gettingHelp={gettingHelp}
           setGettingHelp={setGettingHelp}
-          setQuery={setQuery}
           isLoading={isLoading}
           setIsSubmitted={setIsSubmitted}
           summaries={summaries}
@@ -119,8 +119,6 @@ export default function InvestigateContainer() {
           setSubmittedForSummaries={setSubmittedForSummaries}
           loadingSummaries={loadingSummaries}
           fetchedSummaries={fetchedSummaries}
-          fetchedArticles={fetchedArticles}
-          setTakingNotes={setTakingNotes}
           gettingHelp={gettingHelp}
           setGettingHelp={setGettingHelp}
           setFinished={setFinished}
@@ -136,7 +134,6 @@ export default function InvestigateContainer() {
             constraints={constraints}
             notePosition={notePosition}
             setNotePosition={setNotePosition}
-            setTakingNotes={setTakingNotes}
           />
         }
       </AnimatePresence>

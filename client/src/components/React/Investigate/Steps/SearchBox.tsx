@@ -1,29 +1,25 @@
 import Loader from "../../Loaders/Loader";
+import { useDispatch } from "react-redux";
+import { getQuery } from "@/ReduxToolKit/Reducers/UserPOV";
+import { useState } from "react";
+
 
 interface OptionsTypes {
   method: string,
   headers: HeadersInit,
 }
 
-export default function SearchBox({ isLoading, setIsSubmitted, setQuery }) {
+export default function SearchBox({ isLoading, setIsSubmitted }) {
+  const [input, setInput] = useState<string>(null)
+  const dispatch = useDispatch()
 
-  const options: OptionsTypes = {
-    method: 'GET',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    }
-  }
 
   const handleQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value !== '') {
+      setInput(e.target.value)
+      dispatch(getQuery(input))
+    }
 
-    setTimeout(() => {
-
-      if (e.target.value !== '') {
-        setQuery(e.target.value)
-      }
-
-    }, 2000)
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -54,7 +50,7 @@ export default function SearchBox({ isLoading, setIsSubmitted, setQuery }) {
                 onSubmit={handleSubmit}
               >
                 <input
-                  onChange={handleQuery}
+                  onChange={(e) => dispatch(getQuery(e.target.value))}
                   autoComplete="off"
                   type="text"
                   name="q"

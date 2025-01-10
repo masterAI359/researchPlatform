@@ -15,8 +15,6 @@ export default function Step1({ origin, setOrigin, setCanProceed, notifyRequired
       const idea = useSelector((state: RootState) => state.pov.idea)
       const dispatch = useDispatch()
 
-      console.log(idea)
-
       let wordCount = (statement: string) => {
 
             if (statement === '') {

@@ -1,6 +1,8 @@
 import { Articles } from "@/env";
 import { useState } from "react";
-
+import { loading } from "@/ReduxToolKit/Reducers/UserPOV";
+import { useDispatch, UseDispatch } from "react-redux";
+import { AppDispatch } from "@/ReduxToolKit/store";
 
 
 const options: OptionsTypes = {
@@ -15,16 +17,15 @@ const options: OptionsTypes = {
 export const useFetch = () => {
     const [fetchedArticles, setFetchedArticles] = useState<Articles[]>([])
     const [fetchedSummaries, setFetchedSummaries] = useState<object[]>([])
-    const [isLoading, setIsLoading] = useState<boolean>(false)
     const [loadingSummaries, setLoadingSummaries] = useState<boolean>(false)
     const [readyToSelect, setReadyToSelect] = useState<boolean>(false)
     const [errorMessage, setErrorMessage] = useState<string>(null)
+    const dispatch = useDispatch<AppDispatch>()
 
 
 
     const fetchArticles = async (query: string) => {
-        console.log(query)
-        setIsLoading(true)
+        dispatch(loading(true))
         setFetchedArticles([])
         setFetchedSummaries([])
 
@@ -44,8 +45,8 @@ export const useFetch = () => {
 
             console.log({ "Fetch Failed": err })
         } finally {
-            setIsLoading(false)
             setReadyToSelect(true)
+            dispatch(loading(false))
         }
     };
 
@@ -71,7 +72,7 @@ export const useFetch = () => {
     }
 
 
-    return { fetchedArticles, fetchedSummaries, fetchArticles, fetchSummaries, isLoading, loadingSummaries, readyToSelect, errorMessage }
+    return { fetchedArticles, fetchedSummaries, fetchArticles, fetchSummaries, loadingSummaries, readyToSelect, errorMessage }
 
 
 }

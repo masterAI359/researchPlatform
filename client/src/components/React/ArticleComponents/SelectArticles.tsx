@@ -1,19 +1,20 @@
-import { useEffect, useState } from "react"
 import SelectLoader from "../Loaders/SelectLoader"
 import { SelectedArticles } from "@/env"
 import { AnimatePresence, motion } from "framer-motion"
+import { useDispatch } from "react-redux"
+import { getStories } from "@/ReduxToolKit/Reducers/Reading"
 
 interface SendForSummary {
   selectedForSummary: SelectedArticles[],
-  submittedForSummaries: boolean,
-  setSubmittedForSummaries: Function,
   loadingSummaries: boolean,
   hideSelect: Function,
   showSelect: boolean,
   setHide: Function
 }
 
-export default function SelectArticles({ hideSelect, selectedForSummary, submittedForSummaries, setSubmittedForSummaries, loadingSummaries, showSelect, setHide }: SendForSummary) {
+export default function SelectArticles({ hideSelect, selectedForSummary, loadingSummaries, setHide }: SendForSummary) {
+  const dispatch = useDispatch()
+
   const selectedTotal = selectedForSummary.length
   const selectedArticles = `Summarize Articles ${selectedTotal}/3`
   const waiting = "Loading Stories..."
@@ -21,7 +22,7 @@ export default function SelectArticles({ hideSelect, selectedForSummary, submitt
   const handleSummaries = () => {
 
     if (selectedForSummary.length > 0) {
-      setSubmittedForSummaries(!submittedForSummaries)
+      dispatch(getStories(true))
       setHide(true)
     } else {
       console.log("There's nothing to summarize yet")

@@ -1,17 +1,16 @@
 import Loader from "../../Loaders/Loader";
-import { useDispatch } from "react-redux";
-import { getQuery } from "@/ReduxToolKit/Reducers/UserPOV";
+import { useDispatch, useSelector } from "react-redux";
+import { getQuery, searching } from "@/ReduxToolKit/Reducers/UserPOV";
 import { useState } from "react";
+import { AppDispatch, RootState } from "@/ReduxToolKit/store";
 
 
-interface OptionsTypes {
-  method: string,
-  headers: HeadersInit,
-}
 
-export default function SearchBox({ isLoading, setIsSubmitted }) {
+export default function SearchBox({ }) {
   const [input, setInput] = useState<string>(null)
-  const dispatch = useDispatch()
+  const searched = useSelector((state: RootState) => state.pov.searching)
+  const loading = useSelector((state: RootState) => state.pov.loading)
+  const dispatch = useDispatch<AppDispatch>()
 
 
   const handleQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,8 +23,11 @@ export default function SearchBox({ isLoading, setIsSubmitted }) {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setIsSubmitted(true)
+    dispatch(searching(true))
   }
+
+  console.log(searched)
+
 
   return (
     <div className="block box-border min-w-full max-w-full mx-auto xs:px-0 md:px-2 2xl:h-full no-scrollbar">
@@ -61,7 +63,7 @@ export default function SearchBox({ isLoading, setIsSubmitted }) {
                 <button type="submit"
                 >
                   {
-                    isLoading ? <Loader />
+                    loading ? <Loader />
                       : <svg
                         className="text-white xs:h-5 xs:w-5 md:h-6 md:w-6 absolute 
                         xs:top-4 xs:right-4 md:top-5 md:right-5 fill-current"

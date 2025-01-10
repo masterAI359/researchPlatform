@@ -7,26 +7,33 @@ import { AnimatePresence } from "framer-motion";
 import Notes from "../Investigate/Notes/Notes";
 import LostConnection from "../ErrorMessages/LostConnection";
 import { RootState } from "@/ReduxToolKit/store";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { searching } from "@/ReduxToolKit/Reducers/UserPOV";
+import { getStories } from "@/ReduxToolKit/Reducers/Reading";
+
 //TODO: create reducers to handle the state variables we've created here at the top level 
 // our prop drilling is getting ridiculous
 export default function InvestigateContainer() {
   const query = useSelector((state: RootState) => state.pov.query)
   const takingNotes = useSelector((state: RootState) => state.notes.takingNotes)
-  const [isSubmitted, setIsSubmitted] = useState<boolean>(false)
+  const submitted = useSelector((state: RootState) => state.pov.searching)
+  const gettingContent = useSelector((state: RootState) => state.read.getContent)
+  //move selectedForSummary to redux store
   const [selectedForSummary, setSelectedForSummary] = useState<SelectedArticles[]>([])
-  const [submittedForSummaries, setSubmittedForSummaries] = useState<boolean>(false)
   const storyRef = useRef(null)
   const articlesToSummarize = encodeURIComponent(JSON.stringify(selectedForSummary))
+  const containerRef = useRef(null)
+  const notesRef = useRef(null)
+  const dispatch = useDispatch()
+  const { fetchArticles, fetchSummaries, fetchedArticles, fetchedSummaries, loadingSummaries, readyToSelect, errorMessage } = useFetch()
+
+
   const [notePosition, setNotePosition] = useState({ x: 0, y: 500 })
   const [windowWidth, setWindowWidth] = useState<number>(null)
   const [constraints, setConstraints] = useState(null)
   const [finished, setFinished] = useState<boolean>(false)
   const [gettingHelp, setGettingHelp] = useState<boolean>(false)
   const [hideHeroContainer, setHide] = useState<boolean>(false)
-  const containerRef = useRef(null)
-  const notesRef = useRef(null)
-  const { fetchArticles, fetchSummaries, fetchedArticles, fetchedSummaries, isLoading, loadingSummaries, readyToSelect, errorMessage } = useFetch()
 
   const articles: Articles[] = fetchedArticles
   const summaries: object[] = fetchedSummaries
@@ -57,24 +64,23 @@ export default function InvestigateContainer() {
   }
 
   useEffect(() => {
-    if (isSubmitted) {
+    if (submitted) {
       fetchArticles(query)
-      setIsSubmitted(false)
+      dispatch(searching(false))
       setSelectedForSummary([])
     }
-    if (submittedForSummaries) {
+    if (gettingContent) {
       fetchSummaries(articlesToSummarize)
       scrollToView()
-      setSubmittedForSummaries(false)
+      dispatch(getStories(false))
       setSelectedForSummary([])
-
     }
 
     if (containerRef.current && notesRef.current) {
 
       handleDragConstraints()
     }
-  }, [isSubmitted, submittedForSummaries,])
+  }, [submitted, gettingContent,])
 
   if (typeof window !== 'undefined') {
 
@@ -98,11 +104,8 @@ export default function InvestigateContainer() {
           key={'HeroContainer'}
           gettingHelp={gettingHelp}
           setGettingHelp={setGettingHelp}
-          isLoading={isLoading}
-          setIsSubmitted={setIsSubmitted}
           summaries={summaries}
           finished={finished}
-          hideSearch={submittedForSummaries}
         /> : null}
         {errorMessage !== null && <LostConnection errorMessage={errorMessage} />}
       </AnimatePresence>
@@ -111,12 +114,9 @@ export default function InvestigateContainer() {
         <StoryContainer
           articles={articles}
           summaries={summaries}
-          isLoading={isLoading}
           readyToSelect={readyToSelect}
           setSelectedForSummary={setSelectedForSummary}
           selectedForSummary={selectedForSummary}
-          submittedForSummaries={submittedForSummaries}
-          setSubmittedForSummaries={setSubmittedForSummaries}
           loadingSummaries={loadingSummaries}
           fetchedSummaries={fetchedSummaries}
           gettingHelp={gettingHelp}

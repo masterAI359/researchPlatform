@@ -6,9 +6,6 @@ import { AnimatePresence, motion } from "framer-motion"
 
 
 export default function HeroContainer({
-    hideSearch,
-    isLoading,
-    setIsSubmitted,
     summaries,
     gettingHelp,
     setGettingHelp,
@@ -35,7 +32,7 @@ export default function HeroContainer({
 
             </motion.div>)}
 
-            {!hideSearch && startSearch ?
+            {startSearch ?
                 (<motion.div
                     key='Search'
                     initial={{ opacity: 0 }}
@@ -44,8 +41,6 @@ export default function HeroContainer({
                     transition={{ type: 'tween', duration: 0.5, ease: 'easeInOut' }}
                 >
                     <SearchHero
-                        isLoading={isLoading}
-                        setIsSubmitted={setIsSubmitted}
                     />
                 </motion.div>)
                 : null}

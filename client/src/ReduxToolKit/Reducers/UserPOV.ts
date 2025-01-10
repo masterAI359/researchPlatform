@@ -9,7 +9,9 @@ export interface UserPOVState {
     expertise: string | null,
     biases: string | null,
     premises: string | null,
-    query: string | null
+    query: string | null,
+    searching: boolean,
+    loading: boolean
 }
 
 const initialState: UserPOVState = {
@@ -19,7 +21,9 @@ const initialState: UserPOVState = {
     expertise: null,
     biases: null,
     premises: null,
-    query: null
+    query: null,
+    searching: false,
+    loading: false
 }
 
 
@@ -45,10 +49,17 @@ export const UserPOVSlice = createSlice({
         },
         getQuery: (state, action) => {
             state.query = action.payload
+        },
+        searching: (state, action) => {
+            state.searching = action.payload
+        },
+        loading: (state, action) => {
+            state.loading = action.payload
         }
+
     }
 })
 
-export const { getIdea, getPerspective, getExpertise, getBiases, getPremises, getQuery } = UserPOVSlice.actions
+export const { getIdea, getPerspective, getExpertise, getBiases, getPremises, getQuery, searching, loading } = UserPOVSlice.actions
 
 export default UserPOVSlice.reducer

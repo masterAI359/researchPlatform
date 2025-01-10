@@ -34,7 +34,7 @@ export default function Step2({ setOrigin, origin, setGettingHelp }: any) {
 
   useEffect(() => {
 
-    console.log({ "Point of view": perspective }, { "Expertise": userExpertise })
+    // console.log({ "Point of view": perspective }, { "Expertise": userExpertise })
 
   }, [pov, knowledge])
 

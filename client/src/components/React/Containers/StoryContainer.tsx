@@ -1,18 +1,21 @@
 import { useState, useRef } from "react"
-import { useMotionValueEvent, motion, useScroll, AnimatePresence, transform, animate } from "framer-motion"
+import { useMotionValueEvent, motion, useScroll, AnimatePresence } from "framer-motion"
 import SelectArticles from "../ArticleComponents/SelectArticles"
 import SummaryContainer from "../SummaryComponents/SummaryContainer"
 import ArticlesGrid from "../ArticleComponents/ArticlesGrid"
 import ArticleLoader from "../Loaders/ArticleLoader"
 import SummaryLoader from "../Loaders/SummaryLoader"
 import ControlPanel from "../Buttons/ButtonWrappers/ControlPanel"
+import { useSelector } from "react-redux"
+import { RootState } from "@/ReduxToolKit/store"
 
 
-export default function StoryContainer({ selectedForSummary, setSelectedForSummary, articles, summaries, isLoading, loadingSummaries,
-    readyToSelect, fetchedSummaries, submittedForSummaries, setSubmittedForSummaries, finished, setFinished,
+export default function StoryContainer({ selectedForSummary, setSelectedForSummary, articles, summaries, loadingSummaries,
+    readyToSelect, fetchedSummaries, finished, setFinished,
     setGettingHelp, gettingHelp, setHide
 }) {
     const [showSelect, setShowSelect] = useState<boolean>(false)
+    const loading = useSelector((state: RootState) => state.pov.loading)
 
 
 
@@ -48,12 +51,12 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
             exit={{ opacity: 0 }}
             transition={{ type: 'tween', duration: 0.2 }}
             ref={yRef}
-            className="relative w-full h-auto mx-auto xl:mt-24 xs:px-2">
+            className="relative w-full h-auto mx-auto xl:mt-16 xs:px-2">
             <div
                 className="relative w-full h-auto box-border mx-auto">
 
                 <AnimatePresence >
-                    {isLoading === true &&
+                    {loading === true &&
                         <motion.div
                             key='loadingArticles'
                             initial={{ opacity: 0 }}
@@ -116,8 +119,6 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
                                 showSelect={showSelect}
                                 hideSelect={hideSelect}
                                 selectedForSummary={selectedForSummary}
-                                submittedForSummaries={submittedForSummaries}
-                                setSubmittedForSummaries={setSubmittedForSummaries}
                                 loadingSummaries={loadingSummaries}
                                 setHide={setHide} />
                         </motion.div>

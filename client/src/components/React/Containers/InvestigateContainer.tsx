@@ -10,16 +10,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { searching } from "@/ReduxToolKit/Reducers/UserPOV";
 import { getStories } from "@/ReduxToolKit/Reducers/Reading";
 
+
 export default function InvestigateContainer() {
   const { fetchArticles, fetchSummaries, fetchedSummaries, loadingSummaries, readyToSelect, errorMessage } = useFetch()
   const query = useSelector((state: RootState) => state.pov.query)
   const takingNotes = useSelector((state: RootState) => state.notes.takingNotes)
   const submitted = useSelector((state: RootState) => state.pov.searching)
   const gettingContent = useSelector((state: RootState) => state.read.getContent)
-  const results = useSelector((state: RootState) => state.search.articles)
   const chosenArticles = useSelector((state: RootState) => state.getArticle.chosenArticles)
-  const storyRef = useRef(null)
-  const articlesToSummarize = encodeURIComponent(JSON.stringify(chosenArticles))
   const containerRef = useRef(null)
   const notesRef = useRef(null)
   const dispatch = useDispatch()
@@ -51,7 +49,7 @@ export default function InvestigateContainer() {
 
   function scrollToView() {
 
-    storyRef.current.scrollIntoView({ behavior: "smooth", alignToTop: true })
+    containerRef.current.scrollIntoView({ behavior: "smooth", alignToTop: true })
   }
 
   useEffect(() => {
@@ -60,6 +58,7 @@ export default function InvestigateContainer() {
       dispatch(searching(false))
     }
     if (gettingContent) {
+      const articlesToSummarize = encodeURIComponent(JSON.stringify(chosenArticles))
       fetchSummaries(articlesToSummarize)
       scrollToView()
       dispatch(getStories(false))
@@ -77,9 +76,7 @@ export default function InvestigateContainer() {
       if (containerRef.current) {
         setWindowWidth(containerRef.current.offsetWidth)
       }
-
       window.addEventListener('resize', resize);
-
     }, [])
   }
 
@@ -99,7 +96,7 @@ export default function InvestigateContainer() {
         {errorMessage !== null && <LostConnection errorMessage={errorMessage} />}
       </AnimatePresence>
 
-      <div className="w-full h-auto mx-auto xl:mt-6" ref={storyRef}>
+      <div className="w-full h-auto mx-auto xl:mt-6">
         <StoryContainer
           summaries={summaries}
           readyToSelect={readyToSelect}

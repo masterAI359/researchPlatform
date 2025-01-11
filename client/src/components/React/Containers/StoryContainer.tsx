@@ -10,12 +10,13 @@ import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 
 
-export default function StoryContainer({ selectedForSummary, setSelectedForSummary, articles, summaries, loadingSummaries,
+export default function StoryContainer({ selectedForSummary, setSelectedForSummary, summaries, loadingSummaries,
     readyToSelect, fetchedSummaries, finished, setFinished,
     setGettingHelp, gettingHelp, setHide
 }) {
     const [showSelect, setShowSelect] = useState<boolean>(false)
     const loading = useSelector((state: RootState) => state.pov.loading)
+    const articles = useSelector((state: RootState) => state.search.articles)
 
 
 
@@ -76,7 +77,6 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
                             transition={{ duration: 0.3 }}
                         >
                             <ArticlesGrid
-                                articles={articles}
                                 selectedForSummary={selectedForSummary}
                                 setSelectedForSummary={setSelectedForSummary} />
                         </motion.div>}
@@ -112,7 +112,7 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
                 </AnimatePresence>
             </div>
             <AnimatePresence>
-                {articles.length > 0 &&
+                {articles &&
                     <div className="relative w-full h-auto flex justify-start">
                         <motion.div>
                             <SelectArticles

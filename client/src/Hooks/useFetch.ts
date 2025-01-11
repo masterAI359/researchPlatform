@@ -1,7 +1,8 @@
-import { Articles } from "@/env";
+import { ArticleType } from "@/env";
 import { useState } from "react";
 import { loading } from "@/ReduxToolKit/Reducers/UserPOV";
-import { useDispatch, UseDispatch } from "react-redux";
+import { searchResults, resetResults } from "@/ReduxToolKit/Reducers/SearchResults";
+import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/ReduxToolKit/store";
 
 
@@ -15,7 +16,7 @@ const options: OptionsTypes = {
 
 
 export const useFetch = () => {
-    const [fetchedArticles, setFetchedArticles] = useState<Articles[]>([])
+    const [fetchedArticles, setFetchedArticles] = useState<ArticleType[]>([])
     const [fetchedSummaries, setFetchedSummaries] = useState<object[]>([])
     const [loadingSummaries, setLoadingSummaries] = useState<boolean>(false)
     const [readyToSelect, setReadyToSelect] = useState<boolean>(false)
@@ -26,6 +27,7 @@ export const useFetch = () => {
 
     const fetchArticles = async (query: string) => {
         dispatch(loading(true))
+        dispatch(resetResults())
         setFetchedArticles([])
         setFetchedSummaries([])
 
@@ -40,6 +42,7 @@ export const useFetch = () => {
             }
             const jsonResponse = await response.json()
             setFetchedArticles(jsonResponse.data)
+            dispatch(searchResults(jsonResponse.data))
 
         } catch (err) {
 
@@ -52,6 +55,7 @@ export const useFetch = () => {
 
     const fetchSummaries = async (articlesToSummarize: any) => {
         setFetchedArticles([])
+        dispatch(resetResults())
         setLoadingSummaries(true)
         setReadyToSelect(false)
         try {

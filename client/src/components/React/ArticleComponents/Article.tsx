@@ -1,15 +1,24 @@
-import { Articles, SelectedArticles } from "@/env"
+import { ArticleType, SelectedArticle } from "@/env"
+import { useSelector, useDispatch } from "react-redux"
+import { RootState } from "@/ReduxToolKit/store"
+import { choose, discard, } from "@/ReduxToolKit/Reducers/ChosenArticles"
 
 interface ArticleProps {
-    article: Articles,
-    selectedForSummary: SelectedArticles[],
-    setSelectedForSummary: Function
+    article: ArticleType,
+    selectedForSummary: SelectedArticle[],
+    setSelectedForSummary: Function,
+    index: number
 }
 
-export default function Article({ article, selectedForSummary, setSelectedForSummary }: ArticleProps) {
+export default function Article({ article, selectedForSummary, setSelectedForSummary, index }: ArticleProps) {
+    const chosenArticles = useSelector((state: RootState) => state.getArticle.chosenArticles)
+    const dispatch = useDispatch()
+
     const { url, name, provider, image, description, datePublished, logo } = article;
-    const thumbnail = image.img
-    const isHilighted = selectedForSummary.some(item => item.url === article.url)
+    //const thumbnail = image.img
+    const isHilighted = chosenArticles.some(item => item.url === article.url)
+
+
 
     const forSummaryData = {
         url: article.url,
@@ -52,26 +61,25 @@ export default function Article({ article, selectedForSummary, setSelectedForSum
 
 
     const fallbackImage = '/images/logos/fallback.jpg'
-    const resizedImage = thumbnail ? thumbnail + '&w=300&p=0&c=7' : fallbackImage
+    const resizedImage = article.image.img ? article.image.img + '&w=300&p=0&c=7' : fallbackImage
 
 
-    const chooseArticle = (article: Articles) => {
-        setSelectedForSummary((prevSelectedForSummary: SelectedArticles[]) => {
 
-            const isAlreadySelected = prevSelectedForSummary.some(selected => selected.url === article.url);
+    const chooseArticle = (article: ArticleType) => {
 
-            if (isAlreadySelected) {
-                return prevSelectedForSummary.filter(item => item.url !== article.url);
 
-            } else {
-                if (prevSelectedForSummary.length < 3) {
-                    return [...prevSelectedForSummary, forSummaryData];
+        const exists = chosenArticles.some((chosen => chosen.url === article.url))
 
-                } else {
-                    return prevSelectedForSummary;
-                }
-            }
-        });
+        if (!exists && chosenArticles.length <= 2) {
+            dispatch(choose(forSummaryData))
+
+        } else if (exists) {
+            const locatedAt = chosenArticles.findIndex((chosen => chosen.url === article.url))
+            dispatch(discard(locatedAt))
+        }
+
+
+
     }
 
 
@@ -112,7 +120,7 @@ export default function Article({ article, selectedForSummary, setSelectedForSum
                 <div className={`h-full group mt-2 pt-2 ${isHilighted ? 'opacity-100' : ''}`}>
                     <blockquote className='relative px-4'>
                         <p className='lg:text-base xs:text-xs transition-colors duration-100 font-serif font-light xs:hidden md:block'>
-                            {mobileDescription}
+                            {description}
                         </p>
                         <p className='lg:text-base xs:text-xs transition-colors duration-100 font-serif font-light xs:block md:hidden'>
                             {mobileDescription}
@@ -126,3 +134,19 @@ export default function Article({ article, selectedForSummary, setSelectedForSum
 
 
 
+//setSelectedForSummary((prevSelectedForSummary: SelectedArticle[]) => {
+//
+//    const isAlreadySelected = prevSelectedForSummary.some(selected => selected.url === article.url);
+//
+//    if (isAlreadySelected) {
+//        return prevSelectedForSummary.filter(item => item.url !== article.url);
+//
+//    } else {
+//        if (prevSelectedForSummary.length < 3) {
+//            return [...prevSelectedForSummary, forSummaryData];
+//
+//        } else {
+//            return prevSelectedForSummary;
+//        }
+//    }
+//});

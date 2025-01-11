@@ -1,16 +1,18 @@
 import Article from "./Article"
-import { Articles, SelectedArticles } from '../../../env'
+import { ArticleType, SelectedArticle } from '../../../env'
 import { motion } from "framer-motion"
+import { useSelector } from "react-redux"
+import { RootState } from "@/ReduxToolKit/store"
 
 
 interface GridProps {
-    articles: Articles[],
-    selectedForSummary: SelectedArticles[],
+    selectedForSummary: SelectedArticle[],
     setSelectedForSummary: Function,
 
 }
 
-export default function ArticlesGrid({ articles, selectedForSummary, setSelectedForSummary }: GridProps) {
+export default function ArticlesGrid({ selectedForSummary, setSelectedForSummary }: GridProps) {
+    const articles = useSelector((state: RootState) => state.search.articles)
 
     const container = {
 
@@ -36,8 +38,9 @@ export default function ArticlesGrid({ articles, selectedForSummary, setSelected
         >
             <div className={`h-full mx-auto 2xl:px-36 md:px-12 sm:w-full lg:px-16 xl:px-36 2xl:max-w-7xl`}>
                 <ol className="grid grid-cols-2 lg:gap-10 xs:gap-3 mx-auto lg:mt-4">
-                    {articles.map((article: Articles) =>
+                    {articles?.map((article: ArticleType, index: number) =>
                         <Article
+                            index={index}
                             key={article.url}
                             article={article}
                             selectedForSummary={selectedForSummary}

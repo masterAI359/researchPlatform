@@ -1,11 +1,13 @@
 import SelectLoader from "../Loaders/SelectLoader"
-import { SelectedArticles } from "@/env"
+import { SelectedArticle } from "@/env"
 import { AnimatePresence, motion } from "framer-motion"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { RootState } from "@/ReduxToolKit/store"
 import { getStories } from "@/ReduxToolKit/Reducers/Reading"
 
+
 interface SendForSummary {
-  selectedForSummary: SelectedArticles[],
+  selectedForSummary: SelectedArticle[],
   loadingSummaries: boolean,
   hideSelect: Function,
   showSelect: boolean,
@@ -13,15 +15,16 @@ interface SendForSummary {
 }
 
 export default function SelectArticles({ hideSelect, selectedForSummary, loadingSummaries, setHide }: SendForSummary) {
+  const chosenArticles = useSelector((state: RootState) => state.getArticle.chosenArticles)
   const dispatch = useDispatch()
 
-  const selectedTotal = selectedForSummary.length
+  const selectedTotal = chosenArticles.length
   const selectedArticles = `Summarize Articles ${selectedTotal}/3`
   const waiting = "Loading Stories..."
 
   const handleSummaries = () => {
 
-    if (selectedForSummary.length > 0) {
+    if (chosenArticles.length > 0) {
       dispatch(getStories(true))
       setHide(true)
     } else {

@@ -40,7 +40,7 @@ declare global {
     perspective: string
   }
 
-  interface Articles {
+  interface ArticleType {
     datePublished: string,
     description: string,
     image: Image
@@ -63,7 +63,7 @@ declare global {
     logo: string
   }
 
-  interface SelectedArticles {
+  interface SelectedArticle {
     url: string,
     source: string,
     date: string,
@@ -87,4 +87,4 @@ declare global {
 
 }
 
-export { Articles, OptionsTypes, SelectedArticles, WindowProps, Perspectives, State, PremiseProps, Help };
+export { ArticleType, OptionsTypes, SelectedArticle, WindowProps, Perspectives, State, PremiseProps, Help };

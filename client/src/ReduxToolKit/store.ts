@@ -3,13 +3,17 @@ import StepsReducer from './Reducers/Steps'
 import UserPOVReducer from './Reducers/UserPOV'
 import NoteReducer from './Reducers/NoteTaking'
 import ReadingReducer from './Reducers/Reading'
+import SelectingArticles from './Reducers/ChosenArticles'
+import SearchResults from './Reducers/SearchResults'
 
 export const store = configureStore({
     reducer: {
         stepper: StepsReducer,
         pov: UserPOVReducer,
         notes: NoteReducer,
-        read: ReadingReducer
+        read: ReadingReducer,
+        getArticle: SelectingArticles,
+        search: SearchResults
     },
 })
 

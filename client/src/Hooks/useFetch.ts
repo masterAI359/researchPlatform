@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { loading } from "@/ReduxToolKit/Reducers/UserPOV";
 import { searchResults, resetResults } from "@/ReduxToolKit/Reducers/SearchResults";
+import { loadContent, articleData } from "@/ReduxToolKit/Reducers/Reading";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import { AppDispatch } from "@/ReduxToolKit/store";
@@ -17,12 +18,14 @@ const options: OptionsTypes = {
 
 export const useFetch = () => {
     const articles = useSelector((state: RootState) => state.search.articles)
+    const summaries = useSelector((state: RootState) => state.read.summaries)
     const [fetchedSummaries, setFetchedSummaries] = useState<object[]>([])
     const [loadingSummaries, setLoadingSummaries] = useState<boolean>(false)
     const [readyToSelect, setReadyToSelect] = useState<boolean>(false)
     const [errorMessage, setErrorMessage] = useState<string>(null)
     const dispatch = useDispatch<AppDispatch>()
 
+    console.log(summaries)
 
 
     const fetchArticles = async (query: string) => {
@@ -55,6 +58,8 @@ export const useFetch = () => {
     };
 
     const fetchSummaries = async (articlesToSummarize: any) => {
+        console.log("This API is being called")
+        dispatch(loadContent(true))
         dispatch(resetResults())
         setLoadingSummaries(true)
         setReadyToSelect(false)
@@ -68,10 +73,11 @@ export const useFetch = () => {
             const tlderJSON = await tldrResponse.json()
             setFetchedSummaries(tlderJSON)
             setLoadingSummaries(false)
+            dispatch(articleData(tlderJSON))
         } catch (err) {
             console.error('Error: ' + err)
         } finally {
-
+            dispatch(loadContent(false))
         }
     }
 

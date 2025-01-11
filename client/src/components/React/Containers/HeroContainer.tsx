@@ -6,7 +6,6 @@ import { AnimatePresence, motion } from "framer-motion"
 
 
 export default function HeroContainer({
-    summaries,
     gettingHelp,
     setGettingHelp,
     finished
@@ -26,7 +25,6 @@ export default function HeroContainer({
                 <InvestigateHero
                     gettingHelp={gettingHelp}
                     setGettingHelp={setGettingHelp}
-                    summaries={summaries}
                     setStartSearch={setStartSearch}
                 />
 

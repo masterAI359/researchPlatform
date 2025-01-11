@@ -10,14 +10,15 @@ import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 
 
-export default function StoryContainer({ summaries, loadingSummaries,
-    readyToSelect, fetchedSummaries, finished, setFinished,
+export default function StoryContainer({ loadingSummaries,
+    readyToSelect, finished, setFinished,
     setGettingHelp, gettingHelp, setHide
 }) {
     const [showSelect, setShowSelect] = useState<boolean>(false)
     const loading = useSelector((state: RootState) => state.pov.loading)
     const articles = useSelector((state: RootState) => state.search.articles)
     const chosenArticles = useSelector((state: RootState) => state.getArticle.chosenArticles)
+    const stories = useSelector((state: RootState) => state.read.summaries)
 
 
     const yRef = useRef(null)
@@ -93,7 +94,7 @@ export default function StoryContainer({ summaries, loadingSummaries,
 
                     }
 
-                    {fetchedSummaries.length > 0 &&
+                    {stories &&
                         <motion.div
                             key='presentSummaries'
                             initial={{ opacity: 0 }}
@@ -105,7 +106,6 @@ export default function StoryContainer({ summaries, loadingSummaries,
                                 finished={finished}
                                 gettingHelp={gettingHelp}
                                 setGettingHelp={setGettingHelp}
-                                summaries={summaries}
                             />
                         </motion.div>}
                 </AnimatePresence>
@@ -126,7 +126,7 @@ export default function StoryContainer({ summaries, loadingSummaries,
             </AnimatePresence>
 
             <AnimatePresence>
-                {summaries.length >= 1 && <motion.div
+                {stories && <motion.div
                     initial={{ opacity: 0, scale: 0 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0 }}

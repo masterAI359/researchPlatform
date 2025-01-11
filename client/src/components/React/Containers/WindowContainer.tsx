@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 
 export default function WindowContainer({ currentStep, setStartSearch, setCurrentStep, setCanProceed, notifyRequired, setNotifyRequired,
-    setGettingHelp, summaries, canProceed, gettingHelp }: any) {
+    setGettingHelp, canProceed, gettingHelp }: any) {
 
 
     return (
@@ -22,7 +22,7 @@ export default function WindowContainer({ currentStep, setStartSearch, setCurren
                         transition={{ type: 'tween', duration: 0.4 }}
                     >
 
-                        {summaries.length < 1 && <HeroWindow
+                        <HeroWindow
                             currentStep={currentStep}
                             setCurrentStep={setCurrentStep}
                             setStartSearch={setStartSearch}
@@ -30,7 +30,7 @@ export default function WindowContainer({ currentStep, setStartSearch, setCurren
                             notifyRequired={notifyRequired}
                             setNotifyRequired={setNotifyRequired}
                             setGettingHelp={setGettingHelp}
-                        />}
+                        />
                         <StepControl
                             currentStep={currentStep}
                             setCurrentStep={setCurrentStep}

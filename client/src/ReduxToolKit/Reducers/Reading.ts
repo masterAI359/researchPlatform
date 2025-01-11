@@ -5,6 +5,7 @@ interface ReadingState {
 
     loadingContent: boolean,
     getContent: boolean,
+    summaries: Array<any> | null
 
 }
 
@@ -12,7 +13,8 @@ interface ReadingState {
 const initialState: ReadingState = {
 
     loadingContent: false,
-    getContent: false
+    getContent: false,
+    summaries: null
 }
 
 
@@ -25,11 +27,15 @@ export const ReadingSlice = createSlice({
         },
         getStories: (state, action) => {
             state.getContent = action.payload
-        }
+        },
+        articleData: (state, action) => {
+            state.summaries = action.payload
+        },
+
     }
 })
 
 
-export const { loadContent, getStories } = ReadingSlice.actions
+export const { loadContent, getStories, articleData } = ReadingSlice.actions
 
 export default ReadingSlice.reducer

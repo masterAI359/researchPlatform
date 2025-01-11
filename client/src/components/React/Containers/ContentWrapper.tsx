@@ -1,13 +1,12 @@
 import WindowContainer from "./WindowContainer"
 import MapContainer from "../Map/MapContainer"
 
-export default function ContentWrapper({ setStartSearch, setCanProceed, notifyRequired, setNotifyRequired, setGettingHelp, gettingHelp, summaries, canProceed }) {
+export default function ContentWrapper({ setStartSearch, setCanProceed, notifyRequired, setNotifyRequired, setGettingHelp, gettingHelp, canProceed }) {
 
     return (
         <main
             className="flex mx-auto items-center my-auto box-border w-full h-fit justify-start">
             <WindowContainer
-                summaries={summaries}
                 setStartSearch={setStartSearch}
                 setCanProceed={setCanProceed}
                 notifyRequired={notifyRequired}

@@ -6,28 +6,22 @@ import { AnimatePresence } from "framer-motion";
 import Notes from "../Investigate/Notes/Notes";
 import LostConnection from "../ErrorMessages/LostConnection";
 import { RootState } from "@/ReduxToolKit/store";
-import { useDispatch, useSelector } from "react-redux";
-import { getStories } from "@/ReduxToolKit/Reducers/Reading";
-
+import { useSelector } from "react-redux";
 
 export default function InvestigateContainer() {
-  const { fetchSummaries, fetchedSummaries, loadingSummaries, readyToSelect, errorMessage } = useFetch()
+  const { fetchedSummaries, loadingSummaries, readyToSelect, errorMessage } = useFetch()
   const takingNotes = useSelector((state: RootState) => state.notes.takingNotes)
   const gettingContent = useSelector((state: RootState) => state.read.getContent)
-  const chosenArticles = useSelector((state: RootState) => state.getArticle.chosenArticles)
   const containerRef = useRef(null)
   const notesRef = useRef(null)
-  const dispatch = useDispatch()
   const [notePosition, setNotePosition] = useState({ x: 0, y: 500 })
   const [windowWidth, setWindowWidth] = useState<number>(null)
   const [constraints, setConstraints] = useState(null)
   const [finished, setFinished] = useState<boolean>(false)
   const [gettingHelp, setGettingHelp] = useState<boolean>(false)
   const [hideHeroContainer, setHide] = useState<boolean>(false)
-  const summaries: object[] = fetchedSummaries
 
   const resize = () => {
-
     if (containerRef.current) {
       setWindowWidth(containerRef.current.offsetWidth)
     }
@@ -45,34 +39,27 @@ export default function InvestigateContainer() {
   }
 
   function scrollToView() {
-
     containerRef.current.scrollIntoView({ behavior: "smooth", alignToTop: true })
   }
 
   useEffect(() => {
 
     if (gettingContent) {
-      const articlesToSummarize = encodeURIComponent(JSON.stringify(chosenArticles))
-      fetchSummaries(articlesToSummarize)
       scrollToView()
-      dispatch(getStories(false))
     }
-
     if (containerRef.current && notesRef.current) {
 
       handleDragConstraints()
     }
+
   }, [gettingContent])
 
-  if (typeof window !== 'undefined') {
-
-    useLayoutEffect(() => {
-      if (containerRef.current) {
-        setWindowWidth(containerRef.current.offsetWidth)
-      }
-      window.addEventListener('resize', resize);
-    }, [])
-  }
+  useLayoutEffect(() => {
+    if (containerRef.current) {
+      setWindowWidth(containerRef.current.offsetWidth)
+    }
+    window.addEventListener('resize', resize);
+  }, [])
 
   return (
     <section
@@ -80,22 +67,19 @@ export default function InvestigateContainer() {
       className={`w-full grid grid-cols-1 transition-all duration-300 ease-in-out h-auto mx-auto justify-center relative
          items-center animate-fade-in relative box-border overflow-hidden pb-[40rem]`}>
       <AnimatePresence mode="wait">
-        {windowWidth !== null && !hideHeroContainer ? <HeroContainer
+        <HeroContainer
           key={'HeroContainer'}
           gettingHelp={gettingHelp}
           setGettingHelp={setGettingHelp}
-          summaries={summaries}
           finished={finished}
-        /> : null}
+        />
         {errorMessage !== null && <LostConnection errorMessage={errorMessage} />}
       </AnimatePresence>
 
       <div className="w-full h-auto mx-auto xl:mt-6">
         <StoryContainer
-          summaries={summaries}
           readyToSelect={readyToSelect}
           loadingSummaries={loadingSummaries}
-          fetchedSummaries={fetchedSummaries}
           gettingHelp={gettingHelp}
           setGettingHelp={setGettingHelp}
           setFinished={setFinished}

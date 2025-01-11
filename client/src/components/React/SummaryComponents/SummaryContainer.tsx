@@ -3,8 +3,11 @@ import { Summary } from "./SuccessFull/Summary"
 import { AnimatePresence, motion } from "framer-motion"
 import FailedSummary from "./Failed/FailedSummary"
 import SummaryHeading from "./SuccessFull/SummaryHeading"
+import { useSelector } from "react-redux"
+import { RootState } from "@/ReduxToolKit/store"
 
-export default function SummaryContainer({ summaries, gettingHelp, setGettingHelp, finished }) {
+export default function SummaryContainer({ gettingHelp, setGettingHelp, finished }) {
+  const stories = useSelector((state: RootState) => state.read.summaries)
   const [availableStories, setAvailableStories] = useState<object[]>([])
   const [failedNotifications, setFailedNotifications] = useState<object[]>([])
   const [showNotifications, setShowNotifications] = useState<boolean>(false)
@@ -45,10 +48,10 @@ export default function SummaryContainer({ summaries, gettingHelp, setGettingHel
 
   useEffect(() => {
 
-    failedData(summaries)
+    failedData(stories)
 
 
-  }, [summaries])
+  }, [stories])
 
 
 

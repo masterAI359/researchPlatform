@@ -2,16 +2,17 @@ import Loader from "../../Loaders/Loader";
 import { useFetch } from "@/Hooks/useFetch";
 import { useDispatch, useSelector } from "react-redux";
 import { getQuery, searching } from "@/ReduxToolKit/Reducers/UserPOV";
+import { getStories } from "@/ReduxToolKit/Reducers/Reading";
 import { AppDispatch, RootState } from "@/ReduxToolKit/store";
 import { useEffect } from "react";
-
-//TODO: move the fetch for summaries into this component as well
 
 export default function SearchBox({ }) {
   const { fetchArticles, fetchSummaries } = useFetch()
   const query = useSelector((state: RootState) => state.pov.query)
   const searched = useSelector((state: RootState) => state.pov.searching)
   const loading = useSelector((state: RootState) => state.pov.loading)
+  const chosenArticles = useSelector((state: RootState) => state.getArticle.chosenArticles)
+  const gettingContent = useSelector((state: RootState) => state.read.getContent)
   const dispatch = useDispatch<AppDispatch>()
 
 
@@ -27,7 +28,13 @@ export default function SearchBox({ }) {
       dispatch(searching(false))
     }
 
-  }, [searched])
+    if (gettingContent) {
+      const articlesToSummarize = encodeURIComponent(JSON.stringify(chosenArticles))
+      fetchSummaries(articlesToSummarize)
+      dispatch(getStories(false))
+    }
+
+  }, [searched, gettingContent])
 
   return (
     <div className="block box-border min-w-full max-w-full mx-auto xs:px-0 md:px-2 2xl:h-full no-scrollbar">

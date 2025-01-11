@@ -5,13 +5,10 @@ import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 
 
-interface GridProps {
-    selectedForSummary: SelectedArticle[],
-    setSelectedForSummary: Function,
 
-}
 
-export default function ArticlesGrid({ selectedForSummary, setSelectedForSummary }: GridProps) {
+
+export default function ArticlesGrid() {
     const articles = useSelector((state: RootState) => state.search.articles)
 
     const container = {
@@ -43,8 +40,6 @@ export default function ArticlesGrid({ selectedForSummary, setSelectedForSummary
                             index={index}
                             key={article.url}
                             article={article}
-                            selectedForSummary={selectedForSummary}
-                            setSelectedForSummary={setSelectedForSummary}
                         />
                     )}
                 </ol>

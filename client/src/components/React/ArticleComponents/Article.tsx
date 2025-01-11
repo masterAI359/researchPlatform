@@ -5,12 +5,10 @@ import { choose, discard, } from "@/ReduxToolKit/Reducers/ChosenArticles"
 
 interface ArticleProps {
     article: ArticleType,
-    selectedForSummary: SelectedArticle[],
-    setSelectedForSummary: Function,
     index: number
 }
 
-export default function Article({ article, selectedForSummary, setSelectedForSummary, index }: ArticleProps) {
+export default function Article({ article, index }: ArticleProps) {
     const chosenArticles = useSelector((state: RootState) => state.getArticle.chosenArticles)
     const dispatch = useDispatch()
 

@@ -7,14 +7,13 @@ import { getStories } from "@/ReduxToolKit/Reducers/Reading"
 
 
 interface SendForSummary {
-  selectedForSummary: SelectedArticle[],
   loadingSummaries: boolean,
   hideSelect: Function,
   showSelect: boolean,
   setHide: Function
 }
 
-export default function SelectArticles({ hideSelect, selectedForSummary, loadingSummaries, setHide }: SendForSummary) {
+export default function SelectArticles({ hideSelect, loadingSummaries, setHide }: SendForSummary) {
   const chosenArticles = useSelector((state: RootState) => state.getArticle.chosenArticles)
   const dispatch = useDispatch()
 

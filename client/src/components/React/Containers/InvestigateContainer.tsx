@@ -1,7 +1,6 @@
 import HeroContainer from "./HeroContainer";
 import StoryContainer from "./StoryContainer";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { SelectedArticle } from '../../../env'
 import { useFetch } from "@/Hooks/useFetch";
 import { AnimatePresence } from "framer-motion";
 import Notes from "../Investigate/Notes/Notes";
@@ -12,29 +11,24 @@ import { searching } from "@/ReduxToolKit/Reducers/UserPOV";
 import { getStories } from "@/ReduxToolKit/Reducers/Reading";
 
 export default function InvestigateContainer() {
+  const { fetchArticles, fetchSummaries, fetchedSummaries, loadingSummaries, readyToSelect, errorMessage } = useFetch()
   const query = useSelector((state: RootState) => state.pov.query)
   const takingNotes = useSelector((state: RootState) => state.notes.takingNotes)
   const submitted = useSelector((state: RootState) => state.pov.searching)
   const gettingContent = useSelector((state: RootState) => state.read.getContent)
   const results = useSelector((state: RootState) => state.search.articles)
   const chosenArticles = useSelector((state: RootState) => state.getArticle.chosenArticles)
-  //move selectedForSummary to redux store
-  const [selectedForSummary, setSelectedForSummary] = useState<SelectedArticle[]>([])
   const storyRef = useRef(null)
   const articlesToSummarize = encodeURIComponent(JSON.stringify(chosenArticles))
   const containerRef = useRef(null)
   const notesRef = useRef(null)
   const dispatch = useDispatch()
-  const { fetchArticles, fetchSummaries, fetchedSummaries, loadingSummaries, readyToSelect, errorMessage } = useFetch()
-
-
   const [notePosition, setNotePosition] = useState({ x: 0, y: 500 })
   const [windowWidth, setWindowWidth] = useState<number>(null)
   const [constraints, setConstraints] = useState(null)
   const [finished, setFinished] = useState<boolean>(false)
   const [gettingHelp, setGettingHelp] = useState<boolean>(false)
   const [hideHeroContainer, setHide] = useState<boolean>(false)
-
   const summaries: object[] = fetchedSummaries
 
   const resize = () => {
@@ -44,16 +38,9 @@ export default function InvestigateContainer() {
     }
   }
 
-  function scrollToView() {
-
-    storyRef.current.scrollIntoView({ behavior: "smooth", alignToTop: true })
-  }
-
   function handleDragConstraints() {
-
     const constraintsRect = containerRef.current.getBoundingClientRect();
     const notesRect = notesRef.current.getBoundingClientRect();
-
     setConstraints({
       top: 0,
       left: 0,
@@ -62,17 +49,20 @@ export default function InvestigateContainer() {
     })
   }
 
+  function scrollToView() {
+
+    storyRef.current.scrollIntoView({ behavior: "smooth", alignToTop: true })
+  }
+
   useEffect(() => {
     if (submitted) {
       fetchArticles(query)
       dispatch(searching(false))
-      setSelectedForSummary([])
     }
     if (gettingContent) {
       fetchSummaries(articlesToSummarize)
       scrollToView()
       dispatch(getStories(false))
-      setSelectedForSummary([])
     }
 
     if (containerRef.current && notesRef.current) {
@@ -92,8 +82,6 @@ export default function InvestigateContainer() {
 
     }, [])
   }
-
-  console.log(results)
 
   return (
     <section
@@ -115,8 +103,6 @@ export default function InvestigateContainer() {
         <StoryContainer
           summaries={summaries}
           readyToSelect={readyToSelect}
-          setSelectedForSummary={setSelectedForSummary}
-          selectedForSummary={selectedForSummary}
           loadingSummaries={loadingSummaries}
           fetchedSummaries={fetchedSummaries}
           gettingHelp={gettingHelp}

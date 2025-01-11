@@ -7,15 +7,12 @@ import Notes from "../Investigate/Notes/Notes";
 import LostConnection from "../ErrorMessages/LostConnection";
 import { RootState } from "@/ReduxToolKit/store";
 import { useDispatch, useSelector } from "react-redux";
-import { searching } from "@/ReduxToolKit/Reducers/UserPOV";
 import { getStories } from "@/ReduxToolKit/Reducers/Reading";
 
 
 export default function InvestigateContainer() {
-  const { fetchArticles, fetchSummaries, fetchedSummaries, loadingSummaries, readyToSelect, errorMessage } = useFetch()
-  const query = useSelector((state: RootState) => state.pov.query)
+  const { fetchSummaries, fetchedSummaries, loadingSummaries, readyToSelect, errorMessage } = useFetch()
   const takingNotes = useSelector((state: RootState) => state.notes.takingNotes)
-  const submitted = useSelector((state: RootState) => state.pov.searching)
   const gettingContent = useSelector((state: RootState) => state.read.getContent)
   const chosenArticles = useSelector((state: RootState) => state.getArticle.chosenArticles)
   const containerRef = useRef(null)
@@ -53,10 +50,7 @@ export default function InvestigateContainer() {
   }
 
   useEffect(() => {
-    if (submitted) {
-      fetchArticles(query)
-      dispatch(searching(false))
-    }
+
     if (gettingContent) {
       const articlesToSummarize = encodeURIComponent(JSON.stringify(chosenArticles))
       fetchSummaries(articlesToSummarize)
@@ -68,7 +62,7 @@ export default function InvestigateContainer() {
 
       handleDragConstraints()
     }
-  }, [submitted, gettingContent,])
+  }, [gettingContent])
 
   if (typeof window !== 'undefined') {
 

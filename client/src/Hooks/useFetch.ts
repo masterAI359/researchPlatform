@@ -1,8 +1,8 @@
-import { ArticleType } from "@/env";
 import { useState } from "react";
 import { loading } from "@/ReduxToolKit/Reducers/UserPOV";
 import { searchResults, resetResults } from "@/ReduxToolKit/Reducers/SearchResults";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/ReduxToolKit/store";
 import { AppDispatch } from "@/ReduxToolKit/store";
 
 
@@ -16,7 +16,7 @@ const options: OptionsTypes = {
 
 
 export const useFetch = () => {
-    const [fetchedArticles, setFetchedArticles] = useState<ArticleType[]>([])
+    const articles = useSelector((state: RootState) => state.search.articles)
     const [fetchedSummaries, setFetchedSummaries] = useState<object[]>([])
     const [loadingSummaries, setLoadingSummaries] = useState<boolean>(false)
     const [readyToSelect, setReadyToSelect] = useState<boolean>(false)
@@ -27,10 +27,10 @@ export const useFetch = () => {
 
     const fetchArticles = async (query: string) => {
         dispatch(loading(true))
+        console.log(articles)
         dispatch(resetResults())
-        setFetchedArticles([])
         setFetchedSummaries([])
-
+        console.log(query)
         try {
 
             const response = await fetch(`/search/articles?q=${query}`,
@@ -41,20 +41,20 @@ export const useFetch = () => {
                 throw new Error("There was a network response issue!")
             }
             const jsonResponse = await response.json()
-            setFetchedArticles(jsonResponse.data)
             dispatch(searchResults(jsonResponse.data))
+
 
         } catch (err) {
 
             console.log({ "Fetch Failed": err })
         } finally {
+            console.log(articles)
             setReadyToSelect(true)
             dispatch(loading(false))
         }
     };
 
     const fetchSummaries = async (articlesToSummarize: any) => {
-        setFetchedArticles([])
         dispatch(resetResults())
         setLoadingSummaries(true)
         setReadyToSelect(false)
@@ -76,7 +76,7 @@ export const useFetch = () => {
     }
 
 
-    return { fetchedArticles, fetchedSummaries, fetchArticles, fetchSummaries, loadingSummaries, readyToSelect, errorMessage }
+    return { fetchedSummaries, fetchArticles, fetchSummaries, loadingSummaries, readyToSelect, errorMessage }
 
 
 }

@@ -22,6 +22,8 @@ export const SearchResultsSlice = createSlice({
     },
 })
 
+console.log(initialState.articles)
+
 
 export const { searchResults, resetResults } = SearchResultsSlice.actions
 

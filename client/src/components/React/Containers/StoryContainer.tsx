@@ -20,7 +20,6 @@ export default function StoryContainer({ summaries, loadingSummaries,
     const chosenArticles = useSelector((state: RootState) => state.getArticle.chosenArticles)
 
 
-
     const yRef = useRef(null)
     const { scrollYProgress } = useScroll({
         target: yRef,
@@ -69,7 +68,7 @@ export default function StoryContainer({ summaries, loadingSummaries,
                             <ArticleLoader />
                         </motion.div>}
 
-                    {readyToSelect === true &&
+                    {articles !== null &&
                         <motion.div
                             key='presentArticles'
                             initial={{ opacity: 0 }}

@@ -1,33 +1,33 @@
 import Loader from "../../Loaders/Loader";
+import { useFetch } from "@/Hooks/useFetch";
 import { useDispatch, useSelector } from "react-redux";
 import { getQuery, searching } from "@/ReduxToolKit/Reducers/UserPOV";
-import { useState } from "react";
 import { AppDispatch, RootState } from "@/ReduxToolKit/store";
+import { useEffect } from "react";
 
-
+//TODO: move the fetch for summaries into this component as well
 
 export default function SearchBox({ }) {
-  const [input, setInput] = useState<string>(null)
+  const { fetchArticles, fetchSummaries } = useFetch()
+  const query = useSelector((state: RootState) => state.pov.query)
   const searched = useSelector((state: RootState) => state.pov.searching)
   const loading = useSelector((state: RootState) => state.pov.loading)
   const dispatch = useDispatch<AppDispatch>()
 
-
-  const handleQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value !== '') {
-      setInput(e.target.value)
-      dispatch(getQuery(input))
-    }
-
-  }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     dispatch(searching(true))
   }
 
-  console.log(searched)
+  useEffect(() => {
 
+    if (searched) {
+      fetchArticles(query)
+      dispatch(searching(false))
+    }
+
+  }, [searched])
 
   return (
     <div className="block box-border min-w-full max-w-full mx-auto xs:px-0 md:px-2 2xl:h-full no-scrollbar">
@@ -48,7 +48,6 @@ export default function SearchBox({ }) {
             <div
               className="relative mt-4 xs:p-1">
               <form
-                action="post"
                 onSubmit={handleSubmit}
               >
                 <input

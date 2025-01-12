@@ -9,7 +9,7 @@ import { getPerspective, getExpertise } from "@/ReduxToolKit/Reducers/UserPOV"
 import { useSelector, useDispatch } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 
-export default function Step2({ setOrigin, origin, setGettingHelp }: any) {
+export default function Step2({ }: any) {
   const [pov, setPov] = useState<string>(null)
   const [knowledge, setKnowledge] = useState<string>(null)
   const perspective = useSelector((state: RootState) => state.pov.perspective)
@@ -66,7 +66,7 @@ export default function Step2({ setOrigin, origin, setGettingHelp }: any) {
             What's your angle of approach?
           </h1>
           <div className="w-fit self-center">
-            <HelpButton info={Step2Help} setGettingHelp={setGettingHelp} />
+            <HelpButton info={Step2Help} />
 
           </div>
         </header>

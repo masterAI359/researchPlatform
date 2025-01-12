@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 
 export default function WindowContainer({ currentStep, setStartSearch, setCurrentStep, setCanProceed, notifyRequired, setNotifyRequired,
-    setGettingHelp, canProceed, gettingHelp }: any) {
+    canProceed, gettingHelp }: any) {
 
 
     return (
@@ -25,11 +25,9 @@ export default function WindowContainer({ currentStep, setStartSearch, setCurren
                         <HeroWindow
                             currentStep={currentStep}
                             setCurrentStep={setCurrentStep}
-                            setStartSearch={setStartSearch}
                             setCanProceed={setCanProceed}
                             notifyRequired={notifyRequired}
                             setNotifyRequired={setNotifyRequired}
-                            setGettingHelp={setGettingHelp}
                         />
                         <StepControl
                             currentStep={currentStep}

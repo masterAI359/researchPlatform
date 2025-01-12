@@ -10,7 +10,7 @@ import Slide4 from "./Slider/Slide4";
 import Slide5 from "./Slider/Slide5";
 
 
-export default function HeroWindow({ currentStep, setStartSearch, setCanProceed, notifyRequired, setNotifyRequired, setGettingHelp }: WindowProps) {
+export default function HeroWindow({ setCanProceed, notifyRequired, setNotifyRequired }: WindowProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const wizardRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState(null);
@@ -55,26 +55,20 @@ export default function HeroWindow({ currentStep, setStartSearch, setCanProceed,
           setNotifyRequired={setNotifyRequired}
           notifyRequired={notifyRequired}
           origin={origin}
-          setGettingHelp={setGettingHelp}
           setCanProceed={setCanProceed}
         />
         <Slide2
           containerWidth={containerWidth}
-          setGettingHelp={setGettingHelp}
           setOrigin={setOrigin}
         />
         <Slide3
-          setGettingHelp={setGettingHelp}
           containerWidth={containerWidth}
         />
         <Slide4
-          setGettingHelp={setGettingHelp}
           containerWidth={containerWidth}
         />
         <Slide5
           containerWidth={containerWidth}
-          setGettingHelp={setGettingHelp}
-          setStartSearch={setStartSearch}
         />
 
       </motion.div>

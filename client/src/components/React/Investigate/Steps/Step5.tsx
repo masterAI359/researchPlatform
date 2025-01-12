@@ -1,12 +1,13 @@
 import HelpButton from "../../Buttons/Question"
 import { Step5Help } from "@/helpInfo/help"
 import { motion } from "framer-motion"
+import { useDispatch } from "react-redux"
+import { startSearch } from "@/ReduxToolKit/Reducers/SearchResults"
 
 
 export default function Step5({
-    setGettingHelp,
-    setStartSearch
 }) {
+    const dispatch = useDispatch()
 
     return (
         <div className="block box-border min-w-full max-w-full mx-auto xs:px-0 md:px-2 2xl:h-full no-scrollbar">
@@ -21,7 +22,6 @@ export default function Step5({
                         <div className="w-fit h-full">
                             <HelpButton
                                 info={Step5Help}
-                                setGettingHelp={setGettingHelp}
                             />
                         </div>
                     </header>
@@ -41,7 +41,7 @@ export default function Step5({
                         <motion.button
                             whileHover={{ scale: 1.10 }}
                             transition={{ type: 'tween', duration: 0.2 }}
-                            onClick={() => setStartSearch(prev => !prev)}
+                            onClick={() => dispatch(startSearch(true))}
                             className="bg-white/10 rounded-full xs:p-2 xl:mt-8 xs:w-36 xs:h-12 xl:w-44 xl:h-14 mx-auto flex items-center text-center hover:bg-white/20 transition-opacity ease-in-out">
                             <div className="w-full h-full flex justify-between items-center xs:px-4">
                                 <div className="w-auto h-auto mx-auto">

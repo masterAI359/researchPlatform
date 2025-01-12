@@ -1,31 +1,22 @@
-import HeroContainer from "./HeroContainer";
-import StoryContainer from "./StoryContainer";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useFetch } from "@/Hooks/useFetch";
-import { AnimatePresence } from "framer-motion";
-import Notes from "../Investigate/Notes/Notes";
-import LostConnection from "../ErrorMessages/LostConnection";
+import { AnimatePresence, motion } from "framer-motion";
 import { RootState } from "@/ReduxToolKit/store";
 import { useSelector } from "react-redux";
+import HeroContainer from "./HeroContainer";
+import StoryContainer from "./StoryContainer";
+import Notes from "../Investigate/Notes/Notes";
+import LostConnection from "../ErrorMessages/LostConnection";
 
 export default function InvestigateContainer() {
-  const { fetchedSummaries, loadingSummaries, readyToSelect, errorMessage } = useFetch()
+  const { loadingSummaries, readyToSelect, errorMessage } = useFetch()
   const takingNotes = useSelector((state: RootState) => state.notes.takingNotes)
   const gettingContent = useSelector((state: RootState) => state.read.getContent)
+  const finished = useSelector((state: RootState) => state.finish.finished)
+  const [notePosition, setNotePosition] = useState({ x: 0, y: 500 })
+  const [constraints, setConstraints] = useState(null)
   const containerRef = useRef(null)
   const notesRef = useRef(null)
-  const [notePosition, setNotePosition] = useState({ x: 0, y: 500 })
-  const [windowWidth, setWindowWidth] = useState<number>(null)
-  const [constraints, setConstraints] = useState(null)
-  const [finished, setFinished] = useState<boolean>(false)
-  const [gettingHelp, setGettingHelp] = useState<boolean>(false)
-  const [hideHeroContainer, setHide] = useState<boolean>(false)
-
-  const resize = () => {
-    if (containerRef.current) {
-      setWindowWidth(containerRef.current.offsetWidth)
-    }
-  }
 
   function handleDragConstraints() {
     const constraintsRect = containerRef.current.getBoundingClientRect();
@@ -43,7 +34,6 @@ export default function InvestigateContainer() {
   }
 
   useEffect(() => {
-
     if (gettingContent) {
       scrollToView()
     }
@@ -51,15 +41,8 @@ export default function InvestigateContainer() {
 
       handleDragConstraints()
     }
-
   }, [gettingContent])
 
-  useLayoutEffect(() => {
-    if (containerRef.current) {
-      setWindowWidth(containerRef.current.offsetWidth)
-    }
-    window.addEventListener('resize', resize);
-  }, [])
 
   return (
     <section
@@ -69,23 +52,22 @@ export default function InvestigateContainer() {
       <AnimatePresence mode="wait">
         <HeroContainer
           key={'HeroContainer'}
-          gettingHelp={gettingHelp}
-          setGettingHelp={setGettingHelp}
-          finished={finished}
         />
         {errorMessage !== null && <LostConnection errorMessage={errorMessage} />}
       </AnimatePresence>
 
       <div className="w-full h-auto mx-auto xl:mt-6">
-        <StoryContainer
-          readyToSelect={readyToSelect}
-          loadingSummaries={loadingSummaries}
-          gettingHelp={gettingHelp}
-          setGettingHelp={setGettingHelp}
-          setFinished={setFinished}
-          finished={finished}
-          setHide={setHide}
-        />
+        {!finished &&
+          <motion.div
+            key="StoryContainer"
+
+          >
+            <StoryContainer
+              readyToSelect={readyToSelect}
+              loadingSummaries={loadingSummaries}
+            />
+          </motion.div>
+        }
       </div>
 
       <AnimatePresence>

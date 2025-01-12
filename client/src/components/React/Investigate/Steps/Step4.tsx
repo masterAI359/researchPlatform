@@ -33,7 +33,7 @@ export default function Step4({ setGettingHelp }: any) {
               </h1>
             </div>
             <div className="w-fit h-full justify-items-start xs:mb-2 opacity-100">
-              <HelpButton info={Step3Help} setGettingHelp={setGettingHelp} />
+              <HelpButton info={Step3Help} />
             </div>
           </div>
           <div className="block w-full xs:h-40 md:h-52 xl:h-80 text-md text-white bg-white/10 border-none focus:ring-1 focus:ring-white

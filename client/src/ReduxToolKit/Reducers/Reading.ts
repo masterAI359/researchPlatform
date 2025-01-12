@@ -5,7 +5,9 @@ interface ReadingState {
 
     loadingContent: boolean,
     getContent: boolean,
-    summaries: Array<any> | null
+    summaries: Array<any> | null,
+    currentStory: number,
+    reading: boolean
 
 }
 
@@ -14,7 +16,9 @@ const initialState: ReadingState = {
 
     loadingContent: false,
     getContent: false,
-    summaries: null
+    summaries: null,
+    currentStory: 0,
+    reading: false
 }
 
 
@@ -31,11 +35,20 @@ export const ReadingSlice = createSlice({
         articleData: (state, action) => {
             state.summaries = action.payload
         },
+        incrementStory: (state) => {
+            state.currentStory = state.currentStory += 1
+        },
+        decrementStory: (state) => {
+            state.currentStory -= 1
+        },
+        isReading: (state, action) => {
+            state.reading = action.payload
+        }
 
     }
 })
 
 
-export const { loadContent, getStories, articleData } = ReadingSlice.actions
+export const { loadContent, getStories, articleData, incrementStory, decrementStory, isReading } = ReadingSlice.actions
 
 export default ReadingSlice.reducer

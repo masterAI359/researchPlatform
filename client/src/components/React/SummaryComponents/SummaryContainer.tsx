@@ -1,17 +1,15 @@
 import { useEffect, useRef, useState } from "react"
 import { Summary } from "./SuccessFull/Summary"
-import { AnimatePresence, motion } from "framer-motion"
+import { motion } from "framer-motion"
 import FailedSummary from "./Failed/FailedSummary"
-import SummaryHeading from "./SuccessFull/SummaryHeading"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 
-export default function SummaryContainer({ gettingHelp, setGettingHelp, finished }) {
+export default function SummaryContainer({ }) {
   const stories = useSelector((state: RootState) => state.read.summaries)
   const [availableStories, setAvailableStories] = useState<object[]>([])
   const [failedNotifications, setFailedNotifications] = useState<object[]>([])
   const [showNotifications, setShowNotifications] = useState<boolean>(false)
-  const [currentStory, setCurrentStory] = useState<number>(0)
   const containerRef = useRef(null)
 
   const container = {
@@ -64,7 +62,7 @@ export default function SummaryContainer({ gettingHelp, setGettingHelp, finished
       exit="hidden"
     >
       <header>
-        <SummaryHeading setGettingHelp={setGettingHelp} gettingHelp={gettingHelp} currentStory={currentStory} setCurrentStory={setCurrentStory} />
+
       </header>
       <main
         ref={containerRef}
@@ -77,7 +75,6 @@ export default function SummaryContainer({ gettingHelp, setGettingHelp, finished
           {availableStories.map((summaryData: any, index: number) =>
             <Summary
               key={index}
-              currentStory={currentStory}
               index={index}
               summaryData={summaryData}
             />

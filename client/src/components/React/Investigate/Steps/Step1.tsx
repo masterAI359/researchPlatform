@@ -9,7 +9,7 @@ import { RootState } from "@/ReduxToolKit/store"
 // @ts-ignore
 
 
-export default function Step1({ origin, setOrigin, setCanProceed, notifyRequired, setNotifyRequired, setGettingHelp }: any) {
+export default function Step1({ origin, setOrigin, setCanProceed, notifyRequired, setNotifyRequired }: any) {
       const [isExpressed, setIsExpressed] = useState<string>('')
       const [accepted, setAccepted] = useState<boolean>(null)
       const idea = useSelector((state: RootState) => state.pov.idea)
@@ -62,7 +62,6 @@ export default function Step1({ origin, setOrigin, setCanProceed, notifyRequired
                               <div className="w-fit h-full justify-items-start translate-y-1">
                                     <HelpButton
                                           info={Step1Help}
-                                          setGettingHelp={setGettingHelp}
                                     />
                               </div>
                         </div>

@@ -8,7 +8,6 @@ export default function Slide1({
     notifyRequired,
     setOrigin,
     origin,
-    setGettingHelp
 }) {
 
     return (
@@ -22,7 +21,6 @@ export default function Slide1({
                 containerWidth={containerWidth}
                 origin={origin}
                 setOrigin={setOrigin}
-                setGettingHelp={setGettingHelp}
             />
         </div>
     )

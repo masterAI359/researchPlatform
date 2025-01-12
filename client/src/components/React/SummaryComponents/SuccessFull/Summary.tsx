@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/ReduxToolKit/store';
 import SummaryHeader from './SummaryHeader';
 import SummaryContent from './SummaryContent';
 
-export function Summary({ summaryData, index, currentStory }) {
+export function Summary({ summaryData, index }) {
     const [fullStory, setFullStory] = useState(true);
+    const currentStory = useSelector((state: RootState) => state.read.currentStory)
 
     const {
         summary,

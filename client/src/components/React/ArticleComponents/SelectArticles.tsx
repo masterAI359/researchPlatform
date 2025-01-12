@@ -10,10 +10,9 @@ interface SendForSummary {
   loadingSummaries: boolean,
   hideSelect: Function,
   showSelect: boolean,
-  setHide: Function
 }
 
-export default function SelectArticles({ hideSelect, loadingSummaries, setHide }: SendForSummary) {
+export default function SelectArticles({ hideSelect, loadingSummaries }: SendForSummary) {
   const chosenArticles = useSelector((state: RootState) => state.getArticle.chosenArticles)
   const dispatch = useDispatch()
 
@@ -25,7 +24,6 @@ export default function SelectArticles({ hideSelect, loadingSummaries, setHide }
 
     if (chosenArticles.length > 0) {
       dispatch(getStories(true))
-      setHide(true)
     } else {
       console.log("There's nothing to summarize yet")
     }

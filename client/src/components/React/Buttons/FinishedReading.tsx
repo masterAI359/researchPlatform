@@ -1,10 +1,16 @@
+import { useDispatch } from "react-redux";
+import { initiateFinalProcess } from "@/ReduxToolKit/Reducers/Finished";
+import { isReading } from "@/ReduxToolKit/Reducers/Reading";
 
-
-export function FinishedReading({ setFinished }) {
+export function FinishedReading({ }) {
+    const dispatch = useDispatch()
 
     return (
         <button
-            onClick={() => setFinished(true)}
+            onClick={() => {
+                dispatch(initiateFinalProcess(true))
+                dispatch(isReading(false))
+            }}
             className="my-auto mx-auto rounded-lg transition-all 
         duration-300 xs:max-w-8 xs:max-h-8 2xl:max-w-8 
         2xl:max-h-8 p-0.5 ease-in-out group relative">

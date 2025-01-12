@@ -2,11 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 import { ArticleType } from "@/env";
 
 interface ArticleArrayType {
-    articles: Array<ArticleType> | null
+    articles: Array<ArticleType> | null,
+    startSearch: boolean | null
 }
 
 const initialState: ArticleArrayType = {
-    articles: null
+    articles: null,
+    startSearch: null
 }
 
 
@@ -18,14 +20,19 @@ export const SearchResultsSlice = createSlice({
         searchResults: (state, action) => {
             state.articles = action.payload
         },
-        resetResults: () => initialState
+        resetResults: () => initialState,
+        startSearch: (state, action) => {
+            state.startSearch = action.payload
+        },
+
+
     },
 })
 
 console.log(initialState.articles)
 
 
-export const { searchResults, resetResults } = SearchResultsSlice.actions
+export const { searchResults, resetResults, startSearch } = SearchResultsSlice.actions
 
 export default SearchResultsSlice.reducer
 

@@ -8,15 +8,17 @@ import SummaryLoader from "../Loaders/SummaryLoader"
 import ControlPanel from "../Buttons/ButtonWrappers/ControlPanel"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
+import { loadContent } from "@/ReduxToolKit/Reducers/Reading"
 
 
-export default function StoryContainer({ loadingSummaries,
-    readyToSelect, finished, setFinished,
-    setGettingHelp, gettingHelp, setHide
+export default function StoryContainer({
+    loadingSummaries,
+    readyToSelect,
 }) {
     const [showSelect, setShowSelect] = useState<boolean>(false)
     const loading = useSelector((state: RootState) => state.pov.loading)
     const articles = useSelector((state: RootState) => state.search.articles)
+    const loadingContent = useSelector((state: RootState) => state.read.loadingContent)
     const chosenArticles = useSelector((state: RootState) => state.getArticle.chosenArticles)
     const stories = useSelector((state: RootState) => state.read.summaries)
 
@@ -81,7 +83,7 @@ export default function StoryContainer({ loadingSummaries,
                             />
                         </motion.div>}
 
-                    {loadingSummaries === true &&
+                    {loadingContent &&
                         <motion.div
                             key='loadingSummaries'
                             initial={{ opacity: 0 }}
@@ -91,7 +93,6 @@ export default function StoryContainer({ loadingSummaries,
                         >
                             <SummaryLoader />
                         </motion.div>
-
                     }
 
                     {stories &&
@@ -103,9 +104,6 @@ export default function StoryContainer({ loadingSummaries,
                             transition={{ duration: 1, delay: 1 }}
                         >
                             <SummaryContainer
-                                finished={finished}
-                                gettingHelp={gettingHelp}
-                                setGettingHelp={setGettingHelp}
                             />
                         </motion.div>}
                 </AnimatePresence>
@@ -118,7 +116,7 @@ export default function StoryContainer({ loadingSummaries,
                                 showSelect={showSelect}
                                 hideSelect={hideSelect}
                                 loadingSummaries={loadingSummaries}
-                                setHide={setHide} />
+                            />
                         </motion.div>
                     </div>
                 }
@@ -133,7 +131,7 @@ export default function StoryContainer({ loadingSummaries,
                     transition={{ type: 'tween', duration: 0.2 }}
                     className="w-full h-auto relative mx-auto"
                 >
-                    <ControlPanel setFinished={setFinished} />
+                    <ControlPanel />
                 </motion.div>}
             </AnimatePresence>
 

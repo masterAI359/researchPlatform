@@ -1,13 +1,17 @@
 import { AnimatePresence, motion } from "framer-motion"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { createPortal } from "react-dom"
+import { useDispatch } from "react-redux"
+import { getHelp } from "@/ReduxToolKit/Reducers/HelpModal"
 import { Help } from "@/env"
+import { getQuery } from "@/ReduxToolKit/Reducers/UserPOV"
 
-export default function HelpButton({ info, setGettingHelp }) {
+export default function HelpButton({ info }) {
     const [isOpen, setIsOpen] = useState<boolean>(false)
+    const dispatch = useDispatch()
 
     const handleExpand = () => {
-
+        dispatch(getHelp(true))
         setIsOpen(isOpen => !isOpen);
 
     }
@@ -28,7 +32,7 @@ export default function HelpButton({ info, setGettingHelp }) {
             <motion.div
                 onClick={() => {
                     setIsOpen(isOpen => !isOpen)
-                    setGettingHelp(true)
+                    dispatch(getHelp(true))
                 }}
                 className="cursor-pointer relative">
 
@@ -59,7 +63,7 @@ export default function HelpButton({ info, setGettingHelp }) {
                                             transition={{ type: 'tween', duration: 0.2 }}
                                             onClick={() => {
                                                 handleExpand();
-                                                { isOpen ? setGettingHelp(false) : null }
+                                                { isOpen ? dispatch(getHelp(false)) : null }
                                             }}
                                             className="w-fit h-fit cursor-pointer p-1 mr-4 rounded-lg 
                                             hover:bg-white/10 justify-self-center">

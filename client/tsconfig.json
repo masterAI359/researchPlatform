@@ -3,6 +3,11 @@
     "types": [
       "astro/client"
     ],
+    "plugins": [
+      {
+        "name": "@astrojs/ts-plugin"
+      }
+    ],
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "node",
@@ -21,5 +26,12 @@
     },
     "jsx": "react-jsx",
     "jsxImportSource": "react",
-  }
+  },
+  "include": [
+    "src/**/*",
+    "astro.config.mjs"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

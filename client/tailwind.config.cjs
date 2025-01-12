@@ -16,6 +16,18 @@ module.exports = {
         'xl': '1280px',  // Tailwind's default
         '2xl': '1536px', // Tailwind's default
       },
+      spacing: {
+        '18': '72px',
+        '22': '88px',
+        '76': '310px',
+        '168': '656px'
+      },
+      width: {
+
+      },
+      minWidth: {
+        '128': '32rem',
+      },
       typography: {
         DEFAULT: {
           css: {
@@ -130,6 +142,7 @@ module.exports = {
         },
       },
       boxShadow: {
+        "material": 'rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px',
         "blue-top": "0 -10px 20px -2px rgba(59, 130, 246, 0.5), 0 -6px 12px -4px rgba(59, 130, 246, 0.5)",
         "blue-bottom": "0 4px 6px -1px rgba(59, 130, 246, 0.5), 0 2px 4px -2px rgba(59, 130, 246, 0.5)",
         thick: "0px 7px 32px rgb(0 0 0 / 35%);",
@@ -140,6 +153,7 @@ module.exports = {
 
 
         button_gray: '#374151',
+        gray_map: '#323B49',
         pearl: "#EDEADE",
         button_blue: '#2563eb',
         black: "#0f1014",
@@ -182,16 +196,28 @@ module.exports = {
     function ({ addUtilities }) {
       const newUtilities = {
         '.no-scrollbar': {
-          /* Hide scrollbar for Chrome, Safari and Opera */
+          /* Hide scrollbar for Chrome, Safari, and Opera */
           '-webkit-overflow-scrolling': 'touch',
           '&::-webkit-scrollbar': {
             display: 'none',
           },
-          /* Hide scrollbar for IE, Edge and Firefox */
+          /* Hide scrollbar for IE, Edge, and Firefox */
           '-ms-overflow-style': 'none',
           'scrollbar-width': 'none',
         },
+        '.show-scrollbar': {
+          /* Re-enable scrollbar behavior */
+          '-webkit-overflow-scrolling': 'auto',
+          '&::-webkit-scrollbar': {
+            // You can also set width, color, etc. here if desired
+            display: 'initial',
+          },
+          /* Re-enable scrollbar for IE, Edge, and Firefox */
+          '-ms-overflow-style': 'auto',
+          'scrollbar-width': 'auto',
+        },
       }
+
       addUtilities(newUtilities, ['responsive'])
     }
   ],

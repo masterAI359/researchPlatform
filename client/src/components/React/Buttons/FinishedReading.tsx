@@ -1,15 +1,21 @@
+import { useDispatch } from "react-redux";
+import { initiateFinalProcess } from "@/ReduxToolKit/Reducers/Finished";
+import { isReading } from "@/ReduxToolKit/Reducers/Reading";
 
-
-export function FinishedReading({ setFinished }) {
+export function FinishedReading({ }) {
+    const dispatch = useDispatch()
 
     return (
         <button
-            onClick={() => setFinished(true)}
+            onClick={() => {
+                dispatch(initiateFinalProcess(true))
+                dispatch(isReading(false))
+            }}
             className="my-auto mx-auto rounded-lg transition-all 
         duration-300 xs:max-w-8 xs:max-h-8 2xl:max-w-8 
         2xl:max-h-8 p-0.5 ease-in-out group relative">
 
-            <div className="fixed rounded-md z-50 -translate-y-16 -translate-x-4 mx-auto border border-slate-500 xl:p-2 opacity-0 group-hover:opacity-100 bg-astro_black shadow-black">
+            <div className="fixed rounded-md z-50 -translate-y-16 -translate-x-4 mx-auto border border-slate-500 xl:p-2 opacity-0 group-hover:opacity-100 bg-astro_black shadow-black transition-opacity duration-300 ease-in-out">
                 <p className="text-white" >Click to Finish</p>
             </div>
 

@@ -39,7 +39,7 @@ text-white self-start w-full "
                 animate={{ scale: 1, opacity: currentStep == 3 ? 1 : 0 }}
                 transition={{ duration: 0.7 }}
             >
-                Perspective
+                Premises
             </motion.div>
 
         </li>

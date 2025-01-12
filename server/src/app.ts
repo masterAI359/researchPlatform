@@ -1,8 +1,12 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
-import fetch from 'node-fetch';
 import {
 	bingArticles,
 	bingGeneral,
@@ -32,6 +36,9 @@ app.use(function (req, res, next) {
 	);
 	next();
 });
+
+app.use(express.static(path.join(__dirname, 'dist')));
+console.log("Serving: " + path.join(__dirname, '../../../client/dist', 'index.html'))
 
 app.options('*', (req, res) => {
 	res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
@@ -65,9 +72,12 @@ client
 
 const port = 5001;
 
-app.get('/', (req: Request, res: Response) => {
-	res.send('Hello World');
-});
+//app.get('/', (req: Request, res: Response) => {
+//	res.send('Hello World');
+//});
+
+
+
 
 app.get('/api', async (req: Request, res: Response) => {
 	try {
@@ -80,13 +90,27 @@ app.get('/api', async (req: Request, res: Response) => {
 	}
 });
 
-//testing bing api search
 app.get('/search', bingGeneral);
 app.get('/search/articles', bingArticles);
 app.get('/summarize', tldrSummary);
 
-// app.get('/search/images', bingImages);
+// handling unkown routes, allowing client side routing on refresh with react-router-dom library
+app.get('*', (req: Request, res: Response) => {
+	try {
+		console.log("Serving: " + path.join(__dirname, 'dist', 'index.html'))
+		res.sendFile(path.join(__dirname, 'dist', 'index.html'))
+
+	} catch (err: any) {
+		if (err.code === 'ECONNRESET') {
+			console.error('Connection reset by client')
+			res.status(500).send('Lost Network Connection')
+		}
+	}
+
+})
+
 
 app.listen(port, () => {
+
 	return console.log(`Express is listening at http://localhost:${port}`);
 });

@@ -1,16 +1,22 @@
-import { Articles, SelectedArticles } from "@/env"
-import { useEffect, useState } from "react"
+import { ArticleType, SelectedArticle } from "@/env"
+import { useSelector, useDispatch } from "react-redux"
+import { RootState } from "@/ReduxToolKit/store"
+import { choose, discard, } from "@/ReduxToolKit/Reducers/ChosenArticles"
 
 interface ArticleProps {
-    article: Articles,
-    selectedForSummary: SelectedArticles[],
-    setSelectedForSummary: Function
+    article: ArticleType,
+    index: number
 }
 
-export default function Article({ article, selectedForSummary, setSelectedForSummary }: ArticleProps) {
+export default function Article({ article, index }: ArticleProps) {
+    const chosenArticles = useSelector((state: RootState) => state.getArticle.chosenArticles)
+    const dispatch = useDispatch()
+
     const { url, name, provider, image, description, datePublished, logo } = article;
-    const thumbnail = image.img
-    const isHilighted = selectedForSummary.some(item => item.url === article.url)
+    //const thumbnail = image.img
+    const isHilighted = chosenArticles.some(item => item.url === article.url)
+
+
 
     const forSummaryData = {
         url: article.url,
@@ -20,23 +26,58 @@ export default function Article({ article, selectedForSummary, setSelectedForSum
         title: article.name
     }
 
-    const chooseArticle = (article: Articles) => {
-        setSelectedForSummary((prevSelectedForSummary: SelectedArticles[]) => {
+    const limitDescription = (string: string) => {
 
-            const isAlreadySelected = prevSelectedForSummary.some(selected => selected.url === article.url);
+        if (string.length >= 111) {
+            let newArr = string.split('')
 
-            if (isAlreadySelected) {
-                return prevSelectedForSummary.filter(item => item.url !== article.url);
+            let count = 0
 
-            } else {
-                if (prevSelectedForSummary.length < 3) {
-                    return [...prevSelectedForSummary, forSummaryData];
+            let stringArr = []
 
-                } else {
-                    return prevSelectedForSummary;
+            for (let i = 0; i < newArr.length; i++) {
+
+                count++
+                stringArr.push(newArr[i])
+
+                if (count >= 110) {
+                    break
                 }
             }
-        });
+
+            const newString = stringArr.join('')
+
+            const presentation = newString + '...'
+
+            return presentation
+        } else {
+
+        }
+    }
+
+    const mobileDescription = limitDescription(description)
+
+
+    const fallbackImage = '/images/logos/fallback.jpg'
+    const resizedImage = article.image.img ? article.image.img + '&w=300&p=0&c=7' : fallbackImage
+
+
+
+    const chooseArticle = (article: ArticleType) => {
+
+
+        const exists = chosenArticles.some((chosen => chosen.url === article.url))
+
+        if (!exists && chosenArticles.length <= 2) {
+            dispatch(choose(forSummaryData))
+
+        } else if (exists) {
+            const locatedAt = chosenArticles.findIndex((chosen => chosen.url === article.url))
+            dispatch(discard(locatedAt))
+        }
+
+
+
     }
 
 
@@ -45,14 +86,14 @@ export default function Article({ article, selectedForSummary, setSelectedForSum
             onClick={() => { chooseArticle(article) }}
             key={name}
             className={`group cursor-pointer lg:min-h-96 lg:max-h-96 lg:min-w-96 xs:max-h-60 xs:min-h-60 xs:max-w-60 pb-6 relative mx-auto rounded-3xl text-white 
-            lg:opacity-90 lg:hover:opacity-100 bg-ebony 2xl:hover:scale-110 transition-all ease-in-out duration-300 overflow-y-hidden
+            lg:opacity-90 md:hover:opacity-100 bg-ebony md:hover:scale-110 transition-all ease-in-out duration-300 overflow-y-hidden
             
-            ${isHilighted ? "border-2 border-blue-400" : "shadow"}`}
+            ${isHilighted ? "border-2 border-blue-500 shadow-black" : "shadow"}`}
         >
             <figcaption className='relative w-full lg:max-h-40 lg:min-h-40 xs:min-h-24 xs:max-h-24  overflow-hidden'>
                 <div
-                    style={{ backgroundImage: `url(${thumbnail})` }}
-                    className='absolute inset-0 bg-cover bg-center opacity-60 rounded-t-3xl'
+                    style={{ backgroundImage: `url(${resizedImage})` }}
+                    className='absolute inset-0 w-full h-full bg-cover bg-center opacity-60 rounded-t-3xl'
                 ></div>
                 <div className='relative z-10 p-4'>
 
@@ -63,30 +104,50 @@ export default function Article({ article, selectedForSummary, setSelectedForSum
                     </div>
                 </div>
             </figcaption>
-            <figure className="relative w-full h-auto box-border pt-2">
-                <div className="flex gap-3 items-center relative bottom-0 left-0 px-4">
-                    <img
-                        className="mr-3 lg:h-8 lg:w-8 xs:h-6 xs:w-6"
-                        src={logo}
-                        alt=""
-                    />
-                    <span className='text-sm xs:text-xs lg:text-lg font-serif text-white'>
+            <figure className="relative w-full mx-auto h-auto box-border pt-2">
+                <div className="flex gap-4 items-center relative px-4">
+                    <div>
+                        <img
+                            className="lg:h-8 lg:w-8 xs:h-6 xs:w-6"
+                            src={logo}
+                            alt=""
+                        />
+                    </div>
+
+                    <div className='h-full text-sm xs:text-xs lg:text-lg font-serif text-white'>
                         {provider}
-                    </span>
+                    </div>
                 </div>
                 <div className={`h-full group mt-2 pt-2 ${isHilighted ? 'opacity-100' : ''}`}>
                     <blockquote className='relative px-4'>
-                        <p className='lg:text-base xs:text-xs transition-colors duration-100 font-serif font-light'>
-                            "{description}"
+                        <p className='lg:text-base xs:text-xs transition-colors duration-100 font-serif font-light xs:hidden md:block'>
+                            {description}
+                        </p>
+                        <p className='lg:text-base xs:text-xs transition-colors duration-100 font-serif font-light xs:block md:hidden'>
+                            {mobileDescription}
                         </p>
                     </blockquote>
                 </div>
             </figure>
         </li>
-
-
     );
 }
 
 
 
+//setSelectedForSummary((prevSelectedForSummary: SelectedArticle[]) => {
+//
+//    const isAlreadySelected = prevSelectedForSummary.some(selected => selected.url === article.url);
+//
+//    if (isAlreadySelected) {
+//        return prevSelectedForSummary.filter(item => item.url !== article.url);
+//
+//    } else {
+//        if (prevSelectedForSummary.length < 3) {
+//            return [...prevSelectedForSummary, forSummaryData];
+//
+//        } else {
+//            return prevSelectedForSummary;
+//        }
+//    }
+//});

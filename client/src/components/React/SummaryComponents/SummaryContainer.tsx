@@ -1,15 +1,16 @@
-import { useEffect, useState } from "react"
-import { createPortal } from "react-dom"
-import { Summary } from "./Summary"
+import { useEffect, useRef, useState } from "react"
+import { Summary } from "./SuccessFull/Summary"
 import { motion } from "framer-motion"
-import FailedSummary from "./FailedSummary"
-import SummaryHeading from "./SummaryHeading"
-import { element } from "prop-types"
+import FailedSummary from "./Failed/FailedSummary"
+import { useSelector } from "react-redux"
+import { RootState } from "@/ReduxToolKit/store"
 
-export default function SummaryContainer({ summaries, articles, selectedForSummary, gettingHelp, setGettingHelp }) {
-  const [selectedStory, setSelectedStory] = useState<number>(null)
+export default function SummaryContainer({ }) {
+  const stories = useSelector((state: RootState) => state.read.summaries)
+  const [availableStories, setAvailableStories] = useState<object[]>([])
   const [failedNotifications, setFailedNotifications] = useState<object[]>([])
   const [showNotifications, setShowNotifications] = useState<boolean>(false)
+  const containerRef = useRef(null)
 
   const container = {
 
@@ -25,15 +26,6 @@ export default function SummaryContainer({ summaries, articles, selectedForSumma
     }
   }
 
-  const handleClick = (index: number) => {
-    if (index !== selectedStory) {
-      setSelectedStory(index)
-    } else if (index === selectedStory) {
-      setSelectedStory(null)
-    }
-  }
-
-
   const failedData = (data: any) => {
     const hasFailed = data.map((element: any) => {
       if (Object.hasOwn(element, 'failed')) {
@@ -41,7 +33,7 @@ export default function SummaryContainer({ summaries, articles, selectedForSumma
         return (failedNotifications.push(element))
 
       } else {
-        return null
+        return (availableStories.push(element))
       }
     })
 
@@ -54,39 +46,45 @@ export default function SummaryContainer({ summaries, articles, selectedForSumma
 
   useEffect(() => {
 
-    failedData(summaries)
+    failedData(stories)
 
 
-  }, [summaries])
+  }, [stories])
+
 
 
   return (
     <motion.div
-      className="h-full 2xl:max-w-7xl px-8 py-12 shadow-black inset rounded-4xl mx-auto border-white/10 mt-20"
+      className="h-full 2xl:max-w-7xl xs:px-2 md:px-8 shadow-black inset rounded-4xl mx-auto border-white/10 xs:mt-10 xl:mt-12"
       variants={container}
       initial="hidden"
       animate="show"
       exit="hidden"
     >
-      <SummaryHeading setGettingHelp={setGettingHelp} gettingHelp={gettingHelp} />
-      <div
-        className="2xl:max-w-7xl h-auto w-full mx-auto  
-                 transition-all duration-1000 animate-fade-in mb-12">
-        <ul className="w-full flex flex-wrap gap-y-8 h-auto">
-          {summaries.map((summaryData: any, index: number) =>
+      <header>
+
+      </header>
+      <main
+        ref={containerRef}
+        className="2xl:max-w-6xl h-auto w-full mx-auto 
+                 transition-all duration-1000 animate-fade-in mb-12 
+                 overflow-x-hidden overflow-y-hidden">
+        <motion.div
+          transition={{ type: 'tween', duration: 0.2 }}
+          className="w-full flex h-auto items-center">
+          {availableStories.map((summaryData: any, index: number) =>
             <Summary
               key={index}
               index={index}
               summaryData={summaryData}
-              handleClick={handleClick}
-              isSelected={selectedStory === index}
             />
           )}
-        </ul>
-      </div>
+        </motion.div>
+      </main>
       {showNotifications &&
         <FailedSummary
           failedNotifications={failedNotifications}
+          setFailedNotifications={setFailedNotifications}
         />
       }
     </motion.div>
@@ -94,6 +92,3 @@ export default function SummaryContainer({ summaries, articles, selectedForSumma
 
   )
 }
-
-
-

@@ -1,37 +1,69 @@
-import InvestigateHero from "../PromptChallenge/InvestigateHero"
-import ScrollDown from "../ArticleComponents/ScrollDown"
-import { motion, AnimatePresence } from "framer-motion"
+import InvestigateHero from "../HeroComponents/InvestigateHero"
+import SearchHero from "../HeroComponents/SearchHero"
+import SummaryHero from "../SummaryComponents/SuccessFull/SummaryHero"
+import FinishLine from "../Investigate/Finished/FinishLine"
+import { AnimatePresence, motion } from "framer-motion"
+import { useSelector } from "react-redux"
+import { RootState } from "@/ReduxToolKit/store"
 
-export default function HeroContainer({ query, setQuery, isLoading, setIsSubmitted, articles, selectedForSummary, loadingSummaries, summaries, gettingHelp, setGettingHelp }) {
+
+export default function HeroContainer({
+}) {
+    const reading = useSelector((state: RootState) => state.read.reading)
+    const startSearch = useSelector((state: RootState) => state.search.startSearch)
+    const initiateEnd = useSelector((state: RootState) => state.finish.finished)
+
+    console.log(startSearch)
 
     return (
-        <AnimatePresence>
-            {summaries.length < 1 && <div className="grid grid-cols-1 w-full h-auto mx-auto items-center">
+        <AnimatePresence mode="wait">
+
+            {startSearch === null && (<motion.div
+                key='Investigate'
+                initial={{ opacity: 1 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ type: 'tween', duration: 0.2 }}
+                className={`grid grid-cols-1 w-full h-auto mx-auto items-center`}>
                 <InvestigateHero
-                    query={query}
-                    setQuery={setQuery}
-                    isLoading={isLoading}
-                    setIsSubmitted={setIsSubmitted}
-                    gettingHelp={gettingHelp}
-                    setGettingHelp={setGettingHelp}
-                    summaries={summaries}
                 />
-                <AnimatePresence>
-                    {/*     {articles.length > 0 &&
-                        <motion.div
-                            key='scrollDown'
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                        >
-                            <ScrollDown
-                                selectedForSummary={selectedForSummary}
-                                articles={articles}
-                                loadingSummaries={loadingSummaries}
-                                summaries={summaries} />
-                        </motion.div>} */}
-                </AnimatePresence>
-            </div>}
+
+            </motion.div>)}
+
+            {startSearch ?
+                (<motion.div
+                    key='Search'
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0, scale: 0 }}
+                    transition={{ type: 'tween', duration: 0.5, ease: 'easeInOut' }}
+                >
+                    <SearchHero
+                    />
+                </motion.div>) : null}
+
+            {reading &&
+                <motion.div
+                    key='Search'
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0, scale: 0 }}
+                    transition={{ type: 'tween', duration: 0.5, ease: 'easeInOut' }}
+                >
+                    <SummaryHero />
+                </motion.div>
+            }
+
+            {initiateEnd && <motion.div
+                key='Finished'
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0, scale: 0 }}
+                transition={{ type: 'tween', duration: 0.5, ease: 'easeInOut' }}
+            >
+                <FinishLine />
+            </motion.div>}
+
         </AnimatePresence>
 
     )

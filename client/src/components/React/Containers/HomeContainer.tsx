@@ -1,8 +1,8 @@
-import Navigation from '@/components/Astro/global/Navigation';
 import HeroImage from '@/components/React/HomeComponents/HeroImage';
 import ArticlesResult from '@/components/React/HomeComponents/ArticlesResult';
 import Challenge from '../HomeComponents/Challenge';
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
+
 
 
 export default function HomeContainer({ }) {
@@ -32,10 +32,10 @@ export default function HomeContainer({ }) {
 
     return (
         <section ref={windowRef} className='flex h-auto flex-col w-full grow'>
-            <Navigation width={windowWidth} />
             <HeroImage />
             <Challenge />
             <ArticlesResult />
+
         </section>
     )
 }

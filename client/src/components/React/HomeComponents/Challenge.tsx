@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom"
 
 export default function Challenge() {
 
@@ -21,9 +21,12 @@ export default function Challenge() {
                             establishing what you believe and why
                         </p>
                         <div className="inline-flex flex-wrap items-center mt-8">
-                            <a href="/Investigate" title="link to your page" aria-label="your label" className="text-sm py-2 px-4 border focus:ring-2 rounded-full border-transparent bg-white hover:bg-white/10 text-black duration-200 focus:ring-offset-2 focus:ring-white hover:text-white inline-flex items-center justify-center ring-1 ring-transparent">
-                                Get started &nbsp; →
-                            </a>
+                            <div className="text-sm py-2 px-4 border focus:ring-2 rounded-full border-transparent 
+                            bg-white hover:bg-white/10 text-black duration-200 focus:ring-offset-2 focus:ring-white 
+                            hover:text-white inline-flex items-center justify-center ring-1 ring-transparent cursor-pointer">
+                                <Link to='/Investigate'> Get started &nbsp; →</Link>
+
+                            </div>
                         </div>
                     </div>
                     <img className="mt-12 lg:mt-0" src="/images/assets/circuitry.svg" alt="#" />

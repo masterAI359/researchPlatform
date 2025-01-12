@@ -1,38 +1,26 @@
-import { HTMLAttributes, useState, useRef } from "react"
-import { useMotionValueEvent, motion, useScroll, AnimatePresence, transform, animate } from "framer-motion"
+import { useState, useRef } from "react"
+import { useMotionValueEvent, motion, useScroll, AnimatePresence } from "framer-motion"
 import SelectArticles from "../ArticleComponents/SelectArticles"
-import { SelectedArticles } from "@/env"
 import SummaryContainer from "../SummaryComponents/SummaryContainer"
 import ArticlesGrid from "../ArticleComponents/ArticlesGrid"
 import ArticleLoader from "../Loaders/ArticleLoader"
 import SummaryLoader from "../Loaders/SummaryLoader"
 import ControlPanel from "../Buttons/ButtonWrappers/ControlPanel"
-
-import TakeNotes from "../Buttons/TakeNotes"
-
-interface Props extends HTMLAttributes<HTMLDivElement> {
-    children: React.ReactNode
-    selectedForSummary: SelectedArticles[],
-    readyToSelect: boolean,
-    submittedForSummaries: boolean,
-    setSubmittedForSummaries: Function,
-    loadingSummaries: boolean
-}
-
-const variants = {
-    hidden: { opacity: 0, y: 100 },
-    visible: { opacity: 1, y: 0 }
-}
+import { useSelector } from "react-redux"
+import { RootState } from "@/ReduxToolKit/store"
+import { loadContent } from "@/ReduxToolKit/Reducers/Reading"
 
 
-
-
-export default function StoryContainer({ selectedForSummary, setSelectedForSummary, articles, summaries, isLoading, loadingSummaries,
-    readyToSelect, fetchedSummaries, submittedForSummaries, setSubmittedForSummaries, fetchedArticles, setTakingNotes, finished, setFinished,
-    setGettingHelp, gettingHelp
+export default function StoryContainer({
+    loadingSummaries,
+    readyToSelect,
 }) {
     const [showSelect, setShowSelect] = useState<boolean>(false)
-
+    const loading = useSelector((state: RootState) => state.pov.loading)
+    const articles = useSelector((state: RootState) => state.search.articles)
+    const loadingContent = useSelector((state: RootState) => state.read.loadingContent)
+    const chosenArticles = useSelector((state: RootState) => state.getArticle.chosenArticles)
+    const stories = useSelector((state: RootState) => state.read.summaries)
 
 
     const yRef = useRef(null)
@@ -43,7 +31,7 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
 
     function hideSelect() {
 
-        if (selectedForSummary.length > 0) {
+        if (chosenArticles.length > 0) {
             setShowSelect(showSelect => !showSelect)
 
         } else {
@@ -53,7 +41,7 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
 
     useMotionValueEvent(scrollYProgress, "change", (latest) => {
 
-        if (latest > 0.15 && !showSelect && readyToSelect === true) {
+        if (latest > 0 && !showSelect && readyToSelect === true) {
             setShowSelect(true);
         } else if (latest === 0 && showSelect) {
             setShowSelect(false);
@@ -61,14 +49,18 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
     });
 
     return (
-        <div
+        <motion.div
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ type: 'tween', duration: 0.2 }}
             ref={yRef}
-            className="relative w-full h-auto mx-auto">
+            className="relative w-full h-auto mx-auto xl:mt-16 xs:px-2">
             <div
                 className="relative w-full h-auto box-border mx-auto">
 
                 <AnimatePresence >
-                    {isLoading === true &&
+                    {loading === true &&
                         <motion.div
                             key='loadingArticles'
                             initial={{ opacity: 0 }}
@@ -76,13 +68,10 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
                             exit={{ opacity: 0 }}
                             transition={{ type: "tween", duration: 0.5 }}
                         >
-                            <ArticleLoader
-
-                                isLoading={isLoading}
-                                summaries={summaries} />
+                            <ArticleLoader />
                         </motion.div>}
 
-                    {readyToSelect === true &&
+                    {articles !== null &&
                         <motion.div
                             key='presentArticles'
                             initial={{ opacity: 0 }}
@@ -91,13 +80,10 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
                             transition={{ duration: 0.3 }}
                         >
                             <ArticlesGrid
-                                summaries={summaries}
-                                articles={articles}
-                                selectedForSummary={selectedForSummary}
-                                setSelectedForSummary={setSelectedForSummary} />
+                            />
                         </motion.div>}
 
-                    {loadingSummaries === true &&
+                    {loadingContent &&
                         <motion.div
                             key='loadingSummaries'
                             initial={{ opacity: 0 }}
@@ -109,7 +95,7 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
                         </motion.div>
                     }
 
-                    {fetchedSummaries.length > 0 &&
+                    {stories &&
                         <motion.div
                             key='presentSummaries'
                             initial={{ opacity: 0 }}
@@ -118,25 +104,19 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
                             transition={{ duration: 1, delay: 1 }}
                         >
                             <SummaryContainer
-                                gettingHelp={gettingHelp}
-                                setGettingHelp={setGettingHelp}
-                                summaries={summaries}
-                                articles={articles}
-                                selectedForSummary={selectedForSummary} />
+                            />
                         </motion.div>}
                 </AnimatePresence>
             </div>
             <AnimatePresence>
-                {articles.length > 0 &&
+                {articles &&
                     <div className="relative w-full h-auto flex justify-start">
                         <motion.div>
                             <SelectArticles
                                 showSelect={showSelect}
                                 hideSelect={hideSelect}
-                                selectedForSummary={selectedForSummary}
-                                submittedForSummaries={submittedForSummaries}
-                                setSubmittedForSummaries={setSubmittedForSummaries}
-                                loadingSummaries={loadingSummaries} />
+                                loadingSummaries={loadingSummaries}
+                            />
                         </motion.div>
                     </div>
                 }
@@ -144,18 +124,18 @@ export default function StoryContainer({ selectedForSummary, setSelectedForSumma
             </AnimatePresence>
 
             <AnimatePresence>
-                {summaries.length >= 1 && <motion.div
+                {stories && <motion.div
                     initial={{ opacity: 0, scale: 0 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0 }}
                     transition={{ type: 'tween', duration: 0.2 }}
                     className="w-full h-auto relative mx-auto"
                 >
-                    <ControlPanel setTakingNotes={setTakingNotes} setFinished={setFinished} />
+                    <ControlPanel />
                 </motion.div>}
             </AnimatePresence>
 
 
-        </div>
+        </motion.div>
     )
 }

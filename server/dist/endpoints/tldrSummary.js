@@ -11,8 +11,6 @@ import * as dotenv from 'dotenv';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
 import decodeItem from '../helpers/decodeItem.js';
-//TODO: Implelemnt some progress values when fetching summary data, we must display
-//to the user how long they'll be waiting or it feels even more drawn out while nothing happens 
 const envUrl = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(envUrl);
 const envPath = path.resolve(__dirname, '../../../.env');
@@ -21,19 +19,17 @@ const TLDRKey = process.env.TLDR_KEY;
 export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const received = req.query.q;
     const query = JSON.parse(decodeURIComponent(received));
-    const numArticles = query.length;
     const url = 'https://tldrthis.p.rapidapi.com/v1/model/abstractive/summarize-url/';
     function delay(t) {
         return new Promise(resolve => setTimeout(resolve, t));
     }
-    //TODO: figure out how to implement the delay, taking each concurrent request, and multiplying their index by the chosen amount in milliseconds to stagger requests
     if (!Array.isArray(query) || query.length === 0) {
         return res.status(400).send('Invalid query parameter. Please provide a list of URLs.');
     }
     try {
         const dataMap = query.map((article, index) => __awaiter(void 0, void 0, void 0, function* () {
-            // console.log({ "fetching data for: ": article.url });
-            yield delay(index * 1000);
+            console.log({ "fetching data for: ": article.url });
+            yield delay(index * 2000);
             try {
                 const response = yield fetch(url, {
                     method: 'POST',
@@ -54,6 +50,9 @@ export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, funct
                     throw new Error(`Failed to fetch summary for ${article.url}: ${response.status} ${response.statusText}`);
                 }
                 const data = yield response.json();
+                if (data.article_image === 'undefined') {
+                    console.log(data.article_image);
+                }
                 data.logo = article.logo;
                 data.source = article.source;
                 data.date = article.date;

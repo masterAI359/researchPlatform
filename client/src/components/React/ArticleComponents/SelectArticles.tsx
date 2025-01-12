@@ -1,26 +1,29 @@
-import { useEffect, useState } from "react"
 import SelectLoader from "../Loaders/SelectLoader"
-import { SelectedArticles } from "@/env"
+import { SelectedArticle } from "@/env"
 import { AnimatePresence, motion } from "framer-motion"
+import { useDispatch, useSelector } from "react-redux"
+import { RootState } from "@/ReduxToolKit/store"
+import { getStories } from "@/ReduxToolKit/Reducers/Reading"
+
 
 interface SendForSummary {
-  selectedForSummary: SelectedArticles[],
-  submittedForSummaries: boolean,
-  setSubmittedForSummaries: Function,
   loadingSummaries: boolean,
   hideSelect: Function,
-  showSelect: boolean
+  showSelect: boolean,
 }
 
-export default function SelectArticles({ hideSelect, selectedForSummary, submittedForSummaries, setSubmittedForSummaries, loadingSummaries, showSelect }: SendForSummary) {
-  const selectedTotal = selectedForSummary.length
+export default function SelectArticles({ hideSelect, loadingSummaries }: SendForSummary) {
+  const chosenArticles = useSelector((state: RootState) => state.getArticle.chosenArticles)
+  const dispatch = useDispatch()
+
+  const selectedTotal = chosenArticles.length
   const selectedArticles = `Summarize Articles ${selectedTotal}/3`
   const waiting = "Loading Stories..."
 
   const handleSummaries = () => {
 
-    if (selectedForSummary.length > 0) {
-      setSubmittedForSummaries(!submittedForSummaries)
+    if (chosenArticles.length > 0) {
+      dispatch(getStories(true))
     } else {
       console.log("There's nothing to summarize yet")
     }
@@ -38,7 +41,7 @@ export default function SelectArticles({ hideSelect, selectedForSummary, submitt
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 140 }}
           transition={{ type: "spring", bounce: 0.45, duration: 0.6 }}
-          className="bg-black fixed xl:left-24 xl:bottom-12 xs:bottom-0 xs:left-0 xs:right-0 xs:w-52 border border-gray_border shadow-black 
+          className="bg-black fixed xl:left-60 xl:bottom-12 xs:bottom-0 xs:w-52 border border-gray_border shadow-black 
       text-white font-light tracking-tight lg:w-fit flex gap-x-2 py-2 px-2 rounded-full cursor-pointer
        mx-auto z-50 justify-between content-center group">
           <div className="h-full my-auto">

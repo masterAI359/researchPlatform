@@ -77,6 +77,7 @@ export const bingArticles = async (req: Request, res: Response) => {
 			const stringDate = new Date(value.datePublished).toString()
 			const formattedDate = stringDate.split(' ').splice(0, 4).join(' ')
 
+
 			return {
 				name: value.name,
 				url: value.url,

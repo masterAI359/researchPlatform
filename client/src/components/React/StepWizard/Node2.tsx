@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 
 export default function ({ setCurrentStep, currentStep }) {
 
-    console.log(currentStep)
 
     return (
         <li className="flex flex-col md:w-full xs:w-full xs:h-20 lg:h-28 items-center">

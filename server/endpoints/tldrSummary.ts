@@ -3,11 +3,6 @@ import * as dotenv from 'dotenv'
 import * as path from 'path'
 import { fileURLToPath } from 'url';
 import decodeItem from '../helpers/decodeItem.js'
-import { logoMap } from './logoMap.js'
-import { hostname } from 'os'
-
-//TODO: Implelemnt some progress values when fetching summary data, we must display
-//to the user how long they'll be waiting or it feels even more drawn out while nothing happens 
 
 
 const envUrl = fileURLToPath(import.meta.url)
@@ -17,6 +12,7 @@ const envPath = path.resolve(__dirname, '../../../.env');
 dotenv.config({ path: envPath })
 
 const TLDRKey = process.env.TLDR_KEY as string
+
 
 interface QueryType {
     url: string,
@@ -31,8 +27,6 @@ export const tldrSummary = async (req: Request, res: Response) => {
     const received = req.query.q as string;
     const query: QueryType[] = JSON.parse(decodeURIComponent(received));
 
-    const numArticles = query.length;
-
     const url =
         'https://tldrthis.p.rapidapi.com/v1/model/abstractive/summarize-url/';
 
@@ -41,9 +35,6 @@ export const tldrSummary = async (req: Request, res: Response) => {
         return new Promise(resolve => setTimeout(resolve, t));
     }
 
-    //TODO: figure out how to implement the delay, taking each concurrent request, and multiplying their index by the chosen amount in milliseconds to stagger requests
-
-
     if (!Array.isArray(query) || query.length === 0) {
         return res.status(400).send('Invalid query parameter. Please provide a list of URLs.');
     }
@@ -51,9 +42,9 @@ export const tldrSummary = async (req: Request, res: Response) => {
     try {
         const dataMap = query.map(async (article, index) => {
 
-            // console.log({ "fetching data for: ": article.url });
+            console.log({ "fetching data for: ": article.url });
 
-            await delay(index * 1000);
+            await delay(index * 2000);
 
             try {
                 const response = await fetch(url, {
@@ -77,6 +68,11 @@ export const tldrSummary = async (req: Request, res: Response) => {
                 }
 
                 const data = await response.json();
+
+                if (data.article_image === 'undefined') {
+                    console.log(data.article_image)
+                }
+
                 data.logo = article.logo;
                 data.source = article.source;
                 data.date = article.date;
@@ -98,7 +94,7 @@ export const tldrSummary = async (req: Request, res: Response) => {
         });
 
         const results = await Promise.allSettled(dataMap);
-        const returnValues = results.map((result: any) => { //this is returning null | Why?
+        const returnValues = results.map((result: any) => {
 
             const resultData = result.value ? result.value : result.reason
 

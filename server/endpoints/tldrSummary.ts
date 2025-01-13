@@ -22,8 +22,12 @@ interface QueryType {
     title: string
 }
 
+const failure: any = []
 
 export const tldrSummary = async (req: Request, res: Response) => {
+
+
+
     const received = req.query.q as string;
     const query: QueryType[] = JSON.parse(decodeURIComponent(received));
 
@@ -77,11 +81,11 @@ export const tldrSummary = async (req: Request, res: Response) => {
                 data.source = article.source;
                 data.date = article.date;
                 const decodedData = decodeItem(data)
-                return decodedData;
+                return decodedData
             } catch (error: any) {
                 console.error(`Error processing article ${article.url}:`, error);
                 // Return an object with the original article data plus the error message
-                return {
+                const failedAttempt = {
                     failed: true,
                     title: article.title,
                     summary: [{ denied: 'We were denied access to the article from', failedArticle: `${article.source} - ${article.title}` }],
@@ -89,18 +93,29 @@ export const tldrSummary = async (req: Request, res: Response) => {
                     source: article.source,
                     date: article.date,
                     article_url: article.url,
-                };
+                }
+                failure.push(failedAttempt)
+
             }
         });
 
         const results = await Promise.allSettled(dataMap);
+
+
         const returnValues = results.map((result: any) => {
+
+            console.log(result.status)
 
             const resultData = result.value ? result.value : result.reason
 
             return resultData
         })
-        res.json(returnValues);
+
+        console.log(returnValues)
+
+        const resultsObject = { retrieved: returnValues, rejected: failure }
+
+        res.json(resultsObject);
 
     } catch (error) {
         console.error("Error in tldrSummary:", error);

@@ -8,26 +8,20 @@ import SummaryLoader from "../Loaders/SummaryLoader"
 import ControlPanel from "../Buttons/ButtonWrappers/ControlPanel"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-import { loadContent } from "@/ReduxToolKit/Reducers/Reading"
 
 
 export default function StoryContainer({
     loadingSummaries,
-    readyToSelect,
 }) {
     const [showSelect, setShowSelect] = useState<boolean>(false)
     const loading = useSelector((state: RootState) => state.pov.loading)
     const articles = useSelector((state: RootState) => state.search.articles)
     const loadingContent = useSelector((state: RootState) => state.read.loadingContent)
     const chosenArticles = useSelector((state: RootState) => state.getArticle.chosenArticles)
+    const reading = useSelector((state: RootState) => state.read.reading)
     const stories = useSelector((state: RootState) => state.read.summaries)
 
-
-    const yRef = useRef(null)
-    const { scrollYProgress } = useScroll({
-        target: yRef,
-        offset: ['start end', 'end start']
-    })
+    console.log(stories)
 
     function hideSelect() {
 
@@ -39,27 +33,16 @@ export default function StoryContainer({
         }
     }
 
-    useMotionValueEvent(scrollYProgress, "change", (latest) => {
-
-        if (latest > 0 && !showSelect && readyToSelect === true) {
-            setShowSelect(true);
-        } else if (latest === 0 && showSelect) {
-            setShowSelect(false);
-        }
-    });
-
     return (
         <motion.div
             initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ type: 'tween', duration: 0.2 }}
-            ref={yRef}
-            className="relative w-full h-auto mx-auto xl:mt-16 xs:px-2">
+            className="relative w-full h-auto mx-auto xs:px-2">
             <div
                 className="relative w-full h-auto box-border mx-auto">
-
-                <AnimatePresence >
+                <AnimatePresence>
                     {loading === true &&
                         <motion.div
                             key='loadingArticles'
@@ -95,13 +78,13 @@ export default function StoryContainer({
                         </motion.div>
                     }
 
-                    {stories &&
+                    {reading &&
                         <motion.div
                             key='presentSummaries'
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            transition={{ duration: 1, delay: 1 }}
+                            transition={{ duration: 1 }}
                         >
                             <SummaryContainer
                             />
@@ -111,7 +94,13 @@ export default function StoryContainer({
             <AnimatePresence>
                 {articles &&
                     <div className="relative w-full h-auto flex justify-start">
-                        <motion.div>
+                        <motion.div
+                            key='selectArticles'
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 1, delay: 1 }}
+                        >
                             <SelectArticles
                                 showSelect={showSelect}
                                 hideSelect={hideSelect}
@@ -122,7 +111,6 @@ export default function StoryContainer({
                 }
 
             </AnimatePresence>
-
             <AnimatePresence>
                 {stories && <motion.div
                     initial={{ opacity: 0, scale: 0 }}
@@ -134,8 +122,6 @@ export default function StoryContainer({
                     <ControlPanel />
                 </motion.div>}
             </AnimatePresence>
-
-
         </motion.div>
     )
 }

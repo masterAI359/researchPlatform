@@ -9,7 +9,7 @@ import Notes from "../Investigate/Notes/Notes";
 import LostConnection from "../ErrorMessages/LostConnection";
 
 export default function InvestigateContainer() {
-  const { loadingSummaries, readyToSelect, errorMessage } = useFetch()
+  const { loadingSummaries, errorMessage } = useFetch()
   const takingNotes = useSelector((state: RootState) => state.notes.takingNotes)
   const gettingContent = useSelector((state: RootState) => state.read.getContent)
   const finished = useSelector((state: RootState) => state.finish.finished)
@@ -63,7 +63,6 @@ export default function InvestigateContainer() {
 
           >
             <StoryContainer
-              readyToSelect={readyToSelect}
               loadingSummaries={loadingSummaries}
             />
           </motion.div>

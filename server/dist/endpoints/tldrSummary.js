@@ -16,6 +16,7 @@ const __dirname = path.dirname(envUrl);
 const envPath = path.resolve(__dirname, '../../../.env');
 dotenv.config({ path: envPath });
 const TLDRKey = process.env.TLDR_KEY;
+const failure = [];
 export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const received = req.query.q;
     const query = JSON.parse(decodeURIComponent(received));
@@ -62,7 +63,7 @@ export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, funct
             catch (error) {
                 console.error(`Error processing article ${article.url}:`, error);
                 // Return an object with the original article data plus the error message
-                return {
+                const failedAttempt = {
                     failed: true,
                     title: article.title,
                     summary: [{ denied: 'We were denied access to the article from', failedArticle: `${article.source} - ${article.title}` }],
@@ -71,14 +72,18 @@ export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, funct
                     date: article.date,
                     article_url: article.url,
                 };
+                failure.push(failedAttempt);
             }
         }));
         const results = yield Promise.allSettled(dataMap);
         const returnValues = results.map((result) => {
+            console.log(result.status);
             const resultData = result.value ? result.value : result.reason;
             return resultData;
         });
-        res.json(returnValues);
+        console.log(returnValues);
+        const resultsObject = { retrieved: returnValues, rejected: failure };
+        res.json(resultsObject);
     }
     catch (error) {
         console.error("Error in tldrSummary:", error);

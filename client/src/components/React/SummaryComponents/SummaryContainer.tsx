@@ -7,10 +7,13 @@ import { RootState } from "@/ReduxToolKit/store"
 
 export default function SummaryContainer({ }) {
   const stories = useSelector((state: RootState) => state.read.summaries)
-  const [availableStories, setAvailableStories] = useState<object[]>([])
+  const notifications = useSelector((state: RootState) => state.read.failedNotifications)
+  //const [availableStories, setAvailableStories] = useState<object[]>([])
   const [failedNotifications, setFailedNotifications] = useState<object[]>([])
-  const [showNotifications, setShowNotifications] = useState<boolean>(false)
+  // const [showNotifications, setShowNotifications] = useState<boolean>(false)
   const containerRef = useRef(null)
+
+  console.log(stories)
 
   const container = {
 
@@ -26,36 +29,36 @@ export default function SummaryContainer({ }) {
     }
   }
 
-  const failedData = (data: any) => {
-    const hasFailed = data.map((element: any) => {
-      if (Object.hasOwn(element, 'failed')) {
+  // const failedData = (data: any) => {
+  //   const hasFailed = data.map((element: any) => {
+  //     if (Object.hasOwn(element, 'failed')) {
+  //
+  //       return (failedNotifications.push(element))
+  //
+  //     } else {
+  //       return (availableStories.push(element))
+  //     }
+  //   })
+  //
+  //   if (failedNotifications.length > 0) {
+  //     setShowNotifications(true)
+  //   }
+  //   return hasFailed
+  // }
+  //
 
-        return (failedNotifications.push(element))
-
-      } else {
-        return (availableStories.push(element))
-      }
-    })
-
-    if (failedNotifications.length > 0) {
-      setShowNotifications(true)
-    }
-    return hasFailed
-  }
-
-
-  useEffect(() => {
-
-    failedData(stories)
-
-
-  }, [stories])
+  //  useEffect(() => {
+  //
+  //    failedData(stories)
+  //
+  //
+  //  }, [stories, reading])
 
 
 
   return (
     <motion.div
-      className="h-full 2xl:max-w-7xl xs:px-2 md:px-8 shadow-black inset rounded-4xl mx-auto border-white/10 xs:mt-10 xl:mt-12"
+      className="h-full 2xl:max-w-7xl xs:px-2 md:px-8 shadow-black inset rounded-4xl mx-auto border-white/10 xs:mt-10 xl:mt-0 border"
       variants={container}
       initial="hidden"
       animate="show"
@@ -72,7 +75,7 @@ export default function SummaryContainer({ }) {
         <motion.div
           transition={{ type: 'tween', duration: 0.2 }}
           className="w-full flex h-auto items-center">
-          {availableStories.map((summaryData: any, index: number) =>
+          {stories.map((summaryData: any, index: number) =>
             <Summary
               key={index}
               index={index}
@@ -81,7 +84,7 @@ export default function SummaryContainer({ }) {
           )}
         </motion.div>
       </main>
-      {showNotifications &&
+      {notifications !== null &&
         <FailedSummary
           failedNotifications={failedNotifications}
           setFailedNotifications={setFailedNotifications}

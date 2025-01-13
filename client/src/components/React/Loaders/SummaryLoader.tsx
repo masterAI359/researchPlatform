@@ -1,17 +1,19 @@
 import Lottie from "lottie-react"
 import squareCircle from '../../../lotties/SquareCircle.json'
+import { createPortal } from "react-dom"
 
 export default function SummaryLoader() {
 
-    return (
-        <div className='w-full h-full 2xl:max-w-7xl mx-auto grid grid-cols-1 2xl:mt-16 justify-center' >
 
-            <header className='w-full mx-auto mb-24'>
+    const loader = (
+        <div className='w-full h-full mx-auto grid grid-cols-1 justify-center absolute bg-black top-0 right-0 bottom-0 left-0'>
+
+            <header className='w-full mx-auto mt-24'>
                 <h1
                     className='text-center font-serif text-4xl text-slate-400'
                 >Just a few moments while we gather those articles</h1>
             </header>
-            <div className="w-full mx-auto">
+            <div className="w-full mx-auto mt-20">
                 <Lottie
                     className="mx-auto"
                     animationData={squareCircle}
@@ -23,5 +25,9 @@ export default function SummaryLoader() {
 
 
         </div>
+    )
+
+    return (
+        createPortal(loader, document.body)
     )
 }

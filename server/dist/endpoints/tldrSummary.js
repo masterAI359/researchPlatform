@@ -51,9 +51,6 @@ export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, funct
                     throw new Error(`Failed to fetch summary for ${article.url}: ${response.status} ${response.statusText}`);
                 }
                 const data = yield response.json();
-                if (data.article_image === 'undefined') {
-                    console.log(data.article_image);
-                }
                 data.logo = article.logo;
                 data.source = article.source;
                 data.date = article.date;
@@ -77,12 +74,12 @@ export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, funct
         }));
         const results = yield Promise.allSettled(dataMap);
         const returnValues = results.map((result) => {
-            console.log(result.status);
             const resultData = result.value ? result.value : result.reason;
             return resultData;
         });
-        console.log(returnValues);
-        const resultsObject = { retrieved: returnValues, rejected: failure };
+        const success = returnValues.filter((result) => result !== undefined);
+        const resultsObject = { retrieved: success, rejected: failure };
+        console.log(resultsObject);
         res.json(resultsObject);
     }
     catch (error) {

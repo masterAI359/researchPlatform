@@ -12,7 +12,7 @@ export default function Paginate() {
         <div className="xl:w-44 h-auto p-1 flex gap-x-0 items-center justify-center">
 
             <button
-                onClick={() => currentStory >= 0 ? dispatch(decrementStory()) : null}
+                onClick={() => currentStory > 0 ? dispatch(decrementStory()) : null}
                 className="xl:w-16 xl:h-12 bg-ebony hover:bg-white/10 
              mx-auto rounded-2xl flex items-center justify-center xl:p-2
              group transition-all duration-200 ease-in-out">
@@ -29,7 +29,7 @@ border border-white/50 md:group-hover:opacity-100 transition-opacity duration-20
             </button>
 
             <button
-                onClick={() => currentStory <= 2 ? dispatch(incrementStory()) : null}
+                onClick={() => currentStory < 2 ? dispatch(incrementStory()) : null}
                 className="xl:w-16 xl:h-12 bg-ebony hover:bg-white/10 rounded-2xl
              mx-auto flex items-center justify-center xl:p-2 group transition-all duration-200 ease-in-out">
                 <div className="rounded-md xl:h-fit xl:w-16 flex xs:hidden md:block mx-auto bg:black z-50 opacity-0 absolute xl:translate-y-16 xl:-translate-x-8

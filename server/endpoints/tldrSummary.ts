@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express'
+import express, { query, Request, Response } from 'express'
 import * as dotenv from 'dotenv'
 import * as path from 'path'
 import { fileURLToPath } from 'url';
@@ -22,6 +22,8 @@ interface QueryType {
     title: string
 }
 
+
+
 const failure: any = []
 
 export const tldrSummary = async (req: Request, res: Response) => {
@@ -30,6 +32,8 @@ export const tldrSummary = async (req: Request, res: Response) => {
 
     const received = req.query.q as string;
     const query: QueryType[] = JSON.parse(decodeURIComponent(received));
+
+
 
     const url =
         'https://tldrthis.p.rapidapi.com/v1/model/abstractive/summarize-url/';
@@ -45,6 +49,7 @@ export const tldrSummary = async (req: Request, res: Response) => {
 
     try {
         const dataMap = query.map(async (article, index) => {
+
 
             console.log({ "fetching data for: ": article.url });
 
@@ -72,11 +77,6 @@ export const tldrSummary = async (req: Request, res: Response) => {
                 }
 
                 const data = await response.json();
-
-                if (data.article_image === 'undefined') {
-                    console.log(data.article_image)
-                }
-
                 data.logo = article.logo;
                 data.source = article.source;
                 data.date = article.date;
@@ -104,17 +104,15 @@ export const tldrSummary = async (req: Request, res: Response) => {
 
         const returnValues = results.map((result: any) => {
 
-            console.log(result.status)
-
             const resultData = result.value ? result.value : result.reason
 
             return resultData
         })
 
-        console.log(returnValues)
+        const success = returnValues.filter((result: any) => result !== undefined)
 
-        const resultsObject = { retrieved: returnValues, rejected: failure }
-
+        const resultsObject = { retrieved: success, rejected: failure }
+        console.log(resultsObject)
         res.json(resultsObject);
 
     } catch (error) {

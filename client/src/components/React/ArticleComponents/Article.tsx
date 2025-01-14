@@ -51,7 +51,7 @@ export default function Article({ article, index }: ArticleProps) {
 
             return presentation
         } else {
-
+            return string
         }
     }
 

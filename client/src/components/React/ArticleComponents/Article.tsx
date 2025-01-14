@@ -121,7 +121,7 @@ export default function Article({ article, index }: ArticleProps) {
                 <div className={`h-full group mt-2 pt-2 ${isHilighted ? 'opacity-100' : ''}`}>
                     <blockquote className='relative px-4'>
                         <p className='lg:text-base xs:text-xs transition-colors duration-100 font-serif font-light xs:hidden md:block'>
-                            {description}
+                            {mobileDescription}
                         </p>
                         <p className='lg:text-base xs:text-xs transition-colors duration-100 font-serif font-light xs:block md:hidden'>
                             {mobileDescription}
@@ -133,21 +133,3 @@ export default function Article({ article, index }: ArticleProps) {
     );
 }
 
-
-
-//setSelectedForSummary((prevSelectedForSummary: SelectedArticle[]) => {
-//
-//    const isAlreadySelected = prevSelectedForSummary.some(selected => selected.url === article.url);
-//
-//    if (isAlreadySelected) {
-//        return prevSelectedForSummary.filter(item => item.url !== article.url);
-//
-//    } else {
-//        if (prevSelectedForSummary.length < 3) {
-//            return [...prevSelectedForSummary, forSummaryData];
-//
-//        } else {
-//            return prevSelectedForSummary;
-//        }
-//    }
-//});

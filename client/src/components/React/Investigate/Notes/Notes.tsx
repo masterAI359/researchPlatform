@@ -3,12 +3,13 @@ import { motion } from "framer-motion"
 import StepsEditor from "../../TipTap/StepsEditor"
 import { RootState } from "@/ReduxToolKit/store"
 import { useDispatch, useSelector } from "react-redux"
-import { writingNote } from "@/ReduxToolKit/Reducers/NoteTaking"
+import { writingNote, saveNote } from "@/ReduxToolKit/Reducers/NoteTaking"
 
 export default function Notes({ notePosition, setNotePosition, constraints, notesRef }) {
-    const takingNotes = useSelector((state: RootState) => state.notes.takingNotes)
+    const note = useSelector((state: RootState) => state.notes.noteTaken)
     const [content, setContent] = useState(null)
     const dispatch = useDispatch()
+
 
     return (
         <motion.div
@@ -46,7 +47,7 @@ export default function Notes({ notePosition, setNotePosition, constraints, note
                     </div>
                 </div>
                 <div className=" h-full w-full pb-1 mx-auto bg-ebony/70 rounded-b-md">
-                    <StepsEditor setterFunction={setContent} />
+                    <StepsEditor context={note} setterFunction={setContent} />
                 </div>
 
             </div>

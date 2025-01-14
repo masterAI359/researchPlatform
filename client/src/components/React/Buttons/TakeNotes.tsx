@@ -9,7 +9,7 @@ export default function TakeNotes({ }) {
     return (
         <button
             onClick={() => dispatch(writingNote(takingNotes === false ? true : false))}
-            className="md:w-auto md:h-auto xs:max-w-8 xs:max-h-8 2xl:max-w-8 2xl:max-h-8 p-0.5
+            className="md:w-auto md:h-auto xs:max-w-8 xs:max-h-8 xl:max-w-7 xl:max-h-7 2xl:max-w-8 2xl:max-h-8 p-0.5
         rounded-lg transition-all duration-300 m-auto
         ease-in-out group">
 

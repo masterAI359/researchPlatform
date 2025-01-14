@@ -23,12 +23,12 @@ interface QueryType {
 }
 
 
+//TODO: clear this array after each request
 
-const failure: any = []
 
 export const tldrSummary = async (req: Request, res: Response) => {
 
-
+    let failure: any = []
 
     const received = req.query.q as string;
     const query: QueryType[] = JSON.parse(decodeURIComponent(received));
@@ -86,7 +86,6 @@ export const tldrSummary = async (req: Request, res: Response) => {
                 console.error(`Error processing article ${article.url}:`, error);
                 // Return an object with the original article data plus the error message
                 const failedAttempt = {
-                    failed: true,
                     title: article.title,
                     summary: [{ denied: 'We were denied access to the article from', failedArticle: `${article.source} - ${article.title}` }],
                     logo: article.logo,
@@ -114,7 +113,7 @@ export const tldrSummary = async (req: Request, res: Response) => {
         const resultsObject = { retrieved: success, rejected: failure }
         console.log(resultsObject)
         res.json(resultsObject);
-
+        failure = []
     } catch (error) {
         console.error("Error in tldrSummary:", error);
         res.status(500).send('Internal Server Error');

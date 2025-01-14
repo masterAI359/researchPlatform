@@ -1,20 +1,23 @@
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
+import { useDispatch } from "react-redux";
+import { saveNote } from "@/ReduxToolKit/Reducers/NoteTaking";
 
+//TODO: fix bug occurring when using the editor
 
+export default function StepsEditor({ setterFunction, context }) {
+    const dispatch = useDispatch()
 
-
-
-export default function StepsEditor({ setterFunction }) {
 
     const handleContent = () => {
 
         setterFunction(editor.getText())
+        dispatch(saveNote(editor.getText()))
     }
 
 
     const editor = useEditor({
-        content: `
+        content: `${context}
           `,
         extensions: [
             StarterKit.configure({
@@ -35,7 +38,7 @@ export default function StepsEditor({ setterFunction }) {
 
     const handleContainerClick = () => {
         if (editor && !editor.isFocused) {
-            editor.commands.focus('end')
+            editor.commands.focus('end', null)
         }
     }
 

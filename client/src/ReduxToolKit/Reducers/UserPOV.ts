@@ -16,12 +16,12 @@ export interface UserPOVState {
 
 const initialState: UserPOVState = {
 
-    idea: null,
-    perspective: null,
-    expertise: null,
-    biases: null,
-    premises: null,
-    query: null,
+    idea: '',
+    perspective: '',
+    expertise: '',
+    biases: '',
+    premises: '',
+    query: '',
     searching: false,
     loading: false
 }

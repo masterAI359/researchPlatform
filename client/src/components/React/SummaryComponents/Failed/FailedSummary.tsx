@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 
-export default function FailedSummary({ failedNotifications, setFailedNotifications }) {
+export default function FailedSummary({ }) {
     const notifications = useSelector((state: RootState) => state.read.failedNotifications)
 
     return (
@@ -14,8 +14,6 @@ export default function FailedSummary({ failedNotifications, setFailedNotificati
                     <Notification
                         key={notification.article_url}
                         notification={notification}
-                        failedNotifications={failedNotifications}
-                        setFailedNotifications={setFailedNotifications}
                     />
                 ))}
             </AnimatePresence>

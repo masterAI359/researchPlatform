@@ -8,8 +8,7 @@ interface ReadingState {
     summaries: Array<any> | null,
     failedNotifications: Array<any> | null,
     currentStory: number,
-    reading: boolean
-
+    reading: boolean,
 }
 
 
@@ -40,6 +39,9 @@ export const ReadingSlice = createSlice({
         rejected: (state, action) => {
             state.failedNotifications = action.payload
         },
+        closeNotification: (state, action) => {
+            state.failedNotifications.splice(action.payload, 1)
+        },
         incrementStory: (state) => {
             state.currentStory = state.currentStory += 1
         },
@@ -55,6 +57,6 @@ export const ReadingSlice = createSlice({
 })
 
 
-export const { loadContent, getStories, articleData, rejected, incrementStory, decrementStory, isReading, resetData } = ReadingSlice.actions
+export const { loadContent, getStories, articleData, rejected, incrementStory, decrementStory, isReading, resetData, closeNotification } = ReadingSlice.actions
 
 export default ReadingSlice.reducer

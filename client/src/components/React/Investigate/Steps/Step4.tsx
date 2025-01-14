@@ -8,7 +8,7 @@ import { getPremises } from "@/ReduxToolKit/Reducers/UserPOV";
 
 
 
-export default function Step4({ setGettingHelp }: any) {
+export default function Step4({ }: any) {
   const [statedPremise, setPremise] = useState<string>(null)
   const premises = useSelector((state: RootState) => state.pov.premises)
   const dispatch = useDispatch()
@@ -38,7 +38,7 @@ export default function Step4({ setGettingHelp }: any) {
           </div>
           <div className="block w-full xs:h-40 md:h-52 xl:h-80 text-md text-white bg-white/10 border-none focus:ring-1 focus:ring-white
     rounded-lg resize-none text-wrap flex justify-items-start">
-            <StepsEditor setterFunction={setPremise} />
+            <StepsEditor context={premises} setterFunction={setPremise} />
           </div>
         </div>
       </div>

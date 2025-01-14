@@ -2,7 +2,7 @@ export function CompareStories() {
 
     return (
         <button className="xs:max-w-8 xs:max-h-8 my-auto mx-auto 
-        rounded-lg transition-all duration-300 2xl:max-w-8 2xl:max-h-8 p-0.5
+        rounded-lg transition-all duration-300 xl:max-w-7 xl:max-h-7 2xl:max-w-8 2xl:max-h-8 p-0.5
         ease-in-out group">
 
             <div className="fixed rounded-md z-50 -translate-y-16 -translate-x-4 mx-auto border border-slate-500 xl:p-2 opacity-0 group-hover:opacity-100 bg-astro_black shadow-black">

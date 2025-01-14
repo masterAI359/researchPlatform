@@ -1,12 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
 
 interface NoteState {
-    takingNotes: boolean
+    takingNotes: boolean,
+    noteTaken: string | null
 }
 
 const initialState: NoteState = {
-    takingNotes: false
+    takingNotes: false,
+    noteTaken: ''
 }
 
 export const NoteSlice = createSlice({
@@ -15,10 +16,13 @@ export const NoteSlice = createSlice({
     reducers: {
         writingNote: (state, action) => {
             state.takingNotes = action.payload
+        },
+        saveNote: (state, action) => {
+            state.noteTaken = action.payload
         }
     }
 })
 
-export const { writingNote } = NoteSlice.actions
+export const { writingNote, saveNote } = NoteSlice.actions
 
 export default NoteSlice.reducer

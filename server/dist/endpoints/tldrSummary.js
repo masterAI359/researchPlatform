@@ -16,8 +16,9 @@ const __dirname = path.dirname(envUrl);
 const envPath = path.resolve(__dirname, '../../../.env');
 dotenv.config({ path: envPath });
 const TLDRKey = process.env.TLDR_KEY;
-const failure = [];
+//TODO: clear this array after each request
 export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    let failure = [];
     const received = req.query.q;
     const query = JSON.parse(decodeURIComponent(received));
     const url = 'https://tldrthis.p.rapidapi.com/v1/model/abstractive/summarize-url/';
@@ -61,7 +62,6 @@ export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, funct
                 console.error(`Error processing article ${article.url}:`, error);
                 // Return an object with the original article data plus the error message
                 const failedAttempt = {
-                    failed: true,
                     title: article.title,
                     summary: [{ denied: 'We were denied access to the article from', failedArticle: `${article.source} - ${article.title}` }],
                     logo: article.logo,
@@ -81,6 +81,7 @@ export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, funct
         const resultsObject = { retrieved: success, rejected: failure };
         console.log(resultsObject);
         res.json(resultsObject);
+        failure = [];
     }
     catch (error) {
         console.error("Error in tldrSummary:", error);

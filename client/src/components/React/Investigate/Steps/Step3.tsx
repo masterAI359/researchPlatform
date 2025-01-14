@@ -28,7 +28,7 @@ export default function Step3({ setGettingHelp }: any) {
             </h1>
           </div>
           <div className="w-fit h-full justify-items-start translate-y-1 opacity-100">
-            <HelpButton info={Step2Help} setGettingHelp={setGettingHelp} />
+            <HelpButton info={Step2Help} />
           </div>
         </div>
         <div className="text-center w-full">
@@ -36,7 +36,7 @@ export default function Step3({ setGettingHelp }: any) {
             className="block w-full xs:h-40 md:h-52 xl:h-80 text-md text-white bg-white/10 border-none focus:ring-1 focus:ring-white
     rounded-lg resize-none text-wrap flex justify-items-start"
           >
-            <StepsEditor setterFunction={setBias} />
+            <StepsEditor context={biases} setterFunction={setBias} />
           </div>
         </div>
       </div>

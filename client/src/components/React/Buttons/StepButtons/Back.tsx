@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { decrement, incrementBy } from "@/ReduxToolKit/Reducers/Steps";
 
 
-export default function BackButton({ gettingHelp }) {
+export default function BackButton({ }) {
     const step = useSelector((state: RootState) => (state.stepper.step))
     const dispatch = useDispatch()
 
@@ -20,7 +20,7 @@ export default function BackButton({ gettingHelp }) {
                 transition={{ type: 'tween', duration: 0.2 }}
             >
                 <button
-                    onClick={gettingHelp === false ? () => dispatch(decrement()) : null}
+                    onClick={() => dispatch(decrement())}
                     className={`text-zinc-400 xs:w-14 xs:h-8
                     lg:w-14 mx-auto lg:h-12 p-1.5 transition-all 
                     duration-200 bg-white/5 hover:bg-white/10 

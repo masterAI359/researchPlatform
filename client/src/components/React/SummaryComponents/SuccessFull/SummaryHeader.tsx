@@ -21,41 +21,40 @@ export default function SummaryHeader({
     }
 
 
-    //   const limitArray = (arr: any) => {
-    //
-    //       let shortenedAuthors = []
-    //
-    //
-    //       if (arr !== undefined || arr !== null) {
-    //
-    //           for (let i = 0; i < arr.length; i++) {
-    //
-    //               if (i < 3) {
-    //
-    //                   if (arr[i].length < 25) {
-    //                       shortenedAuthors.push(arr[i])
-    //                   } else {
-    //                       continue
-    //                   }
-    //               } else if (i > 3) {
-    //                   break
-    //               }
-    //           }
-    //       } else {
-    //           shortenedAuthors.push("The authors of this article couldn't be determined. Visit the provider for author information")
-    //       }
-    //
-    //       return shortenedAuthors
-    //
-    //   }
+    const limitArray = (arr: any) => {
+
+        let shortenedAuthors = []
 
 
-    //  const authShortened = limitArray(article_authors)
+        if (arr !== null) {
+
+            for (let i = 0; i < arr.length; i++) {
+
+                if (i < 3) {
+
+                    if (arr[i].length < 25) {
+                        shortenedAuthors.push(arr[i])
+                    } else {
+                        continue
+                    }
+                } else if (i > 3) {
+                    break
+                }
+            }
+        } else {
+            shortenedAuthors.push("The authors of this article couldn't be determined. Visit the provider for author information")
+        }
+
+        return shortenedAuthors
+    }
+
+
+    const authShortened = limitArray(article_authors)
     const fallbackImage = '/images/logos/fallback.jpg'
 
     const storyImage = article_image || fallbackImage
 
-
+    console.log(storyImage)
     return (
         <header
             className="relative flex mx-auto box-border border-b border-white/20 w-full mx-auto 2xl:mb-1">
@@ -63,7 +62,7 @@ export default function SummaryHeader({
                 <div className="w-fit flex items-center">
                     <div className="xs:h-full xs:h-full flex flex-row justify-start relative">
                         <div
-                            style={{ backgroundImage: `url(${storyImage})` }}
+                            style={{ backgroundImage: `url("${article_image}")` }}
                             className='absolute inset-0 xs:w-full xs:h-full xl:w-full
                             bg-cover bg-center opacity-50 xs:rounded-xl xl:rounded-lg xl:w-full'
                         >
@@ -75,7 +74,7 @@ export default function SummaryHeader({
                                     {article_title}
                                 </h1>
                             </div>
-                            <div className="flex items-center self-end">
+                            <div className="flex items-center self-start">
                                 <p className="text-white opacity-100 xs:text-xs md:text-md flex items-center">
                                     <img className="mr-3 h-9 w-9" src={logo} alt={''} />
 
@@ -97,13 +96,13 @@ export default function SummaryHeader({
                             </div>
                             <div className='max-w-3/4 flex flex-wrap mt-3 items-center'>
                                 <p className='text-slate-300 md:text-lg font-light mr-2'>Authors - </p>
-                                {article_authors !== undefined && article_authors !== null ? article_authors.map((author: string, index: number) => {
+                                {article_authors !== undefined && article_authors !== null ? authShortened.map((author: string, index: number) => {
 
-                                    if (index + 1 < article_authors.length) {
+                                    if (index + 1 < authShortened.length) {
                                         return (<p className="text-slate-300 md:text-lg font-serif mr-2">
                                             {author},
                                         </p>)
-                                    } else if (index + 1 === article_authors.length) {
+                                    } else if (index + 1 === authShortened.length) {
                                         return (<p className="text-slate-300 md:text-lg font-serif mr-2">
                                             {author}
                                         </p>)

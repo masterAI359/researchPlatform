@@ -30,7 +30,7 @@ export default function FinishLine() {
         <main className="w-full h-full flex flex-col items-center xs:px-4">
             <article
                 className="relative flex flex-col items-center mx-auto xs:w-full 
-             xs:h-[31rem] xs:px-6 xs:py-20 md:py-28 lg:py-36 md:max-w-2xl lg:max-w-3xl rounded-4xl 2xl:max-w-7xl  bg-gradientdown rounded-4xl ">
+             xs:h-[31rem] 2xl:h-168 xs:px-6 xs:py-20 md:py-28 lg:py-28 md:max-w-2xl lg:max-w-3xl rounded-4xl 2xl:max-w-7xl  bg-gradientdown rounded-4xl ">
                 <AnimatePresence mode="wait">
                     {step === 1 && <motion.div
                         key={1}

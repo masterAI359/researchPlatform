@@ -42,7 +42,7 @@ export default function StoryContainer({
             className="relative w-full h-auto mx-auto xs:px-2">
             <div
                 className="relative w-full h-auto box-border mx-auto">
-                <AnimatePresence>
+                <AnimatePresence mode="wait">
                     {loading === true &&
                         <motion.div
                             key='loadingArticles'
@@ -60,7 +60,7 @@ export default function StoryContainer({
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            transition={{ type: 'tween', duration: 0.3 }}
+                            transition={{ type: 'tween', duration: 0.5 }}
                         >
                             <ArticlesGrid
                             />
@@ -72,7 +72,7 @@ export default function StoryContainer({
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0, scale: 0 }}
-                            transition={{ type: 'tween', duration: 1 }}
+                            transition={{ type: 'tween', duration: 0.5 }}
                         >
                             <SummaryLoader />
                         </motion.div>

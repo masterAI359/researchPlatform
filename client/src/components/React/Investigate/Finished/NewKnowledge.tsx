@@ -11,7 +11,7 @@ export default function NewKnowledge() {
     return (
         <section className="xs:w-full xs:h-full xs:px-6 flex flex-col xs:gap-y-6 items-center content-center mx-auto">
             <header className="xs:w-full border-b border-white/10 flex justify-start">
-                <h1 className="xs:text-md lg:text-xl lg:mb-2 2xl:text-2xl text-white font-light tracking-tight">
+                <h1 className="xs:text-md lg:text-xl lg:mb-2 2xl:text-3xl text-white font-light tracking-tight">
                     Now that you've dug into the details, <span className="text-zinc-500">has anything changed?</span>
                 </h1>
             </header>
@@ -25,7 +25,7 @@ export default function NewKnowledge() {
 
                 <div className="h-auto w-full flex flex-col items-center">
                     <figcaption className="xs:text-sm lg:text-lg lg:tracking-tight xs:mb-2 lg:mb-3 2xl:text-xl text-left w-full font-light">
-                        Did this add to your perspective on the issue?
+                        Did your perspective on the issue change?
                     </figcaption>
                     <Checks setterFunction={setExpandedViews} answer={expandedViews} />
                 </div>

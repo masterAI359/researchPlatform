@@ -1,13 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface FinishedState {
-    finished: boolean
+    finished: boolean,
+    changedPerspective: string | null
 }
 
 
 const initialState: FinishedState = {
 
-    finished: false
+    finished: false,
+    changedPerspective: ''
 }
 
 export const FinishedSlice = createSlice({
@@ -16,12 +18,15 @@ export const FinishedSlice = createSlice({
     reducers: {
         initiateFinalProcess: (state, action) => {
             state.finished = action.payload
+        },
+        newPerspective: (state, action) => {
+            state.changedPerspective = action.payload
         }
     }
 })
 
 
-export const { initiateFinalProcess } = FinishedSlice.actions
+export const { initiateFinalProcess, newPerspective } = FinishedSlice.actions
 
 export default FinishedSlice.reducer
 

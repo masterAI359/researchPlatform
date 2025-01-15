@@ -1,19 +1,18 @@
 import { useRef } from "react"
 import Lottie from "lottie-react"
 import blueCheck from '../../../lotties/blueCheck.json'
-
+import { useDispatch } from "react-redux"
 
 
 export default function ChecksButton({ index, button, answer, setterFunction }) {
     const animationRef = useRef<any>(null)
+    const dispatch = useDispatch()
 
-    const setAnswer = (button: boolean) => {
-        setterFunction(button)
-    }
+
 
     return (
         <button
-            onClick={() => setAnswer(button)}
+            onClick={() => dispatch(setterFunction(button))}
             key={index}
             data-set={button}
             className="flex items-center relative px-2

@@ -7,13 +7,13 @@ export default function DeskTopContent() {
     return (
         <div className="fixed top-0 w-full inset-x-0 z-30 md:block xs:hidden sm:hidden">
             <div className="md:w-dvw mx-auto">
-                <div className="w-full shadow-black mt-0 p-1.5 mx-auto border-b
+                <div className="w-full shadow-black mt-0 py-1 mx-auto border-b
 			 border-white/10 shadow-thick backdrop-blur-xl backdrop-filter
 			 md:items-center h-fit">
                     <div className="relative flex items-center w-full md:max-w-7xl mx-auto">
                         <div className="flex flex-row items-center justify-between md:justify-start">
                             <a className="text-white hover:text-white/50 items-center font-bold gap-3 inline-flex text-lg" href="/" title="link to your page" aria-label="your label">
-                                <svg className="sm:h-12 sm:w-12" width={24} height={24} id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" enableBackground="new 0 0 512 512" xmlSpace="preserve">
+                                <svg className="sm:h-9 sm:w-9" width={24} height={24} id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" enableBackground="new 0 0 512 512" xmlSpace="preserve">
                                     <style type="text/css" dangerouslySetInnerHTML={{ __html: "\n\t\t\t\t\t\t\t\t.st0 {\n\t\t\t\t\t\t\t\t\tfill: url(#SVGID_1_);\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t.st1 {\n\t\t\t\t\t\t\t\t\tfill: url(#SVGID_00000000207239244634862380000006962274168297888698_);\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t.st2 {\n\t\t\t\t\t\t\t\t\tfill: none;\n\t\t\t\t\t\t\t\tstroke: url(#SVGID_00000034776861429047087230000001558930889264589704_);\n\t\t\t\t\t\t\t\tstroke-width: 22;\n\t\t\t\t\t\t\t\tstroke-miterlimit: 10;\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t.st3 {\n\t\t\t\t\t\t\t\t\tfill: none;\n\t\t\t\t\t\t\t\tstroke: #4361bf;\n\t\t\t\t\t\t\t\tstroke-width: 22;\n\t\t\t\t\t\t\t\tstroke-miterlimit: 10;\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t" }} />
                                     <g>
                                         <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="148.2895" y1="171.2033" x2="243.3945" y2="526.1401" gradientTransform="matrix(1 0 0 -1 0 512)">

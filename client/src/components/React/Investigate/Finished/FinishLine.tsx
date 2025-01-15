@@ -40,7 +40,8 @@ export default function FinishLine() {
                         exit='closed'
                         transition={{ type: 'tween', duration: 0.2 }}
                     >
-                        <StartingPoint statement={testStatement} premise={testPremise} />
+                        <NewKnowledge />
+
                     </motion.div>}
                     {step === 2 && <motion.div
                         key={2}
@@ -50,7 +51,7 @@ export default function FinishLine() {
                         exit='closed'
                         transition={{ type: 'tween', duration: 0.2 }}
                     >
-                        <NewKnowledge />
+                        <StartingPoint statement={testStatement} premise={testPremise} />
                     </motion.div>}
                     {step === 3 && <motion.div
                         key={3}

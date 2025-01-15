@@ -11,7 +11,7 @@ export default function StepsEditor({ setterFunction, context }) {
 
     const handleContent = () => {
 
-        setterFunction(editor.getText())
+        dispatch(setterFunction(editor.getText()))
         dispatch(saveNote(editor.getText()))
     }
 

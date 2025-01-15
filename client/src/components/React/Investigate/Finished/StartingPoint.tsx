@@ -12,8 +12,7 @@ export default function StartingPoint({ statement, premise }) {
                 <header className="xs:w-full border-b border-white/10 flex justify-start">
                     <div className="">
                         <h1 className="xs:text-md lg:text-2xl lg:mb-2 2xl:text-3xl text-white font-light tracking-tight">
-                            Now that we've come full circle,
-                            <span className="xs:ml-1 text-zinc-500">
+                            Now that we've come full circle, <span className="text-zinc-500">
                                 let's recap where we began
                             </span>
                         </h1>

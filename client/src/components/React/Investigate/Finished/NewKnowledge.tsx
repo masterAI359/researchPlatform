@@ -1,12 +1,15 @@
-import { useState } from "react"
 import Checks from "./Checks"
+import { useSelector } from "react-redux"
+import { newKnowledge, changedStance, wantsMoreContext } from "@/ReduxToolKit/Reducers/Finished"
+import { RootState } from "@/ReduxToolKit/store"
 
 
 export default function NewKnowledge() {
-    const [newConcept, setNewConcept] = useState<boolean | null>(null)
-    const [fullyCovered, setFullyCovered] = useState<boolean | null>(null)
-    const [expandedViews, setExpandedViews] = useState<boolean | null>(null)
+    const newConcept = useSelector((state: RootState) => state.finish.newConcepts)
+    const fullyCovered = useSelector((state: RootState) => state.finish.wantedMore)
+    const newStance = useSelector((state: RootState) => state.finish.newPOV)
 
+    console.log({ newConcept, fullyCovered, newStance })
 
     return (
         <section className="xs:w-full xs:h-full xs:px-6 flex flex-col xs:gap-y-6 items-center content-center mx-auto">
@@ -20,20 +23,20 @@ export default function NewKnowledge() {
                     <figcaption className="xs:text-sm lg:text-lg lg:tracking-tight xs:mb-2 lg:mb-3 w-full 2xl:text-xl text-left font-light">
                         Was there anything you read that you hadn't heard before?
                     </figcaption>
-                    <Checks setterFunction={setNewConcept} answer={newConcept} />
+                    <Checks setterFunction={newKnowledge} answer={newConcept} />
                 </div>
 
                 <div className="h-auto w-full flex flex-col items-center">
                     <figcaption className="xs:text-sm lg:text-lg lg:tracking-tight xs:mb-2 lg:mb-3 2xl:text-xl text-left w-full font-light">
                         Did your perspective on the issue change?
                     </figcaption>
-                    <Checks setterFunction={setExpandedViews} answer={expandedViews} />
+                    <Checks setterFunction={changedStance} answer={newStance} />
                 </div>
                 <div className="h-auto w-full flex flex-col items-center">
                     <figcaption className="xs:text-sm lg:text-lg lg:tracking-tight xs:mb-2 lg:mb-3 w-full 2xl:text-xl text-left font-light">
                         Was there anything you wanted to know that wasn't adressed?
                     </figcaption>
-                    <Checks setterFunction={setFullyCovered} answer={fullyCovered} />
+                    <Checks setterFunction={wantsMoreContext} answer={fullyCovered} />
                 </div>
             </main>
         </section>

@@ -1,7 +1,5 @@
 import { useSelector } from "react-redux"
-import { newKnowledge, changedStance, wantsMoreContext, getMerit, moved } from "@/ReduxToolKit/Reducers/Review"
 import { RootState } from "@/ReduxToolKit/store"
-import ReviewInput from "./ReviewInput"
 
 
 export default function ReviewPOV() {
@@ -15,19 +13,41 @@ export default function ReviewPOV() {
     console.log({ newConcept, fullyCovered, newStance })
 
     return (
-        <section className="xs:w-full xs:h-full xs:px-6 md:px-0 flex flex-col xs:gap-y-6 2xl:gap-y-10 items-center content-center">
+        <section className="w-fit xs:h-full grow md:py-10 md:px-20 flex flex-col
+         lg:bg-gradient-to-tr from-ebony to-mirage lg:border border-white/5
+        rounded-3xl xs:gap-y-6 2xl:gap-y-10 items-center content-center">
             <header className="w-full mx-auto">
-                <h1 className="xs:text-md text-left text-center w-auto lg:text-xl 
-                lg:mb-2 2xl:text-3xl text-white font-light tracking-tight">
-                    With this knowledge <span className="text-zinc-500 font-light tracking-tight">
-                        where do you stand?
-                    </span>
+                <h1 className="xs:text-md text-left text-center mx-auto w-auto lg:text-xl 
+                lg:mb-2 2xl:text-2xl text-white font-light tracking-tight">
+                    Where you began
                 </h1>
             </header>
-            <main className="h-full w-full flex 2xl:gap-x-24">
-                <ReviewInput reducerBoolean={merit} reducerFunction={getMerit} initialResponse={idea} PieceOfPOV={"Idea Examined"} questionPrompted={"Did the evidence support this?"} />
-                {/*  <ReviewInput reducerBoolean={newStance} reducerFunction={changedStance} initialResponse={perspective} PieceOfPOV={"Initial Opinion"} questionPrompted={"Do you still have this perspective?"} /> */}
+            <main className="h-full w-full flex flex-col gap-y-12 grow lg:min-h-20">
+                <div className="w-full h-full flex flex-col gap-y-4 ">
+                    <div className="w-full border-b border-white/20">
+                        <h1 className="text-white font-light mb-2 text-xl">
+                            <em>Idea Examined</em>
+                        </h1>
+                    </div>
+                    <div className="w-full h-full">
+                        <p className="text-white font-lg">
+                            {idea}
+                        </p>
+                    </div>
+                </div>
+                <div className="w-full h-full flex flex-col gap-y-4 lg:min-h-20">
+                    <div className="w-full border-b border-white/20">
+                        <h1 className="text-white font-light mb-2 text-xl ">
+                            <em> Initial Perspective</em>
 
+                        </h1>
+                    </div>
+                    <div className="w-full h-full">
+                        <p className="text-white font-lg">
+                            {perspective}
+                        </p>
+                    </div>
+                </div>
             </main>
         </section>
     )

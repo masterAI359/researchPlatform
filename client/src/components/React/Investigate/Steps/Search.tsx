@@ -6,7 +6,7 @@ import { getStories } from "@/ReduxToolKit/Reducers/Reading";
 import { AppDispatch, RootState } from "@/ReduxToolKit/store";
 import { useEffect } from "react";
 
-export default function SearchBox({ }) {
+export default function Search({ }) {
   const { fetchArticles, fetchSummaries } = useFetch()
   const query = useSelector((state: RootState) => state.pov.query)
   const searched = useSelector((state: RootState) => state.pov.searching)

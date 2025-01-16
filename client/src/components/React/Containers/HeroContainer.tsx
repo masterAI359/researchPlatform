@@ -1,7 +1,7 @@
 import InvestigateHero from "../HeroComponents/InvestigateHero"
 import SearchHero from "../HeroComponents/SearchHero"
 import SummaryHero from "../SummaryComponents/SuccessFull/SummaryHero"
-import FinishLine from "../Investigate/Finished/FinishLine"
+import ReviewWrapper from "../Investigate/Review/ReviewWrapper"
 import { AnimatePresence, motion } from "framer-motion"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
@@ -11,7 +11,7 @@ export default function HeroContainer({
 }) {
     const reading = useSelector((state: RootState) => state.read.reading)
     const startSearch = useSelector((state: RootState) => state.search.startSearch)
-    const initiateEnd = useSelector((state: RootState) => state.finish.finished)
+    const initiateEnd = useSelector((state: RootState) => state.review.finished)
 
     console.log(startSearch)
 
@@ -35,7 +35,7 @@ export default function HeroContainer({
                     key='Search'
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    exit={{ opacity: 0, scale: 0 }}
+                    exit={{ opacity: 0 }}
                     transition={{ type: 'tween', duration: 0.5, ease: 'easeInOut' }}
                 >
                     <SearchHero
@@ -61,7 +61,7 @@ export default function HeroContainer({
                 exit={{ opacity: 0, scale: 0 }}
                 transition={{ type: 'tween', duration: 0.5, ease: 'easeInOut' }}
             >
-                <FinishLine />
+                <ReviewWrapper />
             </motion.div>}
 
         </AnimatePresence>

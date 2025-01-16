@@ -6,7 +6,7 @@ export default function Checks({ setterFunction, answer }: any) {
 
     return (
         <div
-            className="xs:w-full flex items-center justify-between">
+            className="xs:w-full flex flex-col items-start 2xl:gap-y-2">
 
             {answerButtons.map((button, index) => (
                 <ChecksButton

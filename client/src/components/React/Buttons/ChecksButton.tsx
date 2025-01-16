@@ -18,7 +18,7 @@ export default function ChecksButton({ index, button, answer, setterFunction }) 
             className="flex items-center relative px-2
                  xs:w-28 xs:h-9 lg:w-44 lg:h-12 2xl:p-2 2xl:h-14 2xl:w-52 cursor-pointer bg-white/10 hover:bg-white/20 
                   text-white rounded-lg
-                 "> {button === true ? <p className="text-white xs:text-md 2xl:text-xl">Yes</p> : <p className="text-white xs:text-md 2xl:text-xl">No</p>}
+                 "> {button === true ? <p className="text-white xs:text-md 2xl:text-lg">Yes</p> : <p className="text-white xs:text-md 2xl:text-lg">No</p>}
             <div
                 className="lg:min-h-10 lg:min-w-10 lg:max-h-10 lg:min-w-10 lg:p-0.5
              xs:max-w-7 xs:max-h-7 xs:min-w-7 xs:min-h-7 absolute xs:right-1 z-0 

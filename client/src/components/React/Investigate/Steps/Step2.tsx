@@ -32,11 +32,9 @@ export default function Step2({ }: any) {
     dispatch(getExpertise(knowledge))
   }
 
-  useEffect(() => {
 
-    // console.log({ "Point of view": perspective }, { "Expertise": userExpertise })
+  console.log({ "Point of view": perspective }, { "Expertise": userExpertise })
 
-  }, [pov, knowledge])
 
 
   const opinions: string[] = [

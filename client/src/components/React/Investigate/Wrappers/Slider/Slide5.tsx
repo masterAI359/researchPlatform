@@ -1,4 +1,4 @@
-import SearchBox from "../../Steps/SearchBox";
+import SearchBox from "../../Steps/Search";
 import Step5 from "../../Steps/Step5";
 
 

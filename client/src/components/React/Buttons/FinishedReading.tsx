@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { initiateFinalProcess } from "@/ReduxToolKit/Reducers/Finished";
+import { initiateFinalProcess } from "@/ReduxToolKit/Reducers/Review";
 import { isReading } from "@/ReduxToolKit/Reducers/Reading";
 
 export function FinishedReading({ }) {

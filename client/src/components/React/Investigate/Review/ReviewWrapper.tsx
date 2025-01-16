@@ -1,9 +1,9 @@
 import { useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import StartingPoint from "./StartingPoint"
-import NewKnowledge from "./NewKnowledge"
-import NewPOV from "./NewPOV"
+import Stance from "./Stance"
 import FinishLineButtons from "../../Buttons/ButtonWrappers/FinishLineButtons"
+import ReviewPOV from "./ReviewPOV"
 
 
 const variants = {
@@ -30,7 +30,8 @@ export default function FinishLine() {
         <main className="w-full h-full flex flex-col items-center xs:px-4">
             <article
                 className="relative flex flex-col items-center mx-auto xs:w-full 
-             xs:h-[31rem] 2xl:h-168 xs:px-6 xs:py-20 md:py-28 lg:py-28 md:max-w-2xl lg:max-w-3xl rounded-4xl 2xl:max-w-7xl  bg-gradientdown rounded-4xl ">
+             xs:h-[31rem] 2xl:h-168 xs:py-20 md:py-28 lg:py-28 rounded-5xl 2xl:max-w-7xl 
+             2xl:px-8 bg-gradientdown">
                 <AnimatePresence mode="wait">
                     {step === 1 && <motion.div
                         key={1}
@@ -40,7 +41,7 @@ export default function FinishLine() {
                         exit='closed'
                         transition={{ type: 'tween', duration: 0.2 }}
                     >
-                        <NewKnowledge />
+                        <ReviewPOV />
 
                     </motion.div>}
                     {step === 2 && <motion.div
@@ -51,15 +52,7 @@ export default function FinishLine() {
                         exit='closed'
                         transition={{ type: 'tween', duration: 0.2 }}
                     >
-                        <StartingPoint statement={testStatement} premise={testPremise} />
-                    </motion.div>}
-                    {step === 3 && <motion.div
-                        key={3}
-                        variants={variants}
-                        initial={false}
-                        animate='open'
-                        exit='closed'>
-                        <NewPOV setterFunction={setTakeAway} />
+                        <Stance />
                     </motion.div>}
                 </AnimatePresence>
                 <FinishLineButtons setStep={setStep} />

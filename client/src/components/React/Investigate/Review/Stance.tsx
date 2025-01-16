@@ -1,13 +1,12 @@
 import StepsEditor from "../../TipTap/StepsEditor"
-import { finalPerspective } from "@/ReduxToolKit/Reducers/Finished"
+import { finalPerspective } from "@/ReduxToolKit/Reducers/Review"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 
-export default function NewPOV({ setterFunction }) {
-    const finalPOV = useSelector((state: RootState) => state.finish.endingPerspective)
-    const changed = useSelector((state: RootState) => state.finish.newPOV)
+export default function Stance({ }) {
+    const finalPOV = useSelector((state: RootState) => state.review.endingPerspective)
+    const changed = useSelector((state: RootState) => state.review.newPOV)
 
-    console.log(finalPOV)
 
     return (
         <section

@@ -5,7 +5,7 @@ import NoteReducer from './Reducers/NoteTaking'
 import ReadingReducer from './Reducers/Reading'
 import SelectingArticles from './Reducers/ChosenArticles'
 import SearchResults from './Reducers/SearchResults'
-import FinishLineReducer from './Reducers/Finished'
+import ReviewReducer from './Reducers/Review'
 import HelpReducer from './Reducers/HelpModal'
 
 export const store = configureStore({
@@ -16,7 +16,7 @@ export const store = configureStore({
         read: ReadingReducer,
         getArticle: SelectingArticles,
         search: SearchResults,
-        finish: FinishLineReducer,
+        review: ReviewReducer,
         help: HelpReducer
     },
 })

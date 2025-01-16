@@ -12,7 +12,7 @@ export default function InvestigateContainer() {
   const { loadingSummaries, errorMessage } = useFetch()
   const takingNotes = useSelector((state: RootState) => state.notes.takingNotes)
   const gettingContent = useSelector((state: RootState) => state.read.getContent)
-  const finished = useSelector((state: RootState) => state.finish.finished)
+  const finished = useSelector((state: RootState) => state.review.finished)
   const [notePosition, setNotePosition] = useState({ x: 0, y: 500 })
   const [constraints, setConstraints] = useState(null)
   const containerRef = useRef(null)

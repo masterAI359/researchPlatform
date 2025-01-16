@@ -1,11 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { act } from "react";
 
 interface FinishedState {
     finished: boolean,
     endingPerspective: string | null,
     newConcepts: boolean | null,
     newPOV: boolean | null,
-    wantedMore: boolean | null
+    wantedMore: boolean | null,
+    merit: boolean | null,
+    movedOnIdea: boolean | null
 }
 
 
@@ -15,11 +18,13 @@ const initialState: FinishedState = {
     endingPerspective: '',
     newConcepts: null,
     newPOV: null,
-    wantedMore: null
+    wantedMore: null,
+    merit: null,
+    movedOnIdea: null
 
 }
 
-export const FinishedSlice = createSlice({
+export const ReviewSlice = createSlice({
     name: 'FinishLine',
     initialState: initialState,
     reducers: {
@@ -37,14 +42,20 @@ export const FinishedSlice = createSlice({
         },
         wantsMoreContext: (state, action) => {
             state.wantedMore = action.payload
+        },
+        getMerit: (state, action) => {
+            state.merit = action.payload
+        },
+        moved: (state, action) => {
+            state.movedOnIdea = action.payload
         }
 
     }
 })
 
 
-export const { initiateFinalProcess, finalPerspective, changedStance, newKnowledge, wantsMoreContext } = FinishedSlice.actions
+export const { initiateFinalProcess, finalPerspective, changedStance, newKnowledge, wantsMoreContext, getMerit, moved } = ReviewSlice.actions
 
-export default FinishedSlice.reducer
+export default ReviewSlice.reducer
 
 

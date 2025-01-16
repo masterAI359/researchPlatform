@@ -10,7 +10,7 @@ import Slide4 from "./Slider/Slide4";
 import Slide5 from "./Slider/Slide5";
 
 
-export default function HeroWindow({ setCanProceed, notifyRequired, setNotifyRequired }: WindowProps) {
+export default function WindowWrapper({ setCanProceed, notifyRequired, setNotifyRequired }: WindowProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const wizardRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState(null);

@@ -1,5 +1,5 @@
-import WindowContainer from "./WindowContainer"
-import MapContainer from "../Map/MapContainer"
+import WindowContainer from "../../Containers/WindowContainer"
+import MapContainer from "../../Map/MapContainer"
 
 export default function ContentWrapper({ setCanProceed, notifyRequired, setNotifyRequired, canProceed }) {
 

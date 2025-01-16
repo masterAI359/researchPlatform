@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { RootState } from "@/ReduxToolKit/store";
 import { useSelector } from "react-redux";
 import HeroContainer from "./HeroContainer";
-import StoryContainer from "./StoryContainer";
+import ArticleContainer from "./ArticleContainer";
 import Notes from "../Investigate/Notes/Notes";
 import LostConnection from "../ErrorMessages/LostConnection";
 
@@ -62,7 +62,7 @@ export default function InvestigateContainer() {
             key="StoryContainer"
 
           >
-            <StoryContainer
+            <ArticleContainer
               loadingSummaries={loadingSummaries}
             />
           </motion.div>

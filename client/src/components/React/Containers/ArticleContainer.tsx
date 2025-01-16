@@ -10,7 +10,7 @@ import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 
 
-export default function StoryContainer({
+export default function ArticleContainer({
     loadingSummaries,
 }) {
     const [showSelect, setShowSelect] = useState<boolean>(false)

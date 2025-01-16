@@ -1,9 +1,9 @@
 import { useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
-import StartingPoint from "./StartingPoint"
-import Stance from "./Stance"
-import FinishLineButtons from "../../Buttons/ButtonWrappers/FinishLineButtons"
-import ReviewPOV from "./ReviewPOV"
+import StartingPoint from "../Review/StartingPoint"
+import Stance from "../Review/Stance"
+import ReviewPagination from "../../Buttons/ButtonWrappers/ReviewPagination"
+import ReviewPOV from "../Review/ReviewPOV"
 
 
 const variants = {
@@ -18,13 +18,6 @@ const variants = {
 
 export default function FinishLine() {
     const [step, setStep] = useState<number>(1)
-    const [takeAway, setTakeAway] = useState<string>(null)
-
-    const testStatement = "Elon Musk is the real President Elect"
-
-    const testPremise = "Trump must run decisions by Elon prior to taking action"
-
-    console.log(takeAway)
 
     return (
         <main className="w-full h-full flex flex-col items-center xs:px-4">
@@ -55,7 +48,7 @@ export default function FinishLine() {
                         <Stance />
                     </motion.div>}
                 </AnimatePresence>
-                <FinishLineButtons setStep={setStep} />
+                <ReviewPagination setStep={setStep} />
             </article>
         </main>
 

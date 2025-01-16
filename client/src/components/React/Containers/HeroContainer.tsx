@@ -1,7 +1,7 @@
 import InvestigateHero from "../HeroComponents/InvestigateHero"
 import SearchHero from "../HeroComponents/SearchHero"
 import SummaryHero from "../SummaryComponents/SuccessFull/SummaryHero"
-import ReviewWrapper from "../Investigate/Review/ReviewWrapper"
+import ReviewWrapper from "../Investigate/Wrappers/ReviewWrapper"
 import { AnimatePresence, motion } from "framer-motion"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"

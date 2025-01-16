@@ -1,7 +1,7 @@
 
 
 
-export default function FinishLineButtons({ setStep }) {
+export default function ReviewPagination({ setStep }) {
 
 
     return (

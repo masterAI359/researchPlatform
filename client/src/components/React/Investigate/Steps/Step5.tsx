@@ -39,14 +39,16 @@ export default function Step5({
                     </div>
                     <div className="w-full h-fit mx-auto xs:mt-4">
                         <motion.button
-                            whileHover={{ scale: 1.10 }}
-                            transition={{ type: 'tween', duration: 0.2 }}
                             onClick={() => dispatch(startSearch(true))}
-                            className="bg-white/10 rounded-full xs:p-2 xl:mt-8 xs:w-36 xs:h-12 xl:w-44 xl:h-14 mx-auto flex items-center text-center hover:bg-white/20 transition-opacity ease-in-out">
+                            whileTap={{ scale: 0.95 }}
+                            transition={{ type: 'tween', duration: 0.1 }}
+                            className="bg-white rounded-full group 
+                            xs:p-2 md:p-0 xl:mt-8 xs:w-36 xs:h-12 xl:w-44 xl:h-10 mx-auto flex items-center 
+                            text-center hover:bg-white/10 transition-all duration-200 ease-in-out">
                             <div className="w-full h-full flex justify-between items-center xs:px-4">
                                 <div className="w-auto h-auto mx-auto">
-                                    <p className="text-white xs:text-xs xl:text-lg font-light xs:tracking-tight w-fit">
-                                        Ready
+                                    <p className="text-black group-hover:text-white font-light xs:text-xs xl:text-lg w-fit">
+                                        Get Started <span className="ml-2">&#8594;</span>
                                     </p>
                                 </div>
                             </div>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ContentWrapper from "../Containers/ContentWrapper";
+import ContentWrapper from "../Investigate/Wrappers/ContentWrapper";
 
 export default function InvestigateHero({ }) {
   const [approachSet, setApproach] = useState<boolean>(true)

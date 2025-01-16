@@ -35,6 +35,7 @@ export const useFetch = () => {
             )
             if (!response.ok) {
                 setErrorMessage(`${response.status}`)
+                console.log(errorMessage)
                 throw new Error("There was a network response issue!")
             }
             const jsonResponse = await response.json()

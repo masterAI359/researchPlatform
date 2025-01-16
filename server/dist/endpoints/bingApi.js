@@ -41,14 +41,14 @@ export const bingGeneral = (req, res) => __awaiter(void 0, void 0, void 0, funct
 export const bingArticles = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const search = req.query.q;
     const apiKey = 'ce2d91d82a8749c3a4f0eb2a64d9c77a';
-    const endpoint = `https://api.bing.microsoft.com/v7.0/news/search?q=${encodeURIComponent(search)}+-site:msn.com&mkt=en-us&count=20&category=Articles&safeSearch=Strict&module=Images&responseFilter=News&textFormat-videos=HTML`;
+    const endpoint = `https://api.bing.microsoft.com/v7.0/news/search?q=${encodeURIComponent(search)}+-site:msn.com&mkt=en-us&count=10&category=Articles&safeSearch=Strict&module=Images&responseFilter=News&textFormat-videos=HTML`;
     try {
         const response = yield fetch(endpoint, {
             method: 'GET',
             headers: { 'Ocp-Apim-Subscription-Key': apiKey },
         });
         if (!response.ok) {
-            throw new Error(`error: ${res.status}`);
+            throw new Error(`error: ${res.status(500)}`);
         }
         const data = yield response.json();
         const dataValues = data.value; //JSON we want was stored in 'value' property

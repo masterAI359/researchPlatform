@@ -1,7 +1,7 @@
-import HeroWindow from "../Investigate/Wrappers/Window";
 import StepControl from "../Buttons/StepButtons/StepControl";
 import StepWizard from "../StepWizard/StepWizard";
 import { AnimatePresence, motion } from "framer-motion";
+import WindowWrapper from "../Investigate/Wrappers/WindowWrapper";
 
 
 export default function WindowContainer({ currentStep, setStartSearch, setCurrentStep, setCanProceed, notifyRequired, setNotifyRequired,
@@ -22,7 +22,7 @@ export default function WindowContainer({ currentStep, setStartSearch, setCurren
                         transition={{ type: 'tween', duration: 0.4 }}
                     >
 
-                        <HeroWindow
+                        <WindowWrapper
                             currentStep={currentStep}
                             setCurrentStep={setCurrentStep}
                             setCanProceed={setCanProceed}

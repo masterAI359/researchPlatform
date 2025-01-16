@@ -22,10 +22,6 @@ interface QueryType {
     title: string
 }
 
-
-//TODO: clear this array after each request
-
-
 export const tldrSummary = async (req: Request, res: Response) => {
 
     let failure: any = []

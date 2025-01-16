@@ -14,7 +14,7 @@ interface FinishedState {
 
 const initialState: FinishedState = {
 
-    finished: false,
+    finished: true,
     endingPerspective: '',
     newConcepts: null,
     newPOV: null,

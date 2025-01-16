@@ -3,8 +3,8 @@ import Checks from "./Checks"
 export default function ReviewInput({ reducerFunction, reducerBoolean, initialResponse, PieceOfPOV, questionPrompted }) {
 
     return (
-        <section className="h-full w-full flex 2xl:gap-x-6 border-l border-white/10">
-            <div className="w-full h-full flex items-start justify-self-start">
+        <section className="h-full w-full flex flex-col 2xl:gap-y-6 border-l border-white/10">
+            <div className="w-full h-full flex items-start justify-self-start ml-6">
                 <div className="w-full">
                     <div className="flex flex-col gap-y-2">
                         <h1 className="2xl:text-xl text-zinc-500 font-light tracking-tight">

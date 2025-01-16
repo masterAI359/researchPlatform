@@ -15,7 +15,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const app = express();
-import { bingArticles, bingGeneral, } from '../endpoints/bingApi.js';
+import { bingArticles, } from '../endpoints/bingApi.js';
 import { tldrSummary } from '../endpoints/tldrSummary.js';
 import pkg from 'pg';
 dotenv.config({ path: '../../.env' });
@@ -67,7 +67,6 @@ app.get('/api', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.status(500).send('Error executing query');
     }
 }));
-app.get('/search', bingGeneral);
 app.get('/search/articles', bingArticles);
 app.get('/summarize', tldrSummary);
 // handling unkown routes, allowing client side routing on refresh with react-router-dom library

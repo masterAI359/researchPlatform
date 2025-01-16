@@ -26,7 +26,7 @@ export default function ReviewPOV() {
             </header>
             <main className="h-full w-full flex 2xl:gap-x-24">
                 <ReviewInput reducerBoolean={merit} reducerFunction={getMerit} initialResponse={idea} PieceOfPOV={"Idea Examined"} questionPrompted={"Did the evidence support this?"} />
-                <ReviewInput reducerBoolean={newStance} reducerFunction={changedStance} initialResponse={perspective} PieceOfPOV={"Initial Opinion"} questionPrompted={"Do you still have this perspective?"} />
+                {/*  <ReviewInput reducerBoolean={newStance} reducerFunction={changedStance} initialResponse={perspective} PieceOfPOV={"Initial Opinion"} questionPrompted={"Do you still have this perspective?"} /> */}
 
             </main>
         </section>

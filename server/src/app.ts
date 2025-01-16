@@ -9,7 +9,6 @@ const __dirname = path.dirname(__filename);
 const app = express();
 import {
 	bingArticles,
-	bingGeneral,
 } from '../endpoints/bingApi.js';
 import { tldrSummary } from '../endpoints/tldrSummary.js'
 import pkg from 'pg';
@@ -90,7 +89,6 @@ app.get('/api', async (req: Request, res: Response) => {
 	}
 });
 
-app.get('/search', bingGeneral);
 app.get('/search/articles', bingArticles);
 app.get('/summarize', tldrSummary);
 

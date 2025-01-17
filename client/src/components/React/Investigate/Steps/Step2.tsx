@@ -1,35 +1,30 @@
 import React from "react"
 import { motion } from "framer-motion"
-import { useState } from "react"
 import Lottie from "lottie-react"
 import blueCheck from '../../../../lotties/blueCheck.json'
 import HelpButton from "../../Buttons/Question"
 import { Step2Help } from "@/helpInfo/help"
 import { getPerspective, getExpertise } from "@/ReduxToolKit/Reducers/UserPOV"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { RootState } from "@/ReduxToolKit/store"
 
 export default function Step2({ containerWidth }: any) {
-  const [pov, setPov] = useState<string>(null)
-  const [knowledge, setKnowledge] = useState<string>(null)
+  const knowledge = useSelector((state: RootState) => state.pov.expertise)
+  const pov = useSelector((state: RootState) => state.pov.perspective)
   const dispatch = useDispatch()
 
-  //TODO: There must be a better way to do this besides storing local state variables and dispatching them
+  console.log({ "POV": pov, "Expertise": knowledge })
 
-  const assignOrigin = (e: React.MouseEvent<HTMLDivElement>) => {
+  const getPOV = (e: React.MouseEvent<HTMLDivElement>) => {
+
     const targetDiv = e.target as HTMLDivElement
-    setPov(targetDiv.getAttribute('data-set'))
-    dispatch(getPerspective(pov))
-
+    dispatch(getPerspective(targetDiv.getAttribute('data-set')))
   }
+
   const assignKnowledge = (e: React.MouseEvent<HTMLDivElement>) => {
     const divTarget = e.target as HTMLDivElement;
-    setKnowledge(divTarget.getAttribute('data-set'))
-    dispatch(getExpertise(knowledge))
+    dispatch(getExpertise(divTarget.getAttribute('data-set')))
   }
-
-
-
-
 
   const opinions: string[] = [
     "My Opinion",
@@ -80,7 +75,7 @@ export default function Step2({ containerWidth }: any) {
               rounded-lg xl:w-60 xl:h-16 lg:w-[12rem] md:w-[12rem] md:h-12 xs:w-28 xs:h-9
                cursor-pointer hover:bg-white/20 flex justify-between items-center lg:px-4 xs:px-2 grow-0 gap-3"
                     data-set={opinion}
-                    onClick={(e) => { assignOrigin(e) }}
+                    onClick={(e) => getPOV(e)}
                   >
                     {opinion}
                     <div className="lg:min-h-10 lg:min-w-10 lg:max-h-10 lg:min-w-10 lg:p-0.5 

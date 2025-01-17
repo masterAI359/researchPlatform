@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const questions = [
     "Did the evidence support the idea?",
-    "Has your perspective on the idea changed?",
+    "Has your perspective changed?",
     "What is your perspective now?"
 ]
 
@@ -23,7 +23,7 @@ export default function ReviewQuestions({ step }) {
         flex-none gap-y-8 bg-gradientdown rounded-3xl ring-1 ring-inset ring-white/5">
             <header className="w-full h-auto">
                 <h1 className="text-white text-3xl w-full font-light text-center">
-                    Where are you now
+                    Where you are now
                 </h1>
             </header>
             <main className="w-full h-full mx-auto">
@@ -36,14 +36,14 @@ export default function ReviewQuestions({ step }) {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ type: 'tween', duration: 0.2 }}
-                            className="w-full h-auto flex flex-col items-center">
-                            <div className="flex flex-col gap-y-2 py-5 items-center h-full">
+                            className="w-full h-auto flex flex-col justify-center">
+                            <div className="flex flex-col gap-y-2 py-5 items-center h-full mx-auto">
                                 <h1 className="text-white font-light w-full tracking-tight 2xl:text-lg ">
                                     {questions[0]}
                                 </h1>
                                 <Checks setterFunction={getMerit} answer={merit} />
                             </div>
-                            <div className="flex-col gap-y-4 py-5 items-center h-full">
+                            <div className="flex-col gap-y-4 py-5 items-center h-full mx-auto">
                                 <h1 className="text-white font-light mb-2 w-full tracking-tight 2xl:text-lg ">
                                     {questions[1]}
                                 </h1>

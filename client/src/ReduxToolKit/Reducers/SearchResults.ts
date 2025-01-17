@@ -8,7 +8,7 @@ interface ArticleArrayType {
 
 const initialState: ArticleArrayType = {
     articles: null,
-    startSearch: false
+    startSearch: null
 }
 
 

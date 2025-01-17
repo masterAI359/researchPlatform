@@ -15,10 +15,12 @@ export default function ChecksButton({ index, button, answer, setterFunction }) 
             onClick={() => dispatch(setterFunction(button))}
             key={index}
             data-set={button}
-            className="flex items-center relative px-2
-                 xs:w-28 xs:h-9 lg:w-44 lg:h-12 2xl:p-2 2xl:h-12 2xl:w-44 cursor-pointer bg-white/10 hover:bg-white/20 
-                  text-white rounded-lg
-                 "> {button === true ? <p className="text-white xs:text-md 2xl:text-lg">Yes</p> : <p className="text-white xs:text-md 2xl:text-lg">No</p>}
+            className="flex items-center relative px-2 text-black hover:text-white
+                 xs:w-28 xs:h-9 lg:w-32 lg:h-12 2xl:p-2 2xl:h-12 2xl:w-36 cursor-pointer bg-white hover:bg-white/5 
+                  text-white rounded-lg transition-all duration-200 ease-inout group
+                 "> {button === true
+                ? <p className="text-black group-hover:text-white xs:text-md 2xl:text-lg">Yes</p>
+                : <p className="text-black group-hover:text-white xs:text-md 2xl:text-lg">No</p>}
             <div
                 className="lg:min-h-10 lg:min-w-10 lg:max-h-10 lg:min-w-10 lg:p-0.5
              xs:max-w-7 xs:max-h-7 xs:min-w-7 xs:min-h-7 absolute xs:right-1 z-0 
@@ -27,7 +29,7 @@ export default function ChecksButton({ index, button, answer, setterFunction }) 
                     <div
                         className="xl:max-h-5 xl:max-w-5 xl:min-w-5 xl:min-h-5 
                     xs:max-w-4 xs:max-h-4 xs:min-w-4 xs:min-h-4  xs:right-1
-                    bg-white/30 box-content rounded-full absolute "></div>
+                    bg-black group-hover:bg-white/20 box-content rounded-full absolute "></div>
 
                 )}
             </div>

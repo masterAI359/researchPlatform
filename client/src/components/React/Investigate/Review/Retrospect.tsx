@@ -4,7 +4,6 @@ import Lottie from "lottie-react"
 import blueCheck from '../../../../lotties/blueCheck.json'
 import { RootState } from "@/ReduxToolKit/store"
 
-
 const opinions: string[] = [
     "Agree",
     "Disagree",
@@ -25,14 +24,15 @@ export default function Retrospect() {
                     What's your perspective now?
                 </h1>
             </header>
-            {opinions.map((opinion, index) => (
+            {opinions.map((opinion: string) => (
                 <div className="relative">
                     <div
                         key={opinion}
                         onClick={() => dispatch(finalPerspective(opinion))}
-                        className="bg-white/10 text-white xl:text-lg lg:text-[0.8rem] xs:text-[0.6rem] font-light tracking-tight
-              rounded-lg xl:w-60 xl:h-16 lg:w-[12rem] md:w-[12rem] md:h-12 xs:w-28 xs:h-9 relative
-               cursor-pointer hover:bg-white/20 flex justify-between items-center lg:px-4 xs:px-2 grow-0 gap-3 mx-auto"
+                        className="bg-white text-black xl:text-lg lg:text-[0.8rem] xs:text-[0.6rem]
+              rounded-lg xl:w-52 xl:h-12 lg:w-[12rem] md:w-[12rem] md:h-12 xs:w-28 xs:h-9 relative
+               cursor-pointer hover:bg-white/10 hover:text-white transition-all duration-200 ease-in-out
+                flex justify-between items-center xs:px-2 grow-0 gap-3 mx-auto group"
                     >
                         {opinion}
                         <div className="lg:min-h-10 lg:min-w-10 lg:max-h-10 lg:min-w-10 lg:p-0.5 
@@ -40,7 +40,9 @@ export default function Retrospect() {
                             {perspective === opinion ? <Lottie className="box-content absolute xs:right-0 xl:translate-x-1.5"
                                 animationData={blueCheck} loop={false} autoPlay={false} style={{ height: "100%", width: "100%", position: "relative" }} />
                                 : (
-                                    <div className="xl:max-h-5 xl:max-w-5 xl:min-w-5 xl:min-h-5 xs:max-w-4 xs:max-h-4 xs:min-w-4 xs:min-h-4 bg-white/30 box-content rounded-full  absolute xs:right-1"></div>
+                                    <div className="xl:max-h-5 xl:max-w-5 xl:min-w-5 xl:min-h-5 xs:max-w-4 xs:max-h-4
+                                     xs:min-w-4 xs:min-h-4 bg-ebony box-content rounded-full  absolute xs:right-1
+                                     group-hover:bg-white/10 transition-all duration-200 ease-in-out"></div>
 
                                 )}
                         </div>

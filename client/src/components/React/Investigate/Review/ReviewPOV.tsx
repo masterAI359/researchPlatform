@@ -13,11 +13,11 @@ export default function ReviewPOV() {
     console.log({ newConcept, fullyCovered, newStance })
 
     return (
-        <section className="w-fit xs:h-full grow md:py-10 md:px-20 flex flex-col
+        <section className="xs:w-fit xs:h-full  2xl:w-[36rem] 2xl:h-[32rem] 2xl:p-10 box-border grow flex flex-col
          lg:bg-gradient-to-tr from-ebony to-mirage lg:border border-white/5
         rounded-3xl xs:gap-y-6 2xl:gap-y-10 items-center content-center">
-            <header className="w-full mx-auto">
-                <h1 className="xs:text-md text-left text-center mx-auto w-auto lg:text-xl 
+            <header className="xs:w-full 2xl:min-w-96 mx-auto ">
+                <h1 className="xs:text-md text-left text-center mx-auto w-full lg:text-xl 
                 lg:mb-2 2xl:text-3xl text-white font-light tracking-tight">
                     Where you began
                 </h1>

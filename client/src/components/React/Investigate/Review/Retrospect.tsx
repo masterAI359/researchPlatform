@@ -8,7 +8,7 @@ import { RootState } from "@/ReduxToolKit/store"
 const opinions: string[] = [
     "Agree",
     "Disagree",
-    "Just Curious"
+    "Neutral"
 ]
 
 export default function Retrospect() {

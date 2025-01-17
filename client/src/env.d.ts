@@ -72,11 +72,6 @@ declare global {
   }
 
   interface WindowProps {
-    currentStep: number,
-    setCurrentStep: Function
-    setCanProceed: Function,
-    notifyRequired: boolean,
-    setNotifyRequired: Function,
   }
   interface Help {
     heading: string,

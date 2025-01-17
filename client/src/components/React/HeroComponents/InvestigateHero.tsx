@@ -1,11 +1,6 @@
-import { useState } from "react";
 import ContentWrapper from "../Investigate/Wrappers/ContentWrapper";
 
 export default function InvestigateHero({ }) {
-  const [approachSet, setApproach] = useState<boolean>(true)
-  const [canProceed, setCanProceed] = useState<boolean>(false)
-  const [notifyRequired, setNotifyRequired] = useState<boolean>(false)
-
 
   return (
     <section className={`lg:py-8 xs:py-4 transition-all animate-fade-in delay-1000 duration-500 ease-in-out`}>
@@ -16,10 +11,6 @@ export default function InvestigateHero({ }) {
     `}>
 
         <ContentWrapper
-          setCanProceed={setCanProceed}
-          notifyRequired={notifyRequired}
-          setNotifyRequired={setNotifyRequired}
-          canProceed={canProceed}
         />
       </div>
     </section>

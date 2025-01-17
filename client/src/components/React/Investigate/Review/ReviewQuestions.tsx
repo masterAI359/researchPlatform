@@ -36,7 +36,7 @@ export default function ReviewQuestions({ step }) {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ type: 'tween', duration: 0.2 }}
-                            className="w-full h-auto flex flex-col">
+                            className="w-full h-auto flex flex-col items-center">
                             <div className="flex flex-col gap-y-2 py-5 items-center h-full">
                                 <h1 className="text-white font-light w-full tracking-tight 2xl:text-lg ">
                                     {questions[0]}

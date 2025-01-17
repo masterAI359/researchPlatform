@@ -3,18 +3,17 @@ import { WindowProps } from "@/env";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import type { RootState } from '@/ReduxToolKit/store'
-import Slide1 from "./Slider/Slide1";
-import Slide2 from "./Slider/Slide2";
-import Slide3 from "./Slider/Slide3";
-import Slide4 from "./Slider/Slide4";
-import Slide5 from "./Slider/Slide5";
+import Step1 from "../Steps/Step1";
+import Step2 from "../Steps/Step2";
+import Step3 from "../Steps/Step3";
+import Step4 from "../Steps/Step4";
+import Step5 from "../Steps/Step5";
 
 
-export default function WindowWrapper({ setCanProceed, notifyRequired, setNotifyRequired }: WindowProps) {
+export default function WindowWrapper({ }: WindowProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const wizardRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState(null);
-  const [origin, setOrigin] = useState<string>('');
   const step = useSelector((state: RootState) => state.stepper.step)
 
 
@@ -49,27 +48,13 @@ export default function WindowWrapper({ setCanProceed, notifyRequired, setNotify
         animate={{ opacity: 1, x: -step * containerWidth }}
         transition={{ type: 'tween', duration: 0.2, ease: 'easeInOut' }}>
 
-        <Slide1
-          containerWidth={containerWidth}
-          setOrigin={setOrigin}
-          setNotifyRequired={setNotifyRequired}
-          notifyRequired={notifyRequired}
-          origin={origin}
-          setCanProceed={setCanProceed}
-        />
-        <Slide2
-          containerWidth={containerWidth}
-          setOrigin={setOrigin}
-        />
-        <Slide3
-          containerWidth={containerWidth}
-        />
-        <Slide4
-          containerWidth={containerWidth}
-        />
-        <Slide5
-          containerWidth={containerWidth}
-        />
+        <Step1 containerWidth={containerWidth} />
+        <Step2 containerWidth={containerWidth} />
+        <Step3 containerWidth={containerWidth} />
+        <Step4 containerWidth={containerWidth} />
+        <Step5 containerWidth={containerWidth} />
+
+
 
       </motion.div>
     </section>

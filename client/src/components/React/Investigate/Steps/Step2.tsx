@@ -1,5 +1,3 @@
-import React from "react"
-import { motion } from "framer-motion"
 import Lottie from "lottie-react"
 import blueCheck from '../../../../lotties/blueCheck.json'
 import HelpButton from "../../Buttons/Question"
@@ -59,14 +57,14 @@ export default function Step2({ containerWidth }: any) {
         <div className="w-full flex items-center">
 
           <div className="flex w-fit mx-auto xs:gap-x-16 xl:gap-x-36 box-border">
-            <motion.div
+            <div
               className="flex flex-col md:gap-y-2 xs:gap-y-1 items-center text-center my-auto"
             >
               <header className="w-full">
                 <h1 className="2xl:text-2xl xl:text-xl xs:text-xs  font-light tracking tight text-slate-400 mb-2">Your Perspective</h1>
               </header>
               {opinions.map((opinion) => (
-                <motion.div
+                <div
                   className="relative"
                   key={opinion}
                 >
@@ -88,16 +86,16 @@ export default function Step2({ containerWidth }: any) {
                         )}
                     </div>
                   </div>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </div>
 
-            <motion.div className="flex flex-col md:gap-y-2 xs:gap-y-1 items-center text-center my-auto">
+            <div className="flex flex-col md:gap-y-2 xs:gap-y-1 items-center text-center my-auto">
               <header className="w-full">
                 <h1 className="2xl:text-2xl xl:text-xl xs:text-xs font-light tracking tight text-slate-400 mb-2">Prior Knowledge</h1>
               </header>
               {expertise.map((item) => (
-                <motion.div
+                <div
                   key={item}
                   className="relative"
                 >
@@ -114,9 +112,9 @@ export default function Step2({ containerWidth }: any) {
                       )}
                     </div>
                   </div>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </div>
 

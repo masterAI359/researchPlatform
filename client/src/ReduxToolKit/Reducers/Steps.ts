@@ -4,13 +4,15 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 
 export interface StepState {
 
-    step: number
+    step: number,
+    denied: boolean
 }
 
 
 const initialState: StepState = {
 
     step: 0,
+    denied: null
 }
 
 
@@ -32,11 +34,16 @@ export const StepSlice = createSlice({
 
         incrementBy: (state, action: PayloadAction<number>) => {
             state.step += action.payload
+        },
+        denyIncrement: (state, action) => {
+            state.denied = action.payload
+            console.log(state.denied)
         }
     }
+
 })
 
 
-export const { increment, decrement, incrementBy } = StepSlice.actions
+export const { increment, decrement, incrementBy, denyIncrement } = StepSlice.actions
 
 export default StepSlice.reducer

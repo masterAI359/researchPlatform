@@ -1,19 +1,24 @@
 import type { RootState } from '@/ReduxToolKit/store'
 import { useSelector, useDispatch } from 'react-redux'
-import { increment, incrementBy } from "@/ReduxToolKit/Reducers/Steps";
+import { increment } from "@/ReduxToolKit/Reducers/Steps";
 import { motion } from "framer-motion";
 
 interface ButtonProps {
-  canProceed: boolean
-  setCanProceed: Function,
-  setNotifyRequired: Function,
-  notifyRequired: boolean,
   gettingHelp: boolean
 }
 
-export default function NextButton({ setCanProceed, canProceed, setNotifyRequired, notifyRequired, gettingHelp }: ButtonProps) {
+export default function NextButton({ gettingHelp }: ButtonProps) {
   const step = useSelector((state: RootState) => (state.stepper.step))
+  const denied = useSelector((state: RootState) => state.stepper.denied)
   const dispatch = useDispatch()
+
+  const handleStep = () => {
+    if (!denied) {
+      dispatch(increment())
+    } else if (denied || denied === null) {
+      ;
+    }
+  }
 
   return (
     <motion.div
@@ -25,7 +30,7 @@ export default function NextButton({ setCanProceed, canProceed, setNotifyRequire
       className={`relative h-auto w-auto justify-self-end self-center ${step >= 4 || gettingHelp ? 'pointer-events-none' : 'pointer-events-auto'}`}
     >
       <button
-        onClick={() => dispatch(increment())}
+        onClick={handleStep}
         className="text-white text-md font-light xs:w-14 xs:h-8
           lg:w-14 lg:h-12 p-1.5 transition-all mx-auto flex
           duration-200 bg-white/5 hover:bg-white/10 items-center group

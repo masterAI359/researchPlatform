@@ -3,51 +3,36 @@ import StepsEditor from "../../TipTap/StepsEditor"
 import HelpButton from "../../Buttons/Question"
 import { Step1Help } from "@/helpInfo/help"
 import { getIdea } from "@/ReduxToolKit/Reducers/UserPOV"
+import { denyIncrement } from "@/ReduxToolKit/Reducers/Steps"
 import { useSelector, useDispatch } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 
 
-export default function Step1({ setCanProceed, notifyRequired, setNotifyRequired, containerWidth }: any) {
-      const [isExpressed, setIsExpressed] = useState<string>('')
+export default function Step1({ containerWidth }: any) {
       const [accepted, setAccepted] = useState<boolean>(null)
+      const denied = useSelector((state: RootState) => state.stepper.denied)
       const idea = useSelector((state: RootState) => state.pov.idea)
       const dispatch = useDispatch()
 
       let wordCount = (statement: string) => {
-
-            if (statement === '') {
-                  setAccepted(false)
-            }
-
             let trimmed: string[] = statement.trim().split(' ')
-
-            if (trimmed.length < 5 || statement === '') {
-                  setAccepted(false)
-            } else {
-                  setAccepted(true)
-            }
+            return trimmed.length
       }
 
 
       useEffect(() => {
 
-            if (isExpressed !== '' || notifyRequired === true) {
-                  wordCount(isExpressed)
+            let words: number = null
+            words = wordCount(idea)
+            if (words < 5) {
+                  dispatch(denyIncrement(true))
+            } else if (words >= 5) {
+                  dispatch(denyIncrement(false))
             }
 
-            if (accepted === true && isExpressed !== '') {
-                  setCanProceed(true)
-                  setNotifyRequired(false)
-
-                  dispatch(getIdea(isExpressed))
-
-            } else if (accepted === false) {
-                  setCanProceed(false)
-            }
-
-      }, [isExpressed, notifyRequired])
+      }, [idea])
 
 
       return (
@@ -71,7 +56,7 @@ export default function Step1({ setCanProceed, notifyRequired, setNotifyRequired
                               </div>
                               <div className="flex justify-items-start gap-2 z-10 w-full">
                                     <div className={`w-full bg-white/10 xs:h-40 md:h-52 xl:h-80 pb-8 rounded-lg border border-solid box-border
-                                    ${accepted === null ? 'border-transparent' : accepted === true ? 'border-green-500' : 'border-red-800'}`}>
+                                    ${denied === null ? 'border-transparent' : denied === false ? 'border-green-500' : 'border-red-800'}`}>
                                           <StepsEditor context={idea} setterFunction={getIdea} />
                                           <div
                                                 className={`flex flex-row-reverse items-center w-full h-fit`}>
@@ -86,20 +71,16 @@ export default function Step1({ setCanProceed, notifyRequired, setNotifyRequired
 
                                                 </div>
                                                 <div className="justify-self-end items-center h-fit w-auto mr-2">
-                                                      {accepted === null
+                                                      {denied === null
                                                             ? ''
-                                                            : accepted === true
+                                                            : denied === false
                                                                   ? <p className="font-light tracking-tight text-green-500 text-md">Proceed</p>
-                                                                  : accepted === false
+                                                                  : denied === true
                                                                         ? <p className="font-normal tracking-tight text-red-600 text-md">Input must be a minimum of 5 words</p>
                                                                         : null}
                                                 </div>
-
                                           </div>
                                     </div>
-                                    {/*<Perspective
-                                    setOrigin={setOrigin}
-                                    origin={origin} /> */}
                               </div>
                         </div>
                   </div>

@@ -150,50 +150,14 @@ declare module 'astro:content' {
 	>;
 
 	type ContentEntryMap = {
-		"integrations": {
-"1.md": {
-	id: "1.md";
-  slug: "1";
+		"integrations": Record<string, {
+  id: string;
+  slug: string;
   body: string;
   collection: "integrations";
-  data: any
-} & { render(): Render[".md"] };
-"2.md": {
-	id: "2.md";
-  slug: "2";
-  body: string;
-  collection: "integrations";
-  data: any
-} & { render(): Render[".md"] };
-"3.md": {
-	id: "3.md";
-  slug: "3";
-  body: string;
-  collection: "integrations";
-  data: any
-} & { render(): Render[".md"] };
-"4.md": {
-	id: "4.md";
-  slug: "4";
-  body: string;
-  collection: "integrations";
-  data: any
-} & { render(): Render[".md"] };
-"5.md": {
-	id: "5.md";
-  slug: "5";
-  body: string;
-  collection: "integrations";
-  data: any
-} & { render(): Render[".md"] };
-"6.md": {
-	id: "6.md";
-  slug: "6";
-  body: string;
-  collection: "integrations";
-  data: any
-} & { render(): Render[".md"] };
-};
+  data: any;
+  render(): Render[".md"];
+}>;
 
 	};
 

@@ -22,7 +22,7 @@ export default function FinishLine() {
             <article
                 className="relative flex items-center gap-x-2 relative mx-auto xs:w-full 
              xs:h-full 2xl:w-fit 2xl:h-full xs:py-20 md:py-2 rounded-4xl 2xl:max-w-7xl 
-             2xl:px-2 bg-ebony shadow-inset overflow-hidden">
+             2xl:px-2 bg-ebony shadow-inset overflow-hidden 2xl:mt-24">
                 <div className="flex flex-col h-full w-full">
                     <ReviewPOV />
                 </div>

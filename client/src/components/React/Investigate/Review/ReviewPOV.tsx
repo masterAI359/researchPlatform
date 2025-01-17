@@ -10,7 +10,6 @@ export default function ReviewPOV() {
     const idea = useSelector((state: RootState) => state.pov.idea)
     const perspective = useSelector((state: RootState) => state.pov.perspective)
 
-    console.log({ newConcept, fullyCovered, newStance })
 
     return (
         <section className="xs:w-fit xs:h-full  2xl:w-[36rem] 2xl:h-[32rem] 2xl:p-10 box-border grow flex flex-col

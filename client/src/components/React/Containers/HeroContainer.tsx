@@ -13,12 +13,11 @@ export default function HeroContainer({
     const startSearch = useSelector((state: RootState) => state.search.startSearch)
     const initiateEnd = useSelector((state: RootState) => state.review.finished)
 
-    console.log(startSearch)
-
     return (
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="popLayout">
 
             {startSearch === null && (<motion.div
+                layout
                 key='Investigate'
                 initial={{ opacity: 1 }}
                 animate={{ opacity: 1 }}
@@ -32,6 +31,7 @@ export default function HeroContainer({
 
             {startSearch ?
                 (<motion.div
+                    layout
                     key='Search'
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -44,6 +44,7 @@ export default function HeroContainer({
 
             {reading &&
                 <motion.div
+                    layout
                     key='Search'
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -55,6 +56,7 @@ export default function HeroContainer({
             }
 
             {initiateEnd && <motion.div
+                layout
                 key='Finished'
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}

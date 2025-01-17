@@ -1,21 +1,19 @@
 import React from "react"
 import { motion } from "framer-motion"
-import { useRef, useState } from "react"
+import { useState } from "react"
 import Lottie from "lottie-react"
 import blueCheck from '../../../../lotties/blueCheck.json'
 import HelpButton from "../../Buttons/Question"
 import { Step2Help } from "@/helpInfo/help"
 import { getPerspective, getExpertise } from "@/ReduxToolKit/Reducers/UserPOV"
-import { useSelector, useDispatch } from "react-redux"
-import { RootState } from "@/ReduxToolKit/store"
+import { useDispatch } from "react-redux"
 
 export default function Step2({ containerWidth }: any) {
   const [pov, setPov] = useState<string>(null)
   const [knowledge, setKnowledge] = useState<string>(null)
-  const perspective = useSelector((state: RootState) => state.pov.perspective)
-  const userExpertise = useSelector((state: RootState) => state.pov.expertise)
   const dispatch = useDispatch()
 
+  //TODO: There must be a better way to do this besides storing local state variables and dispatching them
 
   const assignOrigin = (e: React.MouseEvent<HTMLDivElement>) => {
     const targetDiv = e.target as HTMLDivElement
@@ -23,7 +21,6 @@ export default function Step2({ containerWidth }: any) {
     dispatch(getPerspective(pov))
 
   }
-
   const assignKnowledge = (e: React.MouseEvent<HTMLDivElement>) => {
     const divTarget = e.target as HTMLDivElement;
     setKnowledge(divTarget.getAttribute('data-set'))
@@ -31,7 +28,6 @@ export default function Step2({ containerWidth }: any) {
   }
 
 
-  console.log({ "Point of view": perspective }, { "Expertise": userExpertise })
 
 
 

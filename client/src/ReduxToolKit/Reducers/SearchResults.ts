@@ -8,7 +8,7 @@ interface ArticleArrayType {
 
 const initialState: ArticleArrayType = {
     articles: null,
-    startSearch: null
+    startSearch: false
 }
 
 
@@ -29,7 +29,6 @@ export const SearchResultsSlice = createSlice({
     },
 })
 
-console.log(initialState.articles)
 
 
 export const { searchResults, resetResults, startSearch } = SearchResultsSlice.actions

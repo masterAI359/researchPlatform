@@ -18,7 +18,7 @@ export default function ReviewPOV() {
         rounded-3xl xs:gap-y-6 2xl:gap-y-10 items-center content-center">
             <header className="w-full mx-auto">
                 <h1 className="xs:text-md text-left text-center mx-auto w-auto lg:text-xl 
-                lg:mb-2 2xl:text-2xl text-white font-light tracking-tight">
+                lg:mb-2 2xl:text-3xl text-white font-light tracking-tight">
                     Where you began
                 </h1>
             </header>

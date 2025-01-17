@@ -20,13 +20,18 @@ export default function Retrospect() {
     return (
 
         <div className="w-full h-full flex flex-col gap-y-2">
+            <header>
+                <h1 className="text-white font-light text-xl">
+                    What's your perspective now?
+                </h1>
+            </header>
             {opinions.map((opinion, index) => (
                 <div className="relative">
                     <div
                         key={index}
                         onClick={() => dispatch(finalPerspective(opinion))}
                         className="bg-white/10 text-white xl:text-lg lg:text-[0.8rem] xs:text-[0.6rem] font-light tracking-tight
-              rounded-lg xl:w-60 xl:h-16 lg:w-[12rem] md:w-[12rem] md:h-12 xs:w-28 xs:h-9
+              rounded-lg xl:w-60 xl:h-16 lg:w-[12rem] md:w-[12rem] md:h-12 xs:w-28 xs:h-9 relative
                cursor-pointer hover:bg-white/20 flex justify-between items-center lg:px-4 xs:px-2 grow-0 gap-3"
                     >
                         {opinion}

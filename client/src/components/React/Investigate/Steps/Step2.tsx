@@ -11,8 +11,6 @@ export default function Step2({ containerWidth }: any) {
   const pov = useSelector((state: RootState) => state.pov.perspective)
   const dispatch = useDispatch()
 
-  console.log({ "POV": pov, "Expertise": knowledge })
-
   const getPOV = (e: React.MouseEvent<HTMLDivElement>) => {
 
     const targetDiv = e.target as HTMLDivElement

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useState } from "react"
 import { Summary } from "./SuccessFull/Summary"
 import { AnimatePresence, motion } from "framer-motion"
 import FailedSummary from "./Failed/FailedSummary"
@@ -10,7 +10,6 @@ export default function SummaryContainer({ }) {
   const notifications = useSelector((state: RootState) => state.read.failedNotifications)
   const currentStory = useSelector((state: RootState) => state.read.currentStory)
   const [failedNotifications, setFailedNotifications] = useState<object[]>([])
-  const containerRef = useRef(null)
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -40,7 +39,6 @@ export default function SummaryContainer({ }) {
 
       </header>
       <main
-        ref={containerRef}
         className="2xl:max-w-6xl h-full w-full mx-auto 
                  transition-all duration-1000 animate-fade-in mb-12 
                  ">
@@ -48,7 +46,6 @@ export default function SummaryContainer({ }) {
           className="w-full h-svh mx-auto relative">
           <AnimatePresence mode="popLayout">
             {stories?.map((summaryData: any, index: number) =>
-
             (currentStory === index && <Summary
               key={index}
               index={index}

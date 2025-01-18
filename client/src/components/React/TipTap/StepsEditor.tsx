@@ -1,18 +1,20 @@
+import { RootState } from "@/ReduxToolKit/store";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import { useDispatch } from "react-redux";
-import { saveNote } from "@/ReduxToolKit/Reducers/NoteTaking";
+import { useDispatch, useSelector } from "react-redux";
+
 
 //TODO: fix bug occurring when using the editor
 
 export default function StepsEditor({ setterFunction, context }) {
     const dispatch = useDispatch()
+    const idea = useSelector((state: RootState) => state.pov.idea)
 
 
     const handleContent = () => {
+        let inputText = editor.getText()
 
-        dispatch(setterFunction(editor.getText()))
-        dispatch(saveNote(editor.getText()))
+        dispatch(setterFunction(inputText))
     }
 
 

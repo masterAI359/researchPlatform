@@ -7,15 +7,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { getBiases } from "@/ReduxToolKit/Reducers/UserPOV";
 
 export default function Step3({ containerWidth }: any) {
-  const [bias, setBias] = useState<string>(null)
   const biases = useSelector((state: RootState) => state.pov.biases)
   const dispatch = useDispatch()
 
-  useEffect(() => {
 
-    if (bias !== null) dispatch(getBiases(bias))
-
-  }, [bias])
 
   return (
     <div style={{ flexShrink: 0, maxWidth: containerWidth }}
@@ -39,7 +34,7 @@ export default function Step3({ containerWidth }: any) {
               className="block w-full xs:h-40 md:h-52 xl:h-80 text-md text-white bg-white/10 border-none focus:ring-1 focus:ring-white
     rounded-lg resize-none text-wrap flex justify-items-start"
             >
-              <StepsEditor context={biases} setterFunction={setBias} />
+              <StepsEditor context={biases} setterFunction={getBiases} />
             </div>
           </div>
         </div>

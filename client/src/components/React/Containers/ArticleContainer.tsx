@@ -21,7 +21,6 @@ export default function ArticleContainer({
     const reading = useSelector((state: RootState) => state.read.reading)
     const stories = useSelector((state: RootState) => state.read.summaries)
 
-    console.log(stories)
 
     function hideSelect() {
 

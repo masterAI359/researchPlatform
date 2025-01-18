@@ -24,8 +24,8 @@ export default function Retrospect() {
                     What's your perspective now?
                 </h1>
             </header>
-            {opinions.map((opinion: string) => (
-                <div className="relative">
+            {opinions.map((opinion: string, index: number) => (
+                <div key={index} className="relative">
                     <div
                         key={opinion}
                         onClick={() => dispatch(finalPerspective(opinion))}

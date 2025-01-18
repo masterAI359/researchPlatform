@@ -11,8 +11,6 @@ import { RootState } from "@/ReduxToolKit/store"
 export default function ArticlesGrid() {
     const articles = useSelector((state: RootState) => state.search.articles)
 
-    console.log(articles)
-
     const container = {
 
         hidden: { opacity: 0 },

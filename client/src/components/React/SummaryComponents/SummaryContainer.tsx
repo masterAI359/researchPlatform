@@ -1,6 +1,6 @@
 import { useRef, useState } from "react"
 import { Summary } from "./SuccessFull/Summary"
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import FailedSummary from "./Failed/FailedSummary"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
@@ -8,6 +8,7 @@ import { RootState } from "@/ReduxToolKit/store"
 export default function SummaryContainer({ }) {
   const stories = useSelector((state: RootState) => state.read.summaries)
   const notifications = useSelector((state: RootState) => state.read.failedNotifications)
+  const currentStory = useSelector((state: RootState) => state.read.currentStory)
   const [failedNotifications, setFailedNotifications] = useState<object[]>([])
   const containerRef = useRef(null)
   const container = {
@@ -23,7 +24,6 @@ export default function SummaryContainer({ }) {
     }
   }
 
-  //TODO: consider switching the animatepresence to this component
 
   return (
     <motion.div
@@ -41,17 +41,20 @@ export default function SummaryContainer({ }) {
         className="2xl:max-w-6xl h-auto w-full mx-auto 
                  transition-all duration-1000 animate-fade-in mb-12 
                  overflow-x-hidden overflow-y-hidden">
-        <motion.div
-          transition={{ type: 'tween', duration: 0.2 }}
+        <div
           className="w-full flex h-auto items-center">
-          {stories?.map((summaryData: any, index: number) =>
-            <Summary
+          <AnimatePresence>
+            {stories?.map((summaryData: any, index: number) =>
+
+            (currentStory === index && <Summary
               key={index}
               index={index}
               summaryData={summaryData}
-            />
-          )}
-        </motion.div>
+            />)
+            )}
+          </AnimatePresence>
+
+        </div>
       </main>
       {notifications !== null &&
         <FailedSummary

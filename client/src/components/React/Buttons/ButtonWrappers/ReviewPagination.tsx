@@ -9,7 +9,9 @@ export default function ReviewPagination({ setStep }) {
 
             <button
                 onClick={() => setStep(prev => prev - 1)}
-                className="rounded-2xl group bg-white xs:w-24 xs:p-2 2xl:h-12 2xl:w-16 2xl:p-3 xs:text-sm hover:bg-white/20 transition-all duration-200 ease-in-out text-white font-light">
+                className="rounded-2xl group bg-white xs:w-24 xs:p-2 2xl:h-12 2xl:w-16
+                 2xl:p-3 xs:text-sm hover:bg-white/20 transition-all duration-200
+                ease-in-out text-white font-light">
                 <svg className="p-1 text-black group-hover:text-white transition-all duration-200 ease-in-out" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="100%" height="100%">
                     <path d="M 33.960938 2.9804688 A 2.0002 2.0002 0 0 0 32.585938 3.5859375 L 13.585938 22.585938 A 2.0002 2.0002 0 0 0 13.585938 25.414062 L 32.585938 44.414062 A 2.0002 2.0002 0 1 0 35.414062 41.585938 L 17.828125 24 L 35.414062 6.4140625 A 2.0002 2.0002 0 0 0 33.960938 2.9804688 z" fill="currentColor" />
                 </svg>

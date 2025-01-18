@@ -42,9 +42,10 @@ export default function ArticleContainer({
             className="relative w-full h-auto mx-auto xs:px-2">
             <div
                 className="relative w-full h-auto box-border mx-auto">
-                <AnimatePresence mode="wait">
+                <AnimatePresence mode="popLayout">
                     {loading === true &&
                         <motion.div
+                            layout
                             key='loadingArticles'
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -56,6 +57,7 @@ export default function ArticleContainer({
 
                     {articles !== null &&
                         <motion.div
+                            layout
                             key='presentArticles'
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -68,6 +70,7 @@ export default function ArticleContainer({
 
                     {loadingContent &&
                         <motion.div
+                            layout
                             key='loadingSummaries'
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -80,6 +83,7 @@ export default function ArticleContainer({
 
                     {reading &&
                         <motion.div
+                            layout
                             key='presentSummaries'
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}

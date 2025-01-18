@@ -7,7 +7,7 @@ import decodeItem from '../helpers/decodeItem.js'
 
 const envUrl = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(envUrl)
-const envPath = path.resolve(__dirname, '../../../.env');
+const envPath = path.resolve(__dirname, '../../.env');
 
 dotenv.config({ path: envPath })
 

@@ -13,7 +13,7 @@ import { fileURLToPath } from 'url';
 import decodeItem from '../helpers/decodeItem.js';
 const envUrl = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(envUrl);
-const envPath = path.resolve(__dirname, '../../../.env');
+const envPath = path.resolve(__dirname, '../../.env');
 dotenv.config({ path: envPath });
 const TLDRKey = process.env.TLDR_KEY;
 export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

@@ -52,6 +52,9 @@ export const useFetch = () => {
         }
     };
 
+    //TODO: create a notification to push to rejected() along with the 
+    // failed article data that notifies the user how many articles were rejected
+
     const fetchSummaries = async (articlesToSummarize: any) => {
         dispatch(resetResults())
         dispatch(resetData())
@@ -65,7 +68,6 @@ export const useFetch = () => {
                 throw new Error('There was an issue with TLDR API')
             }
             const tldrJSON = await tldrResponse.json()
-            console.log({ 'test 1': tldrJSON.retrieved, 'test2': tldrJSON })
             setLoadingSummaries(false)
             dispatch(articleData(tldrJSON.retrieved))
             dispatch(rejected(tldrJSON.rejected))

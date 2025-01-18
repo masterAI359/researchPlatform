@@ -35,8 +35,8 @@ export default function ArticlesGrid() {
             animate="show"
             exit="hidden"
         >
-            <div className={`h-full mx-auto 2xl:px-36 md:px-12 sm:w-full lg:px-16 xl:px-36 2xl:max-w-7xl`}>
-                <ol className="grid grid-cols-2 lg:gap-10 xs:gap-3 mx-auto lg:mt-4">
+            <div className={`h-full w-fit mx-auto 2xl:max-w-7xl`}>
+                <ol className="grid grid-cols-2 xs:gap-3 2xl:gap-16 mx-auto">
                     {articles?.map((article: ArticleType, index: number) =>
                         <Article
                             index={index}

@@ -1,4 +1,4 @@
-import Checks from "./Checks";
+import Checks from "../../Buttons/ButtonWrappers/Checks";
 import { useSelector } from "react-redux";
 import { getMerit, changedStance } from "@/ReduxToolKit/Reducers/Review";
 import { RootState } from "@/ReduxToolKit/store";

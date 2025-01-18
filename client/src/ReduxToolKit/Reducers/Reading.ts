@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createListenerMiddleware, createSlice } from '@reduxjs/toolkit'
 
 
 interface ReadingState {
@@ -9,6 +9,7 @@ interface ReadingState {
     failedNotifications: Array<any> | null,
     currentStory: number,
     reading: boolean,
+    paginateLimit: boolean
 }
 
 
@@ -19,7 +20,8 @@ const initialState: ReadingState = {
     summaries: null,
     failedNotifications: null,
     currentStory: 0,
-    reading: false
+    reading: false,
+    paginateLimit: false
 }
 
 
@@ -51,12 +53,23 @@ export const ReadingSlice = createSlice({
         isReading: (state, action) => {
             state.reading = action.payload
         },
-        resetData: () => initialState
-
+        resetData: () => initialState,
+        limitPagination: (state, action) => {
+            state.paginateLimit = action.payload
+        }
     }
 })
 
 
-export const { loadContent, getStories, articleData, rejected, incrementStory, decrementStory, isReading, resetData, closeNotification } = ReadingSlice.actions
+export const {
+    loadContent,
+    getStories,
+    articleData,
+    rejected,
+    incrementStory,
+    decrementStory, isReading,
+    resetData,
+    closeNotification,
+    limitPagination } = ReadingSlice.actions
 
 export default ReadingSlice.reducer

@@ -29,7 +29,7 @@ export default function ChecksButton({ index, button, answer, setterFunction }) 
                     <div
                         className="xl:max-h-5 xl:max-w-5 xl:min-w-5 xl:min-h-5 
                     xs:max-w-4 xs:max-h-4 xs:min-w-4 xs:min-h-4  xs:right-1
-                    bg-black group-hover:bg-white/20 box-content rounded-full absolute "></div>
+                    bg-black/30 group-hover:bg-white/20 box-content rounded-full absolute "></div>
 
                 )}
             </div>

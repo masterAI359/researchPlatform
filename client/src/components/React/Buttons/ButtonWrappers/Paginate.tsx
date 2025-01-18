@@ -1,24 +1,27 @@
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-import { incrementStory, decrementStory } from "@/ReduxToolKit/Reducers/Reading"
+import { incrementStory, decrementStory, limitPagination } from "@/ReduxToolKit/Reducers/Reading"
 
 
 export default function Paginate() {
     const currentStory = useSelector((state: RootState) => state.read.currentStory)
     const stories = useSelector((state: RootState) => state.read.summaries)
+    const atLimit = useSelector((state: RootState) => state.read.paginateLimit)
     const totalStories = stories.length
     const dispatch = useDispatch()
 
-
+    console.log(atLimit)
+    //work on animation to notify that there's nothing else to page through
 
     return (
         <div className="xl:w-44 h-auto p-1 flex gap-x-0 items-center justify-center">
 
             <button
-                onClick={() => currentStory > 0 ? dispatch(decrementStory()) : null}
-                className="xl:w-16 xl:h-12 bg-ebony hover:bg-white/10 
+                onClick={() => currentStory > 0 ? dispatch(decrementStory()) : dispatch(limitPagination(true))}
+                className={`xl:w-16 xl:h-12 bg-ebony hover:bg-white/10 
              mx-auto rounded-2xl flex items-center justify-center xl:p-2
-             group transition-all duration-200 ease-in-out">
+             group transition-all duration-200 ease-in-out 
+             ${atLimit ? 'animate-[wiggle_1s_ease-in-out_3]' : ''}`}>
                 <div className="rounded-md xl:h-fit xl:w-16 flex xs:hidden md:block mx-auto bg:black z-50 opacity-0 absolute xl:translate-y-16 xl:-translate-x-11
 border border-white/50 md:group-hover:opacity-100 transition-opacity duration-200 ease-in-out">
 
@@ -32,7 +35,7 @@ border border-white/50 md:group-hover:opacity-100 transition-opacity duration-20
             </button>
 
             <button
-                onClick={() => currentStory + 2 <= totalStories ? dispatch(incrementStory()) : null}
+                onClick={() => currentStory + 2 <= totalStories ? dispatch(incrementStory()) : dispatch(limitPagination(true))}
                 className="xl:w-16 xl:h-12 bg-ebony hover:bg-white/10 rounded-2xl
              mx-auto flex items-center justify-center xl:p-2 group transition-all duration-200 ease-in-out">
                 <div className="rounded-md xl:h-fit xl:w-16 flex xs:hidden md:block mx-auto bg:black z-50 opacity-0 absolute xl:translate-y-16 xl:-translate-x-8

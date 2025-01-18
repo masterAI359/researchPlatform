@@ -63,8 +63,8 @@ export default function Search({ }) {
                   type="text"
                   name="q"
                   className="bg-white/10 text-white w-full h-fit 
-                  border-none focus:ring-white h-12 xs:p-3  md:p-2 rounded-full 
-		              transition-colors xs:text-sm md:text-lg flex items-center"
+                  border-none h-12 xs:p-3  md:p-2 rounded-full 
+		              transition-colors xs:text-sm md:text-lg flex items-center prose"
                   placeholder="search" />
                 <button type="submit"
                 >

@@ -7,7 +7,9 @@ interface FinishedState {
     newPOV: boolean
     wantedMore: boolean | null,
     merit: boolean | null,
-    movedOnIdea: boolean | null
+    movedOnIdea: boolean | null,
+    takeAway: string | null,
+    endProcess: boolean
 }
 
 
@@ -19,8 +21,9 @@ const initialState: FinishedState = {
     newPOV: null,
     wantedMore: null,
     merit: null,
-    movedOnIdea: null
-
+    movedOnIdea: null,
+    takeAway: '',
+    endProcess: false
 }
 
 export const ReviewSlice = createSlice({
@@ -47,13 +50,30 @@ export const ReviewSlice = createSlice({
         },
         moved: (state, action) => {
             state.movedOnIdea = action.payload
+        },
+        getTakeAways: (state, action) => {
+            state.takeAway = action.payload
+        },
+        endInvestigate: (state, action) => {
+            state.endProcess = action.payload
         }
 
     }
 })
 
 
-export const { initiateFinalProcess, finalPerspective, changedStance, newKnowledge, wantsMoreContext, getMerit, moved } = ReviewSlice.actions
+export const {
+    initiateFinalProcess,
+    finalPerspective,
+    changedStance,
+    newKnowledge,
+    wantsMoreContext,
+    getMerit,
+    moved,
+    getTakeAways,
+    endInvestigate
+
+} = ReviewSlice.actions
 
 export default ReviewSlice.reducer
 

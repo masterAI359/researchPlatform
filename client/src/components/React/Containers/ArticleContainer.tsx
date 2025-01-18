@@ -38,9 +38,9 @@ export default function ArticleContainer({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ type: 'tween', duration: 0.2 }}
-            className="relative w-full h-auto mx-auto xs:px-2">
+            className="relative w-full h-full mx-auto xs:px-2">
             <div
-                className="relative w-full h-auto box-border mx-auto">
+                className="relative xl:max-w-7xl h-full box-border mx-auto">
                 <AnimatePresence mode="popLayout">
                     {loading === true &&
                         <motion.div

@@ -20,7 +20,7 @@ export default function ReviewQuestions({ step }) {
     return (
         <div className="xs:h-full opacity-100 z-1 xs:w-full 2xl:w-[36rem] 2xl:h-[32rem] 2xl:p-10 grow mx-auto flex flex-col
         2xl:min-h-96 
-        flex-none gap-y-8 bg-gradientdown rounded-3xl ring-1 ring-inset ring-white/5">
+        flex-none gap-y-16 bg-gradientdown rounded-3xl ring-1 ring-inset ring-white/5">
             <header className="w-full h-auto">
                 <h1 className="text-white text-3xl w-full font-light text-center">
                     Where you are now

@@ -41,7 +41,7 @@ export default function Retrospect() {
                                 animationData={blueCheck} loop={false} autoPlay={false} style={{ height: "100%", width: "100%", position: "relative" }} />
                                 : (
                                     <div className="xl:max-h-5 xl:max-w-5 xl:min-w-5 xl:min-h-5 xs:max-w-4 xs:max-h-4
-                                     xs:min-w-4 xs:min-h-4 bg-ebony box-content rounded-full  absolute xs:right-1
+                                     xs:min-w-4 xs:min-h-4 bg-black/30 box-content rounded-full  absolute xs:right-1
                                      group-hover:bg-white/10 transition-all duration-200 ease-in-out"></div>
 
                                 )}

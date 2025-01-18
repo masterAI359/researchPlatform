@@ -1,14 +1,10 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/ReduxToolKit/store';
 import SummaryHeader from './SummaryHeader';
 import SummaryContent from './SummaryContent';
 
 export function Summary({ summaryData, index }) {
     const [fullStory, setFullStory] = useState(true);
-    const currentStory = useSelector((state: RootState) => state.read.currentStory)
-
     const {
         summary,
         article_image,
@@ -22,19 +18,22 @@ export function Summary({ summaryData, index }) {
         source,
     } = summaryData;
 
-
-
-
-
-
     return (
         <motion.div
             layout
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ type: 'tween', duration: 0.2 }}
-            className="shrink-0 box-border w-auto flex flex-col 2xl:mx-auto
+            animate={{
+                opacity: 1, transition: {
+                    delay: 0.35, duration: 0.4
+                }
+            }}
+            exit={{
+                opacity: 0,
+                transition: {
+                    duration: 0.3
+                }
+            }}
+            className="absolute inset-0 box-border w-auto flex flex-col 2xl:mx-auto
                 mx-auto pb-1 xl:w-full h-auto
                 overflow-y-scroll scrollbar-hide box-border bg-black"
         >

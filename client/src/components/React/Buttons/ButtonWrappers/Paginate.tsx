@@ -12,7 +12,6 @@ export default function Paginate() {
 
     const pages = Array.from({ length: stories.length })
 
-    console.log(pages)
     return (
         <div className="w-auto h-auto p-1 flex gap-x-0 items-center">
 
@@ -35,10 +34,10 @@ border border-white/50 md:group-hover:opacity-100 transition-opacity duration-20
             </button>
 
             <div className="w-auto mx-auto xl:px-6 h-auto flex items-center justify-between 2xl:gap-2">
-                {pages
+                {stories
                     ? pages.map((item, index) => (
                         <div className={`cursor-pointer text-lg
-                         rounded-lg p-2 w-8 h-fit hover:bg-white/20 transition-all ease-in-out
+                         rounded-lg p-2 w-8 h-fit hover:bg-white/20 transition-all ease-in-out duration-300
                          ${currentStory === index ? 'bg-white text-black' : 'bg-white/10 text-white'}`}>
                             <p className="w-fit mx-auto text-center">
                                 {index + 1}

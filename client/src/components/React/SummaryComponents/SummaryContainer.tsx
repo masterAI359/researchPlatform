@@ -25,8 +25,11 @@ export default function SummaryContainer({ }) {
   }
 
 
+  console.log("currentStory from Redux:", currentStory);
+
   return (
     <motion.div
+      layout
       className="h-full 2xl:max-w-7xl xl:max-w-5xl xs:px-2 md:px-8 shadow-black inset rounded-4xl mx-auto border-white/10 xs:mt-10 xl:mt-0"
       variants={container}
       initial="hidden"
@@ -38,12 +41,12 @@ export default function SummaryContainer({ }) {
       </header>
       <main
         ref={containerRef}
-        className="2xl:max-w-6xl h-auto w-full mx-auto 
+        className="2xl:max-w-6xl h-full w-full mx-auto 
                  transition-all duration-1000 animate-fade-in mb-12 
-                 overflow-x-hidden overflow-y-hidden">
+                 ">
         <div
-          className="w-full flex h-auto items-center">
-          <AnimatePresence>
+          className="w-full h-svh mx-auto relative">
+          <AnimatePresence mode="popLayout">
             {stories?.map((summaryData: any, index: number) =>
 
             (currentStory === index && <Summary
@@ -53,7 +56,6 @@ export default function SummaryContainer({ }) {
             />)
             )}
           </AnimatePresence>
-
         </div>
       </main>
       {notifications !== null &&

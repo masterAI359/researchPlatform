@@ -29,7 +29,7 @@ export default function Step5({ containerWidth
                             </div>
                         </header>
                     </div>
-                    <main className="w-full h-full mx-auto flex flex-col xs:gap-y-4 xl:mt-6">
+                    <main className="w-full h-full mx-auto flex flex-col xs:gap-y-4 md:gap-y-2 xl:mt-6">
                         <div className="w-full h-full">
                             <p className="xs:text-xs xl:text-lg text-white font-light tracking-tight text-left">
                                 Let's seek out evidence that would
@@ -40,16 +40,16 @@ export default function Step5({ containerWidth
                                 please do so now before we begin searching for articles.
                             </p>
                         </div>
-                        <div className="w-full h-fit mx-auto xs:mt-4">
+                        <div className="w-fit h-fit 2xl:mt-0 xs:mt-4">
                             <motion.button
                                 onClick={() => dispatch(startSearch(true))}
                                 whileTap={{ scale: 0.95 }}
                                 transition={{ type: 'tween', duration: 0.1 }}
-                                className="bg-white rounded-full group 
+                                className="bg-white rounded-full group 2xl:-translate-x-1
                             xs:p-2 md:p-0 xl:mt-8 xs:w-36 xs:h-12 xl:w-44 xl:h-10 mx-auto flex items-center 
                             text-center hover:bg-white/10 transition-all duration-200 ease-in-out">
                                 <div className="w-full h-full flex justify-between items-center xs:px-4">
-                                    <div className="w-auto h-auto mx-auto">
+                                    <div className="w-auto h-auto">
                                         <p className="text-black group-hover:text-white font-light xs:text-xs xl:text-lg w-fit">
                                             Get Started <span className="ml-2">&#8594;</span>
                                         </p>

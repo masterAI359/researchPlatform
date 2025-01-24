@@ -33,9 +33,8 @@ export function Summary({ summaryData, index }) {
                     duration: 0.3
                 }
             }}
-            className="absolute inset-0 box-border w-auto flex flex-col 2xl:mx-auto
-                mx-auto pb-1 xl:w-full h-auto
-                overflow-y-scroll scrollbar-hide box-border bg-black"
+            className="absolute inset-0 box-border flex flex-col
+            pb-1 w-full h-full scrollbar-hide box-border bg-black"
         >
             <SummaryHeader
                 date={date}

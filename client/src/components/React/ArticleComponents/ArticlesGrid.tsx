@@ -25,7 +25,6 @@ export default function ArticlesGrid() {
         }
     }
 
-
     return (
         <motion.div
             variants={container}

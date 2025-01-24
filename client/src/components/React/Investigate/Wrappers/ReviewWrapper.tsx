@@ -24,7 +24,7 @@ export default function FinishLine() {
             <article
                 className="relative flex items-center gap-x-2 relative mx-auto xs:w-full
              xs:h-full 2xl:w-fit 2xl:h-full xs:py-20 md:py-2 rounded-4xl 2xl:max-w-7xl 
-             2xl:px-2 bg-ebony shadow-inset overflow-hidden 2xl:mt-24">
+             2xl:px-2 bg-ebony shadow-inset overflow-hidden 2xl:mt-16">
                 <div className="flex flex-col h-full w-full">
                     <ReviewPOV />
                 </div>
@@ -36,18 +36,6 @@ export default function FinishLine() {
                 <div className="w-full h-auto mx-auto xs:hidden md:block">
                     <ReviewPagination setStep={setStep} />
                 </div>
-                <AnimatePresence>
-                    {step === 3 &&
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1, transition: { type: 'tween', duration: 0.2 } }}
-                            exit={{ opacity: 0, transition: { type: 'tween', duration: 0.2 } }}
-                            className="w-fit mx-auto mt-6"
-                        >
-                            <EndInvestigateButton />
-                        </motion.div>
-                    }
-                </AnimatePresence>
             </footer>
         </main>
 

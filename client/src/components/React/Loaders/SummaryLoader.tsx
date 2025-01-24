@@ -13,7 +13,7 @@ export default function SummaryLoader() {
                     className='text-center font-serif text-4xl text-slate-400'
                 >Just a few moments while we gather those articles</h1>
             </header>
-            <div className="w-full mx-auto mt-20">
+            <div className="w-full h-fit mx-auto">
                 <Lottie
                     className="mx-auto"
                     animationData={squareCircle}

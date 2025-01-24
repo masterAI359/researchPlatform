@@ -1,11 +1,11 @@
 import WindowContainer from "../../Containers/WindowContainer"
 import MapContainer from "../../Map/MapContainer"
 
-export default function ContentWrapper({ }) {
+export default function POVWrapper({ }) {
 
     return (
         <main
-            className="flex mx-auto items-center my-auto box-border w-full h-fit justify-start">
+            className="flex mx-auto items-center my-auto box-border w-full h-fit justify-center">
             <WindowContainer
             />
             <div className="xs:hidden md:block w-fit h-fit flex items-center">

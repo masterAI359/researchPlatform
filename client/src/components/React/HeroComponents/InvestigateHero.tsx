@@ -1,4 +1,4 @@
-import ContentWrapper from "../Investigate/Wrappers/ContentWrapper";
+import POVWrapper from "../Investigate/Wrappers/POVWrapper";
 
 export default function InvestigateHero({ }) {
 
@@ -10,7 +10,7 @@ export default function InvestigateHero({ }) {
     2xl:h-[37rem] bg-gradientdown
     `}>
 
-        <ContentWrapper
+        <POVWrapper
         />
       </div>
     </section>

@@ -12,6 +12,7 @@ export default function HeroContainer({
     const reading = useSelector((state: RootState) => state.read.reading)
     const startSearch = useSelector((state: RootState) => state.search.startSearch)
     const initiateEnd = useSelector((state: RootState) => state.review.finished)
+    const completion = useSelector((state: RootState) => state.review.endProcess)
 
     return (
         <AnimatePresence mode="popLayout">
@@ -48,7 +49,7 @@ export default function HeroContainer({
                     key='Search'
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    exit={{ opacity: 0, scale: 0 }}
+                    exit={{ opacity: 0 }}
                     transition={{ type: 'tween', duration: 0.5, ease: 'easeInOut' }}
                 >
                     <SummaryHero />
@@ -60,7 +61,7 @@ export default function HeroContainer({
                 key='Finished'
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                exit={{ opacity: 0, scale: 0 }}
+                exit={{ opacity: 0 }}
                 transition={{ type: 'tween', duration: 0.5, ease: 'easeInOut' }}
             >
                 <ReviewWrapper />

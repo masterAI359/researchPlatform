@@ -3,7 +3,7 @@ import { RootState } from "@/ReduxToolKit/store"
 import { incrementStory, decrementStory, limitPagination } from "@/ReduxToolKit/Reducers/Reading"
 
 
-export default function Paginate() {
+export default function StoryPaginate() {
     const currentStory = useSelector((state: RootState) => state.read.currentStory)
     const stories = useSelector((state: RootState) => state.read.summaries)
     const atLimit = useSelector((state: RootState) => state.read.paginateLimit)

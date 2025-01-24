@@ -1,5 +1,5 @@
 import { SummaryHelp } from "@/helpInfo/help"
-import Paginate from "../../Buttons/ButtonWrappers/Paginate"
+import StoryPaginate from "../../Buttons/ButtonWrappers/StoryPaginate"
 import HelpButton from "../../Buttons/Question"
 
 export default function SummaryHero({ }) {
@@ -17,7 +17,7 @@ export default function SummaryHero({ }) {
                     />
                 </div>
             </div>
-            <Paginate />
+            <StoryPaginate />
 
         </header>
     )

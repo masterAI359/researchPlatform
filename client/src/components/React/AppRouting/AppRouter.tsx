@@ -9,7 +9,7 @@ import { Provider } from 'react-redux'
 
 
 
-export default function App() {
+export default function AppRouter() {
     return (
         <Provider store={store}>
             <BrowserRouter>

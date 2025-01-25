@@ -1,4 +1,4 @@
-import MoreButton from "../../Buttons/MoreButton";
+import MoreButton from "../../Buttons/HelpButtons/MoreButton";
 
 
 export default function SummaryHeader({

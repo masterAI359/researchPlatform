@@ -1,4 +1,4 @@
-import HelpButton from "../../Buttons/Question"
+import HelpButton from "../../Buttons/HelpButtons/Question"
 import { Step5Help } from "@/helpInfo/help"
 import { motion } from "framer-motion"
 import { useDispatch } from "react-redux"

@@ -1,12 +1,12 @@
 import { store } from '../../../ReduxToolKit/store'
 import { Provider } from 'react-redux'
-import App from '../AppRouting/App'
+import AppRouter from '../AppRouting/AppRouter'
 
-export default function AppContainer() {
+export default function App() {
 
     return (
         <Provider store={store}>
-            <App />
+            <AppRouter />
         </Provider>
     )
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import StepsEditor from "../../TipTap/StepsEditor"
-import HelpButton from "../../Buttons/Question"
+import HelpButton from "../../Buttons/HelpButtons/Question"
 import { Step1Help } from "@/helpInfo/help"
 import { getIdea } from "@/ReduxToolKit/Reducers/UserPOV"
 import { acceptedInput, denyIncrement } from "@/ReduxToolKit/Reducers/Steps"

@@ -1,4 +1,4 @@
-import ChecksButton from "../../Buttons/ChecksButton"
+import ChecksButton from "../../Buttons/SelectionButtons/ChecksButton"
 
 const answerButtons: boolean[] = [true, false];
 

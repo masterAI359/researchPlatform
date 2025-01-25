@@ -2,7 +2,7 @@ import { useState } from "react"
 import ReviewPagination from "../../Buttons/ButtonWrappers/ReviewPagination"
 import ReviewPOV from "../Review/ReviewPOV"
 import ReviewQuestions from "../Review/ReviewQuestions"
-import EndInvestigateButton from "../../Buttons/FinishInvestigation"
+import EndInvestigateButton from "../../Buttons/ProcessButtons/FinishInvestigation"
 import { AnimatePresence, motion } from "framer-motion"
 
 

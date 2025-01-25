@@ -1,7 +1,7 @@
-import TakeNotes from "../TakeNotes"
+import TakeNotes from "../PanelButtons/TakeNotes"
 import { CompareStories } from "./CompareStories"
-import { FinishedReading } from "../FinishedReading"
-import ReturnToSearch from "../ReturnToSearch"
+import { FinishedReading } from "../PanelButtons/FinishedReading"
+import ReturnToSearch from "../PanelButtons/ReturnToSearch"
 
 export default function ControlPanel({ }) {
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import HelpButton from "../../Buttons/Question";
+import HelpButton from "../../Buttons/HelpButtons/Question";
 import { Step2Help } from "@/helpInfo/help"
 import StepsEditor from "../../TipTap/StepsEditor";
 import { RootState } from "@/ReduxToolKit/store";

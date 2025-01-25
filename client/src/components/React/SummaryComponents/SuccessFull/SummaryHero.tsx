@@ -1,6 +1,6 @@
 import { SummaryHelp } from "@/helpInfo/help"
 import StoryPaginate from "../../Buttons/ButtonWrappers/StoryPaginate"
-import HelpButton from "../../Buttons/Question"
+import HelpButton from "../../Buttons/HelpButtons/Question"
 
 export default function SummaryHero({ }) {
 

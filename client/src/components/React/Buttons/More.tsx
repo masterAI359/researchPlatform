@@ -4,7 +4,7 @@
 export default function More({ article_url, setOpen }) {
 
     return (
-        <div className="bg-black border border-white/40 z-30 rounded-md xs:w-36 xl:w-40 h-auto p-5 absolute xs:-translate-x-36">
+        <div className="bg-black border border-white/40 z-30 rounded-md xs:w-36 xl:w-40 h-auto p-5 absolute xs:-translate-x-40 md:-translate-y-20">
             <div
                 onClick={() => { setOpen(false) }}
                 className="absolute right-1 top-1 hover:bg-white/10 rounded-md p-1 xs:h-7 xs:w-7 md:h-8 md:w-8 cursor-pointer">

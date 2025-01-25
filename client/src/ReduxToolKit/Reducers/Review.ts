@@ -9,7 +9,6 @@ interface FinishedState {
     merit: boolean | null,
     movedOnIdea: boolean | null,
     takeAway: string | null,
-    endProcess: boolean
 }
 
 
@@ -23,7 +22,6 @@ const initialState: FinishedState = {
     merit: null,
     movedOnIdea: null,
     takeAway: '',
-    endProcess: false
 }
 
 export const ReviewSlice = createSlice({
@@ -54,9 +52,7 @@ export const ReviewSlice = createSlice({
         getTakeAways: (state, action) => {
             state.takeAway = action.payload
         },
-        endInvestigate: (state, action) => {
-            state.endProcess = action.payload
-        }
+
 
     }
 })
@@ -71,7 +67,6 @@ export const {
     getMerit,
     moved,
     getTakeAways,
-    endInvestigate
 
 } = ReviewSlice.actions
 

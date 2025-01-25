@@ -1,12 +1,17 @@
 import { useDispatch } from "react-redux"
-import { endInvestigate } from "@/ReduxToolKit/Reducers/Review"
+import { endInvestigate } from "@/ReduxToolKit/Reducers/EndInvestigation"
+import { initiateFinalProcess } from "@/ReduxToolKit/Reducers/Review"
+
 
 export default function EndInvestigateButton() {
     const dispatch = useDispatch()
 
     return (
         <button
-            onClick={() => dispatch(endInvestigate(true))}
+            onClick={() => {
+                dispatch(endInvestigate(true))
+                dispatch(initiateFinalProcess(false))
+            }}
             className="w-auto bg-white hover:bg-white/10 group shadow-thick 
             transition-colors duration-200 ease-in-out rounded-full h-fit py-2 px-8 mx-auto flex items-center">
             <p className="text-black text-lg group-hover:text-white font-light text-center">

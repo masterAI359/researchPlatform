@@ -7,6 +7,7 @@ import SelectingArticles from './Reducers/ChosenArticles'
 import SearchResults from './Reducers/SearchResults'
 import ReviewReducer from './Reducers/Review'
 import HelpReducer from './Reducers/HelpModal'
+import EndInvestigateReducer from './Reducers/EndInvestigation'
 
 export const store = configureStore({
     reducer: {
@@ -17,7 +18,8 @@ export const store = configureStore({
         getArticle: SelectingArticles,
         search: SearchResults,
         review: ReviewReducer,
-        help: HelpReducer
+        help: HelpReducer,
+        end: EndInvestigateReducer
     },
 })
 

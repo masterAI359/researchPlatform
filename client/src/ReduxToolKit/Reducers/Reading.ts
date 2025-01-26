@@ -3,13 +3,13 @@ import { createListenerMiddleware, createSlice } from '@reduxjs/toolkit'
 
 interface ReadingState {
 
-    loadingContent: boolean,
-    getContent: boolean,
+    loadingContent: boolean | null,
+    getContent: boolean | null,
     summaries: Array<any> | null,
     failedNotifications: Array<any> | null,
-    currentStory: number,
-    reading: boolean,
-    paginateLimit: boolean
+    currentStory: number | null,
+    reading: boolean | null,
+    paginateLimit: boolean | null
 }
 
 

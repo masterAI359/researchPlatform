@@ -5,23 +5,27 @@ import { createPortal } from "react-dom"
 
 export default function SummaryLoader() {
 
+    //TODO: Remember to go back and set the loadingContent state slice back to 'false'
+
 
     const loader = (
-        <div className='w-full h-full mx-auto flex flex-col items-center absolute bg-black top-0 right-0 bottom-0 left-0'>
+        <div className='w-full h-full mx-auto flex flex-col-reverse items-center absolute bg-black top-0 right-0 bottom-0 left-0'>
 
-            <header className='w-full h-fit mx-auto xl:translate-y-16'>
+            <header className='w-full h-fit mx-auto flex justify-center 2xl:-translate-y-60 xl:-translate-y-72 lg:-translate-y-80'>
                 <h1
-                    className='text-center font-light tracking-tight text-4xl text-white'
-                >Just a few moments while we gather those articles</h1>
+                    className='w-fit h-fit font-light tracking-tight md:text-3xl xl:text-4xl text-white animate-pulse'
+                >Please wait just a few moments. We're gathering the chosen articles</h1>
             </header>
-            <div className="w-3/5 h-fit mx-auto pb-12 2xl:-translate-y-24">
-                <Lottie
-                    className=""
-                    animationData={dataCollection}
-                    autoPlay={true}
-                    loop={true}
-                    style={{ height: '100%', width: '100%' }}
-                />
+            <div className="w-full h-fit flex justify-center">
+                <div className="w-3/5 h-auto xl:-translate-x-8 2xl:-translate-y-20 xl:-translate-y-52 lg:-translate-y-44 transition-all duration-200 ease-in-out">
+                    <Lottie
+
+                        animationData={dataCollection}
+                        autoPlay={true}
+                        loop={true}
+                        style={{ height: '100%', width: '100%' }}
+                    />
+                </div>
             </div>
 
 

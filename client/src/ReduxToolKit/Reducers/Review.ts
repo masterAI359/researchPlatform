@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface FinishedState {
-    finished: boolean,
+    finished: boolean | null,
     endingPerspective: string | null,
     newConcepts: boolean | null,
-    newPOV: boolean
+    newPOV: boolean | null
     wantedMore: boolean | null,
     merit: boolean | null,
     movedOnIdea: boolean | null,

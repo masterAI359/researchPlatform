@@ -11,6 +11,7 @@ import { RootState } from "@/ReduxToolKit/store"
 
 
 export default function Step1({ containerWidth }: any) {
+      const step = useSelector((state: RootState) => state.stepper.step)
       const idea = useSelector((state: RootState) => state.pov.idea)
       const accept = useSelector((state: RootState) => state.stepper.acceptInput)
       const dispatch = useDispatch()
@@ -40,7 +41,7 @@ export default function Step1({ containerWidth }: any) {
 
 
       return (
-            <div style={{ flexShrink: 0, maxWidth: containerWidth }}
+            <div style={{ flexShrink: 0 }}
                   className='xs:w-full
                   text-center mx-auto xs:h-full box-border flex xs:px-2 basis-full'>
 

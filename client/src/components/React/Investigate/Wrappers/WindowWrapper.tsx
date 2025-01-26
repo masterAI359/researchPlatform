@@ -37,13 +37,13 @@ export default function WindowWrapper({ }: WindowProps) {
   return (
     <section
       ref={containerRef}
-      className="overflow-x-hidden overflow-y-hidden relative xs:h-fit md:min-h-full h-fit 
-      mx-auto xs:min-w-full xs:max-w-full xl:min-w-168 xl:w-11/12 xs:mb-4 
-      transition-all duration-400 animate-fade-in delay-300 no-scrollbar box-border">
+      className="relative overflow-x-hidden overflow-y-hidden xs:h-fit md:min-h-full 
+      mx-auto xs:min-w-full xs:max-w-full xl:min-w-168 xl:w-3/4 xs:mb-4 
+      transition-all duration-400 animate-fade-in delay-300 no-scrollbar box-border flex shrink-0">
       <motion.div
         ref={wizardRef}
         style={{ maxHeight: "fit" }}
-        className="flex xs:items-center md:items-baseline w-full xs:h-fit md:min-h-full lg:max-h-fit"
+        className="flex xs:items-center md:items-baseline min-w-full xs:h-fit md:min-h-full lg:max-h-fit"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, x: -step * containerWidth }}
         transition={{ type: 'tween', duration: 0.2, ease: 'easeInOut' }}>
@@ -53,8 +53,6 @@ export default function WindowWrapper({ }: WindowProps) {
         <Step3 containerWidth={containerWidth} />
         <Step4 containerWidth={containerWidth} />
         <Step5 containerWidth={containerWidth} />
-
-
 
       </motion.div>
     </section>

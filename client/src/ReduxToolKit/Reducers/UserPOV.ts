@@ -10,8 +10,8 @@ export interface UserPOVState {
     biases: string | null,
     premises: string | null,
     query: string | null,
-    searching: boolean,
-    loading: boolean
+    searching: boolean | null,
+    loading: boolean | null
 }
 
 const initialState: UserPOVState = {

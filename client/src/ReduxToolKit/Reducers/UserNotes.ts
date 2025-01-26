@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 interface Notes {
     notes: string | null,
-    takingNotes: boolean
+    takingNotes: boolean | null
 }
 
 

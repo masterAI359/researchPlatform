@@ -40,7 +40,6 @@ export default function InvestigateContainer() {
 
   useEffect(() => {
 
-
     if (gettingContent) {
       scrollToView()
     }
@@ -48,14 +47,16 @@ export default function InvestigateContainer() {
 
       handleDragConstraints()
     }
+  }, [gettingContent])
+
+
+  useEffect(() => {
 
     return () => {
       dispatch({ type: 'clear' })
     }
+  }, [])
 
-  }, [gettingContent, location.pathname, dispatch])
-
-  console.log(pageRoute)
 
 
   return (
@@ -71,16 +72,14 @@ export default function InvestigateContainer() {
       </AnimatePresence>
 
       <div className="w-full h-auto mx-auto xl:mt-6">
-        {!finished &&
-          <motion.div
-            key="StoryContainer"
+        <motion.div
+          key="StoryContainer"
 
-          >
-            <ArticleContainer
-              loadingSummaries={loadingSummaries}
-            />
-          </motion.div>
-        }
+        >
+          <ArticleContainer
+            loadingSummaries={loadingSummaries}
+          />
+        </motion.div>
       </div>
 
       <AnimatePresence>

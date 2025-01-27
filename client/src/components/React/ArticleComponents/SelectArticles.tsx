@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { getStories } from "@/ReduxToolKit/Reducers/Reading"
+import { startSearch } from "@/ReduxToolKit/Reducers/SearchResults"
 
 
 interface SendForSummary {
@@ -24,6 +25,7 @@ export default function SelectArticles({ hideSelect, loadingSummaries }: SendFor
 
     if (chosenArticles.length > 0) {
       dispatch(getStories(true))
+      dispatch(startSearch(false))
     } else {
       console.log("There's nothing to summarize yet")
     }

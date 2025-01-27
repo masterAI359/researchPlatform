@@ -3,6 +3,7 @@ import SearchHero from "../HeroComponents/SearchHero"
 import SummaryHero from "../SummaryComponents/SuccessFull/SummaryHero"
 import ReviewWrapper from "../Investigate/Wrappers/ReviewWrapper"
 import CompletionHero from "../HeroComponents/CompletionHero"
+import SummaryLoader from "../Loaders/SummaryLoader"
 import { AnimatePresence, motion } from "framer-motion"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
@@ -14,8 +15,9 @@ export default function HeroContainer({
     const startSearch = useSelector((state: RootState) => state.search.startSearch)
     const wrapUp = useSelector((state: RootState) => state.review.finished)
     const completion = useSelector((state: RootState) => state.end.endProcess)
+    const loadingContent = useSelector((state: RootState) => state.read.loadingContent)
 
-    console.log(completion)
+    console.log(startSearch)
 
     return (
         <AnimatePresence mode="popLayout">
@@ -28,9 +30,7 @@ export default function HeroContainer({
                 exit={{ opacity: 0 }}
                 transition={{
                     type: 'tween',
-                    duration: 0.27,
-                    delay: 0.12,
-                    ease: [0.4, 0, 0.2, 1],
+                    duration: 0.2
                 }}
                 className={`grid grid-cols-1 w-full h-auto mx-auto items-center`}>
                 <InvestigateHero
@@ -45,21 +45,29 @@ export default function HeroContainer({
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{
-                        type: 'tween',
-                        duration: 0.24,
-                        delay: 0.22,
-                        ease: [0.4, 0, 0.2, 1],
-                    }}
+                    transition={{ type: 'tween', duration: 0.2 }}
                 >
                     <SearchHero
                     />
                 </motion.div>) : null}
 
+            {loadingContent &&
+                <motion.div
+                    layout
+                    key="loadingStories"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ type: 'tween', duration: 0.2 }}
+                >
+
+                </motion.div>
+            }
+
             {reading &&
                 <motion.div
                     layout
-                    key='Search'
+                    key='Reading'
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}

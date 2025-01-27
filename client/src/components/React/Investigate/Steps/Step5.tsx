@@ -29,15 +29,15 @@ export default function Step5({ containerWidth
                             </div>
                         </header>
                     </div>
-                    <main className="w-full h-full mx-auto flex flex-col xs:gap-y-4 md:gap-y-2 xl:mt-6">
-                        <div className="w-full h-full">
-                            <p className="xs:text-xs xl:text-lg text-white font-light tracking-tight text-left">
+                    <main className="w-fit h-full mx-auto flex flex-col xs:gap-y-4 md:gap-y-2 xl:mt-6">
+                        <div className="w-fit h-full">
+                            <p className="xs:text-xs xl:text-lg w-fit text-white font-light tracking-tight text-left">
                                 Let's seek out evidence that would
-                                support the premises you submitted or the statement examined itself
+                                support the premises you submitted<br></br> or the statement examined itself
 
                                 <br></br>
                                 If you want to adjust any of your answers,
-                                please do so now before we begin searching for articles.
+                                please do so now before we begin <br></br> searching for articles.
                             </p>
                         </div>
                         <div className="w-fit h-fit 2xl:mt-0 xs:mt-4">

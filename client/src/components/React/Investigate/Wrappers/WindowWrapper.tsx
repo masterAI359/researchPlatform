@@ -20,7 +20,7 @@ export default function WindowWrapper({ }: WindowProps) {
   return (
     <section
       ref={containerRef}
-      className="relative overflow-x-hidden xs:h-fit md:min-h-full 
+      className="relative xs:h-fit md:min-h-full 
       mx-auto xs:min-w-full xs:max-w-full xl:min-w-168 xl:w-3/4 xs:mb-4 2xl:mt-6
       transition-all duration-400 animate-fade-in delay-300 no-scrollbar box-border flex shrink-0">
       <div

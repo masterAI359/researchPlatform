@@ -11,10 +11,10 @@ export default function Step4({ containerWidth }: any) {
   return (
     <div style={{ flexShrink: 0, maxWidth: containerWidth }}
       className='xs:w-full
-text-center mx-auto xs:h-full box-border flex xs:px-2 basis-full'>
+text-center mx-auto xs:h-full box-border flex xs:px-2 md:px-0 basis-full'>
       <div className="inline-block h-fit box-border mx-auto min-w-full max-w-full 2xl:h-full">
         <div className="flex flex-col items-center w-full 
-       xs:px-0 md:px-5 relative lg:rounded-t-[3rem]">
+       xs:px-0 relative lg:rounded-t-[3rem]">
           <div className="text-center relative z-10 w-full">
             <div className="w-full box-border border-b h-fit border-white/10 lg:mb-4 xs:mb-2
            flex flex-row gap-x-8 xs:items-center  md:items-baseline">
@@ -23,9 +23,11 @@ text-center mx-auto xs:h-full box-border flex xs:px-2 basis-full'>
                   What would support this claim?
                 </h1>
               </div>
+
               <div className="w-fit h-full justify-items-start xs:mb-2 opacity-100">
                 <HelpButton info={Step3Help} />
               </div>
+
             </div>
             <div className="block w-full xs:h-40 md:h-52 xl:h-80 text-md text-white bg-white/10 border-none focus:ring-1 focus:ring-white
     rounded-lg resize-none text-wrap flex justify-items-start">

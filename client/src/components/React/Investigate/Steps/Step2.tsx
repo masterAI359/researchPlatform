@@ -36,7 +36,7 @@ export default function Step2({ containerWidth }: any) {
 
   return (
     <div style={{ flexShrink: 0, maxWidth: containerWidth }}
-      className='xs:w-full
+      className='xs:w-full snap-center snap-always
     text-center mx-auto xs:h-full box-border flex xs:px-2 basis-full'>
       <div
         className="min-w-full lg:h-full content-center mx-auto box-border flex flex-col justify-center my-auto md:px-0">

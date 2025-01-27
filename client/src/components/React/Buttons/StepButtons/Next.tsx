@@ -3,14 +3,13 @@ import { useSelector, useDispatch } from 'react-redux'
 import { increment, denyIncrement, acceptedInput } from "@/ReduxToolKit/Reducers/Steps";
 import { motion } from "framer-motion";
 
-interface ButtonProps {
-  gettingHelp: boolean
-}
 
-export default function NextButton({ gettingHelp }: ButtonProps) {
+export default function NextButton({ }) {
   const step = useSelector((state: RootState) => (state.stepper.step))
   const denied = useSelector((state: RootState) => state.stepper.denied)
   const idea = useSelector((state: RootState) => state.pov.idea)
+  const gettingHelp = useSelector((state: RootState) => { state.help.gettingHelp })
+
   const dispatch = useDispatch()
 
   const handleStep = () => {

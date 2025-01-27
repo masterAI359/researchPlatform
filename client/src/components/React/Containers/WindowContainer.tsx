@@ -9,7 +9,7 @@ export default function WindowContainer({ currentStep, setStartSearch, setCurren
 
 
     return (
-        <main className={`xl:w-3/5 xs:w-full h-full relative flex flex-col items-center
+        <main className={`xl:w-3/5 xs:w-full min-h-full relative flex flex-col items-center
         `}>
 
             <StepWizard currentStep={currentStep} setCurrentStep={setCurrentStep} />
@@ -23,21 +23,9 @@ export default function WindowContainer({ currentStep, setStartSearch, setCurren
                     >
 
                         <WindowWrapper
-                            currentStep={currentStep}
-                            setCurrentStep={setCurrentStep}
-                            setCanProceed={setCanProceed}
-                            notifyRequired={notifyRequired}
-                            setNotifyRequired={setNotifyRequired}
                         />
-                        <StepControl
-                            currentStep={currentStep}
-                            setCurrentStep={setCurrentStep}
-                            setCanProceed={setCanProceed}
-                            canProceed={canProceed}
-                            setNotifyRequired={setNotifyRequired}
-                            notifyRequired={notifyRequired}
-                            gettingHelp={gettingHelp}
-                        />
+                        {/* <StepControl
+                        /> */}
 
                     </motion.div>
                 </AnimatePresence>

@@ -17,7 +17,7 @@ text-center mx-auto xs:h-full box-border flex xs:px-2 basis-full'>
        xs:px-0 md:px-5 relative lg:rounded-t-[3rem]">
           <div className="text-center relative z-10 w-full">
             <div className="w-full box-border border-b h-fit border-white/10 lg:mb-4 xs:mb-2
-           flex flex-row gap-x-8 xs:items-center  md:items-baseline lg:mt-10">
+           flex flex-row gap-x-8 xs:items-center  md:items-baseline">
               <div className="w-fit flex justify-items-start">
                 <h1 className="2xl:text-3xl md:text-2xl xs:text-md tracking-tight font-light text-white pb-2">
                   What would support this claim?

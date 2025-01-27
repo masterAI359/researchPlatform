@@ -1,6 +1,6 @@
 import { useRef, useState, useLayoutEffect } from "react";
 import { WindowProps } from "@/env";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import type { RootState } from '@/ReduxToolKit/store'
 import Step1 from "../Steps/Step1";
@@ -17,44 +17,109 @@ export default function WindowWrapper({ }: WindowProps) {
   const step = useSelector((state: RootState) => state.stepper.step)
 
 
-  useLayoutEffect(() => {
-    if (containerRef.current) {
-      setContainerWidth(containerRef.current.offsetWidth);
-
-    }
-    const handleResize = () => {
-      if (containerRef.current) {
-        setContainerWidth(containerRef.current.offsetWidth);
-      }
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-
-  }, []);
-
-
-
   return (
     <section
       ref={containerRef}
-      className="relative overflow-x-hidden overflow-y-hidden xs:h-fit md:min-h-full 
-      mx-auto xs:min-w-full xs:max-w-full xl:min-w-168 xl:w-3/4 xs:mb-4 
+      className="relative overflow-x-hidden xs:h-fit md:min-h-full 
+      mx-auto xs:min-w-full xs:max-w-full xl:min-w-168 xl:w-3/4 xs:mb-4 2xl:mt-6
       transition-all duration-400 animate-fade-in delay-300 no-scrollbar box-border flex shrink-0">
-      <motion.div
-        ref={wizardRef}
+      <div
         style={{ maxHeight: "fit" }}
-        className="flex xs:items-center md:items-baseline min-w-full xs:h-fit md:min-h-full lg:max-h-fit"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1, x: -step * containerWidth }}
-        transition={{ type: 'tween', duration: 0.2, ease: 'easeInOut' }}>
+        className="flex xs:items-center 2xl:items-baseline
+        min-w-full xs:h-fit md:min-h-full lg:max-h-fit">
+        <AnimatePresence mode="popLayout">
+          {step === 0 && <motion.div
+            layout
+            key={"Step1"}
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: 1,
+              transition: { type: 'tween', duration: 0.2, delay: 0.2 }
+            }}
+            exit={{
+              opacity: 0,
+              transition: { type: 'tween', duration: 0.2 }
+            }}
+            className="min-w-full"
+          >
+            <Step1 containerWidth={containerWidth} />
+          </motion.div>}
 
-        <Step1 containerWidth={containerWidth} />
-        <Step2 containerWidth={containerWidth} />
-        <Step3 containerWidth={containerWidth} />
-        <Step4 containerWidth={containerWidth} />
-        <Step5 containerWidth={containerWidth} />
+          {step === 1 && <motion.div
+            layout
+            key={"Step2"}
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: 1,
+              transition: { type: 'tween', duration: 0.2, delay: 0.2 }
+            }}
+            exit={{
+              opacity: 0,
+              transition: { type: 'tween', duration: 0.2 }
+            }}
+            className="min-w-full"
+          >
+            <Step2 containerWidth={containerWidth} />
+          </motion.div>}
 
-      </motion.div>
+          {step === 2 && <motion.div
+            layout
+            key={"Step3"}
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: 1,
+              transition: { type: 'tween', duration: 0.2, delay: 0.2 }
+            }}
+            exit={{
+              opacity: 0,
+              transition: { type: 'tween', duration: 0.2 }
+            }}
+            className="min-w-full shrink-0"
+          >
+            <Step3 containerWidth={containerWidth} />
+          </motion.div>}
+
+          {step === 3 && <motion.div
+            layout
+            key={"Step4"}
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: 1,
+              transition: { type: 'tween', duration: 0.2, delay: 0.2 }
+            }}
+            exit={{
+              opacity: 0,
+              transition: { type: 'tween', duration: 0.2 }
+            }}
+            className="min-w-full shrink-0"
+          >
+            <Step4 containerWidth={containerWidth} />
+          </motion.div>}
+
+          {step === 4 && <motion.div
+            layout
+            key={"Step5"}
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: 1,
+              transition: { type: 'tween', duration: 0.2, delay: 0.2 }
+            }}
+            exit={{
+              opacity: 0,
+              transition: { type: 'tween', duration: 0.2 }
+            }}
+            className="min-w-full shrink-0"
+          >
+            <Step5 containerWidth={containerWidth} />
+          </motion.div>
+          }
+
+        </AnimatePresence>
+      </div>
+
+
+
+
     </section>
   )
 }

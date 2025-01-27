@@ -20,7 +20,7 @@ export default function Step3({ containerWidth }: any) {
         <div className="flex flex-col items-center w-full xs:px-2 xs:px-0">
 
           <div className="w-full box-border border-b h-fit border-white/10 
-        rounded-lg xs:mb-2 lg:mb-4 flex flex-row xs:gap-x-4 md:gap-x-8 items-baseline lg:mt-10">
+        rounded-lg xs:mb-2 lg:mb-4 flex flex-row xs:gap-x-4 md:gap-x-8 items-baseline">
             <div className="w-fit flex justify-items-start">
               <h1 className="2xl:text-3xl md:text-2xl tracking-tight font-light text-white pb-2 xs:text-md">Explore our biases
               </h1>

@@ -48,4 +48,11 @@ const SummaryHelp: Help[] = [{
     explanation: "test"
 }]
 
-export { Step1Help, Step2Help, Step3Help, Step4Help, Step5Help, SummaryHelp };
+const ResearchHelp: Help[] = [{
+    heading: "Help",
+    explanation: "Select whether you felt the Idea or premises you investigated were supported by the evidence you could find"
+}]
+
+
+
+export { Step1Help, Step2Help, Step3Help, Step4Help, Step5Help, SummaryHelp, ResearchHelp };

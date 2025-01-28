@@ -33,7 +33,7 @@ export default function MobileNavigation({ isOpen, toggle }) {
     >
 
         {items.map((item) => (
-            <MenuItem id={item.id} text={item.text} link={item.link} isOpen={isOpen} toggle={toggle} />
+            <MenuItem id={item.id} key={item.id} text={item.text} link={item.link} isOpen={isOpen} toggle={toggle} />
         ))}
 
     </motion.ul>)

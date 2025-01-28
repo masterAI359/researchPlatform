@@ -11,11 +11,14 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
+import mongoose from 'mongoose';
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const uri = "mongodb+srv://trentirvin51:jz6YjyoVl7WUEfOU@cluster1.h1wpm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1";
+const mongoClientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
 const app = express();
-import { bingArticles, bingGeneral, } from '../endpoints/bingApi.js';
+import { bingArticles, } from '../endpoints/bingApi.js';
 import { tldrSummary } from '../endpoints/tldrSummary.js';
 import pkg from 'pg';
 dotenv.config({ path: '../../.env' });
@@ -38,6 +41,24 @@ app.options('*', (req, res) => {
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
     res.sendStatus(200);
 });
+function run() {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            // Create a Mongoose client with a MongoClientOptions object to set the Stable API version
+            yield mongoose.connect(uri, mongoClientOptions);
+            yield mongoose.connection.db.admin().command({ ping: 1 });
+            console.log("Pinged your deployment. You successfully connected to MongoDB!");
+            if (mongoose.connection.readyState !== 1) {
+                throw new Error(`Mongoose not connecting. Current readyState: ${mongoose.connection.readyState}`);
+            }
+        }
+        finally {
+            // Ensures that the client will close when you finish/error
+            yield mongoose.disconnect();
+        }
+    });
+}
+run().catch(console.dir);
 const { Client } = pkg;
 const client = new Client('postgresql://said:LWK2SWytsTGJFYIyWHBP3Q@cluster0-14450.7tt.aws-us-east-1.cockroachlabs.cloud:26257/elenchus?sslmode=verify-full');
 client
@@ -67,7 +88,6 @@ app.get('/api', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.status(500).send('Error executing query');
     }
 }));
-app.get('/search', bingGeneral);
 app.get('/search/articles', bingArticles);
 app.get('/summarize', tldrSummary);
 // handling unkown routes, allowing client side routing on refresh with react-router-dom library

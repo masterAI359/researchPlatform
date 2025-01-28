@@ -13,10 +13,11 @@ import { fileURLToPath } from 'url';
 import decodeItem from '../helpers/decodeItem.js';
 const envUrl = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(envUrl);
-const envPath = path.resolve(__dirname, '../../../.env');
+const envPath = path.resolve(__dirname, '../../.env');
 dotenv.config({ path: envPath });
 const TLDRKey = process.env.TLDR_KEY;
 export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    let failure = [];
     const received = req.query.q;
     const query = JSON.parse(decodeURIComponent(received));
     const url = 'https://tldrthis.p.rapidapi.com/v1/model/abstractive/summarize-url/';
@@ -50,9 +51,6 @@ export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, funct
                     throw new Error(`Failed to fetch summary for ${article.url}: ${response.status} ${response.statusText}`);
                 }
                 const data = yield response.json();
-                if (data.article_image === 'undefined') {
-                    console.log(data.article_image);
-                }
                 data.logo = article.logo;
                 data.source = article.source;
                 data.date = article.date;
@@ -62,8 +60,7 @@ export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, funct
             catch (error) {
                 console.error(`Error processing article ${article.url}:`, error);
                 // Return an object with the original article data plus the error message
-                return {
-                    failed: true,
+                const failedAttempt = {
                     title: article.title,
                     summary: [{ denied: 'We were denied access to the article from', failedArticle: `${article.source} - ${article.title}` }],
                     logo: article.logo,
@@ -71,6 +68,7 @@ export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, funct
                     date: article.date,
                     article_url: article.url,
                 };
+                failure.push(failedAttempt);
             }
         }));
         const results = yield Promise.allSettled(dataMap);
@@ -78,7 +76,11 @@ export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, funct
             const resultData = result.value ? result.value : result.reason;
             return resultData;
         });
-        res.json(returnValues);
+        const success = returnValues.filter((result) => result !== undefined);
+        const resultsObject = { retrieved: success, rejected: failure };
+        console.log(resultsObject);
+        res.json(resultsObject);
+        failure = [];
     }
     catch (error) {
         console.error("Error in tldrSummary:", error);

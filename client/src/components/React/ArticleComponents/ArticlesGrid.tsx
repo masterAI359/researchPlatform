@@ -11,8 +11,6 @@ import { RootState } from "@/ReduxToolKit/store"
 export default function ArticlesGrid() {
     const articles = useSelector((state: RootState) => state.search.articles)
 
-    console.log(articles)
-
     const container = {
 
         hidden: { opacity: 0 },
@@ -27,16 +25,16 @@ export default function ArticlesGrid() {
         }
     }
 
-
     return (
         <motion.div
             variants={container}
             initial="hidden"
             animate="show"
             exit="hidden"
+            className="h-full xl:max-w-7xl"
         >
-            <div className={`h-full mx-auto 2xl:px-36 md:px-12 sm:w-full lg:px-16 xl:px-36 2xl:max-w-7xl`}>
-                <ol className="grid grid-cols-2 lg:gap-10 xs:gap-3 mx-auto lg:mt-4">
+            <div className={`h-full w-fit mx-auto`}>
+                <ol className="grid grid-cols-2 xs:gap-3 min-h-full 2xl:gap-20 mx-auto">
                     {articles?.map((article: ArticleType, index: number) =>
                         <Article
                             index={index}

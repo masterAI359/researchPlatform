@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { loading } from "@/ReduxToolKit/Reducers/UserPOV";
 import { searchResults, resetResults, startSearch } from "@/ReduxToolKit/Reducers/SearchResults";
-import { loadContent, articleData, isReading } from "@/ReduxToolKit/Reducers/Reading";
+import { loadContent, articleData, isReading, resetData, rejected } from "@/ReduxToolKit/Reducers/Reading";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import { AppDispatch } from "@/ReduxToolKit/store";
@@ -18,20 +18,16 @@ const options: OptionsTypes = {
 
 export const useFetch = () => {
     const articles = useSelector((state: RootState) => state.search.articles)
-    const summaries = useSelector((state: RootState) => state.read.summaries)
-    const [fetchedSummaries, setFetchedSummaries] = useState<object[]>([])
     const [loadingSummaries, setLoadingSummaries] = useState<boolean>(false)
     const [readyToSelect, setReadyToSelect] = useState<boolean>(false)
     const [errorMessage, setErrorMessage] = useState<string>(null)
     const dispatch = useDispatch<AppDispatch>()
 
 
-
     const fetchArticles = async (query: string) => {
         dispatch(resetResults())
         dispatch(startSearch(true))
         dispatch(loading(true))
-        setFetchedSummaries([])
         try {
 
             const response = await fetch(`/search/articles?q=${query}`,
@@ -39,6 +35,7 @@ export const useFetch = () => {
             )
             if (!response.ok) {
                 setErrorMessage(`${response.status}`)
+                console.log(errorMessage)
                 throw new Error("There was a network response issue!")
             }
             const jsonResponse = await response.json()
@@ -55,12 +52,14 @@ export const useFetch = () => {
         }
     };
 
+    //TODO: create a notification to push to rejected() along with the 
+    // failed article data that notifies the user how many articles were rejected
+
     const fetchSummaries = async (articlesToSummarize: any) => {
         dispatch(resetResults())
+        dispatch(resetData())
         dispatch(startSearch(false))
         dispatch(loadContent(true))
-        setLoadingSummaries(true)
-        setReadyToSelect(false)
         try {
             const tldrResponse = await fetch(`/summarize?q=${articlesToSummarize}`,
                 options
@@ -68,10 +67,10 @@ export const useFetch = () => {
             if (!tldrResponse.ok) {
                 throw new Error('There was an issue with TLDR API')
             }
-            const tlderJSON = await tldrResponse.json()
-            setFetchedSummaries(tlderJSON)
+            const tldrJSON = await tldrResponse.json()
             setLoadingSummaries(false)
-            dispatch(articleData(tlderJSON))
+            dispatch(articleData(tldrJSON.retrieved))
+            dispatch(rejected(tldrJSON.rejected))
             dispatch(loadContent(false))
             dispatch((isReading(true)))
 
@@ -81,7 +80,7 @@ export const useFetch = () => {
     }
 
 
-    return { fetchedSummaries, fetchArticles, fetchSummaries, loadingSummaries, readyToSelect, errorMessage }
+    return { fetchArticles, fetchSummaries, loadingSummaries, readyToSelect, errorMessage }
 
 
 }

@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { getStories } from "@/ReduxToolKit/Reducers/Reading"
+import { startSearch } from "@/ReduxToolKit/Reducers/SearchResults"
 
 
 interface SendForSummary {
@@ -24,6 +25,7 @@ export default function SelectArticles({ hideSelect, loadingSummaries }: SendFor
 
     if (chosenArticles.length > 0) {
       dispatch(getStories(true))
+      dispatch(startSearch(false))
     } else {
       console.log("There's nothing to summarize yet")
     }
@@ -45,17 +47,16 @@ export default function SelectArticles({ hideSelect, loadingSummaries }: SendFor
       text-white font-light tracking-tight lg:w-fit flex gap-x-2 py-2 px-2 rounded-full cursor-pointer
        mx-auto z-50 justify-between content-center group">
           <div className="h-full my-auto">
-            <p className="text-sm">{loadingSummaries ? waiting : selectedArticles}</p>
+            <p className="text-sm">{selectedArticles}</p>
           </div>
           <div >
             <button
 
             >
-              {loadingSummaries ? <SelectLoader />
-                : <div className="flex items-center rounded-full bg-transparent transition-all ease-in-out duration-200 text-white w-12 h-8
+              <div className="flex items-center rounded-full bg-transparent transition-all ease-in-out duration-200 text-white w-12 h-8
         group-hover:bg-white group-hover:text-rich_black
         top-2.5 right-2.5 text-lg"><div className="w-full">&rarr;</div> </div>
-              }
+
             </button>
           </div>
         </motion.div>

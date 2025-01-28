@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface HelpModal {
-    gettingHelp: boolean
+    gettingHelp: boolean | null
 }
 
 const initialState = {

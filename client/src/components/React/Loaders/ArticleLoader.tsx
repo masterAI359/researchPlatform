@@ -46,7 +46,6 @@ export default function ArticleLoader() {
     </div>
   ))
 
-
   return (
     <motion.div
       variants={container}
@@ -55,7 +54,7 @@ export default function ArticleLoader() {
       exit="hidden"
     >
       <div
-        className="grid grid-cols-2 h-auto lg:gap-24 xs:gap-1 mx-auto pointer-events-none 
+        className="grid grid-cols-2 h-auto lg:gap-16 xs:gap-1 mx-auto pointer-events-none 
       px-8 py-24 md:px-12 xs:px-2 lg:px-16 xl:px-36 2xl:max-w-7xl w-full">
 
         {loaders}

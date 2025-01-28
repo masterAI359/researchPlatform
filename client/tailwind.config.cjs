@@ -5,6 +5,9 @@ module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
+      animation: {
+        wiggle: 'wiggle 1s ease-in-out 3',
+      },
       backgroundImage: {
         'fallback': 'url(src/public/images/fallbacks/fallbackImage.svg)'
       },
@@ -90,6 +93,10 @@ module.exports = {
         "fade-in": "fade-in 0.5s linear forwards",
       },
       keyframes: {
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-3deg)' },
+          '50%': { transform: 'rotate(3deg)' },
+        },
         marquee: {
           "0%": {
             transform: "translateX(0%)",

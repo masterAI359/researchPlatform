@@ -1,20 +1,25 @@
+import { RootState } from "@/ReduxToolKit/store";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
+import { useDispatch, useSelector } from "react-redux";
 
 
+//TODO: fix bug occurring when using the editor
 
+export default function StepsEditor({ setterFunction, context }) {
+    const dispatch = useDispatch()
+    const idea = useSelector((state: RootState) => state.pov.idea)
 
-
-export default function StepsEditor({ setterFunction }) {
 
     const handleContent = () => {
+        let inputText = editor.getText()
 
-        setterFunction(editor.getText())
+        dispatch(setterFunction(inputText))
     }
 
 
     const editor = useEditor({
-        content: `
+        content: `${context}
           `,
         extensions: [
             StarterKit.configure({
@@ -35,7 +40,7 @@ export default function StepsEditor({ setterFunction }) {
 
     const handleContainerClick = () => {
         if (editor && !editor.isFocused) {
-            editor.commands.focus('end')
+            editor.commands.focus('end', null)
         }
     }
 

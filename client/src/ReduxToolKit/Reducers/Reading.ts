@@ -1,14 +1,15 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createListenerMiddleware, createSlice } from '@reduxjs/toolkit'
 
 
 interface ReadingState {
 
-    loadingContent: boolean,
-    getContent: boolean,
+    loadingContent: boolean | null,
+    getContent: boolean | null,
     summaries: Array<any> | null,
-    currentStory: number,
-    reading: boolean
-
+    failedNotifications: Array<any> | null,
+    currentStory: number | null,
+    reading: boolean | null,
+    paginateLimit: boolean | null
 }
 
 
@@ -17,8 +18,10 @@ const initialState: ReadingState = {
     loadingContent: false,
     getContent: false,
     summaries: null,
+    failedNotifications: null,
     currentStory: 0,
-    reading: false
+    reading: false,
+    paginateLimit: false
 }
 
 
@@ -35,6 +38,12 @@ export const ReadingSlice = createSlice({
         articleData: (state, action) => {
             state.summaries = action.payload
         },
+        rejected: (state, action) => {
+            state.failedNotifications = action.payload
+        },
+        closeNotification: (state, action) => {
+            state.failedNotifications.splice(action.payload, 1)
+        },
         incrementStory: (state) => {
             state.currentStory = state.currentStory += 1
         },
@@ -43,12 +52,24 @@ export const ReadingSlice = createSlice({
         },
         isReading: (state, action) => {
             state.reading = action.payload
+        },
+        resetData: () => initialState,
+        limitPagination: (state, action) => {
+            state.paginateLimit = action.payload
         }
-
     }
 })
 
 
-export const { loadContent, getStories, articleData, incrementStory, decrementStory, isReading } = ReadingSlice.actions
+export const {
+    loadContent,
+    getStories,
+    articleData,
+    rejected,
+    incrementStory,
+    decrementStory, isReading,
+    resetData,
+    closeNotification,
+    limitPagination } = ReadingSlice.actions
 
 export default ReadingSlice.reducer

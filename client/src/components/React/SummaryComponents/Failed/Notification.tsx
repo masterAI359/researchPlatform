@@ -1,12 +1,18 @@
 import { motion } from "framer-motion"
+import { useSelector, useDispatch } from "react-redux"
+import { RootState } from "@/ReduxToolKit/store"
+import { closeNotification } from "@/ReduxToolKit/Reducers/Reading"
 
 
 
-export default function Notification({ notification, failedNotifications, setFailedNotifications }) {
+export default function Notification({ notification }) {
+    const notifications = useSelector((state: RootState) => state.read.failedNotifications)
+    const dispatch = useDispatch()
 
-    const closeNotification = () => {
+    const close = () => {
         const articleLink: string = notification.article_url
-        setFailedNotifications(failedNotifications.filter((item: any) => item.article_url !== articleLink))
+        const thisNotification = notifications.findIndex((notification => notification.article_url === articleLink))
+        dispatch(closeNotification(thisNotification))
     }
 
     return (
@@ -40,7 +46,7 @@ export default function Notification({ notification, failedNotifications, setFai
             </div>
             <div className="justify-self-end relative w-auto h-full box-border">
                 <div
-                    onClick={closeNotification}
+                    onClick={close}
                     className="md:w-8 md:h-8 xs:h-5 xs:h-5 cursor-pointer rounded-md hover:bg-white/10 xs:p-0 md:p-1 transition-all ease-in-out duration-200 top-0 right-0">
                     <svg className="text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="100%" height="100%">
                         <path d="M 39.486328 6.9785156 A 1.50015 1.50015 0 0 0 38.439453 7.4394531 L 24 21.878906 L 9.5605469 7.4394531 A 1.50015 1.50015 0 0 0 8.484375 6.984375 A 1.50015 1.50015 0 0 0 7.4394531 9.5605469 L 21.878906 24 L 7.4394531 38.439453 A 1.50015 1.50015 0 1 0 9.5605469 40.560547 L 24 26.121094 L 38.439453 40.560547 A 1.50015 1.50015 0 1 0 40.560547 38.439453 L 26.121094 24 L 40.560547 9.5605469 A 1.50015 1.50015 0 0 0 39.486328 6.9785156 z" fill="currentColor" />

@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express'
+import express, { query, Request, Response } from 'express'
 import * as dotenv from 'dotenv'
 import * as path from 'path'
 import { fileURLToPath } from 'url';
@@ -7,7 +7,7 @@ import decodeItem from '../helpers/decodeItem.js'
 
 const envUrl = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(envUrl)
-const envPath = path.resolve(__dirname, '../../../.env');
+const envPath = path.resolve(__dirname, '../../.env');
 
 dotenv.config({ path: envPath })
 
@@ -22,10 +22,14 @@ interface QueryType {
     title: string
 }
 
-
 export const tldrSummary = async (req: Request, res: Response) => {
+
+    let failure: any = []
+
     const received = req.query.q as string;
     const query: QueryType[] = JSON.parse(decodeURIComponent(received));
+
+
 
     const url =
         'https://tldrthis.p.rapidapi.com/v1/model/abstractive/summarize-url/';
@@ -41,6 +45,7 @@ export const tldrSummary = async (req: Request, res: Response) => {
 
     try {
         const dataMap = query.map(async (article, index) => {
+
 
             console.log({ "fetching data for: ": article.url });
 
@@ -68,40 +73,43 @@ export const tldrSummary = async (req: Request, res: Response) => {
                 }
 
                 const data = await response.json();
-
-                if (data.article_image === 'undefined') {
-                    console.log(data.article_image)
-                }
-
                 data.logo = article.logo;
                 data.source = article.source;
                 data.date = article.date;
                 const decodedData = decodeItem(data)
-                return decodedData;
+                return decodedData
             } catch (error: any) {
                 console.error(`Error processing article ${article.url}:`, error);
                 // Return an object with the original article data plus the error message
-                return {
-                    failed: true,
+                const failedAttempt = {
                     title: article.title,
                     summary: [{ denied: 'We were denied access to the article from', failedArticle: `${article.source} - ${article.title}` }],
                     logo: article.logo,
                     source: article.source,
                     date: article.date,
                     article_url: article.url,
-                };
+                }
+                failure.push(failedAttempt)
+
             }
         });
 
         const results = await Promise.allSettled(dataMap);
+
+
         const returnValues = results.map((result: any) => {
 
             const resultData = result.value ? result.value : result.reason
 
             return resultData
         })
-        res.json(returnValues);
 
+        const success = returnValues.filter((result: any) => result !== undefined)
+
+        const resultsObject = { retrieved: success, rejected: failure }
+        console.log(resultsObject)
+        res.json(resultsObject);
+        failure = []
     } catch (error) {
         console.error("Error in tldrSummary:", error);
         res.status(500).send('Internal Server Error');

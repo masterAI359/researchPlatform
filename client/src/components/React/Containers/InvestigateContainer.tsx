@@ -2,21 +2,26 @@ import { useEffect, useRef, useState } from "react";
 import { useFetch } from "@/Hooks/useFetch";
 import { AnimatePresence, motion } from "framer-motion";
 import { RootState } from "@/ReduxToolKit/store";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import HeroContainer from "./HeroContainer";
-import StoryContainer from "./StoryContainer";
+import ArticleContainer from "./ArticleContainer";
 import Notes from "../Investigate/Notes/Notes";
 import LostConnection from "../ErrorMessages/LostConnection";
 
 export default function InvestigateContainer() {
-  const { loadingSummaries, readyToSelect, errorMessage } = useFetch()
+  const dispatch = useDispatch()
+  const { loadingSummaries, errorMessage } = useFetch()
   const takingNotes = useSelector((state: RootState) => state.notes.takingNotes)
   const gettingContent = useSelector((state: RootState) => state.read.getContent)
-  const finished = useSelector((state: RootState) => state.finish.finished)
+  const finished = useSelector((state: RootState) => state.review.finished)
   const [notePosition, setNotePosition] = useState({ x: 0, y: 500 })
   const [constraints, setConstraints] = useState(null)
+  const [pageRoute, setPageRoute] = useState(null)
   const containerRef = useRef(null)
   const notesRef = useRef(null)
+  const location = useLocation()
+
 
   function handleDragConstraints() {
     const constraintsRect = containerRef.current.getBoundingClientRect();
@@ -34,6 +39,7 @@ export default function InvestigateContainer() {
   }
 
   useEffect(() => {
+
     if (gettingContent) {
       scrollToView()
     }
@@ -42,6 +48,15 @@ export default function InvestigateContainer() {
       handleDragConstraints()
     }
   }, [gettingContent])
+
+
+  useEffect(() => {
+
+    return () => {
+      dispatch({ type: 'clear' })
+    }
+  }, [])
+
 
 
   return (
@@ -57,17 +72,14 @@ export default function InvestigateContainer() {
       </AnimatePresence>
 
       <div className="w-full h-auto mx-auto xl:mt-6">
-        {!finished &&
-          <motion.div
-            key="StoryContainer"
+        <motion.div
+          key="StoryContainer"
 
-          >
-            <StoryContainer
-              readyToSelect={readyToSelect}
-              loadingSummaries={loadingSummaries}
-            />
-          </motion.div>
-        }
+        >
+          <ArticleContainer
+            loadingSummaries={loadingSummaries}
+          />
+        </motion.div>
       </div>
 
       <AnimatePresence>

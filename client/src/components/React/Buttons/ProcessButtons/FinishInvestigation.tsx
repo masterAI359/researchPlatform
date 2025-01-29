@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux"
-import { endInvestigate } from "@/ReduxToolKit/Reducers/EndInvestigation"
+import { endInvestigate, endingView } from "@/ReduxToolKit/Reducers/EndInvestigation"
 import { initiateFinalProcess } from "@/ReduxToolKit/Reducers/Review"
 
 

@@ -29,7 +29,7 @@ export default function SummaryContainer({ }) {
   return (
     <motion.div
       layout
-      className="h-full 2xl:max-w-7xl xl:max-w-5xl xs:px-2 md:px-8 shadow-black inset rounded-4xl mx-auto border-white/10 xs:mt-10 xl:mt-0"
+      className="min-h-full 2xl:max-w-7xl xl:max-w-5xl xs:px-2 md:px-8 shadow-black inset rounded-4xl mx-auto border-white/10 xs:mt-10 xl:mt-0"
       variants={container}
       initial="hidden"
       animate="show"
@@ -43,7 +43,7 @@ export default function SummaryContainer({ }) {
                  transition-all duration-1000 animate-fade-in mb-12 
                  ">
         <div
-          className="w-full h-svh mx-auto relative">
+          className="w-full mx-auto relative">
           <AnimatePresence mode="popLayout">
             {stories?.map((summaryData: any, index: number) =>
             (currentStory === index && <Summary

@@ -24,16 +24,16 @@ export function Summary({ summaryData, index }) {
             initial={{ opacity: 0 }}
             animate={{
                 opacity: 1, transition: {
-                    delay: 0.35, duration: 0.4
+                    delay: 0.5, duration: 0.4
                 }
             }}
             exit={{
                 opacity: 0,
                 transition: {
-                    duration: 0.3
+                    duration: 0.2
                 }
             }}
-            className="absolute inset-0 box-border flex flex-col
+            className="relative inset-0 box-border flex flex-col
             pb-1 w-full h-full scrollbar-hide box-border bg-black"
         >
             <SummaryHeader

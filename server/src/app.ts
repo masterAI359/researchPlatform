@@ -6,8 +6,8 @@ import mongoose from 'mongoose';
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const uri = "mongodb+srv://trentirvin51:jz6YjyoVl7WUEfOU@cluster1.h1wpm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1";
 const mongoClientOptions: any = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
+const uri = process.env.MONGO_URI as string
 
 const app = express();
 import {

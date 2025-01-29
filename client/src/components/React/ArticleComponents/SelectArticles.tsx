@@ -1,5 +1,3 @@
-import SelectLoader from "../Loaders/SelectLoader"
-import { SelectedArticle } from "@/env"
 import { AnimatePresence, motion } from "framer-motion"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
@@ -19,7 +17,6 @@ export default function SelectArticles({ hideSelect, loadingSummaries }: SendFor
 
   const selectedTotal = chosenArticles.length
   const selectedArticles = `Summarize Articles ${selectedTotal}/3`
-  const waiting = "Loading Stories..."
 
   const handleSummaries = () => {
 

@@ -1,18 +1,9 @@
 import he from 'he'; //ran --save-dev @types/he... may need to change this to dependency instead of dev dependancy
-import { strict as assert } from 'assert';
-import { stripHtml } from 'string-strip-html';
 import sanitizeHtml from 'sanitize-html';
 
-
-//TODO: implement the string-strip-html library to deal with malformed HTML
+//TODO: refresh on iterative methods and reduce prototype
 
 export default function decodeItem(item: any) {
-
-    const malformedTags = (text: string) => {
-
-        return text.replace(/(?<!<)(\/?h\d|\/?p|\/?div|\/?span|\/?strong|\/?em)/g, '<$1')
-    }
-
 
     if (item === null || item === undefined) {
         return item;
@@ -27,6 +18,7 @@ export default function decodeItem(item: any) {
 
         return Object.entries(item).reduce((acc: any, [key, value]) => {
             acc[key] = decodeItem(value);
+            // console.log(acc[key])
             return acc
         }, {})
 
@@ -41,7 +33,6 @@ export default function decodeItem(item: any) {
         return final;
     }
 
-    //in case of unexpected types
     return item
 }
 

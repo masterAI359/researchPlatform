@@ -20,8 +20,9 @@ export default function ArticleContainer({
     const chosenArticles = useSelector((state: RootState) => state.getArticle.chosenArticles)
     const reading = useSelector((state: RootState) => state.read.reading)
     const stories = useSelector((state: RootState) => state.read.summaries)
+    const end = useSelector((state: RootState) => state.end.endProcess)
 
-    console.log(articles)
+    console.log(end)
 
     function hideSelect() {
 
@@ -39,9 +40,9 @@ export default function ArticleContainer({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ type: 'tween', duration: 0.2 }}
-            className="relative w-full h-full mx-auto xs:px-2">
+            className="relative shrink-0 w-full h-full mx-auto xs:px-2">
             <div
-                className="relative xl:max-w-7xl h-full box-border mx-auto">
+                className="relative xl:max-w-7xl min-h-full flex flex-col box-border mx-auto">
                 <AnimatePresence mode="popLayout">
                     {loading === true &&
                         <motion.div
@@ -116,15 +117,15 @@ export default function ArticleContainer({
 
             </AnimatePresence>
             <AnimatePresence>
-                {stories && <motion.div
+                {stories && !end ? <motion.div
                     initial={{ opacity: 0, scale: 0 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0 }}
+                    exit={{ opacity: 0 }}
                     transition={{ type: 'tween', duration: 0.2 }}
                     className="w-full h-auto relative mx-auto"
                 >
                     <ControlPanel />
-                </motion.div>}
+                </motion.div> : null}
             </AnimatePresence>
         </motion.div>
     )

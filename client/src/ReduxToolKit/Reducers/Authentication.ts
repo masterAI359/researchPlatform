@@ -13,7 +13,7 @@ interface Authentication {
 const initialState: Authentication = {
 
     authenticated: null,
-    username: "Trent",
+    username: null,
     password: null,
     email: "trentirvin51@gmail.com"
 }

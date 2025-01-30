@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom"
-
+import { useSelector } from "react-redux"
+import { RootState } from "@/ReduxToolKit/store"
 
 
 export default function DeskTopContent() {
+    const username = useSelector((state: RootState) => state.auth.username)
 
     return (
         <div className="fixed top-0 w-full inset-x-0 z-30 md:block xs:hidden sm:hidden">
@@ -92,7 +94,7 @@ c-73.1,86.1-213,87.5-312.5,3.1s-121-222.7-47.9-308.8S314.3-7.8,413.8,76.6z" />
 
                                     <div className="w-full h-auto flex items-center">
 
-                                        <p className="text-white font-light 2xl:text-md group-hover:text-blue-400 transition-all duration-200 ease-in-out whitespace-nowrap">Log in</p>
+                                        <p className="text-white font-light 2xl:text-md group-hover:text-blue-400 transition-all duration-200 ease-in-out whitespace-nowrap">{username ? username : 'Log in'}</p>
 
 
                                     </div>

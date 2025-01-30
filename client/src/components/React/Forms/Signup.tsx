@@ -2,9 +2,13 @@ import { supabase, error, data } from "@/SupaBase/supaBaseClient"
 import { isAuthenticated, getUserName, getUserPassword, getEmail } from "@/ReduxToolKit/Reducers/Authentication"
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
+import { RootState } from "@/ReduxToolKit/store"
 
 export default function Signup() {
     const dispatch = useDispatch()
+    const test = useSelector((state: RootState) => state.auth.username)
+
 
     useEffect(() => {
 
@@ -14,7 +18,15 @@ export default function Signup() {
             console.log(data)
         }
 
-    }, [data, supabase, error])
+        if (data) {
+            dispatch(getUserName(data[0].user_name))
+        }
+
+        console.log(test)
+
+        //TODO: use data from supabase to display the username in the login link on navigation
+
+    }, [data, supabase, error, test])
 
     return (
         <section className="lg:p-8 overflow-hidden bg-black animate-fade-in">

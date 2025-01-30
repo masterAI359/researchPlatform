@@ -5,28 +5,30 @@ import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 
-export default function Signup() {
-    const dispatch = useDispatch()
-    const test = useSelector((state: RootState) => state.auth.username)
+//rough working model of setting username for display
 
+export default function Signup() {
+    const [inputEmail, setGetEmail] = useState()
+    const dispatch = useDispatch()
+    const email = useSelector((state: RootState) => state.auth.email)
+    console.log(email)
+
+    const handleSignIn = (e: any) => {
+
+        setGetEmail(e.target.value)
+    }
 
     useEffect(() => {
 
-        if (error) {
-            console.log(error)
-        } else {
-            console.log(data)
+        if (inputEmail !== null) {
+            dispatch(getEmail(inputEmail))
+            console.log({ "Email Stored: ": email })
+            if (data) {
+                dispatch(getUserName(data[0].user_name))
+            }
         }
 
-        if (data) {
-            dispatch(getUserName(data[0].user_name))
-        }
-
-        console.log(test)
-
-        //TODO: use data from supabase to display the username in the login link on navigation
-
-    }, [data, supabase, error, test])
+    }, [dispatch, getEmail, data])
 
     return (
         <section className="lg:p-8 overflow-hidden bg-black animate-fade-in">
@@ -44,7 +46,7 @@ export default function Signup() {
                                 <label htmlFor="email" className="block mb-3 text-sm font-medium text-white">
                                     Email
                                 </label>
-                                <input onChange={(e) => dispatch(getEmail(e.target.value))} id="email" name="email" type="email" autoComplete="email" placeholder="email@example.com" className="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-white placeholder-black/50 bg-white/5 focus:border-black focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10" required />
+                                <input onChange={handleSignIn} id="email" name="email" type="email" autoComplete="email" placeholder="email@example.com" className="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-white placeholder-black/50 bg-white/5 focus:border-black focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10" required />
                             </div>
                             <div className="col-span-full">
                                 <div>

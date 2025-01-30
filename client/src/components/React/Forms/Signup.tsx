@@ -3,6 +3,9 @@ import { isAuthenticated } from "@/ReduxToolKit/Reducers/Authentication"
 import { useEffect } from "react"
 
 
+
+
+
 export default function Signup() {
 
     useEffect(() => {
@@ -45,10 +48,10 @@ export default function Signup() {
                             </div>
                             <div className="col-span-full">
                                 <div>
-                                    <label htmlFor="password" className="block mb-3 text-sm font-medium text-white">
+                                    <label htmlFor="confirm_password" className="block mb-3 text-sm font-medium text-white">
                                         Confirm Password
                                     </label>
-                                    <input id="password" name="password" type="password" placeholder="Retype password here..." autoComplete="current-password" className="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-black placeholder-black/50 bg-white/5 focus:border-black focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10" required />
+                                    <input id="confirm_password" name="password" type="password" placeholder="Retype password here..." autoComplete="current-password" className="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-black placeholder-black/50 bg-white/5 focus:border-black focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10" required />
                                 </div>
 
                             </div>

@@ -11,12 +11,9 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
-import mongoose from 'mongoose';
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const mongoClientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
-const uri = process.env.MONGO_URI;
 const app = express();
 import { bingArticles, } from '../endpoints/bingApi.js';
 import { tldrSummary } from '../endpoints/tldrSummary.js';
@@ -41,24 +38,6 @@ app.options('*', (req, res) => {
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
     res.sendStatus(200);
 });
-function run() {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            // Create a Mongoose client with a MongoClientOptions object to set the Stable API version
-            yield mongoose.connect(uri, mongoClientOptions);
-            yield mongoose.connection.db.admin().command({ ping: 1 });
-            console.log("Pinged your deployment. You successfully connected to MongoDB!");
-            if (mongoose.connection.readyState !== 1) {
-                throw new Error(`Mongoose not connecting. Current readyState: ${mongoose.connection.readyState}`);
-            }
-        }
-        finally {
-            // Ensures that the client will close when you finish/error
-            yield mongoose.disconnect();
-        }
-    });
-}
-run().catch(console.dir);
 const { Client } = pkg;
 const client = new Client('postgresql://said:LWK2SWytsTGJFYIyWHBP3Q@cluster0-14450.7tt.aws-us-east-1.cockroachlabs.cloud:26257/elenchus?sslmode=verify-full');
 client

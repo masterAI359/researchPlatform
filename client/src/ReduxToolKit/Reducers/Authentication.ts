@@ -3,13 +3,19 @@ import { act } from "react";
 
 interface Authentication {
 
-    authenticated: boolean | null
+    authenticated: boolean | null,
+    username: string | null,
+    password: string | null,
+    email: string | null
 }
 
 
 const initialState: Authentication = {
 
-    authenticated: null
+    authenticated: null,
+    username: "Trent",
+    password: null,
+    email: "trentirvin51@gmail.com"
 }
 
 
@@ -21,10 +27,19 @@ export const AuthenticationSlice = createSlice({
         isAuthenticated: (state, action) => {
 
             state.authenticated = action.payload
+        },
+        getUserName: (state, action) => {
+            state.username = action.payload
+        },
+        getUserPassword: (state, action) => {
+            state.password = action.payload
+        },
+        getEmail: (state, action) => {
+            state.email = action.payload
         }
     }
 })
 
-export const { isAuthenticated } = AuthenticationSlice.actions
+export const { isAuthenticated, getUserName, getUserPassword, getEmail } = AuthenticationSlice.actions
 
 export default AuthenticationSlice.reducer

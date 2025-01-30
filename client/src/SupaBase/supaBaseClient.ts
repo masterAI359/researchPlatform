@@ -1,4 +1,9 @@
+import { RootState } from "@/ReduxToolKit/store";
 import { createClient } from "@supabase/supabase-js";
+import { store } from "@/ReduxToolKit/store";
+const currentState = store.getState()
+
+const email = currentState.auth.email
 
 
 const supaBaseUrl = import.meta.env.PUBLIC_SUPABASE_URL as string
@@ -10,5 +15,6 @@ export const supabase = createClient(supaBaseUrl, supaBaseKey)
 
 export const { data, error } = await supabase
     .from('users')
-    .select('user_name')
+    .select()
+    .eq('email', email)
 

@@ -1,15 +1,12 @@
-import { supabase, data, error } from "@/SupaBase/supaBaseClient"
-import { isAuthenticated } from "@/ReduxToolKit/Reducers/Authentication"
-import { useEffect } from "react"
-
-
-
-
+import { supabase, error, data } from "@/SupaBase/supaBaseClient"
+import { isAuthenticated, getUserName, getUserPassword, getEmail } from "@/ReduxToolKit/Reducers/Authentication"
+import { useEffect, useState } from "react"
+import { useDispatch } from "react-redux"
 
 export default function Signup() {
+    const dispatch = useDispatch()
 
     useEffect(() => {
-
 
         if (error) {
             console.log(error)
@@ -35,7 +32,7 @@ export default function Signup() {
                                 <label htmlFor="email" className="block mb-3 text-sm font-medium text-white">
                                     Email
                                 </label>
-                                <input id="email" name="email" type="email" autoComplete="email" placeholder="email@example.com" className="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-white placeholder-black/50 bg-white/5 focus:border-black focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10" required />
+                                <input onChange={(e) => dispatch(getEmail(e.target.value))} id="email" name="email" type="email" autoComplete="email" placeholder="email@example.com" className="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-white placeholder-black/50 bg-white/5 focus:border-black focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10" required />
                             </div>
                             <div className="col-span-full">
                                 <div>

@@ -1,7 +1,20 @@
-
+import { supabase, data, error } from "@/SupaBase/supaBaseClient"
+import { isAuthenticated } from "@/ReduxToolKit/Reducers/Authentication"
+import { useEffect } from "react"
 
 
 export default function Signup() {
+
+    useEffect(() => {
+
+
+        if (error) {
+            console.log(error)
+        } else {
+            console.log(data)
+        }
+
+    }, [data, supabase, error])
 
     return (
         <section className="lg:p-8 overflow-hidden bg-black animate-fade-in">

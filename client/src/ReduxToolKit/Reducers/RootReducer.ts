@@ -8,6 +8,7 @@ import SearchResults from './SearchResults'
 import ReviewReducer from './Review'
 import HelpReducer from './HelpModal'
 import EndInvestigateReducer from './EndInvestigation'
+import AuthenticationReducer from './Authentication'
 
 
 const appReducer = combineReducers({
@@ -20,6 +21,7 @@ const appReducer = combineReducers({
     review: ReviewReducer,
     help: HelpReducer,
     end: EndInvestigateReducer,
+    auth: AuthenticationReducer
 
 })
 

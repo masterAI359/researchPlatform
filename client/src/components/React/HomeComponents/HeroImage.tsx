@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Loader from "../Loaders/Loader";
+import Search from "../Investigate/Steps/Search";
 
 export default function HeroImage() {
 

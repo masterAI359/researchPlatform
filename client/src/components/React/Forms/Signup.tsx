@@ -1,4 +1,4 @@
-import { supabase, error, data } from "@/SupaBase/supaBaseClient"
+import { supabase, data, error } from "@/SupaBase/supaBaseSignup"
 import { isAuthenticated, getUserName, getUserPassword, getEmail } from "@/ReduxToolKit/Reducers/Authentication"
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
@@ -13,6 +13,8 @@ export default function Signup() {
     const email = useSelector((state: RootState) => state.auth.email)
     const password = useSelector((state: RootState) => state.auth.password)
     console.log({ "Email: ": email, "Password": password })
+
+
 
     const submitAuth = (e: any) => {
 

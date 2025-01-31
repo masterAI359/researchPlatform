@@ -10,15 +10,15 @@ const supaBaseUrl = import.meta.env.PUBLIC_SUPABASE_URL as string
 
 const supaBaseKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY as string
 
-//TODO: authenticate user with both email & password
-
-
 export const supabase = createClient(supaBaseUrl, supaBaseKey)
 
-export const { data, error } = await supabase.auth.signUp({
+export const { data, error } = await supabase.auth.signInWithPassword({
     email: email,
     password: password,
 })
+
+
+
 
 
 

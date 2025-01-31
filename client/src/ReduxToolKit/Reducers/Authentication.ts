@@ -15,7 +15,7 @@ const initialState: Authentication = {
     authenticated: null,
     username: null,
     password: null,
-    email: null
+    email: 'trent.irvin51@gmail.com'
 }
 
 

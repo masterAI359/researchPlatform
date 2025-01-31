@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 
-//rough working model of setting username for display
 
 export default function Signup() {
     const [inputEmail, setGetEmail] = useState()
@@ -32,23 +31,23 @@ export default function Signup() {
 
     useEffect(() => {
 
-        if (error) {
-            console.log(error)
-        }
+        //  if (error) {
+        //      console.log(error)
+        //  }
+        //
+        //  if (inputEmail !== null) {
+        //      console.log({ "Email Stored: ": email })
+        //      dispatch(getEmail(inputEmail))
+        //  }
+        //
+        //  if (inputPassword !== null) {
+        //      dispatch(getUserPassword(inputPassword))
+        //      console.log({ "Password Stored: ": inputPassword })
+        //  }
 
-        if (inputEmail !== null) {
-            console.log({ "Email Stored: ": email })
-            dispatch(getEmail(inputEmail))
-        }
-
-        if (inputPassword !== null) {
-            dispatch(getUserPassword(inputPassword))
-            console.log({ "Password Stored: ": inputPassword })
-        }
-
-        if (data) {
-            dispatch(getUserName(data.user.email))
-        }
+        //  if (data.user.email) {
+        //      dispatch(getUserName(data.user.email))
+        //  }
 
     }, [dispatch, getEmail, data, inputPassword])
 

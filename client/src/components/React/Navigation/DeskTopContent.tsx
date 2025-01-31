@@ -1,10 +1,46 @@
 import { Link } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
+import { useEffect, useState } from "react"
 
 
 export default function DeskTopContent() {
+    const [shortenedName, setShortenedName] = useState<string>(null)
     const username = useSelector((state: RootState) => state.auth.username)
+    const email = useSelector((state: RootState) => state.auth.email)
+
+
+    function limitName(name: string) {
+
+        let splitName = name.split('')
+
+        let shortenedArray = []
+
+        for (let i = 0; i < splitName.length; i++) {
+
+            if (i <= 13) {
+                shortenedArray.push(splitName[i])
+
+            } else {
+                break
+            }
+        }
+
+        let shortString = shortenedArray.join('')
+        let elipses = shortString + '...'
+
+        setShortenedName(elipses)
+
+    }
+
+
+    useEffect(() => {
+
+        if (email) limitName(email)
+
+        console.log(shortenedName)
+
+    }, [username])
 
     return (
         <div className="fixed top-0 w-full inset-x-0 z-30 md:block xs:hidden sm:hidden">
@@ -94,7 +130,7 @@ c-73.1,86.1-213,87.5-312.5,3.1s-121-222.7-47.9-308.8S314.3-7.8,413.8,76.6z" />
 
                                     <div className="w-full h-auto flex items-center">
 
-                                        <p className="text-white font-light 2xl:text-md group-hover:text-blue-400 transition-all duration-200 ease-in-out whitespace-nowrap">{username ? username : 'Log in'}</p>
+                                        <p className="text-white font-light 2xl:text-md group-hover:text-blue-400 transition-all duration-200 ease-in-out whitespace-nowrap">{email ? shortenedName : 'Log in'}</p>
 
 
                                     </div>

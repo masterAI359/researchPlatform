@@ -9,26 +9,48 @@ import { RootState } from "@/ReduxToolKit/store"
 
 export default function Signup() {
     const [inputEmail, setGetEmail] = useState()
+    const [inputPassword, getPassword] = useState()
     const dispatch = useDispatch()
     const email = useSelector((state: RootState) => state.auth.email)
-    console.log(email)
+    const password = useSelector((state: RootState) => state.auth.password)
+    console.log({ "Email: ": email, "Password": password })
+
+    const submitAuth = (e: any) => {
+
+        e.preventDefault()
+    }
 
     const handleSignIn = (e: any) => {
 
         setGetEmail(e.target.value)
     }
 
+    const handlePassword = (e: any) => {
+        getPassword(e.target.value)
+
+    }
+
     useEffect(() => {
 
-        if (inputEmail !== null) {
-            dispatch(getEmail(inputEmail))
-            console.log({ "Email Stored: ": email })
-            if (data) {
-                dispatch(getUserName(data[0].user_name))
-            }
+        if (error) {
+            console.log(error)
         }
 
-    }, [dispatch, getEmail, data])
+        if (inputEmail !== null) {
+            console.log({ "Email Stored: ": email })
+            dispatch(getEmail(inputEmail))
+        }
+
+        if (inputPassword !== null) {
+            dispatch(getUserPassword(inputPassword))
+            console.log({ "Password Stored: ": inputPassword })
+        }
+
+        if (data) {
+            dispatch(getUserName(data.user.email))
+        }
+
+    }, [dispatch, getEmail, data, inputPassword])
 
     return (
         <section className="lg:p-8 overflow-hidden bg-black animate-fade-in">
@@ -40,20 +62,20 @@ export default function Signup() {
                     <p className="mt-2 text-sm text-zinc-400">Create an account with us.</p>
                 </div>
                 <div className="w-full gap-24 mx-auto grid grid-cols-1 mt-12 lg:grid-cols-2 items-end">
-                    <form>
+                    <form onSubmit={submitAuth}>
                         <div className="space-y-6">
                             <div className="col-span-full">
                                 <label htmlFor="email" className="block mb-3 text-sm font-medium text-white">
                                     Email
                                 </label>
-                                <input onChange={handleSignIn} id="email" name="email" type="email" autoComplete="email" placeholder="email@example.com" className="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-white placeholder-black/50 bg-white/5 focus:border-black focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10" required />
+                                <input onChange={(e) => handleSignIn(e)} id="email" name="email" type="email" autoComplete="email" placeholder="email@example.com" className="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-white placeholder-black/50 bg-white/5 focus:border-black focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10" required />
                             </div>
                             <div className="col-span-full">
                                 <div>
                                     <label htmlFor="password" className="block mb-3 text-sm font-medium text-white">
                                         Password
                                     </label>
-                                    <input id="password" name="password" type="password" placeholder="Type password here..." autoComplete="current-password" className="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-black placeholder-black/50 bg-white/5 focus:border-black focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10" required />
+                                    <input onChange={(e) => handlePassword(e)} id="password" name="password" type="password" placeholder="Type password here..." autoComplete="current-password" className="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-white placeholder-black/50 bg-white/5 focus:border-black focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10" required />
                                 </div>
 
                             </div>
@@ -62,7 +84,7 @@ export default function Signup() {
                                     <label htmlFor="confirm_password" className="block mb-3 text-sm font-medium text-white">
                                         Confirm Password
                                     </label>
-                                    <input id="confirm_password" name="password" type="password" placeholder="Retype password here..." autoComplete="current-password" className="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-black placeholder-black/50 bg-white/5 focus:border-black focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10" required />
+                                    <input id="confirm_password" name="password" type="password" placeholder="Retype password here..." autoComplete="current-password" className="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-white placeholder-black/50 bg-white/5 focus:border-black focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10" required />
                                 </div>
 
                             </div>

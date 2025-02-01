@@ -4,13 +4,15 @@ import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 
 export default function FailedSummary({ }) {
-    const notifications = useSelector((state: RootState) => state.read.failedNotifications)
+    const investigateState = useSelector((state: RootState) => state.investigation)
+    const { read } = investigateState
+    const { failedNotifications } = read
 
     return (
 
         <motion.ul className="2xl:bottom-12 2xl:right-12 bottom-3 right-3 flex fixed z-50 flex-col gap-y-6">
             <AnimatePresence mode="popLayout" initial={false}>
-                {notifications.map((notification: any) => (
+                {failedNotifications.map((notification: any) => (
                     <Notification
                         key={notification.article_url}
                         notification={notification}

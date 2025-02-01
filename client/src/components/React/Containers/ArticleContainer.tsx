@@ -19,7 +19,7 @@ export default function ArticleContainer({
     const { loading, articles } = search
     const { endProcess } = end
     const { chosenArticles } = getArticle
-    const { reading, stories, loadingContent } = read
+    const { reading, summaries, loadingContent } = read
 
 
     function hideSelect() {
@@ -115,7 +115,7 @@ export default function ArticleContainer({
 
             </AnimatePresence>
             <AnimatePresence>
-                {stories && !endProcess ? <motion.div
+                {summaries && !endProcess ? <motion.div
                     initial={{ opacity: 0, scale: 0 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0 }}

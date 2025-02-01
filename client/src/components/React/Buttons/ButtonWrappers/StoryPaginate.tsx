@@ -18,7 +18,7 @@ export default function StoryPaginate() {
                 className={`xl:w-16 xl:h-12 bg-white hover:bg-white/10 
              mx-auto rounded-2xl flex items-center justify-center xl:p-2
              group transition-all duration-200 ease-in-out 
-             ${atLimit ? 'bg-white/10 pointer-events-none' : 'pointer-events-auto'}`}>
+             ${paginateLimit ? 'bg-white/10 pointer-events-none' : 'pointer-events-auto'}`}>
                 <div className="rounded-md xl:h-fit xl:w-16 flex xs:hidden md:block mx-auto bg:black z-50 opacity-0 absolute xl:translate-y-12
                 border border-white/50 md:group-hover:opacity-100 transition-opacity duration-200 ease-in-out">
                     <h1 className="text-white xl:text-xs xl:p-1 text-center font-light tracking-tight justify-self-start text-center w-full">

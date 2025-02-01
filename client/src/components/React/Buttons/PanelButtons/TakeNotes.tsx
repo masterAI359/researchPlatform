@@ -3,7 +3,9 @@ import { RootState } from "@/ReduxToolKit/store"
 import { writingNote } from "@/ReduxToolKit/Reducers/Investigate/NoteTaking"
 
 export default function TakeNotes({ }) {
-    const takingNotes = useSelector((state: RootState) => state.notes.takingNotes)
+    const investigateState = useSelector((state: RootState) => state.investigation)
+    const { notes } = investigateState
+    const { takingNotes } = notes
     const dispatch = useDispatch()
 
     return (

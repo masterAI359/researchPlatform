@@ -6,12 +6,14 @@ import { closeNotification } from "@/ReduxToolKit/Reducers/Investigate/Reading"
 
 
 export default function Notification({ notification }) {
-    const notifications = useSelector((state: RootState) => state.read.failedNotifications)
+    const investigateState = useSelector((state: RootState) => state.investigation)
+    const { read } = investigateState
+    const { failedNotifications } = read
     const dispatch = useDispatch()
 
     const close = () => {
         const articleLink: string = notification.article_url
-        const thisNotification = notifications.findIndex((notification => notification.article_url === articleLink))
+        const thisNotification = failedNotifications.findIndex((notification => notification.article_url === articleLink))
         dispatch(closeNotification(thisNotification))
     }
 

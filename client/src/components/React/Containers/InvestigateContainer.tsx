@@ -11,9 +11,11 @@ import LostConnection from "../ErrorMessages/LostConnection";
 export default function InvestigateContainer() {
   const dispatch = useDispatch()
   const { loadingSummaries, errorMessage } = useFetch()
-  const takingNotes = useSelector((state: RootState) => state.notes.takingNotes)
-  const gettingContent = useSelector((state: RootState) => state.read.getContent)
-  const finiished = useSelector((state: RootState) => state.review.finished)
+  const investigateState = useSelector((state: RootState) => state.investigation)
+  const { notes, read, review } = investigateState
+  const { takingNotes } = notes
+  const { gettingContent } = read
+  const { finiished } = review
   const [notePosition, setNotePosition] = useState({ x: 0, y: 500 })
   const [constraints, setConstraints] = useState(null)
   const containerRef = useRef(null)

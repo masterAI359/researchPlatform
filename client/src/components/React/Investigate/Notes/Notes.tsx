@@ -2,7 +2,7 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { RootState } from "@/ReduxToolKit/store"
 import { useDispatch, useSelector } from "react-redux"
-import { writingNote, saveNote } from "@/ReduxToolKit/Reducers/NoteTaking"
+import { writingNote, saveNote } from "@/ReduxToolKit/Reducers/Investigate/NoteTaking"
 import NotesEditor from "../../TipTap/NotesEditor"
 
 export default function Notes({ notePosition, setNotePosition, constraints, notesRef }) {

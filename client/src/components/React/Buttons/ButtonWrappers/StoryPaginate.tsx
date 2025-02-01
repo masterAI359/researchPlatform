@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-import { incrementStory, decrementStory, limitPagination } from "@/ReduxToolKit/Reducers/Reading"
+import { incrementStory, decrementStory, limitPagination } from "@/ReduxToolKit/Reducers/Investigate/Reading"
 
 
 export default function StoryPaginate() {

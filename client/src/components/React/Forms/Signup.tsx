@@ -1,5 +1,6 @@
-import { supabase, data, error } from "@/SupaBase/supaBaseSignup"
-import { isAuthenticated, getUserName, getUserPassword, getEmail } from "@/ReduxToolKit/Reducers/Authentication"
+import { supabase } from "@/SupaBase/supaBaseClient"
+import { isAuthenticated, getUserName, getUserPassword, getEmail } from "@/ReduxToolKit/Reducers/Athentication/Authentication"
+import { requiredInput } from "@/helpers/validation"
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
@@ -9,17 +10,14 @@ import { RootState } from "@/ReduxToolKit/store"
 export default function Signup() {
     const [inputEmail, setGetEmail] = useState()
     const [inputPassword, getPassword] = useState()
+    const [acceptedInput, setAcceptedInput] = useState<boolean>(null)
     const dispatch = useDispatch()
     const email = useSelector((state: RootState) => state.auth.email)
     const password = useSelector((state: RootState) => state.auth.password)
-    console.log({ "Email: ": email, "Password": password })
 
+    const investigateState = useSelector((state: RootState) => state.investigation)
+    console.log(investigateState)
 
-
-    const submitAuth = (e: any) => {
-
-        e.preventDefault()
-    }
 
     const handleSignIn = (e: any) => {
 
@@ -27,31 +25,46 @@ export default function Signup() {
     }
 
     const handlePassword = (e: any) => {
+
         getPassword(e.target.value)
+    }
+
+
+    const submitAuth = (e: any) => {
+        e.preventDefault()
+        requiredInput(inputEmail, inputPassword, setAcceptedInput)
+
+        if (acceptedInput) {
+            dispatch(getEmail(inputEmail))
+            dispatch(getUserPassword(inputPassword))
+        }
 
     }
 
     useEffect(() => {
 
-        //  if (error) {
-        //      console.log(error)
-        //  }
-        //
-        //  if (inputEmail !== null) {
-        //      console.log({ "Email Stored: ": email })
-        //      dispatch(getEmail(inputEmail))
-        //  }
-        //
-        //  if (inputPassword !== null) {
-        //      dispatch(getUserPassword(inputPassword))
-        //      console.log({ "Password Stored: ": inputPassword })
-        //  }
+        const logInUser = async () => {
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email: email !== null ? email : null,
+                password: password,
+            })
 
-        //  if (data.user.email) {
-        //      dispatch(getUserName(data.user.email))
-        //  }
+            if (error) {
+                console.log(error)
+            } else if (data) {
+                console.log(data)
+                dispatch(isAuthenticated(true))
+            }
 
-    }, [dispatch, getEmail, data, inputPassword])
+        }
+
+        if (email !== null && password !== null) {
+            logInUser()
+        }
+
+        console.log(acceptedInput)
+
+    }, [dispatch, getEmail, inputPassword])
 
     return (
         <section className="lg:p-8 overflow-hidden bg-black animate-fade-in">

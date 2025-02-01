@@ -14,15 +14,13 @@ export default function ArticleContainer({
     loadingSummaries,
 }) {
     const [showSelect, setShowSelect] = useState<boolean>(false)
-    const loading = useSelector((state: RootState) => state.pov.loading)
-    const articles = useSelector((state: RootState) => state.search.articles)
-    const loadingContent = useSelector((state: RootState) => state.read.loadingContent)
-    const chosenArticles = useSelector((state: RootState) => state.getArticle.chosenArticles)
-    const reading = useSelector((state: RootState) => state.read.reading)
-    const stories = useSelector((state: RootState) => state.read.summaries)
-    const end = useSelector((state: RootState) => state.end.endProcess)
+    const investigateState = useSelector((state: RootState) => state.investigation)
+    const { pov, search, read, getArticle, end } = investigateState
+    const { loading, articles } = search
+    const { endProcess } = end
+    const { chosenArticles } = getArticle
+    const { reading, stories, loadingContent } = read
 
-    console.log(end)
 
     function hideSelect() {
 
@@ -117,7 +115,7 @@ export default function ArticleContainer({
 
             </AnimatePresence>
             <AnimatePresence>
-                {stories && !end ? <motion.div
+                {stories && !endProcess ? <motion.div
                     initial={{ opacity: 0, scale: 0 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0 }}

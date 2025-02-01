@@ -1,8 +1,8 @@
 import { AnimatePresence, motion } from "framer-motion"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-import { getStories } from "@/ReduxToolKit/Reducers/Reading"
-import { startSearch } from "@/ReduxToolKit/Reducers/SearchResults"
+import { getStories } from "@/ReduxToolKit/Reducers/Investigate/Reading"
+import { startSearch } from "@/ReduxToolKit/Reducers/Investigate/SearchResults"
 
 
 interface SendForSummary {

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface FinishedState {
-    finished: boolean | null,
+    wrapUp: boolean | null,
     endingPerspective: string | null,
     newConcepts: boolean | null,
     newPOV: boolean | null
@@ -14,7 +14,7 @@ interface FinishedState {
 
 const initialState: FinishedState = {
 
-    finished: false,
+    wrapUp: false,
     endingPerspective: '',
     newConcepts: null,
     newPOV: null,
@@ -29,7 +29,7 @@ export const ReviewSlice = createSlice({
     initialState: initialState,
     reducers: {
         initiateFinalProcess: (state, action) => {
-            state.finished = action.payload
+            state.wrapUp = action.payload
         },
         newKnowledge: (state, action) => {
             state.newConcepts = action.payload

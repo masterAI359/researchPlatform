@@ -1,8 +1,8 @@
 import Loader from "../../Loaders/Loader";
 import { useFetch } from "@/Hooks/useFetch";
 import { useDispatch, useSelector } from "react-redux";
-import { getQuery, searching } from "@/ReduxToolKit/Reducers/UserPOV";
-import { getStories } from "@/ReduxToolKit/Reducers/Reading";
+import { getQuery, searching } from "@/ReduxToolKit/Reducers/Investigate/UserPOV";
+import { getStories } from "@/ReduxToolKit/Reducers/Investigate/Reading";
 import { AppDispatch, RootState } from "@/ReduxToolKit/store";
 import { useEffect } from "react";
 

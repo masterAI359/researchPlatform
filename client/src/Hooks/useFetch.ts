@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { loading } from "@/ReduxToolKit/Reducers/UserPOV";
-import { searchResults, resetResults, startSearch } from "@/ReduxToolKit/Reducers/SearchResults";
-import { loadContent, articleData, isReading, resetData, rejected } from "@/ReduxToolKit/Reducers/Reading";
+import { loading } from "@/ReduxToolKit/Reducers/Investigate/UserPOV";
+import { searchResults, resetResults, startSearch } from "@/ReduxToolKit/Reducers/Investigate/SearchResults";
+import { loadContent, articleData, isReading, resetData, rejected } from "@/ReduxToolKit/Reducers/Investigate/Reading";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import { AppDispatch } from "@/ReduxToolKit/store";
@@ -17,7 +17,11 @@ const options: OptionsTypes = {
 
 
 export const useFetch = () => {
-    const articles = useSelector((state: RootState) => state.search.articles)
+    const investigateState = useSelector((state: RootState) => state.investigation)
+
+    const { search, read } = investigateState
+    const { articles } = search
+
     const [loadingSummaries, setLoadingSummaries] = useState<boolean>(false)
     const [readyToSelect, setReadyToSelect] = useState<boolean>(false)
     const [errorMessage, setErrorMessage] = useState<string>(null)

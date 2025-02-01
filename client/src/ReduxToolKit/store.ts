@@ -1,9 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { rootReducer } from './Reducers/RootReducer'
+import { InvestigateFeature } from './Reducers/Root/InvestigateReducer'
+import AuthenticateReducer from './Reducers/Athentication/Authentication'
 
 
 export const store = configureStore({
-    reducer: rootReducer,
+    reducer: {
+        investigation: InvestigateFeature,
+        auth: AuthenticateReducer
+    }
 
 })
 

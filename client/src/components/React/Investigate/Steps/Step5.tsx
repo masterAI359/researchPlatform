@@ -2,7 +2,7 @@ import HelpButton from "../../Buttons/HelpButtons/Question"
 import { Step5Help } from "@/helpInfo/help"
 import { motion } from "framer-motion"
 import { useDispatch } from "react-redux"
-import { startSearch } from "@/ReduxToolKit/Reducers/SearchResults"
+import { startSearch } from "@/ReduxToolKit/Reducers/Investigate/SearchResults"
 
 
 export default function Step5({ containerWidth

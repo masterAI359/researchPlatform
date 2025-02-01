@@ -1,6 +1,6 @@
 import type { RootState } from '@/ReduxToolKit/store'
 import { useSelector, useDispatch } from 'react-redux'
-import { increment, denyIncrement, acceptedInput } from "@/ReduxToolKit/Reducers/Steps";
+import { increment, denyIncrement, acceptedInput } from "@/ReduxToolKit/Reducers/Investigate/Steps";
 import { motion } from "framer-motion";
 
 

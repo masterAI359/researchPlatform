@@ -4,7 +4,7 @@ import { Step2Help } from "@/helpInfo/help"
 import StepsEditor from "../../TipTap/StepsEditor";
 import { RootState } from "@/ReduxToolKit/store";
 import { useSelector, useDispatch } from "react-redux";
-import { getBiases } from "@/ReduxToolKit/Reducers/UserPOV";
+import { getBiases } from "@/ReduxToolKit/Reducers/Investigate/UserPOV";
 
 export default function Step3({ containerWidth }: any) {
   const biases = useSelector((state: RootState) => state.pov.biases)

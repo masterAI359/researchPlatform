@@ -3,7 +3,7 @@ import { Step3Help } from "@/helpInfo/help"
 import StepsEditor from "../../TipTap/StepsEditor";
 import { RootState } from "@/ReduxToolKit/store";
 import { useSelector } from "react-redux";
-import { getPremises } from "@/ReduxToolKit/Reducers/UserPOV";
+import { getPremises } from "@/ReduxToolKit/Reducers/Investigate/UserPOV";
 
 export default function Step4({ containerWidth }: any) {
   const premises = useSelector((state: RootState) => state.pov.premises)

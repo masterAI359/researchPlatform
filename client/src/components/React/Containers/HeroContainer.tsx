@@ -11,13 +11,13 @@ import { RootState } from "@/ReduxToolKit/store"
 
 export default function HeroContainer({
 }) {
-    const reading = useSelector((state: RootState) => state.read.reading)
-    const startSearch = useSelector((state: RootState) => state.search.startSearch)
-    const wrapUp = useSelector((state: RootState) => state.review.finished)
-    const completion = useSelector((state: RootState) => state.end.endProcess)
-    const loadingContent = useSelector((state: RootState) => state.read.loadingContent)
+    const investigateState = useSelector((state: RootState) => state.investigation)
+    const { search, read, end, review } = investigateState
+    const { startSearch } = search
+    const { reading, loadingContent } = read
+    const { wrapUp } = review
+    const { endProcess } = end
 
-    console.log(startSearch)
 
     return (
         <section className="w-full h-full shrink-0 mx-auto">
@@ -89,7 +89,7 @@ export default function HeroContainer({
                     <ReviewWrapper />
                 </motion.div>}
 
-                {completion &&
+                {endProcess &&
                     <motion.div
                         layout
                         key='Completion'

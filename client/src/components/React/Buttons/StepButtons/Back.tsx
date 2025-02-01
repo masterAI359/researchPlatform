@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import type { RootState } from '@/ReduxToolKit/store'
 import { useSelector, useDispatch } from 'react-redux'
-import { decrement, incrementBy } from "@/ReduxToolKit/Reducers/Steps";
+import { decrement, incrementBy } from "@/ReduxToolKit/Reducers/Investigate/Steps";
 
 
 export default function BackButton({ }) {

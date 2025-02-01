@@ -2,9 +2,9 @@ import { AnimatePresence, motion } from "framer-motion"
 import { useState } from "react"
 import { createPortal } from "react-dom"
 import { useDispatch } from "react-redux"
-import { getHelp } from "@/ReduxToolKit/Reducers/HelpModal"
+import { getHelp } from "@/ReduxToolKit/Reducers/Investigate/HelpModal"
 import { Help } from "@/env"
-import { getQuery } from "@/ReduxToolKit/Reducers/UserPOV"
+import { getQuery } from "@/ReduxToolKit/Reducers/Investigate/UserPOV"
 
 export default function HelpButton({ info }) {
     const [isOpen, setIsOpen] = useState<boolean>(false)

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-import { writingNote } from "@/ReduxToolKit/Reducers/NoteTaking"
+import { writingNote } from "@/ReduxToolKit/Reducers/Investigate/NoteTaking"
 
 export default function TakeNotes({ }) {
     const takingNotes = useSelector((state: RootState) => state.notes.takingNotes)

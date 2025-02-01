@@ -1,7 +1,7 @@
 import { ArticleType, SelectedArticle } from "@/env"
 import { useSelector, useDispatch } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-import { choose, discard, } from "@/ReduxToolKit/Reducers/ChosenArticles"
+import { choose, discard, } from "@/ReduxToolKit/Reducers/Investigate/ChosenArticles"
 
 interface ArticleProps {
     article: ArticleType,

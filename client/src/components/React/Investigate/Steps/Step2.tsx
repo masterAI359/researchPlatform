@@ -2,7 +2,7 @@ import Lottie from "lottie-react"
 import blueCheck from '../../../../lotties/blueCheck.json'
 import HelpButton from "../../Buttons/HelpButtons/Question"
 import { Step2Help } from "@/helpInfo/help"
-import { getPerspective, getExpertise } from "@/ReduxToolKit/Reducers/UserPOV"
+import { getPerspective, getExpertise } from "@/ReduxToolKit/Reducers/Investigate/UserPOV"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 

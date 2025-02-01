@@ -6,11 +6,12 @@ import { writingNote, saveNote } from "@/ReduxToolKit/Reducers/Investigate/NoteT
 import NotesEditor from "../../TipTap/NotesEditor"
 
 export default function Notes({ notePosition, setNotePosition, constraints, notesRef }) {
-    const note = useSelector((state: RootState) => state.notes.noteTaken)
+    const investigateState = useSelector((state: RootState) => state.investigation)
+    const { notes } = investigateState
+    const { noteTaken } = notes
     const [content, setContent] = useState(null)
     const dispatch = useDispatch()
 
-    console.log(note)
 
 
     return (
@@ -44,7 +45,7 @@ export default function Notes({ notePosition, setNotePosition, constraints, note
                     </div>
                 </div>
                 <div className=" h-full w-full pb-1 mx-auto bg-mirage rounded-b-md">
-                    <NotesEditor context={note} setterFunction={saveNote} />
+                    <NotesEditor context={noteTaken} setterFunction={saveNote} />
                 </div>
 
             </div>

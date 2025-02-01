@@ -7,7 +7,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { getBiases } from "@/ReduxToolKit/Reducers/Investigate/UserPOV";
 
 export default function Step3({ containerWidth }: any) {
-  const biases = useSelector((state: RootState) => state.pov.biases)
+  const investigateState = useSelector((state: RootState) => state.investigation)
+  const { pov } = investigateState
+  const { biases } = pov
   const dispatch = useDispatch()
 
 

@@ -5,7 +5,9 @@ import { RootState } from "@/ReduxToolKit/store";
 
 
 export default function StepControl({ }) {
-    const gettingHelp = useSelector((state: RootState) => { state.help.gettingHelp })
+    const investigateState = useSelector((state: RootState) => state.investigation)
+    const { help } = investigateState
+    const { gettingHelp } = help
 
     return (
         <div className={`absolute 2xl:bottom-6 2xl:right-60 w-full h-fit flex items-center`}>

@@ -11,7 +11,9 @@ import MindNode4 from "./Nodes/MindNode4"
 import SearchNode from "./Nodes/SearchNode"
 
 export default function MindMap({ }) {
-    const step = useSelector((state: RootState) => state.stepper.step)
+    const investigateState = useSelector((state: RootState) => state.investigation)
+    const { stepper } = investigateState
+    const { step } = stepper
 
     return (
         <div

@@ -5,7 +5,9 @@ import { decrement, incrementBy } from "@/ReduxToolKit/Reducers/Investigate/Step
 
 
 export default function BackButton({ }) {
-    const step = useSelector((state: RootState) => (state.stepper.step))
+    const investigateState = useSelector((state: RootState) => state.investigation)
+    const { stepper } = investigateState
+    const { step } = stepper
     const dispatch = useDispatch()
 
     return (

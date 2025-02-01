@@ -5,10 +5,11 @@ import { motion } from "framer-motion";
 
 
 export default function NextButton({ }) {
-  const step = useSelector((state: RootState) => (state.stepper.step))
-  const denied = useSelector((state: RootState) => state.stepper.denied)
-  const idea = useSelector((state: RootState) => state.pov.idea)
-  const gettingHelp = useSelector((state: RootState) => { state.help.gettingHelp })
+  const investigateState = useSelector((state: RootState) => state.investigation)
+  const { stepper, help, pov } = investigateState
+  const { step, denied } = stepper
+  const { idea } = pov
+  const { gettingHelp } = help
 
   const dispatch = useDispatch()
 

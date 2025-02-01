@@ -6,7 +6,9 @@ import { useSelector } from "react-redux";
 import { getPremises } from "@/ReduxToolKit/Reducers/Investigate/UserPOV";
 
 export default function Step4({ containerWidth }: any) {
-  const premises = useSelector((state: RootState) => state.pov.premises)
+  const investigateState = useSelector((state: RootState) => state.investigation)
+  const { pov } = investigateState
+  const { premises } = pov
 
   return (
     <div style={{ flexShrink: 0, maxWidth: containerWidth }}

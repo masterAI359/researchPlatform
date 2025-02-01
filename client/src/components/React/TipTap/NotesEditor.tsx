@@ -7,7 +7,9 @@ import { RootState } from "@/ReduxToolKit/store";
 
 
 export default function StepsEditor({ setterFunction, context }) {
-    const note = useSelector((state: RootState) => state.notes.noteTaken)
+    const investigateState = useSelector((state: RootState) => state.investigation)
+    const { notes } = investigateState
+    const { noteTaken } = notes
     const dispatch = useDispatch()
 
     const handleContent = () => {
@@ -17,7 +19,7 @@ export default function StepsEditor({ setterFunction, context }) {
     }
 
     const editor = useEditor({
-        content: `${note}`,
+        content: `${noteTaken}`,
         extensions: [
             StarterKit.configure({
                 heading: {

@@ -12,9 +12,10 @@ import Step5 from "../Steps/Step5";
 
 export default function WindowWrapper({ }: WindowProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const wizardRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState(null);
-  const step = useSelector((state: RootState) => state.stepper.step)
+  const investigateState = useSelector((state: RootState) => state.investigation)
+  const { stepper } = investigateState
+  const { step } = stepper
 
 
   return (

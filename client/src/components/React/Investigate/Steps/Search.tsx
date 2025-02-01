@@ -8,11 +8,11 @@ import { useEffect } from "react";
 
 export default function Search({ }) {
   const { fetchArticles, fetchSummaries } = useFetch()
-  const query = useSelector((state: RootState) => state.pov.query)
-  const searched = useSelector((state: RootState) => state.pov.searching)
-  const loading = useSelector((state: RootState) => state.pov.loading)
-  const chosenArticles = useSelector((state: RootState) => state.getArticle.chosenArticles)
-  const gettingContent = useSelector((state: RootState) => state.read.getContent)
+  const investigateState = useSelector((state: RootState) => state.investigation)
+  const { pov, getArticle, read } = investigateState
+  const { query, searching, loading } = pov
+  const { chosenArticles } = getArticle
+  const { getContent } = read
   const dispatch = useDispatch<AppDispatch>()
 
 
@@ -23,18 +23,18 @@ export default function Search({ }) {
 
   useEffect(() => {
 
-    if (searched) {
+    if (searching) {
       fetchArticles(query)
       dispatch(searching(false))
     }
 
-    if (gettingContent) {
+    if (getContent) {
       const articlesToSummarize = encodeURIComponent(JSON.stringify(chosenArticles))
       fetchSummaries(articlesToSummarize)
       dispatch(getStories(false))
     }
 
-  }, [searched, gettingContent])
+  }, [searching, getContent])
 
   return (
     <div className="block box-border min-w-full max-w-full mx-auto xs:px-0 md:px-2 2xl:h-full no-scrollbar">

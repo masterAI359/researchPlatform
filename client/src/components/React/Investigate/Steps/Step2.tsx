@@ -7,8 +7,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 
 export default function Step2({ containerWidth }: any) {
-  const knowledge = useSelector((state: RootState) => state.pov.expertise)
-  const pov = useSelector((state: RootState) => state.pov.perspective)
+  const investigateState = useSelector((state: RootState) => state.investigation)
+  const { pov } = investigateState
+  const { expertise, perspective } = pov
   const dispatch = useDispatch()
 
   const getPOV = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -28,7 +29,7 @@ export default function Step2({ containerWidth }: any) {
     "Just Curious"
   ]
 
-  const expertise: string[] = [
+  const expertiseArray: string[] = [
     "New to the Topic",
     "Familiar",
     "Area of Expertise"
@@ -77,7 +78,7 @@ export default function Step2({ containerWidth }: any) {
                     {opinion}
                     <div className="lg:min-h-10 lg:min-w-10 lg:max-h-10 lg:min-w-10 lg:p-0.5 
                   xs:max-w-7 xs:max-h-7 xs:min-w-7 xs:min-h-7 absolute xs:right-1 z-0 flex items-center justify-center">
-                      {opinion === pov ? <Lottie className="box-content absolute xs:right-0 xl:translate-x-1.5"
+                      {opinion === perspective ? <Lottie className="box-content absolute xs:right-0 xl:translate-x-1.5"
                         animationData={blueCheck} loop={false} autoPlay={false} style={{ height: "100%", width: "100%", position: "relative" }} />
                         : (
                           <div className="xl:max-h-5 xl:max-w-5 xl:min-w-5 xl:min-h-5 xs:max-w-4 xs:max-h-4 xs:min-w-4 xs:min-h-4 bg-black/40 box-content rounded-full  absolute xs:right-1"></div>
@@ -93,7 +94,7 @@ export default function Step2({ containerWidth }: any) {
               <header className="w-full">
                 <h1 className="2xl:text-2xl xl:text-xl xs:text-xs font-light tracking tight text-slate-400 mb-2">Prior Knowledge</h1>
               </header>
-              {expertise.map((item) => (
+              {expertiseArray.map((item) => (
                 <div
                   key={item}
                   className="relative"
@@ -106,7 +107,7 @@ export default function Step2({ containerWidth }: any) {
                     onClick={(e) => { assignKnowledge(e) }}
                   >{item}
                     <div className="lg:min-h-10 lg:min-w-10 lg:max-h-10 lg:min-w-10 lg:p-0.5 xs:max-w-7 xs:max-h-7 xs:min-w-7 xs:min-h-7 absolute xs:right-1 z-0 flex items-center justify-center">
-                      {item === knowledge ? <Lottie className="box-content absolute xs:right-0 xl:translate-x-1.5" animationData={blueCheck} loop={false} autoPlay={false} style={{ height: "100%", width: "100%", position: "relative" }} /> : (
+                      {item === expertise ? <Lottie className="box-content absolute xs:right-0 xl:translate-x-1.5" animationData={blueCheck} loop={false} autoPlay={false} style={{ height: "100%", width: "100%", position: "relative" }} /> : (
                         <div className="xl:max-h-5 xl:max-w-5 xl:min-w-5 xl:min-h-5 xs:max-w-4 xs:max-h-4 xs:min-w-4 xs:min-h-4 bg-black/40 box-content rounded-full  absolute xs:right-1"></div>
                       )}
                     </div>

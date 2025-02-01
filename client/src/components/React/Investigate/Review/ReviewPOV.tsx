@@ -3,12 +3,9 @@ import { RootState } from "@/ReduxToolKit/store"
 
 
 export default function ReviewPOV() {
-    const newConcept = useSelector((state: RootState) => state.review.newConcepts)
-    const fullyCovered = useSelector((state: RootState) => state.review.wantedMore)
-    const newStance = useSelector((state: RootState) => state.review.newPOV)
-    const merit = useSelector((state: RootState) => state.review.merit)
-    const idea = useSelector((state: RootState) => state.pov.idea)
-    const perspective = useSelector((state: RootState) => state.pov.perspective)
+    const investigateState = useSelector((state: RootState) => state.investigation)
+    const { pov } = investigateState
+    const { idea, perspective } = pov
 
 
     return (

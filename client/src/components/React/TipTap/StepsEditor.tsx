@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function StepsEditor({ setterFunction, context }) {
     const dispatch = useDispatch()
-    const idea = useSelector((state: RootState) => state.pov.idea)
 
 
     const handleContent = () => {

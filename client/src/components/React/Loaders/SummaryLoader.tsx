@@ -17,7 +17,7 @@ export default function SummaryLoader() {
                 >Please wait just a few moments. We're gathering the chosen articles</h1>
             </header>
             <div className="w-full h-fit flex justify-center">
-                <div className="w-3/5 h-auto xl:-translate-x-8 2xl:-translate-y-20 xl:-translate-y-52 lg:-translate-y-44 transition-all duration-200 ease-in-out">
+                <div className="w-3/5 h-auto xl:-translate-x-8 2xl:translate-y-14 xl:-translate-y-52 lg:-translate-y-44 transition-all duration-200 ease-in-out">
                     <Lottie
 
                         animationData={dataCollection}

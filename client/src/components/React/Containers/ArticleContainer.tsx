@@ -15,7 +15,7 @@ export default function ArticleContainer({
 }) {
     const [showSelect, setShowSelect] = useState<boolean>(false)
     const investigateState = useSelector((state: RootState) => state.investigation)
-    const { pov, search, read, getArticle, end } = investigateState
+    const { search, read, getArticle, end } = investigateState
     const { loading, articles } = search
     const { endProcess } = end
     const { chosenArticles } = getArticle

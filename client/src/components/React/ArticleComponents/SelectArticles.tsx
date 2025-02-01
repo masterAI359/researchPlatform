@@ -12,7 +12,9 @@ interface SendForSummary {
 }
 
 export default function SelectArticles({ hideSelect, loadingSummaries }: SendForSummary) {
-  const chosenArticles = useSelector((state: RootState) => state.getArticle.chosenArticles)
+  const investigateState = useSelector((state: RootState) => state.investigation)
+  const { getArticle } = investigateState
+  const { chosenArticles } = getArticle
   const dispatch = useDispatch()
 
   const selectedTotal = chosenArticles.length

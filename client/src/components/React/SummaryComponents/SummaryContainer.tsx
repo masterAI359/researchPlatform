@@ -6,10 +6,10 @@ import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 
 export default function SummaryContainer({ }) {
-  const stories = useSelector((state: RootState) => state.read.summaries)
-  const notifications = useSelector((state: RootState) => state.read.failedNotifications)
-  const currentStory = useSelector((state: RootState) => state.read.currentStory)
-  const [failedNotifications, setFailedNotifications] = useState<object[]>([])
+  const investigateState = useSelector((state: RootState) => state.investigation)
+  const { read } = investigateState
+  const { stories, failedNotifications, currentStory } = read
+
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -55,7 +55,7 @@ export default function SummaryContainer({ }) {
           </AnimatePresence>
         </div>
       </main>
-      {notifications !== null &&
+      {failedNotifications !== null &&
         <FailedSummary
         />
       }

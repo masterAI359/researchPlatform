@@ -9,7 +9,9 @@ import { RootState } from "@/ReduxToolKit/store"
 
 
 export default function ArticlesGrid() {
-    const articles = useSelector((state: RootState) => state.search.articles)
+    const investigateState = useSelector((state: RootState) => state.investigation)
+    const { search } = investigateState
+    const { articles } = search
 
     const container = {
 

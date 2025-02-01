@@ -50,7 +50,7 @@ export const UserPOVSlice = createSlice({
         getQuery: (state, action) => {
             state.query = action.payload
         },
-        searching: (state, action) => {
+        searchingArticles: (state, action) => {
             state.searching = action.payload
         },
         loading: (state, action) => {
@@ -60,6 +60,6 @@ export const UserPOVSlice = createSlice({
     }
 })
 
-export const { getIdea, getPerspective, getExpertise, getBiases, getPremises, getQuery, searching, loading } = UserPOVSlice.actions
+export const { getIdea, getPerspective, getExpertise, getBiases, getPremises, getQuery, searchingArticles, loading } = UserPOVSlice.actions
 
 export default UserPOVSlice.reducer

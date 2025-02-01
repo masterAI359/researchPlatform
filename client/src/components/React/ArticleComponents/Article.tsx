@@ -9,7 +9,9 @@ interface ArticleProps {
 }
 
 export default function Article({ article, index }: ArticleProps) {
-    const chosenArticles = useSelector((state: RootState) => state.getArticle.chosenArticles)
+    const investigateState = useSelector((state: RootState) => state.investigation)
+    const { getArticle } = investigateState
+    const { chosenArticles } = getArticle
     const dispatch = useDispatch()
 
     const { url, name, provider, image, description, datePublished, logo } = article;

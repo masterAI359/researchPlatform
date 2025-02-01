@@ -1,7 +1,7 @@
 import Loader from "../../Loaders/Loader";
 import { useFetch } from "@/Hooks/useFetch";
 import { useDispatch, useSelector } from "react-redux";
-import { getQuery, searching } from "@/ReduxToolKit/Reducers/Investigate/UserPOV";
+import { getQuery, searchingArticles } from "@/ReduxToolKit/Reducers/Investigate/UserPOV";
 import { getStories } from "@/ReduxToolKit/Reducers/Investigate/Reading";
 import { AppDispatch, RootState } from "@/ReduxToolKit/store";
 import { useEffect } from "react";
@@ -9,7 +9,7 @@ import { useEffect } from "react";
 export default function Search({ }) {
   const { fetchArticles, fetchSummaries } = useFetch()
   const investigateState = useSelector((state: RootState) => state.investigation)
-  const { pov, getArticle, read } = investigateState
+  const { pov, getArticle, read, search } = investigateState
   const { query, searching, loading } = pov
   const { chosenArticles } = getArticle
   const { getContent } = read
@@ -18,14 +18,14 @@ export default function Search({ }) {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    dispatch(searching(true))
+    dispatch(searchingArticles(true))
   }
 
   useEffect(() => {
 
     if (searching) {
       fetchArticles(query)
-      dispatch(searching(false))
+      dispatch(searchingArticles(false))
     }
 
     if (getContent) {

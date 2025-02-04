@@ -4,6 +4,7 @@ import InvestigateContainer from "../Containers/InvestigateContainer"
 import Navigation from "../Navigation/Navigation"
 import AboutContainer from "../Containers/AboutContainer"
 import Signup from "../Forms/Signup"
+import Login from "../Forms/Login"
 import ScrolltoTop from "./ScrollToTop"
 import { store } from '../../../ReduxToolKit/store'
 import { Provider } from 'react-redux'
@@ -24,6 +25,7 @@ export default function AppRouter() {
                         <Route path='/Investigate' element={<InvestigateContainer />} />
                         <Route path='/About' element={<AboutContainer />} />
                         <Route path='/Signup' element={<Signup />} />
+                        <Route path='Login' element={<Login />} />
                     </Route>
                 </Routes>
             </BrowserRouter>

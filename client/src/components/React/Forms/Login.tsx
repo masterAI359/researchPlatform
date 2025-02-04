@@ -1,86 +1,82 @@
-import { supabase, session } from "@/SupaBase/supaBaseClient"
-import { isAuthenticated, getUserName, getUserPassword, getEmail } from "@/ReduxToolKit/Reducers/Athentication/Authentication"
-import { requiredInput } from "@/helpers/validation"
-import { useEffect, useState } from "react"
-import { useDispatch } from "react-redux"
-import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-import { Link } from "react-router-dom"
+import { supabase, session } from "@/SupaBase/supaBaseClient"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { getEmail, getUserPassword } from "@/ReduxToolKit/Reducers/Athentication/Authentication"
+import { requiredInput } from "@/helpers/validation"
 
 
-export default function Signup() {
-    const [inputEmail, setGetEmail] = useState()
-    const [inputPassword, getPassword] = useState()
+export default function Login() {
+    const [userEmail, setUserEmail] = useState<string>(null)
+    const [userPassword, setUserPassword] = useState<string>(null)
     const [acceptedInput, setAcceptedInput] = useState<boolean>(null)
-    const dispatch = useDispatch()
     const email = useSelector((state: RootState) => state.auth.email)
     const password = useSelector((state: RootState) => state.auth.password)
-    const authenticated = useSelector((state: RootState) => state.auth.authenticated)
+    const dispatch = useDispatch()
 
+    console.log(session)
 
-    const handleSignIn = (e: any) => {
+    const handleEmail = (e: any) => {
 
-        setGetEmail(e.target.value)
+        setUserEmail(e.target.value)
     }
 
     const handlePassword = (e: any) => {
 
-        getPassword(e.target.value)
+        setUserPassword(e.target.value)
     }
-
 
     const submitAuth = (e: any) => {
         e.preventDefault()
-        requiredInput(inputEmail, inputPassword, setAcceptedInput)
+        requiredInput(userEmail, userPassword, setAcceptedInput)
 
         if (acceptedInput) {
-            dispatch(getEmail(inputEmail))
-            dispatch(getUserPassword(inputPassword))
+            dispatch(getEmail(userEmail))
+            dispatch(getUserPassword(userPassword))
         }
 
     }
+
 
     useEffect(() => {
 
         const logInUser = async () => {
             const { data, error } = await supabase.auth.signInWithPassword({
                 email: email !== null ? email : null,
-                password: password,
+                password: password !== null ? password : null,
             })
 
             if (error) {
                 console.log(error)
             } else if (data) {
-                console.log(session)
+                console.log(data)
             }
-            console.log(authenticated)
         }
 
         if (email !== null && password !== null) {
             logInUser()
         }
 
-        console.log(acceptedInput)
 
-    }, [dispatch, getEmail, inputPassword, authenticated])
+    }, [session, dispatch])
 
     return (
         <section className="lg:p-8 overflow-hidden bg-black animate-fade-in">
             <div className="mx-auto 2xl:max-w-7xl py-24 lg:px-16 md:px-12 px-8 xl:px-36">
                 <div className="border-b pb-12">
                     <p className="text-3xl tracking-tight font-light lg:text-4xl text-white">
-                        Sign up.
+                        Log in.
                     </p>
-                    <p className="mt-2 text-sm text-zinc-400">Create an account with us.</p>
+                    <p className="mt-2 text-sm text-zinc-400">log in to manage your saved content.</p>
                 </div>
                 <div className="w-full gap-24 mx-auto grid grid-cols-1 mt-12 lg:grid-cols-2 items-end">
-                    <form onSubmit={submitAuth}>
+                    <form>
                         <div className="space-y-6">
                             <div className="col-span-full">
                                 <label htmlFor="email" className="block mb-3 text-sm font-medium text-white">
                                     Email
                                 </label>
-                                <input onChange={(e) => handleSignIn(e)} id="email" name="email" type="email" autoComplete="email" placeholder="email@example.com" className="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-white placeholder-black/50 bg-white/5 focus:border-black focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10" required />
+                                <input onChange={(e) => handleEmail(e)} id="email" name="email" type="email" autoComplete="email" placeholder="email@example.com" className="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-white placeholder-black/50 bg-white/5 focus:border-black focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10" required />
                             </div>
                             <div className="col-span-full">
                                 <div>
@@ -92,30 +88,11 @@ export default function Signup() {
 
                             </div>
                             <div className="col-span-full">
-                                <div>
-                                    <label htmlFor="confirm_password" className="block mb-3 text-sm font-medium text-white">
-                                        Confirm Password
-                                    </label>
-                                    <input id="confirm_password" name="password" type="password" placeholder="Retype password here..." autoComplete="current-password" className="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-white placeholder-black/50 bg-white/5 focus:border-black focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10" required />
-                                </div>
-
-                            </div>
-                            <div className="col-span-full">
-                                <button type="submit" className="text-sm py-2 px-4 border focus:ring-2 h-10 rounded-full border-zinc-100 
+                                <button onClick={(e) => { submitAuth(e) }} type="submit" className="text-sm py-2 px-4 border focus:ring-2 h-10 rounded-full border-zinc-100 
                                 bg-white hover:bg-black text-black duration-200 focus:ring-offset-2 focus:ring-white hover:text-white
                                  w-full inline-flex items-center justify-center ring-1 ring-transparent">
                                     Submit
                                 </button>
-                            </div>
-                            <div>
-                                <p className="font-medium text-sm leading-tight text-white mx-auto"> Already a member?
-
-                                    <Link className="text-white underline hover:text-blue-400 ml-3" to={'/Login'}>
-
-                                        Log in now
-                                    </Link>
-
-                                </p>
                             </div>
                         </div>
                     </form>
@@ -163,8 +140,5 @@ export default function Signup() {
                 </div>
             </div>
         </section>
-
     )
 }
-
-

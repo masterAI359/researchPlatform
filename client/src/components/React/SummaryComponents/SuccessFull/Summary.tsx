@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { supabase } from '@/SupaBase/supaBaseClient';
+import { motion } from 'framer-motion';
 import SummaryHeader from './SummaryHeader';
 import SummaryContent from './SummaryContent';
 
@@ -17,6 +18,21 @@ export function Summary({ summaryData, index }) {
         logo,
         source,
     } = summaryData;
+
+    const saveArticle = async (e: any) => {
+
+        try {
+            const { data, error } = await supabase.from('movies').insert([
+                {
+                    title: 'The Empire Strikes Back',
+                    provider: '',
+                    content:
+                        'After the Rebels are brutally overpowered by the Empire on the ice planet Hoth, Luke Skywalker begins Jedi training with Yoda.',
+                }
+            ])
+        } catch { }
+    }
+
 
     return (
         <motion.div

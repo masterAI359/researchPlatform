@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { Summary } from "./SuccessFull/Summary"
 import { AnimatePresence, motion } from "framer-motion"
 import FailedSummary from "./Failed/FailedSummary"
@@ -8,7 +7,7 @@ import { RootState } from "@/ReduxToolKit/store"
 export default function SummaryContainer({ }) {
   const investigateState = useSelector((state: RootState) => state.investigation)
   const { read } = investigateState
-  const { stories, failedNotifications, currentStory } = read
+  const { summaries, failedNotifications, currentStory } = read
 
   const container = {
     hidden: { opacity: 0 },
@@ -23,8 +22,8 @@ export default function SummaryContainer({ }) {
     }
   }
 
+  console.log(summaries)
 
-  console.log("currentStory from Redux:", currentStory);
 
   return (
     <motion.div
@@ -45,7 +44,7 @@ export default function SummaryContainer({ }) {
         <div
           className="w-full mx-auto relative">
           <AnimatePresence mode="popLayout">
-            {stories?.map((summaryData: any, index: number) =>
+            {summaries?.map((summaryData: any, index: number) =>
             (currentStory === index && <Summary
               key={index}
               index={index}

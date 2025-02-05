@@ -5,6 +5,8 @@ import Navigation from "../Navigation/Navigation"
 import AboutContainer from "../Containers/AboutContainer"
 import Signup from "../Forms/Signup"
 import Login from "../Forms/Login"
+import Profile from "../User/Profile"
+import ResetCredentials from "../Forms/ResetCredentials"
 import ScrolltoTop from "./ScrollToTop"
 import { store } from '../../../ReduxToolKit/store'
 import { Provider } from 'react-redux'
@@ -26,6 +28,8 @@ export default function AppRouter() {
                         <Route path='/About' element={<AboutContainer />} />
                         <Route path='/Signup' element={<Signup />} />
                         <Route path='Login' element={<Login />} />
+                        <Route path='/Profile' element={<Profile />} />
+                        <Route path="/ResetCredentials" element={<ResetCredentials />} />
                     </Route>
                 </Routes>
             </BrowserRouter>

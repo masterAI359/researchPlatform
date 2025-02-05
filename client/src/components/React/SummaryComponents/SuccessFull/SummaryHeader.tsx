@@ -1,5 +1,5 @@
 import MoreButton from "../../Buttons/HelpButtons/MoreButton";
-
+import SaveArticle from "../../Buttons/SaveButtons/SaveArticle";
 
 export default function SummaryHeader({
     article_image,
@@ -112,8 +112,14 @@ export default function SummaryHeader({
                         </div>
                     </div>
                 </figcaption>
-                <MoreButton key={article_title} article_url={article_url} />
-
+                <div className="self-end w-auto h-auto flex flex-col gap-y-6 items-center">
+                    <div className="w-auto h-auto flex justify-start">
+                        <SaveArticle />
+                    </div>
+                    <div className="w-auto h-auto">
+                        <MoreButton key={article_title} article_url={article_url} />
+                    </div>
+                </div>
             </section>
         </header>
     )

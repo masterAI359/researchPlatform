@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getEmail, getUserPassword } from "@/ReduxToolKit/Reducers/Athentication/Authentication"
 import { requiredInput } from "@/helpers/validation"
+import { Link } from "react-router-dom"
 
 
 export default function Login() {
@@ -93,6 +94,16 @@ export default function Login() {
                                  w-full inline-flex items-center justify-center ring-1 ring-transparent">
                                     Submit
                                 </button>
+                            </div>
+                            <div>
+                                <p className="font-medium text-sm leading-tight text-white mx-auto">Forgot your password?
+
+                                    <Link className="text-white underline hover:text-blue-400 ml-3" to={'/ResetCredentials'}>
+
+                                        reset password
+                                    </Link>
+
+                                </p>
                             </div>
                         </div>
                     </form>

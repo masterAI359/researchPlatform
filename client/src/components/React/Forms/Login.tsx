@@ -13,9 +13,10 @@ export default function Login() {
     const [acceptedInput, setAcceptedInput] = useState<boolean>(null)
     const email = useSelector((state: RootState) => state.auth.email)
     const password = useSelector((state: RootState) => state.auth.password)
+    const signedIn = useSelector((state: RootState) => state.auth.signedIn)
     const dispatch = useDispatch()
 
-    console.log(session)
+    console.log(signedIn)
 
     const handleEmail = (e: any) => {
 
@@ -50,6 +51,7 @@ export default function Login() {
             if (error) {
                 console.log(error)
             } else if (data) {
+                console.log(signedIn)
                 console.log(data)
             }
         }
@@ -59,7 +61,7 @@ export default function Login() {
         }
 
 
-    }, [session, dispatch])
+    }, [session, dispatch, supabase, signedIn])
 
     return (
         <section className="lg:p-8 overflow-hidden bg-black animate-fade-in">

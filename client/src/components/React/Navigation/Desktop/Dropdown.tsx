@@ -13,6 +13,7 @@ const DropdownMenu = () => {
     const [displayEmail, setDisplayEmail] = useState<string>(null)
     const [isOpen, setIsOpen] = useState(false);
     const signOut = useSelector((state: RootState) => state.auth.signOut)
+    const email = useSelector((state: RootState) => state.auth.email)
     const dispatch = useDispatch()
 
 
@@ -38,32 +39,20 @@ const DropdownMenu = () => {
         setDisplayEmail(emailWithElipses)
     }
 
-    function retrieveEmail(currentSession: any) {
 
-        const { user } = currentSession
-
-        const { user_metadata } = user;
-
-        const { email } = user_metadata
-
-        const shortened = limitName(email)
-
-        return shortened
-    }
-
+    console.log(email)
 
 
     useEffect(() => {
 
-        if (session) {
-            retrieveEmail(session)
+        if (email) {
+            limitName(email)
             console.log(session)
-            dispatch(getEmail(displayEmail))
+        } else if (email === null) {
+            setDisplayEmail(null)
         }
 
-
-
-    }, [supabase])
+    }, [supabase, session, email])
 
 
 

@@ -1,29 +1,88 @@
+import { supabase } from "@/SupaBase/supaBaseClient"
+import { useEffect, useState } from "react"
+import { confirmPassword } from "@/helpers/validation"
+
+export default function ResetPassword({ setPasswordInsert }) {
+    const [newPassword, setNewPassword] = useState<string>(null)
+    const [validEntries, setValidEntries] = useState<boolean>(null)
+    const [entryOne, setEntryOne] = useState<string>(null)
+    const [entryTwo, setEntryTwo] = useState<string>(null)
 
 
-export default function ResetPassword() {
+
+    const resetPassword = async (e: any) => {
+
+        e.preventDefault()
+
+        if (validEntries) {
+            setNewPassword(entryOne)
+            const { data, error } = await supabase.auth.updateUser({
+                password: newPassword
+            })
+
+            if (error) {
+                console.log(error)
+            } else {
+                console.log({ "Successful Password Change: ": data })
+
+            }
+
+        } else {
+            console.log("Passwords must match")
+        }
+
+    }
+
+    useEffect(() => {
+
+        if (entryOne && entryTwo) {
+            confirmPassword(entryOne, entryTwo, setValidEntries)
+        }
+
+
+
+    }, [entryOne, entryTwo])
 
 
 
     return (
-        <div className="mx-auto flex flex-col items-center justify-center">
-            <div className="col-span-full">
-                <div>
-                    <label htmlFor="password" className="block mb-3 text-sm font-medium text-white">
-                        New Password
-                    </label>
-                    <input id="password" name="password" type="password" placeholder="Type password here..." autoComplete="current-password" className="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-white placeholder-black/50 bg-white/5 focus:border-black focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10" required />
+        <div className="w-full max-w-md md:max-w-sm mx-auto">
+            <div className="flex flex-col">
+                <div className="border-b pb-12">
+                    <p className="text-3xl tracking-tight font-light lg:text-4xl text-white">
+                        Reset password
+                    </p>
+                    <p className="mt-2 text-sm text-zinc-400">
+                        Enter your new password below
+                    </p>
                 </div>
-
             </div>
-            <div className="col-span-full">
-                <div>
-                    <label htmlFor="confirm_password" className="block mb-3 text-sm font-medium text-white">
-                        Confirm New Password
-                    </label>
-                    <input id="confirm_password" name="password" type="password" placeholder="Retype password here..." autoComplete="current-password" className="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-white placeholder-black/50 bg-white/5 focus:border-black focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10" required />
+            <form className="mt-12">
+                <div className="space-y-6">
+                    <div className="col-span-full">
+                        <label htmlFor="email" className="block mb-3 text-sm font-medium text-white">
+                            New Password
+                        </label>
+                        <input onChange={(e) => setEntryOne(e.target.value)} id="newPassword" name="newPassword" type="password" placeholder="new password..." className="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-white placeholder-black/50 bg-white/5 focus:border-black focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10" required />
+                    </div>
+                    <div className="col-span-full">
+                        <label htmlFor="email" className="block mb-3 text-sm font-medium text-white">
+                            Confirm New Password
+                        </label>
+                        <input onChange={(e) => setEntryTwo(e.target.value)} id="confirmNewPassword" name="confirmNewPassword" type="password" placeholder="confirm new password..." className="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-white placeholder-black/50 bg-white/5 focus:border-black focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10" required />
+                    </div>
+                    <div className="col-span-full">
+                        <button onClick={(e) => resetPassword(e)} type="submit" className="text-sm py-2 px-4 border focus:ring-2 h-10 rounded-full border-zinc-100 bg-white hover:bg-black/10 text-black duration-200 focus:ring-offset-2 focus:ring-white hover:text-white w-full inline-flex items-center justify-center ring-1 ring-transparent">
+                            Submit
+                        </button>
+                    </div>
+                    <div>
+                        <p className="font-medium text-sm leading-tight text-white mx-auto">
+                            Already have a password? <a className="text-white underline hover:text-blue-400 ml-3" href="/login">Log in instead</a>
+                        </p>
+                    </div>
                 </div>
-
-            </div>
+            </form>
         </div>
     )
 }

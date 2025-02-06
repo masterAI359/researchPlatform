@@ -6,12 +6,14 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import { useDispatch } from "react-redux";
 import { getEmail } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
+import { showSignOut } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
+import SignOutModal from "../../Forms/SignOutModal";
 
 const DropdownMenu = () => {
     const [displayEmail, setDisplayEmail] = useState<string>(null)
     const [isOpen, setIsOpen] = useState(false);
+    const signOut = useSelector((state: RootState) => state.auth.signOut)
     const dispatch = useDispatch()
-    const name = useSelector((state: RootState) => state.auth.email)
 
 
     function limitName(name: string) {
@@ -177,16 +179,19 @@ const DropdownMenu = () => {
                                     cursor: "pointer"
                                 }}
                                 onClick={() => {
-                                    console.log("Item 3 clicked");
-                                    setIsOpen(false);
+                                    dispatch(showSignOut(true))
+                                    setIsOpen(false)
                                 }}
                             >
                                 Log out
+
                             </li>
                         </ul>
                     </motion.div>
                 )}
             </AnimatePresence>
+            {signOut && <SignOutModal />}
+
         </div>
     );
 };

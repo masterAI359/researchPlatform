@@ -100,7 +100,7 @@ export default function Login() {
 
                                     <Link className="text-white underline hover:text-blue-400 ml-3" to={'/ResetCredentials'}>
 
-                                        reset password
+                                        Reset Password
                                     </Link>
 
                                 </p>

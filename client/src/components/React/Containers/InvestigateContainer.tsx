@@ -12,6 +12,7 @@ export default function InvestigateContainer() {
   const dispatch = useDispatch()
   const { loadingSummaries, errorMessage } = useFetch()
   const investigateState = useSelector((state: RootState) => state.investigation)
+  const signingOut = useSelector((state: RootState) => state.auth.signOut)
   const { notes, read, review } = investigateState
   const { takingNotes } = notes
   const { gettingContent } = read
@@ -66,8 +67,9 @@ export default function InvestigateContainer() {
   return (
     <section
       ref={containerRef}
-      className={`w-full shrink-0 flex flex-col transition-all duration-300 ease-in-out h-full mx-auto justify-center relative
-         items-center animate-fade-in relative box-border pb-[40rem]`}>
+      className={`w-full shrink-0 flex flex-col transition-opacity duration-200 ease-in-out h-full mx-auto justify-center
+         items-center relative box-border pb-[40rem] 
+         ${signingOut ? 'opacity-50 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
       <HeroContainer
         key={'HeroContainer'}
       />

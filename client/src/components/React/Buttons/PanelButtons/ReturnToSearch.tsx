@@ -1,10 +1,18 @@
-
+import { startSearch } from "@/ReduxToolKit/Reducers/Investigate/SearchResults"
+import { isReading } from "@/ReduxToolKit/Reducers/Investigate/Reading"
+import { clearChosenArticles } from "@/ReduxToolKit/Reducers/Investigate/ChosenArticles"
+import { useDispatch } from "react-redux"
 
 export default function ReturnToSearch() {
+    const dispatch = useDispatch()
 
 
     return (
-        <button
+        <button onClick={() => {
+            dispatch(isReading(false))
+            dispatch(startSearch(true))
+            dispatch(clearChosenArticles())
+        }}
             className="my-auto mx-auto rounded-lg transition-all 
         duration-300 xs:max-w-8 xs:max-h-8 xl:max-w-7 xl:max-h-7 2xl:max-w-8 
         2xl:max-h-8 p-0.5 ease-in-out group relative"

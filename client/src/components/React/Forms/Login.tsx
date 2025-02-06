@@ -2,66 +2,63 @@ import { RootState } from "@/ReduxToolKit/store"
 import { supabase, session } from "@/SupaBase/supaBaseClient"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getEmail, getUserPassword } from "@/ReduxToolKit/Reducers/Athentication/Authentication"
 import { requiredInput } from "@/helpers/validation"
+import { getEmail, redirectFromLogin } from "@/ReduxToolKit/Reducers/Athentication/Authentication"
 import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 
 export default function Login() {
     const [userEmail, setUserEmail] = useState<string>(null)
     const [userPassword, setUserPassword] = useState<string>(null)
     const [acceptedInput, setAcceptedInput] = useState<boolean>(null)
-    const email = useSelector((state: RootState) => state.auth.email)
-    const password = useSelector((state: RootState) => state.auth.password)
-    const signedIn = useSelector((state: RootState) => state.auth.signedIn)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
-    console.log(signedIn)
+
+    const redirectUser = () => {
+        console.log('invoked')
+        navigate('/')
+    }
 
     const handleEmail = (e: any) => {
-
         setUserEmail(e.target.value)
     }
 
     const handlePassword = (e: any) => {
-
         setUserPassword(e.target.value)
     }
 
-    const submitAuth = (e: any) => {
-        e.preventDefault()
-        requiredInput(userEmail, userPassword, setAcceptedInput)
 
-        if (acceptedInput) {
-            dispatch(getEmail(userEmail))
-            dispatch(getUserPassword(userPassword))
+    const logInUser = async () => {
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email: userEmail,
+            password: userPassword
+        })
+        if (error) {
+            console.log(error)
+        } else if (data) {
+            console.log(data)
+            redirectUser()
         }
-
     }
 
 
+    const submitAuth = async (e: any) => {
+        e.preventDefault()
+
+        acceptedInput ? logInUser() : console.log("Input denied")
+
+    }
+
     useEffect(() => {
 
-        const logInUser = async () => {
-            const { data, error } = await supabase.auth.signInWithPassword({
-                email: email !== null ? email : null,
-                password: password !== null ? password : null,
-            })
+        if (userEmail && userPassword) {
+            requiredInput(userEmail, userPassword, setAcceptedInput)
 
-            if (error) {
-                console.log(error)
-            } else if (data) {
-                console.log(signedIn)
-                console.log(data)
-            }
         }
 
-        if (email !== null && password !== null) {
-            logInUser()
-        }
-
-
-    }, [session, dispatch, supabase, signedIn])
+    }, [session, dispatch, supabase, userEmail, userPassword])
 
     return (
         <section className="lg:p-8 overflow-hidden bg-black animate-fade-in">

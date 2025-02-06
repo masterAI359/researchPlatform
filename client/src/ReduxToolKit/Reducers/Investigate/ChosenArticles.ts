@@ -22,12 +22,15 @@ export const ArticlesSlice = createSlice({
         },
         discard: (state, action) => {
             state.chosenArticles.splice(action.payload, 1)
+        },
+        clearChosenArticles: () => {
+            return initialState
         }
     }
 })
 
 
-export const { choose, discard } = ArticlesSlice.actions
+export const { choose, discard, clearChosenArticles } = ArticlesSlice.actions
 
 export default ArticlesSlice.reducer
 

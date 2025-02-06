@@ -10,9 +10,9 @@ import { showSignOut } from "@/ReduxToolKit/Reducers/Athentication/Authenticatio
 import SignOutModal from "../../Forms/SignOutModal";
 
 const DropdownMenu = () => {
-    const [displayEmail, setDisplayEmail] = useState<string>(null)
     const [isOpen, setIsOpen] = useState(false);
     const signOut = useSelector((state: RootState) => state.auth.signOut)
+    const signedIn = useSelector((state: RootState) => state.auth.signedIn)
     const email = useSelector((state: RootState) => state.auth.email)
     const dispatch = useDispatch()
 
@@ -36,24 +36,48 @@ const DropdownMenu = () => {
         let shortString = shortenedArray.join('')
         let emailWithElipses = shortString + '...'
 
-        setDisplayEmail(emailWithElipses)
+        dispatch(getEmail(emailWithElipses))
+
     }
 
 
-    console.log(email)
 
+    function retrieveEmail(currentSession: any) {
+
+        const { user } = currentSession
+
+        const { user_metadata } = user;
+
+        const { email } = user_metadata
+
+        const retrievedEmailString = email
+
+        limitName(retrievedEmailString)
+
+    }
 
     useEffect(() => {
 
-        if (email) {
-            limitName(email)
-            console.log(session)
-        } else if (email === null) {
-            setDisplayEmail(null)
-        }
 
-    }, [supabase, session, email])
+        const { data } = supabase.auth.onAuthStateChange((event, session) => {
+            console.log(event, session)
 
+            if (event === 'INITIAL_SESSION') {
+                // handle initial session
+            } else if (event === 'SIGNED_IN') {
+                retrieveEmail(session)
+            } else if (event === 'SIGNED_OUT') {
+                // handle sign out event
+            } else if (event === 'PASSWORD_RECOVERY') {
+                // handle password recovery event
+            } else if (event === 'TOKEN_REFRESHED') {
+                // handle token refreshed event
+            } else if (event === 'USER_UPDATED') {
+                // handle user updated event
+            }
+        })
+
+    }, [session, dispatch, retrieveEmail, supabase])
 
 
     const menuVariants = {
@@ -85,7 +109,7 @@ const DropdownMenu = () => {
 
                 <div className="w-full h-auto flex items-center">
 
-                    <p className="text-white font-light 2xl:text-md group-hover:text-blue-400 transition-all duration-200 ease-in-out whitespace-nowrap">{displayEmail ? displayEmail : 'Account'}</p>
+                    <p className="text-white font-light 2xl:text-md group-hover:text-blue-400 transition-all duration-200 ease-in-out whitespace-nowrap">{email ? email : 'Account'}</p>
 
 
                 </div>

@@ -7,9 +7,6 @@ import More from "./More"
 export default function MoreButton({ article_url }) {
     const [open, setOpen] = useState<boolean>(false)
 
-
-    console.log(open)
-
     return (
         <div className='w-fit h-fit xs:self-start md:self-end xl:mr-2 xs:mt-2 md:mt-0 relative'>
             {open && <More key={article_url} article_url={article_url} setOpen={setOpen} />}

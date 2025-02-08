@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import { supabase } from '@/SupaBase/supaBaseClient';
 import { motion } from 'framer-motion';
 import SummaryHeader from './SummaryHeader';
 import SummaryContent from './SummaryContent';
+
+
+//TODO: implement inserting of saved article data to the 'articles' table in our database
 
 export function Summary({ summaryData, index }) {
     const [fullStory, setFullStory] = useState(true);
@@ -18,20 +20,6 @@ export function Summary({ summaryData, index }) {
         logo,
         source,
     } = summaryData;
-
-    const saveArticle = async (e: any) => {
-
-        try {
-            const { data, error } = await supabase.from('movies').insert([
-                {
-                    title: 'The Empire Strikes Back',
-                    provider: '',
-                    content:
-                        'After the Rebels are brutally overpowered by the Empire on the ice planet Hoth, Luke Skywalker begins Jedi training with Yoda.',
-                }
-            ])
-        } catch { }
-    }
 
 
     return (
@@ -64,6 +52,8 @@ export function Summary({ summaryData, index }) {
                 fullStory={fullStory}
                 article_url={article_url}
                 setFullStory={setFullStory}
+                article_text={article_text}
+                summary={summary}
             />
             <SummaryContent
                 article_text={article_text}

@@ -5,7 +5,7 @@ import { closeNotification } from "@/ReduxToolKit/Reducers/Investigate/Reading"
 
 
 
-export default function Notification({ notification }) {
+export default function FailedNotification({ notification }) {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { read } = investigateState
     const { failedNotifications } = read

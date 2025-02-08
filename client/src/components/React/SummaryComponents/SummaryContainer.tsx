@@ -22,7 +22,6 @@ export default function SummaryContainer({ }) {
     }
   }
 
-  console.log(summaries)
 
 
   return (

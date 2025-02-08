@@ -1,5 +1,8 @@
+import { useState, useEffect, useLayoutEffect } from "react";
 import MoreButton from "../../Buttons/HelpButtons/MoreButton";
 import SaveArticle from "../../Buttons/SaveButtons/SaveArticle";
+import { supabase, session } from "@/SupaBase/supaBaseClient";
+import { number } from "astro:schema";
 
 export default function SummaryHeader({
     article_image,
@@ -12,13 +15,78 @@ export default function SummaryHeader({
     article_authors,
     fullStory,
     setFullStory,
-    article_url
+    article_url,
+    article_text,
+    summary
+
 }) {
 
+    const [fillBookMark, setFillBookMark] = useState<boolean>(false)
+    const currentSession = session
+    const { id } = currentSession.user
 
-    function handleArticleView() {
-        setFullStory((fullStory) => !fullStory);
+    console.log(typeof id)
+
+    const checkArticle = async () => {
+        console.log({ ActionTriggered: "checking for article in database" })
+
+        try {
+            const { data, error } = await supabase
+                .from('articles')
+                .select('article_url')
+                .eq('user_id', id)
+                .eq('article_url', article_url)
+
+            if (data.length > 0) {
+                setFillBookMark(true)
+                console.log(data)
+            } else if (error) {
+                setFillBookMark(false)
+                console.log(error)
+            } else {
+                setFillBookMark(false)
+                console.log("Not found")
+            }
+        } catch (error) {
+            console.log(error)
+
+        }
+
     }
+
+    const saveArticle = async (e: any) => {
+        console.log({ TriggeredEvent: "Attempting Insert" })
+
+        try {
+            const { data, error } = await supabase.from('articles')
+                .insert([
+                    {
+                        title: article_title,
+                        provider: source,
+                        full_text: article_text,
+                        authors: article_authors,
+                        date_published: date ? date : article_pub_date,
+                        article_url: article_url,
+                        summary: summary,
+                        user_id: id
+                    }
+
+                ])
+                .select()
+            if (error) {
+                console.log(error)
+
+            } else if (data) {
+                setFillBookMark(true)
+                console.log(data)
+            }
+
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+
 
 
     const limitArray = (arr: any) => {
@@ -51,10 +119,18 @@ export default function SummaryHeader({
 
     const authShortened = limitArray(article_authors)
     const fallbackImage = '/images/logos/fallback.jpg'
-
     const storyImage = article_image || fallbackImage
 
-    console.log(storyImage)
+
+    useLayoutEffect(() => {
+
+        checkArticle()
+        console.log(id)
+        console.log(article_url)
+
+    }, [])
+
+
     return (
         <header
             className="relative flex mx-auto box-border border-b border-white/20 w-full mx-auto 2xl:mb-1">
@@ -114,7 +190,7 @@ export default function SummaryHeader({
                 </figcaption>
                 <div className="self-end w-auto h-auto flex flex-col gap-y-6 items-center">
                     <div className="w-auto h-auto flex justify-start">
-                        <SaveArticle />
+                        <SaveArticle fillBookMark={fillBookMark} saveArticle={saveArticle} />
                     </div>
                     <div className="w-auto h-auto">
                         <MoreButton key={article_title} article_url={article_url} />

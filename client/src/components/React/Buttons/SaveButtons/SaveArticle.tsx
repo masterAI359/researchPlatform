@@ -28,7 +28,7 @@ border border-white/50 md:group-hover:opacity-100 transition-opacity duration-20
                 </h1>
             </div>
             <AnimatePresence>
-                {!removeNotification && articleExists !== null
+                {!removeNotification && articleExists !== null || false
                     ? <NotifySavedArticle articleExists={articleExists} fillBookMark={fillBookMark} />
                     : null}
             </AnimatePresence>

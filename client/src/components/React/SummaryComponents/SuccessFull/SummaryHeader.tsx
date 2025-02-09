@@ -85,6 +85,7 @@ export default function SummaryHeader({
 
             } else if (data.length > 0) {
                 setFillBookMark(true)
+                setRemoveNotification(false)
                 setArticleExists(true)
             } else {
                 setFillBookMark(false)

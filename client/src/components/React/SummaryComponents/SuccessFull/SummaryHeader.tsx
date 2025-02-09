@@ -1,8 +1,11 @@
 import { useState, useEffect, useLayoutEffect } from "react";
 import MoreButton from "../../Buttons/HelpButtons/MoreButton";
 import SaveArticle from "../../Buttons/SaveButtons/SaveArticle";
-import { supabase, session } from "@/SupaBase/supaBaseClient";
-import { number } from "astro:schema";
+import { supabase } from "@/SupaBase/supaBaseClient";
+
+
+const { data: { session } } = await supabase.auth.getSession()
+
 
 export default function SummaryHeader({
     article_image,
@@ -20,15 +23,19 @@ export default function SummaryHeader({
     summary
 
 }) {
-
-    const [fillBookMark, setFillBookMark] = useState<boolean>(false)
     const currentSession = session
     const { id } = currentSession.user
 
-    console.log(typeof id)
+    const [fillBookMark, setFillBookMark] = useState<boolean>(false)
+    const [showSavedNotification, setShowSavedNotification] = useState<boolean>(null)
+    const [articleExists, setArticleExists] = useState<boolean>(null)
+    const [removeNotification, setRemoveNotification] = useState<boolean>(null)
+
+
 
     const checkArticle = async () => {
         console.log({ ActionTriggered: "checking for article in database" })
+
 
         try {
             const { data, error } = await supabase
@@ -39,13 +46,15 @@ export default function SummaryHeader({
 
             if (data.length > 0) {
                 setFillBookMark(true)
-                console.log(data)
+                setArticleExists(true)
             } else if (error) {
-                setFillBookMark(false)
                 console.log(error)
-            } else {
-                setFillBookMark(false)
+            } else if (!session) {
+                setArticleExists(false)
                 console.log("Not found")
+            } else {
+                setArticleExists(false)
+                setRemoveNotification(true)
             }
         } catch (error) {
             console.log(error)
@@ -55,8 +64,6 @@ export default function SummaryHeader({
     }
 
     const saveArticle = async (e: any) => {
-        console.log({ TriggeredEvent: "Attempting Insert" })
-
         try {
             const { data, error } = await supabase.from('articles')
                 .insert([
@@ -76,9 +83,11 @@ export default function SummaryHeader({
             if (error) {
                 console.log(error)
 
-            } else if (data) {
+            } else if (data.length > 0) {
                 setFillBookMark(true)
-                console.log(data)
+                setArticleExists(true)
+            } else {
+                setFillBookMark(false)
             }
 
         } catch (err) {
@@ -123,12 +132,13 @@ export default function SummaryHeader({
 
 
     useLayoutEffect(() => {
+        console.log(session)
+        if (session) {
+            checkArticle()
+        }
 
-        checkArticle()
-        console.log(id)
-        console.log(article_url)
 
-    }, [])
+    }, [session])
 
 
     return (
@@ -190,7 +200,7 @@ export default function SummaryHeader({
                 </figcaption>
                 <div className="self-end w-auto h-auto flex flex-col gap-y-6 items-center">
                     <div className="w-auto h-auto flex justify-start">
-                        <SaveArticle fillBookMark={fillBookMark} saveArticle={saveArticle} />
+                        <SaveArticle removeNotification={removeNotification} articleExists={articleExists} setRemoveNotification={setRemoveNotification} fillBookMark={fillBookMark} saveArticle={saveArticle} />
                     </div>
                     <div className="w-auto h-auto">
                         <MoreButton key={article_title} article_url={article_url} />

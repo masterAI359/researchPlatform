@@ -39,6 +39,7 @@ export default function Login() {
             console.log(error)
         } else if (data) {
             console.log(data)
+            console.log(session)
             redirectUser()
         }
     }

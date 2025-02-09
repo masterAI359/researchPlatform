@@ -28,13 +28,13 @@ export function Summary({ summaryData, index }) {
             initial={{ opacity: 0 }}
             animate={{
                 opacity: 1, transition: {
-                    delay: 0.5, duration: 0.4
+                    delay: 0.8, duration: 0.3
                 }
             }}
             exit={{
                 opacity: 0,
                 transition: {
-                    duration: 0.2
+                    duration: 0.1
                 }
             }}
             className="relative inset-0 box-border flex flex-col

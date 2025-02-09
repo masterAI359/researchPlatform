@@ -18,6 +18,8 @@ export const supabase = createClient(supaBaseUrl, supaBaseKey, {
 
 export const { data: { session } } = await supabase.auth.getSession()
 
+console.log(session)
+
 
 
 

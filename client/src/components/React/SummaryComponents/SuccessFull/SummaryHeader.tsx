@@ -2,11 +2,10 @@ import { useState, useEffect, useLayoutEffect } from "react";
 import MoreButton from "../../Buttons/HelpButtons/MoreButton";
 import SaveArticle from "../../Buttons/SaveButtons/SaveArticle";
 import { supabase } from "@/SupaBase/supaBaseClient";
-
-
+import { checkArticle, removeFromSaved } from "@/helpers/SupabaseData";
+import { limitArray } from "@/helpers/Presentation";
 const { data: { session } } = await supabase.auth.getSession()
-
-
+//TODO: add function to delete article from 'articles' table if it already exists and the user clicks the 'save' tab
 export default function SummaryHeader({
     article_image,
     logo,
@@ -32,37 +31,6 @@ export default function SummaryHeader({
     const [removeNotification, setRemoveNotification] = useState<boolean>(null)
 
 
-
-    const checkArticle = async () => {
-        console.log({ ActionTriggered: "checking for article in database" })
-
-
-        try {
-            const { data, error } = await supabase
-                .from('articles')
-                .select('article_url')
-                .eq('user_id', id)
-                .eq('article_url', article_url)
-
-            if (data.length > 0) {
-                setFillBookMark(true)
-                setArticleExists(true)
-            } else if (error) {
-                console.log(error)
-            } else if (!session) {
-                setArticleExists(false)
-                console.log("Not found")
-            } else {
-                setArticleExists(false)
-                setRemoveNotification(true)
-            }
-        } catch (error) {
-            console.log(error)
-
-        }
-
-    }
-
     const saveArticle = async (e: any) => {
         try {
             const { data, error } = await supabase.from('articles')
@@ -77,7 +45,6 @@ export default function SummaryHeader({
                         summary: summary,
                         user_id: id
                     }
-
                 ])
                 .select()
             if (error) {
@@ -90,42 +57,10 @@ export default function SummaryHeader({
             } else {
                 setFillBookMark(false)
             }
-
         } catch (err) {
             console.log(err)
         }
     }
-
-
-
-
-    const limitArray = (arr: any) => {
-
-        let shortenedAuthors = []
-
-
-        if (arr !== null) {
-
-            for (let i = 0; i < arr.length; i++) {
-
-                if (i < 3) {
-
-                    if (arr[i].length < 25) {
-                        shortenedAuthors.push(arr[i])
-                    } else {
-                        continue
-                    }
-                } else if (i > 3) {
-                    break
-                }
-            }
-        } else {
-            shortenedAuthors.push("The authors of this article couldn't be determined. Visit the provider for author information")
-        }
-
-        return shortenedAuthors
-    }
-
 
     const authShortened = limitArray(article_authors)
     const fallbackImage = '/images/logos/fallback.jpg'
@@ -135,7 +70,7 @@ export default function SummaryHeader({
     useLayoutEffect(() => {
         console.log(session)
         if (session) {
-            checkArticle()
+            checkArticle(setFillBookMark, setArticleExists, setRemoveNotification, article_url, id)
         }
 
 

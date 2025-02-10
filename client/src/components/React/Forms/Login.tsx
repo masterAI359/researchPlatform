@@ -3,6 +3,7 @@ import { supabase, session } from "@/SupaBase/supaBaseClient"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { requiredInput } from "@/helpers/validation"
+import { getID } from "@/ReduxToolKit/Reducers/Athentication/Authentication"
 import { getEmail, redirectFromLogin } from "@/ReduxToolKit/Reducers/Athentication/Authentication"
 import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
@@ -39,7 +40,6 @@ export default function Login() {
             console.log(error)
         } else if (data) {
             console.log(data)
-            console.log(session)
             redirectUser()
         }
     }

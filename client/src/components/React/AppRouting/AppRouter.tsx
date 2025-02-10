@@ -8,6 +8,7 @@ import Login from "../Forms/Login"
 import Profile from "../User/Profile"
 import ResetCredentials from "../Forms/ResetCredentials"
 import ScrolltoTop from "./ScrollToTop"
+import SessionManager from "./SessionManager"
 import { store } from '../../../ReduxToolKit/store'
 import { Provider } from 'react-redux'
 
@@ -17,10 +18,12 @@ export default function AppRouter() {
 
 
 
+
     return (
         <Provider store={store}>
             <BrowserRouter>
                 <ScrolltoTop />
+                <SessionManager />
                 <Routes>
                     <Route path='/' element={<Structure />}>
                         <Route index element={<HomeContainer />} />

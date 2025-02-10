@@ -8,7 +8,8 @@ interface Authentication {
     password: string | null,
     email: string | null,
     signOut: boolean | null,
-    signedIn: boolean | null
+    signedIn: boolean | null,
+    user_id: string | null
 }
 
 
@@ -19,7 +20,8 @@ const initialState: Authentication = {
     password: null,
     email: null,
     signOut: false,
-    signedIn: false
+    signedIn: false,
+    user_id: null
 }
 
 
@@ -46,10 +48,13 @@ export const AuthenticationSlice = createSlice({
         },
         redirectFromLogin: (state, action) => {
             state.signedIn = action.payload
+        },
+        getID: (state, action) => {
+            state.user_id = action.payload
         }
     }
 })
 
-export const { isAuthenticated, getUserName, getUserPassword, getEmail, showSignOut, redirectFromLogin } = AuthenticationSlice.actions
+export const { isAuthenticated, getUserName, getUserPassword, getEmail, showSignOut, redirectFromLogin, getID } = AuthenticationSlice.actions
 
 export default AuthenticationSlice.reducer

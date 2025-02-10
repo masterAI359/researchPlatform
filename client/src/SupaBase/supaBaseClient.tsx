@@ -1,7 +1,9 @@
+import React from "react";
+import { useEffect } from "react";
 import { RootState } from "@/ReduxToolKit/store";
 import { createClient } from "@supabase/supabase-js";
 import { store } from "@/ReduxToolKit/store";
-import { getEmail, redirectFromLogin } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
+import { getEmail, getID, redirectFromLogin } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
 const currentState = store.getState()
 
 
@@ -18,7 +20,10 @@ export const supabase = createClient(supaBaseUrl, supaBaseKey, {
 
 export const { data: { session } } = await supabase.auth.getSession()
 
-console.log(session)
+
+
+
+
 
 
 

@@ -1,9 +1,9 @@
 import { supabase, session } from "@/SupaBase/supaBaseClient";
+import { SavedArticle } from "@/env";
+import { error } from "astro/dist/core/logger/core";
 
 export const checkArticle = async (
-    setFillBookMark: Function,
     setArticleExists: Function,
-    setRemoveNotification: Function,
     article_url: string,
     id: string) => {
     console.log({ ActionTriggered: "checking for article in database" })
@@ -14,27 +14,83 @@ export const checkArticle = async (
             .eq('user_id', id)
             .eq('article_url', article_url)
 
-        if (data.length > 0) {
-            setFillBookMark(true)
+        if (data !== null && data.length > 0) {
             setArticleExists(true)
         } else if (error) {
             console.log(error)
         } else if (!session) {
-            setArticleExists(false)
-            console.log("Not found")
+
         } else {
             setArticleExists(false)
-            setRemoveNotification(true)
         }
     } catch (error) {
         console.log(error)
     }
 }
 
+export const saveArticle = async (dataToSave: SavedArticle, setShowNotification: Function, setArticleExists: Function, articleExists: boolean) => {
+
+    const { text, url, id, image_url, summary, title, authors, date, provider, fallbackDate } = dataToSave
+
+    if (articleExists) {
+        try {
+            const response = await supabase
+                .from('articles')
+                .delete()
+                .eq('user_id', id)
+                .eq('article_url', url)
+
+            if (response) {
+                setShowNotification(true)
+                setArticleExists(false)
+            } else {
+                console.log("Issue deleting data")
+            }
+
+        } catch (err) {
+            console.log(err)
+        }
+    } else if (!articleExists) {
+        try {
+            const { data, error } = await supabase.from('articles')
+                .insert([
+                    {
+                        title: title,
+                        provider: provider,
+                        full_text: text,
+                        authors: authors,
+                        date_published: date ? date : fallbackDate,
+                        article_url: url,
+                        summary: summary,
+                        user_id: id
+                    }
+                ])
+                .select()
+            if (error) {
+                console.log(error)
+
+            } else if (data.length > 0) {
+                setShowNotification(true)
+                setArticleExists(true)
+                console.log(data)
+            } else {
+            }
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+
+}
+
 export const removeFromSaved = async (
     id: string,
-    article_url: string
+    article_url: string,
+    setArticleExists: Function,
+    setShowNotification: Function
 ) => {
+
+    setShowNotification(true)
 
     try {
         const response = await supabase
@@ -43,54 +99,11 @@ export const removeFromSaved = async (
             .eq('user_id', id)
             .eq('article_url', article_url)
 
-        if (response) {
-            console.log(response)
-        } else {
-            console.log('failed to delete')
-        }
+        response ? setShowNotification(true) : null
+
     } catch (error) {
         console.log(error)
     }
+
 }
 
-//const saveArticle = async (
-//    e: any,
-//    article_title: string,
-//    source: string,
-//    article_text: string,
-//    article_authors: string[],
-//    date: string,
-//    article_pub_date: string,
-//    article_url: string,
-//    summary: any,
-//    id: string
-//) => {
-//    try {
-//        const { data, error } = await supabase.from('articles')
-//            .insert([
-//                {
-//                    title: article_title,
-//                    provider: source,
-//                    full_text: article_text,
-//                    authors: article_authors,
-//                    date_published: date ? date : article_pub_date,
-//                    article_url: article_url,
-//                    summary: summary,
-//                    user_id: id
-//                }
-//            ])
-//            .select()
-//        if (error) {
-//            console.log(error)
-//
-//        } else if (data.length > 0) {
-//            setFillBookMark(true)
-//            setRemoveNotification(false)
-//            setArticleExists(true)
-//        } else {
-//            setFillBookMark(false)
-//        }
-//    } catch (err) {
-//        console.log(err)
-//    }
-//}

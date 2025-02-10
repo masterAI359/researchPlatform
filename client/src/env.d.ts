@@ -78,6 +78,19 @@ declare global {
     explanation: string
   }
 
+  interface SavedArticle {
+    title: string,
+    provider: string,
+    authors: string[],
+    url: string,
+    image_url: string,
+    date: string,
+    fallbackDate: string,
+    summary: any,
+    text: string,
+    id: string
+  }
+
 }
 
-export { ArticleType, OptionsTypes, SelectedArticle, WindowProps, Perspectives, State, PremiseProps, Help };
+export { ArticleType, OptionsTypes, SelectedArticle, WindowProps, Perspectives, State, PremiseProps, Help, SavedArticle };

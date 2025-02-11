@@ -8,7 +8,6 @@ import { RootState } from "@/ReduxToolKit/store";
 
 export default function SessionManager() {
     const id = useSelector((state: RootState) => state.auth.user_id)
-    const { userArticles, error, status } = useSelector((state: RootState) => state.userdata)
     const appDispatch = useAppdispatch()
     const dispatch = useDispatch()
 
@@ -35,6 +34,12 @@ export default function SessionManager() {
 
             }
         })
+
+        return () => {
+            data.subscription.unsubscribe()
+        }
+
+
 
     }, [session, supabase])
 

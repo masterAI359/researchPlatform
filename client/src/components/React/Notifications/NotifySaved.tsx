@@ -39,8 +39,8 @@ export default function NotifySavedArticle({ articleExists, setShowNotification 
             border border-astro_gray shadow-thick"
         >
             <div className="w-full h-auto p-4">
-                <h1 className="text-white text-sm w-full font-light tracking-tight">
-                    {session && articleExists === true ? 'saved'
+                <h1 className="text-white text-md w-full font-light tracking-tight">
+                    {session && articleExists === true ? 'article saved!'
                         : 'unsaved'}
                 </h1>
             </div>

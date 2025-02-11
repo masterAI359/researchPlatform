@@ -8,10 +8,10 @@ import { session } from "@/SupaBase/supaBaseClient"
 
 
 
-export default function SaveArticle({ dataToSave }) {
+export default function SaveArticle({ dataToSave, showNotification, setShowNotification }) {
     const id = useSelector((state: RootState) => state.auth.user_id)
     const [articleExists, setArticleExists] = useState<boolean>(false)
-    const [showNotification, setShowNotification] = useState<boolean>(false)
+    //   const [showNotification, setShowNotification] = useState<boolean>(false)
     const { url } = dataToSave
 
     useEffect(() => {
@@ -26,14 +26,14 @@ export default function SaveArticle({ dataToSave }) {
     return (
         <div onClick={() => { saveArticle(dataToSave, setShowNotification, setArticleExists, articleExists) }}
             className="w-auto h-auto self-start flex items-center justify-start group relative cursor-pointer">
-            <div className="rounded-md xl:h-fit md:w-24 flex xs:hidden md:block 
-                mx-auto bg:black/80 opacity-0 absolute md:right-7 z-50
+            {!showNotification && <div className="rounded-md xl:h-fit md:w-24 flex xs:hidden md:block 
+                mx-auto bg:black/80 opacity-0 absolute md:right-7
 border border-white/50 md:group-hover:opacity-100 transition-opacity duration-200 ease-in-out">
 
                 <h1 className="text-white xl:text-sm xl:p-1 font-light tracking-tight justify-self-start text-center w-full">
                     {articleExists ? 'remove from saved' : 'save article'}
                 </h1>
-            </div>
+            </div>}
             <AnimatePresence>
                 {showNotification &&
                     <NotifySavedArticle articleExists={articleExists} setShowNotification={setShowNotification} />

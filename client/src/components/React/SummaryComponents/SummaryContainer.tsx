@@ -3,11 +3,18 @@ import { AnimatePresence, motion } from "framer-motion"
 import FailedSummary from "./Failed/FailedSummary"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
+import { useEffect } from "react"
+import { supabase } from "@/SupaBase/supaBaseClient"
+import { AppDispatch } from "@/ReduxToolKit/store"
+import { fetchSavedArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
+import { useAppdispatch } from "@/Hooks/appDispatch"
 
 export default function SummaryContainer({ }) {
   const investigateState = useSelector((state: RootState) => state.investigation)
   const { read } = investigateState
-  const { summaries, failedNotifications, currentStory } = read
+  const { summaries, failedNotifications, currentStory, reading } = read
+  const id = useSelector((state: RootState) => state.auth.user_id)
+  const appDispatch = useAppdispatch()
 
   const container = {
     hidden: { opacity: 0 },
@@ -21,6 +28,21 @@ export default function SummaryContainer({ }) {
       }
     }
   }
+
+  useEffect(() => {
+
+    const channel = supabase.channel('table-changes')
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'articles' }, payload => {
+        console.log('New row inserted:', payload);
+        appDispatch(fetchSavedArticles(id))
+      })
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel)
+    }
+
+  })
 
 
 

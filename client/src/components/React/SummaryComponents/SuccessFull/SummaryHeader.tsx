@@ -4,6 +4,7 @@ import { SavedArticle } from "@/env";
 import { limitArray } from "@/helpers/Presentation";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
+import { useState } from "react";
 
 
 export default function SummaryHeader({
@@ -22,8 +23,9 @@ export default function SummaryHeader({
     summary
 
 }) {
-
+    const [showNotification, setShowNotification] = useState<boolean>(false)
     const id = useSelector((state: RootState) => state.auth.user_id)
+    const [open, setOpen] = useState<boolean>(false)
 
     const dataToSave: SavedArticle = {
         title: article_title,
@@ -38,17 +40,9 @@ export default function SummaryHeader({
         id: id
     }
 
-
-
-
-
     const authShortened = limitArray(article_authors)
     const fallbackImage = '/images/logos/fallback.jpg'
     const storyImage = article_image || fallbackImage
-
-
-
-
 
     return (
         <header
@@ -109,10 +103,10 @@ export default function SummaryHeader({
                 </figcaption>
                 <div className="self-end w-auto h-auto flex flex-col gap-y-6 items-center">
                     <div className="w-auto h-auto flex justify-start">
-                        <SaveArticle dataToSave={dataToSave} />
+                        <SaveArticle dataToSave={dataToSave} showNotification={showNotification} setShowNotification={setShowNotification} />
                     </div>
                     <div className="w-auto h-auto">
-                        <MoreButton key={article_title} article_url={article_url} />
+                        <MoreButton key={article_title} open={open} setOpen={setOpen} article_url={article_url} showNotification={showNotification} />
                     </div>
                 </div>
             </section>

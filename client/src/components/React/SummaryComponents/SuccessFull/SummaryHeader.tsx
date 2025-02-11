@@ -1,14 +1,11 @@
-import { useState, useEffect, useLayoutEffect } from "react";
 import MoreButton from "../../Buttons/HelpButtons/MoreButton";
 import SaveArticle from "../../Buttons/SaveButtons/SaveArticle";
 import { SavedArticle } from "@/env";
-import { supabase } from "@/SupaBase/supaBaseClient";
-import { checkArticle, removeFromSaved } from "@/helpers/SupabaseData";
 import { limitArray } from "@/helpers/Presentation";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
-const { data: { session } } = await supabase.auth.getSession()
-//TODO: add function to delete article from 'articles' table if it already exists and the user clicks the 'save' tab
+
+
 export default function SummaryHeader({
     article_image,
     logo,

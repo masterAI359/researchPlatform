@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { InvestigateFeature } from './Reducers/Root/InvestigateReducer'
 import AuthenticateReducer from './Reducers/Athentication/Authentication'
+import UserContentSlice from './Reducers/UserContent.ts/UserContentReducer'
 
 
 export const store = configureStore({
     reducer: {
         investigation: InvestigateFeature,
-        auth: AuthenticateReducer
+        auth: AuthenticateReducer,
+        userdata: UserContentSlice
     }
 
 })

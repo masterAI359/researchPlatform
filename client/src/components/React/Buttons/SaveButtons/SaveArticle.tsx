@@ -1,11 +1,10 @@
 import { AnimatePresence } from "framer-motion"
 import NotifySavedArticle from "../../Notifications/NotifySaved"
-import { SavedArticle } from "@/env"
-import { removeFromSaved, saveArticle, checkArticle } from "@/helpers/SupabaseData"
+import { saveArticle, checkArticle } from "@/helpers/SupabaseData"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-import { useEffect, useLayoutEffect, useState } from "react"
-import { supabase, session } from "@/SupaBase/supaBaseClient"
+import { useEffect, useState } from "react"
+import { session } from "@/SupaBase/supaBaseClient"
 
 
 
@@ -17,10 +16,11 @@ export default function SaveArticle({ dataToSave }) {
 
     useEffect(() => {
 
+        if (session) [
+            checkArticle(setArticleExists, url, id)
+        ]
 
     }, [articleExists, showNotification])
-
-
 
 
     return (

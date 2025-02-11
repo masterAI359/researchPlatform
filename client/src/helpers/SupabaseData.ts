@@ -56,6 +56,7 @@ export const saveArticle = async (dataToSave: SavedArticle, setShowNotification:
                 .insert([
                     {
                         title: title,
+                        image_url: image_url,
                         provider: provider,
                         full_text: text,
                         authors: authors,
@@ -80,30 +81,6 @@ export const saveArticle = async (dataToSave: SavedArticle, setShowNotification:
         }
     }
 
-
-}
-
-export const removeFromSaved = async (
-    id: string,
-    article_url: string,
-    setArticleExists: Function,
-    setShowNotification: Function
-) => {
-
-    setShowNotification(true)
-
-    try {
-        const response = await supabase
-            .from('articles')
-            .delete()
-            .eq('user_id', id)
-            .eq('article_url', article_url)
-
-        response ? setShowNotification(true) : null
-
-    } catch (error) {
-        console.log(error)
-    }
 
 }
 

@@ -1,10 +1,4 @@
-import React from "react";
-import { useEffect } from "react";
-import { RootState } from "@/ReduxToolKit/store";
 import { createClient } from "@supabase/supabase-js";
-import { store } from "@/ReduxToolKit/store";
-import { getEmail, getID, redirectFromLogin } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
-const currentState = store.getState()
 
 
 

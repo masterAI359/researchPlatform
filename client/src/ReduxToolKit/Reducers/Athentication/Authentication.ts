@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { act } from "react";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { supabase } from "@/SupaBase/supaBaseClient";
 
 interface Authentication {
 
@@ -9,7 +9,7 @@ interface Authentication {
     email: string | null,
     signOut: boolean | null,
     signedIn: boolean | null,
-    user_id: string | null
+    user_id: string | null,
 }
 
 
@@ -21,8 +21,11 @@ const initialState: Authentication = {
     email: null,
     signOut: false,
     signedIn: false,
-    user_id: null
-}
+    user_id: null,
+};
+
+
+
 
 
 export const AuthenticationSlice = createSlice({
@@ -53,8 +56,8 @@ export const AuthenticationSlice = createSlice({
             state.user_id = action.payload
         }
     }
-})
+});
 
-export const { isAuthenticated, getUserName, getUserPassword, getEmail, showSignOut, redirectFromLogin, getID } = AuthenticationSlice.actions
+export const { isAuthenticated, getUserName, getUserPassword, getEmail, showSignOut, redirectFromLogin, getID } = AuthenticationSlice.actions;
 
-export default AuthenticationSlice.reducer
+export default AuthenticationSlice.reducer;

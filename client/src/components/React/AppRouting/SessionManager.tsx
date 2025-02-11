@@ -1,10 +1,17 @@
-import { getEmail, getID, redirectFromLogin } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
+import { getID } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
 import { useEffect } from "react";
 import { supabase, session } from "@/SupaBase/supaBaseClient";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useAppdispatch } from "@/Hooks/appDispatch";
+import { fetchSavedArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer";
+import { RootState } from "@/ReduxToolKit/store";
 
 export default function SessionManager() {
+    const id = useSelector((state: RootState) => state.auth.user_id)
+    const { userArticles, error, status } = useSelector((state: RootState) => state.userdata)
+    const appDispatch = useAppdispatch()
     const dispatch = useDispatch()
+
 
     useEffect(() => {
 
@@ -16,7 +23,7 @@ export default function SessionManager() {
             } else if (event === 'SIGNED_IN') {
                 const { id } = session.user
                 dispatch(getID(id))
-                console.log({ Dispatching: id, FromEvent: event })
+                appDispatch(fetchSavedArticles(id))
 
             } else if (event === 'SIGNED_OUT') {
 
@@ -28,7 +35,6 @@ export default function SessionManager() {
 
             }
         })
-
 
     }, [session, supabase])
 

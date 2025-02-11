@@ -20,7 +20,7 @@ export default function ProfileMenu({ setDislayArticles }) {
             <div className="w-fit text-nowrap h-auto flex
             text-white font-light hover:text-blue-400 cursor-pointer
             transition-all duration-200 ease-in-out">
-                Areas of Interest
+                Connecting Ideas
             </div>
         </div>
     )

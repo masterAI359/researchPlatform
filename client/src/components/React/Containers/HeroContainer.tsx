@@ -1,6 +1,6 @@
 import InvestigateHero from "../HeroComponents/InvestigateHero"
 import SearchHero from "../HeroComponents/SearchHero"
-import SummaryHero from "../SummaryComponents/SuccessFull/SummaryHero"
+import SummaryHero from "../HeroComponents/SummaryHero"
 import ReviewWrapper from "../Investigate/Wrappers/ReviewWrapper"
 import CompletionHero from "../HeroComponents/CompletionHero"
 import SummaryLoader from "../Loaders/SummaryLoader"

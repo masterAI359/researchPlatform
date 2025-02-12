@@ -9,8 +9,7 @@ import { getEmail } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
 import { showSignOut } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
 import SignOutModal from "../../Forms/SignOutModal";
 
-const DropdownMenu = () => {
-    const [isOpen, setIsOpen] = useState(false);
+const DropdownMenu = ({ isOpen, setIsOpen }) => {
     const signOut = useSelector((state: RootState) => state.auth.signOut)
     const signedIn = useSelector((state: RootState) => state.auth.signedIn)
     const email = useSelector((state: RootState) => state.auth.email)
@@ -79,6 +78,8 @@ const DropdownMenu = () => {
 
     }, [session, dispatch, retrieveEmail, supabase])
 
+    //top: "calc(100% + 5px)",
+
 
     const menuVariants = {
         open: {
@@ -130,7 +131,7 @@ const DropdownMenu = () => {
                         variants={menuVariants}
                         style={{
                             position: "absolute",
-                            top: "calc(100% + 5px)",
+                            top: "calc(100% + 3px)",
                             right: 0,
                             left: 0,
                             borderRadius: "5px",
@@ -142,51 +143,48 @@ const DropdownMenu = () => {
                         <ul className="bg-black" style={{ listStyle: "none", margin: 0, padding: 0, minWidth: "150px" }}>
                             <li
                                 key="Profile"
-                                className="text-white font-light border-b border-white/10 hover:text-blue-400"
+                                className="text-white flex font-light border-b border-white/10 hover:text-blue-400"
                                 style={{
                                     padding: "10px",
                                     cursor: "pointer"
                                 }}
-                                onClick={() => {
-                                    console.log("Item 3 clicked");
-                                    setIsOpen(false);
-                                }}
+
                             >
-                                <Link to='/Profile' >My Profile</Link>
+                                <Link
+                                    onClick={() => { setIsOpen(false); }}
+                                    className="h-full w-full grow" to='/Profile' >My Profile</Link>
 
                             </li>
                             <li
                                 key="Signup"
-                                className="text-white font-light border-b border-white/10 hover:text-blue-400"
+                                className="text-white flex font-light border-b border-white/10 hover:text-blue-400"
                                 style={{
                                     padding: "10px",
                                     cursor: "pointer"
                                 }}
-                                onClick={() => {
-                                    console.log("Item 2 clicked");
-                                    setIsOpen(false);
-                                }}
+
                             >
-                                <Link to='/Signup'>Sign up</Link>
+                                <Link
+                                    onClick={() => { setIsOpen(false); }}
+                                    className="min-h-full w-full grow" to='/Signup'>Sign up</Link>
                             </li>
                             <li
                                 key="Login"
-                                className="text-white font-light border-b border-white/10 hover:text-blue-400"
+                                className="text-white box-content flex font-light border-b border-white/10 hover:text-blue-400"
                                 style={{
                                     padding: "10px",
                                     cursor: "pointer",
                                 }}
-                                onClick={() => {
-                                    console.log("Item 1 clicked");
-                                    setIsOpen(false);
-                                }}
+
                             >
-                                <Link to={'/Login'}>Log in</Link>
+                                <Link
+                                    onClick={() => { setIsOpen(false); }}
+                                    className="min-h-full w-full grow" to={'/Login'}>Log in</Link>
                             </li>
 
                             <li
                                 key="Logout"
-                                className="text-white font-light border-b border-white/10 hover:text-blue-400"
+                                className="text-white flex font-light border-b border-white/10 hover:text-blue-400"
                                 style={{
                                     padding: "10px",
                                     cursor: "pointer"

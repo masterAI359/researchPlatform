@@ -9,9 +9,9 @@ export const limitArray = (arr: any) => {
 
         for (let i = 0; i < arr.length; i++) {
 
-            if (i < 3) {
+            if (i < 5) {
 
-                if (arr[i].length < 25) {
+                if (arr[i].length < 45) {
                     shortenedAuthors.push(arr[i])
                 } else {
                     continue

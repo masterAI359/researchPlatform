@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { supabase, session } from "@/SupaBase/supaBaseClient";
 import { useDispatch, useSelector } from "react-redux";
 import { useAppdispatch } from "@/Hooks/appDispatch";
-import { fetchSavedArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer";
+import { fetchSavedArticles, clearUser } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer";
 import { RootState } from "@/ReduxToolKit/store";
 
 export default function SessionManager() {
@@ -25,6 +25,7 @@ export default function SessionManager() {
                 appDispatch(fetchSavedArticles(id))
 
             } else if (event === 'SIGNED_OUT') {
+                dispatch(clearUser())
 
             } else if (event === 'PASSWORD_RECOVERY') {
 

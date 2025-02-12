@@ -216,6 +216,8 @@ module.exports = {
           /* Re-enable scrollbar behavior */
           '-webkit-overflow-scrolling': 'auto',
           '&::-webkit-scrollbar': {
+            width: '6px',
+            height: '16px',
             // You can also set width, color, etc. here if desired
             display: 'initial',
           },
@@ -223,6 +225,27 @@ module.exports = {
           '-ms-overflow-style': 'auto',
           'scrollbar-width': 'auto',
         },
+        '.thin-gray-scrollbar': {
+          // Enable smooth scrolling behavior if desired
+          '-webkit-overflow-scrolling': 'auto',
+          /* For Chrome, Safari and Opera */
+          '&::-webkit-scrollbar': {
+            width: '8px',  // sets the scrollbar width
+            height: '8px',
+          },
+          '&::-webkit-scrollbar-thumb': {
+            backgroundColor: '#a0aec0', // a Tailwind gray (gray-400) or any gray color you prefer
+            borderRadius: '9999px', // makes it fully rounded for a smooth look
+          },
+          '&::-webkit-scrollbar-track': {
+            backgroundColor: '#edf2f7', // a light gray (gray-100) for the track
+          },
+          /* For Firefox */
+          'scrollbar-width': 'thin',
+          /* For Internet Explorer 10+ */
+          '-ms-overflow-style': 'auto',
+        },
+
       }
 
       addUtilities(newUtilities, ['responsive'])

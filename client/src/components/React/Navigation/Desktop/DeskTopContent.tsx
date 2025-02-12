@@ -7,6 +7,7 @@ import { RootState } from "@/ReduxToolKit/store"
 export default function DeskTopContent() {
     const signingOut = useSelector((state: RootState) => state.auth.signOut)
     const signedIn = useSelector((state: RootState) => state.auth.signedIn)
+    const [isOpen, setIsOpen] = useState<boolean>(false)
 
     useEffect(() => { console.log(signedIn) }, [signedIn])
 
@@ -81,16 +82,16 @@ c-73.1,86.1-213,87.5-312.5,3.1s-121-222.7-47.9-308.8S314.3-7.8,413.8,76.6z" />
                         <div className="w-full h-auto flex items-center gap-x-10">
                             <ul className="space-y-2 w-full justify-self-end justify-end text-md list-none md:space-y-0 text-white md:m-auto inline-flex flex-nowrap md:items-center text-center md:h-8 gap-8">
                                 <li className="text-white hover:text-blue-300 transition-all duration-200 ease-in-out">
-                                    <Link to='/'>Home</Link>
+                                    <Link onClick={() => { setIsOpen(false); }} to='/'>Home</Link>
                                 </li>
                                 <li className="text-white hover:text-blue-300 transition-all duration-200 ease-in-out">
-                                    <Link to='/Investigate'>Investigate</Link>
+                                    <Link onClick={() => { setIsOpen(false); }} to='/Investigate'>Investigate</Link>
                                 </li>
                                 <li className="text-white hover:text-blue-300 transition-all duration-200 ease-in-out">
-                                    <Link to='/About'>About</Link>
+                                    <Link onClick={() => { setIsOpen(false); }} to='/About'>About</Link>
                                 </li>
                             </ul>
-                            <DropdownMenu />
+                            <DropdownMenu isOpen={isOpen} setIsOpen={setIsOpen} />
                         </div>
 
                     </div>

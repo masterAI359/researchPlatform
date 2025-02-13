@@ -5,33 +5,36 @@ import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { useEffect, useState } from "react"
 import { session } from "@/SupaBase/supaBaseClient"
+import { fetchSavedArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
+import { useAppdispatch } from "@/Hooks/appDispatch"
 
-
-
-export default function SaveArticle({ dataToSave, showNotification, setShowNotification }) {
+export default function Bookmark({ dataToSave, showNotification, setShowNotification }) {
+    const contextForSupabase = useSelector((state: RootState) => state.userdata.contextForSupabase)
     const id = useSelector((state: RootState) => state.auth.user_id)
+    const dispatch = useAppdispatch()
     const [articleExists, setArticleExists] = useState<boolean>(false)
-    //   const [showNotification, setShowNotification] = useState<boolean>(false)
     const { url } = dataToSave
+    console.log(articleExists)
 
     useEffect(() => {
 
-        if (session) [
+        if (session && contextForSupabase === 'reading') {
             checkArticle(setArticleExists, url, id)
-        ]
+        }
 
-    }, [articleExists, showNotification])
+    }, [articleExists, showNotification, session])
 
 
     return (
         <div onClick={() => { saveArticle(dataToSave, setShowNotification, setArticleExists, articleExists) }}
-            className="w-auto h-auto self-start flex items-center justify-start group relative cursor-pointer">
+            className="w-full h-full self-start flex items-center justify-start group relative cursor-pointer">
             {!showNotification && <div className="rounded-md xl:h-fit md:w-24 flex xs:hidden md:block 
-                mx-auto bg:black/80 opacity-0 absolute md:right-7
-border border-white/50 md:group-hover:opacity-100 transition-opacity duration-200 ease-in-out">
+                mx-auto group-hover:bg-black opacity-0 absolute md:right-7
+                border border-gray group-hover:opacity-100 transition-all 
+                z-50 duration-200 ease-in-out">
 
                 <h1 className="text-white xl:text-sm xl:p-1 font-light tracking-tight justify-self-start text-center w-full">
-                    {articleExists ? 'remove from saved' : 'save article'}
+                    {articleExists ? 'unsave' : 'save article'}
                 </h1>
             </div>}
             <AnimatePresence>
@@ -39,7 +42,14 @@ border border-white/50 md:group-hover:opacity-100 transition-opacity duration-20
                     <NotifySavedArticle articleExists={articleExists} setShowNotification={setShowNotification} />
                 }
             </AnimatePresence>
-            <svg className={`${articleExists ? 'text-blue-500' : 'text-white'}`} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0,0,256,256" width="24px" height="24px" fillRule="nonzero"><g fill="currentColor" fillRule="nonzero" stroke="none" strokeWidth={1} strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit={10} strokeDasharray="" strokeDashoffset={0} fontFamily="none" fontWeight="none" fontSize="none" textAnchor="none" style={{ mixBlendMode: 'normal' }}><g transform="scale(10.66667,10.66667)"><path d="M6.00977,2c-1.09545,0 -2,0.9026 -2,1.99805l-0.00977,18.00195l8,-3l8,3v-1.44336v-16.55664c0,-1.09306 -0.90694,-2 -2,-2zM6.00977,4h11.99023v15.11328l-6,-2.25l-5.99805,2.25z" /></g></g></svg>
+            <svg className={`${articleExists ? 'delay-200 text-white' : 'text-white/30 hover:text-white/60'}
+            transition-all duration-200 ease-in-out`}
+                xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width={30} height={30} viewBox="0,0,256,256">
+                <g fill="currentColor" fillRule="nonzero" stroke="none" strokeWidth={1} strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit={10} strokeDasharray="" strokeDashoffset={0} fontFamily="none" fontWeight="none" fontSize="none" textAnchor="none" style={{ mixBlendMode: 'normal' }}><g transform="scale(8.53333,8.53333)"><path d="M23,27l-8,-7l-8,7v-22c0,-1.105 0.895,-2 2,-2h12c1.105,0 2,0.895 2,2z" /></g></g>
+            </svg>
+
         </div>
     )
 }
+
+

@@ -6,6 +6,8 @@ import { useAppdispatch } from "@/Hooks/appDispatch";
 import { fetchSavedArticles, clearUser } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer";
 import { RootState } from "@/ReduxToolKit/store";
 
+//TODO: may need to figure out if i can optionally set the state for articles saved status dependant on context upon first render
+
 export default function SessionManager() {
     const id = useSelector((state: RootState) => state.auth.user_id)
     const appDispatch = useAppdispatch()
@@ -23,6 +25,7 @@ export default function SessionManager() {
                 const { id } = session.user
                 dispatch(getID(id))
                 appDispatch(fetchSavedArticles(id))
+
 
             } else if (event === 'SIGNED_OUT') {
                 dispatch(clearUser())

@@ -4,13 +4,15 @@ import { supabase } from "@/SupaBase/supaBaseClient";
 interface UserContent {
     status: string,
     userArticles: any,
-    error: any
+    error: any,
+    contextForSupabase: string | null
 }
 
 const initialState: UserContent = {
     status: 'idle',
     userArticles: [],
-    error: null
+    error: null,
+    contextForSupabase: null
 }
 
 export const fetchSavedArticles = createAsyncThunk(
@@ -32,7 +34,10 @@ const UserContentSlice = createSlice({
     name: 'userContent',
     initialState: initialState,
     reducers: {
-        clearUser: () => { return initialState }
+        clearUser: () => { return initialState },
+        supabaseContext: (state, action) => {
+            state.contextForSupabase = action.payload
+        }
     },
     extraReducers: builder => {
 
@@ -53,6 +58,6 @@ const UserContentSlice = createSlice({
     }
 })
 
-export const { clearUser } = UserContentSlice.actions
+export const { clearUser, supabaseContext } = UserContentSlice.actions
 
 export default UserContentSlice.reducer

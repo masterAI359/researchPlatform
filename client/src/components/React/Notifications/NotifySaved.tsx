@@ -35,12 +35,13 @@ export default function NotifySavedArticle({ articleExists, setShowNotification 
             initial="closed"
             animate="open"
             exit="closed"
-            className="absolute z-50 xl:right-12 bottom-0 bg-black rounded-lg h-auto w-auto flex flex-col items-center
+            transition={{ type: 'tween', duration: 0.2 }}
+            className="absolute z-50 xl:right-8 bottom-0 bg-white rounded-lg h-auto w-auto flex flex-col items-center
             border border-astro_gray shadow-thick"
         >
-            <div className="w-full h-auto p-4">
-                <h1 className="text-white text-md w-full font-light tracking-tight">
-                    {session && articleExists === true ? 'article saved!'
+            <div className="w-full h-auto p-2">
+                <h1 className="text-black text-nowrap text-sm w-full font-light tracking-tight">
+                    {articleExists ? 'article saved!'
                         : 'unsaved'}
                 </h1>
             </div>

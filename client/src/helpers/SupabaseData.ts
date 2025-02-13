@@ -5,8 +5,10 @@ import { error } from "astro/dist/core/logger/core";
 export const checkArticle = async (
     setArticleExists: Function,
     article_url: string,
-    id: string) => {
+    id: string,
+) => {
     console.log({ ActionTriggered: "checking for article in database" })
+
     try {
         const { data, error } = await supabase
             .from('articles')

@@ -85,7 +85,7 @@ declare global {
     url: string,
     image_url: string,
     date: string,
-    fallbackDate: string,
+    fallbackDate: string | null,
     summary: any,
     text: string,
     id: string

@@ -5,7 +5,8 @@ import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { useEffect } from "react"
 import { supabase } from "@/SupaBase/supaBaseClient"
-import { AppDispatch } from "@/ReduxToolKit/store"
+import { supabaseContext } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
+import { useDispatch } from "react-redux"
 import { fetchSavedArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
 import { useAppdispatch } from "@/Hooks/appDispatch"
 
@@ -15,6 +16,7 @@ export default function SummaryContainer({ }) {
   const { summaries, failedNotifications, currentStory, reading } = read
   const id = useSelector((state: RootState) => state.auth.user_id)
   const appDispatch = useAppdispatch()
+  const dispatch = useDispatch()
 
   const container = {
     hidden: { opacity: 0 },
@@ -31,6 +33,10 @@ export default function SummaryContainer({ }) {
 
   useEffect(() => {
 
+    if (reading) {
+      dispatch(supabaseContext('reading'))
+    }
+
     const channel = supabase.channel('table-changes')
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'articles' }, payload => {
         console.log('New row inserted:', payload);
@@ -42,7 +48,7 @@ export default function SummaryContainer({ }) {
       supabase.removeChannel(channel)
     }
 
-  })
+  }, [reading])
 
 
 

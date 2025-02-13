@@ -8,12 +8,15 @@ import { useDispatch } from "react-redux";
 import { getEmail } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
 import { showSignOut } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
 import SignOutModal from "../../Forms/SignOutModal";
+import { useNavigate } from "react-router-dom";
 
 const DropdownMenu = ({ isOpen, setIsOpen }) => {
     const signOut = useSelector((state: RootState) => state.auth.signOut)
+    const id = useSelector((state: RootState) => state.auth.user_id)
     const signedIn = useSelector((state: RootState) => state.auth.signedIn)
     const email = useSelector((state: RootState) => state.auth.email)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
 
     function limitName(name: string) {
@@ -55,6 +58,20 @@ const DropdownMenu = ({ isOpen, setIsOpen }) => {
 
     }
 
+    const redirectUser = () => {
+        console.log('invoked')
+        navigate('/')
+    }
+
+    //const handleLogOut = () => {
+    //    if(id) {
+    //        dispatch(showSignOut(true))
+    //        setIsOpen(false)
+    //    } else {
+    //        alert("Log in to access the profile page")
+    //    }
+    //}
+
     useEffect(() => {
 
 
@@ -66,6 +83,7 @@ const DropdownMenu = ({ isOpen, setIsOpen }) => {
             } else if (event === 'SIGNED_IN') {
                 retrieveEmail(session)
             } else if (event === 'SIGNED_OUT') {
+                redirectUser()
                 // handle sign out event
             } else if (event === 'PASSWORD_RECOVERY') {
                 // handle password recovery event

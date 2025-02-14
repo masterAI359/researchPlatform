@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import { showSignOut, getEmail } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
+import { showSignOut, clearAuthSlice } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
 import { useDispatch } from "react-redux";
 import { motion } from "framer-motion";
 import { supabase, session } from "@/SupaBase/supaBaseClient";
@@ -19,7 +19,7 @@ export default function SignOutModal({ }) {
         if (error) {
             console.log(error)
         } else {
-            dispatch(getEmail(null))
+            dispatch(clearAuthSlice())
             dispatch(showSignOut(false))
             console.log(session)
             console.log("Signed Out successfully")

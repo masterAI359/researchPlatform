@@ -13,7 +13,6 @@ import { useNavigate } from "react-router-dom";
 const DropdownMenu = ({ isOpen, setIsOpen }) => {
     const signOut = useSelector((state: RootState) => state.auth.signOut)
     const id = useSelector((state: RootState) => state.auth.user_id)
-    const signedIn = useSelector((state: RootState) => state.auth.signedIn)
     const email = useSelector((state: RootState) => state.auth.email)
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -63,17 +62,22 @@ const DropdownMenu = ({ isOpen, setIsOpen }) => {
         navigate('/')
     }
 
-    //const handleLogOut = () => {
-    //    if(id) {
-    //        dispatch(showSignOut(true))
-    //        setIsOpen(false)
-    //    } else {
-    //        alert("Log in to access the profile page")
-    //    }
-    //}
+    const handleLogOut = () => {
+
+        if (id) {
+            dispatch(showSignOut(true))
+            setIsOpen(false)
+            redirectUser()
+            console.log('firing')
+            alert("Login Required to access this page")
+        } else if (!id) {
+
+        }
+    }
 
     useEffect(() => {
 
+        console.log(id)
 
         const { data } = supabase.auth.onAuthStateChange((event, session) => {
             //  console.log(event, session)
@@ -83,7 +87,6 @@ const DropdownMenu = ({ isOpen, setIsOpen }) => {
             } else if (event === 'SIGNED_IN') {
                 retrieveEmail(session)
             } else if (event === 'SIGNED_OUT') {
-                redirectUser()
                 // handle sign out event
             } else if (event === 'PASSWORD_RECOVERY') {
                 // handle password recovery event
@@ -159,7 +162,7 @@ const DropdownMenu = ({ isOpen, setIsOpen }) => {
                         }}
                     >
                         <ul className="bg-black" style={{ listStyle: "none", margin: 0, padding: 0, minWidth: "150px" }}>
-                            <li
+                            {id && <li
                                 key="Profile"
                                 className="text-white flex font-light border-b border-white/10 hover:text-blue-400"
                                 style={{
@@ -172,7 +175,7 @@ const DropdownMenu = ({ isOpen, setIsOpen }) => {
                                     onClick={() => { setIsOpen(false); }}
                                     className="h-full w-full grow" to='/Profile' >My Profile</Link>
 
-                            </li>
+                            </li>}
                             <li
                                 key="Signup"
                                 className="text-white flex font-light border-b border-white/10 hover:text-blue-400"
@@ -207,10 +210,7 @@ const DropdownMenu = ({ isOpen, setIsOpen }) => {
                                     padding: "10px",
                                     cursor: "pointer"
                                 }}
-                                onClick={() => {
-                                    dispatch(showSignOut(true))
-                                    setIsOpen(false)
-                                }}
+                                onClick={handleLogOut}
                             >
                                 Log out
 

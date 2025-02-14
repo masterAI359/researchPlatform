@@ -1,24 +1,8 @@
 import { RootState } from "@/ReduxToolKit/store"
-import { motion, AnimatePresence } from "framer-motion"
-import { readSavedArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
-import { useEffect } from "react"
+import { AnimatePresence } from "framer-motion"
 import { useSelector, useDispatch } from "react-redux"
 import { Summary } from "../../SummaryComponents/SuccessFull/Summary"
 import BackToSavedArticles from "../../Buttons/NavigatingButtons/BackToSavedArticles"
-
-const container = {
-    hidden: { opacity: 0 },
-    show: {
-        opacity: 1,
-        transition: {
-            type: 'tween',
-            duration: 1,
-            ease: 'easeInOut',
-            delayChildren: 0.3,
-        }
-    }
-}
-
 
 export default function ReadSavedArticle() {
     const savedArticle = useSelector((state: RootState) => state.userdata.ArticleToReview)

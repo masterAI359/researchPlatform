@@ -1,8 +1,24 @@
 import Lottie from "lottie-react"
 import blueCheck from '../../../../lotties/blueCheck.json'
+import { useEffect } from "react"
+import { session } from "@/SupaBase/supaBaseClient"
+import { fetchSavedArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
+import { useAppdispatch } from "@/Hooks/appDispatch"
+import { useSelector } from "react-redux"
+import { RootState } from "@/ReduxToolKit/store"
 
 
 export default function Completed() {
+    const appDispatch = useAppdispatch()
+    const id = useSelector((state: RootState) => state.auth.user_id)
+
+
+    useEffect(() => {
+
+        if (session) {
+            appDispatch(fetchSavedArticles(id))
+        }
+    }, [])
 
     return (
         <article className="2xl:min-w-[60rem] h-full mx-auto flex flex-col items-center md:gap-y-6">

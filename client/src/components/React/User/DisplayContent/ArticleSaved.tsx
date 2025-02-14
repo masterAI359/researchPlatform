@@ -80,14 +80,17 @@ export default function ArticleSaved({ article, index }) {
                         </figcaption>
 
                         <div className="flex flex-col h-full w-full justify-between">
-                            <h1 onClick={handleArticleSelection}
-                                className="text-lg w-fit hover:text-blue-400 transition-all duration-200
+                            <div className="w-full h-auto">
+                                <h1 onClick={handleArticleSelection}
+                                    className="text-lg w-fit hover:text-blue-400 transition-all duration-200
                                         ease-in-out text-white text-left font-light tracking-tight self-center relative group">
-                                <p className="absolute bottom-16 opacity-0 p-2 rounded-lg border border-black shadow-thick text-sm
-                                             group-hover:text-black group-hover:opacity-100 group-hover:bg-white text-nowrap
+                                    <p className="absolute lg: lg:-left-24 opacity-0 p-2 rounded-lg border border-white/10 text-xs
+                                             group-hover:text-white font-light group-hover:opacity-100 group-hover:bg-ebony text-nowrap
                                             transition-all duration-200 ease-in-out">click to read</p>
-                                {article.title}
-                            </h1>
+                                    {article.title}
+                                </h1>
+                            </div>
+
                             <div className="flex flex-col h-full items-start group gap-y-4">
                                 <div className="w-auto h-fit">
                                     <p className="text-white font-light text-sm group-hover:text-blue-400 transition-all duration-200 ease-in-out">

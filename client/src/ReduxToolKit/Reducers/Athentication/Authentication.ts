@@ -54,10 +54,11 @@ export const AuthenticationSlice = createSlice({
         },
         getID: (state, action) => {
             state.user_id = action.payload
-        }
+        },
+        clearAuthSlice: () => { return initialState }
     }
 });
 
-export const { isAuthenticated, getUserName, getUserPassword, getEmail, showSignOut, redirectFromLogin, getID } = AuthenticationSlice.actions;
+export const { isAuthenticated, getUserName, getUserPassword, getEmail, showSignOut, redirectFromLogin, getID, clearAuthSlice } = AuthenticationSlice.actions;
 
 export default AuthenticationSlice.reducer;

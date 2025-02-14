@@ -11,7 +11,7 @@ export default function Profile() {
     const id = useSelector((state: RootState) => state.auth.user_id)
     const { userArticles, error, status } = useSelector((state: RootState) => state.userdata)
 
-
+    console.log(id)
 
     useEffect(() => {
 

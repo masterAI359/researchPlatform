@@ -9,7 +9,6 @@ import SavedArticles from "./DisplayContent/SavedArticles";
 export default function Profile() {
     const [displayArticles, setDislayArticles] = useState<boolean>(true)
     const id = useSelector((state: RootState) => state.auth.user_id)
-    const email = useSelector((state: RootState) => state.auth.email)
     const { userArticles, error, status } = useSelector((state: RootState) => state.userdata)
 
 

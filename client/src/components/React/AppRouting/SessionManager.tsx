@@ -17,7 +17,6 @@ export default function SessionManager() {
     useEffect(() => {
 
         const { data } = supabase.auth.onAuthStateChange((event, session) => {
-            console.log(data)
 
             if (event === 'INITIAL_SESSION') {
 

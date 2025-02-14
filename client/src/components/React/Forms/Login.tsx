@@ -1,10 +1,7 @@
-import { RootState } from "@/ReduxToolKit/store"
 import { supabase, session } from "@/SupaBase/supaBaseClient"
 import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { requiredInput } from "@/helpers/validation"
-import { getID } from "@/ReduxToolKit/Reducers/Athentication/Authentication"
-import { getEmail, redirectFromLogin } from "@/ReduxToolKit/Reducers/Athentication/Authentication"
 import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 
@@ -19,7 +16,7 @@ export default function Login() {
 
     const redirectUser = () => {
         console.log('invoked')
-        navigate('/')
+        navigate('/Profile')
     }
 
     const handleEmail = (e: any) => {

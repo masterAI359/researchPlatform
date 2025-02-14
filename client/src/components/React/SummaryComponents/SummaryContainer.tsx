@@ -23,10 +23,10 @@ export default function SummaryContainer({ }) {
     show: {
       opacity: 1,
       transition: {
+        type: 'tween',
         duration: 1,
         ease: 'easeInOut',
         delayChildren: 0.3,
-        staggerDirection: 1
       }
     }
   }
@@ -56,15 +56,12 @@ export default function SummaryContainer({ }) {
     <motion.div
       layout
       className="min-h-full 2xl:max-w-7xl xl:max-w-5xl xs:px-2 md:px-8 scroll-smooth
-      shadow-black inset rounded-4xl mx-auto border-white/10 xs:mt-10 xl:mt-0"
+      inset rounded-4xl mx-auto border-white/10 xs:mt-10 xl:mt-0"
       variants={container}
       initial="hidden"
       animate="show"
       exit="hidden"
     >
-      <header>
-
-      </header>
       <main
         className="2xl:max-w-6xl h-full w-full mx-auto 
                  transition-all duration-1000 animate-fade-in mb-12 
@@ -72,11 +69,11 @@ export default function SummaryContainer({ }) {
         <div
           className="w-full mx-auto relative">
           <AnimatePresence mode="popLayout">
-            {summaries?.map((summaryData: any, index: number) =>
+            {summaries?.map((articleData: any, index: number) =>
             (currentStory === index && <Summary
               key={index}
               index={index}
-              summaryData={summaryData}
+              articleData={articleData}
             />)
             )}
           </AnimatePresence>

@@ -3,7 +3,6 @@ import { RootState } from "@/ReduxToolKit/store"
 import { useEffect } from "react"
 import { motion } from "framer-motion"
 import ArticleSaved from "./ArticleSaved"
-import { fetchSavedArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
 import { useAppdispatch } from "@/Hooks/appDispatch"
 
 export default function SavedArticles() {
@@ -14,10 +13,11 @@ export default function SavedArticles() {
     useEffect(() => {
 
 
+
     }, [userArticles, error, status])
 
     return (
-        <div className="w-full h-full mx-auto">
+        <div className="w-full h-full mx-auto animate-fade-in duration-300 delay-200 ease-in">
             <motion.section
                 layout
                 className="w-full 2xl:px-2 xs:gap-3 h-full mt-12">

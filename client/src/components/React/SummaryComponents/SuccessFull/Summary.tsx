@@ -6,7 +6,7 @@ import SummaryContent from './SummaryContent';
 
 //TODO: implement inserting of saved article data to the 'articles' table in our database
 
-export function Summary({ summaryData, index }) {
+export function Summary({ articleData, index }) {
     const [fullStory, setFullStory] = useState(true);
     const {
         summary,
@@ -19,7 +19,7 @@ export function Summary({ summaryData, index }) {
         article_text,
         logo,
         source,
-    } = summaryData;
+    } = articleData;
 
 
     return (

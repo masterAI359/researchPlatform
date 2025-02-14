@@ -65,7 +65,7 @@ export default function SummaryHeader({
                             </div>
                             <div className="flex items-center self-start">
                                 <p className="text-white opacity-100 xs:text-xs md:text-md flex items-center">
-                                    <img className="mr-3 h-9 w-9" src={logo} alt={''} />
+                                    {logo && <img className="mr-3 h-9 w-9" src={logo} alt={''} />}
 
                                     {source}
                                 </p>
@@ -88,11 +88,11 @@ export default function SummaryHeader({
                                 {article_authors !== undefined && article_authors !== null ? authShortened.map((author: string, index: number) => {
 
                                     if (index + 1 < authShortened.length) {
-                                        return (<p className="text-slate-300 md:text-lg font-serif mr-2">
+                                        return (<p key={index} className="text-slate-300 md:text-lg font-serif mr-2">
                                             {author},
                                         </p>)
                                     } else if (index + 1 === authShortened.length) {
-                                        return (<p className="text-slate-300 md:text-lg font-serif mr-2">
+                                        return (<p key={index} className="text-slate-300 md:text-lg font-serif mr-2">
                                             {author}
                                         </p>)
                                     }
@@ -106,7 +106,7 @@ export default function SummaryHeader({
                         <SaveArticle dataToSave={dataToSave} showNotification={showNotification} setShowNotification={setShowNotification} />
                     </div>
                     <div className="w-auto h-auto">
-                        <MoreButton key={article_title} open={open} setOpen={setOpen} article_url={article_url} showNotification={showNotification} />
+                        <MoreButton context={'reading'} key={article_title} open={open} setOpen={setOpen} article_url={article_url} showNotification={showNotification} />
                     </div>
                 </div>
             </section>

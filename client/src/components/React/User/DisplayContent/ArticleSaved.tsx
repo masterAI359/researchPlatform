@@ -4,12 +4,18 @@ import { RootState } from "@/ReduxToolKit/store"
 import { limitArray } from "@/helpers/Presentation"
 import Bookmark from "../../Buttons/SaveButtons/SaveArticle"
 import MoreButton from "../../Buttons/HelpButtons/MoreButton"
+import { readSavedArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
+import { useDispatch } from "react-redux"
+import { useNavigate } from "react-router-dom"
 
 
 export default function ArticleSaved({ article, index }) {
     const [showNotification, setShowNotification] = useState<boolean>(false)
     const id = useSelector((state: RootState) => state.auth.user_id)
     const [open, setOpen] = useState<boolean>(false)
+    const readThisArticle = useSelector((state: RootState) => state.userdata.ArticleToReview)
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const dataToSave: SavedArticle = {
         title: article.title,
@@ -26,8 +32,16 @@ export default function ArticleSaved({ article, index }) {
 
     const authorsShortened = limitArray(article.authors)
 
+    const handleArticleSelection = () => {
+        dispatch(readSavedArticle(article))
+        navigate('/SavedArticle')
+    }
+
+    console.log(readThisArticle)
+
     return (
-        <main key={index}
+        <main
+            key={index}
             className="w-full 2xl:max-h-72 2xl:min-h-44
                 cursor-pointer flex xs:flex-col xs:items-center md:flex-row md:justify-end z-1
                 xs:border-t xs:border-white/20 xs:px-2 md:py-3">
@@ -66,8 +80,12 @@ export default function ArticleSaved({ article, index }) {
                         </figcaption>
 
                         <div className="flex flex-col h-full w-full justify-between">
-                            <h1 className="text-lg w-fit hover:text-blue-400 transition-all duration-200
-                                        ease-in-out text-white text-left font-light tracking-tight self-center">
+                            <h1 onClick={handleArticleSelection}
+                                className="text-lg w-fit hover:text-blue-400 transition-all duration-200
+                                        ease-in-out text-white text-left font-light tracking-tight self-center relative group">
+                                <p className="absolute bottom-16 opacity-0 p-2 rounded-lg border border-black shadow-thick text-sm
+                                             group-hover:text-black group-hover:opacity-100 group-hover:bg-white text-nowrap
+                                            transition-all duration-200 ease-in-out">click to read</p>
                                 {article.title}
                             </h1>
                             <div className="flex flex-col h-full items-start group gap-y-4">

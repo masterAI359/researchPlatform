@@ -11,7 +11,7 @@ export default function NotifySavedArticle({ articleExists, setShowNotification 
     useEffect(() => {
         const timer = setTimeout(() => {
             setShowNotification(false)
-        }, 1000)
+        }, 2000)
 
         console.log("running")
 
@@ -26,6 +26,7 @@ export default function NotifySavedArticle({ articleExists, setShowNotification 
         open: {
             opacity: 1,
             scale: 1
+
         }
     }
 

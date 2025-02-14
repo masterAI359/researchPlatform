@@ -5,14 +5,16 @@ interface UserContent {
     status: string,
     userArticles: any,
     error: any,
-    contextForSupabase: string | null
+    contextForSupabase: string | null,
+    ArticleToReview: any
 }
 
 const initialState: UserContent = {
     status: 'idle',
     userArticles: [],
     error: null,
-    contextForSupabase: null
+    contextForSupabase: null,
+    ArticleToReview: null
 }
 
 export const fetchSavedArticles = createAsyncThunk(
@@ -37,6 +39,9 @@ const UserContentSlice = createSlice({
         clearUser: () => { return initialState },
         supabaseContext: (state, action) => {
             state.contextForSupabase = action.payload
+        },
+        readSavedArticle: (state, action) => {
+            state.ArticleToReview = action.payload
         }
     },
     extraReducers: builder => {
@@ -58,6 +63,6 @@ const UserContentSlice = createSlice({
     }
 })
 
-export const { clearUser, supabaseContext } = UserContentSlice.actions
+export const { clearUser, supabaseContext, readSavedArticle } = UserContentSlice.actions
 
 export default UserContentSlice.reducer

@@ -5,7 +5,8 @@ import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import ArticleLoader from "../Loaders/ArticleLoader"
 import SearchFailed from "../ErrorMessages/SearchFailed"
-
+import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
+import TestBoundary from "../ErrorBoundaries/TestBoundary"
 
 
 export default function ArticlesGrid() {
@@ -38,29 +39,31 @@ export default function ArticlesGrid() {
             className="h-full xl:max-w-7xl"
         >
             <div className={`h-full w-full mx-auto`}>
-                <AnimatePresence mode="wait">
 
-                    {status === 'pending' && <ArticleLoader key='articleLoader' />}
+                <ErrorBoundary>
+                    <AnimatePresence mode="wait">
+                        {status === 'pending' && <ArticleLoader key='articleLoader' />}
 
+                        {status === 'fulfilled' &&
+                            <motion.ol className="max-w-4xl mx-auto grid grid-cols-2 xs:gap-3 
+                    min-h-full 2xl:gap-12">
+                                {articles.map((article: ArticleType, index: number) => {
+                                    return (
+                                        <Article
+                                            index={index}
+                                            key={index}
+                                            article={article}
+                                        />)
+                                })
+                                }
+                            </motion.ol>}
 
+                        {status === 'rejected' &&
+                            <SearchFailed key='searchFailed' />}
 
-                    {status === 'fulfilled' &&
-                        <motion.ol className="max-w-4xl mx-auto grid grid-cols-2 xs:gap-3 min-h-full 2xl:gap-12">
-                            {articles.map((article: ArticleType, index: number) => {
-                                return (
-                                    <Article
-                                        index={index}
-                                        key={index}
-                                        article={article}
-                                    />
-                                )
-                            }
-                            )}
-                        </motion.ol>
-                    }
+                    </AnimatePresence>
+                </ErrorBoundary>
 
-                    {status === 'rejected' && <SearchFailed key='searchFailed' />}
-                </AnimatePresence>
 
             </div>
         </motion.div>

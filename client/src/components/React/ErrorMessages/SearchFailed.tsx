@@ -7,7 +7,7 @@ export default function SearchFailed() {
         <div className="w-full h-full flex items-center justify-center">
             <div className="w-fit h-fit">
                 <h1 className="w-fit text-zinc-400 font-light tracking-tight 2xl:text-3xl">
-                    We're having issues connecting to the search Engine
+                    An Error has Occured :/
                 </h1>
             </div>
         </div>

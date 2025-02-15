@@ -1,13 +1,19 @@
 import HelpButton from "../../Buttons/HelpButtons/Question"
 import { Step5Help } from "@/helpInfo/help"
 import { motion } from "framer-motion"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { startSearch } from "@/ReduxToolKit/Reducers/Investigate/SearchResults"
-
+import { displaySearch, displayMindMap } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
 
 export default function Step5({ containerWidth
 }) {
+
     const dispatch = useDispatch()
+
+    const beginSearch = () => {
+        dispatch(displayMindMap(false))
+        dispatch(displaySearch(true))
+    }
 
     return (
         <div style={{ flexShrink: 0, maxWidth: containerWidth }}
@@ -42,7 +48,7 @@ export default function Step5({ containerWidth
                         </div>
                         <div className="w-fit h-fit 2xl:mt-0 xs:mt-4">
                             <motion.button
-                                onClick={() => dispatch(startSearch(true))}
+                                onClick={beginSearch}
                                 whileTap={{ scale: 0.95 }}
                                 transition={{ type: 'tween', duration: 0.1 }}
                                 className="bg-white rounded-full group 2xl:-translate-x-1

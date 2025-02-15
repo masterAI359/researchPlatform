@@ -1,6 +1,8 @@
 import { useDispatch } from "react-redux";
 import { initiateFinalProcess } from "@/ReduxToolKit/Reducers/Investigate/Review";
-import { isReading } from "@/ReduxToolKit/Reducers/Investigate/Reading";
+import { isReading, resetData } from "@/ReduxToolKit/Reducers/Investigate/Reading";
+import { displayArticleContent, displayWrapUp } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
+
 
 export function FinishedReading({ }) {
     const dispatch = useDispatch()
@@ -9,7 +11,9 @@ export function FinishedReading({ }) {
         <button
             onClick={() => {
                 dispatch(initiateFinalProcess(true))
-                dispatch(isReading(false))
+                dispatch(displayArticleContent(false))
+                dispatch(displayWrapUp(true))
+                dispatch(resetData())
             }}
             className="my-auto mx-auto rounded-lg transition-all 
         duration-300 xs:max-w-8 xs:max-h-8 xl:max-w-7 xl:max-h-7 2xl:max-w-8 

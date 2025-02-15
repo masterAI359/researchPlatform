@@ -70,7 +70,7 @@ export default function ArticleSaved({ article, index }) {
                                 md:right-2 md:bottom-2 xs:top-2 xs:right-2 md:self-end
                                 md:gap-y-1 xs:items-center md:justify-center md:w-fit md:h-fit">
                                     <div className="flex flex-col items-center h-auto w-auto">
-                                        <Bookmark dataToSave={dataToSave} showNotification={showNotification} setShowNotification={setShowNotification} />
+                                        <Bookmark open={open} dataToSave={dataToSave} showNotification={showNotification} setShowNotification={setShowNotification} />
                                     </div>
                                     <div className="flex flex-col items-center relative h-auto w-auto">
                                         <MoreButton context={"profile"} open={open} setOpen={setOpen} showNotification={showNotification} article_url={article.article_url} />

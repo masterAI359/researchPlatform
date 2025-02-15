@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { session, supabase } from "@/SupaBase/supaBaseClient"
@@ -68,10 +68,10 @@ const DropdownMenu = ({ isOpen, setIsOpen }) => {
             dispatch(showSignOut(true))
             setIsOpen(false)
             redirectUser()
-            console.log('firing')
-            alert("Login Required to access this page")
         } else if (!id) {
-
+            setIsOpen(true)
+            dispatch(showSignOut(false))
+            alert("You're not signed in yet")
         }
     }
 
@@ -172,7 +172,7 @@ const DropdownMenu = ({ isOpen, setIsOpen }) => {
 
                             >
                                 <Link
-                                    onClick={() => { setIsOpen(false); }}
+                                    onClick={() => { setIsOpen(false) }}
                                     className="h-full w-full grow" to='/Profile' >My Profile</Link>
 
                             </li>}

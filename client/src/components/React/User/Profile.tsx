@@ -32,7 +32,7 @@ export default function Profile() {
                             className="relative 2xl:max-w-7xl 2xl:min-w-[78rem] lg:flex-col overflow-hidden p-6 lg:flex lg:p-20">
                             <div className="pb-12 border-b border-white/10 flex">
                                 <div>
-                                    <span className="text-blue-500 w-fit relative">Your Library</span>
+                                    <span className="text-blue-500 2xl:text-lg font-light tracking-tight w-fit relative">Your Library</span>
                                     <h2
                                         className="text-3xl mt-6 tracking-tight font-light xs:text-2xl lg:text-4xl text-white">
                                         Access your saved content

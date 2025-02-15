@@ -12,7 +12,7 @@ export default function FailedSummary({ }) {
 
         <motion.ul className="2xl:bottom-12 2xl:right-12 bottom-3 right-3 flex fixed z-50 flex-col gap-y-6">
             <AnimatePresence mode="popLayout" initial={false}>
-                {failedNotifications.map((notification: any) => (
+                {failedNotifications?.map((notification: any) => (
                     <FailedNotification
                         key={notification.article_url}
                         notification={notification}

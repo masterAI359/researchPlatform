@@ -8,7 +8,7 @@ import { session } from "@/SupaBase/supaBaseClient"
 import { fetchSavedArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
 import { useAppdispatch } from "@/Hooks/appDispatch"
 
-export default function Bookmark({ dataToSave, showNotification, setShowNotification }) {
+export default function Bookmark({ dataToSave, showNotification, setShowNotification, open }) {
     const contextForSupabase = useSelector((state: RootState) => state.userdata.contextForSupabase)
     const id = useSelector((state: RootState) => state.auth.user_id)
     const dispatch = useAppdispatch()
@@ -25,7 +25,7 @@ export default function Bookmark({ dataToSave, showNotification, setShowNotifica
 
     return (
         <div onClick={() => { saveArticle(dataToSave, setShowNotification, setArticleExists, articleExists) }}
-            className="w-full h-full self-start flex items-center justify-start group relative cursor-pointer">
+            className={`${open ? 'pointer-events-none' : 'pointer-events-auto'} w-full h-full self-start flex items-center justify-start group relative cursor-pointer`}>
             {!showNotification && <div className="rounded-md xl:h-fit md:w-24 flex xs:hidden md:block 
                 mx-auto group-hover:bg-black opacity-0 absolute md:right-7
                 border border-gray group-hover:opacity-100 transition-all 

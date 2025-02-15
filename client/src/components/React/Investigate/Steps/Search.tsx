@@ -1,34 +1,37 @@
 import Loader from "../../Loaders/Loader";
-import { useFetch } from "@/Hooks/useFetch";
 import { useDispatch, useSelector } from "react-redux";
-import { getQuery, searchingArticles } from "@/ReduxToolKit/Reducers/Investigate/UserPOV";
+import { getQuery } from "@/ReduxToolKit/Reducers/Investigate/UserPOV";
 import { getStories } from "@/ReduxToolKit/Reducers/Investigate/Reading";
 import { AppDispatch, RootState } from "@/ReduxToolKit/store";
 import { useEffect } from "react";
 import { RetrieveArticles } from "@/ReduxToolKit/Reducers/Investigate/SearchResults";
+import { GetArticleContent } from "@/ReduxToolKit/Reducers/Investigate/Reading";
+import { displaySearch, displayArticleContent } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
 
 export default function Search({ }) {
-  const { fetchArticles, fetchSummaries } = useFetch()
   const investigateState = useSelector((state: RootState) => state.investigation)
   const { pov, getArticle, read, search } = investigateState
   const { query, searching } = pov
   const { status } = search
   const { chosenArticles } = getArticle
   const { getContent } = read
+  const articlesToSummarize = encodeURIComponent(JSON.stringify(chosenArticles))
   const dispatch = useDispatch<AppDispatch>()
 
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     dispatch(RetrieveArticles(query))
+
   }
 
   useEffect(() => {
 
     if (getContent) {
-      const articlesToSummarize = encodeURIComponent(JSON.stringify(chosenArticles))
-      fetchSummaries(articlesToSummarize)
+
+      dispatch(GetArticleContent(articlesToSummarize))
       dispatch(getStories(false))
+      dispatch(displaySearch(false))
     }
 
   }, [searching, getContent])

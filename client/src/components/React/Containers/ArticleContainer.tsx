@@ -9,7 +9,6 @@ import ControlPanel from "../Buttons/ButtonWrappers/ControlPanel"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
-import TestBoundary from "../ErrorBoundaries/TestBoundary"
 
 
 export default function ArticleContainer({
@@ -21,7 +20,7 @@ export default function ArticleContainer({
     const { loading, articles, status } = search
     const { endProcess } = end
     const { chosenArticles } = getArticle
-    const { reading, summaries, loadingContent } = read
+    const { reading, summaries, loadingContent, ContentStatus } = read
 
 
     function hideSelect() {
@@ -46,19 +45,6 @@ export default function ArticleContainer({
                     className="relative xl:max-w-7xl min-h-full flex flex-col box-border mx-auto">
                     <AnimatePresence mode="popLayout">
 
-
-                        {loading === true &&
-                            <motion.div
-                                layout
-                                key='loadingArticles'
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                transition={{ type: "tween", duration: 0.5 }}
-                            >
-                                <ArticleLoader />
-                            </motion.div>}
-
                         {status !== 'idle' &&
                             <motion.div
                                 layout
@@ -72,7 +58,7 @@ export default function ArticleContainer({
                                 />
                             </motion.div>}
 
-                        {loadingContent &&
+                        {ContentStatus === 'pending' &&
                             <motion.div
                                 layout
                                 key='loadingSummaries'
@@ -85,7 +71,7 @@ export default function ArticleContainer({
                             </motion.div>
                         }
 
-                        {reading &&
+                        {ContentStatus === 'fulfilled' &&
                             <motion.div
                                 layout
                                 key='presentSummaries'
@@ -120,7 +106,7 @@ export default function ArticleContainer({
 
                 </AnimatePresence>
                 <AnimatePresence>
-                    {reading && <motion.div
+                    {ContentStatus === 'fulfilled' && <motion.div
                         initial={{ opacity: 0, scale: 0 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0 }}

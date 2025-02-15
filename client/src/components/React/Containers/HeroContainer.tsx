@@ -13,11 +13,14 @@ import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
 export default function HeroContainer({
 }) {
     const investigateState = useSelector((state: RootState) => state.investigation)
-    const { search, read, end, review } = investigateState
+    const { search, read, end, review, display } = investigateState
     const { startSearch } = search
-    const { reading, loadingContent } = read
+    const { reading, loadingContent, ContentStatus } = read
     const { wrapUp } = review
     const { endProcess } = end
+    const { showMindMap, showSearch, showContent, showWrapUp, showCompletion } = display
+
+    console.log(showWrapUp)
 
 
     return (
@@ -25,7 +28,7 @@ export default function HeroContainer({
             <section className="w-full h-full shrink-0 mx-auto">
                 <AnimatePresence mode="popLayout">
 
-                    {startSearch === null && (<motion.div
+                    {showMindMap && (<motion.div
                         layout
                         key='Investigate'
                         initial={{ opacity: 0 }}
@@ -41,7 +44,7 @@ export default function HeroContainer({
 
                     </motion.div>)}
 
-                    {startSearch ?
+                    {showSearch ?
                         (<motion.div
                             layout
                             key='Search'
@@ -55,19 +58,7 @@ export default function HeroContainer({
 
                         </motion.div>) : null}
 
-                    {loadingContent &&
-                        <motion.div
-                            layout
-                            key="loadingStories"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ type: 'tween', duration: 0.2 }}
-                        >
-                        </motion.div>
-                    }
-
-                    {reading &&
+                    {showContent && ContentStatus === 'fulfilled' ?
                         <motion.div
                             layout
                             key='Reading'
@@ -78,9 +69,9 @@ export default function HeroContainer({
                         >
                             <SummaryHero />
                         </motion.div>
-                    }
+                        : null}
 
-                    {wrapUp && <motion.div
+                    {showWrapUp && <motion.div
                         layout
                         key='WrapUp'
                         initial={{ opacity: 0 }}
@@ -91,7 +82,7 @@ export default function HeroContainer({
                         <ReviewWrapper />
                     </motion.div>}
 
-                    {endProcess &&
+                    {showCompletion &&
                         <motion.div
                             layout
                             key='Completion'

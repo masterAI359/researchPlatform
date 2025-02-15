@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux"
 import { endInvestigate, endingView } from "@/ReduxToolKit/Reducers/Investigate/EndInvestigation"
 import { initiateFinalProcess } from "@/ReduxToolKit/Reducers/Investigate/Review"
-
+import { displayCompletion, displayWrapUp } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
 
 export default function EndInvestigateButton() {
     const dispatch = useDispatch()
@@ -9,8 +9,8 @@ export default function EndInvestigateButton() {
     return (
         <button
             onClick={() => {
-                dispatch(endInvestigate(true))
-                dispatch(initiateFinalProcess(false))
+                dispatch(displayWrapUp(false))
+                dispatch(displayCompletion(true))
             }}
             className="w-auto bg-white hover:bg-white/10 group shadow-thick 
             transition-colors duration-200 ease-in-out rounded-full h-fit py-2 px-8 mx-auto flex items-center">

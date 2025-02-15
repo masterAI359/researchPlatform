@@ -27,7 +27,7 @@ export default function ReadSavedArticle() {
     return (
         <section
             className="min-h-full 2xl:w-full xs:px-2 md:px-8 scroll-smooth
-      inset mx-auto xs:mt-10 xl:mt-16 relative">
+      inset mx-auto xs:mt-10 xl:mt-20 relative">
             <div className="absolute 2xl:left-32 top-32">
                 <BackToSavedArticles />
             </div>

@@ -17,9 +17,6 @@ export default function HelpButton({ info }) {
     }
 
 
-
-
-
     return (
         <motion.div
             className="w-full flex flex-row items-center gap-2 group relative">

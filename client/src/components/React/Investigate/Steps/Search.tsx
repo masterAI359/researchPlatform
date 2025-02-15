@@ -5,12 +5,14 @@ import { getQuery, searchingArticles } from "@/ReduxToolKit/Reducers/Investigate
 import { getStories } from "@/ReduxToolKit/Reducers/Investigate/Reading";
 import { AppDispatch, RootState } from "@/ReduxToolKit/store";
 import { useEffect } from "react";
+import { RetrieveArticles } from "@/ReduxToolKit/Reducers/Investigate/SearchResults";
 
 export default function Search({ }) {
   const { fetchArticles, fetchSummaries } = useFetch()
   const investigateState = useSelector((state: RootState) => state.investigation)
   const { pov, getArticle, read, search } = investigateState
-  const { query, searching, loading } = pov
+  const { query, searching } = pov
+  const { status } = search
   const { chosenArticles } = getArticle
   const { getContent } = read
   const dispatch = useDispatch<AppDispatch>()
@@ -18,15 +20,10 @@ export default function Search({ }) {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    dispatch(searchingArticles(true))
+    dispatch(RetrieveArticles(query))
   }
 
   useEffect(() => {
-
-    if (searching) {
-      fetchArticles(query)
-      dispatch(searchingArticles(false))
-    }
 
     if (getContent) {
       const articlesToSummarize = encodeURIComponent(JSON.stringify(chosenArticles))
@@ -69,7 +66,7 @@ export default function Search({ }) {
                 <button type="submit"
                 >
                   {
-                    loading ? <Loader />
+                    status === 'pending' ? <Loader />
                       : <svg
                         className="text-white xs:h-5 xs:w-5 absolute 
                         xs:top-4 xs:right-4 md:top-4 md:bottom-4 md:right-4 fill-current"

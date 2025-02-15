@@ -2,6 +2,7 @@ import { ArticleType, SelectedArticle } from "@/env"
 import { useSelector, useDispatch } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { choose, discard, } from "@/ReduxToolKit/Reducers/Investigate/ChosenArticles"
+import { motion } from "framer-motion"
 
 interface ArticleProps {
     article: ArticleType,
@@ -59,9 +60,11 @@ export default function Article({ article, index }: ArticleProps) {
 
     const mobileDescription = limitDescription(description)
 
+    console.log(article.image)
 
     const fallbackImage = '/images/logos/fallback.jpg'
     const resizedImage = article.image.img ? article.image.img + '&w=300&p=0&c=7' : fallbackImage
+
 
 
 
@@ -84,15 +87,15 @@ export default function Article({ article, index }: ArticleProps) {
 
 
     return (
-        <li
+        <motion.li
             onClick={() => { chooseArticle(article) }}
             key={name}
-            className={`group cursor-pointer lg:min-h-96 lg:max-h-96 lg:min-w-96 xs:max-h-60 xs:min-h-60 xs:max-w-60 pb-6 relative mx-auto rounded-3xl text-white 
+            className={`group cursor-pointer lg:min-h-96 lg:max-h-96 lg:min-w-96 xs:max-h-60 xs:min-h-60 xs:max-w-60 relative mx-auto rounded-3xl text-white 
             lg:opacity-90 md:hover:opacity-100 bg-ebony md:hover:scale-110 transition-all ease-in-out duration-300 overflow-y-hidden
             
             ${isHilighted ? "border-2 border-blue-500 shadow-black" : "shadow"}`}
         >
-            <figcaption className='relative w-full lg:max-h-40 lg:min-h-40 xs:min-h-24 xs:max-h-24  overflow-hidden'>
+            <div className='relative w-full m-0 p-0 lg:max-h-40 lg:min-h-40 xs:min-h-24 xs:max-h-24  overflow-hidden'>
                 <div
                     style={{ backgroundImage: `url(${resizedImage})` }}
                     className='absolute inset-0 w-full h-full bg-cover bg-center opacity-60 rounded-t-3xl'
@@ -105,8 +108,8 @@ export default function Article({ article, index }: ArticleProps) {
                         </h1>
                     </div>
                 </div>
-            </figcaption>
-            <figure className="relative w-full mx-auto h-auto box-border pt-2">
+            </div>
+            <div className="relative w-full mx-auto h-auto box-border pt-2">
                 <div className="flex gap-4 items-center relative px-4">
                     <div>
                         <img
@@ -130,8 +133,8 @@ export default function Article({ article, index }: ArticleProps) {
                         </p>
                     </blockquote>
                 </div>
-            </figure>
-        </li>
+            </div>
+        </motion.li>
     );
 }
 

@@ -1,17 +1,19 @@
 import Article from "./Article"
 import { ArticleType, SelectedArticle } from '../../../env'
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-
-
+import ArticleLoader from "../Loaders/ArticleLoader"
+import SearchFailed from "../ErrorMessages/SearchFailed"
 
 
 
 export default function ArticlesGrid() {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { search } = investigateState
-    const { articles } = search
+    const { articles, status } = search
+
+    console.log(articles)
 
     const container = {
 
@@ -35,21 +37,38 @@ export default function ArticlesGrid() {
             exit="hidden"
             className="h-full xl:max-w-7xl"
         >
-            <div className={`h-full w-fit mx-auto`}>
-                <ol className="grid grid-cols-2 xs:gap-3 min-h-full 2xl:gap-20 mx-auto">
-                    {articles?.map((article: ArticleType, index: number) =>
-                        <Article
-                            index={index}
-                            key={article.url}
-                            article={article}
-                        />
-                    )}
-                </ol>
+            <div className={`h-full w-full mx-auto`}>
+                <AnimatePresence mode="wait">
+
+                    {status === 'pending' && <ArticleLoader key='articleLoader' />}
+
+
+
+                    {status === 'fulfilled' &&
+                        <motion.ol className="max-w-4xl mx-auto grid grid-cols-2 xs:gap-3 min-h-full 2xl:gap-12">
+                            {articles.map((article: ArticleType, index: number) => {
+                                return (
+                                    <Article
+                                        index={index}
+                                        key={index}
+                                        article={article}
+                                    />
+                                )
+                            }
+                            )}
+                        </motion.ol>
+                    }
+
+                    {status === 'rejected' && <SearchFailed key='searchFailed' />}
+                </AnimatePresence>
+
             </div>
         </motion.div>
 
 
     )
 }
+
+
 
 

@@ -1,5 +1,5 @@
-import { useState, useRef } from "react"
-import { useMotionValueEvent, motion, useScroll, AnimatePresence } from "framer-motion"
+import { useState, Suspense, lazy, } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import SelectArticles from "../ArticleComponents/SelectArticles"
 import SummaryContainer from "../SummaryComponents/SummaryContainer"
 import ArticlesGrid from "../ArticleComponents/ArticlesGrid"
@@ -16,7 +16,7 @@ export default function ArticleContainer({
     const [showSelect, setShowSelect] = useState<boolean>(false)
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { search, read, getArticle, end } = investigateState
-    const { loading, articles } = search
+    const { loading, articles, status } = search
     const { endProcess } = end
     const { chosenArticles } = getArticle
     const { reading, summaries, loadingContent } = read
@@ -42,6 +42,8 @@ export default function ArticleContainer({
             <div
                 className="relative xl:max-w-7xl min-h-full flex flex-col box-border mx-auto">
                 <AnimatePresence mode="popLayout">
+
+
                     {loading === true &&
                         <motion.div
                             layout
@@ -54,7 +56,7 @@ export default function ArticleContainer({
                             <ArticleLoader />
                         </motion.div>}
 
-                    {articles !== null &&
+                    {status !== 'idle' &&
                         <motion.div
                             layout
                             key='presentArticles'

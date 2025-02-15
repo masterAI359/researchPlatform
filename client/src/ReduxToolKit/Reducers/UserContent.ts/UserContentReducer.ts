@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { supabase } from "@/SupaBase/supaBaseClient";
 
+//TODO: learn about the extra reducers within slices of state. This could simplify the loading states and active states for our components
+
 interface UserContent {
     status: string,
     userArticles: any,

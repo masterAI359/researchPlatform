@@ -20,7 +20,7 @@ export default function HeroContainer({
     const { endProcess } = end
     const { showMindMap, showSearch, showContent, showWrapUp, showCompletion } = display
 
-    console.log(showWrapUp)
+    console.log({ Status: ContentStatus, ShowingContent: showContent })
 
 
     return (

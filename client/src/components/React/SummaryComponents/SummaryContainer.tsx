@@ -62,7 +62,7 @@ export default function SummaryContainer({ }) {
       <motion.div
         layout
         className="min-h-full 2xl:max-w-7xl xl:max-w-5xl xs:px-2 md:px-8 scroll-smooth
-      inset rounded-4xl mx-auto border-white/10 xs:mt-10 xl:mt-0"
+      inset rounded-4xl mx-auto border-white/10 xs:mt-10 xl:mt-12"
         variants={container}
         initial="hidden"
         animate="show"

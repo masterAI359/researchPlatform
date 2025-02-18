@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { getStories } from "@/ReduxToolKit/Reducers/Investigate/Reading"
 import { startSearch, resetResults } from "@/ReduxToolKit/Reducers/Investigate/SearchResults"
+import { displayArticleContent } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
 
 
 interface SendForSummary {
@@ -13,6 +14,7 @@ interface SendForSummary {
 
 export default function SelectArticles({ hideSelect, loadingSummaries }: SendForSummary) {
   const investigateState = useSelector((state: RootState) => state.investigation)
+
   const { getArticle } = investigateState
   const { chosenArticles } = getArticle
   const dispatch = useDispatch()
@@ -24,8 +26,8 @@ export default function SelectArticles({ hideSelect, loadingSummaries }: SendFor
 
     if (chosenArticles.length > 0) {
       dispatch(getStories(true))
-      dispatch(startSearch(false))
       dispatch(resetResults())
+      dispatch(displayArticleContent(true))
     } else {
       console.log("There's nothing to summarize yet")
     }

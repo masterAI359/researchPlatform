@@ -67,7 +67,7 @@ const DropdownMenu = ({ isOpen, setIsOpen }) => {
         if (id) {
             dispatch(showSignOut(true))
             setIsOpen(false)
-            redirectUser()
+            //  redirectUser()
         } else if (!id) {
             setIsOpen(true)
             dispatch(showSignOut(false))

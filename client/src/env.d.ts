@@ -71,11 +71,11 @@ declare global {
     title: string
   }
 
-  interface WindowProps {
-  }
+
   interface Help {
     heading: string,
     explanation: string
+
   }
 
   interface SavedArticle {
@@ -93,4 +93,4 @@ declare global {
 
 }
 
-export { ArticleType, OptionsTypes, SelectedArticle, WindowProps, Perspectives, State, PremiseProps, Help, SavedArticle };
+export { ArticleType, OptionsTypes, SelectedArticle, Perspectives, State, PremiseProps, Help, SavedArticle };

@@ -1,18 +1,23 @@
 import { Help } from "@/env";
 
-const Step1Help: Help[] = [{
-    heading: "What kind of idea?",
-    explanation: `The kind of idea you should try to examine here should be objective. 
-    For example, 'The Earth is Flat'. This is a claim that can be objectively measured, and 
-    evidence can be used to weigh the merit of the claim. Claims that come down to personal
-    preferences are too subjective to assess.`,
-},
-{
-    heading: "Examples",
-    explanation: `Some statements you could enter: - 'flossing your teeth is unnecessary and tedious' -,
-    or - 'the president is to blame for high gas prices' - ; These claims have some evidence behind them that
+const Step1Help: Help[] = [
+    {
+        heading: "What kind of idea?",
+        explanation: `The kind of idea you should try to examine here should be objective. 
+        For example, 'The Earth is Flat'. This is a claim that can be objectively measured, and 
+        evidence can be used to weigh the merit of the claim. Claims that come down to personal
+        preferences are too subjective to assess.`,
+    },
+    {
+        heading: "Examples",
+        explanation: `Some statements you could enter:  'Flossing your teeth is unnecessary and tedious' ,
+    or  'The president is to blame for high gas prices'  ; These claims have some evidence behind them that
     can be examined, and inform us.`
-}];
+    }
+
+
+
+];
 
 
 const Step2Help: Help[] = [{
@@ -61,3 +66,7 @@ const ResearchHelp: Help[] = [{
 
 
 export { Step1Help, Step2Help, Step3Help, Step4Help, Step5Help, SummaryHelp, ResearchHelp };
+
+
+
+

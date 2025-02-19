@@ -6,9 +6,15 @@ import { incrementStory, decrementStory, limitPagination } from "@/ReduxToolKit/
 export default function StoryPaginate() {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { read } = investigateState
-    const { currentStory, summaries, paginateLimit } = read
+    const { currentStory, summaries, ContentStatus } = read
     const dispatch = useDispatch()
-    const pages = Array.from({ length: summaries.length })
+    let pages;
+
+    if (ContentStatus === 'fulfilled' && summaries.length > 0) {
+        pages = Array.from({ length: summaries.length })
+    } else {
+        pages = 0
+    }
 
     return (
         <div className="w-auto h-auto p-1 flex gap-x-0 items-center">

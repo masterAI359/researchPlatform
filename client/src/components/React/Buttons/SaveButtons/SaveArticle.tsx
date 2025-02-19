@@ -17,7 +17,6 @@ export default function Bookmark({ dataToSave, showNotification, setShowNotifica
 
     useLayoutEffect(() => {
 
-        console.log("Checking")
         checkArticle(setArticleExists, url, id)
 
     }, [articleExists, showNotification, session])

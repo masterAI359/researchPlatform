@@ -13,7 +13,6 @@ export default function ArticlesGrid() {
     const { search } = investigateState
     const { articles, status } = search
 
-    console.log(articles)
 
     const container = {
 

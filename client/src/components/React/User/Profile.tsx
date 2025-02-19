@@ -11,13 +11,13 @@ export default function Profile() {
     const id = useSelector((state: RootState) => state.auth.user_id)
     const { userArticles, error, status } = useSelector((state: RootState) => state.userdata)
 
-    console.log(id)
 
     useEffect(() => {
 
-
-
     }, [id, userArticles, error, status])
+
+
+    //TODO: display the user's previous investigations in their profile
 
     return (
         <article className="w-full h-full flex relative justify-center scroll-smooth">

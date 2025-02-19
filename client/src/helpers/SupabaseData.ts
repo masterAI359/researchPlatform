@@ -86,3 +86,49 @@ export const saveArticle = async (dataToSave: SavedArticle, setShowNotification:
 
 }
 
+
+
+export const saveInvestigation = async (investigationData: any) => {
+
+    console.log("Attempting to insert investigation")
+
+    const { idea, initial_perspective, biases, premises, ending_perspective, changed_opinion, new_concepts, takeaway, user_id } = investigationData
+
+    const { data, error } = await supabase
+        .from('investigations')
+        .insert([{
+            idea: idea,
+            initial_perspective: initial_perspective,
+            biases: biases,
+            premises: premises,
+            ending_perspective: ending_perspective,
+            changed_opinion: changed_opinion,
+            new_concepts: new_concepts,
+            takeaway: takeaway,
+            user_id: user_id
+        }]).select()
+
+    if (error) {
+        console.log(error)
+    } else if (data) {
+        console.log(data)
+    }
+
+}
+
+
+export const getUserInvestigations = async (id: number | string) => {
+
+    const { data, error } = await supabase
+        .from('investigations')
+        .select()
+        .eq('user_id', id)
+
+    if (error) {
+        console.log(error)
+    } else if (data) {
+        console.log(data)
+    }
+
+}
+

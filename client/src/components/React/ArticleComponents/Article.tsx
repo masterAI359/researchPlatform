@@ -59,14 +59,8 @@ export default function Article({ article, index }: ArticleProps) {
     }
 
     const mobileDescription = limitDescription(description)
-
-    console.log(article.image)
-
     const fallbackImage = '/images/logos/fallback.jpg'
     const resizedImage = article.image.img ? article.image.img + '&w=300&p=0&c=7' : fallbackImage
-
-
-
 
     const chooseArticle = (article: ArticleType) => {
 

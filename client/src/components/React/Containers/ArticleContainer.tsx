@@ -15,7 +15,8 @@ export default function ArticleContainer({
 }) {
     const [showSelect, setShowSelect] = useState<boolean>(false)
     const investigateState = useSelector((state: RootState) => state.investigation)
-    const { search, read, getArticle, end } = investigateState
+    const { search, read, getArticle, end, display } = investigateState
+    const { showContent } = display
     const { loading, articles, status } = search
     const { endProcess } = end
     const { chosenArticles } = getArticle
@@ -57,20 +58,7 @@ export default function ArticleContainer({
                                 />
                             </motion.div>}
 
-                        {ContentStatus === 'pending' &&
-                            <motion.div
-                                layout
-                                key='loadingSummaries'
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0, scale: 0 }}
-                                transition={{ type: 'tween', duration: 0.5 }}
-                            >
-                                <SummaryLoader />
-                            </motion.div>
-                        }
-
-                        {ContentStatus === 'fulfilled' &&
+                        {showContent &&
                             <motion.div
                                 layout
                                 key='presentSummaries'

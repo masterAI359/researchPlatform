@@ -16,7 +16,6 @@ export default function HeroContainer({
     const { ContentStatus } = read
     const { showMindMap, showSearch, showContent, showWrapUp, showCompletion } = display
 
-    console.log({ Status: ContentStatus, ShowingContent: showContent })
 
 
     return (

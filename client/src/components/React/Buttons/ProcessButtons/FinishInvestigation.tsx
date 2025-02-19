@@ -1,6 +1,4 @@
 import { useDispatch } from "react-redux"
-import { endInvestigate, endingView } from "@/ReduxToolKit/Reducers/Investigate/EndInvestigation"
-import { initiateFinalProcess } from "@/ReduxToolKit/Reducers/Investigate/Review"
 import { displayCompletion, displayWrapUp } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
 
 export default function EndInvestigateButton() {

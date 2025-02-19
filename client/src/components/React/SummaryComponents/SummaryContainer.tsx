@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux"
 import { fetchSavedArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
 import { useAppdispatch } from "@/Hooks/appDispatch"
 import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
+import SummaryLoader from "../Loaders/SummaryLoader"
 
 export default function SummaryContainer({ }) {
   const investigateState = useSelector((state: RootState) => state.investigation)
@@ -18,19 +19,6 @@ export default function SummaryContainer({ }) {
   const id = useSelector((state: RootState) => state.auth.user_id)
   const appDispatch = useAppdispatch()
   const dispatch = useDispatch()
-
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        type: 'tween',
-        duration: 1,
-        ease: 'easeInOut',
-        delayChildren: 0.3,
-      }
-    }
-  }
 
   useEffect(() => {
 
@@ -59,24 +47,22 @@ export default function SummaryContainer({ }) {
 
   return (
     <ErrorBoundary>
-      <motion.div
-        layout
+      <div
         className="min-h-full 2xl:max-w-7xl xl:max-w-5xl xs:px-2 md:px-8 scroll-smooth
-      inset rounded-4xl mx-auto border-white/10 xs:mt-10 xl:mt-12"
-        variants={container}
-        initial="hidden"
-        animate="show"
-        exit="hidden"
+      inset rounded-4xl mx-auto border-white/10 xs:mt-10 xl:mt-0"
       >
 
         <main
           className="2xl:max-w-6xl h-full w-full mx-auto 
                  transition-all duration-1000 animate-fade-in mb-12 
                  ">
-          {ContentStatus === 'fulfilled' && <div
+
+
+          <div
             className="w-full mx-auto relative">
             <AnimatePresence mode="popLayout">
-              {summaries?.map((articleData: any, index: number) =>
+              {ContentStatus === 'pending' && <SummaryLoader />}
+              {ContentStatus === 'fulfilled' && summaries?.map((articleData: any, index: number) =>
               (currentStory === index && <Summary
                 key={index}
                 index={index}
@@ -84,10 +70,10 @@ export default function SummaryContainer({ }) {
               />)
               )}
             </AnimatePresence>
-          </div>}
+          </div>
         </main>
         {ContentStatus === 'fulfilled' && <FailedSummary />}
-      </motion.div>
+      </div>
     </ErrorBoundary>
 
 

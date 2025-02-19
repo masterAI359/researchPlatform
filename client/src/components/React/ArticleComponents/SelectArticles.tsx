@@ -2,7 +2,9 @@ import { AnimatePresence, motion } from "framer-motion"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { resetResults } from "@/ReduxToolKit/Reducers/Investigate/SearchResults"
-import { displayArticleContent } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
+import { displayArticleContent, displaySearch } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
+import { AppDispatch } from "@/ReduxToolKit/store"
+import { GetArticleContent } from "@/ReduxToolKit/Reducers/Investigate/Reading"
 
 
 interface SendForSummary {
@@ -15,7 +17,8 @@ export default function SelectArticles({ hideSelect }: SendForSummary) {
 
   const { getArticle } = investigateState
   const { chosenArticles } = getArticle
-  const dispatch = useDispatch()
+  const articlesToSummarize = encodeURIComponent(JSON.stringify(chosenArticles))
+  const dispatch = useDispatch<AppDispatch>()
 
   const selectedTotal = chosenArticles.length
   const selectedArticles = `Summarize Articles ${selectedTotal}/3`
@@ -24,6 +27,8 @@ export default function SelectArticles({ hideSelect }: SendForSummary) {
 
     if (chosenArticles.length > 0) {
       dispatch(resetResults())
+      dispatch(displaySearch(false))
+      dispatch(GetArticleContent(articlesToSummarize))
       dispatch(displayArticleContent(true))
     } else {
       console.log("There's nothing to summarize yet")

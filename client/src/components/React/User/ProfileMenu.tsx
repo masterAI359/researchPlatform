@@ -1,12 +1,15 @@
-
+import { getUserInvestigations } from "@/helpers/SupabaseData"
+import { RootState } from "@/ReduxToolKit/store"
+import { useSelector } from "react-redux"
 
 export default function ProfileMenu({ setDislayArticles, displayArticles }) {
+    const id = useSelector((state: RootState) => state.auth.user_id)
 
     return (
         <div className="w-full h-auto flex items-center p-2 bg-white/5 lg:border border-white/5 rounded-lg justify-between mt-2">
 
             <div
-
+                onClick={() => getUserInvestigations(id)}
                 className="w-fit h-auto flex md:text-lg
             text-white xs:text-xs font-light tracking-tight hover:text-blue-500 cursor-pointer
             transition-all duration-200 ease-in-out">

@@ -6,7 +6,8 @@ import { fetchSavedArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/UserC
 import { useAppdispatch } from "@/Hooks/appDispatch"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-
+import SaveInvestigation from "../../Buttons/ProcessButtons/SaveInvestigation"
+import InvestigateMore from "../../Buttons/ProcessButtons/InvestigateMore"
 
 export default function Completed() {
     const appDispatch = useAppdispatch()
@@ -21,7 +22,7 @@ export default function Completed() {
     }, [])
 
     return (
-        <article className="2xl:min-w-[60rem] h-full mx-auto flex flex-col items-center md:gap-y-6">
+        <article className="xs: 2xl:min-w-[60rem] h-full mx-auto flex flex-col items-center md:gap-y-6 relative">
             <header className="h-fit w-full flex justify-center">
                 <h1 className="md:text-3xl text-white tracking-tight font-light">
                     All Done <span className="text-zinc-400">Case Closed</span>
@@ -32,6 +33,11 @@ export default function Completed() {
                     <Lottie animationData={blueCheck} loop={false} autoPlay={false} style={{ height: "100%", width: "100%", position: "relative" }} />
                 </div>
             </main>
+
+            <div className="flex gap-x-4 items-end ">
+                <SaveInvestigation />
+                <InvestigateMore />
+            </div>
         </article>
     )
 }

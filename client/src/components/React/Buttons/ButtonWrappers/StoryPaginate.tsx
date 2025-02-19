@@ -37,16 +37,15 @@ export default function StoryPaginate() {
             </button>
 
             <div className="w-auto mx-auto xl:px-6 h-auto flex items-center justify-between 2xl:gap-2">
-                {summaries
-                    ? pages.map((item, index) => (
-                        <div key={index} className={`cursor-pointer text-lg
+                {summaries ? pages.map((item, index) => (
+                    <div key={index} className={`cursor-pointer text-lg
                          rounded-lg p-2 w-8 h-fit hover:bg-white/20 transition-all ease-in-out duration-300
                          ${currentStory === index ? 'bg-white text-black' : 'bg-white/10 text-white'}`}>
-                            <p className="w-fit mx-auto text-center">
-                                {index + 1}
-                            </p>
-                        </div>
-                    ))
+                        <p className="w-fit mx-auto text-center">
+                            {index + 1}
+                        </p>
+                    </div>
+                ))
                     : null}
 
             </div>

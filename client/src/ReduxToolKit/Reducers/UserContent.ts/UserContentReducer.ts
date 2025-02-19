@@ -7,6 +7,7 @@ interface UserContent {
     status: string,
     userArticles: any,
     error: any,
+
     contextForSupabase: string | null,
     ArticleToReview: any
 }
@@ -34,6 +35,8 @@ export const fetchSavedArticles = createAsyncThunk(
     }
 );
 
+
+
 const UserContentSlice = createSlice({
     name: 'userContent',
     initialState: initialState,
@@ -60,6 +63,7 @@ const UserContentSlice = createSlice({
                 state.status = 'failed';
                 state.error = action.payload
             })
+
 
 
     }

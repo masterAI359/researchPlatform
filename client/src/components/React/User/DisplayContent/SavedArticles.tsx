@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 import ArticleSaved from "./ArticleSaved"
 import ErrorBoundary from "../../ErrorBoundaries/ErrorBoundary"
 
-export default function SavedArticles() {
+export default function SavedArticles({ articleSelect, setDisplayArticles, setDisplayInvestigations }) {
     const { userArticles, error, status } = useSelector((state: RootState) => state.userdata)
 
     useEffect(() => {
@@ -22,7 +22,7 @@ export default function SavedArticles() {
 
                     <article className="w-full flex flex-col gap-y-4 h-auto items-end xs:px-4 md:px-0">
                         {userArticles.map((article: any, index: number) => (
-                            <ArticleSaved key={index} article={article} index={index} />
+                            <ArticleSaved key={index} article={article} index={index} articleSelect={articleSelect} setDisplayArticles={setDisplayArticles} setDisplayInvestigations={setDisplayInvestigations} />
                         ))}
                     </article>
 

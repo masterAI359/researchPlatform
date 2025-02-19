@@ -4,6 +4,7 @@ import { supabase, session } from "@/SupaBase/supaBaseClient";
 import { useDispatch, useSelector } from "react-redux";
 import { useAppdispatch } from "@/Hooks/appDispatch";
 import { fetchSavedArticles, clearUser } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer";
+import { fetchSavedInvestigations, clearUserInvestigations } from "@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations";
 import { RootState } from "@/ReduxToolKit/store";
 
 //TODO: may need to figure out if i can optionally set the state for articles saved status dependant on context upon first render
@@ -24,10 +25,11 @@ export default function SessionManager() {
                 const { id } = session.user
                 dispatch(getID(id))
                 appDispatch(fetchSavedArticles(id))
-
+                appDispatch(fetchSavedInvestigations(id))
 
             } else if (event === 'SIGNED_OUT') {
                 dispatch(clearUser())
+                dispatch(clearUserInvestigations())
 
             } else if (event === 'PASSWORD_RECOVERY') {
 

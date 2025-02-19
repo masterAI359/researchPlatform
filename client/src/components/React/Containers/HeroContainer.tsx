@@ -3,7 +3,6 @@ import SearchHero from "../HeroComponents/SearchHero"
 import SummaryHero from "../HeroComponents/SummaryHero"
 import ReviewWrapper from "../Investigate/Wrappers/ReviewWrapper"
 import CompletionHero from "../HeroComponents/CompletionHero"
-import SummaryLoader from "../Loaders/SummaryLoader"
 import { AnimatePresence, motion } from "framer-motion"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
@@ -13,11 +12,8 @@ import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
 export default function HeroContainer({
 }) {
     const investigateState = useSelector((state: RootState) => state.investigation)
-    const { search, read, end, review, display } = investigateState
-    const { startSearch } = search
-    const { reading, loadingContent, ContentStatus } = read
-    const { wrapUp } = review
-    const { endProcess } = end
+    const { read, display } = investigateState
+    const { ContentStatus } = read
     const { showMindMap, showSearch, showContent, showWrapUp, showCompletion } = display
 
     console.log({ Status: ContentStatus, ShowingContent: showContent })

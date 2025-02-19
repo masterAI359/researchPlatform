@@ -1,4 +1,3 @@
-import { startSearch } from "@/ReduxToolKit/Reducers/Investigate/SearchResults"
 import { isReading } from "@/ReduxToolKit/Reducers/Investigate/Reading"
 import { clearChosenArticles } from "@/ReduxToolKit/Reducers/Investigate/ChosenArticles"
 import { useDispatch } from "react-redux"
@@ -10,7 +9,6 @@ export default function ReturnToSearch() {
     return (
         <button onClick={() => {
             dispatch(isReading(false))
-            dispatch(startSearch(true))
             dispatch(clearChosenArticles())
         }}
             className="my-auto mx-auto rounded-lg transition-all 

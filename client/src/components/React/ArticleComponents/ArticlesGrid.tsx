@@ -6,7 +6,6 @@ import { RootState } from "@/ReduxToolKit/store"
 import ArticleLoader from "../Loaders/ArticleLoader"
 import SearchFailed from "../ErrorMessages/SearchFailed"
 import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
-import TestBoundary from "../ErrorBoundaries/TestBoundary"
 
 
 export default function ArticlesGrid() {

@@ -1,18 +1,16 @@
 import { AnimatePresence, motion } from "framer-motion"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-import { getStories } from "@/ReduxToolKit/Reducers/Investigate/Reading"
-import { startSearch, resetResults } from "@/ReduxToolKit/Reducers/Investigate/SearchResults"
+import { resetResults } from "@/ReduxToolKit/Reducers/Investigate/SearchResults"
 import { displayArticleContent } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
 
 
 interface SendForSummary {
-  loadingSummaries: boolean,
   hideSelect: Function,
   showSelect: boolean,
 }
 
-export default function SelectArticles({ hideSelect, loadingSummaries }: SendForSummary) {
+export default function SelectArticles({ hideSelect }: SendForSummary) {
   const investigateState = useSelector((state: RootState) => state.investigation)
 
   const { getArticle } = investigateState
@@ -25,7 +23,6 @@ export default function SelectArticles({ hideSelect, loadingSummaries }: SendFor
   const handleSummaries = () => {
 
     if (chosenArticles.length > 0) {
-      dispatch(getStories(true))
       dispatch(resetResults())
       dispatch(displayArticleContent(true))
     } else {

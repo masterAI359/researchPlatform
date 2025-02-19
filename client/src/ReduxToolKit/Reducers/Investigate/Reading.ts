@@ -32,7 +32,6 @@ export const GetArticleContent = createAsyncThunk('content/getArticleContent',
 
 interface ReadingState {
 
-    loadingContent: boolean | null,
     getContent: boolean | null,
     summaries: Array<any> | null,
     failedNotifications: Array<any> | null,
@@ -45,7 +44,6 @@ interface ReadingState {
 
 const initialState: ReadingState = {
 
-    loadingContent: false,
     getContent: false,
     summaries: null,
     failedNotifications: null,
@@ -60,9 +58,6 @@ export const ReadingSlice = createSlice({
     name: 'readingReducer',
     initialState: initialState,
     reducers: {
-        loadContent: (state, action) => {
-            state.loadingContent = action.payload
-        },
         getStories: (state, action) => {
             state.getContent = action.payload
         },
@@ -107,8 +102,6 @@ export const ReadingSlice = createSlice({
 
 
 export const {
-    loadContent,
-    getStories,
     articleData,
     rejected,
     incrementStory,

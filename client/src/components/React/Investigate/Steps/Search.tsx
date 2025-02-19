@@ -1,7 +1,6 @@
 import Loader from "../../Loaders/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { getQuery } from "@/ReduxToolKit/Reducers/Investigate/UserPOV";
-import { getStories } from "@/ReduxToolKit/Reducers/Investigate/Reading";
 import { AppDispatch, RootState } from "@/ReduxToolKit/store";
 import { useEffect } from "react";
 import { RetrieveArticles } from "@/ReduxToolKit/Reducers/Investigate/SearchResults";
@@ -30,7 +29,6 @@ export default function Search({ }) {
     if (getContent) {
 
       dispatch(GetArticleContent(articlesToSummarize))
-      dispatch(getStories(false))
       dispatch(displaySearch(false))
     }
 

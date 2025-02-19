@@ -15,13 +15,11 @@ export const RetrieveArticles = createAsyncThunk(
 
 interface ArticleArrayType {
     articles: Array<ArticleType> | null,
-    startSearch: boolean | null,
     status: string
 }
 
 const initialState: ArticleArrayType = {
     articles: null,
-    startSearch: null,
     status: 'idle'
 }
 
@@ -35,9 +33,7 @@ export const SearchResultsSlice = createSlice({
             state.articles = action.payload
         },
         resetResults: () => initialState,
-        startSearch: (state, action) => {
-            state.startSearch = action.payload
-        },
+
     },
     extraReducers: (builder) => {
 
@@ -56,7 +52,7 @@ export const SearchResultsSlice = createSlice({
 
 
 
-export const { searchResults, resetResults, startSearch } = SearchResultsSlice.actions
+export const { searchResults, resetResults } = SearchResultsSlice.actions
 
 export default SearchResultsSlice.reducer
 

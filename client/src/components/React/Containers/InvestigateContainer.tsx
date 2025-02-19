@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { useFetch } from "@/Hooks/useFetch";
 import { AnimatePresence, motion } from "framer-motion";
 import { RootState } from "@/ReduxToolKit/store";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,13 +9,12 @@ import LostConnection from "../ErrorMessages/LostConnection";
 
 export default function InvestigateContainer() {
   const dispatch = useDispatch()
-  const { loadingSummaries, errorMessage } = useFetch()
   const investigateState = useSelector((state: RootState) => state.investigation)
   const signingOut = useSelector((state: RootState) => state.auth.signOut)
   const { notes, read, review, help } = investigateState
   const { gettingHelp } = help
   const { takingNotes } = notes
-  const { gettingContent } = read
+  const { ContentStatus } = read
   const { finiished } = review
   const [notePosition, setNotePosition] = useState({ x: 0, y: 500 })
   const [constraints, setConstraints] = useState(null)
@@ -43,7 +41,7 @@ export default function InvestigateContainer() {
   useEffect(() => {
 
 
-    if (gettingContent) {
+    if (ContentStatus === 'pending') {
       scrollToView()
     }
     if (finiished) {
@@ -55,7 +53,7 @@ export default function InvestigateContainer() {
 
       handleDragConstraints()
     }
-  }, [gettingContent, finiished])
+  }, [finiished])
 
 
   useEffect(() => {
@@ -74,14 +72,12 @@ export default function InvestigateContainer() {
       <HeroContainer
         key={'HeroContainer'}
       />
-      {errorMessage !== null && <LostConnection errorMessage={errorMessage} />}
 
       <div className="w-full h-full grow mx-auto xl:mt-6">
         <motion.div
           key="StoryContainer"
         >
           <ArticleContainer
-            loadingSummaries={loadingSummaries}
           />
         </motion.div>
       </div>

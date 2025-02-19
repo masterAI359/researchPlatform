@@ -12,7 +12,6 @@ import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
 
 
 export default function ArticleContainer({
-    loadingSummaries,
 }) {
     const [showSelect, setShowSelect] = useState<boolean>(false)
     const investigateState = useSelector((state: RootState) => state.investigation)
@@ -98,7 +97,6 @@ export default function ArticleContainer({
                                 <SelectArticles
                                     showSelect={showSelect}
                                     hideSelect={hideSelect}
-                                    loadingSummaries={loadingSummaries}
                                 />
                             </motion.div>
                         </div>

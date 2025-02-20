@@ -1,7 +1,12 @@
+import { RootState } from "@/ReduxToolKit/store"
 import { motion } from "framer-motion"
+import { useSelector } from "react-redux"
 
-export default function Node1({ setCurrentStep, currentStep }) {
-
+export default function Node1({ setCurrentStep }) {
+    const investigateState = useSelector((state: RootState) => state.investigation)
+    const { stepper } = investigateState
+    const { step } = stepper
+    const currentStep = step
 
 
     return (

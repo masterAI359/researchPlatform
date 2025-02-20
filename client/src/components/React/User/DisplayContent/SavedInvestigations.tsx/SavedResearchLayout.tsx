@@ -1,13 +1,13 @@
 import { RootState } from "@/ReduxToolKit/store"
 import { useSelector } from "react-redux"
-import PriorInvestigation from "./Test"
+import PriorInvestigation from "./InvestigationSaved"
 
 
 export default function SavedResearchLayout() {
     const savedInvestigations = useSelector((state: RootState) => state.userWork.userResearch)
 
     return (
-        <section className="lg:p-0 bg-">
+        <section className="lg:p-0 bg-black">
             <div className="px-8 py-12 lg:py-0 mx-auto md:px-12 lg:px-16 xl:px-36 2xl:max-w-7xl">
                 <div className="relative text-left">
                     <span className="text-blue-400"> Investigations </span>

@@ -15,7 +15,7 @@ export default function StepWizard({ currentStep, setCurrentStep }: any) {
             <motion.ol
                 className="flex items-center my-auto justify-center justify-between
          xs:w-full lg:w-5/6 lg:mx-auto xs:h-28 lg:min-h-28 mx-auto">
-                <Node1 setCurrentStep={setCurrentStep} currentStep={currentStep} />
+                <Node1 setCurrentStep={setCurrentStep} />
                 <Node2 setCurrentStep={setCurrentStep} currentStep={currentStep} />
                 <Node3 setCurrentStep={setCurrentStep} currentStep={currentStep} />
                 <Node4 setCurrentStep={setCurrentStep} currentStep={currentStep} />

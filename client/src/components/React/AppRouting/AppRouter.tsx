@@ -6,19 +6,15 @@ import AboutContainer from "../Containers/AboutContainer"
 import Signup from "../Forms/Signup"
 import Login from "../Forms/Login"
 import Profile from "../User/Profile"
-import ResetCredentials from "../Forms/ResetCredentials"
 import ReadSavedArticle from "../User/DisplayContent/ReadSavedArticles"
 import ScrolltoTop from "./ScrollToTop"
 import SessionManager from "./SessionManager"
 import { store } from '../../../ReduxToolKit/store'
 import { Provider } from 'react-redux'
-
-
+import EmailForReset from "../Forms/EmailForReset"
+import UpdatePassword from "../Forms/UpdatePassword"
 
 export default function AppRouter() {
-
-
-
 
     return (
         <Provider store={store}>
@@ -33,7 +29,8 @@ export default function AppRouter() {
                         <Route path='/Signup' element={<Signup />} />
                         <Route path='Login' element={<Login />} />
                         <Route path='/Profile' element={<Profile />} />
-                        <Route path="/ResetCredentials" element={<ResetCredentials />} />
+                        <Route path="/EmailForReset" element={<EmailForReset />} />
+                        <Route path="/UpdatePassword" element={<UpdatePassword />} />
                         <Route path="/SavedArticle" element={<ReadSavedArticle />} />
                     </Route>
                 </Routes>

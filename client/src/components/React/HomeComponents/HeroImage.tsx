@@ -1,12 +1,15 @@
 import { useState } from "react";
 import Loader from "../Loaders/Loader";
 import Search from "../Investigate/Steps/Search";
+import { useSelector } from "react-redux";
+import { RootState } from "@/ReduxToolKit/store";
 
 export default function HeroImage() {
+	const id = useSelector((state: RootState) => state.auth.user_id)
 
 	const [isLoading, setIsLoading] = useState(false)
 
-
+	console.log(id)
 
 	return (
 		<section className='md:p-8 xs:p-4 animate-fade-in duration-700 ease-in'>

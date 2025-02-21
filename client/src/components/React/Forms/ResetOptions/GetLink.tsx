@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { emailValidation } from "@/helpers/validation"
 import { useLocation } from "react-router-dom";
 
-export default function GetLink({ setAllowUpdate }) {
+export default function GetLink({ }) {
     const [emailToReset, setEmailToReset] = useState<string>(null)
     const [validEmail, setValidEmail] = useState<boolean>(null)
     const location = useLocation()
@@ -22,9 +22,8 @@ export default function GetLink({ setAllowUpdate }) {
         e.preventDefault()
         if (validEmail) {
             await supabase.auth.resetPasswordForEmail(emailToReset, {
-                redirectTo: 'http://localhost:5182/ResetCredentials',
+                redirectTo: 'http://localhost:5173/UpdatePassword',
             })
-            setAllowUpdate(true)
         }
 
 

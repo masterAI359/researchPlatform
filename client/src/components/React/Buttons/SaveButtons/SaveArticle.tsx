@@ -5,13 +5,9 @@ import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { useLayoutEffect, useState } from "react"
 import { session } from "@/SupaBase/supaBaseClient"
-import { fetchSavedArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
-import { useAppdispatch } from "@/Hooks/appDispatch"
 
 export default function Bookmark({ dataToSave, showNotification, setShowNotification, open }) {
-    const contextForSupabase = useSelector((state: RootState) => state.userdata.contextForSupabase)
     const id = useSelector((state: RootState) => state.auth.user_id)
-    const dispatch = useAppdispatch()
     const [articleExists, setArticleExists] = useState<boolean>(false)
     const { url } = dataToSave
 
@@ -20,6 +16,8 @@ export default function Bookmark({ dataToSave, showNotification, setShowNotifica
         checkArticle(setArticleExists, url, id)
 
     }, [articleExists, showNotification, session])
+
+    console.log(id)
 
 
     return (

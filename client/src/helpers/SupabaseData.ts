@@ -33,6 +33,7 @@ export const checkArticle = async (
 export const saveArticle = async (dataToSave: SavedArticle, setShowNotification: Function, setArticleExists: Function, articleExists: boolean) => {
 
     const { text, url, id, image_url, summary, title, authors, date, provider, fallbackDate } = dataToSave
+    console.log(id)
 
     if (articleExists) {
         try {

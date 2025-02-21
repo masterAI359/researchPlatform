@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { session, supabase } from "@/SupaBase/supaBaseClient"
@@ -8,14 +8,13 @@ import { useDispatch } from "react-redux";
 import { getEmail } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
 import { showSignOut } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
 import SignOutModal from "../../Forms/SignOutModal";
-import { useNavigate } from "react-router-dom";
 
 const DropdownMenu = ({ isOpen, setIsOpen }) => {
     const signOut = useSelector((state: RootState) => state.auth.signOut)
     const id = useSelector((state: RootState) => state.auth.user_id)
     const email = useSelector((state: RootState) => state.auth.email)
+    const [shortenedEmail, setShortEmail] = useState<string>()
     const dispatch = useDispatch()
-    const navigate = useNavigate()
 
 
     function limitName(name: string) {
@@ -37,8 +36,7 @@ const DropdownMenu = ({ isOpen, setIsOpen }) => {
         let shortString = shortenedArray.join('')
         let emailWithElipses = shortString + '...'
 
-        dispatch(getEmail(emailWithElipses))
-
+        setShortEmail(emailWithElipses)
     }
 
 
@@ -57,18 +55,14 @@ const DropdownMenu = ({ isOpen, setIsOpen }) => {
 
     }
 
-    const redirectUser = () => {
-        console.log('invoked')
-        navigate('/')
-    }
+
 
     const handleLogOut = () => {
 
-        if (id) {
+        if (session) {
             dispatch(showSignOut(true))
             setIsOpen(false)
-            //  redirectUser()
-        } else if (!id) {
+        } else if (!session) {
             setIsOpen(true)
             dispatch(showSignOut(false))
             alert("You're not signed in yet")
@@ -80,24 +74,19 @@ const DropdownMenu = ({ isOpen, setIsOpen }) => {
         console.log(id)
 
         const { data } = supabase.auth.onAuthStateChange((event, session) => {
-            //  console.log(event, session)
 
             if (event === 'INITIAL_SESSION') {
-                // handle initial session
-            } else if (event === 'SIGNED_IN') {
                 retrieveEmail(session)
+
+            } else if (event === 'SIGNED_IN') {
             } else if (event === 'SIGNED_OUT') {
-                // handle sign out event
             } else if (event === 'PASSWORD_RECOVERY') {
-                // handle password recovery event
             } else if (event === 'TOKEN_REFRESHED') {
-                // handle token refreshed event
             } else if (event === 'USER_UPDATED') {
-                // handle user updated event
             }
         })
 
-    }, [session, dispatch, retrieveEmail, supabase])
+    }, [session, dispatch, retrieveEmail, supabase, email])
 
     //top: "calc(100% + 5px)",
 
@@ -131,7 +120,7 @@ const DropdownMenu = ({ isOpen, setIsOpen }) => {
 
                 <div className="w-full h-auto flex items-center">
 
-                    <p className="text-white font-light 2xl:text-md group-hover:text-blue-400 transition-all duration-200 ease-in-out whitespace-nowrap">{email ? email : 'Account'}</p>
+                    <p className="text-white font-light 2xl:text-md group-hover:text-blue-400 transition-all duration-200 ease-in-out whitespace-nowrap">{email ? shortenedEmail : 'Account'}</p>
 
 
                 </div>

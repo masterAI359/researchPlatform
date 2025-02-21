@@ -9,7 +9,6 @@ export default function DeskTopContent() {
     const signedIn = useSelector((state: RootState) => state.auth.signedIn)
     const [isOpen, setIsOpen] = useState<boolean>(false)
 
-    useEffect(() => { console.log(signedIn) }, [signedIn])
 
     return (
         <div className={`fixed top-0 w-full inset-x-0 z-30 md:block xs:hidden sm:hidden transition-all duration-200 ease-in-out delay-200

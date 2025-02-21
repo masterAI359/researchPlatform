@@ -8,13 +8,7 @@ export default function StoryPaginate() {
     const { read } = investigateState
     const { currentStory, summaries, ContentStatus } = read
     const dispatch = useDispatch()
-    let pages;
 
-    if (ContentStatus === 'fulfilled' && summaries.length > 0) {
-        pages = Array.from({ length: summaries.length })
-    } else {
-        pages = 0
-    }
 
     return (
         <div className="w-auto h-auto p-1 flex gap-x-0 items-center">
@@ -37,7 +31,7 @@ export default function StoryPaginate() {
             </button>
 
             <div className="w-auto mx-auto xl:px-6 h-auto flex items-center justify-between 2xl:gap-2">
-                {summaries ? pages.map((item, index) => (
+                {summaries?.map((item, index) => (
                     <div key={index} className={`cursor-pointer text-lg
                          rounded-lg p-2 w-8 h-fit hover:bg-white/20 transition-all ease-in-out duration-300
                          ${currentStory === index ? 'bg-white text-black' : 'bg-white/10 text-white'}`}>
@@ -45,13 +39,12 @@ export default function StoryPaginate() {
                             {index + 1}
                         </p>
                     </div>
-                ))
-                    : null}
+                ))}
 
             </div>
 
             <button
-                onClick={() => currentStory + 2 <= pages.length ? dispatch(incrementStory()) : null}
+                onClick={() => currentStory + 2 <= summaries.length ? dispatch(incrementStory()) : null}
                 className={`
                 xl:w-16 xl:h-12 bg-white hover:bg-white/10 rounded-2xl
                 mx-auto flex items-center justify-center xl:p-2 group transition-all duration-200 ease-in-out`}>

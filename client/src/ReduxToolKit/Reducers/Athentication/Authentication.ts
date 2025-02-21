@@ -1,8 +1,29 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { supabase } from "@/SupaBase/supaBaseClient";
 
-interface Authentication {
 
+export const fetchUserCredentials = createAsyncThunk(
+    'user/credentials',
+    async (thunkAPI) => {
+        try {
+            const { data: { session } } = await supabase.auth.getSession()
+
+            if (session) {
+                console.log(session)
+                return session
+            }
+
+        } catch (error) {
+            if (error) {
+                console.log(error)
+            }
+        }
+
+    }
+)
+
+interface Authentication {
+    activeSession: any,
     authenticated: boolean | null,
     username: string | null,
     password: string | null,
@@ -10,11 +31,12 @@ interface Authentication {
     signOut: boolean | null,
     signedIn: boolean | null,
     user_id: string | null,
+    status: string
 }
 
 
 const initialState: Authentication = {
-
+    activeSession: null,
     authenticated: null,
     username: null,
     password: null,
@@ -22,6 +44,7 @@ const initialState: Authentication = {
     signOut: false,
     signedIn: false,
     user_id: null,
+    status: 'idle'
 };
 
 
@@ -56,6 +79,21 @@ export const AuthenticationSlice = createSlice({
             state.user_id = action.payload
         },
         clearAuthSlice: () => { return initialState }
+    },
+    extraReducers: (builder) => {
+
+        builder
+            .addCase(fetchUserCredentials.pending, (state, action) => {
+                state.status = 'pending'
+            })
+            .addCase(fetchUserCredentials.fulfilled, (state, action) => {
+                state.status = 'fulfilled';
+                state.user_id = action.payload.user.id
+                state.email = action.payload.user.email
+            })
+            .addCase(fetchUserCredentials.rejected, (state, action) => {
+                state.status = 'rejected'
+            })
     }
 });
 

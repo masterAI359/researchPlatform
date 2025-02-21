@@ -95,7 +95,7 @@ export default function Login() {
                             <div>
                                 <p className="font-medium text-sm leading-tight text-white mx-auto">Forgot your password?
 
-                                    <Link className="text-white underline hover:text-blue-400 ml-3" to={'/ResetCredentials'}>
+                                    <Link className="text-white underline hover:text-blue-400 ml-3" to={'/EmailForReset'}>
 
                                         Reset Password
                                     </Link>

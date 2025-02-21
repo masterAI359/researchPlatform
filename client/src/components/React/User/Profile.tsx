@@ -1,23 +1,29 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { AppDispatch } from "@/ReduxToolKit/store";
 import { RootState } from "@/ReduxToolKit/store";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import ProfileMenu from "./ProfileMenu";
 import SavedArticles from "./DisplayContent/SavedArticles";
-import SavedInvestigations from "./DisplayContent/SavedInvestigations.tsx/SavedInvestigations";
 import SavedResearchLayout from "./DisplayContent/SavedInvestigations.tsx/SavedResearchLayout";
+import { fetchSavedArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer";
+import { fetchSavedInvestigations } from "@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations";
 import { SideBar } from "./ProfileMenu";
 
 export default function Profile() {
     const [displayArticles, setDisplayArticles] = useState<boolean>(false)
     const [displayInvestigations, setDisplayInvestigations] = useState<boolean>(true)
     const id = useSelector((state: RootState) => state.auth.user_id)
-    const { userArticles, error, status } = useSelector((state: RootState) => state.userdata)
+    const activeSession = useSelector((state: RootState) => state.auth.activeSession)
+    const status = useSelector((state: RootState) => state.auth.status)
+    const dispatch = useDispatch<AppDispatch>()
 
 
-    useEffect(() => {
+    useLayoutEffect(() => {
 
+        dispatch(fetchSavedArticles(id))
+        dispatch(fetchSavedInvestigations(id))
 
-    }, [id, userArticles, error, status])
+    }, [id])
 
 
     const handleArticleSelection = () => {

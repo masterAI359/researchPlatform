@@ -3,33 +3,38 @@ import { useEffect } from "react";
 import { supabase, session } from "@/SupaBase/supaBaseClient";
 import { useDispatch, useSelector } from "react-redux";
 import { useAppdispatch } from "@/Hooks/appDispatch";
+import { fetchUserCredentials } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
 import { fetchSavedArticles, clearUser } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer";
 import { fetchSavedInvestigations, clearUserInvestigations } from "@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations";
 import { RootState } from "@/ReduxToolKit/store";
 
-//TODO: may need to figure out if i can optionally set the state for articles saved status dependant on context upon first render
 
 export default function SessionManager() {
     const id = useSelector((state: RootState) => state.auth.user_id)
+    const status = useSelector((state: RootState) => state.auth.status)
     const appDispatch = useAppdispatch()
     const dispatch = useDispatch()
+
+    const restoreSession = async () => {
+        const { data: { session } } = await supabase.auth.getSession();
+        console.log('Restored session:', session);
+    };
+
+
 
 
     useEffect(() => {
 
         const { data } = supabase.auth.onAuthStateChange((event, session) => {
 
-            if (event === 'INITIAL_SESSION') {
 
+
+            if (event === 'INITIAL_SESSION') {
+                appDispatch(fetchUserCredentials())
             } else if (event === 'SIGNED_IN') {
-                const { id } = session.user
-                dispatch(getID(id))
-                appDispatch(fetchSavedArticles(id))
-                appDispatch(fetchSavedInvestigations(id))
+                appDispatch(fetchUserCredentials())
 
             } else if (event === 'SIGNED_OUT') {
-                dispatch(clearUser())
-                dispatch(clearUserInvestigations())
 
             } else if (event === 'PASSWORD_RECOVERY') {
 
@@ -42,6 +47,7 @@ export default function SessionManager() {
 
         return () => {
             data.subscription.unsubscribe()
+
         }
 
 

@@ -12,7 +12,6 @@ export default function HelpButton({ info }) {
     const dispatch = useDispatch()
 
 
-    console.log(info[0])
 
     const handleExpand = () => {
         dispatch(getHelp(true))

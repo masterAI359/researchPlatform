@@ -3,14 +3,23 @@ import { showSignOut, clearAuthSlice } from "@/ReduxToolKit/Reducers/Athenticati
 import { useDispatch } from "react-redux";
 import { motion } from "framer-motion";
 import { supabase, session } from "@/SupaBase/supaBaseClient";
+import { useNavigate } from "react-router-dom";
 
 const variants = {
     closed: { opacity: 0 },
     open: { opacity: 1 }
 }
 
+
+
 export default function SignOutModal({ }) {
+    const navigate = useNavigate()
     const dispatch = useDispatch()
+
+    const redirectUser = () => {
+        console.log('invoked')
+        navigate('/')
+    }
 
     const signOutUser = async () => {
 
@@ -21,6 +30,7 @@ export default function SignOutModal({ }) {
         } else {
             dispatch(clearAuthSlice())
             dispatch(showSignOut(false))
+            redirectUser()
             console.log(session)
             console.log("Signed Out successfully")
         }

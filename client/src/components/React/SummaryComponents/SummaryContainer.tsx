@@ -1,4 +1,3 @@
-import { Summary } from "./SuccessFull/Summary"
 import { AnimatePresence, motion } from "framer-motion"
 import FailedSummary from "./Failed/FailedSummary"
 import { useSelector } from "react-redux"
@@ -11,6 +10,7 @@ import { fetchSavedArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/UserC
 import { useAppdispatch } from "@/Hooks/appDispatch"
 import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
 import SummaryLoader from "../Loaders/SummaryLoader"
+import Summary from "./SuccessFull/Summary"
 
 export default function SummaryContainer({ }) {
   const investigateState = useSelector((state: RootState) => state.investigation)

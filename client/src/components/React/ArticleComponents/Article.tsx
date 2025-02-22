@@ -85,7 +85,7 @@ export default function Article({ article, index }: ArticleProps) {
             onClick={() => { chooseArticle(article) }}
             key={name}
             className={`group cursor-pointer lg:min-h-96 lg:max-h-96 lg:min-w-96 xs:max-h-60 xs:min-h-60 xs:max-w-60 relative mx-auto rounded-3xl text-white 
-            lg:opacity-90 md:hover:opacity-100 bg-ebony md:hover:scale-110 transition-all ease-in-out duration-300 overflow-y-hidden
+            lg:opacity-90 md:hover:opacity-100 bg-ebony transition-all ease-in-out duration-300 overflow-y-hidden
             
             ${isHilighted ? "border-2 border-blue-500 shadow-black" : "shadow"}`}
         >

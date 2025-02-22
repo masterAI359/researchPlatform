@@ -21,7 +21,7 @@ export default function Retrospect() {
 
         <div className="w-full h-full flex flex-col mx-auto gap-y-2">
             <header className="w-auto mx-auto mb-4">
-                <h1 className="text-white font-light text-xl">
+                <h1 className="text-white font-light text-sm 2xl:text-xl">
                     What's your perspective now?
                 </h1>
             </header>

@@ -3,16 +3,15 @@ import { motion } from 'framer-motion'
 export default function MindNode2({ currentStep }) {
 
     return (
-        <div className='h-full w-fit absolute xs:left-1 xs:top-24 md:left-4 md:top-40 xl:left-5 2xl:top-32'>
+        <div className='h-full w-fit absolute md:left-4 md:top-40'>
 
             <div className={`${currentStep < 1 ? 'opacity-100 pointer-events-none' : 'opacity-100 pointer-events-auto'} 
         transition-all duration-200 ease-in-out ${currentStep === 1 ? 'scale-110' : null}
-         bg-ebony xs:h-12 xs:w-28 lg:w-36 lg:h-14 p-3 relative flex items-center justify-beetween
+         bg-ebony w-36 h-12 p-1 relative flex items-center justify-beetween
          ${currentStep < 1 ? 'border border-2 border-button_gray' : 'border border-2 border-button_blue'} rounded-3xl`}>
                 <div className='flex gap-2 items-center w-full h-full box-border'>
                     <motion.div
-                        className="flex items-center justify-center rounded-full xs:max-w-7 xs:max-h-7
-                 lg:max-h-10 lg:max-w-10 xs:p-0.5 sm:p-1 md:1.5  shrink-0 z-10 hover:cursor-pointer transition-all duration-300"
+                        className="flex items-center justify-center rounded-full max-h-9 max-w-9 p-0.5 shrink-0 z-10 hover:cursor-pointer transition-all duration-300"
                         animate={{
                             backgroundColor: currentStep >= 2 ? "#2563eb" : "#374151",
                             boxShadow: currentStep === 1

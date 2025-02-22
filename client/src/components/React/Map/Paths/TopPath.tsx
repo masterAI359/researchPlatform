@@ -3,7 +3,7 @@ import { motion } from "framer-motion"
 
 export default function TopPath({ currentStep }) {
 
-    return (<div className="z-1 mx-auto xl:h-20 xl:mt-4 xs:w-36 md:w-60 flex flex-col">
+    return (<div className="z-1 mx-auto xl:h-20 xl:mt-5 w-60 flex flex-col">
         <motion.div
             animate={{ backgroundColor: currentStep === 0 ? "#374151" : "#2563eb" }}
             transition={{ type: 'tween', duration: 0.8 }}

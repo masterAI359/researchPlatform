@@ -4,7 +4,7 @@ interface FinishedState {
     wrapUp: boolean | null,
     endingPerspective: string | null,
     newConcepts: boolean | null,
-    newPOV: boolean | null
+    newPOV: string | null
     wantedMore: boolean | null,
     merit: boolean | null,
     movedOnIdea: boolean | null,

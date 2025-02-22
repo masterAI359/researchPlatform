@@ -3,10 +3,7 @@ import { motion } from 'framer-motion';
 import SummaryHeader from './SummaryHeader';
 import SummaryContent from './SummaryContent';
 
-
-//TODO: implement inserting of saved article data to the 'articles' table in our database
-
-export function Summary({ articleData, index }) {
+export default function Summary({ articleData, index }) {
     const [fullStory, setFullStory] = useState(true);
     const {
         summary,

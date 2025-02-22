@@ -74,20 +74,11 @@ export default function ArticleContainer({
                 </div>
                 <AnimatePresence>
                     {articles &&
-                        <div className="relative w-full h-auto flex justify-start">
-                            <motion.div
-                                key='selectArticles'
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 1, delay: 1 }}
-                            >
-                                <SelectArticles
-                                    showSelect={showSelect}
-                                    hideSelect={hideSelect}
-                                />
-                            </motion.div>
-                        </div>
+
+                        <SelectArticles
+                            showSelect={showSelect}
+                            hideSelect={hideSelect}
+                        />
                     }
 
                 </AnimatePresence>

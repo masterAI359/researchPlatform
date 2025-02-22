@@ -19,8 +19,8 @@ export default function ChecksButton({ index, button, answer, setterFunction }) 
                  xs:w-28 xs:h-9 lg:w-32 lg:h-12 2xl:p-2 2xl:h-12 2xl:w-36 cursor-pointer bg-white hover:bg-white/5 
                   text-white rounded-lg transition-all duration-200 ease-inout group
                  "> {button === true
-                ? <p className="text-black group-hover:text-white xs:text-md 2xl:text-lg">Yes</p>
-                : <p className="text-black group-hover:text-white xs:text-md 2xl:text-lg">No</p>}
+                ? <p className="text-black group-hover:text-white text-sm 2xl:text-lg">Yes</p>
+                : <p className="text-black group-hover:text-white text-sm 2xl:text-lg">No</p>}
             <div
                 className="lg:min-h-10 lg:min-w-10 lg:max-h-10 lg:min-w-10 lg:p-0.5
              xs:max-w-7 xs:max-h-7 xs:min-w-7 xs:min-h-7 absolute xs:right-1 z-0 

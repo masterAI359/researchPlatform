@@ -17,8 +17,13 @@ export default function MindMap({ }) {
 
     return (
         <div
-            className="text-white xs:h-fit md:h-full w-10/12 bg-white/10
+            className="md:h-full w-10/12 bg-white/10
         mx-auto flex flex-col rounded-4xl relative">
+            <header className="h-auto w-full mx-auto">
+                <h1 className="text-zinc-400 text-3xl font-light tracking-tight text-center pt-2">
+                    Mind Map
+                </h1>
+            </header>
             <TopPath currentStep={step} />
             <MiddlePath currentStep={step} />
             <BottomPath currentStep={step} />

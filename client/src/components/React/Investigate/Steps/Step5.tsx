@@ -18,9 +18,9 @@ export default function Step5({ containerWidth }) {
 
     return (
         <div style={{ flexShrink: 0, maxWidth: containerWidth }}
-            className='xs:w-full
-      text-center mx-auto xs:h-full box-border flex xs:px-2 basis-full'>
-            <div className="block box-border w-full max-w-full mx-auto px-0 md:px-2 2xl:h-full no-scrollbar">
+            className='xs:w-full text-center mx-auto xs:h-full 
+            box-border flex xs:px-2 basis-full items-center'>
+            <div className="block box-border w-full max-w-full mx-auto px-0 md:px-2  md:h-full no-scrollbar">
                 <div className="w-full h-full mx-auto flex flex-col">
                     <div className="w-full h-auto border-b border-white/10 mb-4">
                         <header className="w-full box-border h-auto flex flex-row xs:gap-x-4 md:gap-x-8 items-center">
@@ -36,16 +36,20 @@ export default function Step5({ containerWidth }) {
                             </div>
                         </header>
                     </div>
-                    <main className="w-fit h-full flex flex-col justify-start xs:gap-y-4 md:gap-y-2 xl:mt-6">
+                    <main className="w-fit h-full flex flex-col justify-start md:justify-center gap-y-4 md:gap-y-2 xl:mt-16">
                         <div className="w-full h-full flex flex-col gap-y-4">
-                            <p className="text-xs xl:text-lg w-fit text-zinc-400 font-light tracking-tight text-left">
-                                Evaluating: <span className="text-white font-light tracking-tight">{idea}</span>
+                            <p className="text-xs xl:text-lg w-fit text-white font-light tracking-tight text-left">
+                                The idea: <span className="text-zinc-400 font-light tracking-tight">
+                                    <em>
+                                        {idea}
+                                    </em>
+                                </span>
                             </p>
                             <p className="text-xs xl:text-lg w-fit text-white font-light tracking-tight text-left">
-                                It's time to look for some evidence to support the claim
+                                Let's look for some evidence to support the idea you're evaluating
                             </p>
                         </div>
-                        <div className="w-fit h-fit 2xl:mt-0 mt-2 mx-auto">
+                        <div className="w-fit h-fit 2xl:mt-0 mt-2 mx-auto md:mx-0">
                             <motion.button
                                 onClick={beginSearch}
                                 whileTap={{ scale: 0.95 }}

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 export default function MiddlePath({ currentStep }) {
 
     return (
-        <div className="z-1 mx-auto xs:w-36 md:w-60 md:h-36 2xl:h-28 flex justify-between">
+        <div className="z-1 mx-auto w-60 h-24 flex justify-between">
 
             <div className="flex flex-col justify-center min-h-full">
                 <motion.div

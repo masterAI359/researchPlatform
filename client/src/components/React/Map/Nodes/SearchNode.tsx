@@ -4,18 +4,16 @@ import { motion } from "framer-motion"
 export default function SearchNode({ currentStep }) {
 
     return (
-        <div className="w-fit h-fit absolute xs:bottom-3 md:bottom-6 lg:bottom-9 left-1/2 left-1/2 transform -translate-x-1/2">
-            <div className={`xs:h-12 xs:w-32 lg:w-36 lg:h-14 p-3 bg-ebony border border-3 border-button_blue
-                 rounded-3xl flex items-center xs:gap-x-2 md:gap-x-6 shadow-material transition-all duration-200 ease-in-out
-                 ${currentStep === 4 ? 'scale-110 pointer-events-auto' : 'scale-100 pointer-events-none'}
+        <div className="w-fit h-fit absolute xs:bottom-3 md:bottom-6 left-1/2 left-1/2 transform -translate-x-1/2">
+            <div className={` w-36 h-12 p-1 bg-ebony border border-3 border-button_blue
+                 rounded-3xl flex items-center xs:gap-x-2 md:gap-x-6 transition-all duration-200 ease-in-out
                   ${currentStep < 4 ? 'border border-2 border-button_gray' : 'border border-2 border-button_blue'}
                  `}>
                 <motion.div
-                    className="flex items-center justify-center rounded-full xs:max-w-7
-                 xs:max-h-7 lg:max-h-10 lg:max-w-10 xs:p-0.5 sm:p-1 md:1.5 shrink-0 z-10
+                    className="flex items-center justify-center rounded-full max-h-9 max-w-9 p-0.5  shrink-0 z-10
                   hover:cursor-pointer"
                     animate={{
-                        backgroundColor: currentStep <= 4 ? "#374151" : "#2563eb",
+                        backgroundColor: currentStep < 4 ? "#374151" : "#2563eb",
                         boxShadow: currentStep === 4
                             ? "0 0 0 2px rgba(37, 99, 235, 1)"
                             : "none"

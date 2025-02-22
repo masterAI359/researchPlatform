@@ -1,7 +1,7 @@
 import { RootState } from "@/ReduxToolKit/store"
 import { AnimatePresence } from "framer-motion"
 import { useSelector, useDispatch } from "react-redux"
-import { Summary } from "../../SummaryComponents/SuccessFull/Summary"
+import Summary from "../../SummaryComponents/SuccessFull/Summary"
 import BackToSavedArticles from "../../Buttons/NavigatingButtons/BackToSavedArticles"
 
 export default function ReadSavedArticle() {

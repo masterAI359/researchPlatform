@@ -22,14 +22,14 @@ export default function Completed() {
     }, [])
 
     return (
-        <article className="xs: 2xl:min-w-[60rem] h-full mx-auto flex flex-col items-center md:gap-y-6 relative">
+        <article className="2xl:min-w-[60rem] h-fit md:h-full mx-auto flex flex-col items-center md:gap-y-6 relative">
             <header className="h-fit w-full flex justify-center">
                 <h1 className="md:text-3xl text-white tracking-tight font-light">
                     All Done <span className="text-zinc-400">Case Closed</span>
                 </h1>
             </header>
             <main className="w-full h-full flex items-center justify-center">
-                <div className="w-1/4 h-fit">
+                <div className="w-1/2 md:w-1/4 h-fit">
                     <Lottie animationData={blueCheck} loop={false} autoPlay={false} style={{ height: "100%", width: "100%", position: "relative" }} />
                 </div>
             </main>

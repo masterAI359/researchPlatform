@@ -8,7 +8,7 @@ export default function InvestigateHero({ }) {
       <div className={`mx-auto 2xl:max-w-7xl xs:w-dvw
    w-full rounded-4xl no-scrollbar flex flex-col items-center px-12
     relative h-[30rem] py-16 lg:pt-6 transition-all duration-700 ease-in-out 
-    2xl:h-[37rem] 2xl:mt-12 bg-gradientdown relative
+    2xl:h-[32rem] 2xl:mt-16 bg-gradientdown relative
     `}>
 
         <POVWrapper

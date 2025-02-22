@@ -6,12 +6,12 @@ export default function MindNode4({ currentStep }) {
     return (
         <div className={`${currentStep >= 3 ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-100'} 
         ${currentStep === 3 ? 'scale-110' : null} transition-all duration-200 ease-in-out
-        bg-ebony xs:h-12 xs:w-28 lg:w-36 lg:h-14 p-3 absolute xs:bottom-20 md:bottom-40 2xl:bottom-32 left-1/2 left-1/2 transform -translate-x-1/2
-        flex items-center xs:gap-x-2 md:gap-x-6 rounded-3xl cursor-pointer shadow-material
+        bg-ebony w-36 h-12 p-1 absolute bottom-28 left-1/2 left-1/2 transform -translate-x-1/2
+        flex items-center xs:gap-x-2 md:gap-x-6 rounded-3xl cursor-pointer
          ${currentStep < 3 ? 'border border-2 border-button_gray' : 'border border-2 border-button_blue'}`}>
             <motion.div
-                className="flex items-center justify-center rounded-full xs:max-w-7 xs:max-h-7
-                lg:max-h-10 lg:max-w-10 xs:p-0.5 sm:p-1 md:1.5 shrink-0 z-10 hover:cursor-pointer transition-all duration-300"
+                className="flex items-center justify-center rounded-full max-h-9 max-w-9 
+                 shrink-0 z-10 hover:cursor-pointer transition-all duration-300"
                 animate={{
                     backgroundColor: currentStep <= 3 ? "#374151" : "#2563eb",
                     boxShadow: currentStep === 3

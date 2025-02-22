@@ -9,20 +9,21 @@ export default function Stance({ }) {
     const { review } = investigateState
     const { takeAway, newPOV } = review
 
+    console.log(takeAway)
 
     return (
         <section
-            className="xs:w-full xs:h-full xs:px-6 flex flex-col xs:gap-y-1 items-center content-center mx-auto">
+            className="w-full h-full xs:px-6 flex flex-col gap-y-1 items-center content-center mx-auto">
             <header className="xs:w-full border-b border-white/10 md:mb-2 flex justify-start">
                 <div className="w-full h-auto">
-                    <h1 className="xs:text-md w-full lg:text-lg lg:mb-2 2xl:text-xl text-white font-light tracking-tight">
+                    <h1 className="text-sm w-full lg:text-lg lg:mb-2 2xl:text-xl text-white font-light tracking-tight">
                         {newPOV ? 'So you changed your stance, what moved you?' : 'What validated your initial thoughts?'}
                     </h1>
                 </div>
             </header>
-            <main className="xs:w-full xs:h-auto mx-auto xs:mb-8">
-                <div className="w-full xs:h-32 2xl:h-52 bg-white/10 rounded-lg">
-                    <StepsEditor context={takeAway} setterFunction={newPOV} />
+            <main className="xs:w-full xs:h-auto mx-auto mb-4">
+                <div className="w-full xs:h-36 2xl:h-52 bg-white/10 rounded-lg">
+                    <StepsEditor context={takeAway} setterFunction={getTakeAways} />
                 </div>
             </main>
 

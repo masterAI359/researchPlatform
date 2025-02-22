@@ -1,19 +1,20 @@
+import { backToStart } from "@/ReduxToolKit/Reducers/Investigate/Steps"
 import { RootState } from "@/ReduxToolKit/store"
 import { motion } from "framer-motion"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 export default function Node1({ setCurrentStep }) {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { stepper } = investigateState
     const { step } = stepper
     const currentStep = step
-
+    const dispatch = useDispatch()
 
     return (
         <li className="flex flex-col md:w-full xs:w-full xs:h-20 lg:h-28 items-center">
             <div className="flex items-center justify-center w-full h-full box-border">
                 <motion.div
-                    onClick={() => setCurrentStep(0)}
+                    onClick={() => dispatch(backToStart())}
                     className="flex items-center justify-self-start justify-center shrink-0 box-border xs:max-w-7 xs:max-h-7
                             lg:max-h-12 lg:max-w-12 xs:p-0.5 sm:p-1 md:1.5 lg:p-2 rounded-full z-10 hover:cursor-pointer transition-all duration-300 hover:scale-110"
                     animate={{

@@ -5,10 +5,10 @@ export default function POVWrapper({ }) {
 
     return (
         <main
-            className="flex mx-auto items-center my-auto box-border w-full h-fit justify-center">
+            className="flex mx-auto my-auto box-border w-full h-fit">
             <WindowContainer
             />
-            <div className="xs:hidden 2xl:mt-8 md:block w-fit h-fit flex items-center">
+            <div className="hidden 2xl:mt-8 md:block w-fit h-fit flex items-center">
                 <MapContainer />
 
             </div>

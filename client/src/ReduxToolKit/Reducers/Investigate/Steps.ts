@@ -34,9 +34,11 @@ export const StepSlice = createSlice({
 
             state.step -= 1
         },
-
         incrementBy: (state, action: PayloadAction<number>) => {
             state.step += action.payload
+        },
+        backToStart: (state) => {
+            state.step = 0
         },
         denyIncrement: (state, action) => {
             state.denied = action.payload
@@ -50,6 +52,6 @@ export const StepSlice = createSlice({
 })
 
 
-export const { increment, decrement, incrementBy, denyIncrement, acceptedInput } = StepSlice.actions
+export const { increment, decrement, incrementBy, denyIncrement, acceptedInput, backToStart } = StepSlice.actions
 
 export default StepSlice.reducer

@@ -1,13 +1,20 @@
 import { motion } from "framer-motion";
+import { useSelector, useDispatch } from "react-redux";
+import { incrementBy } from "@/ReduxToolKit/Reducers/Investigate/Steps";
+import { RootState } from "@/ReduxToolKit/store";
 
-
-export default function ({ currentStep, setCurrentStep }) {
+export default function ({ }) {
+    const investigateState = useSelector((state: RootState) => state.investigation)
+    const { stepper } = investigateState
+    const { step } = stepper
+    const currentStep = step
+    const dispatch = useDispatch()
 
     return (
         <li className="flex flex-col md:w-full xs:w-full xs:h-20 lg:h-28 items-center">
             <div className="flex  items-center justify-center w-full h-full">
                 <motion.div
-                    onClick={() => setCurrentStep(2)}
+                    onClick={() => dispatch(incrementBy(2))}
                     className="flex items-center justify-center rounded-full xs:max-w-7 xs:max-h-7
                  lg:max-h-12 lg:max-w-12 xs:p-0.5 sm:p-1 md:1.5 lg:p-2  shrink-0 z-10 hover:cursor-pointer transition-all duration-300 hover:scale-110"
                     animate={{

@@ -4,11 +4,11 @@ import StepControl from "../Buttons/StepButtons/StepControl";
 export default function InvestigateHero({ }) {
 
   return (
-    <section className={`lg:py-8 xs:py-4 transition-all animate-fade-in delay-1000 duration-500 ease-in-out`}>
+    <section className="lg:py-8 py-4 transition-all animate-fade-in delay-1000 duration-500 ease-in-out">
       <div className={`mx-auto 2xl:max-w-7xl xs:w-dvw
-   w-full rounded-[3rem] no-scrollbar flex flex-col items-center px-12
-    relative xs:h-[28rem] lg:pt-6 sm:pt-20 opacity-100 transition-all duration-700 ease-in-out 
-    2xl:h-[37rem] bg-gradientdown relative
+   w-full rounded-4xl no-scrollbar flex flex-col items-center px-12
+    relative h-[30rem] py-16 lg:pt-6 transition-all duration-700 ease-in-out 
+    2xl:h-[37rem] 2xl:mt-12 bg-gradientdown relative
     `}>
 
         <POVWrapper

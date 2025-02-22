@@ -165,7 +165,7 @@ const DropdownMenu = ({ isOpen, setIsOpen }) => {
                                     className="h-full w-full grow" to='/Profile' >My Profile</Link>
 
                             </li>}
-                            <li
+                            {!id && <li
                                 key="Signup"
                                 className="text-white flex font-light border-b border-white/10 hover:text-blue-400"
                                 style={{
@@ -177,8 +177,8 @@ const DropdownMenu = ({ isOpen, setIsOpen }) => {
                                 <Link
                                     onClick={() => { setIsOpen(false); }}
                                     className="min-h-full w-full grow" to='/Signup'>Sign up</Link>
-                            </li>
-                            <li
+                            </li>}
+                            {!id && <li
                                 key="Login"
                                 className="text-white box-content flex font-light border-b border-white/10 hover:text-blue-400"
                                 style={{
@@ -191,8 +191,8 @@ const DropdownMenu = ({ isOpen, setIsOpen }) => {
                                     onClick={() => { setIsOpen(false); }}
                                     className="min-h-full w-full grow" to={'/Login'}>Log in</Link>
                             </li>
-
-                            <li
+                            }
+                            {id && <li
                                 key="Logout"
                                 className="text-white flex font-light border-b border-white/10 hover:text-blue-400"
                                 style={{
@@ -203,7 +203,7 @@ const DropdownMenu = ({ isOpen, setIsOpen }) => {
                             >
                                 Log out
 
-                            </li>
+                            </li>}
                         </ul>
                     </motion.div>
                 )}

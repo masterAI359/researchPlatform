@@ -1,7 +1,7 @@
 import { RootState } from "@/ReduxToolKit/store"
 import { useEffect } from "react"
-import { useSelector } from "react-redux"
-
+import { useDispatch, useSelector } from "react-redux"
+import { saveInvestigation } from "@/helpers/SupabaseData"
 
 
 export default function InvestigateMore() {
@@ -10,6 +10,7 @@ export default function InvestigateMore() {
     const { pov, review } = investigateState
     const { idea, premises, perspective, biases } = pov
     const { endingPerspective, newConcepts, newPOV, takeaway } = review
+    const dispatch = useDispatch()
 
     const investigateData = {
         idea: idea,
@@ -27,8 +28,11 @@ export default function InvestigateMore() {
 
     const stringifiedData = JSON.stringify(storedInvestigation)
 
+
+
     const storeUserWork = () => {
         localStorage.setItem("userWork", stringifiedData)
+        dispatch({ type: 'clear' })
     }
 
     useEffect(() => {
@@ -38,6 +42,7 @@ export default function InvestigateMore() {
 
         return () => {
             console.log(retrievedStorage)
+            saveInvestigation(retrievedStorage)
         }
     }, [])
 
@@ -45,9 +50,9 @@ export default function InvestigateMore() {
     return (
         <button
             onClick={storeUserWork}
-            className="w-auto bg-white hover:bg-white/10 group shadow-thick 
+            className="2xl:w-60 bg-white hover:bg-white/10 group shadow-thick 
                     transition-colors duration-200 ease-in-out rounded-full h-fit py-2 px-4 mx-auto flex items-center">
-            <p className="text-black text-xs text-nowrap group-hover:text-white font-light text-center">
+            <p className="text-black w-full text-xs 2xl:text-lg text-nowrap group-hover:text-white font-light text-center">
                 Investigate More <span className="ml-2">&#8594;</span>
             </p>
         </button>

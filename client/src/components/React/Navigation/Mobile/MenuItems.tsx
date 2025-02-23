@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 
 
-export default function MenuItem({ id, text, link, isOpen, toggle }) {
+export default function MenuItem({ id, text, link, isOpen, toggle, icon }) {
 
     const currentPath = window.location.pathname;
     const isActive = currentPath === link
@@ -36,8 +36,11 @@ export default function MenuItem({ id, text, link, isOpen, toggle }) {
             className="w-auto mx-auto z-50"
             onClick={toggle}
         >
-            <div className="w-32 text-center border border-4 border-mirage rounded- h-auto mx-auto py-1.5">
-                <p className="text-sm text-white font-light tracking-tight">
+            <div className="w-36 text-center border border-2 border-mirage rounded-xl h-auto mx-auto p-2 flex items-center justify-start gap-x-4">
+                <div className="w-auto h-auto">
+                    <img className="max-w-6 max-h-6" src={icon} />
+                </div>
+                <p className="text-sm text-white font-light tracking-tight text-nowrap">
                     <Link to={link}>{text}</Link>
                 </p>
             </div>

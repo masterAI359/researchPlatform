@@ -2,12 +2,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch } from "@/ReduxToolKit/store";
 import { RootState } from "@/ReduxToolKit/store";
 import { useEffect, useLayoutEffect, useState } from "react";
-import ProfileMenu from "./ProfileMenu";
+import ProfileMenu from "./ProfileNavigation/ProfileMenu";
+import SideBar from "./ProfileNavigation/SideBar";
 import SavedArticles from "./DisplayContent/SavedArticles";
 import SavedResearchLayout from "./DisplayContent/SavedInvestigations.tsx/SavedResearchLayout";
 import { fetchSavedArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer";
 import { fetchSavedInvestigations } from "@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations";
-import { SideBar } from "./ProfileMenu";
 
 export default function Profile() {
     const [displayArticles, setDisplayArticles] = useState<boolean>(false)

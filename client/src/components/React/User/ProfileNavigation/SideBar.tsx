@@ -1,50 +1,6 @@
-import { getUserInvestigations } from "@/helpers/SupabaseData"
-import { RootState } from "@/ReduxToolKit/store"
-import { useSelector, useDispatch } from "react-redux"
-import { fetchSavedInvestigations } from "@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations"
-import { AppDispatch } from "@/ReduxToolKit/store"
-
-export default function ProfileMenu({ setDislayArticles, displayArticles, setDisplayInvestigations }) {
-    const id = useSelector((state: RootState) => state.auth.user_id)
-    const dispatch = useDispatch<AppDispatch>()
-
-    return (
-        <div className="w-full h-fit xs:block md:hidden border-t border-white/10">
-            <div className="flex items-center justify-between pt-2">
-                <div
-                    onClick={() => {
-                        (setDisplayInvestigations(true))
-                        setDislayArticles(false)
-                    }}
-                    className="w-fit h-auto flex
-            text-white text-xs font-light tracking-tight hover:text-blue-500 cursor-pointer
-            transition-all duration-200 ease-in-out">
-                    My research
-                </div>
-                <div
-                    onClick={() => {
-                        setDislayArticles(true)
-                        setDisplayInvestigations(false)
-                    }}
-                    className={`w-fit text-xs text-nowrap font-light tracking-tight  h-auto flex
-                            font-light cursor-pointer  hover:text-blue-500
-                            ${displayArticles ? 'text-blue-500' : 'text-white'}
-                            transition-all duration-200 ease-in-out`}>
-                    Saved Articles
-                </div>
-                <div className="w-fit text-xs font-light tracking-tight text-nowrap h-auto flex
-            text-white hover:text-blue-500 cursor-pointer
-            transition-all duration-200 ease-in-out">
-                    Connecting Ideas
-                </div>
-            </div>
-
-        </div>
-    )
-}
 
 
-export function SideBar({ setDislayArticles, setDisplayInvestigations }) {
+export default function SideBar({ setDislayArticles, setDisplayInvestigations }) {
 
     return (
 
@@ -60,8 +16,8 @@ export function SideBar({ setDislayArticles, setDisplayInvestigations }) {
                     <ul className="space-y-2 font-medium">
                         <li className="cursor-pointer"
                             onClick={() => {
-                                (setDisplayInvestigations(true))
-                                setDislayArticles(false)
+                                (setDisplayInvestigations(true));
+                                setDislayArticles(false);
                             }}
                         >
                             <div className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-white/10 group">
@@ -77,8 +33,8 @@ export function SideBar({ setDislayArticles, setDisplayInvestigations }) {
 
                         <li className="cursor-pointer"
                             onClick={() => {
-                                (setDisplayInvestigations(false))
-                                setDislayArticles(true)
+                                (setDisplayInvestigations(false));
+                                setDislayArticles(true);
                             }}
                         >
                             <div className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-white/10 group">
@@ -119,7 +75,5 @@ export function SideBar({ setDislayArticles, setDisplayInvestigations }) {
         </div>
 
 
-    )
+    );
 }
-
-

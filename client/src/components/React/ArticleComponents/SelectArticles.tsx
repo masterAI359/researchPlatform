@@ -38,6 +38,9 @@ export default function SelectArticles({ hideSelect }: SendForSummary) {
 
   }
 
+
+
+
   return (
     <AnimatePresence>
       <motion.div onClick={handleSummaries}

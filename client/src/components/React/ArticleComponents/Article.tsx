@@ -9,7 +9,7 @@ interface ArticleProps {
     index: number
 }
 
-export default function Article({ article, index }: ArticleProps) {
+export default function ArticleLink({ article, index }: ArticleProps) {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { getArticle } = investigateState
     const { chosenArticles } = getArticle

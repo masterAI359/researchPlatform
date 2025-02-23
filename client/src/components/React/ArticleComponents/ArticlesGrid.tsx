@@ -8,7 +8,7 @@ import SearchFailed from "../ErrorMessages/SearchFailed"
 import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
 
 
-export default function ArticlesGrid() {
+export default function LinkGrid() {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { search } = investigateState
     const { articles, status } = search

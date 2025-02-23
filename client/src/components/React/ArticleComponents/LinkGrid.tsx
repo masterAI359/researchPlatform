@@ -1,4 +1,4 @@
-import Article from "./Article"
+import ArticleLink from "./ArticleLink"
 import { ArticleType, SelectedArticle } from '../../../env'
 import { motion, AnimatePresence } from "framer-motion"
 import { useSelector } from "react-redux"
@@ -47,7 +47,7 @@ export default function LinkGrid() {
                     min-h-full 2xl:gap-12">
                                 {articles.map((article: ArticleType, index: number) => {
                                     return (
-                                        <Article
+                                        <ArticleLink
                                             index={index}
                                             key={index}
                                             article={article}

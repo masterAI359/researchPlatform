@@ -2,7 +2,7 @@ import { useState, Suspense, lazy, } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import SelectArticles from "../ArticleComponents/SelectArticles"
 import SummaryContainer from "../SummaryComponents/SummaryContainer"
-import ArticlesGrid from "../ArticleComponents/ArticlesGrid"
+import LinkGrid from "../ArticleComponents/LinkGrid"
 import ArticleLoader from "../Loaders/ArticleLoader"
 import SummaryLoader from "../Loaders/SummaryLoader"
 import ControlPanel from "../Buttons/ButtonWrappers/ControlPanel"
@@ -54,7 +54,7 @@ export default function ArticleContainer({
                                 exit={{ opacity: 0 }}
                                 transition={{ type: 'tween', duration: 0.5 }}
                             >
-                                <ArticlesGrid
+                                <LinkGrid
                                 />
                             </motion.div>}
 

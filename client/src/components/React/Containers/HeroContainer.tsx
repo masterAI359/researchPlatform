@@ -2,6 +2,7 @@ import InvestigateHero from "../HeroComponents/InvestigateHero"
 import SearchHero from "../HeroComponents/SearchHero"
 import SummaryHero from "../HeroComponents/SummaryHero"
 import ReviewWrapper from "../Investigate/Wrappers/ReviewWrapper"
+import FinalResults from "../Results/FinalResults"
 import CompletionHero from "../HeroComponents/CompletionHero"
 import { AnimatePresence, motion } from "framer-motion"
 import { useSelector } from "react-redux"
@@ -9,12 +10,13 @@ import { RootState } from "@/ReduxToolKit/store"
 import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
 
 
+
 export default function HeroContainer({
 }) {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { read, display } = investigateState
     const { ContentStatus } = read
-    const { showMindMap, showSearch, showContent, showWrapUp, showCompletion } = display
+    const { showMindMap, showSearch, showContent, showWrapUp, showCompletion, showResults } = display
 
 
 
@@ -93,6 +95,23 @@ export default function HeroContainer({
                         >
                             <CompletionHero />
                         </motion.div>
+                    }
+
+                    {showResults && <motion.div
+                        layout
+                        key='Completion'
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{
+                            type: 'tween',
+                            duration: 0.24,
+                            delay: 0.22,
+                            ease: [0.4, 0, 0.2, 1],
+                        }}
+                    >
+                        <FinalResults />
+                    </motion.div>
                     }
 
                 </AnimatePresence>

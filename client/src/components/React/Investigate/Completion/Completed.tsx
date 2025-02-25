@@ -1,25 +1,29 @@
 import Lottie from "lottie-react"
 import blueCheck from '../../../../lotties/blueCheck.json'
 import { useEffect } from "react"
-import { session } from "@/SupaBase/supaBaseClient"
-import { fetchSavedArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
-import { useAppdispatch } from "@/Hooks/appDispatch"
-import { useSelector } from "react-redux"
+import { displayCompletion, displayResults } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
+import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-import SaveInvestigation from "../../Buttons/ProcessButtons/SaveInvestigation"
-import InvestigateMore from "../../Buttons/ProcessButtons/InvestigateMore"
+
 
 export default function Completed() {
-    const appDispatch = useAppdispatch()
-    const id = useSelector((state: RootState) => state.auth.user_id)
-
+    const investigateState = useSelector((state: RootState) => state.investigation)
+    const { display } = investigateState
+    const showComplete = display
+    const dispatch = useDispatch()
 
     useEffect(() => {
 
-        if (session) {
-            appDispatch(fetchSavedArticles(id))
+        const timer = setTimeout(() => {
+            dispatch(displayCompletion(false))
+            dispatch(displayResults(true))
+        }, 2000)
+
+        return () => {
+            clearTimeout(timer)
         }
-    }, [])
+
+    }, [showComplete])
 
     return (
         <article className="2xl:min-w-[60rem] h-fit md:h-full mx-auto flex flex-col items-center md:gap-y-6 relative">
@@ -34,10 +38,7 @@ export default function Completed() {
                 </div>
             </main>
 
-            <div className="flex gap-x-4 items-end ">
-                <SaveInvestigation />
-                <InvestigateMore />
-            </div>
+
         </article>
     )
 }

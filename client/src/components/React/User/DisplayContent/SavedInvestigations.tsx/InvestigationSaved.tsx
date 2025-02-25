@@ -15,7 +15,7 @@ export default function PriorInvestigation({ investigation }) {
                 </div>
                 <div className="absolute -top-[1.0625rem] -left-1 h-[0.5625rem] w-[0.5625rem] rounded-full border-2 border-black/10 bg-white md:top-[0.4375rem]">
                 </div>
-                <div className="flex flex-col items-center w-fit">
+                <div className="items-center w-fit">
                     <div className='w-full'>
                         <img
                             src={`../../../../../../public/images/logos/fallback.jpg`}

@@ -13,6 +13,7 @@ import { store } from '../../../ReduxToolKit/store'
 import { Provider } from 'react-redux'
 import EmailForReset from "../Forms/EmailForReset"
 import UpdatePassword from "../Forms/UpdatePassword"
+import FinalResults from "../Results/FinalResults"
 
 export default function AppRouter() {
 
@@ -32,6 +33,7 @@ export default function AppRouter() {
                         <Route path="/EmailForReset" element={<EmailForReset />} />
                         <Route path="/UpdatePassword" element={<UpdatePassword />} />
                         <Route path="/SavedArticle" element={<ReadSavedArticle />} />
+                        <Route path="/Test" element={<FinalResults />} />
                     </Route>
                 </Routes>
             </BrowserRouter>

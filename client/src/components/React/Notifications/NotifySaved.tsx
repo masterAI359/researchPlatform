@@ -1,12 +1,8 @@
 import { motion } from "framer-motion"
-import { session } from "@/SupaBase/supaBaseClient"
 import { useEffect } from "react"
 
 
 export default function NotifySavedArticle({ articleExists, setShowNotification }) {
-
-
-
 
     useEffect(() => {
         const timer = setTimeout(() => {

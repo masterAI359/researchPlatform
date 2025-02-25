@@ -24,9 +24,9 @@ export default function Step2({ containerWidth }: any) {
   }
 
   const opinions: string[] = [
-    "My Opinion",
+    "Agree",
     "Disagree",
-    "Just Curious"
+    "Neutral"
   ]
 
   const expertiseArray: string[] = [

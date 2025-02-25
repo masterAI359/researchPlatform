@@ -33,7 +33,6 @@ export default function AppRouter() {
                         <Route path="/EmailForReset" element={<EmailForReset />} />
                         <Route path="/UpdatePassword" element={<UpdatePassword />} />
                         <Route path="/SavedArticle" element={<ReadSavedArticle />} />
-                        <Route path="/Test" element={<FinalResults />} />
                     </Route>
                 </Routes>
             </BrowserRouter>

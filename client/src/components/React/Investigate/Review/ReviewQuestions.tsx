@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useSelector } from "react-redux";
-import { getMerit, changedStance } from "@/ReduxToolKit/Reducers/Investigate/Review";
+import { getMerit, changedStance, moved } from "@/ReduxToolKit/Reducers/Investigate/Review";
 import { RootState } from "@/ReduxToolKit/store";
 import Retrospect from "./Retrospect";
 import Checks from "../../Buttons/ButtonWrappers/Checks";
@@ -18,7 +18,7 @@ const questions = [
 export default function ReviewQuestions({ step }) {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { review } = investigateState
-    const { merit, newPOV } = review
+    const { merit, newPOV, movedOnIdea } = review
 
     return (
         <div className="h-full py-6 opacity-100 z-1 xs:w-full 2xl:w-[36rem] 2xl:h-[32rem] 2xl:p-10 md:grow mx-auto flex flex-col
@@ -50,7 +50,7 @@ export default function ReviewQuestions({ step }) {
                                 <h1 className="text-white font-light mb-2 w-full tracking-tight text-sm 2xl:text-lg ">
                                     {questions[1]}
                                 </h1>
-                                <Checks setterFunction={changedStance} answer={newPOV} />
+                                <Checks setterFunction={moved} answer={movedOnIdea} />
                             </div>
                         </motion.div>}
 

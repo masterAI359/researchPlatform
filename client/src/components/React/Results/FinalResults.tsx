@@ -9,7 +9,10 @@ export default function FinalResults() {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { pov, review } = investigateState
     const { idea, perspective, expertise } = pov
-    const { endingPerspective, merit, newPOV } = review
+    const { endingPerspective, merit, movedOnIdea } = review
+
+
+
 
 
     return (
@@ -36,94 +39,81 @@ export default function FinalResults() {
                                 <col className="w-1/4" />
                                 <col className="w-1/4" />
                                 <col className="w-1/4" />
-                                <col className="w-1/4" />
                             </colgroup>
                             <thead>
                                 <tr>
                                     <td />
                                     <th scope="col" className="md:px-6 pt-6 xl:px-8 xl:pt-8">
-                                        <div className="text-sm 2xl:text-lg text-white font-light text-center">Initial</div>
+                                        <div className="text-sm 2xl:text-lg text-white font-light text-center">no</div>
                                     </th>
                                     <th scope="col" className="md:px-6 pt-6 xl:px-8 xl:pt-8">
-                                        <div className="text-sm 2xl:text-lg text-white font-light text-center">Changes</div>
+                                        <div className="text-sm 2xl:text-lg text-white font-light text-center">Yes</div>
                                     </th>
-                                    <th scope="col" className="md:px-6 pt-6 xl:px-8 xl:pt-8">
-                                        <div className="text-sm 2xl:text-lg text-white font-light text-center">Final</div>
-                                    </th>
+
                                 </tr>
                             </thead>
                             <tbody>
 
                                 <tr>
-                                    <th scope="colgroup" colSpan={4} className="pb-4 text-sm md:text-md 2xl:text-xl text-blue-400 font-light pt-8">
+                                    <th scope="colgroup" colSpan={4} className="pb-4 text-sm md:text-md 2xl:text-lg text-blue-400 font-light pt-8">
                                         Perspectives
                                         <div className="absolute inset-x-8 mt-4 h-px bg-ebony/50" />
                                     </th>
                                 </tr>
                                 <tr>
                                     <th scope="row" className="py-4 text-xs md:text-sm 2xl:text-lg font-normal leading-6 text-white">
-                                        Has Merit
+                                        Agree
                                         <div className="absolute inset-x-8 mt-4 h-px bg-wbony/50" />
                                     </th>
                                     <td className="px-6 py-4 xl:px-8">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-check text-white mx-auto" width={16} height={16} viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                        {endingPerspective !== 'Agree' && <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-check text-white mx-auto" width={16} height={16} viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                             <path d="M5 12l5 5l10 -10" />
-                                        </svg>
+                                        </svg>}
                                         <span className="sr-only">Included in Basic</span>
                                     </td>
                                     <td className="px-6 py-4 xl:px-8">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-check text-white mx-auto" width={16} height={16} viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                        {endingPerspective === 'Agree' && <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-check text-green-500 mx-auto" width={16} height={16} viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                             <path d="M5 12l5 5l10 -10" />
-                                        </svg>
+                                        </svg>}
                                         <span className="sr-only">Included in Essential</span>
                                     </td>
-                                    <td className="px-6 py-4 xl:px-8">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-check text-white mx-auto" width={16} height={16} viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M5 12l5 5l10 -10" />
-                                        </svg>
-                                        <span className="sr-only">Included in Premium</span>
-                                    </td>
+
                                 </tr>
                                 <tr>
                                     <th scope="row" className="py-4 text-xs 2xl:text-lg font-normal leading-6 text-white">
-                                        Familiarity
+                                        Had Merit
                                         <div className="absolute inset-x-8 mt-4 h-px bg-wbony/50" />
                                     </th>
                                     <td className="px-6 py-4 xl:px-8">
 
-                                        <p className="text-white font-light text-sm text-nowrap text-center">{expertise ? expertise : 'N/A'}</p>
-                                    </td>
-                                    <td className="px-6 py-4 xl:px-8">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-check text-white mx-auto" width={16} height={16} viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                        <p className="text-white font-light text-sm text-nowrap text-center">{merit ? null : <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-check mx-auto" width={16} height={16} viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                             <path d="M5 12l5 5l10 -10" />
-                                        </svg>
+                                        </svg>}</p>
+                                    </td>
+                                    <td className="px-6 py-4 xl:px-8">
+                                        {merit && <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-check text-green-500 mx-auto" width={16} height={16} viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M5 12l5 5l10 -10" />
+                                        </svg>}
                                         <span className="sr-only">Included in Essential</span>
                                     </td>
-                                    <td className="px-6 py-4 xl:px-8">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-check text-white mx-auto" width={16} height={16} viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M5 12l5 5l10 -10" />
-                                        </svg>
-                                        <span className="sr-only">Included in Premium</span>
-                                    </td>
+
                                 </tr>
                                 <tr>
-                                    <th scope="row" className="py-4 text-xs md:text-sm 2xl:text-lg font-normal leading-6 text-white">
-                                        Agreement
+                                    <th scope="row" className="py-4 text-xs md:text-sm 2xl:text-lg font-normal leading-6 text-white text-nowrap">
+                                        Changed Opinion
                                         <div className="absolute inset-x-8 mt-4 h-px bg-wbony/50" />
                                     </th>
-                                    <TableData agreement={perspective} />
                                     <td className="px-6 py-4 xl:px-8">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-check text-white mx-auto" width={16} height={16} viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                        {movedOnIdea ? <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-check text-green-500 mx-auto" width={16} height={16} viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                             <path d="M5 12l5 5l10 -10" />
-                                        </svg>
+                                        </svg> : null}
+                                        <span className="sr-only">Included in Essential</span>
                                     </td>
-                                    <TableData agreement={endingPerspective} />
                                 </tr>
                             </tbody>
                         </table>

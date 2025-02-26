@@ -4,6 +4,7 @@ import SummaryHero from "../HeroComponents/SummaryHero"
 import ReviewWrapper from "../Investigate/Wrappers/ReviewWrapper"
 import FinalResults from "../Results/FinalResults"
 import CompletionHero from "../HeroComponents/CompletionHero"
+import ScrolltoTop from "../AppRouting/ScrollToTop"
 import { AnimatePresence, motion } from "framer-motion"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
@@ -53,6 +54,8 @@ export default function HeroContainer({
                             <SearchHero
                             />
 
+                            <ScrolltoTop />
+
                         </motion.div>) : null}
 
                     {showContent && ContentStatus === 'fulfilled' ?
@@ -65,6 +68,7 @@ export default function HeroContainer({
                             transition={{ type: 'tween', duration: 0.5, ease: 'easeInOut' }}
                         >
                             <SummaryHero />
+                            <ScrolltoTop />
                         </motion.div>
                         : null}
 
@@ -77,6 +81,7 @@ export default function HeroContainer({
                         transition={{ type: 'tween', duration: 0.5, ease: 'easeInOut' }}
                     >
                         <ReviewWrapper />
+                        <ScrolltoTop />
                     </motion.div>}
 
                     {showCompletion &&
@@ -94,6 +99,7 @@ export default function HeroContainer({
                             }}
                         >
                             <CompletionHero />
+                            <ScrolltoTop />
                         </motion.div>
                     }
 
@@ -105,12 +111,13 @@ export default function HeroContainer({
                         exit={{ opacity: 0 }}
                         transition={{
                             type: 'tween',
-                            duration: 0.24,
+                            duration: 0.4,
                             delay: 0.22,
                             ease: [0.4, 0, 0.2, 1],
                         }}
                     >
                         <FinalResults />
+                        <ScrolltoTop />
                     </motion.div>
                     }
 

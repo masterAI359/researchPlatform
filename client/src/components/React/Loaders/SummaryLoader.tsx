@@ -1,15 +1,15 @@
 import Lottie from "lottie-react"
-//import squareCircle from '../../../lotties/SquareCircle.json'
+import { motion } from "framer-motion"
 import dataCollection from '../../../lotties/dataCollection.json'
 import { createPortal } from "react-dom"
 
 export default function SummaryLoader() {
 
-    //TODO: Remember to go back and set the loadingContent state slice back to 'false'
-
 
     const loader = (
-        <div className='w-full h-full mx-auto flex flex-col-reverse items-center fixed bg-black top-0 right-0 bottom-0 left-0'>
+        <motion.div
+            layout
+            className='w-full h-full mx-auto flex flex-col-reverse items-center fixed bg-black top-0 right-0 bottom-0 left-0'>
 
             <header className='w-full h-fit mx-auto flex justify-center 2xl:-translate-y-40 xl:-translate-y-72 lg:-translate-y-80'>
                 <h1
@@ -29,7 +29,7 @@ export default function SummaryLoader() {
             </div>
 
 
-        </div>
+        </motion.div>
     )
 
     return (

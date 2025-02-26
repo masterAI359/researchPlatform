@@ -21,11 +21,10 @@ export default function Summary({ articleData, index }) {
 
     return (
         <motion.div
-            layout
             initial={{ opacity: 0 }}
             animate={{
                 opacity: 1, transition: {
-                    delay: 0.8, duration: 0.3
+                    delay: 0.3, duration: 0.3
                 }
             }}
             exit={{
@@ -34,7 +33,7 @@ export default function Summary({ articleData, index }) {
                     duration: 0.1
                 }
             }}
-            className="relative inset-0 box-border flex flex-col
+            className="relative top-0 left-0 right-0 box-border flex flex-col
             pb-1 w-full h-full scrollbar-hide box-border bg-black"
         >
             <SummaryHeader

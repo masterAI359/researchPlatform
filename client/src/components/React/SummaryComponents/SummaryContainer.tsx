@@ -20,30 +20,27 @@ export default function SummaryContainer({ }) {
   const appDispatch = useAppdispatch()
   const dispatch = useDispatch()
 
-  useEffect(() => {
-
-    console.log(ContentStatus)
-    console.log(summaries)
-    console.log(failedNotifications)
-
-    if (reading) {
-      dispatch(supabaseContext('reading'))
-    }
-
-    const channel = supabase.channel('table-changes')
-      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'articles' }, payload => {
-        console.log('New row inserted:', payload);
-        appDispatch(fetchSavedArticles(id))
-      })
-      .subscribe();
-
-    return () => {
-      supabase.removeChannel(channel)
-    }
-
-  }, [reading])
-
-
+  // useEffect(() => {
+  //
+  //
+  //   if (reading) {
+  //     dispatch(supabaseContext('reading'))
+  //   }
+  //
+  //   const channel = supabase.channel('table-changes')
+  //     .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'articles' }, payload => {
+  //       console.log('New row inserted:', payload);
+  //       appDispatch(fetchSavedArticles(id))
+  //     })
+  //     .subscribe();
+  //
+  //   return () => {
+  //     supabase.removeChannel(channel)
+  //   }
+  //
+  // }, [reading])
+  //
+  //
 
   return (
     <ErrorBoundary>
@@ -54,13 +51,13 @@ export default function SummaryContainer({ }) {
 
         <main
           className="2xl:max-w-6xl h-full w-full mx-auto 
-                 transition-all duration-1000 animate-fade-in mb-12 
+                 transition-all duration-1000 animate-fade-in mb-12
                  ">
 
 
           <div
             className="w-full mx-auto relative">
-            <AnimatePresence mode="popLayout">
+            <AnimatePresence mode="wait">
               {ContentStatus === 'pending' && <SummaryLoader />}
               {ContentStatus === 'fulfilled' && summaries?.map((articleData: any, index: number) =>
               (currentStory === index && <Summary

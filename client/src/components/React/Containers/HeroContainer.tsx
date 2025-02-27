@@ -24,10 +24,9 @@ export default function HeroContainer({
     return (
         <ErrorBoundary>
             <section className="w-full h-full shrink-0 mx-auto">
-                <AnimatePresence mode="popLayout">
+                <AnimatePresence mode="wait">
 
                     {showMindMap && (<motion.div
-                        layout
                         key='Investigate'
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -44,7 +43,6 @@ export default function HeroContainer({
 
                     {showSearch ?
                         (<motion.div
-                            layout
                             key='Search'
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -60,7 +58,6 @@ export default function HeroContainer({
 
                     {showContent && ContentStatus === 'fulfilled' ?
                         <motion.div
-                            layout
                             key='Reading'
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -73,7 +70,6 @@ export default function HeroContainer({
                         : null}
 
                     {showWrapUp && <motion.div
-                        layout
                         key='WrapUp'
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -86,7 +82,6 @@ export default function HeroContainer({
 
                     {showCompletion &&
                         <motion.div
-                            layout
                             key='Completion'
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -104,15 +99,15 @@ export default function HeroContainer({
                     }
 
                     {showResults && <motion.div
-                        layout
-                        key='Completion'
+                        key='Results'
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
+                        className="h-full w-full"
                         transition={{
                             type: 'tween',
                             duration: 0.4,
-                            delay: 0.22,
+                            delay: 0.3,
                             ease: [0.4, 0, 0.2, 1],
                         }}
                     >

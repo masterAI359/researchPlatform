@@ -18,15 +18,15 @@ export default function Step5({ containerWidth }) {
 
     return (
         <div style={{ flexShrink: 0, maxWidth: containerWidth }}
-            className='xs:w-full text-center mx-auto xs:h-full 
-            box-border flex xs:px-2 basis-full items-center'>
-            <div className="block box-border w-full max-w-full mx-auto px-0 md:px-2  md:h-full no-scrollbar">
-                <div className="w-full h-full mx-auto flex flex-col">
+            className='w-full h-full
+            flex items-center justify-start text-center basis-full'>
+            <div className="block w-full max-w-full mx-auto px-2  md:h-full no-scrollbar">
+                <div className="w-full h-full mx-auto flex flex-col items-start box-border">
                     <div className="w-full h-auto border-b border-white/10 mb-4">
-                        <header className="w-full box-border h-auto flex flex-row xs:gap-x-4 md:gap-x-8 items-center">
+                        <header className="w-full h-auto flex flex-row md:gap-x-8 items-center">
                             <div className="w-fit flex justify-items-start">
                                 <h1 className="2xl:text-3xl md:text-2xl text-md tracking-tight font-light text-zinc-300 pb-1 xs:text-left">
-                                    It's time to investigate the premises
+                                    Now we search for evidence
                                 </h1>
                             </div>
                             <div className="w-fit h-full">
@@ -45,11 +45,11 @@ export default function Step5({ containerWidth }) {
                                     </em>
                                 </span>
                             </p>
-                            <p className="text-xs xl:text-lg w-fit text-white font-light tracking-tight text-left">
+                            <p className="text-xs xl:text-lg w-fit text-white font-light tracking-tight text-wrap text-pretty">
                                 Let's look for some evidence to support the idea you're evaluating
                             </p>
                         </div>
-                        <div className="w-fit h-fit 2xl:mt-0 mt-2 mx-auto md:mx-0">
+                        <div className="w-fit h-fit 2xl:mt-0 mt-2 md:mx-0">
                             <motion.button
                                 onClick={beginSearch}
                                 whileTap={{ scale: 0.95 }}

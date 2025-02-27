@@ -108,7 +108,7 @@ export default function WindowWrapper({ }) {
               opacity: 0,
               transition: { type: 'tween', duration: 0.2 }
             }}
-            className="min-w-full shrink-0"
+            className="w-full shrink-0"
           >
             <Step5 containerWidth={containerWidth} />
           </motion.div>

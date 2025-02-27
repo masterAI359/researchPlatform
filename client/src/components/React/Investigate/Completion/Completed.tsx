@@ -16,10 +16,11 @@ export default function Completed() {
 
         const timer = setTimeout(() => {
             dispatch(displayCompletion(false))
-            dispatch(displayResults(true))
+
         }, 2000)
 
         return () => {
+            dispatch(displayResults(true))
             clearTimeout(timer)
         }
 

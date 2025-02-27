@@ -9,7 +9,7 @@ export default function SavedInvestigations() {
                     <h2 className="text-3xl mt-6 tracking-tight font-light lg:text-4xl text-zinc-400 mb-12">
                     </h2>
                 </div>
-                <div className="w-full h-full flex flex-col items-end">
+                <div className="w-full h-full flex flex-col items-start">
                     <SavedResearchLayout />
                 </div>
 

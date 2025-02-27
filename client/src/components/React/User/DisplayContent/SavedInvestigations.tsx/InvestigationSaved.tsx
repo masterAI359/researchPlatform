@@ -2,7 +2,7 @@ import Thumbnail from "./Thumbnail"
 
 export default function PriorInvestigation({ investigation }) {
 
-
+    console.log(investigation)
 
     return (
         <div className="md:flex w-full h-auto">
@@ -10,17 +10,15 @@ export default function PriorInvestigation({ investigation }) {
                 <span className='text-zinc-400'>From:</span> {investigation.created_at.split('').splice(0, 10).join('')}
             </h2>
             <div className="relative pt-2 pl-7 md:w-3/4 md:pt-0 md:pl-12 pb-16 md:pb-24">
-                <div className="absolute bottom-0 left-0 w-px bg-white/20 -top-3 md:top-2.5">
+                <div className="absolute bottom-0 left-0 w-px bg-blue-400 -top-3 md:top-2.5">
                 </div>
-                <div className="absolute -top-[1.0625rem] -left-1 h-[0.5625rem] w-[0.5625rem] rounded-full border-2 border-black/10 bg-white md:top-[0.4375rem]">
+                <div className="absolute -top-[1.0625rem] -left-1 h-[0.5625rem] w-[0.5625rem] rounded-full border-2 border-black/10 bg-blue-400 md:top-[0.4375rem]">
                 </div>
                 <div className="items-center w-fit">
                     <div className='w-full'>
-                        <img
-                            src={`../../../../../../public/images/logos/yahoo.svg`}
-                            className="rounded-2xl" />
-                        <h3 className="text-white font-light tracking-tight text-md mt-8"><em>researched:</em></h3>
-                        <p className="text-zinc-400 mt-4 text-md text-balance">
+                        <Thumbnail investigation={investigation} />
+                        <h3 className="text-white font-light tracking-tight text-md mt-8">Topic</h3>
+                        <p className="text-zinc-400 mt-2 text-md text-balance">
                             {investigation.idea}
                         </p>
                         <div className="mt-4 w-fit">

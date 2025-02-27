@@ -55,7 +55,7 @@ export default function ArticleSaved({ article, index, articleSelect, setDisplay
                 </time>
             </div>
 
-            <div className="flex xs:w-full md:w-2/3 h-full md:items-end md:justify-end">
+            <div className="flex xs:w-full md:w-168 h-full md:items-end md:justify-end">
                 <div className="flex flex-col h-auto w-auto">
                     <div className="flex xs:flex-col md:flex-row-reverse md:gap-x-4 md:justify-between h-full w-full items-center">
 
@@ -84,7 +84,7 @@ export default function ArticleSaved({ article, index, articleSelect, setDisplay
                         <div className="flex flex-col h-full w-full justify-between">
                             <div className="w-full h-auto">
                                 <h1 onClick={handleArticleSelection}
-                                    className="cursor-pointer text-lg w-fit hover:text-blue-400 transition-all duration-200
+                                    className="cursor-pointer text-lg w-full hover:text-blue-400 transition-all duration-200
                                         ease-in-out text-white text-left font-light tracking-tight self-center relative group">
                                     <p className="absolute lg: lg:-left-24 opacity-0 p-2 rounded-lg border border-white/10 text-xs
                                              group-hover:text-white font-light group-hover:opacity-100 group-hover:bg-ebony text-nowrap

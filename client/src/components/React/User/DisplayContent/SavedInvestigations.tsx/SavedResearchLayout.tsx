@@ -5,6 +5,10 @@ import PriorInvestigation from "./InvestigationSaved"
 
 export default function SavedResearchLayout() {
     const savedInvestigations = useSelector((state: RootState) => state.userWork.userResearch)
+    const newArr = [...savedInvestigations] //read-only property prevents direct reversal
+    const timeline = newArr.reverse()
+    console.log(timeline)
+
 
     return (
         <section className="lg:p-0 bg-black">
@@ -16,7 +20,7 @@ export default function SavedResearchLayout() {
                     </h2>
                 </div>
                 <div className="mx-auto max-w-2xl mt-12">
-                    {savedInvestigations.map((investigation: any, index: number) => (
+                    {timeline.map((investigation: any, index: number) => (
                         <PriorInvestigation key={index} investigation={investigation} />
                     ))}
                 </div>

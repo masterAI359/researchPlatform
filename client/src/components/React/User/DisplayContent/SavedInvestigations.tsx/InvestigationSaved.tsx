@@ -1,5 +1,4 @@
-import fallback from '../../../../../../public/images/logos/airbnb.svg'
-
+import Thumbnail from "./Thumbnail"
 
 export default function PriorInvestigation({ investigation }) {
 
@@ -18,7 +17,7 @@ export default function PriorInvestigation({ investigation }) {
                 <div className="items-center w-fit">
                     <div className='w-full'>
                         <img
-                            src={`../../../../../../public/images/logos/fallback.jpg`}
+                            src={`../../../../../../public/images/logos/yahoo.svg`}
                             className="rounded-2xl" />
                         <h3 className="text-white font-light tracking-tight text-md mt-8"><em>researched:</em></h3>
                         <p className="text-zinc-400 mt-4 text-md text-balance">

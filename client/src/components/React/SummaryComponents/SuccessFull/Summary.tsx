@@ -21,6 +21,7 @@ export default function Summary({ articleData, index }) {
 
     return (
         <motion.div
+            key={article_url}
             initial={{ opacity: 0 }}
             animate={{
                 opacity: 1, transition: {

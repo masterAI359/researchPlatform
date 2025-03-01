@@ -1,10 +1,12 @@
 import { RootState } from "@/ReduxToolKit/store"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { saveInvestigation } from "@/helpers/SupabaseData"
-
+import { displayWorkModal } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
+import { PreviousWork } from "../../Modals/PreviousWork"
 
 export default function InvestigateMore() {
+    const [open, setOpen] = useState<boolean>(false)
     const id = useSelector((state: RootState) => state.auth.user_id)
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { pov, review } = investigateState
@@ -24,25 +26,23 @@ export default function InvestigateMore() {
         user_id: id
     }
 
-    const storedInvestigation = investigateData
-
-    const stringifiedData = JSON.stringify(storedInvestigation)
 
 
 
-    const storeUserWork = () => {
-        localStorage.setItem("userWork", stringifiedData)
-        dispatch({ type: 'clear' })
+
+    const showModal = () => {
+        displayWorkModal(true)
+        setOpen(true)
     }
 
     useEffect(() => {
 
-        const loggingStorage = localStorage.getItem("userWork")
-        const retrievedStorage = JSON.parse(loggingStorage)
-
+        //    const loggingStorage = localStorage.getItem("userWork")
+        //    const retrievedStorage = JSON.parse(loggingStorage)
+        //
         return () => {
-            console.log(retrievedStorage)
-            saveInvestigation(retrievedStorage)
+            //console.log(retrievedStorage)
+            //saveInvestigation(retrievedStorage)
             // localStorage.removeItem('userWork')
         }
     }, [])
@@ -50,12 +50,13 @@ export default function InvestigateMore() {
 
     return (
         <button
-            onClick={storeUserWork}
+            onClick={showModal}
             className="2xl:w-60 bg-white hover:bg-white/10 group shadow-thick 
                     transition-colors duration-200 ease-in-out rounded-full h-fit py-2 px-4 mx-auto flex items-center">
             <p className="text-black w-full text-xs 2xl:text-lg text-nowrap group-hover:text-white font-light text-center">
                 Investigate More <span className="ml-2">&#8594;</span>
             </p>
+            {open && <PreviousWork />}
         </button>
     )
 }

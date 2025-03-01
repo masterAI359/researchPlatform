@@ -17,13 +17,13 @@ export default function HeroContainer({
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { read, display } = investigateState
     const { ContentStatus } = read
-    const { showMindMap, showSearch, showContent, showWrapUp, showCompletion, showResults } = display
+    const { showMindMap, showSearch, showContent, showWrapUp, showCompletion, showResults, showWorkModal } = display
 
 
 
     return (
         <ErrorBoundary>
-            <section className="w-full h-full shrink-0 mx-auto">
+            <section className={`w-full h-full shrink-0 mx-auto transition-opacity duration-200 ease-in-out ${showWorkModal ? 'opacity-50' : 'opacity-100'}`}>
                 <AnimatePresence mode="wait">
 
                     {showMindMap && (<motion.div

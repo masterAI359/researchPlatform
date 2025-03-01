@@ -11,6 +11,7 @@ import { useAppdispatch } from "@/Hooks/appDispatch"
 import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
 import SummaryLoader from "../Loaders/SummaryLoader"
 import Summary from "./SuccessFull/Summary"
+import NoContent from "./Failed/NoContent"
 
 export default function SummaryContainer({ }) {
   const investigateState = useSelector((state: RootState) => state.investigation)
@@ -39,8 +40,6 @@ export default function SummaryContainer({ }) {
   //   }
   //
   // }, [reading])
-  //
-  //
 
   return (
     <ErrorBoundary>
@@ -59,13 +58,13 @@ export default function SummaryContainer({ }) {
             className="w-full mx-auto relative">
             <AnimatePresence mode="wait">
               {ContentStatus === 'pending' && <SummaryLoader />}
-              {ContentStatus === 'fulfilled' && summaries?.map((articleData: any, index: number) =>
+              {ContentStatus === 'fulfilled' && summaries.length > 0 ? summaries?.map((articleData: any, index: number) =>
               (currentStory === index && <Summary
                 key={index}
                 index={index}
                 articleData={articleData}
               />)
-              )}
+              ) : <NoContent />}
             </AnimatePresence>
           </div>
         </main>

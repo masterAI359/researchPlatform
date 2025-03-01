@@ -6,6 +6,11 @@ import { useDispatch } from "react-redux"
 import { AppDispatch } from "@/ReduxToolKit/store"
 import { useNavigate } from "react-router-dom"
 
+
+//TODO: exert more control over the previous work saved in local storage, 
+// ask the user if they would like to save their work from the previous research if they've investigated more than one topic 
+
+
 export default function SaveInvestigation() {
     const id = useSelector((state: RootState) => state.auth.user_id)
     const investigateState = useSelector((state: RootState) => state.investigation)
@@ -18,7 +23,7 @@ export default function SaveInvestigation() {
     const investigateData = {
         idea: idea,
         premises: premises,
-        perspective: perspective,
+        initial_perspective: perspective,
         biases: biases,
         ending_perspective: endingPerspective,
         new_concepts: newConcepts,
@@ -40,6 +45,7 @@ export default function SaveInvestigation() {
                 saveInvestigation(investigateData)
                 dispatch(fetchSavedInvestigations(id))
                 redirect()
+
             }}
             className="w-auto bg-white 2xl:w-60 hover:bg-white/10 group shadow-thick 
                     transition-colors duration-200 ease-in-out rounded-full h-fit py-2 px-4 mx-auto flex items-center">

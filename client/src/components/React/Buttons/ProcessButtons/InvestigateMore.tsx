@@ -43,6 +43,7 @@ export default function InvestigateMore() {
         return () => {
             console.log(retrievedStorage)
             saveInvestigation(retrievedStorage)
+            // localStorage.removeItem('userWork')
         }
     }, [])
 

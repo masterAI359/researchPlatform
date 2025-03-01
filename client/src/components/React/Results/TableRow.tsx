@@ -1,12 +1,9 @@
-import { useSelector } from "react-redux"
-import { RootState } from "@/ReduxToolKit/store"
-
 
 export default function TableRow({ truthyValue }) {
     return (
         <>
             <td className="py-4 px-6 xl:px-8">
-                <svg xmlns="http://www.w3.org/2000/svg" className={`${truthyValue ? 'opacity-100' : 'opacity-100'} icon icon-tabler icon-tabler-check text-green-500 mx-auto`} width={16} height={16} viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                <svg xmlns="http://www.w3.org/2000/svg" className={`${truthyValue === true ? 'opacity-100' : 'opacity-0'} icon icon-tabler icon-tabler-check text-green-500 mx-auto`} width={16} height={16} viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                     <path d="M5 12l5 5l10 -10" />
                 </svg>

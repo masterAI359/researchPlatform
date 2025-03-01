@@ -44,14 +44,14 @@ export default function DataTable() {
                         <div className="absolute inset-x-8 mt-4 h-px bg-ebony/50" />
                     </th>
                     <td className="px-6 py-4 xl:px-8">
-                        {endingPerspective !== 'Agree' && <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-check text-green-500 mx-auto" width={16} height={16} viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                        {endingPerspective !== perspective && <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-check text-green-500 mx-auto" width={16} height={16} viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M5 12l5 5l10 -10" />
                         </svg>}
                         <span className="sr-only">Included in Basic</span>
                     </td>
                     <td className="px-6 py-4 xl:px-8">
-                        {endingPerspective === 'Agree' && <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-check text-green-500 mx-auto" width={16} height={16} viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                        {endingPerspective === perspective && <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-check text-green-500 mx-auto" width={16} height={16} viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M5 12l5 5l10 -10" />
                         </svg>}

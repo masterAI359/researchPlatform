@@ -7,9 +7,8 @@ export default function Thumbnail({ investigation }) {
 
     return (
         <div className="bg-gradient-to-tr from-ebony to-mirage rounded-2xl h-52 w-60 flex items-center justify-center">
-            {investigation.changed_opinion === true && <Changed />}
-            {investigation.changed_opinion === false && <Validated />}
-            {investigation.changed_opinion === null && <Neutral />}
+            {investigation.ending_perspective !== investigation.initial_perspective && <Changed />}
+            {investigation.initial_perspective === investigation.ending_perspective && <Validated />}
         </div>
     )
 }

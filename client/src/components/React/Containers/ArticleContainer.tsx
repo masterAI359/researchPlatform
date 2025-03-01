@@ -3,12 +3,11 @@ import { motion, AnimatePresence } from "framer-motion"
 import SelectArticles from "../ArticleComponents/SelectArticles"
 import SummaryContainer from "../SummaryComponents/SummaryContainer"
 import LinkGrid from "../ArticleComponents/LinkGrid"
-import ArticleLoader from "../Loaders/ArticleLoader"
-import SummaryLoader from "../Loaders/SummaryLoader"
 import ControlPanel from "../Buttons/ButtonWrappers/ControlPanel"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
+import ScrolltoTop from "../AppRouting/ScrollToTop"
 
 
 export default function ArticleContainer({
@@ -69,6 +68,7 @@ export default function ArticleContainer({
                             >
                                 <SummaryContainer
                                 />
+                                <ScrolltoTop />
                             </motion.div>}
                     </AnimatePresence>
                 </div>

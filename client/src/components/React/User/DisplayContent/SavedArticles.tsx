@@ -12,11 +12,39 @@ export default function SavedArticles({ articleSelect, setDisplayArticles, setDi
 
     }, [userArticles, error, status])
 
+    const variants = {
+        open: {
+            opacity: 1,
+            transition: {
+                duration: 0.2,
+                type: 'tween',
+                delay: 0.3
+            }
+        },
+        closed: {
+            opacity: 0,
+            transition: {
+                duration: 0.2,
+                type: 'tween'
+            }
+        }
+    }
+
+
+
     return (
         <ErrorBoundary>
             <div className="w-full h-full mx-auto animate-fade-in duration-300 delay-200 ease-in">
+                <h1 className="text-white font-light tracking-tight 2xl:text-3xl xs:text-center md:text-left">
+                    Your Saved Articles
+                </h1>
+
                 <motion.section
-                    layout
+                    key='savedArticles'
+                    variants={variants}
+                    initial='closed'
+                    animate='open'
+                    exit='closed'
                     className="w-full 2xl:px-2 xs:gap-3 h-full mt-12">
 
 

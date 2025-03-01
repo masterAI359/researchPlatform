@@ -1,7 +1,7 @@
 import { RootState } from "@/ReduxToolKit/store"
 import { useSelector } from "react-redux"
 import PriorInvestigation from "./InvestigationSaved"
-
+import { motion } from "framer-motion"
 
 export default function SavedResearchLayout() {
     const savedInvestigations = useSelector((state: RootState) => state.userWork.userResearch)
@@ -10,8 +10,33 @@ export default function SavedResearchLayout() {
     console.log(timeline)
 
 
+    const variants = {
+        open: {
+            opacity: 1,
+            transition: {
+                duration: 0.2,
+                type: 'tween',
+                delay: 0.3
+            }
+        },
+        closed: {
+            opacity: 0,
+            transition: {
+                duration: 0.2,
+                type: 'tween'
+            }
+        }
+    }
+
+
     return (
-        <section className="lg:p-0 bg-black">
+        <motion.section
+            key='savedResearch'
+            variants={variants}
+            initial='closed'
+            animate='open'
+            exit='closed'
+            className="lg:p-0 bg-black">
             <div className="px-8 py-12 lg:py-0 mx-auto md:px-12 lg:px-16 xl:px-36 2xl:max-w-7xl">
                 <div className="relative text-left">
                     <span className="text-blue-400"> Investigations </span>
@@ -25,7 +50,7 @@ export default function SavedResearchLayout() {
                     ))}
                 </div>
             </div>
-        </section>
+        </motion.section>
 
     )
 }

@@ -10,7 +10,7 @@ const Step1Help: Help[] = [
     },
     {
         heading: "Examples",
-        explanation: `Some statements you could enter:  'Flossing your teeth is unnecessary and tedious' ,
+        explanation: `Some statements you could enter  'Flossing your teeth is unnecessary and tedious' ,
     or  'The president is to blame for high gas prices'  ; These claims have some evidence behind them that
     can be examined, and inform us.`
     }

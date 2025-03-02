@@ -18,6 +18,7 @@ export default function FailedSummary({ }) {
             <AnimatePresence mode="popLayout" initial={false}>
                 {failedNotifications?.map((notification: any) => (
                     <FailedNotification
+
                         key={notification.article_url}
                         notification={notification}
                     />

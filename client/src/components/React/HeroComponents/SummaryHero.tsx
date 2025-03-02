@@ -1,8 +1,14 @@
 import { SummaryHelp } from "@/helpInfo/help"
 import StoryPaginate from "../Buttons/ButtonWrappers/StoryPaginate"
 import HelpButton from "../Buttons/HelpButtons/Question"
+import { useDispatch, useSelector } from "react-redux"
+import { RootState } from "@/ReduxToolKit/store"
 
 export default function SummaryHero({ }) {
+    const investigateState = useSelector((state: RootState) => state.investigation)
+    const { showContent } = investigateState.display
+    const { read } = investigateState
+    const { summaries } = read
 
     return (
         <header className="xs:w-full h-auto mx-auto flex items-center justify-between border-b border-white/10 xl:mt-20 2xl:mt-24 xl:max-w-6xl xl:mb-4">
@@ -17,7 +23,7 @@ export default function SummaryHero({ }) {
                     />
                 </div>
             </div>
-            <StoryPaginate />
+            {showContent && summaries ? <StoryPaginate /> : null}
 
         </header>
     )

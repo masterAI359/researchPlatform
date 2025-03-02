@@ -5,11 +5,11 @@ import Footer from "@/components/Astro/global/Footer.astro";
 
   <html
     lang="en"
-    class="selection:text-white selection:bg-blue-500 scroll-smooth">
+    class="selection:text-white no-scrollbar scroll-smooth">
     <head>
       <BaseHead />
     </head>
-    <body class="bg-black flex flex-col min-h-screen scroll-smooth">
+    <body class="bg-black flex flex-col min-h-screen thin-gray-scrollbar scroll-smooth">
       <main class="flex h-auto flex-col w-full grow"><slot /></main>
       <Footer />
     </body>

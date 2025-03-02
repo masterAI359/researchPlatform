@@ -11,7 +11,7 @@ export default function StoryPaginate() {
 
 
     return (
-        <div className="w-auto h-auto p-1 flex gap-x-0 items-center">
+        <div className={`${summaries.length > 1 ? 'block' : 'hidden'} w-auto h-auto p-1 flex gap-x-0 items-center`}>
 
             <button
                 onClick={() => currentStory > 0 ? dispatch(decrementStory()) : null}

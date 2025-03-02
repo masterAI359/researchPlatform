@@ -16,7 +16,7 @@ export default function HomeContainer({ }) {
 
 
     return (
-        <section className={`flex h-auto flex-col w-full grow transition-opacity duration-200 delay-200 ease-in-out
+        <section className={`flex h-auto flex-col w-full grow transition-opacity duration-200 delay-200 ease-in-out scroll-smooth thin-gray-scrollbar
          ${signingOut ? 'opacity-50 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
             <HeroImage />
             <Challenge />

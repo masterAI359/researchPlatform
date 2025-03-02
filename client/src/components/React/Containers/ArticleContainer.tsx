@@ -8,19 +8,21 @@ import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
 import ScrolltoTop from "../AppRouting/ScrollToTop"
-
+import { BackToSearch } from "../Modals/BackToSearch"
 
 export default function ArticleContainer({
 }) {
     const [showSelect, setShowSelect] = useState<boolean>(false)
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { search, read, getArticle, end, display } = investigateState
-    const { showContent } = display
+    const { showContent, showBackToSearchModal } = display
     const { loading, articles, status } = search
     const { endProcess } = end
     const { chosenArticles } = getArticle
     const { reading, summaries, loadingContent, ContentStatus } = read
 
+    console.log(showBackToSearchModal)
+    console.log(ContentStatus)
 
     function hideSelect() {
 
@@ -36,10 +38,13 @@ export default function ArticleContainer({
         <ErrorBoundary>
             <motion.div
                 initial={{ opacity: 1 }}
-                animate={{ opacity: 1 }}
+                animate={{ opacity: showBackToSearchModal ? 0.5 : 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ type: 'tween', duration: 0.2 }}
-                className="relative shrink-0 w-full h-full mx-auto xs:px-2">
+                className={`
+                relative shrink-0 w-full h-full mx-auto xs:px-2`}>
+                {showBackToSearchModal ? <BackToSearch /> : null}
+
                 <div
                     className="relative xl:max-w-7xl min-h-full flex flex-col box-border mx-auto">
                     <AnimatePresence mode="popLayout">

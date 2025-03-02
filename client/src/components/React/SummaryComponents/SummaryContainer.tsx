@@ -56,16 +56,14 @@ export default function SummaryContainer({ }) {
 
           <div
             className="w-full mx-auto relative">
-            <AnimatePresence mode="wait">
-              {ContentStatus === 'pending' && <SummaryLoader />}
-              {ContentStatus === 'fulfilled' && summaries.length > 0 ? summaries?.map((articleData: any, index: number) =>
-              (currentStory === index && <Summary
-                key={index}
-                index={index}
-                articleData={articleData}
-              />)
-              ) : <NoContent />}
-            </AnimatePresence>
+            {ContentStatus === 'pending' && <SummaryLoader />}
+            {ContentStatus === 'fulfilled' && summaries.length > 0 ? summaries?.map((articleData: any, index: number) =>
+            (currentStory === index && <Summary
+              key={index}
+              index={index}
+              articleData={articleData}
+            />)
+            ) : <NoContent />}
           </div>
         </main>
         {ContentStatus === 'fulfilled' && <FailedSummary />}

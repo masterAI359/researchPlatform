@@ -239,7 +239,7 @@ module.exports = {
             borderRadius: '9999px', // makes it fully rounded for a smooth look
           },
           '&::-webkit-scrollbar-track': {
-            backgroundColor: '#edf2f7', // a light gray (gray-100) for the track
+            opacity: 0.2,
           },
           /* For Firefox */
           'scrollbar-width': 'thin',

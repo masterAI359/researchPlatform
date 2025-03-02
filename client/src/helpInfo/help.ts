@@ -3,16 +3,14 @@ import { Help } from "@/env";
 const Step1Help: Help[] = [
     {
         heading: "What kind of idea?",
-        explanation: `The kind of idea you should try to examine here should be objective. 
-        For example, 'The Earth is Flat'. This is a claim that can be objectively measured, and 
+        explanation: `The kind of idea you should try to examine here should be one that can be objectively measured. Thus,  
         evidence can be used to weigh the merit of the claim. Claims that come down to personal
         preferences are too subjective to assess.`,
     },
     {
         heading: "Examples",
-        explanation: `Some statements you could enter  'Flossing your teeth is unnecessary and tedious' ,
-    or  'The president is to blame for high gas prices'  ; These claims have some evidence behind them that
-    can be examined, and inform us.`
+        explanation: `For instance, you could look into a common idea such as 'The president is to blame for high gas prices'. 
+        This is a claim we can gather evidence to support or reject it.`
     }
 
 
@@ -24,18 +22,18 @@ const Step2Help: Help[] = [{
     heading: "Why is this important?",
     explanation: `To have an honest inquiry, we must acknowledge what our personal beliefs are before we dig in.
     If we don't reflect on how we feel about a topic, or the parties involved, we're more likely to search only for 
-    what would reinforce our existing belief. We may not feel good initially about what evidence we may find. But this is
-    the only way to properly inform ourselves, as opposed to doing the mental gymnastics to never move from the position 
-    we once held.`
+    what would reinforce our existing belief. Our desire to reaffirm what we already believe can pull us towards a 
+    conclusion before we can actually support it.`
 }]
 
 const Step3Help: Help[] = [{
     heading: "What is this asking me?",
-    explanation: `In this step, write down what you may have read, watched, or heard that informs your point of view 
-    at the moment. Often times when we reflect on what drove us to an opinion the details can be very muddy, and we may not
-    know quite as much as we thought. This can be a difficult thing to recognize, as heated as we can get when analyzing our view
-    on the world around us. Just remember, the idea itself is what's under scrutiny, not you as a person. Nobody has all the answers off the top of
-    their head`
+    explanation: `What conditions must be met in order for the idea you're investigating to have merit?`
+},
+{
+    heading: "Examples",
+    explanation: `For example, if we're looking into the idea 'Flossing your teeth is unncessesary', we would need to 
+    find evidence that flossing your teeth doesn't have much benefit to your dental health.`
 }
 ]
 

@@ -1,4 +1,4 @@
-import { useState, Suspense, lazy, } from "react"
+import { useState, Suspense, lazy, useEffect, } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import SelectArticles from "../ArticleComponents/SelectArticles"
 import SummaryContainer from "../SummaryComponents/SummaryContainer"
@@ -19,7 +19,7 @@ export default function ArticleContainer({
     const { loading, articles, status } = search
     const { endProcess } = end
     const { chosenArticles } = getArticle
-    const { reading, summaries, loadingContent, ContentStatus } = read
+    const { ContentStatus } = read
 
     console.log(showBackToSearchModal)
     console.log(ContentStatus)
@@ -33,6 +33,9 @@ export default function ArticleContainer({
             console.log("there's nothing to summarize yet")
         }
     }
+
+
+    useEffect(() => { }, [ContentStatus, status])
 
     return (
         <ErrorBoundary>

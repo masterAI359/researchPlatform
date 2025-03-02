@@ -3,7 +3,7 @@ import * as dotenv from 'dotenv'
 import * as path from 'path'
 import { fileURLToPath } from 'url';
 import decodeItem from '../helpers/decodeItem.js'
-
+import decodeQueryParam from '../helpers/paramDecode.js'
 
 const envUrl = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(envUrl)
@@ -27,7 +27,16 @@ export const tldrSummary = async (req: Request, res: Response) => {
     let failure: any = []
 
     const received = req.query.q as string;
-    const query: QueryType[] = JSON.parse(decodeURIComponent(received));
+
+    console.log({ "Recieved Query": received }, typeof received)
+
+    const paramDecode = (item: string) => {
+
+        return decodeURIComponent(item.replace(/\+/g, " "));
+    }
+
+
+    const query: QueryType[] = JSON.parse(paramDecode(received));
 
 
 
@@ -47,7 +56,7 @@ export const tldrSummary = async (req: Request, res: Response) => {
         const dataMap = query.map(async (article, index) => {
 
 
-            console.log({ "fetching data for: ": article.url });
+            //   console.log({ "fetching data for: ": article.url });
 
             await delay(index * 2000);
 
@@ -107,7 +116,7 @@ export const tldrSummary = async (req: Request, res: Response) => {
         const success = returnValues.filter((result: any) => result !== undefined)
 
         const resultsObject = { retrieved: success, rejected: failure }
-        console.log(resultsObject)
+        // console.log(resultsObject)
         res.json(resultsObject);
         failure = []
     } catch (error) {

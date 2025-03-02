@@ -19,7 +19,11 @@ const TLDRKey = process.env.TLDR_KEY;
 export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let failure = [];
     const received = req.query.q;
-    const query = JSON.parse(decodeURIComponent(received));
+    console.log({ "Recieved Query": received }, typeof received);
+    const paramDecode = (item) => {
+        return decodeURIComponent(item.replace(/\+/g, " "));
+    };
+    const query = JSON.parse(paramDecode(received));
     const url = 'https://tldrthis.p.rapidapi.com/v1/model/abstractive/summarize-url/';
     function delay(t) {
         return new Promise(resolve => setTimeout(resolve, t));
@@ -29,7 +33,7 @@ export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, funct
     }
     try {
         const dataMap = query.map((article, index) => __awaiter(void 0, void 0, void 0, function* () {
-            console.log({ "fetching data for: ": article.url });
+            //   console.log({ "fetching data for: ": article.url });
             yield delay(index * 2000);
             try {
                 const response = yield fetch(url, {
@@ -78,7 +82,7 @@ export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, funct
         });
         const success = returnValues.filter((result) => result !== undefined);
         const resultsObject = { retrieved: success, rejected: failure };
-        console.log(resultsObject);
+        // console.log(resultsObject)
         res.json(resultsObject);
         failure = [];
     }

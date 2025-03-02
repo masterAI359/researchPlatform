@@ -69,8 +69,8 @@ export default function Search({ }) {
                   {
                     status === 'pending' ? <Loader />
                       : <svg
-                        className="text-white xs:h-5 xs:w-5 absolute 
-                        xs:top-4 xs:right-4 md:top-4 md:bottom-4 md:right-4 fill-current"
+                        className="text-white h-5 w-5 absolute 
+                        top-4 right-6  fill-current"
                         xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
                         version="1.1" x="0px" y="0px" viewBox="0 0 56.966 56.966"
                         xmlSpace="preserve">

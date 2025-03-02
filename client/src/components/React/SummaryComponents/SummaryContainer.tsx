@@ -12,34 +12,25 @@ import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
 import SummaryLoader from "../Loaders/SummaryLoader"
 import Summary from "./SuccessFull/Summary"
 import NoContent from "./Failed/NoContent"
+import { clearChosenArticles } from "@/ReduxToolKit/Reducers/Investigate/ChosenArticles"
+import { resetData } from "@/ReduxToolKit/Reducers/Investigate/Reading"
 
 export default function SummaryContainer({ }) {
   const investigateState = useSelector((state: RootState) => state.investigation)
   const { read } = investigateState
+  const { displayArticleContent } = investigateState.display
   const { summaries, failedNotifications, currentStory, reading, ContentStatus } = read
   const id = useSelector((state: RootState) => state.auth.user_id)
   const appDispatch = useAppdispatch()
   const dispatch = useDispatch()
 
-  // useEffect(() => {
-  //
-  //
-  //   if (reading) {
-  //     dispatch(supabaseContext('reading'))
-  //   }
-  //
-  //   const channel = supabase.channel('table-changes')
-  //     .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'articles' }, payload => {
-  //       console.log('New row inserted:', payload);
-  //       appDispatch(fetchSavedArticles(id))
-  //     })
-  //     .subscribe();
-  //
-  //   return () => {
-  //     supabase.removeChannel(channel)
-  //   }
-  //
-  // }, [reading])
+  useEffect(() => {
+
+    return () => {
+
+      dispatch(resetData())
+    }
+  }, [displayArticleContent])
 
   return (
     <ErrorBoundary>

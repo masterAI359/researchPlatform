@@ -14,6 +14,7 @@ export function BackToSearch({ }) {
         dispatch(displayArticleContent(false))
         dispatch(displaySearch(true))
         dispatch(displayReturnModal(false))
+        dispatch(clearChosenArticles())
         dispatch(resetData())
     }
 
@@ -33,6 +34,7 @@ export function BackToSearch({ }) {
             initial="closed"
             animate="open"
             exit="closed"
+            transition={{ duration: 0.2, type: 'tween' }}
             className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50
          xl:min-w-96 xl:min-h-80 flex flex-col items-start gap-x-8 gap-y-6 rounded-3xl p-8 
         sm:gap-y-10 sm:p-10 lg:col-span-2 lg:flex-row lg:items-center bg-ebony mt-2 

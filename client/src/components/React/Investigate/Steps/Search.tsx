@@ -51,8 +51,11 @@ export default function Search({ }) {
           <div
             className="w-full">
             <div
-              className="relative mt-4 xs:p-1">
+              className="relative mt-4 lg:mb-4 xs:p-1 mx-auto flex justify-center items-center">
               <form
+                className="bg-white/10 text-white w-full h-fit 
+               border-none md:h-10 md:p-0 2xl:p-0 rounded-full relative
+               transition-colors xs:text-sm md:text-lg flex items-center prose"
                 onSubmit={handleSubmit}
               >
                 <input
@@ -60,9 +63,9 @@ export default function Search({ }) {
                   autoComplete="off"
                   type="text"
                   name="q"
-                  className="bg-white/10 text-white w-full h-fit 
-                  border-none h-12 xs:p-3  md:p-2 rounded-full relative
-		              transition-colors xs:text-sm md:text-lg flex items-center prose"
+                  className="bg-transparent text-white w-full h-fit 
+               border-none h-12 xs:p-3  md:p-2 rounded-full relative focus:ring-0
+               transition-colors xs:text-sm md:text-lg flex items-center"
                   placeholder="search" />
                 <button type="submit"
                 >
@@ -70,7 +73,7 @@ export default function Search({ }) {
                     status === 'pending' ? <Loader />
                       : <svg
                         className="text-white h-5 w-5 absolute 
-                        top-4 right-6  fill-current"
+                       bottom-2.5 right-3 fill-current"
                         xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
                         version="1.1" x="0px" y="0px" viewBox="0 0 56.966 56.966"
                         xmlSpace="preserve">

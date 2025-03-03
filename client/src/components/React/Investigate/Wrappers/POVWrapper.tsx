@@ -5,7 +5,7 @@ export default function POVWrapper({ }) {
 
     return (
         <main
-            className="flex items-center mx-auto box-border w-full h-full">
+            className="flex items-center justify-start lg:px-4 xl:px-0 w-full h-full">
             <WindowContainer
             />
             <MapContainer />

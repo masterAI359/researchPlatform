@@ -11,9 +11,9 @@ export default function StepsEditor({ setterFunction, context }) {
     const dispatch = useDispatch<AppDispatch>()
 
     const handleContent = () => {
-        setInputText(editor.getText())
-
-        dispatch(setterFunction(inputText))
+        let input = editor.getText()
+        console.log(input)
+        dispatch(setterFunction(input))
     }
 
 

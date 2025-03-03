@@ -4,13 +4,13 @@ import { motion } from "framer-motion"
 export default function SearchNode({ currentStep }) {
 
     return (
-        <div className="w-fit h-fit absolute xs:bottom-3 md:bottom-6 left-1/2 left-1/2 transform -translate-x-1/2">
-            <div className={` w-36 h-12 p-1 bg-ebony border border-3 border-button_blue
-                 rounded-3xl flex items-center xs:gap-x-2 md:gap-x-6 transition-all duration-200 ease-in-out
+        <div className="w-fit h-fit absolute xs:bottom-3 md:bottom-2 xl:bottom-4 left-1/2 left-1/2 transform -translate-x-1/2">
+            <div className={`xl:w-36 xl:h-12 lg:w-32 lg:h-11 md:w-24 md:h-10 p-0.5 lg:p-1 bg-ebony border border-3 border-button_blue
+                 rounded-3xl flex items-center gap-x-1 xl:gap-x-6 transition-all duration-200 ease-in-out
                   ${currentStep < 4 ? 'border border-2 border-button_gray' : 'border border-2 border-button_blue'}
                  `}>
                 <motion.div
-                    className="flex items-center justify-center rounded-full max-h-9 max-w-9 p-0.5  shrink-0 z-10
+                    className="flex items-center justify-center rounded-full xl:max-h-9 xl:max-w-9 lg:max-h-8 lg:max-w-8 md:max-w-7 md:max-h-7 md:p-0.5  shrink-0 z-10
                   hover:cursor-pointer"
                     animate={{
                         backgroundColor: currentStep < 4 ? "#374151" : "#2563eb",

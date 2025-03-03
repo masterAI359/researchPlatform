@@ -17,10 +17,10 @@ export default function MindMap({ }) {
 
     return (
         <div
-            className="md:h-full w-10/12 bg-white/10
-        mx-auto flex flex-col rounded-4xl relative">
+            className="lg:w-full xl:w-10/12 bg-white/10
+        flex flex-col rounded-4xl relative xl:justify-self-end">
             <header className="h-auto w-full mx-auto">
-                <h1 className="text-zinc-500 text-2xl font-light tracking-tight text-center pt-2">
+                <h1 className="text-zinc-500 md:hidden lg:block xl:text-2xl font-light tracking-tight text-center pt-2">
                     Mind Map
                 </h1>
             </header>

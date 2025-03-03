@@ -3,14 +3,14 @@ import { motion } from "framer-motion"
 export default function MindNode1({ currentStep }) {
 
     return (
-        <div className="h-fit w-fit flex flex-col justify-center absolute md:top-14 left-1/2 left-1/2 transform -translate-x-1/2 mx-auto">
+        <div className="h-fit w-fit flex flex-col justify-center absolute md:top-1 lg:top-3 xl:top-14 left-1/2 left-1/2 transform -translate-x-1/2 mx-auto">
             <div className={`${currentStep === 0 ? 'scale-110' : null} transition-all justify-between
-            ease-in-out duration-200 bg-ebony  w-36 h-12 p-1 flex items-center 
+            ease-in-out duration-200 bg-ebony w-24 h-10 lg:w-32 lg:h-11 xl:w-36 xl:h-12 p-1 flex items-center 
           ${currentStep < 0 ? 'border border-2 border-button_gray' : 'border border-2 border-button_blue'}
             rounded-3xl`}>
 
                 <motion.div
-                    className="flex items-center justify-self-start justify-center shrink-0 box-border max-h-9 max-w-9 p-1  rounded-full z-10 hover:cursor-pointer"
+                    className="flex items-center justify-self-start justify-center shrink-0 box-border max-w-7 max-h-7 lg:max-h-8 lg:max-w-8 xl:max-h-9 xl:max-w-9 p-1  rounded-full z-10 hover:cursor-pointer"
                     animate={{
                         backgroundColor: currentStep === 0 ? "#374151" : "#2563eb",
                         boxShadow: currentStep === 0

@@ -20,9 +20,9 @@ export default function WindowWrapper({ }) {
   return (
     <section
       ref={containerRef}
-      className="relative h-fit 
-      mx-auto xs:min-w-full xs:max-w-full xl:min-w-168 xl:w-3/4 mb-4 md:mb-0
-      transition-all duration-400 animate-fade-in delay-300 no-scrollbar box-border flex shrink-0">
+      className="relative h-fit
+      mx-auto max-w-full md:w-11/12 lg:w-5/6 xl:w-full mb-4 md:mb-0
+      transition-all duration-400 animate-fade-in delay-300 no-scrollbar box-border flex">
       <div
         style={{ maxHeight: "fit" }}
         className="flex xs:items-center 2xl:items-baseline

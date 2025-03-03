@@ -60,7 +60,7 @@ export default function Step2({ containerWidth }: any) {
               className="flex flex-col md:gap-y-2 xs:gap-y-1 items-center text-center my-auto"
             >
               <header className="w-full">
-                <h1 className="2xl:text-2xl xl:text-xl xs:text-xs  font-light tracking tight text-slate-400 mb-2">Your Perspective</h1>
+                <h1 className="2xl:text-2xl xl:text-xl md:text-sm md:text-left text-xs  font-light tracking tight text-slate-400 mb-2">Your Perspective</h1>
               </header>
               {opinions.map((opinion) => (
                 <div
@@ -92,7 +92,7 @@ export default function Step2({ containerWidth }: any) {
 
             <div className="flex flex-col md:gap-y-2 xs:gap-y-1 items-center text-center my-auto">
               <header className="w-full">
-                <h1 className="2xl:text-2xl xl:text-xl xs:text-xs font-light tracking tight text-slate-400 mb-2">Prior Knowledge</h1>
+                <h1 className="2xl:text-2xl xl:text-xl md:text-sm md:text-left text-xs font-light tracking tight text-slate-400 mb-2">Prior Knowledge</h1>
               </header>
               {expertiseArray.map((item) => (
                 <div

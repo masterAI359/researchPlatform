@@ -2,17 +2,17 @@ import { motion } from "framer-motion"
 import { useEffect } from "react"
 
 
-export default function NotifySavedArticle({ articleExists, setShowNotification }) {
+export default function RegisteredUsersOnly({ setRegisteredExclusiveFeature, registeredExclusiveFeature }) {
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            setShowNotification(false)
-        }, 2000)
+            setRegisteredExclusiveFeature(false)
+        }, 4000)
 
         console.log("running")
 
         return () => clearTimeout(timer)
-    }, [articleExists, setShowNotification])
+    }, [registeredExclusiveFeature])
 
     const variants = {
         closed: {
@@ -39,8 +39,7 @@ export default function NotifySavedArticle({ articleExists, setShowNotification 
         >
             <div className="w-full h-auto p-2">
                 <h1 className="text-black text-nowrap text-sm w-full font-light tracking-tight">
-                    {articleExists ? 'article saved!'
-                        : 'unsaved'}
+                    Register or Login to save articles!
                 </h1>
             </div>
 

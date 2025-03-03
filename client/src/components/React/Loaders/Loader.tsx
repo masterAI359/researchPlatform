@@ -3,7 +3,7 @@ export default function Loader() {
   return (
     <svg
       aria-hidden="true"
-      className="2xl:h-7 2xl:w-7 md:w-7 md:h-7 xs:h-6 xs:w-6 absolute bottom-1 right-2 top-1
+      className="2xl:h-7 2xl:w-7 md:w-7 md:h-7 xs:h-6 xs:w-6
           text-black animate-spin-fast fill-white"
       viewBox="0 0 100 101"
       fill="none"

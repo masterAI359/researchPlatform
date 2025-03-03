@@ -4,12 +4,16 @@ import { useDispatch } from "react-redux"
 import { requiredInput } from "@/helpers/validation"
 import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
+import LoggingIn from "./AuthNotifications/LoggingIn"
+import { AnimatePresence } from "framer-motion"
 
 
 export default function Login() {
     const [userEmail, setUserEmail] = useState<string>(null)
     const [userPassword, setUserPassword] = useState<string>(null)
     const [acceptedInput, setAcceptedInput] = useState<boolean>(null)
+    const [loggingIn, setLoggingIn] = useState<boolean>(false)
+    const [successfull, setSuccessful] = useState<boolean>(null)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -29,16 +33,30 @@ export default function Login() {
 
 
     const logInUser = async () => {
-        const { data, error } = await supabase.auth.signInWithPassword({
-            email: userEmail,
-            password: userPassword
-        })
-        if (error) {
+
+
+
+        try {
+            setLoggingIn(true)
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email: userEmail,
+                password: userPassword
+            })
+            if (error) {
+                console.log(error)
+                setSuccessful(false)
+            } else if (data) {
+                console.log(data)
+                setLoggingIn(false)
+                setSuccessful(true)
+            }
+        } catch (error) {
             console.log(error)
-        } else if (data) {
-            console.log(data)
+        } finally {
+
             redirectUser()
         }
+
     }
 
 
@@ -60,6 +78,9 @@ export default function Login() {
 
     return (
         <section className="lg:p-8 overflow-hidden bg-black animate-fade-in">
+            <AnimatePresence>
+                {loggingIn && <LoggingIn successful={successfull} />}
+            </AnimatePresence>
             <div className="mx-auto 2xl:max-w-7xl py-24 lg:px-16 md:px-12 px-8 xl:px-36">
                 <div className="border-b pb-12">
                     <p className="text-3xl tracking-tight font-light lg:text-4xl text-white">

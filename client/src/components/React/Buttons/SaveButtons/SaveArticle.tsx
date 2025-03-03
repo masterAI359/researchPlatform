@@ -5,10 +5,12 @@ import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { useLayoutEffect, useState } from "react"
 import { session } from "@/SupaBase/supaBaseClient"
+import RegisteredUsersOnly from "../../Notifications/RegisteredUsersOnly"
 
 export default function Bookmark({ dataToSave, showNotification, setShowNotification, open }) {
     const id = useSelector((state: RootState) => state.auth.user_id)
     const [articleExists, setArticleExists] = useState<boolean>(false)
+    const [registeredExclusiveFeature, setRegisteredExclusiveFeature] = useState<boolean>(false)
     const { url } = dataToSave
 
     useLayoutEffect(() => {
@@ -21,7 +23,7 @@ export default function Bookmark({ dataToSave, showNotification, setShowNotifica
 
 
     return (
-        <div onClick={() => { saveArticle(dataToSave, setShowNotification, setArticleExists, articleExists) }}
+        <div onClick={() => { saveArticle(dataToSave, setShowNotification, setArticleExists, articleExists, setRegisteredExclusiveFeature) }}
             className={`${open ? 'pointer-events-none' : 'pointer-events-auto'} w-full h-full self-start flex items-center justify-start group relative cursor-pointer`}>
             {!showNotification && <div className="rounded-md xl:h-fit md:w-24 flex xs:hidden md:block 
                 mx-auto group-hover:bg-black opacity-0 absolute md:right-7
@@ -36,6 +38,9 @@ export default function Bookmark({ dataToSave, showNotification, setShowNotifica
                 {showNotification &&
                     <NotifySavedArticle articleExists={articleExists} setShowNotification={setShowNotification} />
                 }
+
+                {registeredExclusiveFeature && <RegisteredUsersOnly setRegisteredExclusiveFeature={setRegisteredExclusiveFeature} registeredExclusiveFeature={registeredExclusiveFeature} />}
+
             </AnimatePresence>
             <svg className={`${articleExists ? 'text-white' : 'text-white/30 hover:text-white/60'}
             transition-all duration-200 ease-in-out`}

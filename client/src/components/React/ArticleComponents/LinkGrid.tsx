@@ -45,16 +45,21 @@ export default function LinkGrid() {
                         {status === 'fulfilled' &&
                             <motion.ol className="max-w-4xl mx-auto grid grid-cols-2 xs:gap-3 
                     min-h-full 2xl:gap-12">
-                                {articles.map((article: ArticleType, index: number) => {
-                                    return (
-                                        <ArticleLink
-                                            index={index}
-                                            key={index}
-                                            article={article}
-                                        />)
-                                })
+                                {articles.length > 0 &&
+                                    articles.map((article: ArticleType, index: number) => {
+                                        return (
+                                            <ArticleLink
+                                                index={index}
+                                                key={index}
+                                                article={article}
+                                            />)
+                                    })
                                 }
-                            </motion.ol>}
+                            </motion.ol>
+                        }
+
+                        {status === 'fulfilled' && articles.length === 0 ? <SearchFailed /> : null}
+
 
                         {status === 'rejected' &&
                             <SearchFailed key='searchFailed' />}

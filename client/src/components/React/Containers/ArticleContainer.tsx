@@ -49,7 +49,7 @@ export default function ArticleContainer({
                 {showBackToSearchModal ? <BackToSearch /> : null}
 
                 <div
-                    className="relative xl:max-w-7xl min-h-full flex flex-col box-border mx-auto">
+                    className="relative 2xl:max-w-7xl min-h-full flex flex-col justify-center box-border mx-auto">
                     <AnimatePresence mode="popLayout">
 
                         {status !== 'idle' &&
@@ -60,6 +60,7 @@ export default function ArticleContainer({
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
                                 transition={{ type: 'tween', duration: 0.5 }}
+                                className="w-full"
                             >
                                 <LinkGrid
                                 />

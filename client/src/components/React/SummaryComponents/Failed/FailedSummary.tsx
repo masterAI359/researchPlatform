@@ -12,7 +12,7 @@ export default function FailedSummary({ }) {
 
         <motion.ul
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1, transition: { delay: 0.8 } }}
+            animate={{ opacity: 1, transition: { delay: 1.3 } }}
             exit={{ opacity: 0 }}
             className="2xl:bottom-12 2xl:right-12 bottom-3 right-3 flex fixed z-50 flex-col gap-y-6">
             <AnimatePresence mode="popLayout" initial={false}>

@@ -46,7 +46,7 @@ export default function SummaryHeader({
 
     return (
         <header
-            className="relative flex mx-auto box-border border-b border-white/20 w-full 2xl:mb-1">
+            className="relative flex mx-auto box-border border-b border-white/20 w-full h-full 2xl:mb-1">
             <section className="flex xs:flex-col xs:gap-y-2 md:flex-row md:gap-x-4 items-center w-full h-full mx-auto xs:pb-2 xl:pb-2">
                 <div className="w-fit flex items-center">
                     <div className="xs:h-full flex flex-row justify-start relative">

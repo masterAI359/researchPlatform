@@ -36,7 +36,7 @@ export default function SummaryContainer({ }) {
     <ErrorBoundary>
       <div
         className="min-h-full 2xl:max-w-7xl xl:max-w-5xl xs:px-2 md:px-8 scroll-smooth
-      inset rounded-4xl mx-auto border-white/10 xs:mt-10 xl:mt-0"
+      inset rounded-4xl mx-auto border-white/10 xs:mt-10 xl:mt-0 relative"
       >
 
         <main
@@ -46,7 +46,7 @@ export default function SummaryContainer({ }) {
 
 
           <div
-            className="w-full mx-auto relative">
+            className="w-full h-full mx-auto relative">
             {ContentStatus === 'pending' && <SummaryLoader />}
             {ContentStatus === 'fulfilled' && summaries.length > 0 ? summaries?.map((articleData: any, index: number) =>
             (currentStory === index && <Summary

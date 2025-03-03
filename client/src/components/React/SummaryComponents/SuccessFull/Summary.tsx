@@ -25,7 +25,7 @@ export default function Summary({ articleData, index }) {
             initial={{ opacity: 0 }}
             animate={{
                 opacity: 1, transition: {
-                    delay: 0.3, duration: 0.3
+                    duration: 0.2
                 }
             }}
             exit={{

@@ -41,20 +41,23 @@ export default function SummaryContainer({ }) {
 
         <main
           className="2xl:max-w-6xl h-full w-full mx-auto 
-                 transition-all duration-1000 animate-fade-in mb-12
+               mb-12 flex flex-col
                  ">
 
 
           <div
-            className="w-full h-full mx-auto relative">
+            className="w-full h-full mx-auto relative grow shrink-0">
             {ContentStatus === 'pending' && <SummaryLoader />}
-            {ContentStatus === 'fulfilled' && summaries.length > 0 ? summaries?.map((articleData: any, index: number) =>
-            (currentStory === index && <Summary
-              key={index}
-              index={index}
-              articleData={articleData}
-            />)
-            ) : <NoContent />}
+            <AnimatePresence mode="wait">
+              {ContentStatus === 'fulfilled' && summaries.length > 0 ? summaries?.map((articleData: any, index: number) =>
+              (currentStory === index && <Summary
+                key={index}
+                index={index}
+                articleData={articleData}
+              />)
+              ) : <NoContent />}
+            </AnimatePresence>
+
           </div>
         </main>
         {ContentStatus === 'fulfilled' && <FailedSummary />}

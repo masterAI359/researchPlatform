@@ -21,11 +21,12 @@ export default function Summary({ articleData, index }) {
 
     return (
         <motion.div
+            layout
             key={article_url}
             initial={{ opacity: 0 }}
             animate={{
                 opacity: 1, transition: {
-                    duration: 0.2
+                    duration: 0.3, delay: 0.1
                 }
             }}
             exit={{
@@ -34,8 +35,8 @@ export default function Summary({ articleData, index }) {
                     duration: 0.1
                 }
             }}
-            className="relative top-0 left-0 right-0 box-border flex flex-col
-            pb-1 w-full h-full scrollbar-hide box-border bg-black"
+            className="relative top-0 left-0 right-0 flex flex-col
+            w-full h-full scrollbar-hide bg-black"
         >
             <SummaryHeader
                 date={date}

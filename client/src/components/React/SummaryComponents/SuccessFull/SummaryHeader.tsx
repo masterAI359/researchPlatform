@@ -27,6 +27,32 @@ export default function SummaryHeader({
     const id = useSelector((state: RootState) => state.auth.user_id)
     const [open, setOpen] = useState<boolean>(false)
 
+    console.log(date)
+
+    const formatDate = (datePublished: string) => {
+
+        const splitDate = datePublished.split(" ")
+        console.log(splitDate)
+        const addCommas = splitDate.map((str: string, index: number) => {
+
+            if (splitDate.length === index + 2) {
+                return str + ','
+            } else {
+                return str
+            }
+        })
+
+        const formatted = addCommas.join(" ")
+
+
+        return formatted
+
+    }
+
+    const dateFormatted = formatDate(date)
+
+    console.log(formatDate(date))
+
     const dataToSave: SavedArticle = {
         title: article_title,
         provider: source,
@@ -74,13 +100,13 @@ export default function SummaryHeader({
                     </div>
                 </div>
 
-                <figcaption className="w-full h-full flex items-baseline">
-                    <div className='flex md:flex-col h-full w-full box-border xl:gap-y-4 items-center self-end'>
-                        <div className='w-full h-full box-border xs:flex xs:flex-col md:gap-y-2 justify-end'>
+                <figcaption className="w-full h-full flex items-baseline self-end">
+                    <div className='flex md:flex-col h-full w-full box-border xl:gap-y-4 self-end'>
+                        <div className='w-full h-full box-border flex flex-col md:gap-y-2 justify-end'>
 
                             <div>
                                 <p className="text-slate-300 font-light xs:text-sm md:text-lg font-serif">
-                                    Published - {date ? date : article_pub_date}{' '}
+                                    Published - {date ? dateFormatted : article_pub_date}{' '}
                                 </p>
                             </div>
                             <div className='max-w-3/4 flex flex-wrap mt-3 items-center'>

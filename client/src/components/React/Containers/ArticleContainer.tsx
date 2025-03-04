@@ -73,7 +73,7 @@ export default function ArticleContainer({
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
-                                transition={{ type: 'tween', duration: 1 }}
+                                transition={{ type: 'tween', duration: 0.3 }}
                             >
                                 <SummaryContainer
                                 />

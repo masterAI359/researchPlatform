@@ -13,7 +13,6 @@ export function FinishedReading({ }) {
                 dispatch(initiateFinalProcess(true))
                 dispatch(displayArticleContent(false))
                 dispatch(displayWrapUp(true))
-                dispatch(resetData())
             }}
             className="my-auto mx-auto rounded-lg transition-all 
         duration-300 xs:max-w-8 xs:max-h-8 xl:max-w-7 xl:max-h-7 2xl:max-w-8 

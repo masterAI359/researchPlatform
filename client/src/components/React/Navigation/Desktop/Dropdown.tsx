@@ -71,7 +71,6 @@ const DropdownMenu = ({ isOpen, setIsOpen }) => {
 
     useEffect(() => {
 
-        console.log(id)
 
         const { data } = supabase.auth.onAuthStateChange((event, session) => {
 

@@ -12,7 +12,6 @@ export const requiredInput = (emailString: string, passwordString: string, sette
 
     let valid = splitPassword.length >= 8
 
-    console.log(valid)
 
     if (splitPassword.length >= 8 && isValidEmail) {
 

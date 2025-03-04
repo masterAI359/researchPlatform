@@ -1,23 +1,18 @@
-import { clearChosenArticles } from "@/ReduxToolKit/Reducers/Investigate/ChosenArticles"
+//import { clearChosenArticles } from "@/ReduxToolKit/Reducers/Investigate/ChosenArticles"
 import { useDispatch } from "react-redux"
-import { useSelector } from "react-redux"
-import { RootState } from "@/ReduxToolKit/store"
-import { displaySearch, displayArticleContent, displayReturnModal } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
-import { BackToSearch } from "../../Modals/BackToSearch"
-import { useEffect, useState } from "react"
+//import { useSelector } from "react-redux"
+//import { RootState } from "@/ReduxToolKit/store"
+import { displayReturnModal } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
+import { resetResults } from "@/ReduxToolKit/Reducers/Investigate/SearchResults"
+//import { BackToSearch } from "../../Modals/BackToSearch"
+//import { useEffect, useState } from "react"
 
 export default function ReturnToSearch() {
-    const investigateState = useSelector((state: RootState) => state.investigation)
-    const { showBackToSearchModal } = investigateState.display
-    const { read, display } = investigateState
-    const { summaries } = read
-    // const { showBackToSearchModal } = display
     const dispatch = useDispatch()
-    const [isOpen, setIsOpen] = useState<boolean>(false)
 
-    console.log(showBackToSearchModal)
 
     const handleReturn = () => {
+        dispatch(resetResults())
         dispatch(displayReturnModal(true))
     }
 

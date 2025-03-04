@@ -4,18 +4,18 @@ import { displayArticleContent, displaySearch, displayReturnModal } from "@/Redu
 import { clearChosenArticles } from "@/ReduxToolKit/Reducers/Investigate/ChosenArticles"
 import { useDispatch, useSelector } from "react-redux"
 import { resetData } from "@/ReduxToolKit/Reducers/Investigate/Reading"
-import { RootState } from "@/ReduxToolKit/store"
-import { useEffect } from "react"
+import { resetResults } from "@/ReduxToolKit/Reducers/Investigate/SearchResults"
 
 export function BackToSearch({ }) {
     const dispatch = useDispatch()
 
     const goBack = () => {
         dispatch(displayArticleContent(false))
+        resetData()
+        dispatch(resetResults())
         dispatch(displaySearch(true))
         dispatch(displayReturnModal(false))
         dispatch(clearChosenArticles())
-        dispatch(resetData())
     }
 
     const cancelReturn = () => {

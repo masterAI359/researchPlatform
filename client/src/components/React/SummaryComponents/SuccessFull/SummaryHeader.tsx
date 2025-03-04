@@ -27,7 +27,6 @@ export default function SummaryHeader({
     const id = useSelector((state: RootState) => state.auth.user_id)
     const [open, setOpen] = useState<boolean>(false)
 
-    console.log(date)
 
     const formatDate = (datePublished: string) => {
 
@@ -102,23 +101,25 @@ export default function SummaryHeader({
 
                 <figcaption className="w-full h-full flex items-baseline self-end">
                     <div className='flex md:flex-col h-full w-full box-border xl:gap-y-4 self-end'>
-                        <div className='w-full h-full box-border flex flex-col md:gap-y-2 justify-end'>
+                        <div className='w-full h-full box-border flex flex-col md:gap-y-4 justify-end'>
 
                             <div>
-                                <p className="text-slate-300 font-light xs:text-sm md:text-lg font-serif">
-                                    Published - {date ? dateFormatted : article_pub_date}{' '}
+                                <p className="text-white font-light xs:text-sm md:text-lg font-serif">
+                                    Published - <span className="text-slate-400 font-light xs:text-sm md:text-lg font-serif">
+                                        {date ? dateFormatted : article_pub_date}{' '}
+                                    </span>
                                 </p>
                             </div>
-                            <div className='max-w-3/4 flex flex-wrap mt-3 items-center'>
-                                <p className='text-slate-300 md:text-lg font-light mr-2'>Authors - </p>
-                                {article_authors !== undefined && article_authors !== null ? authShortened.map((author: string, index: number) => {
+                            <div className='max-w-96 flex flex-wrap mt-3 items-center'>
+                                <p className='text-white md:text-lg mr-2'>Authors - </p>
+                                {article_authors ? authShortened.map((author: string, index: number) => {
 
                                     if (index + 1 < authShortened.length) {
-                                        return (<p key={index} className="text-slate-300 md:text-lg font-serif mr-2">
+                                        return (<p key={index} className="text-slate-400 md:text-lg font-serif mr-2">
                                             {author},
                                         </p>)
                                     } else if (index + 1 === authShortened.length) {
-                                        return (<p key={index} className="text-slate-300 md:text-lg font-serif mr-2">
+                                        return (<p key={index} className="text-slate-400 md:text-lg font-serif mr-2">
                                             {author}
                                         </p>)
                                     }

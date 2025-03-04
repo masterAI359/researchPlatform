@@ -2,7 +2,6 @@ import Thumbnail from "./Thumbnail"
 
 export default function PriorInvestigation({ investigation }) {
 
-    console.log(investigation)
 
     return (
         <div className="md:flex w-full h-auto">

@@ -34,7 +34,7 @@ export default function RegisteredUsersOnly({ setRegisteredExclusiveFeature, reg
             animate="open"
             exit="closed"
             transition={{ type: 'tween', duration: 0.2 }}
-            className="absolute z-50 xl:right-8 bottom-0 bg-white rounded-lg h-auto w-auto flex flex-col items-center
+            className="absolute z-50 right-8 bottom-0 bg-white rounded-lg h-auto w-auto flex flex-col items-center
             border border-astro_gray shadow-thick"
         >
             <div className="w-full h-auto p-2">

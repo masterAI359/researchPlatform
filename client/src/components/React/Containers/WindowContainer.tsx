@@ -11,7 +11,7 @@ export default function WindowContainer() {
         `}>
 
             <StepWizard />
-            <section className="w-full h-full relative">
+            <section className="w-full h-full relative mt-24 md:mt-0">
                 <WindowWrapper
                 />
             </section>

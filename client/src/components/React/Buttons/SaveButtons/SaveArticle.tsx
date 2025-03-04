@@ -25,7 +25,7 @@ export default function Bookmark({ dataToSave, showNotification, setShowNotifica
     return (
         <div onClick={() => { saveArticle(dataToSave, setShowNotification, setArticleExists, articleExists, setRegisteredExclusiveFeature) }}
             className={`${open ? 'pointer-events-none' : 'pointer-events-auto'} w-full h-full self-start flex items-center justify-start group relative cursor-pointer`}>
-            {!showNotification && <div className="rounded-md xl:h-fit md:w-24 flex xs:hidden md:block 
+            {!showNotification && !registeredExclusiveFeature ? <div className="rounded-md xl:h-fit md:w-24 flex xs:hidden md:block 
                 mx-auto group-hover:bg-black opacity-0 absolute md:right-7
                 border border-gray group-hover:opacity-100 transition-all 
                 z-50 duration-200 ease-in-out">
@@ -33,7 +33,7 @@ export default function Bookmark({ dataToSave, showNotification, setShowNotifica
                 <h1 className="text-white xl:text-sm xl:p-1 font-light tracking-tight justify-self-start text-center w-full">
                     {articleExists ? 'unsave' : 'save article'}
                 </h1>
-            </div>}
+            </div> : null}
             <AnimatePresence>
                 {showNotification &&
                     <NotifySavedArticle articleExists={articleExists} setShowNotification={setShowNotification} />

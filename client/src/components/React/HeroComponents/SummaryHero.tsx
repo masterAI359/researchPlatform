@@ -8,10 +8,10 @@ export default function SummaryHero({ }) {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { showContent } = investigateState.display
     const { read } = investigateState
-    const { summaries } = read
+    const { summaries, ContentStatus } = read
 
     return (
-        <header className="xs:w-full h-auto mx-auto flex items-center justify-between border-b border-white/10 xl:mt-20 2xl:mt-24 xl:max-w-6xl xl:mb-4">
+        <header className="w-full mt-12 h-auto mx-auto flex items-center justify-between border-b border-white/10 xl:mt-20 2xl:mt-24 xl:max-w-6xl xl:mb-4">
 
             <div className="w-auto my-auto flex xl:gap-x-6 xs:gap-x-4 items-center">
                 <h1 className="xl:text-3xl xs:text-md text-left text-white font-light tracking-tight md:mb-0 xs:mb-2">
@@ -23,7 +23,10 @@ export default function SummaryHero({ }) {
                     />
                 </div>
             </div>
-            {showContent && summaries ? <StoryPaginate /> : null}
+            <div className="hidden md:block">
+                {ContentStatus === 'fulfilled' && summaries ? <StoryPaginate /> : null}
+
+            </div>
 
         </header>
     )

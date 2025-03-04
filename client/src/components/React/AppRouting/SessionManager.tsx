@@ -1,4 +1,4 @@
-import { getID } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
+import { getEmail, getID } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
 import { useEffect } from "react";
 import { supabase, session } from "@/SupaBase/supaBaseClient";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,6 +10,7 @@ import { RootState } from "@/ReduxToolKit/store";
 
 
 export default function SessionManager() {
+    const authData = useSelector((state: RootState) => state.auth)
     const id = useSelector((state: RootState) => state.auth.user_id)
     const status = useSelector((state: RootState) => state.auth.status)
     const appDispatch = useAppdispatch()

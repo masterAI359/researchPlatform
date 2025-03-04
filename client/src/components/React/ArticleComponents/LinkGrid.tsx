@@ -6,6 +6,7 @@ import { RootState } from "@/ReduxToolKit/store"
 import ArticleLoader from "../Loaders/ArticleLoader"
 import SearchFailed from "../ErrorMessages/SearchFailed"
 import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
+import { useLayoutEffect } from "react"
 
 
 export default function LinkGrid() {
@@ -28,6 +29,12 @@ export default function LinkGrid() {
         }
     }
 
+    useLayoutEffect(() => {
+
+        console.log(status)
+
+    }, [status])
+
     return (
         <motion.div
             variants={container}
@@ -38,34 +45,26 @@ export default function LinkGrid() {
         >
             <div className={`h-full w-full mx-auto`}>
 
-                <ErrorBoundary>
-                    <AnimatePresence mode="wait">
-                        {status === 'pending' && <ArticleLoader key='articleLoader' />}
+                <AnimatePresence mode="wait">
+                    {status === 'pending' && <ArticleLoader key='articleLoader' />}
 
-                        {status === 'fulfilled' &&
-                            <motion.ol className="max-w-4xl mx-auto grid grid-cols-2 xs:gap-3 
+                    {status === 'fulfilled' &&
+                        <motion.ol className="max-w-4xl mx-auto grid grid-cols-2 xs:gap-3 
                     min-h-full 2xl:gap-12">
-                                {articles.length > 0 &&
-                                    articles.map((article: ArticleType, index: number) => {
-                                        return (
-                                            <ArticleLink
-                                                index={index}
-                                                key={index}
-                                                article={article}
-                                            />)
-                                    })
-                                }
-                            </motion.ol>
-                        }
+                            {articles.length > 0 &&
+                                articles.map((article: ArticleType, index: number) => {
+                                    return (
+                                        <ArticleLink
+                                            index={index}
+                                            key={index}
+                                            article={article}
+                                        />)
+                                })
+                            }
+                        </motion.ol>
+                    }
 
-                        {status === 'fulfilled' && articles.length === 0 ? <SearchFailed /> : null}
-
-
-                        {status === 'rejected' &&
-                            <SearchFailed key='searchFailed' />}
-
-                    </AnimatePresence>
-                </ErrorBoundary>
+                </AnimatePresence>
 
 
             </div>

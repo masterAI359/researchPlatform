@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { incrementBy } from "@/ReduxToolKit/Reducers/Investigate/Steps";
 
 
-export default function Node4({ setCurrentStep }) {
+export default function Node4({ }) {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { stepper } = investigateState
     const { step } = stepper

@@ -14,7 +14,7 @@ export default function HelpModal({ info, handleExpand, isOpen, setActiveTab, ac
             transition={{ type: 'tween', duration: 0.15 }}
             className="bg-black opacity-100 h-auto shadow-black
                          border border-2 border-white/10 shadow-thick rounded-4xl 
-                         z-50 absolute xs:bottom-4 xs:left-4 xl:pb-2 xl:bottom-24 lg:left-1/3 xl:w-[38rem] pb-6
+                         z-50 absolute bottom-12 xs:left-4 xl:pb-2 xl:bottom-24 lg:left-1/3 xl:w-[38rem] pb-6
                          overflow-hidden"
         >
             <header className="w-full h-auto relative bg-white/5 flex items-start p-2">
@@ -45,7 +45,7 @@ export default function HelpModal({ info, handleExpand, isOpen, setActiveTab, ac
                             }}
                             onClick={() => setActiveTab(info[index])}
                         >
-                            <h1 className={`font-light tracking-tight text-xl ${info[index] === activeTab ? 'text-white' : 'text-zinc-400'}`}>{element.heading}</h1>
+                            <h1 className={`font-light tracking-tight text-md md:text-xl ${info[index] === activeTab ? 'text-white' : 'text-zinc-400'}`}>{element.heading}</h1>
 
                         </motion.li>
                     ))}
@@ -58,10 +58,10 @@ export default function HelpModal({ info, handleExpand, isOpen, setActiveTab, ac
                         layout
                         key={activeTab ? activeTab : "empty"}
                         initial={{ y: 100, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1, transition: { delay: 0.2, duration: 0.2 } }}
+                        animate={{ y: 0, opacity: 1, transition: { delay: 0.5, duration: 0.2 } }}
                         exit={{ y: -100, opacity: 0, transition: { duration: 0.2 } }}
                     >
-                        <p className="text-white font-light text-lg p-4 absolute-bottom-2 left-2">
+                        <p className="text-white font-light text-sm md:text-lg p-4 absolute-bottom-2 left-2">
                             {activeTab ? activeTab.explanation : null}
 
                         </p>

@@ -33,6 +33,9 @@ export const SearchResultsSlice = createSlice({
             state.articles = action.payload
         },
         resetResults: () => initialState,
+        resetArticles: (state) => {
+            state.articles = null
+        }
 
     },
     extraReducers: (builder) => {
@@ -52,7 +55,7 @@ export const SearchResultsSlice = createSlice({
 
 
 
-export const { searchResults, resetResults } = SearchResultsSlice.actions
+export const { searchResults, resetResults, resetArticles } = SearchResultsSlice.actions
 
 export default SearchResultsSlice.reducer
 

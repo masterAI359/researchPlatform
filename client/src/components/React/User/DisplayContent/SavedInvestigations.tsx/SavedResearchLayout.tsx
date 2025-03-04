@@ -7,7 +7,6 @@ export default function SavedResearchLayout() {
     const savedInvestigations = useSelector((state: RootState) => state.userWork.userResearch)
     const newArr = [...savedInvestigations] //read-only property prevents direct reversal
     const timeline = newArr.reverse()
-    console.log(timeline)
 
 
     const variants = {

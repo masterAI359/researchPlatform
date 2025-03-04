@@ -3,7 +3,7 @@ import { RootState } from "@/ReduxToolKit/store"
 import { motion } from "framer-motion"
 import { useDispatch, useSelector } from "react-redux"
 
-export default function Node1({ setCurrentStep }) {
+export default function Node1({ }) {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { stepper } = investigateState
     const { step } = stepper

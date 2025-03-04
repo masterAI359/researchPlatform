@@ -19,7 +19,6 @@ export default function Login() {
 
 
     const redirectUser = () => {
-        console.log('invoked')
         navigate('/Profile')
     }
 

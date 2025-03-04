@@ -9,20 +9,20 @@ import { RootState } from "@/ReduxToolKit/store"
 import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
 import ScrolltoTop from "../AppRouting/ScrollToTop"
 import { BackToSearch } from "../Modals/BackToSearch"
+import { useDispatch } from "react-redux"
+import { displayResults } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
 
 export default function ArticleContainer({
 }) {
     const [showSelect, setShowSelect] = useState<boolean>(false)
     const investigateState = useSelector((state: RootState) => state.investigation)
-    const { search, read, getArticle, end, display } = investigateState
-    const { showContent, showBackToSearchModal } = display
-    const { loading, articles, status } = search
-    const { endProcess } = end
+    const { search, read, getArticle, display } = investigateState
+    const { showContent, showBackToSearchModal, showSearch } = display
+    const { articles, status } = search
     const { chosenArticles } = getArticle
     const { ContentStatus } = read
+    const dispatch = useDispatch()
 
-    console.log(showBackToSearchModal)
-    console.log(ContentStatus)
 
     function hideSelect() {
 
@@ -35,7 +35,13 @@ export default function ArticleContainer({
     }
 
 
-    useEffect(() => { }, [ContentStatus, status])
+    useEffect(() => {
+
+        // if (status !== 'idle') {
+        //     dispatch(displayResults(true))
+        // }
+
+    }, [ContentStatus, status])
 
     return (
         <ErrorBoundary>
@@ -52,7 +58,7 @@ export default function ArticleContainer({
                     className="relative 2xl:max-w-7xl min-h-full flex flex-col justify-center box-border mx-auto">
                     <AnimatePresence mode="popLayout">
 
-                        {status !== 'idle' &&
+                        {showSearch && status !== 'idle' ?
                             <motion.div
                                 layout
                                 key='presentArticles'
@@ -64,7 +70,7 @@ export default function ArticleContainer({
                             >
                                 <LinkGrid
                                 />
-                            </motion.div>}
+                            </motion.div> : null}
 
                         {showContent &&
                             <motion.div

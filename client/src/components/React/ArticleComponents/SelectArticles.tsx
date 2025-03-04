@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-import { resetResults } from "@/ReduxToolKit/Reducers/Investigate/SearchResults"
+import { resetResults, resetArticles } from "@/ReduxToolKit/Reducers/Investigate/SearchResults"
 import { displayArticleContent, displaySearch } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
 import { AppDispatch } from "@/ReduxToolKit/store"
 import { GetArticleContent } from "@/ReduxToolKit/Reducers/Investigate/Reading"

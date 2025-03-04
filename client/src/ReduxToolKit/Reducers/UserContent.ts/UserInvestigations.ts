@@ -14,9 +14,9 @@ export const fetchSavedInvestigations = createAsyncThunk(
             return thunkAPI.rejectWithValue(error.message)
         }
         if (data) {
-            console.log(data)
+            return data
+
         }
-        return data
     }
 )
 

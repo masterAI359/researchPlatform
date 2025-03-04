@@ -2,12 +2,13 @@ import Loader from "../../Loaders/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { getQuery } from "@/ReduxToolKit/Reducers/Investigate/UserPOV";
 import { AppDispatch, RootState } from "@/ReduxToolKit/store";
-import { useEffect } from "react";
-import { RetrieveArticles } from "@/ReduxToolKit/Reducers/Investigate/SearchResults";
+import { useEffect, useState } from "react";
+import { RetrieveArticles, resetArticles } from "@/ReduxToolKit/Reducers/Investigate/SearchResults";
 import { GetArticleContent } from "@/ReduxToolKit/Reducers/Investigate/Reading";
 import { displaySearch, displayArticleContent } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
 
 export default function Search({ }) {
+  const [prevQuery, setPrevQuery] = useState<string>(null)
   const investigateState = useSelector((state: RootState) => state.investigation)
   const { pov, getArticle, read, search } = investigateState
   const { query, searching } = pov
@@ -17,9 +18,16 @@ export default function Search({ }) {
   const articlesToSummarize = encodeURIComponent(JSON.stringify(chosenArticles))
   const dispatch = useDispatch<AppDispatch>()
 
+  const getSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+    dispatch(getQuery(e.target.value))
+    setPrevQuery(query)
+  }
+
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    dispatch(resetArticles())
     dispatch(RetrieveArticles(query))
 
   }
@@ -59,7 +67,7 @@ export default function Search({ }) {
                 onSubmit={handleSubmit}
               >
                 <input
-                  onChange={(e) => dispatch(getQuery(e.target.value))}
+                  onChange={(e) => getSearchInput(e)}
                   autoComplete="off"
                   type="text"
                   name="q"

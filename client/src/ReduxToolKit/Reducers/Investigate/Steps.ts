@@ -41,7 +41,6 @@ export const StepSlice = createSlice({
         },
         denyIncrement: (state, action) => {
             state.denied = action.payload
-            console.log(state.denied)
         },
         acceptedInput: (state, action) => {
             state.acceptInput = action.payload

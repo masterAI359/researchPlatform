@@ -16,7 +16,7 @@ export default function ({ }) {
                 <motion.div
                     onClick={() => dispatch(incrementBy(2))}
                     className="flex items-center justify-center rounded-full xs:max-w-7 xs:max-h-7
-                 lg:max-h-12 lg:max-w-12 xs:p-0.5 sm:p-1 md:1.5 lg:p-2  shrink-0 z-10 hover:cursor-pointer transition-all duration-300 hover:scale-110"
+                  sm:max-w-9 sm:max-h-9 sm:p-1 shrink-0 z-10 hover:cursor-pointer transition-all duration-300 hover:scale-110"
                     animate={{
                         backgroundColor: currentStep >= 3 ? "#2563eb" : "#374151",
                         boxShadow: currentStep === 2
@@ -41,7 +41,7 @@ export default function ({ }) {
             </div>
 
             <motion.div
-                className="md:text-sm xs:text-[0.6rem]
+                className="text-[0.6rem] sm:text-sm
             text-white self-start text-left w-fit xl:ml-1"
                 animate={{ scale: 1, opacity: currentStep == 2 ? 1 : 0 }}
                 transition={{ duration: 0.7 }}

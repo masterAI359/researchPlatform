@@ -33,7 +33,7 @@ export default function Step3({ containerWidth }: any) {
           </div>
           <div className="text-center w-full">
             <div
-              className="block w-full xs:h-40 md:h-52 xl:h-80 text-md text-white bg-white/10 border-none focus:ring-1 focus:ring-white
+              className="block w-full h-40 sm:h-52 xl:h-80 text-md text-white bg-white/10 border-none focus:ring-1 focus:ring-white
     rounded-lg resize-none text-wrap flex justify-items-start"
             >
               <StepsEditor context={biases} setterFunction={getBiases} />

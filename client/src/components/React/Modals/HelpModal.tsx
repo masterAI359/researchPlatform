@@ -14,7 +14,8 @@ export default function HelpModal({ info, handleExpand, isOpen, setActiveTab, ac
             transition={{ type: 'tween', duration: 0.15 }}
             className="bg-black opacity-100 h-auto shadow-black
                          border border-2 border-white/10 shadow-thick rounded-4xl 
-                         z-50 absolute bottom-12 xs:left-4 xl:pb-2 xl:bottom-24 lg:left-1/3 xl:w-[38rem] pb-6
+                         z-50 absolute bottom-12 xl:pb-2 xl:bottom-24 sm:bottom-16 sm:w-[33rem] 
+                         md:left-1/4 lg:left-1/3 sm:left-20 xl:w-[38rem] pb-6
                          overflow-hidden"
         >
             <header className="w-full h-auto relative bg-white/5 flex items-start p-2">

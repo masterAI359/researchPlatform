@@ -21,12 +21,12 @@ export default function WindowWrapper({ }) {
     <section
       ref={containerRef}
       className="relative h-fit
-      mx-auto max-w-full md:w-11/12 lg:w-5/6 xl:w-full mb-4 md:mb-0
+      mx-auto max-w-full sm:w-[27rem] md:w-11/12 lg:w-5/6 xl:w-full mb-4 md:mb-0
       transition-all duration-400 animate-fade-in delay-300 no-scrollbar box-border flex">
       <div
         style={{ maxHeight: "fit" }}
-        className="flex xs:items-center 2xl:items-baseline
-        min-w-full xs:h-fit md:min-h-full lg:max-h-fit">
+        className="flex items-center 2xl:items-baseline h-fit
+        w-full sm:mx-auto sm:h-60 md:h-fit md:min-h-full lg:max-h-fit">
         <AnimatePresence mode="popLayout">
           {step === 0 && <motion.div
             layout
@@ -40,7 +40,7 @@ export default function WindowWrapper({ }) {
               opacity: 0,
               transition: { type: 'tween', duration: 0.2 }
             }}
-            className="min-w-full"
+            className="min-w-full shrink-0"
           >
             <Step1 containerWidth={containerWidth} />
           </motion.div>}
@@ -57,7 +57,7 @@ export default function WindowWrapper({ }) {
               opacity: 0,
               transition: { type: 'tween', duration: 0.2 }
             }}
-            className="min-w-full"
+            className="min-w-full shrink-0"
           >
             <Step2 containerWidth={containerWidth} />
           </motion.div>}

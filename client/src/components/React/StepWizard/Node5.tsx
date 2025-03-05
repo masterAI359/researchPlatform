@@ -15,8 +15,9 @@ export default function Node5({ }) {
             <div className="flex items-center h-full w-full">
                 <motion.div
                     onClick={() => dispatch(incrementBy(4))}
-                    className="flex items-center justify-center rounded-full xs:max-w-7
-                 xs:max-h-7 lg:max-h-12 lg:max-w-12 xs:p-0.5 sm:p-1 md:1.5 shrink-0 z-10 hover:cursor-pointer transition-all duration-300 hover:scale-110"
+                    className="flex items-center justify-center rounded-full max-w-7 max-h-7 
+                    sm:max-w-9 sm:max-h-9 sm:p-1
+                    shrink-0 z-10 hover:cursor-pointer transition-all duration-300 hover:scale-110"
                     animate={{
                         backgroundColor: currentStep <= 4 ? "#374151" : "#2563eb",
                         boxShadow: currentStep === 4
@@ -37,7 +38,7 @@ export default function Node5({ }) {
                 animate={{ scale: 1, opacity: currentStep == 4 ? 1 : 0 }}
                 transition={{ duration: 0.7 }}
             >
-                <div className="w-fit xs:text-[0.6rem] md:text-sm text-left">Search</div>
+                <div className="w-fit text-[0.6rem] sm:text-sm text-left">Search</div>
             </motion.div>
 
         </li>

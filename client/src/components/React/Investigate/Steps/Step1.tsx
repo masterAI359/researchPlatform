@@ -42,15 +42,15 @@ export default function Step1({ containerWidth }: any) {
 
 
       return (
-            <div style={{ flexShrink: 0 }}
-                  className='xs:w-full snap-center snap-always
+            <div
+                  className='xs:w-full shrink-0 snap-center snap-always
                   text-center mx-auto xs:h-full box-border flex xs:px-2 basis-full'>
 
                   <div className="inline-block min-h-full box-border min-w-full max-w-full">
                         <div className="flex-col items-center h-full w-full box-border">
                               <div className="w-full box-border border-b h-fit border-white/10 mb-4 flex flex-row gap-x-8 items-baseline">
                                     <div className="w-fit flex justify-items-start">
-                                          <h1 className="2xl:text-3xl md:text-2xl xs:text-sm tracking-tight font-light text-zinc-300 pb-1">Tackle an idea
+                                          <h1 className="2xl:text-3xl md:text-2xl sm:text-xl text-sm tracking-tight font-light text-zinc-300 pb-1">Tackle an idea
                                                 <span className="text-zinc-500"> from the top down </span>
                                           </h1>
                                     </div>
@@ -61,7 +61,7 @@ export default function Step1({ containerWidth }: any) {
                                     </div>
                               </div>
                               <div className="flex justify-items-start gap-2 z-10 w-full">
-                                    <div className={`w-full bg-white/10 xs:h-40 md:h-52 lg:h-60 xl:h-80 pb-8 rounded-lg border border-solid box-border
+                                    <div className={`w-full bg-white/10 h-40 sm:h-52 md:w-full lg:h-60 xl:h-80 pb-8 sm:pb-7 rounded-lg border border-solid box-border
                                     ${acceptInput === null ? 'border-transparent' : acceptInput === true ? 'border-green-500' : 'border-red-800'}`}>
                                           <StepsEditor context={idea} setterFunction={getIdea} />
                                           <div

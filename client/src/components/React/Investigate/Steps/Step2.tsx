@@ -42,8 +42,8 @@ export default function Step2({ containerWidth }: any) {
       <div
         className="min-w-full lg:h-full content-center mx-auto box-border flex flex-col justify-center my-auto md:px-0">
         <div className="w-full h-auto border-b border-white/10 mb-4">
-          <header className="w-full h-auto mx-auto xs:mb-1 flex md:gap-x-8 xs:gap-x-0 items-center">
-            <h1 className="text-white 2xl:text-3xl md:text-2xl xs:text-md font-light tracking-tight text-left xs:w-2/3 md:w-auto">
+          <header className="w-full h-auto mx-auto mb-1 2xl:mb-2 flex sm:gap-x-8 xs:gap-x-0 items-center">
+            <h1 className="text-white 2xl:text-3xl md:text-2xl sm:text-xl xs:text-md font-light tracking-tight text-left w-2/3 sm:w-auto">
               What's your angle of approach?
             </h1>
             <div className="w-fit self-center">
@@ -53,7 +53,7 @@ export default function Step2({ containerWidth }: any) {
           </header>
         </div>
 
-        <div className="w-full flex items-center">
+        <div className="w-full flex items-center sm:h-52 md:h-full">
 
           <div className="flex w-fit mx-auto xs:gap-x-16 xl:gap-x-36 box-border">
             <div
@@ -68,8 +68,8 @@ export default function Step2({ containerWidth }: any) {
                   key={opinion}
                 >
                   <div
-                    className="bg-white text-black xl:text-lg lg:text-[0.8rem] xs:text-[0.6rem] font-light tracking-tight
-              rounded-lg xl:w-60 xl:h-16 lg:w-[12rem] md:w-[12rem] md:h-12 xs:w-28 xs:h-9
+                    className="bg-white text-black xl:text-lg lg:text-[0.8rem] text-[0.6rem] sm:text-sm font-light tracking-tight
+              rounded-lg xl:w-60 xl:h-16 lg:w-[12rem] md:w-[12rem] md:h-12 sm:w-40 sm:h-11 w-28 h-9
                cursor-pointer md:hover:bg-white/20 md:hover:text-white transition-all duration-200 ease-in-out
                 flex justify-between items-center lg:px-4 xs:px-2 grow-0 gap-3"
                     data-set={opinion}
@@ -100,8 +100,8 @@ export default function Step2({ containerWidth }: any) {
                   className="relative"
                 >
                   <div
-                    className="bg-white text-black xl:text-lg lg:text-[0.8rem] text-[0.65rem] font-light tracking-tight
-              rounded-lg xl:w-60 xl:h-16 lg:w-[12rem] md:w-[12rem] md:h-12 xs:w-28 xs:h-9 transition-all duration-200 ease-in-out
+                    className="bg-white text-black xl:text-lg lg:text-[0.8rem] text-[0.65rem] sm:text-sm font-light tracking-tight
+              rounded-lg xl:w-60 xl:h-16 lg:w-[12rem] md:w-[12rem] md:h-12 sm:w-40 sm:h-11 w-28 h-9 transition-all duration-200 ease-in-out
                cursor-pointer md:hover:bg-white/20 md:hover:text-white flex justify-between items-center lg:px-4 xs:px-1.5 grow-0 gap-3"
                     data-set={item}
                     onClick={(e) => { assignKnowledge(e) }}

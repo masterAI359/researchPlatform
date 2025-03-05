@@ -47,19 +47,21 @@ export default function ArticleSaved({ article, index, articleSelect, setDisplay
             className="w-full 2xl:max-h-72 2xl:min-h-44
                 flex xs:flex-col xs:items-center md:flex-row md:justify-end z-1
                 xs:border-t xs:border-white/20 xs:px-2 md:py-3">
-            <div className="w-fit grow h-fit xs:pt-4 md:pb-4 md:pl-4 xs:justify-self-start md:self-start">
-                <time className="text-white font-light text-sm text-left">
+            <div className="w-fit grow h-fit xs:pt-4 md:pb-4 lg:pl-4 xs:justify-self-start md:self-start">
+                <time className="text-white font-light md:hidden lg:block text-xs xl:text-sm text-left text-nowrap">
                     <em className="text-zinc-400">
                         Saved on:
                     </em> {article.created_at.split('').splice(0, 10).join('')}
                 </time>
             </div>
 
-            <div className="flex xs:w-full md:w-168 h-full md:items-end md:justify-end">
+            <div className="flex w-full  md:w-168 h-full md:items-end md:justify-end">
                 <div className="flex flex-col h-auto w-auto">
                     <div className="flex xs:flex-col md:flex-row-reverse md:gap-x-4 md:justify-between h-full w-full items-center">
 
-                        <figcaption className='relative cursor-pointer w-full lg:max-w-72 lg:min-w-72 lg:max-h-44 lg:min-h-44 xs:h-72  overflow-hidden'>
+                        <figcaption className='relative cursor-pointer w-full 2xl:max-h-44 2xl:min-h-44 2xl:max-w-72 2xl:min-w-72 xl:max-w-60 xl:max-h-40 lg:max-w-52 lg:h-36 h-72
+                        md:max-w-44 md:max-h-32
+                        overflow-hidden'>
                             <div
                                 style={{ backgroundImage: `url(${article.image_url})` }}
                                 className='absolute inset-0 w-full h-full bg-cover bg-center opacity-60
@@ -84,18 +86,18 @@ export default function ArticleSaved({ article, index, articleSelect, setDisplay
                         <div className="flex flex-col h-full w-full justify-between">
                             <div className="w-full h-auto">
                                 <h1 onClick={handleArticleSelection}
-                                    className="cursor-pointer text-lg w-full hover:text-blue-400 transition-all duration-200
+                                    className="cursor-pointer text-sm xl:text-base 2xl:text-lg w-full hover:text-blue-400 transition-all duration-200
                                         ease-in-out text-white text-left font-light tracking-tight self-center relative group">
-                                    <p className="absolute lg: lg:-left-24 opacity-0 p-2 rounded-lg border border-white/10 text-xs
+                                    <p className="absolute lg:-left-24 opacity-0 p-2 rounded-lg border border-white/10 text-xs
                                              group-hover:text-white font-light group-hover:opacity-100 group-hover:bg-ebony text-nowrap
                                             transition-all duration-200 ease-in-out">click to read</p>
                                     {article.title}
                                 </h1>
                             </div>
 
-                            <div className="flex flex-col h-full items-start group gap-y-4">
+                            <div className="flex flex-col h-full items-start group gap-y-4 mt-2">
                                 <div className="w-auto h-fit">
-                                    <p className="text-white font-light text-sm group-hover:text-blue-400 transition-all duration-200 ease-in-out">
+                                    <p className="text-white font-light text-xs 2xl:text-sm group-hover:text-blue-400 transition-all duration-200 ease-in-out">
                                         Source: <span className="text-zinc-400">
                                             <em>
                                                 {article.provider}
@@ -104,7 +106,7 @@ export default function ArticleSaved({ article, index, articleSelect, setDisplay
                                     </p>
                                 </div>
                                 <div className="font-light">
-                                    <p className="text-white font-light text-sm group-hover:text-blue-400 transition-all duration-200 ease-in-out">
+                                    <p className="text-white font-light text-xs xl:text-sm group-hover:text-blue-400 transition-all duration-200 ease-in-out">
                                         Authors: <span className="text-zinc-400">
                                             <em>
                                                 {article.authors ? (`${authorsShortened.map((author: string, index: number) => {

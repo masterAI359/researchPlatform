@@ -4,6 +4,7 @@ import { useEffect } from "react"
 import { motion } from "framer-motion"
 import ArticleSaved from "./ArticleSaved"
 import ErrorBoundary from "../../ErrorBoundaries/ErrorBoundary"
+import ScrolltoTop from "../../AppRouting/ScrollToTop"
 
 export default function SavedArticles({ articleSelect, setDisplayArticles, setDisplayInvestigations }) {
     const { userArticles, error, status } = useSelector((state: RootState) => state.userdata)
@@ -34,6 +35,7 @@ export default function SavedArticles({ articleSelect, setDisplayArticles, setDi
 
     return (
         <ErrorBoundary>
+            <ScrolltoTop />
             <div className="w-full h-full mx-auto animate-fade-in duration-300 delay-200 ease-in">
                 <h1 className="text-white font-light tracking-tight 2xl:text-3xl xs:text-center md:text-left">
                     Your Saved Articles

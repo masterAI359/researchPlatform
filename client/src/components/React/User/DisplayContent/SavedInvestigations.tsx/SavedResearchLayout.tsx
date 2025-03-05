@@ -2,6 +2,7 @@ import { RootState } from "@/ReduxToolKit/store"
 import { useSelector } from "react-redux"
 import PriorInvestigation from "./InvestigationSaved"
 import { motion } from "framer-motion"
+import ScrolltoTop from "@/components/React/AppRouting/ScrollToTop"
 
 export default function SavedResearchLayout() {
     const savedInvestigations = useSelector((state: RootState) => state.userWork.userResearch)
@@ -36,6 +37,7 @@ export default function SavedResearchLayout() {
             animate='open'
             exit='closed'
             className="lg:p-0 bg-black">
+            <ScrolltoTop />
             <div className="px-8 py-12 lg:py-0 mx-auto md:px-12 lg:px-16 xl:px-36 2xl:max-w-7xl">
                 <div className="relative text-left">
                     <span className="text-blue-400"> Investigations </span>
@@ -43,7 +45,7 @@ export default function SavedResearchLayout() {
                         A timeline of your<span className="block text-zinc-400">research and conclusions.</span>
                     </h2>
                 </div>
-                <div className="mx-auto max-w-2xl mt-12">
+                <div className="mx-auto max-w-2xl lg:max-w-2/3 mt-12">
                     {timeline.map((investigation: any, index: number) => (
                         <PriorInvestigation key={index} investigation={investigation} />
                     ))}

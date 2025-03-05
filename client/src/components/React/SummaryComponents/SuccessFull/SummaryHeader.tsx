@@ -29,26 +29,30 @@ export default function SummaryHeader({
 
 
     const formatDate = (datePublished: string) => {
+        if (datePublished) {
+            const splitDate = datePublished.split(" ")
+            console.log(splitDate)
+            const addCommas = splitDate.map((str: string, index: number) => {
 
-        const splitDate = datePublished.split(" ")
-        console.log(splitDate)
-        const addCommas = splitDate.map((str: string, index: number) => {
+                if (splitDate.length === index + 2) {
+                    return str + ','
+                } else {
+                    return str
+                }
+            })
 
-            if (splitDate.length === index + 2) {
-                return str + ','
-            } else {
-                return str
-            }
-        })
-
-        const formatted = addCommas.join(" ")
+            const formatted = addCommas.join(" ")
 
 
-        return formatted
+            return formatted
+        } else {
+            return "Date unavailable, visit source to see date of publication."
+        }
+
 
     }
 
-    const dateFormatted = formatDate(date)
+    const dateFormatted = date ? formatDate(date) : formatDate(article_pub_date)
 
     console.log(formatDate(date))
 

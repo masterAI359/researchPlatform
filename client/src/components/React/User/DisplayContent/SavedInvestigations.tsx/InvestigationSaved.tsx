@@ -4,7 +4,7 @@ export default function PriorInvestigation({ investigation }) {
 
 
     return (
-        <div className="md:flex w-full h-auto">
+        <div className="md:flex w-full  h-auto">
             <h2 id="2023-03-16-heading" className="pl-7 md:w-2/3 md:pl-0 text-sm font-light tracking-tight md:pr-6 text-white md:text-right">
                 <span className='text-zinc-400'>From:</span> {investigation.created_at.split('').splice(0, 10).join('')}
             </h2>

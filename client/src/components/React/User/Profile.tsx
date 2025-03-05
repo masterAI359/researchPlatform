@@ -36,13 +36,15 @@ export default function Profile() {
 
 
     return (
-        <article className="w-full h-full flex relative justify-between scroll-smooth">
-            <SideBar setDislayArticles={setDisplayArticles} setDisplayInvestigations={setDisplayInvestigations} />
-            <main className="w-full flex justify-end relative right-0 ">
+        <article className="w-full h-full flex relative justify-center scroll-smooth">
 
-                <section className="lg:p-8 md:w-3/4 lg:w-full">
+
+            <main className="w-full flex relative justify-center">
+                <SideBar setDislayArticles={setDisplayArticles} setDisplayInvestigations={setDisplayInvestigations} />
+
+                <section className="lg:p-8">
                     <div
-                        className="mx-auto w-full pb-8 lg:px-16 md:px-12 xs:px-2 xl:px-2 relative flex flex-col items-center">
+                        className="mx-auto 2xl:max-w-7xl pb-8 lg:px-16 md:px-12 xs:px-2 xl:px-2 items-center relative w-full">
                         <div
                             className="relative 2xl:max-w-7xl 2xl:min-w-[78rem] lg:flex-col overflow-hidden p-8 lg:flex lg:p-12">
                             <div className="pb-12 flex">
@@ -54,7 +56,7 @@ export default function Profile() {
                             </div>
                             <ProfileMenu displayArticles={displayArticles} setDislayArticles={setDisplayArticles} setDisplayInvestigations={setDisplayInvestigations} />
                         </div>
-                        <div className="2xl:max-w-7xl xl:max-w-6xl lg:max-w-5xl md: max-w-4xl w-5/6 flex flex-col self-end">
+                        <div className="2xl:max-w-7xl flex flex-col lg:px-0">
 
                             <AnimatePresence mode="wait">
                                 {displayArticles && <SavedArticles articleSelect={handleArticleSelection} setDisplayArticles={setDisplayArticles} setDisplayInvestigations={setDisplayInvestigations} />}

@@ -78,6 +78,9 @@ export const AuthenticationSlice = createSlice({
         getID: (state, action) => {
             state.user_id = action.payload
         },
+        getCurrentSession: (state, action) => {
+            state.activeSession = action.payload
+        },
         clearAuthSlice: () => { return initialState }
     },
     extraReducers: (builder) => {
@@ -97,6 +100,6 @@ export const AuthenticationSlice = createSlice({
     }
 });
 
-export const { isAuthenticated, getUserName, getUserPassword, getEmail, showSignOut, redirectFromLogin, getID, clearAuthSlice } = AuthenticationSlice.actions;
+export const { isAuthenticated, getUserName, getUserPassword, getEmail, showSignOut, redirectFromLogin, getID, clearAuthSlice, getCurrentSession } = AuthenticationSlice.actions;
 
 export default AuthenticationSlice.reducer;

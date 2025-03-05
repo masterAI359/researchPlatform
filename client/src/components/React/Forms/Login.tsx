@@ -1,4 +1,4 @@
-import { supabase, session } from "@/SupaBase/supaBaseClient"
+import { supabase } from "@/SupaBase/supaBaseClient"
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { requiredInput } from "@/helpers/validation"
@@ -14,7 +14,6 @@ export default function Login() {
     const [acceptedInput, setAcceptedInput] = useState<boolean>(null)
     const [loggingIn, setLoggingIn] = useState<boolean>(false)
     const [successfull, setSuccessful] = useState<boolean>(null)
-    const dispatch = useDispatch()
     const navigate = useNavigate()
 
 
@@ -73,7 +72,7 @@ export default function Login() {
 
         }
 
-    }, [session, dispatch, supabase, userEmail, userPassword])
+    }, [userEmail, userPassword])
 
     return (
         <section className="lg:p-8 overflow-hidden bg-black animate-fade-in">

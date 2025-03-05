@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 export default function BottomPath({ currentStep }) {
 
     return (
-        <div className="z-1 mx-auto xl:w-60 xl:h-40 lg:w-52 md:w-44 md:h-32 flex flex-col-reverse md:h-48">
+        <div className="z-1 mx-auto xl:w-60 xl:h-40 lg:w-52 md:w-44 md:h-[7.5rem] flex flex-col-reverse md:h-48">
             <div className="h-full w-auto flex flex-col justify-center mb-6">
                 <motion.div
                     className="xs:h-full w-1 mx-auto grow"

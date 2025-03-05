@@ -1,5 +1,5 @@
-import { supabase, session } from "@/SupaBase/supaBaseClient"
-import { isAuthenticated, getUserName, getUserPassword, getEmail } from "@/ReduxToolKit/Reducers/Athentication/Authentication"
+import { supabase } from "@/SupaBase/supaBaseClient"
+import { getUserPassword, getEmail } from "@/ReduxToolKit/Reducers/Athentication/Authentication"
 import { requiredInput } from "@/helpers/validation"
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
@@ -49,11 +49,8 @@ export default function Signup() {
             })
 
             if (error) {
-                console.log(error)
             } else if (data) {
-                console.log(session)
             }
-            console.log(authenticated)
         }
 
         if (email !== null && password !== null) {

@@ -1,11 +1,13 @@
-import { supabase, session } from "@/SupaBase/supaBaseClient";
+import { supabase } from "@/SupaBase/supaBaseClient";
 import { SavedArticle } from "@/env";
-import { error } from "astro/dist/core/logger/core";
+
+
 
 export const checkArticle = async (
     setArticleExists: Function,
     article_url: string,
     id: string,
+    currentSession: any
 ) => {
     console.log({ ActionTriggered: "checking for article in database" })
 
@@ -20,7 +22,7 @@ export const checkArticle = async (
             setArticleExists(true)
         } else if (error) {
             console.log(error)
-        } else if (!session) {
+        } else if (!currentSession) {
 
         } else {
             setArticleExists(false)

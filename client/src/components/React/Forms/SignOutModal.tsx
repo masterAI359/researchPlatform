@@ -2,7 +2,7 @@ import { createPortal } from "react-dom";
 import { showSignOut, clearAuthSlice } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
 import { useDispatch } from "react-redux";
 import { motion } from "framer-motion";
-import { supabase, session } from "@/SupaBase/supaBaseClient";
+import { supabase } from "@/SupaBase/supaBaseClient";
 import { useNavigate } from "react-router-dom";
 
 const variants = {
@@ -31,8 +31,6 @@ export default function SignOutModal({ }) {
             dispatch(clearAuthSlice())
             dispatch(showSignOut(false))
             redirectUser()
-            console.log(session)
-            console.log("Signed Out successfully")
         }
 
     }

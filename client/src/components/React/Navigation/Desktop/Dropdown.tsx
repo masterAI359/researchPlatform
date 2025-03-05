@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { session, supabase } from "@/SupaBase/supaBaseClient"
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import { useDispatch } from "react-redux";
-import { getEmail } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
 import { showSignOut } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
 import SignOutModal from "../../Forms/SignOutModal";
+import { limitName } from "@/helpers/Presentation";
 
 const DropdownMenu = ({ isOpen, setIsOpen }) => {
+    const activeSession = useSelector((state: RootState) => state.auth.activeSession)
     const signOut = useSelector((state: RootState) => state.auth.signOut)
     const id = useSelector((state: RootState) => state.auth.user_id)
     const email = useSelector((state: RootState) => state.auth.email)
@@ -17,52 +17,12 @@ const DropdownMenu = ({ isOpen, setIsOpen }) => {
     const dispatch = useDispatch()
 
 
-    function limitName(name: string) {
-
-        let splitName = name.split('')
-
-        let shortenedArray = []
-
-        for (let i = 0; i < splitName.length; i++) {
-
-            if (i <= 13) {
-                shortenedArray.push(splitName[i])
-
-            } else {
-                break
-            }
-        }
-
-        let shortString = shortenedArray.join('')
-        let emailWithElipses = shortString + '...'
-
-        setShortEmail(emailWithElipses)
-    }
-
-
-
-    function retrieveEmail(currentSession: any) {
-
-        const { user } = currentSession
-
-        const { user_metadata } = user;
-
-        const { email } = user_metadata
-
-        const retrievedEmailString = email
-
-        limitName(retrievedEmailString)
-
-    }
-
-
-
     const handleLogOut = () => {
 
-        if (session) {
+        if (id) {
             dispatch(showSignOut(true))
             setIsOpen(false)
-        } else if (!session) {
+        } else if (!id) {
             setIsOpen(true)
             dispatch(showSignOut(false))
             alert("You're not signed in yet")
@@ -71,24 +31,11 @@ const DropdownMenu = ({ isOpen, setIsOpen }) => {
 
     useEffect(() => {
 
+        if (email) {
+            setShortEmail(limitName(email))
+        }
 
-        const { data } = supabase.auth.onAuthStateChange((event, session) => {
-
-            if (event === 'INITIAL_SESSION') {
-                retrieveEmail(session)
-
-            } else if (event === 'SIGNED_IN') {
-            } else if (event === 'SIGNED_OUT') {
-            } else if (event === 'PASSWORD_RECOVERY') {
-            } else if (event === 'TOKEN_REFRESHED') {
-            } else if (event === 'USER_UPDATED') {
-            }
-        })
-
-    }, [session, dispatch, retrieveEmail, supabase, email])
-
-    //top: "calc(100% + 5px)",
-
+    }, [email, id])
 
     const menuVariants = {
         open: {

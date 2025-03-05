@@ -26,3 +26,31 @@ export const limitArray = (arr: any) => {
 
     return shortenedAuthors
 }
+
+
+export const limitName = (name: string) => {
+
+    console.log('invoked limitName()')
+
+    let splitName = name.split('')
+
+    let shortenedArray = []
+
+    for (let i = 0; i < splitName.length; i++) {
+
+        if (i <= 13) {
+            shortenedArray.push(splitName[i])
+
+        } else {
+            break
+        }
+    }
+
+    let shortString = shortenedArray.join('')
+    let emailWithElipses = shortString + '...'
+    return emailWithElipses
+
+}
+
+
+

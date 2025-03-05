@@ -13,7 +13,6 @@ import { store } from '../../../ReduxToolKit/store'
 import { Provider } from 'react-redux'
 import EmailForReset from "../Forms/EmailForReset"
 import UpdatePassword from "../Forms/UpdatePassword"
-import FinalResults from "../Results/FinalResults"
 
 export default function AppRouter() {
 

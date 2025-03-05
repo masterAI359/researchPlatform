@@ -1,7 +1,6 @@
 import { motion } from "framer-motion"
 import { createPortal } from "react-dom"
 import { saveInvestigation } from "@/helpers/SupabaseData"
-import { session } from "@/SupaBase/supaBaseClient"
 import { useSelector, useDispatch } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { useNavigate } from "react-router-dom"
@@ -14,7 +13,6 @@ export function PreviousWork() {
     const { idea, premises, perspective, biases } = pov
     const { endingPerspective, newConcepts, newPOV, takeaway } = review
     const dispatch = useDispatch()
-    const navigate = useNavigate()
 
     const investigateData = {
         idea: idea,
@@ -41,7 +39,7 @@ export function PreviousWork() {
 
     const handlePreviousWork = () => {
 
-        if (session) {
+        if (id) {
             localStorage.setItem("userWork", stringifiedData)
             saveInvestigation(investigateData)
             dispatch({ type: 'clear' })

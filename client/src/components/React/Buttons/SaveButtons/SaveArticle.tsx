@@ -4,26 +4,41 @@ import { saveArticle, checkArticle } from "@/helpers/SupabaseData"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { useLayoutEffect, useState } from "react"
-import { session } from "@/SupaBase/supaBaseClient"
 import RegisteredUsersOnly from "../../Notifications/RegisteredUsersOnly"
+import { supabase } from "@/SupaBase/supaBaseClient"
 
 export default function Bookmark({ dataToSave, showNotification, setShowNotification, open }) {
     const id = useSelector((state: RootState) => state.auth.user_id)
     const [articleExists, setArticleExists] = useState<boolean>(false)
     const [registeredExclusiveFeature, setRegisteredExclusiveFeature] = useState<boolean>(false)
+    const [currentSession, setCurrentSession] = useState<any>(null)
     const { url } = dataToSave
 
     useLayoutEffect(() => {
+        const fetchSession = async () => {
+            const {
+                data: { session },
+                error,
+            } = await supabase.auth.getSession();
 
-        checkArticle(setArticleExists, url, id)
+            if (session) {
+                setCurrentSession(session)
+            } else if (error) {
+                setRegisteredExclusiveFeature(true)
+            }
+        }
 
-    }, [articleExists, showNotification, session])
+        fetchSession()
+
+        checkArticle(setArticleExists, url, id, currentSession)
+
+    }, [articleExists, showNotification])
 
     console.log(id)
 
 
     return (
-        <div onClick={() => { saveArticle(dataToSave, setShowNotification, setArticleExists, articleExists, setRegisteredExclusiveFeature) }}
+        <div onClick={() => { saveArticle(dataToSave, setShowNotification, setArticleExists, articleExists, setRegisteredExclusiveFeature,) }}
             className={`${open ? 'pointer-events-none' : 'pointer-events-auto'} w-full h-full self-start flex items-center justify-start group relative cursor-pointer`}>
             {!showNotification && !registeredExclusiveFeature ? <div className="rounded-md xl:h-fit md:w-24 flex xs:hidden md:block 
                 mx-auto group-hover:bg-black opacity-0 absolute md:right-7

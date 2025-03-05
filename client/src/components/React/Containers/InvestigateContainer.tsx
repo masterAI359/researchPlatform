@@ -2,16 +2,21 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { RootState } from "@/ReduxToolKit/store";
 import { useDispatch, useSelector } from "react-redux";
+import { displaySelectionWarning } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
 import HeroContainer from "./HeroContainer";
 import ArticleContainer from "./ArticleContainer";
 import Notes from "../Investigate/Notes/Notes";
+import SelectArticles from "../ArticleComponents/SelectArticles";
 import LostConnection from "../ErrorMessages/LostConnection";
 
 export default function InvestigateContainer() {
+  const [showSelect, setShowSelect] = useState<boolean>(false)
   const dispatch = useDispatch()
   const investigateState = useSelector((state: RootState) => state.investigation)
   const signingOut = useSelector((state: RootState) => state.auth.signOut)
-  const { notes, read, review, help } = investigateState
+  const { notes, read, review, help, getArticle, search } = investigateState
+  const { articles } = search
+  const { chosenArticles } = getArticle
   const { gettingHelp } = help
   const { takingNotes } = notes
   const { ContentStatus } = read
@@ -34,6 +39,14 @@ export default function InvestigateContainer() {
 
   function scrollToView() {
     containerRef.current.scrollIntoView({ behavior: "smooth", alignToTop: true })
+  }
+
+  function hideSelect() {
+
+    if (chosenArticles.length > 0) {
+      setShowSelect(showSelect => !showSelect)
+
+    }
   }
 
 
@@ -81,6 +94,17 @@ export default function InvestigateContainer() {
           />
         </motion.div>
       </div>
+
+      <AnimatePresence>
+        {articles &&
+
+          <SelectArticles
+            showSelect={showSelect}
+            hideSelect={hideSelect}
+          />
+        }
+
+      </AnimatePresence>
 
       <AnimatePresence>
         {takingNotes &&

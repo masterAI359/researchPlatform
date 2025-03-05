@@ -4,42 +4,23 @@ import SelectArticles from "../ArticleComponents/SelectArticles"
 import SummaryContainer from "../SummaryComponents/SummaryContainer"
 import LinkGrid from "../ArticleComponents/LinkGrid"
 import ControlPanel from "../Buttons/ButtonWrappers/ControlPanel"
+import ModalContainer from "./ModalContainer"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
 import ScrolltoTop from "../AppRouting/ScrollToTop"
-import { BackToSearch } from "../Modals/BackToSearch"
 import { useDispatch } from "react-redux"
-import { displayResults } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
 
 export default function ArticleContainer({
 }) {
-    const [showSelect, setShowSelect] = useState<boolean>(false)
+
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { search, read, getArticle, display } = investigateState
-    const { showContent, showBackToSearchModal, showSearch } = display
-    const { articles, status } = search
-    const { chosenArticles } = getArticle
+    const { showContent, showBackToSearchModal, showSearch, showGetArticlesModal, showSelectWarning } = display
+    const { status } = search
     const { ContentStatus } = read
-    const dispatch = useDispatch()
-
-
-    function hideSelect() {
-
-        if (chosenArticles.length > 0) {
-            setShowSelect(showSelect => !showSelect)
-
-        } else {
-            console.log("there's nothing to summarize yet")
-        }
-    }
-
 
     useEffect(() => {
-
-        // if (status !== 'idle') {
-        //     dispatch(displayResults(true))
-        // }
 
     }, [ContentStatus, status])
 
@@ -47,12 +28,13 @@ export default function ArticleContainer({
         <ErrorBoundary>
             <motion.div
                 initial={{ opacity: 1 }}
-                animate={{ opacity: showBackToSearchModal ? 0.5 : 1 }}
+                animate={{ opacity: showBackToSearchModal || showGetArticlesModal || showSelectWarning ? 0.4 : 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ type: 'tween', duration: 0.2 }}
                 className={`
                 relative shrink-0 w-full h-full mx-auto xs:px-2`}>
-                {showBackToSearchModal ? <BackToSearch /> : null}
+
+                <ModalContainer />
 
                 <div
                     className="relative 2xl:max-w-7xl min-h-full flex flex-col justify-center box-border mx-auto">
@@ -87,16 +69,7 @@ export default function ArticleContainer({
                             </motion.div>}
                     </AnimatePresence>
                 </div>
-                <AnimatePresence>
-                    {articles &&
 
-                        <SelectArticles
-                            showSelect={showSelect}
-                            hideSelect={hideSelect}
-                        />
-                    }
-
-                </AnimatePresence>
                 <AnimatePresence>
                     {ContentStatus === 'fulfilled' && <motion.div
                         initial={{ opacity: 0, scale: 0 }}

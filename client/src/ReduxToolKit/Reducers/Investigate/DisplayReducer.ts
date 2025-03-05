@@ -8,7 +8,9 @@ interface Display {
     showResults: boolean,
     showCompletion: boolean,
     showWorkModal: boolean,
-    showBackToSearchModal: boolean
+    showBackToSearchModal: boolean,
+    showGetArticlesModal: boolean
+    showSelectWarning: boolean
 }
 
 const initialState: Display = {
@@ -20,6 +22,8 @@ const initialState: Display = {
     showCompletion: false,
     showWorkModal: false,
     showBackToSearchModal: false,
+    showGetArticlesModal: false,
+    showSelectWarning: false
 
 }
 
@@ -51,10 +55,16 @@ const DisplaySlice = createSlice({
         },
         displayReturnModal: (state, action) => {
             state.showBackToSearchModal = action.payload
+        },
+        displayGetArticlesModal: (state, action) => {
+            state.showGetArticlesModal = action.payload
+        },
+        displaySelectionWarning: (state, action) => {
+            state.showSelectWarning = action.payload
         }
     }
 })
 
-export const { displayMindMap, displaySearch, displayArticleContent, displayCompletion, displayWrapUp, displayResults, displayWorkModal, displayReturnModal } = DisplaySlice.actions
+export const { displayMindMap, displaySearch, displayArticleContent, displayCompletion, displayWrapUp, displayResults, displayWorkModal, displayReturnModal, displayGetArticlesModal, displaySelectionWarning } = DisplaySlice.actions
 
 export default DisplaySlice.reducer

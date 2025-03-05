@@ -7,7 +7,6 @@ export const RetrieveArticles = createAsyncThunk(
     async (query: string, thunkAPI) => {
 
         const response = await fetchArticles(query)
-        console.log(response.data)
         return response.data
     }
 )

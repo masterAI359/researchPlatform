@@ -30,6 +30,7 @@ export function BackToSearch({ }) {
 
     const modal = (
         <motion.div
+            key='returnToSearch'
             variants={variants}
             initial="closed"
             animate="open"

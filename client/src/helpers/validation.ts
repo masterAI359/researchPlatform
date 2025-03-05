@@ -6,14 +6,13 @@ export const requiredInput = (emailString: string, passwordString: string, sette
 
     const isValidEmail = validateEmail.test(emailString)
 
-    console.log(isValidEmail)
 
     let splitPassword = passwordString.split('')
 
-    let valid = splitPassword.length >= 8
+    let validLength = splitPassword.length >= 8
 
 
-    if (splitPassword.length >= 8 && isValidEmail) {
+    if (validLength && isValidEmail) {
 
         setterFunction(true)
     }

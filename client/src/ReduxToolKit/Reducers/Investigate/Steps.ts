@@ -27,7 +27,6 @@ export const StepSlice = createSlice({
         increment: (state) => {
 
             state.step += 1
-            console.log(state.step)
         },
 
         decrement: (state) => {

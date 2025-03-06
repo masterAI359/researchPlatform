@@ -54,7 +54,7 @@ const DropdownMenu = ({ isOpen, setIsOpen }) => {
         <div style={{ position: "relative", display: "inline-block" }}>
             <button
                 onClick={() => setIsOpen((prev) => !prev)}
-                className="flex flex-row-reverse flex-nowrap group items-center justify-between
+                className="flex flex-row-reverse flex-nowrap group items-center justify-between 2xl:w-52
                                  2xl:gap-x-2 py-0.5 px-4 rounded-md bg-black/30 shadow-thick border border-white/5
                                  hover:bg-white/5 transition-all duration-200 ease-in-out w-auto cursor-pointer group"
             >
@@ -66,7 +66,7 @@ const DropdownMenu = ({ isOpen, setIsOpen }) => {
 
                 <div className="w-full h-auto flex items-center">
 
-                    <p className="text-white font-light 2xl:text-md group-hover:text-blue-400 transition-all duration-200 ease-in-out whitespace-nowrap">{email ? shortenedEmail : 'Account'}</p>
+                    <p className="text-white font-light 2xl:text-md group-hover:text-blue-400 transition-all duration-200 ease-in-out whitespace-nowrap">{email ? shortenedEmail : 'Guest'}</p>
 
 
                 </div>

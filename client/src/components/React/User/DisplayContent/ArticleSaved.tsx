@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
 
-export default function ArticleSaved({ article, index, articleSelect, setDisplayArticles, setDisplayInvestigations }) {
+export default function ArticleSaved({ article, index, }) {
     const [showNotification, setShowNotification] = useState<boolean>(false)
     const id = useSelector((state: RootState) => state.auth.user_id)
     const [open, setOpen] = useState<boolean>(false)
@@ -35,8 +35,6 @@ export default function ArticleSaved({ article, index, articleSelect, setDisplay
     const handleArticleSelection = () => {
         dispatch(readSavedArticle(article))
         navigate('/SavedArticle')
-        setDisplayArticles(true)
-        setDisplayInvestigations(false)
     }
 
     console.log(readThisArticle)

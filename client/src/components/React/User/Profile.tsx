@@ -8,14 +8,13 @@ import SavedArticles from "./DisplayContent/SavedArticles";
 import SavedResearchLayout from "./DisplayContent/SavedInvestigations.tsx/SavedResearchLayout";
 import { fetchSavedArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer";
 import { fetchSavedInvestigations } from "@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
+import { presentArticles, presentResearch } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
 
 export default function Profile() {
-    const [displayArticles, setDisplayArticles] = useState<boolean>(false)
-    const [displayInvestigations, setDisplayInvestigations] = useState<boolean>(true)
+    const displaySavedInvestigations = useSelector((state: RootState) => state.profileNav.displaySavedInvestigations)
+    const displaySavedArticles = useSelector((state: RootState) => state.profileNav.displaySavedArticles)
     const id = useSelector((state: RootState) => state.auth.user_id)
-    //  const activeSession = useSelector((state: RootState) => state.auth.activeSession)
-    //  const status = useSelector((state: RootState) => state.auth.status)
     const dispatch = useDispatch<AppDispatch>()
 
 
@@ -27,11 +26,7 @@ export default function Profile() {
     }, [id])
 
 
-    const handleArticleSelection = () => {
 
-        setDisplayArticles(true)
-        setDisplayInvestigations(false)
-    }
 
 
 
@@ -40,7 +35,7 @@ export default function Profile() {
 
 
             <main className="w-full flex relative justify-center">
-                <SideBar setDislayArticles={setDisplayArticles} setDisplayInvestigations={setDisplayInvestigations} />
+                <SideBar />
 
                 <section className="lg:p-8">
                     <div
@@ -54,13 +49,13 @@ export default function Profile() {
                                 </div>
 
                             </div>
-                            <ProfileMenu displayArticles={displayArticles} setDislayArticles={setDisplayArticles} setDisplayInvestigations={setDisplayInvestigations} />
+                            <ProfileMenu />
                         </div>
                         <div className="2xl:max-w-7xl flex flex-col lg:px-0">
 
                             <AnimatePresence mode="wait">
-                                {displayArticles && <SavedArticles articleSelect={handleArticleSelection} setDisplayArticles={setDisplayArticles} setDisplayInvestigations={setDisplayInvestigations} />}
-                                {displayInvestigations && <SavedResearchLayout />}
+                                {displaySavedArticles && <SavedArticles />}
+                                {displaySavedInvestigations && <SavedResearchLayout />}
 
                             </AnimatePresence>
 

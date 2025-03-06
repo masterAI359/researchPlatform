@@ -1,11 +1,10 @@
-import { getUserInvestigations } from "@/helpers/SupabaseData"
 import { RootState } from "@/ReduxToolKit/store"
 import { useSelector, useDispatch } from "react-redux"
-import { fetchSavedInvestigations } from "@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations"
 import { AppDispatch } from "@/ReduxToolKit/store"
+import { presentArticles, presentResearch } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
 
-export default function ProfileMenu({ setDislayArticles, displayArticles, setDisplayInvestigations }) {
-    const id = useSelector((state: RootState) => state.auth.user_id)
+export default function ProfileMenu({ }) {
+    const displaySavedArticles = useSelector((state: RootState) => state.profileNav.displaySavedArticles)
     const dispatch = useDispatch<AppDispatch>()
 
     return (
@@ -13,8 +12,7 @@ export default function ProfileMenu({ setDislayArticles, displayArticles, setDis
             <div className="flex items-center justify-between pt-2">
                 <div
                     onClick={() => {
-                        (setDisplayInvestigations(true))
-                        setDislayArticles(false)
+
                     }}
                     className="w-fit h-auto flex
             text-white text-xs font-light tracking-tight hover:text-blue-400 cursor-pointer
@@ -23,12 +21,12 @@ export default function ProfileMenu({ setDislayArticles, displayArticles, setDis
                 </div>
                 <div
                     onClick={() => {
-                        setDislayArticles(true)
-                        setDisplayInvestigations(false)
+                        dispatch(presentArticles(true))
+                        dispatch(presentResearch(false))
                     }}
                     className={`w-fit text-xs text-nowrap font-light tracking-tight  h-auto flex
                             font-light cursor-pointer  hover:text-blue-500
-                            ${displayArticles ? 'text-blue-500' : 'text-white'}
+                            ${displaySavedArticles ? 'text-blue-500' : 'text-white'}
                             transition-all duration-200 ease-in-out`}>
                     Saved Articles
                 </div>

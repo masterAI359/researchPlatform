@@ -2,13 +2,13 @@ export default function AboutHeader() {
 
     return (
         <section className="lg:p-8">
-            <div className="mx-auto 2xl:max-w-7xl py-24 lg:px-16 md:px-12 px-8 xl:px-40 items-center lg:py-40 relative w-full bg-gradientdown rounded-[3rem]">
+            <div className="mx-auto 2xl:max-w-7xl py-24 lg:px-16 md:px-12 px-8 xl:px-36 items-center lg:py-40 relative w-full bg-gradientdown rounded-4xl">
                 <div className="max-w-xl mx-auto">
                     <div>
                         <span className="relative rounded-full px-3 py-1 text-sm leading-6 text-white ring-1 ring-white/10">
                             About us
                         </span>
-                        <h1 className="text-3xl mt-6 tracking-tight font-light lg:text-6xl text-white">
+                        <h1 className="text-3xl mt-6 tracking-tight font-light lg:text-4xl text-white">
                             Bringing Clarity<span className="block text-zinc-400">to the muddy waters</span>
                         </h1>
                         <div className="mt-6 text-white space-y-3">

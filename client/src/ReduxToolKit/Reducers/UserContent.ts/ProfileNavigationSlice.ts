@@ -17,6 +17,16 @@ const ProfileNavigationSlice = createSlice({
     name: 'profileNav',
     initialState: initialState,
     reducers: {
-
+        presentArticles: (state, action) => {
+            state.displaySavedArticles = action.payload
+        },
+        presentResearch: (state, action) => {
+            state.displaySavedInvestigations = action.payload
+        }
     }
 })
+
+
+export const { presentArticles, presentResearch } = ProfileNavigationSlice.actions
+
+export default ProfileNavigationSlice.reducer

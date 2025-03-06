@@ -1,5 +1,9 @@
+import { useDispatch, useSelector } from "react-redux";
+import { presentArticles, presentResearch } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
 
-export default function SideBar({ setDislayArticles, setDisplayInvestigations }) {
+
+export default function SideBar({ }) {
+    const dispatch = useDispatch()
 
     return (
 
@@ -15,8 +19,8 @@ export default function SideBar({ setDislayArticles, setDisplayInvestigations })
                     <ul className="space-y-2 font-medium">
                         <li className="cursor-pointer"
                             onClick={() => {
-                                (setDisplayInvestigations(true));
-                                setDislayArticles(false);
+                                dispatch(presentResearch(true))
+                                dispatch(presentArticles(false))
                             }}
                         >
                             <div className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-white/10 group">
@@ -32,8 +36,8 @@ export default function SideBar({ setDislayArticles, setDisplayInvestigations })
 
                         <li className="cursor-pointer"
                             onClick={() => {
-                                (setDisplayInvestigations(false));
-                                setDislayArticles(true);
+                                dispatch(presentResearch(false))
+                                dispatch(presentArticles(true))
                             }}
                         >
                             <div className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-white/10 group">

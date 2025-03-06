@@ -98,7 +98,12 @@ export const saveArticle = async (dataToSave: SavedArticle, setShowNotification:
 
 export const saveInvestigation = async (investigationData: any, setSavingInvestigation: Function) => {
 
-    console.log("Attempting to insert investigation")
+    const timer = () => {
+        setTimeout(() => {
+
+            setSavingInvestigation(false)
+        }, 1000)
+    }
 
     const { idea, initial_perspective, biases, premises, ending_perspective, changed_opinion, new_concepts, takeaway, user_id } = investigationData
 
@@ -119,7 +124,7 @@ export const saveInvestigation = async (investigationData: any, setSavingInvesti
     if (error) {
         console.log(error)
     } else if (data) {
-        setSavingInvestigation(false)
+        timer()
     }
 
 

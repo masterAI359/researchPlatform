@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom"
 // ask the user if they would like to save their work from the previous research if they've investigated more than one topic 
 
 
-export default function SaveInvestigation() {
+export default function SaveInvestigation({ setSavingInvestigation }) {
     const id = useSelector((state: RootState) => state.auth.user_id)
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { pov, review } = investigateState
@@ -42,9 +42,9 @@ export default function SaveInvestigation() {
     return (
         <button
             onClick={() => {
-                saveInvestigation(investigateData)
+                saveInvestigation(investigateData, setSavingInvestigation)
+                setSavingInvestigation(true)
                 dispatch(fetchSavedInvestigations(id))
-                redirect()
 
             }}
             className="w-auto bg-white 2xl:w-60 hover:bg-white/10 group shadow-thick 

@@ -96,7 +96,7 @@ export const saveArticle = async (dataToSave: SavedArticle, setShowNotification:
 
 
 
-export const saveInvestigation = async (investigationData: any) => {
+export const saveInvestigation = async (investigationData: any, setSavingInvestigation: Function) => {
 
     console.log("Attempting to insert investigation")
 
@@ -119,8 +119,10 @@ export const saveInvestigation = async (investigationData: any) => {
     if (error) {
         console.log(error)
     } else if (data) {
-        console.log(data)
+        setSavingInvestigation(false)
     }
+
+
 
 }
 

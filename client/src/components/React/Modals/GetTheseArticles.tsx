@@ -37,7 +37,7 @@ export function GetTheseArticles() {
             initial="closed"
             animate="open"
             exit="closed"
-            className="absolute bottom-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50
+            className="fixed bottom-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50
          xl:min-w-96 xl:min-h-52 flex flex-col items-start gap-x-8 gap-y-6 rounded-3xl p-8 
         sm:gap-y-10 sm:p-10 lg:col-span-2 lg:flex-row lg:items-center bg-ebony mt-2 
         shadow-inset text-center">

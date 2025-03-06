@@ -3,16 +3,26 @@ import InvestigateMore from "../Buttons/ProcessButtons/InvestigateMore"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import DataTable from "./DataTable"
+import { useState } from "react"
+import { AnimatePresence } from "framer-motion"
+import SavingResearch from "../Forms/AuthNotifications/SavingResearch"
 
 export default function FinalResults() {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { pov, review } = investigateState
     const { idea, perspective, expertise } = pov
     const { endingPerspective, merit, movedOnIdea } = review
+    const [savingInvestigation, setSavingInvestigation] = useState<boolean>(null)
+
+
+
 
 
     return (
         <section className="lg:p-8 h-full w-full flex justify-center">
+            <AnimatePresence>
+                {savingInvestigation && <SavingResearch />}
+            </AnimatePresence>
             <div className="2xl:max-w-7xl h-fit py-16 lg:px-16 md:px-12 px-2 xl:px-36 items-center relative w-full bg-gradientdown rounded-[3rem]">
                 <div className="text-center max-w-xl mx-auto">
                     <span className="text-md 2xl:text-lg text-blue-500 font-light"> Results</span>
@@ -34,7 +44,7 @@ export default function FinalResults() {
                 </div>
 
                 <div className="flex mt-16 gap-x-2 2xl:gap-x-6 w-1/2 justify-center mx-auto">
-                    <SaveInvestigation />
+                    <SaveInvestigation setSavingInvestigation={setSavingInvestigation} />
                     <InvestigateMore />
                 </div>
             </div>

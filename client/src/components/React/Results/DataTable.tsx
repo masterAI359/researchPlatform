@@ -10,6 +10,9 @@ export default function DataTable() {
     const { idea, perspective, expertise } = pov
     const { endingPerspective, merit, movedOnIdea } = review
 
+
+    const changed = endingPerspective === perspective
+
     return (
         <table className="w-full 2xl:min-h-72 table-fixed border-separate border-spacing-x-10 text-left">
             <caption className="sr-only"> Pricing plan comparison</caption>
@@ -71,7 +74,7 @@ export default function DataTable() {
                         Changed Opinion
                         <div className="absolute inset-x-8 mt-4 h-px bg-ebony/50" />
                     </th>
-                    <TableRow truthyValue={movedOnIdea} />
+                    <TableRow truthyValue={changed} />
                 </tr>
             </tbody>
         </table>

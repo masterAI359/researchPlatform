@@ -1,9 +1,10 @@
 import Loader from "../../Loaders/Loader";
 import { motion } from "framer-motion";
+import Lottie from "lottie-react";
+import blueCheck from '../../../../lotties/blueCheck.json'
+import { useEffect } from "react";
 
-
-
-export default function SavingResearch() {
+export default function SavingResearch({ saveSuccessful, setSavingInvestigation }) {
 
     const variants = {
         show: {
@@ -16,6 +17,18 @@ export default function SavingResearch() {
         }
     }
 
+    useEffect(() => {
+
+        const timer = setTimeout(() => {
+            setSavingInvestigation(false)
+        }, 3000)
+
+
+        return () => {
+            clearTimeout(timer)
+        }
+    }, [saveSuccessful])
+
     return (
         <motion.div
             variants={variants}
@@ -23,18 +36,28 @@ export default function SavingResearch() {
             animate='show'
             exit='hide'
             transition={{ type: 'tween', duration: 0.2 }}
-            className="absolute top-24 right-36 h-10 w-60 py-5 bg-mirage rounded-xl px-2"
+            className="absolute top-24 right-36 h-10 w-52 py-5 bg-mirage rounded-xl px-2"
         >
             <div className="flex w-full h-full items-center justify-between">
                 <div className="w-auto h-fit">
                     <p className="text-white font-light">
-                        Saving your work
+                        {saveSuccessful ? 'Saved successfully!' : 'Saving your work'}
                     </p>
                 </div>
                 <div className="w-auto h-fit relative">
-                    <Loader />
+                    {saveSuccessful ? <SaveSuccess /> : <Loader />}
                 </div>
             </div>
         </motion.div>
+    )
+}
+
+
+function SaveSuccess() {
+
+    return (
+        <div className="relative top-0 right-0 bottom-0 h-10 w-10 flex items-center justify-center">
+            <Lottie animationData={blueCheck} loop={false} autoPlay={false} style={{ height: "100%", width: "100%", position: "relative" }} />
+        </div>
     )
 }

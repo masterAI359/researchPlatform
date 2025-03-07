@@ -22,105 +22,101 @@ export default function HeroContainer({
 
 
     return (
-        <ErrorBoundary>
-            <section className={`w-full h-full shrink-0 mx-auto transition-opacity duration-200 ease-in-out ${showWorkModal ? 'opacity-50' : 'opacity-100'}`}>
-                <AnimatePresence mode="wait">
+        <section className={`w-full h-full shrink-0 mx-auto transition-opacity duration-200 ease-in-out ${showWorkModal ? 'opacity-50' : 'opacity-100'}`}>
+            <AnimatePresence mode="wait">
 
-                    {showMindMap && (<motion.div
-                        key='Investigate'
+                {showMindMap && (<motion.div
+                    key='Investigate'
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{
+                        type: 'tween',
+                        duration: 0.2
+                    }}
+                    className={`grid grid-cols-1 w-full h-auto mx-auto items-center`}>
+                    <InvestigateHero
+                    />
+
+                </motion.div>)}
+
+                {showSearch ?
+                    (<motion.div
+                        key='Search'
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        transition={{
-                            type: 'tween',
-                            duration: 0.2
-                        }}
-                        className={`grid grid-cols-1 w-full h-auto mx-auto items-center`}>
-                        <InvestigateHero
+                        transition={{ type: 'tween', duration: 0.2 }}
+                    >
+                        <SearchHero
                         />
 
-                    </motion.div>)}
+                        <ScrolltoTop />
 
-                    {showSearch ?
-                        (<motion.div
-                            key='Search'
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ type: 'tween', duration: 0.2 }}
-                        >
-                            <SearchHero
-                            />
+                    </motion.div>) : null}
 
-                            <ScrolltoTop />
-
-                        </motion.div>) : null}
-
-                    {showContent && ContentStatus === 'fulfilled' ?
-                        <motion.div
-                            key='Reading'
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ type: 'tween', duration: 0.5, ease: 'easeInOut' }}
-                        >
-                            <SummaryHero />
-                            <ScrolltoTop />
-                        </motion.div>
-                        : null}
-
-                    {showWrapUp && <motion.div
-                        key='WrapUp'
+                {showContent && ContentStatus === 'fulfilled' ?
+                    <motion.div
+                        key='Reading'
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ type: 'tween', duration: 0.5, ease: 'easeInOut' }}
                     >
-                        <ReviewWrapper />
+                        <SummaryHero />
                         <ScrolltoTop />
-                    </motion.div>}
+                    </motion.div>
+                    : null}
 
-                    {showCompletion &&
-                        <motion.div
-                            key='Completion'
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{
-                                type: 'tween',
-                                duration: 0.24,
-                                delay: 0.22,
-                                ease: [0.4, 0, 0.2, 1],
-                            }}
-                        >
-                            <CompletionHero />
-                            <ScrolltoTop />
-                        </motion.div>
-                    }
+                {showWrapUp && <motion.div
+                    key='WrapUp'
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ type: 'tween', duration: 0.5, ease: 'easeInOut' }}
+                >
+                    <ReviewWrapper />
+                    <ScrolltoTop />
+                </motion.div>}
 
-                    {showResults && <motion.div
-                        key='Results'
+                {showCompletion &&
+                    <motion.div
+                        key='Completion'
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="h-full w-full"
                         transition={{
                             type: 'tween',
-                            duration: 0.4,
-                            delay: 0.3,
+                            duration: 0.24,
+                            delay: 0.22,
                             ease: [0.4, 0, 0.2, 1],
                         }}
                     >
-                        <FinalResults />
+                        <CompletionHero />
                         <ScrolltoTop />
                     </motion.div>
-                    }
+                }
 
-                </AnimatePresence>
+                {showResults && <motion.div
+                    key='Results'
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="h-full w-full"
+                    transition={{
+                        type: 'tween',
+                        duration: 0.4,
+                        delay: 0.3,
+                        ease: [0.4, 0, 0.2, 1],
+                    }}
+                >
+                    <FinalResults />
+                    <ScrolltoTop />
+                </motion.div>
+                }
 
-            </section>
+            </AnimatePresence>
 
-        </ErrorBoundary>
-
+        </section>
     )
 }

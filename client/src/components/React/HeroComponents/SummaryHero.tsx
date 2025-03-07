@@ -25,9 +25,7 @@ export default function SummaryHero({ }) {
             </div>
             <div className="hidden md:block">
                 {ContentStatus === 'fulfilled' && summaries ? <StoryPaginate /> : null}
-
             </div>
-
         </header>
     )
 }

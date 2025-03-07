@@ -96,14 +96,7 @@ export const saveArticle = async (dataToSave: SavedArticle, setShowNotification:
 
 
 
-export const saveInvestigation = async (investigationData: any, setSavingInvestigation: Function) => {
-
-    const timer = () => {
-        setTimeout(() => {
-
-            setSavingInvestigation(false)
-        }, 1000)
-    }
+export const saveInvestigation = async (investigationData: any, setSavingInvestigation: Function, setSaveSuccessful: Function) => {
 
     const { idea, initial_perspective, biases, premises, ending_perspective, changed_opinion, new_concepts, takeaway, user_id } = investigationData
 
@@ -124,10 +117,8 @@ export const saveInvestigation = async (investigationData: any, setSavingInvesti
     if (error) {
         console.log(error)
     } else if (data) {
-        timer()
+        setSaveSuccessful(true)
     }
-
-
 
 }
 

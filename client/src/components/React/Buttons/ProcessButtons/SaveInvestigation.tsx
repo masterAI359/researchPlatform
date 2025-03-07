@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom"
 // ask the user if they would like to save their work from the previous research if they've investigated more than one topic 
 
 
-export default function SaveInvestigation({ setSavingInvestigation }) {
+export default function SaveInvestigation({ setSavingInvestigation, setSaveSuccessful }) {
     const id = useSelector((state: RootState) => state.auth.user_id)
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { pov, review } = investigateState
@@ -33,6 +33,7 @@ export default function SaveInvestigation({ setSavingInvestigation }) {
     }
 
 
+
     const redirect = () => {
 
         navigate('/Profile')
@@ -42,7 +43,7 @@ export default function SaveInvestigation({ setSavingInvestigation }) {
     return (
         <button
             onClick={() => {
-                saveInvestigation(investigateData, setSavingInvestigation)
+                saveInvestigation(investigateData, setSavingInvestigation, setSaveSuccessful)
                 setSavingInvestigation(true)
                 dispatch(fetchSavedInvestigations(id))
 

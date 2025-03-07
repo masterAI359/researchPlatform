@@ -18,7 +18,9 @@ export default function Login() {
 
 
     const redirectUser = () => {
-        navigate('/Profile')
+        setTimeout(() => {
+            navigate('/Profile')
+        }, 1500)
     }
 
     const handleEmail = (e: any) => {
@@ -45,13 +47,11 @@ export default function Login() {
                 setSuccessful(false)
             } else if (data) {
                 console.log(data)
-                setLoggingIn(false)
                 setSuccessful(true)
             }
         } catch (error) {
             console.log(error)
         } finally {
-
             redirectUser()
         }
 
@@ -77,7 +77,7 @@ export default function Login() {
     return (
         <section className="lg:p-8 overflow-hidden bg-black animate-fade-in">
             <AnimatePresence>
-                {loggingIn && <LoggingIn successful={successfull} />}
+                {loggingIn && <LoggingIn successful={successfull} setLoggingIn={setLoggingIn} />}
             </AnimatePresence>
             <div className="mx-auto 2xl:max-w-7xl py-24 lg:px-16 md:px-12 px-8 xl:px-36">
                 <div className="border-b pb-12">

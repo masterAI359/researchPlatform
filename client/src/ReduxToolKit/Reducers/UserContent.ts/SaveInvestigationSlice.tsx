@@ -28,11 +28,13 @@ export const saveUserInvestigation = createAsyncThunk(
 )
 
 interface SaveInvestigation {
-    status: string
+    status: string,
+    saved: boolean
 }
 
 const initialState: SaveInvestigation = {
-    status: 'idle'
+    status: 'idle',
+    saved: false
 }
 
 
@@ -40,7 +42,9 @@ const SaveInvestigationSlice = createSlice({
     name: 'saveInvestigation',
     initialState: initialState,
     reducers: {
-        removeNotification: () => initialState
+        removeNotification: (state) => {
+            state.status = 'idle'
+        }
     },
     extraReducers: (builder) => {
 
@@ -50,9 +54,11 @@ const SaveInvestigationSlice = createSlice({
             })
             .addCase(saveUserInvestigation.fulfilled, (state, action) => {
                 state.status = 'fulfilled'
+                state.saved = true
             })
             .addCase(saveUserInvestigation.rejected, (state, action) => {
                 state.status = 'rejected'
+
             })
     }
 })

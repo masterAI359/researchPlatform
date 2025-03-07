@@ -7,17 +7,15 @@ import { useEffect, useState } from "react"
 import { AnimatePresence } from "framer-motion"
 import SavingResearch from "../Forms/AuthNotifications/SavingResearch"
 
+
 export default function FinalResults() {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const saveStatus = useSelector((state: RootState) => state.saveResearch.status)
     const { pov } = investigateState
     const { idea } = pov
-    const [savingInvestigation, setSavingInvestigation] = useState<boolean>(null)
-    const [saveSuccessful, setSaveSuccessful] = useState<boolean>(null)
 
     useEffect(() => {
 
-        console.log(saveStatus)
     }, [saveStatus])
 
 

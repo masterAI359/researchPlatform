@@ -1,7 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import Loader from "../../Loaders/Loader";
 import LoggedInSuccessfully from "./LoggedInSuccessfully";
-import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 
@@ -17,12 +16,10 @@ const variants = {
 }
 
 export default function LoggingIn({ successful, setLoggingIn }) {
-    const navigate = useNavigate()
 
     const timer = () => {
         setTimeout(() => {
             setLoggingIn(false)
-            navigate('/Profile')
         }, 1500)
     }
 

@@ -4,6 +4,7 @@ import AuthenticateReducer from './Reducers/Athentication/Authentication'
 import UserContentSlice from './Reducers/UserContent.ts/UserContentReducer'
 import userInvestigationSlice from './Reducers/UserContent.ts/UserInvestigations'
 import ProfileNavigationSlice from './Reducers/UserContent.ts/ProfileNavigationSlice'
+import SaveInvestigationSlice from './Reducers/UserContent.ts/SaveInvestigationSlice'
 
 export const store = configureStore({
     reducer: {
@@ -11,7 +12,8 @@ export const store = configureStore({
         auth: AuthenticateReducer,
         userdata: UserContentSlice,
         userWork: userInvestigationSlice,
-        profileNav: ProfileNavigationSlice
+        profileNav: ProfileNavigationSlice,
+        saveResearch: SaveInvestigationSlice
     }
 
 })

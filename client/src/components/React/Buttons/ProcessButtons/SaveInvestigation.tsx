@@ -4,21 +4,16 @@ import { saveInvestigation } from "@/helpers/SupabaseData"
 import { fetchSavedInvestigations } from "@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations"
 import { useDispatch } from "react-redux"
 import { AppDispatch } from "@/ReduxToolKit/store"
-import { useNavigate } from "react-router-dom"
+import { saveUserInvestigation } from "@/ReduxToolKit/Reducers/UserContent.ts/SaveInvestigationSlice"
 
 
-//TODO: exert more control over the previous work saved in local storage, 
-// ask the user if they would like to save their work from the previous research if they've investigated more than one topic 
-
-
-export default function SaveInvestigation({ setSavingInvestigation, setSaveSuccessful }) {
+export default function SaveInvestigation({ }) {
     const id = useSelector((state: RootState) => state.auth.user_id)
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { pov, review } = investigateState
     const { idea, premises, perspective, expertise, biases } = pov
     const { endingPerspective, newConcepts, newPOV, merit, takeaway } = review
     const dispatch = useDispatch<AppDispatch>()
-    const navigate = useNavigate()
 
     const investigateData = {
         idea: idea,
@@ -34,19 +29,13 @@ export default function SaveInvestigation({ setSavingInvestigation, setSaveSucce
 
 
 
-    const redirect = () => {
-
-        navigate('/Profile')
-    }
 
 
     return (
         <button
             onClick={() => {
-                saveInvestigation(investigateData, setSavingInvestigation, setSaveSuccessful)
-                setSavingInvestigation(true)
+                dispatch(saveUserInvestigation(investigateData))
                 dispatch(fetchSavedInvestigations(id))
-
             }}
             className="w-auto bg-white 2xl:w-60 hover:bg-white/10 group shadow-thick 
                     transition-colors duration-200 ease-in-out rounded-full h-fit py-2 px-4 mx-auto flex items-center">

@@ -3,8 +3,14 @@ import { motion } from "framer-motion";
 import Lottie from "lottie-react";
 import blueCheck from '../../../../lotties/blueCheck.json'
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "@/ReduxToolKit/store";
+import { useDispatch } from "react-redux";
+import { removeNotification } from "@/ReduxToolKit/Reducers/UserContent.ts/SaveInvestigationSlice";
 
-export default function SavingResearch({ saveSuccessful, setSavingInvestigation }) {
+export default function SavingResearch({ }) {
+    const saveStatus = useSelector((state: RootState) => state.saveResearch.status)
+    const dispatch = useDispatch()
 
     const variants = {
         show: {
@@ -20,14 +26,14 @@ export default function SavingResearch({ saveSuccessful, setSavingInvestigation 
     useEffect(() => {
 
         const timer = setTimeout(() => {
-            setSavingInvestigation(false)
+            dispatch(removeNotification())
         }, 3000)
 
 
         return () => {
             clearTimeout(timer)
         }
-    }, [saveSuccessful])
+    }, [saveStatus])
 
     return (
         <motion.div
@@ -41,11 +47,11 @@ export default function SavingResearch({ saveSuccessful, setSavingInvestigation 
             <div className="flex w-full h-full items-center justify-between">
                 <div className="w-auto h-fit">
                     <p className="text-white font-light">
-                        {saveSuccessful ? 'Saved successfully!' : 'Saving your work'}
+                        {saveStatus === 'fulfilled' ? 'Saved successfully!' : 'Saving your work'}
                     </p>
                 </div>
                 <div className="w-auto h-fit relative">
-                    {saveSuccessful ? <SaveSuccess /> : <Loader />}
+                    {saveStatus === 'fulfilled' ? <SaveSuccess /> : <Loader />}
                 </div>
             </div>
         </motion.div>

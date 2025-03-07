@@ -9,16 +9,22 @@ import SavingResearch from "../Forms/AuthNotifications/SavingResearch"
 
 export default function FinalResults() {
     const investigateState = useSelector((state: RootState) => state.investigation)
+    const saveStatus = useSelector((state: RootState) => state.saveResearch.status)
     const { pov } = investigateState
     const { idea } = pov
     const [savingInvestigation, setSavingInvestigation] = useState<boolean>(null)
     const [saveSuccessful, setSaveSuccessful] = useState<boolean>(null)
 
+    useEffect(() => {
+
+        console.log(saveStatus)
+    }, [saveStatus])
+
 
     return (
         <section className="lg:p-8 h-full w-full flex justify-center">
             <AnimatePresence>
-                {savingInvestigation && <SavingResearch saveSuccessful={saveSuccessful} setSavingInvestigation={setSavingInvestigation} />}
+                {saveStatus !== 'idle' && <SavingResearch />}
             </AnimatePresence>
             <div className="2xl:max-w-7xl h-fit py-16 lg:px-16 md:px-12 px-2 xl:px-36 items-center relative w-full bg-gradientdown rounded-[3rem]">
                 <div className="text-center max-w-xl mx-auto">
@@ -41,7 +47,7 @@ export default function FinalResults() {
                 </div>
 
                 <div className="flex mt-16 gap-x-2 2xl:gap-x-6 w-1/2 justify-center mx-auto">
-                    <SaveInvestigation setSavingInvestigation={setSavingInvestigation} setSaveSuccessful={setSaveSuccessful} />
+                    <SaveInvestigation />
                     <InvestigateMore />
                 </div>
             </div>

@@ -1,23 +1,41 @@
-import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
+import { useSelector } from "react-redux"
 import { delay, motion } from "framer-motion"
 
-export default function ReviewPOV() {
-    const investigateState = useSelector((state: RootState) => state.investigation)
-    const { pov } = investigateState
-    const { idea, perspective } = pov
+export default function IdeaTackled() {
+    const investigation = useSelector((state: RootState) => state.userWork.investigationToReview)
 
+    const variants = {
+        hide: {
+            opacity: 0,
+        },
+        show: {
+            opacity: 1,
+            transition: {
+                delay: 0.7,
+                duration: 0.2,
+                type: 'tween'
+            }
+        },
+        exit: {
+            opacity: 0
+        }
+    }
     return (
-        <section className="h-fit w-full p-6 2xl:w-[36rem] 2xl:h-[32rem] 2xl:p-10 box-border md:grow flex flex-col
-         lg:bg-gradient-to-tr from-ebony to-mirage border border-white/5
-        rounded-3xl xs:gap-y-6 2xl:gap-y-16 items-center content-center">
+        <section className="h-full py-6 opacity-100 z-1 xs:w-full 2xl:w-[36rem] 2xl:h-[32rem] 2xl:p-10 md:grow mx-auto flex flex-col
+        2xl:min-h-96 
+        flex-none gap-y-2 md:gap-y-16 bg-gradientdown rounded-3xl ring-1 ring-inset ring-white/5">
             <header className="xs:w-full 2xl:min-w-96 mx-auto ">
                 <h1 className="text-lg text-left text-center mx-auto w-full lg:text-xl 
-                lg:mb-2 2xl:text-4xl text-white font-light tracking-tight">
+               lg:mb-2 2xl:text-4xl text-white font-light tracking-tight">
                     Where you began
                 </h1>
             </header>
-            <main
+            <motion.main
+                variants={variants}
+                initial='hide'
+                animate='show'
+                exit='exit'
                 className="h-full w-full flex flex-col gap-y-6 grow lg:min-h-16">
                 <div className="w-full h-full flex flex-col gap-y-4 ">
                     <div className="w-full border-b border-white/20">
@@ -26,8 +44,8 @@ export default function ReviewPOV() {
                         </h1>
                     </div>
                     <div className="w-full h-full">
-                        <p className="text-zinc-300 text-xs font-light tracking-tight">
-                            {idea}
+                        <p className="text-white text-xs font-light tracking-tight">
+                            {investigation.idea}
                         </p>
                     </div>
                 </div>
@@ -39,12 +57,12 @@ export default function ReviewPOV() {
                         </h1>
                     </div>
                     <div className="w-full h-full">
-                        <p className="text-zinc-300 text-xs">
-                            {perspective}
+                        <p className="text-white text-base">
+                            {investigation.initial_perspective}
                         </p>
                     </div>
                 </div>
-            </main>
+            </motion.main>
         </section>
     )
 }

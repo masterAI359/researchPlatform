@@ -6,13 +6,15 @@ import AboutContainer from "../Containers/AboutContainer"
 import Signup from "../Forms/Signup"
 import Login from "../Forms/Login"
 import Profile from "../User/Profile"
-import ReadSavedArticle from "../User/DisplayContent/ReadSavedArticles"
+import ReadSavedArticle from "../User/DisplayContent/UserArticles/ReadSavedArticles"
+import ReviewInvestigation from "../User/DisplayContent/SavedInvestigations.tsx/ReviewInvestigation"
 import ScrolltoTop from "./ScrollToTop"
 import SessionManager from "./SessionManager"
 import { store } from '../../../ReduxToolKit/store'
 import { Provider } from 'react-redux'
 import EmailForReset from "../Forms/EmailForReset"
 import UpdatePassword from "../Forms/UpdatePassword"
+
 
 export default function AppRouter() {
 
@@ -32,6 +34,7 @@ export default function AppRouter() {
                         <Route path="/EmailForReset" element={<EmailForReset />} />
                         <Route path="/UpdatePassword" element={<UpdatePassword />} />
                         <Route path="/SavedArticle" element={<ReadSavedArticle />} />
+                        <Route path="ReviewInvestigation" element={<ReviewInvestigation />} />
                     </Route>
                 </Routes>
             </BrowserRouter>

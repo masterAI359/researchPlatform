@@ -1,8 +1,8 @@
 import { RootState } from "@/ReduxToolKit/store"
 import { AnimatePresence } from "framer-motion"
 import { useSelector, useDispatch } from "react-redux"
-import Summary from "../../SummaryComponents/SuccessFull/Summary"
-import BackToSavedArticles from "../../Buttons/NavigatingButtons/BackToSavedArticles"
+import Summary from "../../../SummaryComponents/SuccessFull/Summary"
+import BackToSavedArticles from "../../../Buttons/NavigatingButtons/BackToSavedArticles"
 
 export default function ReadSavedArticle() {
     const savedArticle = useSelector((state: RootState) => state.userdata.ArticleToReview)

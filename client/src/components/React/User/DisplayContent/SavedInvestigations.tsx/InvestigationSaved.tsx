@@ -1,7 +1,18 @@
 import Thumbnail from "./Thumbnail"
+import { useNavigate } from "react-router-dom"
+import { reviewThisResearch } from "@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations"
+import { useDispatch } from "react-redux"
 
 export default function PriorInvestigation({ investigation }) {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
+    function reviewResearch() {
+        dispatch(reviewThisResearch(investigation))
+        setTimeout(() => {
+            navigate('/ReviewInvestigation')
+        }, 150)
+    }
 
     return (
         <div className="md:flex w-full  h-auto">
@@ -21,7 +32,7 @@ export default function PriorInvestigation({ investigation }) {
                             {investigation.idea}
                         </p>
                         <div className="mt-4 w-fit">
-                            <button className="text-sm py-2 px-6 border focus:ring-2 rounded-full border-transparent bg-white hover:bg-white/10
+                            <button onClick={() => reviewResearch()} className="text-sm py-2 px-6 border focus:ring-2 rounded-full border-transparent bg-white hover:bg-white/10
                             text-black duration-200 focus:ring-offset-2 focus:ring-black hover:text-white inline-flex items-center justify-start ring-1 ring-transparent">
                                 Review <span className="ml-2">&#8594;</span>
                             </button>

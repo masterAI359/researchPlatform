@@ -19,7 +19,6 @@ export default function ReviewQuestions({ step }) {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { merit, movedOnIdea } = investigateState.review
 
-    console.log({ "Merit": merit, "Moved": movedOnIdea })
     return (
         <div className="h-full py-6 opacity-100 z-1 xs:w-full 2xl:w-[36rem] 2xl:h-[32rem] 2xl:p-10 md:grow mx-auto flex flex-col
         2xl:min-h-96 

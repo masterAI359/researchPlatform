@@ -3,8 +3,8 @@ import { RootState } from "@/ReduxToolKit/store"
 import { useEffect } from "react"
 import { motion } from "framer-motion"
 import ArticleSaved from "./ArticleSaved"
-import ErrorBoundary from "../../ErrorBoundaries/ErrorBoundary"
-import ScrolltoTop from "../../AppRouting/ScrollToTop"
+import ErrorBoundary from "../../../ErrorBoundaries/ErrorBoundary"
+import ScrolltoTop from "../../../AppRouting/ScrollToTop"
 
 export default function SavedArticles({ }) {
     const { userArticles, error, status } = useSelector((state: RootState) => state.userdata)

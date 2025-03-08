@@ -15,7 +15,6 @@ export default function DataTable() {
 
     return (
         <table className="w-full 2xl:min-h-72 table-fixed border-separate border-spacing-x-10 text-left">
-            <caption className="sr-only"> Pricing plan comparison</caption>
             <colgroup>
                 <col className="w-1/4" />
                 <col className="w-1/4" />

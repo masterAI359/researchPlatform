@@ -24,14 +24,16 @@ export const fetchSavedInvestigations = createAsyncThunk(
 interface SavedInvestigations {
     status: string,
     userResearch: any,
-    associatedArticles: any
+    associatedArticles: any,
+    investigationToReview: any
 }
 
 
 const initialState: SavedInvestigations = {
     status: 'idle',
     userResearch: [],
-    associatedArticles: []
+    associatedArticles: [],
+    investigationToReview: null
 }
 
 
@@ -42,6 +44,9 @@ const userInvestigationsSlice = createSlice({
         clearUserInvestigations: () => initialState,
         getUserResearch: (state, action) => {
             state.userResearch = action.payload
+        },
+        reviewThisResearch: (state, action) => {
+            state.investigationToReview = action.payload
         }
     },
     extraReducers: (builder) => {
@@ -61,6 +66,6 @@ const userInvestigationsSlice = createSlice({
 })
 
 
-export const { clearUserInvestigations, getUserResearch } = userInvestigationsSlice.actions
+export const { clearUserInvestigations, getUserResearch, reviewThisResearch } = userInvestigationsSlice.actions
 
 export default userInvestigationsSlice.reducer

@@ -1,16 +1,18 @@
 import SaveInvestigation from "../Buttons/ProcessButtons/SaveInvestigation"
 import InvestigateMore from "../Buttons/ProcessButtons/InvestigateMore"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import DataTable from "./DataTable"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { AnimatePresence } from "framer-motion"
 import SavingResearch from "../Forms/AuthNotifications/SavingResearch"
+import { clearState } from "@/ReduxToolKit/Reducers/UserContent.ts/SaveInvestigationSlice"
 
 
 export default function FinalResults() {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const saveStatus = useSelector((state: RootState) => state.saveResearch.status)
+    const dispatch = useDispatch()
     const { pov } = investigateState
     const { idea } = pov
 

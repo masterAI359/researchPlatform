@@ -21,6 +21,7 @@ export const saveUserInvestigation = createAsyncThunk(
                 user_id: user_id
             }]).select()
         if (error) {
+            console.log(error.message)
             return thunkAPI.rejectWithValue(error.message)
         } else if (data) {
             return data
@@ -44,9 +45,10 @@ const SaveInvestigationSlice = createSlice({
     name: 'saveInvestigation',
     initialState: initialState,
     reducers: {
-        removeNotification: (state) => {
-            state.status = 'idle'
-        }
+        removeNotification: (state, action) => {
+            state.status = action.payload
+        },
+        clearState: () => initialState
     },
     extraReducers: (builder) => {
 
@@ -65,6 +67,6 @@ const SaveInvestigationSlice = createSlice({
     }
 })
 
-export const { removeNotification } = SaveInvestigationSlice.actions
+export const { removeNotification, clearState } = SaveInvestigationSlice.actions
 
 export default SaveInvestigationSlice.reducer

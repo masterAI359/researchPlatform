@@ -108,12 +108,12 @@ const DropdownMenu = ({ isOpen, setIsOpen }) => {
                             >
                                 <Link
                                     onClick={() => { setIsOpen(false) }}
-                                    className="h-full w-full grow" to='/Profile' >My Profile</Link>
+                                    className="h-full w-full grow py-1" to='/Profile' >My Profile</Link>
 
                             </li>}
                             {!id && <li
                                 key="Signup"
-                                className="text-white flex font-light border-b border-white/10 hover:text-blue-400"
+                                className="text-white  flex font-light border-b border-white/10 hover:text-blue-400"
                                 style={{
                                     padding: "10px",
                                     cursor: "pointer"
@@ -122,7 +122,7 @@ const DropdownMenu = ({ isOpen, setIsOpen }) => {
                             >
                                 <Link
                                     onClick={() => { setIsOpen(false); }}
-                                    className="min-h-full w-full grow" to='/Signup'>Sign up</Link>
+                                    className="min-h-full w-full py-1 grow" to='/Signup'>Sign up</Link>
                             </li>}
                             {!id && <li
                                 key="Login"
@@ -135,19 +135,21 @@ const DropdownMenu = ({ isOpen, setIsOpen }) => {
                             >
                                 <Link
                                     onClick={() => { setIsOpen(false); }}
-                                    className="min-h-full w-full grow" to={'/Login'}>Log in</Link>
+                                    className="min-h-full w-full py-1 grow" to={'/Login'}>Log in</Link>
                             </li>
                             }
                             {id && <li
                                 key="Logout"
-                                className="text-white flex font-light border-b border-white/10 hover:text-blue-400"
+                                className="text-white flex py-1 font-light border-b border-white/10 group"
                                 style={{
                                     padding: "10px",
                                     cursor: "pointer"
                                 }}
                                 onClick={handleLogOut}
                             >
-                                Log out
+                                <p className="text-white py-1 group-hover:text-blue-400">
+                                    Log out
+                                </p>
 
                             </li>}
                         </ul>

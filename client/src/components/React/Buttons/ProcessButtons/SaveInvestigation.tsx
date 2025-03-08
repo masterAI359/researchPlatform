@@ -1,6 +1,5 @@
 import { RootState } from "@/ReduxToolKit/store"
 import { useSelector } from "react-redux"
-import { saveInvestigation } from "@/helpers/SupabaseData"
 import { fetchSavedInvestigations } from "@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations"
 import { useDispatch } from "react-redux"
 import { AppDispatch } from "@/ReduxToolKit/store"
@@ -28,17 +27,13 @@ export default function SaveInvestigation({ }) {
         user_id: id
     }
 
-
-
-
-
     return (
         <button
             onClick={() => {
                 dispatch(saveUserInvestigation(investigateData))
                 dispatch(fetchSavedInvestigations(id))
             }}
-            className={`${saved ? 'bg-white/10' : 'bg-white'} w-auto 2xl:w-60 hover:bg-white/10 group shadow-thick 
+            className={`${saved ? 'bg-white/10 pointer-events-none' : 'bg-white pointer-events-auto'} w-auto 2xl:w-60 hover:bg-white/10 group shadow-thick 
                     transition-all duration-200 ease-in-out rounded-full h-fit py-2 px-4 mx-auto flex items-center`}>
             <p className={`${saved ? 'text-slate-500' : 'text-black'} transition-all duration-200 ease-in-out
              w-full text-xs 2xl:text-lg text-nowrap group-hover:text-white font-light text-center`}>

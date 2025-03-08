@@ -26,19 +26,17 @@ export default function SavingResearch({ }) {
     useEffect(() => {
 
         const timer = setTimeout(() => {
-            dispatch(removeNotification())
+            dispatch(removeNotification('idle'))
         }, 2000)
 
 
-        return () => {
-            clearTimeout(timer)
-        }
+        return () => clearTimeout(timer)
+
     }, [saveStatus])
 
     return (
         <motion.div
             variants={variants}
-            initial='hide'
             animate='show'
             exit='hide'
             transition={{ type: 'tween', duration: 0.3 }}

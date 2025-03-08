@@ -4,15 +4,19 @@ import { useDispatch, useSelector } from "react-redux"
 import { saveInvestigation } from "@/helpers/SupabaseData"
 import { displayWorkModal } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
 import { PreviousWork } from "../../Modals/PreviousWork"
+import { useNavigate } from "react-router-dom"
+import { clearState } from "@/ReduxToolKit/Reducers/UserContent.ts/SaveInvestigationSlice"
 
 export default function InvestigateMore() {
     const [open, setOpen] = useState<boolean>(false)
     const id = useSelector((state: RootState) => state.auth.user_id)
+    const saved = useSelector((state: RootState) => state.saveResearch.saved)
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { pov, review } = investigateState
     const { idea, premises, perspective, biases } = pov
     const { endingPerspective, newConcepts, newPOV, takeaway } = review
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const investigateData = {
         idea: idea,
@@ -31,21 +35,17 @@ export default function InvestigateMore() {
 
 
     const showModal = () => {
-        displayWorkModal(true)
-        setOpen(true)
+
+        if (saved) {
+            dispatch({ type: 'clear' })
+            dispatch(clearState())
+        } else {
+            displayWorkModal(true)
+            setOpen(true)
+        }
+
     }
 
-    useEffect(() => {
-
-        //    const loggingStorage = localStorage.getItem("userWork")
-        //    const retrievedStorage = JSON.parse(loggingStorage)
-        //
-        return () => {
-            //console.log(retrievedStorage)
-            //saveInvestigation(retrievedStorage)
-            // localStorage.removeItem('userWork')
-        }
-    }, [])
 
 
     return (

@@ -16,7 +16,6 @@ export default function SessionManager() {
         const { data } = supabase.auth.onAuthStateChange((event, session) => {
 
             if (event === 'INITIAL_SESSION') {
-                restoreSession()
                 appDispatch(fetchUserCredentials())
             } else if (event === 'SIGNED_IN') {
                 appDispatch(fetchUserCredentials())

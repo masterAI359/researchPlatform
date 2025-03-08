@@ -14,6 +14,7 @@ export default function InvestigateContainer() {
   const dispatch = useDispatch()
   const investigateState = useSelector((state: RootState) => state.investigation)
   const signingOut = useSelector((state: RootState) => state.auth.signOut)
+  const saveStatus = useSelector((state: RootState) => state.saveResearch.saved)
   const { notes, read, review, help, getArticle, search } = investigateState
   const { articles } = search
   const { chosenArticles } = getArticle
@@ -52,7 +53,6 @@ export default function InvestigateContainer() {
 
 
   useEffect(() => {
-
 
     if (ContentStatus === 'pending') {
       scrollToView()

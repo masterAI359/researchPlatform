@@ -28,9 +28,7 @@ export default function ReadSavedArticle() {
         <section
             className="min-h-full 2xl:w-full xs:px-2 md:px-8 scroll-smooth
       inset mx-auto xs:mt-10 xl:mt-20 relative">
-            <div className="absolute 2xl:left-32 xl:left-24 top-32">
-                <BackToSavedArticles />
-            </div>
+            <BackToSavedArticles />
             <main
                 className="xl:max-w-7xl xl:w-4/5 lg:w-3/4 md:w-3/4  h-full xs:w-full mx-auto 
                  transition-all duration-1000 animate-fade-in mb-12

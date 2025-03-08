@@ -41,7 +41,10 @@ export default function ArticlesResult() {
 					throw new Error('There was a network response issue!');
 				}
 				const jsonResponse = await response.json();
-				setArticles(jsonResponse.data);
+				if (jsonResponse) {
+					setArticles(jsonResponse.data);
+				}
+				console.log(jsonResponse)
 				sessionStorage.setItem('articles', JSON.stringify(jsonResponse));
 			} catch (err) {
 				console.log({ 'Fetch Failed': err });

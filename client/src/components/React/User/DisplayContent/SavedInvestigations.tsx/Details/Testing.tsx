@@ -17,8 +17,6 @@ export function Testing() {
         description: string | null
     }
 
-    const finalThoughts = null
-
     const features: InvestigationData[] = [
         {
             id: "easyIntegration",
@@ -55,9 +53,9 @@ export function Testing() {
             icon: "secure",
             title: "Ending Perspective",
             description: `${ending_perspective !== null ?
-                `${ending_perspective === 'Agree' && 'You ended your investigation in agreement with the idea being evaluated'} 
-                 ${ending_perspective === 'Disagree' && 'You ended your investigation rejecting the idea being evaluated'} 
-                 ${ending_perspective === 'Neutral' && 'You were on the fence about this idea by the end of your research. Perhaps more inquiry is needed'}`
+                `${ending_perspective === 'Agree' ? 'You ended your investigation in agreement with the idea being evaluated' : ''} 
+                 ${ending_perspective === 'Disagree' ? 'You ended your investigation rejecting the idea being evaluated' : ''} 
+                 ${ending_perspective === 'Neutral' ? 'You were on the fence about this idea by the end of your research. Perhaps more inquiry is needed' : ''}`
                 : 'You did not share your final perspective on the idea'}`,
         },
     ];

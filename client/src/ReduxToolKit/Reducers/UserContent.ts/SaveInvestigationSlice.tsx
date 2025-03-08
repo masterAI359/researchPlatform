@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { supabase } from "@/SupaBase/supaBaseClient";
 
+//TODO: save the URL's of the associated articles from the user's investigation at the time
+
 export const saveUserInvestigation = createAsyncThunk(
     'user/SaveInvestigation',
     async (investigationData: any, thunkAPI) => {

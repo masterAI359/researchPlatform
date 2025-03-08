@@ -33,12 +33,14 @@ export const saveUserInvestigation = createAsyncThunk(
 
 interface SaveInvestigation {
     status: string,
-    saved: boolean
+    saved: boolean,
+    sources: string[] | null
 }
 
 const initialState: SaveInvestigation = {
     status: 'idle',
-    saved: false
+    saved: false,
+    sources: null
 }
 
 
@@ -48,6 +50,9 @@ const SaveInvestigationSlice = createSlice({
     reducers: {
         removeNotification: (state, action) => {
             state.status = action.payload
+        },
+        recordSources: (state, action) => {
+            state.sources = action.payload
         },
         clearState: () => initialState
     },
@@ -68,6 +73,6 @@ const SaveInvestigationSlice = createSlice({
     }
 })
 
-export const { removeNotification, clearState } = SaveInvestigationSlice.actions
+export const { removeNotification, clearState, recordSources } = SaveInvestigationSlice.actions
 
 export default SaveInvestigationSlice.reducer

@@ -9,9 +9,13 @@ export default function StoryPaginate() {
     const { currentStory, summaries, ContentStatus } = read
     const dispatch = useDispatch()
 
+    const pages: boolean = summaries ? summaries.length > 1 : false
+
+    //TODO: fix rendering bug with this component
+
 
     return (
-        <div className={`${summaries.length > 1 ? 'block' : 'hidden'} w-auto h-auto p-0 md:p-1 flex gap-x-3 md:gap-x-0 items-center`}>
+        <div className={`${pages ? 'block' : 'hidden'} w-auto h-auto p-0 md:p-1 flex gap-x-3 md:gap-x-0 items-center`}>
 
             <button
                 onClick={() => currentStory > 0 ? dispatch(decrementStory()) : null}

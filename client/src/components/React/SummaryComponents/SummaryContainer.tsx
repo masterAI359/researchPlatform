@@ -3,20 +3,18 @@ import FailedSummary from "./Failed/FailedSummary"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { useEffect } from "react"
-import { supabase } from "@/SupaBase/supaBaseClient"
-import { supabaseContext } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
 import { useDispatch } from "react-redux"
-import { fetchSavedArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
 import { useAppdispatch } from "@/Hooks/appDispatch"
 import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
 import SummaryLoader from "../Loaders/SummaryLoader"
 import Summary from "./SuccessFull/Summary"
 import NoContent from "./Failed/NoContent"
-import { clearChosenArticles } from "@/ReduxToolKit/Reducers/Investigate/ChosenArticles"
 import { resetData } from "@/ReduxToolKit/Reducers/Investigate/Reading"
+import { recordSources } from "@/ReduxToolKit/Reducers/UserContent.ts/SaveInvestigationSlice"
 
 export default function SummaryContainer({ }) {
   const investigateState = useSelector((state: RootState) => state.investigation)
+  const resources = useSelector((state: RootState) => state.saveResearch.sources)
   const { read } = investigateState
   const { displayArticleContent } = investigateState.display
   const { summaries, failedNotifications, currentStory, reading, ContentStatus } = read
@@ -24,13 +22,31 @@ export default function SummaryContainer({ }) {
   const appDispatch = useAppdispatch()
   const dispatch = useDispatch()
 
+
   useEffect(() => {
+
+    if (summaries || failedNotifications) {
+
+      const scrapedURLs = summaries?.map((item: any) => {
+        return item.article_url
+      })
+
+      const failedURLs = failedNotifications?.map((item: any) => {
+        return item.article_url
+      })
+
+      if (scrapedURLs) {
+        dispatch(recordSources(scrapedURLs))
+      }
+    }
+
+    console.log(resources)
 
     return () => {
 
       dispatch(resetData())
     }
-  }, [displayArticleContent])
+  }, [displayArticleContent, summaries, failedNotifications])
 
   return (
     <ErrorBoundary>

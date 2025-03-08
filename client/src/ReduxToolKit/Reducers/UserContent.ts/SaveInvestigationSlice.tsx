@@ -6,7 +6,7 @@ import { supabase } from "@/SupaBase/supaBaseClient";
 export const saveUserInvestigation = createAsyncThunk(
     'user/SaveInvestigation',
     async (investigationData: any, thunkAPI) => {
-        const { idea, initial_perspective, biases, premises, ending_perspective, changed_opinion, new_concepts, takeaway, user_id } = investigationData
+        const { idea, initial_perspective, biases, premises, ending_perspective, changed_opinion, new_concepts, takeaway, user_id, had_merit } = investigationData
         const { data, error } = await supabase
             .from('investigations')
             .insert([{
@@ -18,6 +18,7 @@ export const saveUserInvestigation = createAsyncThunk(
                 changed_opinion: changed_opinion,
                 new_concepts: new_concepts,
                 takeaway: takeaway,
+                had_merit: had_merit,
                 user_id: user_id
             }]).select()
         if (error) {

@@ -24,6 +24,7 @@ export default function SaveInvestigation({ }) {
         new_concepts: newConcepts,
         changed_opinion: newPOV,
         takeaway: takeaway,
+        had_merit: merit,
         user_id: id
     }
 

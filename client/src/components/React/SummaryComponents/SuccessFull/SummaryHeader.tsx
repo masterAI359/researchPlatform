@@ -25,13 +25,13 @@ export default function SummaryHeader({
 }) {
     const [showNotification, setShowNotification] = useState<boolean>(false)
     const id = useSelector((state: RootState) => state.auth.user_id)
+    const sources = useSelector((state: RootState) => state.saveResearch.sources)
     const [open, setOpen] = useState<boolean>(false)
 
 
     const formatDate = (datePublished: string) => {
         if (datePublished) {
             const splitDate = datePublished.split(" ")
-            console.log(splitDate)
             const addCommas = splitDate.map((str: string, index: number) => {
 
                 if (splitDate.length === index + 2) {
@@ -54,7 +54,6 @@ export default function SummaryHeader({
 
     const dateFormatted = date ? formatDate(date) : formatDate(article_pub_date)
 
-    console.log(formatDate(date))
 
     const dataToSave: SavedArticle = {
         title: article_title,
@@ -66,7 +65,8 @@ export default function SummaryHeader({
         url: article_url,
         summary: summary,
         fallbackDate: article_pub_date,
-        id: id
+        id: id,
+        sources: sources
     }
 
     const authShortened = limitArray(article_authors)

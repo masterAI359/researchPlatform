@@ -1,6 +1,7 @@
 import { RootState } from "@/ReduxToolKit/store";
 import { useSelector } from "react-redux";
 import ProcessMap from "./ProcessMap";
+import { useEffect } from "react";
 
 interface InvestigationData {
     id: string,
@@ -12,8 +13,12 @@ interface InvestigationData {
 
 export default function DetailsTable() {
     const investigation = useSelector((state: RootState) => state.userWork.investigationToReview)
-    const dataForReview = investigation
-    const { idea, initial_perspective, biases, premises, ending_perspective, changed_opinion } = dataForReview
+    const dataForReview = JSON.stringify('storedInvestigation', investigation)
+    const data = JSON.parse(localStorage.getItem('storedInvestigation'))
+    const { idea, initial_perspective, biases, premises, ending_perspective, changed_opinion } = data
+
+
+
 
 
     const investigationDetails: InvestigationData[] = [
@@ -60,13 +65,18 @@ export default function DetailsTable() {
     ];
 
 
+
+
+
+
+
     return (
         <article>
             <section className="lg:p-8">
                 <div
-                    className="mx-auto 2xl:max-w-7xl py-12 lg:px-16 md:px-12 px-8 xl:px-36 items-center relative w-full">
+                    className="mx-auto 2xl:max-w-7xl py-12 2xl:py-0 lg:px-16 md:px-12 px-8 xl:px-36 items-center relative w-full">
                     <div
-                        className="relative isolate lg:flex-col overflow-hidden bg-gradientdown ring-1 ring-white/10 rounded-4xl px-6 p-10 lg:flex lg:p-20">
+                        className="relative isolate lg:flex-col overflow-hidden bg-gradientdown rounded-4xl px-6 p-10 lg:flex lg:p-20">
                         <div className="pb-12 border-b border-white/10">
                             <span className="text-white">Inquiry to Conclusion</span>
                             <h2

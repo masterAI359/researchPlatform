@@ -88,7 +88,7 @@ declare global {
     fallbackDate: string | null,
     summary: any,
     text: string,
-    id: string
+    id: string,
   }
 
 }

@@ -3,33 +3,7 @@ import { supabase } from "@/SupaBase/supaBaseClient";
 
 //TODO: save the URL's of the associated articles from the user's investigation at the time
 
-export const saveUserInvestigation = createAsyncThunk(
-    'user/SaveInvestigation',
-    async (investigationData: any, thunkAPI) => {
-        const { idea, initial_perspective, biases, premises, ending_perspective, changed_opinion, new_concepts, takeaway, user_id, had_merit } = investigationData
-        const { data, error } = await supabase
-            .from('investigations')
-            .insert([{
-                idea: idea,
-                initial_perspective: initial_perspective,
-                biases: biases,
-                premises: premises,
-                ending_perspective: ending_perspective,
-                changed_opinion: changed_opinion,
-                new_concepts: new_concepts,
-                takeaway: takeaway,
-                had_merit: had_merit,
-                user_id: user_id
-            }]).select()
-        if (error) {
-            console.log(error.message)
-            return thunkAPI.rejectWithValue(error.message)
-        } else if (data) {
-            return data
-        }
-        console.log(data)
-    }
-)
+
 
 interface SaveInvestigation {
     status: string,
@@ -42,6 +16,36 @@ const initialState: SaveInvestigation = {
     saved: false,
     sources: null
 }
+
+export const saveUserInvestigation = createAsyncThunk(
+    'user/SaveInvestigation',
+    async (investigationData: any, thunkAPI) => {
+        const { idea, initial_perspective, biases, premises, ending_perspective, changed_opinion, new_concepts, takeaway, user_id, had_merit, sources } = investigationData
+        console.log(sources)
+        const { data, error } = await supabase
+            .from('investigations')
+            .insert([{
+                idea: idea,
+                initial_perspective: initial_perspective,
+                biases: biases,
+                premises: premises,
+                ending_perspective: ending_perspective,
+                changed_opinion: changed_opinion,
+                new_concepts: new_concepts,
+                takeaway: takeaway,
+                had_merit: had_merit,
+                user_id: user_id,
+                sources: sources
+            }]).select()
+        if (error) {
+            console.log(error.message)
+            return thunkAPI.rejectWithValue(error.message)
+        } else if (data) {
+            return data
+        }
+        console.log(data)
+    }
+)
 
 
 const SaveInvestigationSlice = createSlice({

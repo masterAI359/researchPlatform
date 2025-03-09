@@ -9,6 +9,7 @@ import { saveUserInvestigation } from "@/ReduxToolKit/Reducers/UserContent.ts/Sa
 export default function SaveInvestigation({ }) {
     const id = useSelector((state: RootState) => state.auth.user_id)
     const saved = useSelector((state: RootState) => state.saveResearch.saved)
+    const sources = useSelector((state: RootState) => state.saveResearch.sources)
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { pov, review } = investigateState
     const { idea, premises, perspective, expertise, biases } = pov
@@ -25,7 +26,8 @@ export default function SaveInvestigation({ }) {
         changed_opinion: newPOV,
         takeaway: takeaway,
         had_merit: merit,
-        user_id: id
+        user_id: id,
+        sources: sources
     }
 
     return (

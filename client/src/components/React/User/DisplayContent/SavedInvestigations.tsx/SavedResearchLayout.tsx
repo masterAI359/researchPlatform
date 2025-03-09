@@ -4,6 +4,7 @@ import PriorInvestigation from "./InvestigationSaved"
 import { motion } from "framer-motion"
 import ScrolltoTop from "@/components/React/AppRouting/ScrollToTop"
 
+
 export default function SavedResearchLayout() {
     const savedInvestigations = useSelector((state: RootState) => state.userWork.userResearch)
     const newArr = [...savedInvestigations] //read-only property prevents direct reversal

@@ -25,7 +25,8 @@ interface SavedInvestigations {
     status: string,
     userResearch: any,
     associatedArticles: any,
-    investigationToReview: any
+    investigationToReview: any,
+    sourcesToReview: any
 }
 
 
@@ -33,7 +34,8 @@ const initialState: SavedInvestigations = {
     status: 'idle',
     userResearch: [],
     associatedArticles: [],
-    investigationToReview: null
+    investigationToReview: null,
+    sourcesToReview: null
 }
 
 
@@ -47,6 +49,9 @@ const userInvestigationsSlice = createSlice({
         },
         reviewThisResearch: (state, action) => {
             state.investigationToReview = action.payload
+        },
+        getSourcesToReview: (state, action) => {
+            state.sourcesToReview = action.payload
         }
     },
     extraReducers: (builder) => {
@@ -66,6 +71,6 @@ const userInvestigationsSlice = createSlice({
 })
 
 
-export const { clearUserInvestigations, getUserResearch, reviewThisResearch } = userInvestigationsSlice.actions
+export const { clearUserInvestigations, getUserResearch, reviewThisResearch, getSourcesToReview } = userInvestigationsSlice.actions
 
 export default userInvestigationsSlice.reducer

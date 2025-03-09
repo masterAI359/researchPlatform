@@ -35,17 +35,16 @@ export default function SummaryContainer({ }) {
         return item.article_url
       })
 
-      if (scrapedURLs) {
-        dispatch(recordSources(scrapedURLs))
+      let urls = scrapedURLs.concat(failedURLs)
+
+      console.log(urls)
+      if (urls) {
+        dispatch(recordSources(urls))
       }
+
+      console.log(resources)
     }
 
-    console.log(resources)
-
-    return () => {
-
-      dispatch(resetData())
-    }
   }, [displayArticleContent, summaries, failedNotifications])
 
   return (

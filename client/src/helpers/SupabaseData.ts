@@ -138,3 +138,26 @@ export const getUserInvestigations = async (id: number | string) => {
 
 }
 
+export const getInvestigationSources = (sources: string[], savedArticles: any) => {
+    function getSaved() {
+        let savedSources = []
+
+        for (let i = 0; i < sources.length; i++) {
+
+            let sourceURL = sources[i]
+
+            for (let j = 0; j < savedArticles.length; j++) {
+
+                let articleSaved = savedArticles[j].article_url
+
+                if (sourceURL === articleSaved) {
+
+                    savedSources.push(savedArticles[j])
+                }
+            }
+            return savedSources
+        }
+    }
+    const savedFromResearch = getSaved()
+    return savedFromResearch
+}

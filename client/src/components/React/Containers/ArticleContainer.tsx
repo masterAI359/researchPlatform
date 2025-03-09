@@ -21,7 +21,6 @@ export default function ArticleContainer({
     const { ContentStatus } = read
 
     useEffect(() => {
-        console.log(ContentStatus)
 
     }, [ContentStatus, status])
 

@@ -34,8 +34,6 @@ export default function Bookmark({ dataToSave, showNotification, setShowNotifica
 
     }, [articleExists, showNotification])
 
-    console.log(id)
-
 
     return (
         <div onClick={() => { saveArticle(dataToSave, setShowNotification, setArticleExists, articleExists, setRegisteredExclusiveFeature,) }}

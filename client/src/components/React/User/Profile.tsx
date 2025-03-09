@@ -24,9 +24,9 @@ export default function Profile() {
 
     return (
         <article className="w-full h-full flex relative justify-center scroll-smooth">
-            <main className="w-full flex relative justify-center">
-                <SideBar />
-                <section className="lg:p-8">
+            <SideBar />
+            <main className="w-full flex relative justify-end xl:justify-center">
+                <section className="lg:p-8 w-full lg:w-auto">
                     <div className="mx-auto 2xl:max-w-7xl pb-8 lg:px-16 md:px-12 xs:px-2 xl:px-2 items-center relative w-full">
                         <div className="relative 2xl:max-w-7xl 2xl:min-w-[78rem] lg:flex-col overflow-hidden p-8 lg:flex lg:p-12">
                             <div className="pb-12 flex">

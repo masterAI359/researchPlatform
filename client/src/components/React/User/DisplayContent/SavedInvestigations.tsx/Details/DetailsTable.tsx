@@ -75,7 +75,7 @@ export default function DetailsTable() {
                             <span className="text-white">Inquiry to Conclusion</span>
                             <h2
                                 className="text-3xl mt-6 tracking-tight font-light lg:text-4xl text-white">
-                                Visualizing your research <span className="block text-zinc-400"
+                                Layout of your research <span className="block text-zinc-400"
                                 >from beginning to end</span>
                             </h2>
                         </div>

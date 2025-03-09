@@ -1,6 +1,7 @@
 import { RootState } from "@/ReduxToolKit/store"
 import { useSelector } from "react-redux"
 import ArticleSaved from "../../UserArticles/ArticleSaved"
+import NoSavedSources from "../NoSavedSources"
 
 
 export default function SourcesUsed() {
@@ -21,11 +22,11 @@ export default function SourcesUsed() {
                     </div>
                     <div className="h-full w-full mt-12">
                         <ul className="flex flex-col gap-12">
-                            {sources?.map((source: any, index: number) => (
+                            {sources.length > 0 ? sources?.map((source: any, index: number) => (
                                 <li>
                                     <ArticleSaved key={index} index={index} article={source} />
                                 </li>
-                            ))}
+                            )) : <NoSavedSources />}
                         </ul>
                     </div>
                 </div>

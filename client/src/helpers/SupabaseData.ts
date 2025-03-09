@@ -155,8 +155,9 @@ export const getInvestigationSources = (sources: string[], savedArticles: any) =
                     savedSources.push(savedArticles[j])
                 }
             }
-            return savedSources
         }
+        return savedSources
+
     }
     const savedFromResearch = getSaved()
     return savedFromResearch

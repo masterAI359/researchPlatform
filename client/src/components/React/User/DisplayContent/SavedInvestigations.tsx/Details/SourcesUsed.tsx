@@ -5,6 +5,7 @@ import ArticleSaved from "../../UserArticles/ArticleSaved"
 
 export default function SourcesUsed() {
     const sources = useSelector((state: RootState) => state.userWork.sourcesToReview)
+    console.log(sources)
 
     return (
         <section className="lg:p-8">
@@ -21,7 +22,9 @@ export default function SourcesUsed() {
                     <div className="h-full w-full mt-12">
                         <ul className="flex flex-col gap-12">
                             {sources?.map((source: any, index: number) => (
-                                <ArticleSaved key={index} index={index} article={source} />
+                                <li>
+                                    <ArticleSaved key={index} index={index} article={source} />
+                                </li>
                             ))}
                         </ul>
                     </div>

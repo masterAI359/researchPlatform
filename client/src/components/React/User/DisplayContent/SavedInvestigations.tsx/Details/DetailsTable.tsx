@@ -13,13 +13,7 @@ interface InvestigationData {
 
 export default function DetailsTable() {
     const investigation = useSelector((state: RootState) => state.userWork.investigationToReview)
-    const dataForReview = JSON.stringify('storedInvestigation', investigation)
-    const data = JSON.parse(localStorage.getItem('storedInvestigation'))
-    const { idea, initial_perspective, biases, premises, ending_perspective, changed_opinion } = data
-
-
-
-
+    const { idea, initial_perspective, biases, premises, ending_perspective, changed_opinion } = investigation
 
     const investigationDetails: InvestigationData[] = [
         {

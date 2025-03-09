@@ -3,9 +3,12 @@ import { AnimatePresence } from "framer-motion"
 import { useSelector, useDispatch } from "react-redux"
 import Summary from "../../../SummaryComponents/SuccessFull/Summary"
 import BackToSavedArticles from "../../../Buttons/NavigatingButtons/BackToSavedArticles"
+import ReturnToReview from "../../ProfileNavigation/ReturnToReview"
 
 export default function ReadSavedArticle() {
     const savedArticle = useSelector((state: RootState) => state.userdata.ArticleToReview)
+    const articlesContext = useSelector((state: RootState) => state.profileNav.displaySavedArticles)
+    const researchContext = useSelector((state: RootState) => state.profileNav.displaySavedInvestigations)
     const dispatch = useDispatch()
 
     const displayData = {
@@ -21,14 +24,11 @@ export default function ReadSavedArticle() {
         source: savedArticle.provider
     }
 
-
-
-
     return (
         <section
             className="min-h-full 2xl:w-full xs:px-2 md:px-8 scroll-smooth
       inset mx-auto xs:mt-10 xl:mt-20 relative">
-            <BackToSavedArticles />
+            {articlesContext ? <BackToSavedArticles /> : <ReturnToReview />}
             <main
                 className="xl:max-w-7xl xl:w-4/5 lg:w-3/4 md:w-3/4  h-full xs:w-full mx-auto 
                  transition-all duration-1000 animate-fade-in mb-12

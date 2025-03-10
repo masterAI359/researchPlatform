@@ -6,7 +6,7 @@ import { fetchSavedArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/UserC
 import { fetchSavedInvestigations } from "@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations";
 import { AnimatePresence } from "framer-motion";
 import ProfileMenu from "./ProfileNavigation/ProfileMenu";
-import SideBar from "./ProfileNavigation/SideBar";
+import SideBarMenu from "./ProfileNavigation/SideBar/SideBarMenu";
 import SavedArticles from "./DisplayContent/UserArticles/SavedArticles";
 import SavedResearchLayout from "./DisplayContent/SavedInvestigations.tsx/SavedResearchLayout";
 
@@ -24,7 +24,7 @@ export default function Profile() {
 
     return (
         <article className="w-full h-full flex relative justify-center scroll-smooth">
-            <SideBar />
+            <SideBarMenu />
             <main className="w-full flex relative justify-end xl:justify-center">
                 <section className="lg:p-8 w-full lg:w-auto">
                     <div className="mx-auto 2xl:max-w-7xl pb-8 lg:px-16 md:px-12 xs:px-2 xl:px-2 items-center relative w-full">

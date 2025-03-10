@@ -1,13 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import { presentArticles, presentResearch } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
+import Boards from "./Boards";
 
 
-export default function SideBar({ }) {
+export default function SideBarMenu({ }) {
     const dispatch = useDispatch()
 
     return (
 
-        <div className="hidden md:block absolute left-0 z-30">
+        <div className="hidden md:block absolute left-0 z-30 transition-all duration-200 ease-in-out">
             <button data-drawer-target="separator-sidebar" data-drawer-toggle="separator-sidebar" aria-controls="separator-sidebar" type="button" className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
                 <span className="sr-only">Open sidebar</span>
                 <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -15,7 +16,7 @@ export default function SideBar({ }) {
                 </svg>
             </button>
             <aside id="separator-sidebar" className="fixed top-16 left-0 z-1 w-52 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
-                <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-black border-r border-white/10">
+                <div className="h-full px-3 py-4 overflow-y-auto bg-black border-r border-white/10">
                     <ul className="space-y-2 font-medium">
                         <li className="cursor-pointer"
                             onClick={() => {
@@ -49,15 +50,7 @@ export default function SideBar({ }) {
                                 <span className="flex-1 ms-3 whitespace-nowrap font-light">Saved Articles</span>
                             </div>
                         </li>
-                        <li className="cursor-pointer">
-                            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-white/10 group">
-                                <svg className="shrink-0 w-6 h-6 text-white/60 transition duration-75 dark:group-hover:text-white" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0,0,256,256">
-                                    <g fill="currentColor" fillRule="nonzero" stroke="none" strokeWidth={1} strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit={10} strokeDasharray="" strokeDashoffset={0} fontFamily="none" fontWeight="none" fontSize="none" textAnchor="none" style={{ mixBlendMode: 'normal' }}><g transform="scale(5.33333,5.33333)"><path d="M20.5,4c-2.29659,0 -4.1943,1.76662 -4.44922,4h-3.55078c-2.4675,0 -4.5,2.0325 -4.5,4.5v27c0,2.4675 2.0325,4.5 4.5,4.5h1.84766c0.54095,0.00765 1.04412,-0.27656 1.31683,-0.74381c0.27271,-0.46725 0.27271,-1.04514 0,-1.51238c-0.27271,-0.46725 -0.77588,-0.75146 -1.31683,-0.74381h-1.84766c-0.8465,0 -1.5,-0.6535 -1.5,-1.5v-27c0,-0.8465 0.6535,-1.5 1.5,-1.5h4.26953c0.81171,1.2019 2.18519,2 3.73047,2h7c2.4675,0 4.5,-2.0325 4.5,-4.5c0,-2.4675 -2.0325,-4.5 -4.5,-4.5zM20.5,7h7c0.8465,0 1.5,0.6535 1.5,1.5c0,0.8465 -0.6535,1.5 -1.5,1.5h-7c-0.60473,0 -1.10586,-0.3368 -1.3457,-0.83594c-0.02565,-0.11005 -0.06365,-0.21684 -0.11328,-0.31836c-0.02508,-0.11118 -0.04102,-0.2254 -0.04102,-0.3457c0,-0.8465 0.6535,-1.5 1.5,-1.5zM34.74023,8c-0.54095,-0.00765 -1.04412,0.27656 -1.31683,0.74381c-0.27271,0.46725 -0.27271,1.04514 0,1.51238c0.27271,0.46725 0.77588,0.75146 1.31683,0.74381h0.75977c0.8465,0 1.5,0.6535 1.5,1.5v27c0,0.8465 -0.6535,1.5 -1.5,1.5h-14.64453c-0.54095,-0.00765 -1.04412,0.27656 -1.31683,0.74381c-0.27271,0.46725 -0.27271,1.04514 0,1.51238c0.27271,0.46725 0.77588,0.75146 1.31683,0.74381h14.64453c2.4675,0 4.5,-2.0325 4.5,-4.5v-27c0,-2.4675 -2.0325,-4.5 -4.5,-4.5zM17.50586,14.88086c-0.43691,0.00025 -0.852,0.19095 -1.13679,0.52228c-0.2848,0.33133 -0.411,0.77035 -0.34563,1.20233l0.39062,2.56445c0.08571,0.56194 0.48161,1.02719 1.02259,1.20172c0.54098,0.17454 1.13414,0.02838 1.5321,-0.37751l7.77539,6.85938c-0.22088,0.60907 -0.20203,1.27931 0.05273,1.875l-5.36328,5.29297c-0.10363,-0.01355 -0.20799,-0.02072 -0.3125,-0.02148c-1.3954,0.02099 -2.51558,1.15816 -2.51558,2.55371c0,1.39555 1.12018,2.53272 2.51558,2.55371c0.76164,-0.00061 1.48326,-0.3411 1.96798,-0.92858c0.48472,-0.58748 0.68195,-1.36064 0.53788,-2.10853l5.90625,-5.82617c1.26253,-0.20707 2.17704,-1.31636 2.13953,-2.59521c-0.03751,-1.27885 -1.01547,-2.33262 -2.28797,-2.46534l-8.36133,-7.37695c0.47576,-0.38095 0.67381,-1.01185 0.50111,-1.59636c-0.1727,-0.58451 -0.68181,-1.00648 -1.28822,-1.0677l-2.58203,-0.25586c-0.04935,-0.0044 -0.09889,-0.00636 -0.14844,-0.00586zM29.55273,15.64648c-0.61065,0.00015 -1.16026,0.37042 -1.38978,0.93629c-0.22952,0.56587 -0.09314,1.21439 0.34486,1.63988l0.69531,0.69531l-0.69531,0.69727c-0.39185,0.37623 -0.54969,0.9349 -0.41265,1.46055c0.13704,0.52565 0.54754,0.93616 1.07319,1.07319c0.52565,0.13704 1.08432,-0.0208 1.46055,-0.41265l0.69531,-0.69531l0.69531,0.69531c0.37889,0.37926 0.93134,0.52757 1.44924,0.38906c0.51789,-0.13851 0.92255,-0.54279 1.06154,-1.06056c0.13899,-0.51777 -0.00882,-1.07035 -0.38773,-1.44959l-0.69727,-0.69727l0.69727,-0.69531c0.37891,-0.37924 0.52671,-0.93183 0.38773,-1.44959c-0.13899,-0.51777 -0.54364,-0.92205 -1.06154,-1.06056c-0.51789,-0.13851 -1.07034,0.0098 -1.44924,0.38906l-0.69531,0.69531l-0.69531,-0.69531c-0.28248,-0.2909 -0.67069,-0.45506 -1.07617,-0.45508zM19.12109,25.07422c-0.39614,0.00935 -0.77249,0.17506 -1.04687,0.46094l-0.69531,0.69531l-0.69531,-0.69531c-0.28295,-0.29139 -0.67196,-0.45559 -1.07812,-0.45508c-0.61065,0.00015 -1.16026,0.37042 -1.38978,0.93629c-0.22952,0.56587 -0.09314,1.21439 0.34486,1.63988l0.69531,0.69531l-0.69531,0.69531c-0.37891,0.37924 -0.52671,0.93183 -0.38773,1.44959c0.13899,0.51777 0.54364,0.92205 1.06154,1.06056c0.51789,0.13851 1.07034,-0.0098 1.44924,-0.38906l0.69531,-0.69531l0.69531,0.69531c0.37623,0.39185 0.9349,0.5497 1.46056,0.41266c0.52566,-0.13704 0.93616,-0.54754 1.0732,-1.0732c0.13704,-0.52566 -0.02081,-1.08433 -0.41266,-1.46056l-0.69531,-0.69531l0.69531,-0.69531c0.44646,-0.42851 0.58398,-1.08719 0.34628,-1.65854c-0.2377,-0.57135 -0.80184,-0.93811 -1.4205,-0.9235z" /></g></g>
-                                </svg>
-
-                                <span className="flex-1 ms-3 whitespace-nowrap font-light">Boards</span>
-                            </a>
-                        </li>
+                        <Boards />
                     </ul>
                     <ul className="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
                         <li>

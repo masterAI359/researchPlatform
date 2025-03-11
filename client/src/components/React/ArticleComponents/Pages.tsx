@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion"
 import ArticleLink from "./ArticleLink"
+import ScrolltoTop from "../AppRouting/ScrollToTop"
 
 const variants = {
     show: {
@@ -24,8 +25,9 @@ export default function Pages({ page, firstHalf, secondHalf }) {
                     initial='hide'
                     animate='show'
                     exit='hide'
-                    className="relative max-w-4xl 2xl:max-w-full 2xl:w-full mx-auto 
-    grid grid-cols-2 2xl:grid-cols-3 2xl:gap-12 xs:gap-3 min-h-full">
+                    className="relative max-w-4xl 2xl:max-w-6xl 2xl:w-full mx-auto justify-items-center
+                    grid grid-cols-2 2xl:grid-cols-3 2xl:gap-y-10 2xl:gap-x-0 xs:gap-3 min-h-full">
+                    <ScrolltoTop />
                     {firstHalf?.map((article: ArticleType, index: number) => {
                         return (
                             <ArticleLink
@@ -41,8 +43,9 @@ export default function Pages({ page, firstHalf, secondHalf }) {
                     initial='hide'
                     animate='show'
                     exit='hide'
-                    className="relative max-w-4xl 2xl:max-w-full 2xl:w-full mx-auto 
-                grid grid-cols-2 2xl:grid-cols-3 2xl:gap-12 xs:gap-3 min-h-full">
+                    className="relative max-w-4xl 2xl:max-w-6xl 2xl:w-full mx-auto justify-items-center
+                    grid grid-cols-2 2xl:grid-cols-3 2xl:gap-x-0 2xl:gap-y-10 xs:gap-3 min-h-full">
+                    <ScrolltoTop />
                     {secondHalf?.map((article: ArticleType, index: number) => {
                         return (
                             <ArticleLink

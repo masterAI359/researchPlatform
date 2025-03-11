@@ -84,12 +84,12 @@ export default function ArticleLink({ article, index }: ArticleProps) {
         <motion.li
             onClick={() => { chooseArticle(article) }}
             key={article.url}
-            className={`group cursor-pointer 2xl:hover:scale-110 lg:min-h-80 lg:max-h-80 lg:min-w-96 xs:max-h-60 xs:min-h-60 xs:max-w-60 relative mx-auto rounded-3xl text-white 
-            md:opacity-90 md:hover:opacity-100 bg-ebony transition-all ease-in-out duration-200 overflow-y-hidden
+            className={`group cursor-pointer box-border list-none lg:min-h-72 lg:max-h-72 lg:min-w-80 lg:max-w-80 h-44 w-44 relative rounded-3xl text-white 
+            md:opacity-85 md:hover:opacity-100 bg-ebony transition-all ease-in-out duration-200 overflow-y-hidden
             
-            ${isHilighted ? "border-2 border-blue-500 shadow-black" : "shadow"}`}
+            ${isHilighted ? "shadow-blue-bottom" : "shadow-thick"}`}
         >
-            <div className='relative w-full m-0 p-0 lg:max-h-36 lg:min-h-36 xs:min-h-24 xs:max-h-24  overflow-hidden'>
+            <div className='relative w-full m-0 p-0 lg:max-h-36 lg:min-h-36 min-h-20 max-h-20  overflow-hidden'>
                 <div
                     style={{ backgroundImage: `url(${resizedImage})` }}
                     className='absolute inset-0 w-full h-full bg-cover bg-center opacity-60 rounded-t-3xl'

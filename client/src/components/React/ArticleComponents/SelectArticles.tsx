@@ -4,8 +4,9 @@ import { RootState } from "@/ReduxToolKit/store"
 import { displayGetArticlesModal, displaySelectionWarning } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
 import { AppDispatch } from "@/ReduxToolKit/store"
 import SelectionRequired from "../Notifications/SelectionRequired"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { combineSlices } from "@reduxjs/toolkit"
+import GuideSelectingArticles from "../Tooltips/GuideSelectingArticles"
 
 interface SendForSummary {
   hideSelect: Function,
@@ -14,8 +15,9 @@ interface SendForSummary {
 
 export default function SelectArticles({ hideSelect }: SendForSummary) {
   const investigateState = useSelector((state: RootState) => state.investigation)
+  const { showSelectTooltip } = investigateState.display
   const { getArticle } = investigateState
-  const { showSelectWarning } = investigateState.display
+  const { showSelectWarning, showGetArticlesModal } = investigateState.display
   const { chosenArticles } = getArticle
   const dispatch = useDispatch<AppDispatch>()
 
@@ -36,31 +38,39 @@ export default function SelectArticles({ hideSelect }: SendForSummary) {
 
   useEffect(() => {
 
-  }, [showSelectWarning])
+  }, [showSelectWarning, showSelectTooltip])
 
 
 
   return (
-    <motion.div onClick={handleSummaries}
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 20 }}
       transition={{ type: "spring", bounce: 0.45, duration: 0.25 }}
-      className="bg-black fixed bottom-0 right-0 left-0 border-t border-white/30
-      text-white font-light tracking-tight flex gap-x-2 py-4 px-2 cursor-pointer
-       mx-auto z-50 justify-center content-center group">
+      className={`${showGetArticlesModal ? 'pointer-events-none' : 'pointer-events-auto'} bg-black fixed bottom-0 right-0 left-0 border-t border-white/30
+      text-white font-light tracking-tight flex gap-x-8 2xl:gap-x-16 py-4 px-4 md:px-16 cursor-pointer
+       mx-auto z-40 justify-center 2xl:justify-end content-center`}>
       {showSelectWarning && <SelectionRequired />}
+      {showSelectTooltip && !showSelectWarning && <GuideSelectingArticles />}
       <div className="h-full my-auto">
-        <p className="text-sm 2xl:text-xl">Choose your articles to read <span className={`text-blue-400 font-bold tracking-tight 2xl:mx-2 ${selectedTotal === 3 ? 'animate-pulse' : null}`}>{selectedArticles}
+        <p className="text-xs 2xl:text-xl">Choose articles <span className={`text-blue-400 font-bold tracking-tight 2xl:mx-2 ${selectedTotal === 3 ? 'animate-pulse' : null}`}>{selectedArticles}
         </span></p>
       </div>
       <div >
         <button
-
+          className="group"
         >
-          <div className="flex items-center bg-white rounded-full transition-all ease-in-out duration-200 text-black px-6 py-1.5 w-full h-auto
-        group-hover:bg-white/10 group-hover:text-white
-        top-2.5 text-lg"><div className="w-full">&rarr;</div> </div>
+          <div
+            onClick={handleSummaries}
+            className="flex items-center justify-center border border-white/20 bg-black flex-nowrap rounded-3xl transition-all ease-in-out duration-200 text-black px-5 py-2 w-full h-auto
+        group-hover:bg-white group-hover:text-white
+        top-2.5 text-base"><div className="w-full">
+              <p className="text-white text-xs md:text-lg group-hover:text-black text-nowrap transition-all duration-200 ease-in-out">
+                Retrieve these articles &rarr;
+              </p>
+
+            </div> </div>
 
         </button>
       </div>

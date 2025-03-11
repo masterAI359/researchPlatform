@@ -38,7 +38,7 @@ export default function SelectionRequired() {
             animate="open"
             exit="closed"
             transition={{ type: 'tween', duration: 0.2 }}
-            className="absolute z-50 bottom-18 left-1/2 2xl:max-w-52 h-auto p-3 bg-white rounded-lg h-auto w-auto flex flex-col items-center
+            className="absolute z-50 bottom-18 2xl:right-16 2xl:max-w-52 h-auto p-3 bg-white rounded-lg h-auto w-auto flex flex-col items-center
         border border-astro_gray shadow-thick"
         >
             <div className="w-full h-auto p-2">

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import SummaryHeader from './SummaryHeader';
 import SummaryContent from './SummaryContent';
+import ScrolltoTop from '../../AppRouting/ScrollToTop';
 
 export default function Summary({ articleData, index }) {
     const [fullStory, setFullStory] = useState(true);
@@ -38,6 +39,9 @@ export default function Summary({ articleData, index }) {
             className="relative top-0 left-0 right-0 flex flex-col
             w-full h-full scrollbar-hide bg-black"
         >
+
+            <ScrolltoTop />
+
             <SummaryHeader
                 date={date}
                 index={index}

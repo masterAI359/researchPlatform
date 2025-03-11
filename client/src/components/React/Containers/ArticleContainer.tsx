@@ -16,7 +16,7 @@ export default function ArticleContainer({
 
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { search, read, getArticle, display } = investigateState
-    const { showContent, showBackToSearchModal, showSearch, showGetArticlesModal, showSelectWarning } = display
+    const { showContent, showBackToSearchModal, showSearch, showGetArticlesModal, showSelectWarning, showSelectTooltip } = display
     const { status } = search
     const { ContentStatus } = read
 
@@ -32,7 +32,7 @@ export default function ArticleContainer({
         <ErrorBoundary>
             <motion.div
                 initial={{ opacity: 1 }}
-                animate={{ opacity: showBackToSearchModal || showGetArticlesModal || showSelectWarning ? 0.4 : 1 }}
+                animate={{ opacity: showBackToSearchModal || showGetArticlesModal || showSelectWarning || showSelectTooltip ? 0.4 : 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ type: 'tween', duration: 0.2 }}
                 className={`

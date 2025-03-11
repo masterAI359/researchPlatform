@@ -48,10 +48,10 @@ export default function LinkGrid() {
     const hasPages = resultsLength > maxContent
 
     function sliceArticles(articleLinks: any) {
-        const halfOne = articleLinks.slice(0, 12)
-        const halfTwo = articleLinks.slice(12)
+        const halfOne = articleLinks.slice(0, 9)
+        const halfTwo = articleLinks.slice(9)
 
-        if (articleLinks.length >= 12) {
+        if (articleLinks.length >= 9) {
             setFirstHalf(halfOne)
             setSecondHalf(halfTwo)
             console.log({ "First Half of Links": halfOne })
@@ -81,12 +81,11 @@ export default function LinkGrid() {
             <div className={`h-full w-full mx-auto relative`}>
 
                 <AnimatePresence mode="wait">
-                    {status === 'fulfilled' && hasPages && <LinkPagination page={page} setPage={setPage} />}
 
                     {status === 'pending' && <ArticleLoader />}
 
                     {status === 'fulfilled' &&
-                        <motion.div layout key='pagesContainer' className="relative inset-0 py-12 min-h-full">
+                        <motion.div layout key='pagesContainer' className="relative inset-0 py-6 min-h-full">
                             {hasPages ? <Pages page={page} firstHalf={firstHalf} secondHalf={secondHalf} />
                                 : <motion.ol
                                     layout
@@ -96,7 +95,7 @@ export default function LinkGrid() {
                                     animate='show'
                                     exit='hide'
                                     className="relative max-w-4xl 2xl:max-w-full 2xl:w-full mx-auto 
-                                    grid grid-cols-2 2xl:grid-cols-3 2xl:gap-12 xs:gap-3 min-h-full">
+                                    grid grid-cols-2 2xl:grid-cols-2 2xl:gap-12 xs:gap-3 min-h-full">
                                     {firstHalf?.map((article: ArticleType, index: number) => {
                                         return (
                                             <ArticleLink
@@ -110,6 +109,9 @@ export default function LinkGrid() {
                             }
                         </motion.div>
                     }
+
+                    {status === 'fulfilled' && hasPages && <LinkPagination page={page} setPage={setPage} />}
+
                 </AnimatePresence>
             </div>
         </motion.div>

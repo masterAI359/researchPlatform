@@ -62,7 +62,7 @@ export default function Search({ }) {
               className="relative mt-4 lg:mb-4 xs:p-1 mx-auto flex justify-center items-center">
               <form
                 className="bg-white/10 text-white w-full h-fit 
-               border-none md:h-10 md:p-0 2xl:p-0 rounded-full relative
+               border-none md:h-10 md:p-0 2xl:px-1 rounded-full relative
                transition-colors xs:text-sm md:text-lg flex items-center prose"
                 onSubmit={handleSubmit}
               >
@@ -76,12 +76,13 @@ export default function Search({ }) {
                transition-colors xs:text-sm md:text-lg flex items-center"
                   placeholder="search" />
                 <button type="submit"
+                  className="relative"
                 >
                   {
                     status === 'pending' ? <Loader />
                       : <svg
-                        className="text-white h-5 w-5 absolute 
-                       bottom-2.5 right-3 fill-current"
+                        className="text-white h-4 w-4 relative
+                       bottom-0 right-2 fill-current"
                         xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
                         version="1.1" x="0px" y="0px" viewBox="0 0 56.966 56.966"
                         xmlSpace="preserve">

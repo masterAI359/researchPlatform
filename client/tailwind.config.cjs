@@ -25,7 +25,8 @@ module.exports = {
         '28': '7.3rem',
         '48': '12rem',
         '76': '310px',
-        '168': '656px'
+        '168': '656px',
+        '128': '32rem',
       },
       width: {
 
@@ -153,7 +154,7 @@ module.exports = {
       boxShadow: {
         "material": 'rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px',
         "blue-top": "0 -10px 20px -2px rgba(59, 130, 246, 0.5), 0 -6px 12px -4px rgba(59, 130, 246, 0.5)",
-        "blue-bottom": "0 4px 6px -1px rgba(59, 130, 246, 0.5), 0 2px 4px -2px rgba(59, 130, 246, 0.5)",
+        "blue-bottom": "0 4px 6px -1px rgba(59, 130, 246, 0.5), 0 6px 4px -2px rgba(59, 130, 246, 0.5)",
         thick: "0px 7px 32px rgb(0 0 0 / 35%);",
         inset:
           "inset 6px 84px 79px -40px hsla(0,0%,100%,.025), inset 0 -4px 1px -3px hsla(0,0%,100%,.25), inset 0 4px 1px -3px hsla(0,0%,100%,.25);",

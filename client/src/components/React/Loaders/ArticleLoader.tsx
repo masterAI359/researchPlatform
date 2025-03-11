@@ -48,6 +48,8 @@ export default function ArticleLoader() {
 
   return (
     <motion.div
+      layout
+      key='articleLoader'
       variants={container}
       initial="hidden"
       animate="show"

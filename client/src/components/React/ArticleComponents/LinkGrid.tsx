@@ -1,39 +1,62 @@
 import ArticleLink from "./ArticleLink"
-import { ArticleType, SelectedArticle } from '../../../env'
+import { ArticleType } from '../../../env'
 import { motion, AnimatePresence } from "framer-motion"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import ArticleLoader from "../Loaders/ArticleLoader"
-import SearchFailed from "../ErrorMessages/SearchFailed"
-import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
-import { useLayoutEffect } from "react"
+import { useEffect, useLayoutEffect, useState } from "react"
+import LinkPagination from "../Buttons/Pagination/LinkPagination"
+import Pages from "./Pages"
+
+const container = {
+
+    hidden: { opacity: 0 },
+    show: {
+        opacity: 1,
+        transition: {
+            duration: 2,
+            ease: 'easeInOut',
+            delayChildren: 0.3,
+            staggerDirection: 1
+        }
+    }
+}
+
+
+
 
 
 export default function LinkGrid() {
     const investigateState = useSelector((state: RootState) => state.investigation)
+    const [page, setPage] = useState<number>(1)
+    const [firstHalf, setFirstHalf] = useState(null)
+    const [secondHalf, setSecondHalf] = useState(null)
     const { search } = investigateState
     const { articles, status } = search
 
 
-    const container = {
+    function sliceArticles(articleLinks: any) {
+        const halfOne = articleLinks.slice(0, 12)
+        const halfTwo = articleLinks.slice(12)
 
-        hidden: { opacity: 0 },
-        show: {
-            opacity: 1,
-            transition: {
-                duration: 2,
-                ease: 'easeInOut',
-                delayChildren: 0.3,
-                staggerDirection: 1
-            }
+        if (articleLinks.length >= 12) {
+            setFirstHalf(halfOne)
+            setSecondHalf(halfTwo)
+            console.log({ "First Half of Links": halfOne })
+            console.log({ "Second Half of Links": halfTwo })
+        } else {
+
+            return
         }
     }
 
-    useLayoutEffect(() => {
+    useEffect(() => {
 
-        console.log(status)
+        if (status === 'fulfilled') {
+            sliceArticles(articles)
+        }
 
-    }, [status])
+    }, [status, articles])
 
     return (
         <motion.div
@@ -41,32 +64,21 @@ export default function LinkGrid() {
             initial="hidden"
             animate="show"
             exit="hidden"
-            className="h-full xl:max-w-7xl"
+            className="h-full w-full"
         >
-            <div className={`h-full w-full mx-auto`}>
+            <div className={`h-full w-full mx-auto relative  2xl:pb-44`}>
 
-                <AnimatePresence mode="wait">
-                    {status === 'pending' && <ArticleLoader key='articleLoader' />}
+                <AnimatePresence>
+                    {status === 'fulfilled' && <LinkPagination page={page} setPage={setPage} />}
+
+                    {status === 'pending' && <ArticleLoader />}
 
                     {status === 'fulfilled' &&
-                        <motion.ol className="max-w-4xl mx-auto grid grid-cols-2 xs:gap-3 
-                    min-h-full 2xl:gap-12">
-                            {articles.length > 0 &&
-                                articles.map((article: ArticleType, index: number) => {
-                                    return (
-                                        <ArticleLink
-                                            index={index}
-                                            key={index}
-                                            article={article}
-                                        />)
-                                })
-                            }
-                        </motion.ol>
+                        <motion.div layout key='pagesContainer' className="relative inset-0 py-12 min-h-svh overflow-hidden">
+                            <Pages page={page} firstHalf={firstHalf} secondHalf={secondHalf} />
+                        </motion.div>
                     }
-
                 </AnimatePresence>
-
-
             </div>
         </motion.div>
 

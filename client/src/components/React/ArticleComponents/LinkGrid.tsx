@@ -7,6 +7,7 @@ import ArticleLoader from "../Loaders/ArticleLoader"
 import { useLayoutEffect, useState } from "react"
 import LinkPagination from "../Buttons/Pagination/LinkPagination"
 import Pages from "./Pages"
+import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
 
 const container = {
 
@@ -64,7 +65,7 @@ export default function LinkGrid() {
 
     useLayoutEffect(() => {
 
-        if (status === 'fulfilled') {
+        if (status === 'fulfilled' && articles) {
             sliceArticles(articles)
         }
 
@@ -79,40 +80,42 @@ export default function LinkGrid() {
             className="h-full w-full"
         >
             <div className={`h-full w-full mx-auto relative`}>
+                <ErrorBoundary>
+                    <AnimatePresence>
 
-                <AnimatePresence mode="wait">
+                        {status === 'pending' && <ArticleLoader />}
 
-                    {status === 'pending' && <ArticleLoader />}
+                        {status === 'fulfilled' &&
+                            <motion.div layout key='pagesContainer' className="relative inset-0 py-6 min-h-full">
+                                {hasPages ? <Pages page={page} firstHalf={firstHalf} secondHalf={secondHalf} />
+                                    : <motion.ol
+                                        layout
+                                        key='pageOne'
+                                        variants={variants}
+                                        initial='hide'
+                                        animate='show'
+                                        exit='hide'
+                                        className="relative max-w-4xl 2xl:max-w-full 2xl:w-full mx-auto 
+                grid grid-cols-2 2xl:grid-cols-2 2xl:gap-12 xs:gap-3 min-h-full">
+                                        {firstHalf?.map((article: ArticleType, index: number) => {
+                                            return (
+                                                <ArticleLink
+                                                    index={index}
+                                                    key={index}
+                                                    article={article}
+                                                />)
+                                        })
+                                        }
+                                    </motion.ol>
+                                }
+                            </motion.div>
+                        }
 
-                    {status === 'fulfilled' &&
-                        <motion.div layout key='pagesContainer' className="relative inset-0 py-6 min-h-full">
-                            {hasPages ? <Pages page={page} firstHalf={firstHalf} secondHalf={secondHalf} />
-                                : <motion.ol
-                                    layout
-                                    key='pageOne'
-                                    variants={variants}
-                                    initial='hide'
-                                    animate='show'
-                                    exit='hide'
-                                    className="relative max-w-4xl 2xl:max-w-full 2xl:w-full mx-auto 
-                                    grid grid-cols-2 2xl:grid-cols-2 2xl:gap-12 xs:gap-3 min-h-full">
-                                    {firstHalf?.map((article: ArticleType, index: number) => {
-                                        return (
-                                            <ArticleLink
-                                                index={index}
-                                                key={index}
-                                                article={article}
-                                            />)
-                                    })
-                                    }
-                                </motion.ol>
-                            }
-                        </motion.div>
-                    }
+                        {status === 'fulfilled' && hasPages && <LinkPagination page={page} setPage={setPage} />}
 
-                    {status === 'fulfilled' && hasPages && <LinkPagination page={page} setPage={setPage} />}
+                    </AnimatePresence>
+                </ErrorBoundary>
 
-                </AnimatePresence>
             </div>
         </motion.div>
 

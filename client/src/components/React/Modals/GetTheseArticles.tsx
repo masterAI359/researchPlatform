@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 import { createPortal } from "react-dom"
-import { GetArticleContent } from "@/ReduxToolKit/Reducers/Investigate/Reading"
+import { GetArticleContent, resetData } from "@/ReduxToolKit/Reducers/Investigate/Reading"
 import { useAppdispatch } from "@/Hooks/appDispatch"
 import { useSelector, useDispatch } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
@@ -22,7 +22,6 @@ export function GetTheseArticles() {
     }
 
     const retrieveArticles = () => {
-
         dispatch(resetResults())
         dispatch(displaySearch(false))
         appDispatch(GetArticleContent(articlesToSummarize))
@@ -72,13 +71,22 @@ function ArticlesSelected() {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { chosenArticles } = investigateState.getArticle
     const { articles } = investigateState.search
+    const { ContentStatus } = investigateState.read
     const [selected, setSelected] = useState([])
 
     useEffect(() => {
+
+        console.log(selected, chosenArticles)
+
         const filtered: ArticleType[] = articles.filter(article1 =>
             chosenArticles.some(article2 => article1.url === article2.url)
         ).slice(0, 3);
         setSelected(filtered);
+
+
+        return () => {
+            setSelected([])
+        }
     }, [articles, chosenArticles]);
 
 

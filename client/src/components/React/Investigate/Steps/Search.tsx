@@ -34,6 +34,8 @@ export default function Search({ }) {
 
   useEffect(() => {
 
+    console.log(query)
+
     if (getContent) {
 
       dispatch(GetArticleContent(articlesToSummarize))

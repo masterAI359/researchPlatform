@@ -31,13 +31,19 @@ export const tldrSummary = async (req: Request, res: Response) => {
 
     const paramDecode = (item: string) => {
 
-        return decodeURIComponent(item.replace(/\+/g, " "));
+        try {
+            const decodedQuery = decodeURIComponent(item.replace(/\+/g, " "));
+            if (decodedQuery) {
+                return decodedQuery
+            }
+        } catch (error) { }
+
+        throw new Error("Issue with Query to TLDR")
     }
 
 
+
     const query: QueryType[] = JSON.parse(paramDecode(received));
-
-
 
     const url =
         'https://tldrthis.p.rapidapi.com/v1/model/abstractive/summarize-url/';

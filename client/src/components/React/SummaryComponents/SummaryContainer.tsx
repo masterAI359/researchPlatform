@@ -41,8 +41,6 @@ export default function SummaryContainer({ }) {
       if (urls) {
         dispatch(recordSources(urls))
       }
-
-      console.log(resources)
     }
 
   }, [displayArticleContent, summaries, failedNotifications])

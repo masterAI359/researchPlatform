@@ -1,6 +1,5 @@
 import InvestigateHero from "../HeroComponents/InvestigateHero"
 import SearchHero from "../HeroComponents/SearchHero"
-import SummaryHero from "../HeroComponents/SummaryHero"
 import ReviewWrapper from "../Investigate/Wrappers/ReviewWrapper"
 import FinalResults from "../Results/FinalResults"
 import CompletionHero from "../HeroComponents/CompletionHero"
@@ -8,7 +7,7 @@ import ScrolltoTop from "../AppRouting/ScrollToTop"
 import { AnimatePresence, motion } from "framer-motion"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
+import ReadingHero from "../HeroComponents/ReadingHero"
 
 
 
@@ -63,7 +62,7 @@ export default function HeroContainer({
                         exit={{ opacity: 0 }}
                         transition={{ type: 'tween', duration: 0.5, ease: 'easeInOut' }}
                     >
-                        <SummaryHero />
+                        <ReadingHero />
                         <ScrolltoTop />
                     </motion.div>
                     : null}

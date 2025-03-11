@@ -24,8 +24,6 @@ export default function ArticleContainer({
 
     useEffect(() => {
 
-        console.log(ContentStatus)
-
     }, [ContentStatus, status])
 
     return (

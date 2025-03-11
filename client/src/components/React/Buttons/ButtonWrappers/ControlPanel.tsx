@@ -2,7 +2,7 @@ import TakeNotes from "../PanelButtons/TakeNotes"
 import { CompareStories } from "./CompareStories"
 import { FinishedReading } from "../PanelButtons/FinishedReading"
 import ReturnToSearch from "../PanelButtons/ReturnToSearch"
-import StoryPaginate from "./StoryPaginate"
+import StoryPaginate from "../Pagination/StoryPaginate"
 
 export default function ControlPanel({ }) {
 

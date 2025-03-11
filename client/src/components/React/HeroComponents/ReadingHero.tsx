@@ -1,10 +1,10 @@
 import { SummaryHelp } from "@/helpInfo/help"
-import StoryPaginate from "../Buttons/ButtonWrappers/StoryPaginate"
+import StoryPaginate from "../Buttons/Pagination/StoryPaginate"
 import HelpButton from "../Buttons/HelpButtons/Question"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 
-export default function SummaryHero({ }) {
+export default function ReadingHero({ }) {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { showContent } = investigateState.display
     const { read } = investigateState

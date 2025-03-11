@@ -39,13 +39,13 @@ export default function HeroImage() {
 						<p className='text-white mt-6 text-balance w-[80%]'>
 							Elenchus is a research tool, specifically for examining the statements
 							you see or hear in our ever increasingly online world, where nearly everything seems to be up for debate.
-							This app guides you through examining your perspective
-							on the idea or statement of your choosing, and uncovering
-							the evidence behind them.
+							<span className="hidden sm:block"> This app guides you through examining your perspective
+								on the idea or statement of your choosing, and uncovering
+								the evidence behind them.</span>
 
 
 						</p>
-						<div className='relative w-[75%] mt-8'>
+						<div className='relative w-full sm:w-[75%]   mt-8'>
 							<div className="flex gap-x-6 items-center w-full">
 								<GetStarted />
 								<LearnMore />

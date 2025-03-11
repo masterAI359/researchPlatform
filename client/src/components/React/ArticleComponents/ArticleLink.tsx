@@ -43,7 +43,7 @@ export default function ArticleLink({ article, index }: ArticleProps) {
                 count++
                 stringArr.push(newArr[i])
 
-                if (count >= 110) {
+                if (count >= 95) {
                     break
                 }
             }

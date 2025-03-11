@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import ArticleLoader from "../Loaders/ArticleLoader"
-import { useEffect, useLayoutEffect, useState } from "react"
+import { useLayoutEffect, useState } from "react"
 import LinkPagination from "../Buttons/Pagination/LinkPagination"
 import Pages from "./Pages"
 
@@ -22,7 +22,16 @@ const container = {
     }
 }
 
-
+const variants = {
+    show: {
+        opacity: 1,
+        transition: { type: 'tween', delay: 0.2, duration: 0.2 }
+    },
+    hide: {
+        opacity: 0,
+        transition: { type: 'tween', duration: 0.2 }
+    }
+}
 
 
 
@@ -33,7 +42,10 @@ export default function LinkGrid() {
     const [secondHalf, setSecondHalf] = useState(null)
     const { search } = investigateState
     const { articles, status } = search
+    const maxContent = 12
+    const resultsLength = articles?.length
 
+    const hasPages = resultsLength > maxContent
 
     function sliceArticles(articleLinks: any) {
         const halfOne = articleLinks.slice(0, 12)
@@ -50,7 +62,7 @@ export default function LinkGrid() {
         }
     }
 
-    useEffect(() => {
+    useLayoutEffect(() => {
 
         if (status === 'fulfilled') {
             sliceArticles(articles)
@@ -66,16 +78,36 @@ export default function LinkGrid() {
             exit="hidden"
             className="h-full w-full"
         >
-            <div className={`h-full w-full mx-auto relative  2xl:pb-44`}>
+            <div className={`h-full w-full mx-auto relative`}>
 
-                <AnimatePresence>
-                    {status === 'fulfilled' && <LinkPagination page={page} setPage={setPage} />}
+                <AnimatePresence mode="wait">
+                    {status === 'fulfilled' && hasPages && <LinkPagination page={page} setPage={setPage} />}
 
                     {status === 'pending' && <ArticleLoader />}
 
                     {status === 'fulfilled' &&
-                        <motion.div layout key='pagesContainer' className="relative inset-0 py-12 min-h-svh overflow-hidden">
-                            <Pages page={page} firstHalf={firstHalf} secondHalf={secondHalf} />
+                        <motion.div layout key='pagesContainer' className="relative inset-0 py-12 min-h-full">
+                            {hasPages ? <Pages page={page} firstHalf={firstHalf} secondHalf={secondHalf} />
+                                : <motion.ol
+                                    layout
+                                    key='pageOne'
+                                    variants={variants}
+                                    initial='hide'
+                                    animate='show'
+                                    exit='hide'
+                                    className="relative max-w-4xl 2xl:max-w-full 2xl:w-full mx-auto 
+                                    grid grid-cols-2 2xl:grid-cols-3 2xl:gap-12 xs:gap-3 min-h-full">
+                                    {firstHalf?.map((article: ArticleType, index: number) => {
+                                        return (
+                                            <ArticleLink
+                                                index={index}
+                                                key={index}
+                                                article={article}
+                                            />)
+                                    })
+                                    }
+                                </motion.ol>
+                            }
                         </motion.div>
                     }
                 </AnimatePresence>

@@ -22,38 +22,30 @@ export default function LinkPagination({ setPage, page }) {
             animate='show'
             exit='hide'
             className="relatvie w-full h-fit flex justify-center md:gap-x-6 mx-auto items-center">
-
-
-            <div className="flex 2xl:gap-x-6 items-center w-fit h-fit">
-                <button
-                    onClick={() => setPage(1)}
-                    className={`${page === 1 ? 'pointer-events-none opacity-40' : 'pointer-events-auto opacity-100'} w-10 h-8 md:w-16 md:h-12 bg-white md:hover:bg-white/10 
-            mx-auto rounded-2xl flex items-center justify-center xl:p-2
-            group transition-all duration-200 ease-in-out 
-          `}>
-                    <svg className={`p-1.5 text-black md:group-hover:text-white transition-all duration-200 ease-in-out`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="100%" height="100%">
-                        <path d="M 33.960938 2.9804688 A 2.0002 2.0002 0 0 0 32.585938 3.5859375 L 13.585938 22.585938 A 2.0002 2.0002 0 0 0 13.585938 25.414062 L 32.585938 44.414062 A 2.0002 2.0002 0 1 0 35.414062 41.585938 L 17.828125 24 L 35.414062 6.4140625 A 2.0002 2.0002 0 0 0 33.960938 2.9804688 z" fill="currentColor" />
+            <div className="row flex">
+                <button onClick={() => setPage(1)}
+                    className="rounded-l-md border border-r-0 border-white/10
+                 py-2 px-3 text-center text-sm transition-all shadow-sm hover:shadow-lg text-white 
+                 hover:text-black hover:bg-white hover:border-slate-800 group"
+                    type="button">
+                    <svg className={`text-white group-hover:text-black w-4 h-4`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path fillRule="evenodd" d="M11.03 3.97a.75.75 0 0 1 0 1.06l-6.22 6.22H21a.75.75 0 0 1 0 1.5H4.81l6.22 6.22a.75.75 0 1 1-1.06 1.06l-7.5-7.5a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 0 1 1.06 0Z" clipRule="evenodd" />
                     </svg>
                 </button>
+                <button onClick={() => setPage(1)} className="rounded-md rounded-r-none rounded-l-none border border-r-0 border-slate-300 py-2 px-3 text-center text-sm transition-all shadow-sm hover:shadow-lg text-slate-600 hover:text-white hover:bg-slate-800 hover:border-slate-800 focus:text-white focus:bg-slate-800 focus:border-slate-800 active:border-slate-800 active:text-white active:bg-slate-800 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button">
+                    1
+                </button>
+                <button onClick={() => setPage(2)} className="rounded-md rounded-r-none rounded-l-none border border-r-0 border-slate-300 py-2 px-3 text-center text-sm transition-all shadow-sm hover:shadow-lg text-slate-600 hover:text-white hover:bg-slate-800 hover:border-slate-800 focus:text-white focus:bg-slate-800 focus:border-slate-800 active:border-slate-800 active:text-white active:bg-slate-800 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button">
+                    2
+                </button>
 
-                <div className="">
-                    <p className="text-white font-serif 2xl:text-xl">
-                        {`${page} / 2`}
-                    </p>
-                </div>
-
-                <button
-                    onClick={() => setPage(2)}
-
-                    className={`w-10 h-8 md:w-16 md:h-12 bg-white md:hover:bg-white/10 
-            mx-auto rounded-2xl flex items-center justify-center xl:p-2
-            group transition-all duration-200 ease-in-out 
-          `}>
-                    <svg className={`p-1.5 text-black md:group-hover:text-white transition-all duration-200 ease-in-out`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="100%" height="100%">
-                        <path d="M17.586,44.414C17.977,44.805,18.488,45,19,45s1.023-0.195,1.414-0.586l19-19c0.781-0.781,0.781-2.047,0-2.828l-19-19 c-0.781-0.781-2.047-0.781-2.828,0s-0.781,2.047,0,2.828L35.172,24L17.586,41.586C16.805,42.367,16.805,43.633,17.586,44.414z" fill="currentColor" />
+                <button onClick={() => setPage(2)} className="rounded-md rounded-l-none border border-slate-300 py-2 px-3 text-center text-sm transition-all shadow-sm hover:shadow-lg text-slate-600 hover:text-white hover:bg-slate-800 hover:border-slate-800 focus:text-white focus:bg-slate-800 focus:border-slate-800 active:border-slate-800 active:text-white active:bg-slate-800 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+                        <path fillRule="evenodd" d="M12.97 3.97a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 1 1-1.06-1.06l6.22-6.22H3a.75.75 0 0 1 0-1.5h16.19l-6.22-6.22a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
                     </svg>
                 </button>
             </div>
+
 
         </motion.div>
 

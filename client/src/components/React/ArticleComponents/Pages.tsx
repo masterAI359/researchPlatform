@@ -1,43 +1,26 @@
 import { AnimatePresence, motion } from "framer-motion"
 import ArticleLink from "./ArticleLink"
-import { useSelector } from "react-redux"
-import { RootState } from "@/ReduxToolKit/store"
+
+const variants = {
+    show: {
+        opacity: 1,
+        transition: { type: 'tween', delay: 0.2, duration: 0.2 }
+    },
+    hide: {
+        opacity: 0,
+        transition: { type: 'tween', duration: 0.2 }
+    }
+}
 
 export default function Pages({ page, firstHalf, secondHalf }) {
-    const investigateState = useSelector((state: RootState) => state.investigation)
-    const { articles, status } = investigateState.search
-
-    const listOneAnimation = {
-        show: {
-            opacity: 1,
-            transition: { type: 'tween', delay: 0.2, duration: 0.2 }
-        },
-        hide: {
-            opacity: 0,
-            transition: { type: 'tween', duration: 0.2 }
-        }
-    }
-
-    const listTwoAnimation = {
-        show: {
-            opacity: 1,
-            transition: { type: 'tween', delay: 0.2, duration: 0.2 }
-        },
-        hide: {
-            opacity: 0,
-            transition: { type: 'tween', duration: 0.2 }
-        }
-    }
-
-    console.log(typeof (page))
 
     return (
-        <AnimatePresence mode="popLayout">
+        <AnimatePresence mode="wait">
             {page === 1 ?
                 <motion.ol
                     layout
                     key='pageOne'
-                    variants={listOneAnimation}
+                    variants={variants}
                     initial='hide'
                     animate='show'
                     exit='hide'
@@ -54,7 +37,7 @@ export default function Pages({ page, firstHalf, secondHalf }) {
                     }
                 </motion.ol> : <motion.ol
                     key='pageTwo'
-                    variants={listTwoAnimation}
+                    variants={variants}
                     initial='hide'
                     animate='show'
                     exit='hide'

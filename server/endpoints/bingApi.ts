@@ -16,7 +16,7 @@ export const bingArticles = async (req: Request, res: Response) => {
 	//const apiKey = 'ce2d91d82a8749c3a4f0eb2a64d9c77a';
 	const endpoint = `https://api.bing.microsoft.com/v7.0/news/search?q=${encodeURIComponent(
 		search
-	)}+-site:msn.com&mkt=en-us&count=20&category=Articles&safeSearch=Strict&module=Images&responseFilter=News&textFormat-videos=HTML`;
+	)}+-site:msn.com&mkt=en-us&count=30&category=Articles&safeSearch=Strict&module=Images&responseFilter=News&textFormat-videos=HTML`;
 
 	try {
 		const response = await fetch(endpoint, {

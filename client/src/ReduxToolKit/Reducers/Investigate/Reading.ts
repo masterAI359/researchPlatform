@@ -83,6 +83,7 @@ export const ReadingSlice = createSlice({
         limitPagination: (state, action) => {
             state.paginateLimit = action.payload
         }
+
     },
     extraReducers: (builder) => {
 

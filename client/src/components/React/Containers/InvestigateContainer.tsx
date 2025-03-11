@@ -80,7 +80,7 @@ export default function InvestigateContainer() {
     <section
       ref={containerRef}
       className={`w-full shrink-0 flex flex-col transition-opacity duration-200 ease-in-out h-full mx-auto justify-center
-         items-center relative box-border pb-[40rem] 
+         items-center relative box-border min-h-svh 
          ${signingOut || gettingHelp ? 'opacity-50 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
       <HeroContainer
         key={'HeroContainer'}

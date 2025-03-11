@@ -84,7 +84,7 @@ export default function ArticleLink({ article, index }: ArticleProps) {
         <motion.li
             onClick={() => { chooseArticle(article) }}
             key={article.url}
-            className={`group cursor-pointer lg:min-h-80 lg:max-h-80 lg:min-w-96 xs:max-h-60 xs:min-h-60 xs:max-w-60 relative mx-auto rounded-3xl text-white 
+            className={`group cursor-pointer 2xl:hover:scale-110 lg:min-h-80 lg:max-h-80 lg:min-w-96 xs:max-h-60 xs:min-h-60 xs:max-w-60 relative mx-auto rounded-3xl text-white 
             md:opacity-90 md:hover:opacity-100 bg-ebony transition-all ease-in-out duration-200 overflow-y-hidden
             
             ${isHilighted ? "border-2 border-blue-500 shadow-black" : "shadow"}`}

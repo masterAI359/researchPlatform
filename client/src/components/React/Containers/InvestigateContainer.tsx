@@ -4,10 +4,11 @@ import { RootState } from "@/ReduxToolKit/store";
 import { useDispatch, useSelector } from "react-redux";
 import { displaySelectionWarning } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
 import HeroContainer from "./HeroContainer";
-import ArticleContainer from "./ArticleContainer";
+import ArticleContainer from "./Content";
 import Notes from "../Investigate/Notes/Notes";
-import SelectArticles from "../ArticleComponents/SelectArticles";
+import SelectArticles from "../LinkComponents/SelectLinks";
 import LostConnection from "../ErrorMessages/LostConnection";
+import Content from "./Content";
 
 export default function InvestigateContainer() {
   const [showSelect, setShowSelect] = useState<boolean>(false)
@@ -90,7 +91,7 @@ export default function InvestigateContainer() {
         <motion.div
           key="StoryContainer"
         >
-          <ArticleContainer
+          <Content
           />
         </motion.div>
       </div>

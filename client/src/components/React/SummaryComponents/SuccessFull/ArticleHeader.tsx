@@ -7,7 +7,7 @@ import { RootState } from "@/ReduxToolKit/store";
 import { useState } from "react";
 
 
-export default function SummaryHeader({
+export default function ArticleHeader({
     article_image,
     logo,
     source,
@@ -66,7 +66,6 @@ export default function SummaryHeader({
         summary: summary,
         fallbackDate: article_pub_date,
         id: id,
-        sources: sources
     }
 
     const authShortened = limitArray(article_authors)
@@ -80,7 +79,7 @@ export default function SummaryHeader({
                 <div className="w-fit flex items-center">
                     <div className="xs:h-full flex flex-row justify-start relative">
                         <div
-                            style={{ backgroundImage: `url("${article_image}")` }}
+                            style={{ backgroundImage: `url("${storyImage}")` }}
                             className='absolute inset-0 xs:w-full xs:h-full xl:w-full
                             bg-cover bg-center opacity-60 xs:rounded-xl xl:rounded-lg'
                         >

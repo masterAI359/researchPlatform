@@ -21,11 +21,13 @@ export default function StoryPaginate() {
                 onClick={() => currentStory > 0 ? dispatch(decrementStory()) : null}
                 className={`w-10 h-8 md:w-16 md:h-12 bg-white md:hover:bg-white/10 
              mx-auto rounded-2xl flex items-center justify-center xl:p-2
-             group transition-all duration-200 ease-in-out 
+             group transition-all duration-200 ease-in-out relative z-30
            `}>
-                <div className="rounded-md xl:h-fit xl:w-16 flex xs:hidden md:block mx-auto bg:black z-50 opacity-0 absolute xl:translate-y-12
-                border border-white/50 md:group-hover:opacity-100 transition-opacity duration-200 ease-in-out">
-                    <h1 className="text-white xl:text-xs xl:p-1 text-center font-light tracking-tight justify-self-start text-center w-full">
+                <div className="rounded-md xl:h-fit w-auto flex hidden 
+                md:group-hover:block mx-auto bg-white absolute
+                md:right-20 lg:top-14 lg:right-2 z-50 opacity-100 p-2
+                border border-white/10 transition-all duration-200 ease-in-out">
+                    <h1 className="text-black text-nowrap z-50 text-sm xl:text-xs xl:p-1 text-center tracking-tight justify-self-start text-center w-full">
                         previous article
                     </h1>
                 </div>
@@ -50,12 +52,14 @@ export default function StoryPaginate() {
             <button
                 onClick={() => currentStory + 2 <= summaries.length ? dispatch(incrementStory()) : null}
                 className={`
-                w-10 h-8  md:w-16 md:h-12 bg-white md:hover:bg-white/10 rounded-2xl
+                w-10 h-8  md:w-16 md:h-12 bg-white md:hover:bg-white/10 rounded-2xl relative
                 mx-auto flex items-center justify-center xl:p-2 group transition-all duration-200 ease-in-out`}>
-                <div className="rounded-md xl:h-fit xl:w-16 flex xs:hidden md:block mx-auto bg:black z-50 opacity-0 absolute xl:translate-y-12
-border border-white/50 md:group-hover:opacity-100 transition-opacity duration-200 ease-in-out">
+                <div className="rounded-md xl:h-fit xl:w-auto flex hidden md:group-hover:block mx-auto bg-white z-50 
+                 absolute md:left-20 lg:left-2 lg:top-14
+                border border-white/50  transition-all p-1.5
+                 duration-200 ease-in-out">
 
-                    <h1 className="text-white xl:text-xs xl:p-1 text-center font-light tracking-tight justify-self-start text-center w-full">
+                    <h1 className="text-black text-sm text-nowrap text-center tracking-tight justify-self-start text-center w-full">
                         next article
                     </h1>
                 </div>

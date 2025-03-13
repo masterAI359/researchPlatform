@@ -23,7 +23,7 @@ export default function ReadingHero({ }) {
                     />
                 </div>
             </div>
-            <div className="hidden md:block">
+            <div className="hidden lg:block">
                 {ContentStatus === 'fulfilled' && summaries ? <StoryPaginate /> : null}
             </div>
         </header>

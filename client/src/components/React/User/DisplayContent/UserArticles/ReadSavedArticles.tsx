@@ -1,9 +1,9 @@
 import { RootState } from "@/ReduxToolKit/store"
 import { AnimatePresence } from "framer-motion"
 import { useSelector, useDispatch } from "react-redux"
-import Summary from "../../../SummaryComponents/SuccessFull/Summary"
 import BackToSavedArticles from "../../../Buttons/NavigatingButtons/BackToSavedArticles"
 import ReturnToReview from "../../ProfileNavigation/ReturnToReview"
+import Article from "../../../SummaryComponents/SuccessFull/Article"
 
 export default function ReadSavedArticle() {
     const savedArticle = useSelector((state: RootState) => state.userdata.ArticleToReview)
@@ -35,7 +35,7 @@ export default function ReadSavedArticle() {
                  xl:px-24
                  ">
                 <AnimatePresence>
-                    {savedArticle && <Summary articleData={displayData} index={0} />}
+                    {savedArticle && <Article articleData={displayData} index={0} />}
                 </AnimatePresence>
             </main>
 

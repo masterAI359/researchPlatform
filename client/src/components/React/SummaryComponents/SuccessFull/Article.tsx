@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import SummaryHeader from './SummaryHeader';
-import SummaryContent from './SummaryContent';
 import ScrolltoTop from '../../AppRouting/ScrollToTop';
+import ArticleHeader from './ArticleHeader';
+import ArticleContent from './ArticleContent';
 
-export default function Summary({ articleData, index }) {
+export default function Article({ articleData, index }) {
     const [fullStory, setFullStory] = useState(true);
     const {
         summary,
@@ -42,7 +42,7 @@ export default function Summary({ articleData, index }) {
 
             <ScrolltoTop />
 
-            <SummaryHeader
+            <ArticleHeader
                 date={date}
                 index={index}
                 logo={logo}
@@ -57,7 +57,7 @@ export default function Summary({ articleData, index }) {
                 article_text={article_text}
                 summary={summary}
             />
-            <SummaryContent
+            <ArticleContent
                 article_text={article_text}
                 summary={summary}
                 fullStory={fullStory}

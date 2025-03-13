@@ -30,7 +30,9 @@ export const tldrSummary = (req, res) => __awaiter(void 0, void 0, void 0, funct
         catch (error) { }
         throw new Error("Issue with Query to TLDR");
     };
-    const query = JSON.parse(paramDecode(received));
+    const parsedQuery = JSON.parse(paramDecode(received));
+    const decodedQueryArray = parsedQuery;
+    const query = decodedQueryArray;
     const url = 'https://tldrthis.p.rapidapi.com/v1/model/abstractive/summarize-url/';
     function delay(t) {
         return new Promise(resolve => setTimeout(resolve, t));

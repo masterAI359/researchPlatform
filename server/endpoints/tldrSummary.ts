@@ -3,6 +3,7 @@ import * as dotenv from 'dotenv'
 import * as path from 'path'
 import { fileURLToPath } from 'url';
 import decodeItem from '../helpers/decodeItem.js'
+import { decodeArray } from '../helpers/decodeArray.js'
 
 const envUrl = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(envUrl)
@@ -41,9 +42,12 @@ export const tldrSummary = async (req: Request, res: Response) => {
         throw new Error("Issue with Query to TLDR")
     }
 
+    const parsedQuery = JSON.parse(paramDecode(received))
+
+    const decodedQueryArray = parsedQuery
 
 
-    const query: QueryType[] = JSON.parse(paramDecode(received));
+    const query: QueryType[] = decodedQueryArray;
 
     const url =
         'https://tldrthis.p.rapidapi.com/v1/model/abstractive/summarize-url/';

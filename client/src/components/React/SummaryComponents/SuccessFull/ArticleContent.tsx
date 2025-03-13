@@ -3,7 +3,7 @@ import FullText from "./FullText"
 import SummarizedText from "./SummarizedText"
 
 
-export default function SummaryContent({ article_text, summary, fullStory }: any) {
+export default function ArticleContent({ article_text, summary, fullStory }: any) {
 
     return (
         <motion.div className={`${fullStory ? `md:mx-1 my-1` : null} cursor-text`}>

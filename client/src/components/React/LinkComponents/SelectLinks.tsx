@@ -13,7 +13,7 @@ interface SendForSummary {
   showSelect: boolean,
 }
 
-export default function SelectArticles({ hideSelect }: SendForSummary) {
+export default function SelectLinks({ hideSelect }: SendForSummary) {
   const investigateState = useSelector((state: RootState) => state.investigation)
   const { showSelectTooltip } = investigateState.display
   const { getArticle } = investigateState

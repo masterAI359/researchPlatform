@@ -1,20 +1,24 @@
 import { motion } from "framer-motion"
 import { createPortal } from "react-dom"
-import { GetArticleContent, resetData } from "@/ReduxToolKit/Reducers/Investigate/Reading"
+import { GetArticleContent } from "@/ReduxToolKit/Reducers/Investigate/Reading"
 import { useAppdispatch } from "@/Hooks/appDispatch"
 import { useSelector, useDispatch } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { displayGetArticlesModal, displayArticleContent, displaySearch } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
-import { resetResults, resetArticles } from "@/ReduxToolKit/Reducers/Investigate/SearchResults"
-import ArticleLink from "../ArticleComponents/ArticleLink"
+import { resetResults } from "@/ReduxToolKit/Reducers/Investigate/SearchResults"
+import { clearChosenArticles } from "@/ReduxToolKit/Reducers/Investigate/ChosenArticles"
+import ArticleLink from "../LinkComponents/ArticleLink"
 import { useEffect, useState } from "react"
+import { encodeArray } from "@/helpers/FetchRequests"
 
 export function GetTheseArticles() {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { chosenArticles } = investigateState.getArticle
-    const articlesToSummarize = encodeURIComponent(JSON.stringify(chosenArticles))
+    const articlesToSummarize = encodeArray(chosenArticles)
     const appDispatch = useAppdispatch()
     const dispatch = useDispatch()
+
+    console.log(articlesToSummarize)
 
     const variants = {
         closed: { opacity: 0 },
@@ -25,6 +29,7 @@ export function GetTheseArticles() {
         dispatch(resetResults())
         dispatch(displaySearch(false))
         appDispatch(GetArticleContent(articlesToSummarize))
+        dispatch(clearChosenArticles())
         dispatch(displayGetArticlesModal(false))
         dispatch(displayArticleContent(true))
     }
@@ -76,12 +81,15 @@ function ArticlesSelected() {
 
     useEffect(() => {
 
-        console.log(selected, chosenArticles)
+        if (chosenArticles.length > 0) {
+            const filtered: ArticleType[] = articles.filter(article1 =>
+                chosenArticles.some(article2 => article1.url === article2.url)
+            ).slice(0, 3);
+            setSelected(filtered);
+        } else {
+            console.log("No chosen articles to display")
+        }
 
-        const filtered: ArticleType[] = articles.filter(article1 =>
-            chosenArticles.some(article2 => article1.url === article2.url)
-        ).slice(0, 3);
-        setSelected(filtered);
 
 
         return () => {

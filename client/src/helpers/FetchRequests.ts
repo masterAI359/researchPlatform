@@ -26,3 +26,10 @@ export async function fetchArticles(query: string) {
         }
     }
 }
+
+
+export const encodeArray = (array: any) => {
+
+    const encodedArray = encodeURIComponent(JSON.stringify(array))
+    return encodedArray
+}

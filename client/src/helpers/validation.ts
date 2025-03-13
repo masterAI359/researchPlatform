@@ -1,4 +1,19 @@
 
+const checkSpecialChars = (arr: string[]) => {
+
+    const checkChars = /[!@#$%^&*(),.?":{}|<>]/
+
+    const isFalse = (element: boolean) => element === false
+
+    const chars = arr.map((char: string) => {
+
+        return checkChars.test(char)
+    })
+
+    return chars.every(isFalse)
+}
+
+
 
 export const requiredInput = (emailString: string, passwordString: string, setterFunction: Function) => {
 
@@ -12,7 +27,9 @@ export const requiredInput = (emailString: string, passwordString: string, sette
     let validLength = splitPassword.length >= 8
 
 
-    if (validLength && isValidEmail) {
+    const noSpecialChars = checkSpecialChars(splitPassword)
+
+    if (validLength && isValidEmail && !noSpecialChars) {
 
         setterFunction(true)
     }

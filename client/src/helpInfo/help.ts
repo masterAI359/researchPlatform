@@ -28,12 +28,14 @@ const Step2Help: Help[] = [{
 
 const Step3Help: Help[] = [{
     heading: "What is this asking me?",
-    explanation: `What conditions must be met in order for the idea you're investigating to have merit?`
+    explanation: `What conditions must be met in order for the idea you're investigating to have merit? And if you're tackling a rather 
+    big and broad idea, think of this step as a way to break down that idea into smaller questions. Those smaller ideas make up the premises 
+    that support the claim.`
 },
 {
     heading: "Examples",
     explanation: `For example, if we're looking into the idea 'Flossing your teeth is unncessesary', we would need to 
-    find evidence that flossing your teeth doesn't have much benefit to your dental health.`
+    find evidence for the underlying idea that flossing your teeth doesn't have much benefit to your dental health. `
 }
 ]
 

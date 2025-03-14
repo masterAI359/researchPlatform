@@ -1,7 +1,5 @@
-import { useState, Suspense, lazy, useEffect, } from "react"
+import { useEffect, } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import SelectArticles from "../LinkComponents/SelectLinks"
-import SummaryContainer from "../SummaryComponents/ArticleContainer"
 import LinkGrid from "../LinkComponents/LinkGrid"
 import ControlPanel from "../Buttons/ButtonWrappers/ControlPanel"
 import ModalContainer from "./ModalContainer"
@@ -9,22 +7,22 @@ import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
 import ScrolltoTop from "../AppRouting/ScrollToTop"
-import { useDispatch } from "react-redux"
+import ArticleContainer from "../Articles/ArticleContainer"
 
 export default function Content({
 }) {
 
     const investigateState = useSelector((state: RootState) => state.investigation)
-    const { search, read, getArticle, display } = investigateState
-    const { showContent, showBackToSearchModal, showSearch, showGetArticlesModal, showSelectWarning, showSelectTooltip } = display
+    const { search, read, display } = investigateState
+    const { showContent, showBackToSearchModal, showSearch,
+        showGetArticlesModal, showSelectWarning, showSelectTooltip } = display
     const { status } = search
     const { ContentStatus } = read
-
     const readyToRead = ContentStatus === 'fulfilled' || ContentStatus === 'rejected'
 
-    useEffect(() => {
-
-    }, [ContentStatus, status])
+    // useEffect(() => {
+    //
+    // }, [ContentStatus, status])
 
     return (
         <motion.div
@@ -39,12 +37,12 @@ export default function Content({
 
             <div
                 className="relative 2xl:max-w-7xl min-h-full flex flex-col justify-center box-border mx-auto">
-                <AnimatePresence mode="popLayout">
+                <AnimatePresence mode="wait">
 
                     {showSearch && status !== 'idle' ?
                         <motion.div
-                            layout
-                            key='presentArticles'
+                            key='presentLinks'
+                            style={{ position: 'relative' }}
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
@@ -60,19 +58,15 @@ export default function Content({
 
                     {showContent &&
                         <motion.div
-                            layout
-                            key='presentSummaries'
+                            key='presentArticles'
+                            style={{ position: 'relative' }}
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ type: 'tween', duration: 0.3 }}
                         >
-                            <ErrorBoundary>
-                                <SummaryContainer
-                                />
-                            </ErrorBoundary>
-
-                            <ScrolltoTop />
+                            <ArticleContainer />
+                            <ScrolltoTop key='scroll' />
                         </motion.div>}
                 </AnimatePresence>
             </div>

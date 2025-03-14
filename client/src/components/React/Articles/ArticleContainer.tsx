@@ -1,17 +1,17 @@
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence } from "framer-motion"
 import FailedSummary from "./Failed/FailedSummary"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { useAppdispatch } from "@/Hooks/appDispatch"
-import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
-import SummaryLoader from "../Loaders/SummaryLoader"
-import Summary from "./SuccessFull/Article"
-import NoContent from "./Failed/NoContent"
-import { resetData } from "@/ReduxToolKit/Reducers/Investigate/Reading"
 import { recordSources } from "@/ReduxToolKit/Reducers/UserContent.ts/SaveInvestigationSlice"
+import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
+import SummaryLoader from "../Loaders/ArticleLoader"
+import NoContent from "./Failed/NoContent"
 import Article from "./SuccessFull/Article"
+import ArticleLink from "../LinkComponents/ArticleLink"
+import ArticleLoader from "../Loaders/ArticleLoader"
 
 export default function ArticleContainer({ }) {
   const investigateState = useSelector((state: RootState) => state.investigation)
@@ -61,8 +61,9 @@ export default function ArticleContainer({ }) {
 
           <div
             className="w-full h-full mx-auto relative grow shrink-0">
-            {ContentStatus === 'pending' && <SummaryLoader />}
+
             <AnimatePresence mode="wait">
+              {ContentStatus === 'pending' && <ArticleLoader key='contentLoader' />}
               {ContentStatus === 'fulfilled' && summaries.length > 0 ? summaries?.map((articleData: any, index: number) =>
               (currentStory === index && <Article
                 key={index}

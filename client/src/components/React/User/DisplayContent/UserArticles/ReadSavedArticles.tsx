@@ -3,7 +3,7 @@ import { AnimatePresence } from "framer-motion"
 import { useSelector, useDispatch } from "react-redux"
 import BackToSavedArticles from "../../../Buttons/NavigatingButtons/BackToSavedArticles"
 import ReturnToReview from "../../ProfileNavigation/ReturnToReview"
-import Article from "../../../SummaryComponents/SuccessFull/Article"
+import Article from "@/components/React/Articles/SuccessFull/Article"
 
 export default function ReadSavedArticle() {
     const savedArticle = useSelector((state: RootState) => state.userdata.ArticleToReview)

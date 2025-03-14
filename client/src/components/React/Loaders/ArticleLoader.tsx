@@ -1,69 +1,48 @@
+import Lottie from "lottie-react"
 import { motion } from "framer-motion"
+import dataCollection from '../../../lotties/dataCollection.json'
+import { createPortal } from "react-dom"
 
+const variants = {
+    show: { opacity: 1 },
+    hide: { opacity: 0 }
+}
 
 export default function ArticleLoader() {
 
-  const container = {
 
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        duration: 1,
-        ease: 'easeInOut',
-        delayChildren: 0.3,
-        staggerDirection: -1
-      }
-    }
-  }
+    const loader = (
+        <motion.div
+            key='contentLoader'
+            variants={variants}
+            initial='hide'
+            animate='show'
+            exit='hide'
+            transition={{ type: 'tween', duration: 0.2 }}
+            className='w-full h-full mx-auto flex flex-col-reverse items-center fixed bg-black top-0 right-0 bottom-0 left-0'>
 
-  const loaders = Array.from({ length: 10 }, (_, index) => (
-    <div key={index} className="relative p-4 lg:min-h-96 lg:max-h-96 lg:min-w-96 xs:max-h-60 xs:min-h-60 xs:max-w-60 bg-rich_black overflow-hidden shadow hover:shadow-md rounded-3xl">
-      <div className="animate-pulse flex flex-col">
-        <div className="rounded h-36  bg-inner_loader_black" />
-        <div className="flex items-center mt-5">
-          <div>
-            <div className="rounded-full bg-inner_loader_black w-10 h-10" />
-          </div>
-          <div className="flex justify-between w-full ml-3">
-            <div className="w-5/12 h-3  bg-inner_loader_black rounded" />
-          </div>
-        </div>
+            <header className='w-full h-fit mx-auto flex justify-center 2xl:-translate-y-40 xl:-translate-y-72 lg:-translate-y-80'>
+                <h1
+                    className='w-fit h-fit font-light tracking-tight md:text-3xl xl:text-4xl text-white animate-pulse'
+                >Please wait just a few moments. We're gathering the chosen articles</h1>
+            </header>
+            <div className="w-full h-fit flex justify-center">
+                <div className="w-3/5 h-auto xl:-translate-x-8 2xl:translate-y-14 xl:-translate-y-52 lg:-translate-y-44 transition-all duration-200 ease-in-out">
+                    <Lottie
 
-        <div className="flex flex-col mt-5">
-          <div className="w-full h-5  bg-inner_loader_black rounded" />
-          <div className="mt-2 w-10/12 h-3  bg-inner_loader_black rounded" />
-          <div className="mt-2 w-8/12 h-3  bg-inner_loader_black rounded" />
-        </div>
-        <div className="grid grid-cols-2 mt-5 gap-x-2 gap-y-1">
-          <div className="mt-2 w-full h-3  bg-inner_loader_black rounded" />
-          <div className="mt-2 w-full h-3  bg-inner_loader_black rounded" />
-          <div className="mt-2 w-full h-3  bg-inner_loader_black rounded" />
-          <div className="mt-2 w-full h-3  bg-inner_loader_black rounded" />
-        </div>
-
-      </div>
-    </div>
-  ))
-
-  return (
-    <motion.div
-      layout
-      key='articleLoader'
-      variants={container}
-      initial="hidden"
-      animate="show"
-      exit="hidden"
-    >
-      <div
-        className="grid grid-cols-2 2xl:grid-cols-3 2xl:gap-12 h-auto lg:gap-16 xs:gap-1 mx-auto pointer-events-none 
-       py-16 xs:px-2 2xl:max-w-7xl w-full">
-
-        {loaders}
-
-      </div>
-    </motion.div>
+                        animationData={dataCollection}
+                        autoPlay={true}
+                        loop={true}
+                        style={{ height: '100%', width: '100%' }}
+                    />
+                </div>
+            </div>
 
 
-  )
+        </motion.div>
+    )
+
+    return (
+        createPortal(loader, document.body)
+    )
 }

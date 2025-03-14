@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 import { createPortal } from "react-dom"
-import { displayArticleContent, displaySearch, displayReturnModal, displaySelectTooltip, displayResults } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
+import { displayArticleContent, displaySearch, displayReturnModal, displaySelectTooltip } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
 import { clearChosenArticles } from "@/ReduxToolKit/Reducers/Investigate/ChosenArticles"
 import { useDispatch, useSelector } from "react-redux"
 import { resetData } from "@/ReduxToolKit/Reducers/Investigate/Reading"
@@ -11,10 +11,9 @@ export function BackToSearch({ }) {
 
     const goBack = () => {
         dispatch(displayArticleContent(false))
-        resetData()
+        dispatch(resetData())
         dispatch(resetResults())
         dispatch(displaySearch(true))
-        dispatch(displayResults(false))
         dispatch(displayReturnModal(false))
         dispatch(clearChosenArticles())
         dispatch(displaySelectTooltip(false))

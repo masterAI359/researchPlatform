@@ -3,11 +3,12 @@ import { ArticleType } from '../../../env'
 import { motion, AnimatePresence } from "framer-motion"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-import ArticleLoader from "../Loaders/ArticleLoader"
+import ArticleLoader from "../Loaders/LinkLoader"
 import { useLayoutEffect, useState } from "react"
 import LinkPagination from "../Buttons/Pagination/LinkPagination"
 import Pages from "./Pages"
 import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
+import LinkLoader from "../Loaders/LinkLoader"
 
 const container = {
 
@@ -65,6 +66,8 @@ export default function LinkGrid() {
 
     useLayoutEffect(() => {
 
+        console.log(articles)
+
         if (status === 'fulfilled' && articles) {
             sliceArticles(articles)
         }
@@ -83,7 +86,7 @@ export default function LinkGrid() {
                 <ErrorBoundary>
                     <AnimatePresence>
 
-                        {status === 'pending' && <ArticleLoader />}
+                        {status === 'pending' && <LinkLoader />}
 
                         {status === 'fulfilled' &&
                             <motion.div layout key='pagesContainer' className="relative inset-0 py-6 min-h-full">

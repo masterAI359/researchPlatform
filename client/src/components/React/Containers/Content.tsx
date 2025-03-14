@@ -19,7 +19,6 @@ export default function Content({
         showGetArticlesModal, showSelectWarning, showSelectTooltip, showReadingTooltip } = display
     const { status } = search
     const { ContentStatus } = read
-    const readyToRead = ContentStatus === 'fulfilled' || ContentStatus === 'rejected'
 
     useEffect(() => {
 

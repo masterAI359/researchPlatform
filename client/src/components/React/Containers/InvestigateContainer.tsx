@@ -13,7 +13,6 @@ export default function InvestigateContainer() {
   const dispatch = useDispatch()
   const investigateState = useSelector((state: RootState) => state.investigation)
   const signingOut = useSelector((state: RootState) => state.auth.signOut)
-  const saveStatus = useSelector((state: RootState) => state.saveResearch.saved)
   const { notes, read, review, help, getArticle, search } = investigateState
   const { showContent, showReadingTooltip } = investigateState.display
   const { articles } = search
@@ -26,6 +25,7 @@ export default function InvestigateContainer() {
   const [constraints, setConstraints] = useState(null)
   const containerRef = useRef(null)
   const notesRef = useRef(null)
+  const readyToRead = ContentStatus === 'fulfilled' || ContentStatus === 'rejected'
 
 
 
@@ -55,6 +55,8 @@ export default function InvestigateContainer() {
 
 
   useEffect(() => {
+
+    console.log(showReadingTooltip)
 
     if (ContentStatus === 'pending') {
       scrollToView()
@@ -109,7 +111,7 @@ export default function InvestigateContainer() {
       </AnimatePresence>
 
       <AnimatePresence >
-        {showContent && <PanelContainer />}
+        {showContent && readyToRead && <PanelContainer />}
       </AnimatePresence>
 
 

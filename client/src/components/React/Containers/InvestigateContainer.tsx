@@ -6,8 +6,7 @@ import HeroContainer from "./HeroContainer";
 import Notes from "../Investigate/Notes/Notes";
 import SelectArticles from "../LinkComponents/SelectLinks";
 import Content from "./Content";
-import GuideDoneReading from "../Tooltips/GuideDoneReading";
-import ControlPanel from "../Buttons/ButtonWrappers/ControlPanel";
+import PanelContainer from "./PanelContainer";
 
 export default function InvestigateContainer() {
   const [showSelect, setShowSelect] = useState<boolean>(false)
@@ -16,8 +15,7 @@ export default function InvestigateContainer() {
   const signingOut = useSelector((state: RootState) => state.auth.signOut)
   const saveStatus = useSelector((state: RootState) => state.saveResearch.saved)
   const { notes, read, review, help, getArticle, search } = investigateState
-  const { showContent, showBackToSearchModal, showSearch,
-    showGetArticlesModal, showSelectWarning, showSelectTooltip, showReadingTooltip } = investigateState.display
+  const { showContent, showReadingTooltip } = investigateState.display
   const { articles } = search
   const { chosenArticles } = getArticle
   const { gettingHelp } = help
@@ -29,7 +27,7 @@ export default function InvestigateContainer() {
   const containerRef = useRef(null)
   const notesRef = useRef(null)
 
-  const readyToRead = ContentStatus === 'fulfilled' || ContentStatus === 'rejected'
+
 
   function handleDragConstraints() {
     const constraintsRect = containerRef.current.getBoundingClientRect();
@@ -110,18 +108,10 @@ export default function InvestigateContainer() {
 
       </AnimatePresence>
 
-      <AnimatePresence>
-        {showContent && <motion.div
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ type: 'tween', duration: 0.2 }}
-          className="w-full h-auto relative mx-auto"
-        >
-          {showReadingTooltip && <GuideDoneReading key='readingTooltip' />}
-          <ControlPanel />
-        </motion.div>}
+      <AnimatePresence >
+        {showContent && <PanelContainer />}
       </AnimatePresence>
+
 
       <AnimatePresence>
         {takingNotes &&

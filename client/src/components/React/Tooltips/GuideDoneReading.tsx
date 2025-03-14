@@ -26,11 +26,13 @@ export default function GuideDoneReading({ }) {
 
     useEffect(() => {
 
-        //   const timer = setTimeout(() => {
-        //       dispatch(displayReadingTooltip(false))
-        //   }, 2000)
-        //
-        //   return () => clearTimeout(timer)
+        if (!showReadingTooltip) return
+
+        const timer = setTimeout(() => {
+            dispatch(displayReadingTooltip(false))
+        }, 2000)
+
+        return () => (clearTimeout(timer))
 
     }, [showReadingTooltip])
 

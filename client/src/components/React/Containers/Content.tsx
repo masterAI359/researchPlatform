@@ -8,7 +8,6 @@ import { RootState } from "@/ReduxToolKit/store"
 import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
 import ScrolltoTop from "../AppRouting/ScrollToTop"
 import ArticleContainer from "../Articles/ArticleContainer"
-import GuideDoneReading from "../Tooltips/GuideDoneReading"
 
 export default function Content({
 }) {
@@ -21,8 +20,6 @@ export default function Content({
     const { ContentStatus } = read
 
     useEffect(() => {
-
-        console.log(showReadingTooltip)
 
     }, [ContentStatus, status, showReadingTooltip, showSelectTooltip])
 

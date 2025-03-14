@@ -3,26 +3,29 @@ import { motion, AnimatePresence } from "framer-motion"
 import LinkGrid from "../LinkComponents/LinkGrid"
 import ControlPanel from "../Buttons/ButtonWrappers/ControlPanel"
 import ModalContainer from "./ModalContainer"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
 import ScrolltoTop from "../AppRouting/ScrollToTop"
 import ArticleContainer from "../Articles/ArticleContainer"
+import GuideDoneReading from "../Tooltips/GuideDoneReading"
 
 export default function Content({
 }) {
-
+    const dispatch = useDispatch()
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { search, read, display } = investigateState
     const { showContent, showBackToSearchModal, showSearch,
-        showGetArticlesModal, showSelectWarning, showSelectTooltip } = display
+        showGetArticlesModal, showSelectWarning, showSelectTooltip, showReadingTooltip } = display
     const { status } = search
     const { ContentStatus } = read
     const readyToRead = ContentStatus === 'fulfilled' || ContentStatus === 'rejected'
 
-    // useEffect(() => {
-    //
-    // }, [ContentStatus, status])
+    useEffect(() => {
+
+        console.log(showReadingTooltip)
+
+    }, [ContentStatus, status, showReadingTooltip, showSelectTooltip])
 
     return (
         <motion.div
@@ -30,7 +33,7 @@ export default function Content({
             animate={{ opacity: showBackToSearchModal || showGetArticlesModal || showSelectWarning || showSelectTooltip ? 0.4 : 1 }}
             exit={{ opacity: 0 }}
             transition={{ type: 'tween', duration: 0.2 }}
-            className={`
+            className={`${showBackToSearchModal || showGetArticlesModal || showSelectWarning || showSelectTooltip ? 'pointer-events-none' : 'pointer-events-auto'}
                 relative shrink-0 w-full h-full mx-auto xs:px-2`}>
 
             <ModalContainer />
@@ -70,18 +73,6 @@ export default function Content({
                         </motion.div>}
                 </AnimatePresence>
             </div>
-
-            <AnimatePresence>
-                {readyToRead && showContent && <motion.div
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ type: 'tween', duration: 0.2 }}
-                    className="w-full h-auto relative mx-auto"
-                >
-                    <ControlPanel />
-                </motion.div>}
-            </AnimatePresence>
         </motion.div>
 
     )

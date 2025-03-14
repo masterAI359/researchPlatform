@@ -99,7 +99,7 @@ export default function LinkGrid() {
                                         animate='show'
                                         exit='hide'
                                         className="relative max-w-4xl 2xl:max-w-full 2xl:w-full mx-auto 
-                grid grid-cols-2 2xl:grid-cols-2 2xl:gap-12 xs:gap-3 min-h-full">
+                grid grid-cols-2 2xl:grid-cols-3 2xl:gap-12 xs:gap-3 min-h-full">
                                         {firstHalf?.map((article: ArticleType, index: number) => {
                                             return (
                                                 <ArticleLink

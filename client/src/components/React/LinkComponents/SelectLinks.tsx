@@ -5,7 +5,6 @@ import { displayGetArticlesModal, displaySelectionWarning } from "@/ReduxToolKit
 import { AppDispatch } from "@/ReduxToolKit/store"
 import SelectionRequired from "../Notifications/SelectionRequired"
 import { useEffect, useState } from "react"
-import { combineSlices } from "@reduxjs/toolkit"
 import GuideSelectingArticles from "../Tooltips/GuideSelectingArticles"
 
 interface SendForSummary {

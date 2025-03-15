@@ -30,7 +30,7 @@ export default function GuideDoneReading({ }) {
 
         const timer = setTimeout(() => {
             dispatch(displayReadingTooltip(false))
-        }, 2000)
+        }, 2500)
 
         return () => (clearTimeout(timer))
 

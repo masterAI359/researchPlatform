@@ -60,7 +60,7 @@ export default function Content({
                             key='presentArticles'
                             style={{ position: 'relative' }}
                             initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
+                            animate={{ opacity: showReadingTooltip ? 0.5 : 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ type: 'tween', duration: 0.3 }}
                         >

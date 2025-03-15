@@ -24,7 +24,7 @@ export default function ReadingHero({ }) {
                 </div>
             </div>
             <div className="hidden lg:block">
-                {ContentStatus === 'fulfilled' && summaries ? <StoryPaginate /> : null}
+                {ContentStatus === 'fulfilled' && showContent ? <StoryPaginate /> : null}
             </div>
         </header>
     )

@@ -46,7 +46,7 @@ export const SearchResultsSlice = createSlice({
             state.currentPage -= 1
         },
         incrementPageBy: (state, action) => {
-            state.currentPage += action.payload
+            state.currentPage = action.payload
         },
         resetResults: () => initialState,
         resetArticles: (state) => {

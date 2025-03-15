@@ -92,7 +92,7 @@ export default function LinkGrid() {
                         {status === 'fulfilled' && articles && <LinkPagination page={page} setPage={setPage} />}
 
                         {status === 'fulfilled' &&
-                            <motion.div layout key='pagesContainer' className="relative inset-0 py-6 min-h-full">
+                            <motion.div layout key='pagesContainer' className="relative inset-0 py-6 min-h-screen">
                                 {articles && <Pages />}
                             </motion.div>
                         }

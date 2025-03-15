@@ -76,6 +76,9 @@ export const ReadingSlice = createSlice({
         decrementStory: (state) => {
             state.currentStory -= 1
         },
+        incrementStoryBy: (state, action) => {
+            state.currentStory = action.payload
+        },
         isReading: (state, action) => {
             state.reading = action.payload
         },
@@ -106,7 +109,9 @@ export const {
     articleData,
     rejected,
     incrementStory,
-    decrementStory, isReading,
+    decrementStory,
+    incrementStoryBy,
+    isReading,
     resetData,
     closeNotification,
     limitPagination } = ReadingSlice.actions

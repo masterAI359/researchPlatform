@@ -2,6 +2,7 @@ import { motion } from "framer-motion"
 import { incrementPage, decrementPage, incrementPageBy } from "@/ReduxToolKit/Reducers/Investigate/SearchResults"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
+import { isCookie } from "react-router-dom"
 
 
 const variants = {
@@ -20,6 +21,20 @@ export default function LinkPagination({ setPage, page }) {
     const { currentPage, pages } = search
     const dispatch = useDispatch()
 
+    const decrement = () => {
+
+        if (currentPage > 0) {
+            dispatch(decrementPage())
+        }
+    }
+
+    const increment = () => {
+
+        if (currentPage <= 1) {
+            dispatch(incrementPage())
+        }
+    }
+
 
     return (
         <motion.div
@@ -31,7 +46,7 @@ export default function LinkPagination({ setPage, page }) {
             exit='hide'
             className="relatvie w-full h-fit flex justify-center 2xl:mt-9 md:gap-x-6 mx-auto items-center">
             <div className="row flex">
-                <button onClick={() => dispatch(decrementPage())}
+                <button onClick={() => decrement()}
                     className="rounded-l-3xl border border-r-0 border-white/10
                  py-2 px-3 text-center text-sm transition-all shadow-sm 
                  hover:shadow-lg text-white hover:bg-white group">
@@ -54,7 +69,7 @@ export default function LinkPagination({ setPage, page }) {
                 </button>)}
 
 
-                <button onClick={() => dispatch(incrementPage())} className="rounded-r-3xl text-white rounded-l-none border border-white/10 py-2 px-3 text-center text-sm transition-all
+                <button onClick={() => increment()} className="rounded-r-3xl text-white rounded-l-none border border-white/10 py-2 px-3 text-center text-sm transition-all
                  shadow-sm hover:shadow-lg hover:text-black hover:text-white hover:bg-white group
                  ">
                     <svg className={`text-white group-hover:text-black w-4 h-4`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="100%" height="100%">

@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion"
-import ArticleLink from "./ArticleLink"
-import ScrolltoTop from "../AppRouting/ScrollToTop"
+import { useSelector } from "react-redux"
+import Page from "./Page"
+import { RootState } from "@/ReduxToolKit/store"
 
 const variants = {
     show: {
@@ -13,51 +14,29 @@ const variants = {
     }
 }
 
-export default function Pages({ page, firstHalf, secondHalf }) {
+export default function Pages() {
+    const investigateState = useSelector((state: RootState) => state.investigation)
+    const { search } = investigateState
+    const { currentPage, pages } = search
 
     return (
-        <AnimatePresence mode="wait">
-            {page === 1 ?
-                <motion.ol
-                    layout
-                    key='pageOne'
-                    variants={variants}
-                    initial='hide'
-                    animate='show'
-                    exit='hide'
-                    className="relative max-w-4xl 2xl:max-w-6xl 2xl:w-full mx-auto justify-items-center
-                    grid grid-cols-2 2xl:grid-cols-3 2xl:gap-y-10 2xl:gap-x-0 xs:gap-3 min-h-full">
-                    <ScrolltoTop />
-                    {firstHalf?.map((article: ArticleType, index: number) => {
-                        return (
-                            <ArticleLink
-                                index={index}
-                                key={index}
-                                article={article}
-                            />)
-                    })
-                    }
-                </motion.ol> : <motion.ol
-                    key='pageTwo'
-                    variants={variants}
-                    initial='hide'
-                    animate='show'
-                    exit='hide'
-                    className="relative max-w-4xl 2xl:max-w-6xl 2xl:w-full mx-auto justify-items-center
-                    grid grid-cols-2 2xl:grid-cols-3 2xl:gap-x-0 2xl:gap-y-10 xs:gap-3 min-h-full">
-                    <ScrolltoTop />
-                    {secondHalf?.map((article: ArticleType, index: number) => {
-                        return (
-                            <ArticleLink
-                                index={index}
-                                key={index}
-                                article={article}
-                            />)
-                    })
-                    }
-                </motion.ol>
+        <motion.div
+            key='pagesOfLinks'
+            variants={variants}
+            initial='hide'
+            animate='show'
+            exit='hide'
+            transition={{ type: 'tween', duration: 0.2 }}
+        >
+            {pages?.map((pageContent: any, index: number) => (
+                <AnimatePresence mode="wait">
+                    {currentPage === index && <Page key={index} pageContent={pageContent} />}
+                </AnimatePresence>
+            ))
+
             }
-        </AnimatePresence>
+        </motion.div>
+
 
     )
 }

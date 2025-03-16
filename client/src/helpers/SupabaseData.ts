@@ -9,7 +9,6 @@ export const checkArticle = async (
     id: string,
     currentSession: any
 ) => {
-    console.log({ ActionTriggered: "checking for article in database" })
 
     try {
         const { data, error } = await supabase
@@ -83,7 +82,6 @@ export const saveArticle = async (dataToSave: SavedArticle, setShowNotification:
             } else if (data.length > 0) {
                 setShowNotification(true)
                 setArticleExists(true)
-                console.log(data)
             } else {
             }
         } catch (err) {
@@ -133,7 +131,7 @@ export const getUserInvestigations = async (id: number | string) => {
     if (error) {
         console.log(error)
     } else if (data) {
-        console.log(data)
+
     }
 
 }

@@ -9,8 +9,6 @@ export default function NotifySavedArticle({ articleExists, setShowNotification 
             setShowNotification(false)
         }, 2000)
 
-        console.log("running")
-
         return () => clearTimeout(timer)
     }, [articleExists, setShowNotification])
 

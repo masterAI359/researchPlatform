@@ -51,4 +51,21 @@ export const limitName = (name: string) => {
 }
 
 
+export const formPages = (links: any) => {
+
+    let pageArray = []
+
+    for (let i = 0; i < links.length; i += 9) {
+
+        let end = i + 9
+
+        let subArray = links.slice(i, end)
+        pageArray.push(subArray)
+
+    }
+    return pageArray
+}
+
+
+
 

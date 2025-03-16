@@ -29,8 +29,8 @@ export default function Pages() {
             transition={{ type: 'tween', duration: 0.2 }}
         >
             {pages?.map((pageContent: any, index: number) => (
-                <AnimatePresence mode="wait">
-                    {currentPage === index && <Page key={index} pageContent={pageContent} />}
+                <AnimatePresence key={index} mode="wait">
+                    {currentPage === index && <Page index={index} pageContent={pageContent} />}
                 </AnimatePresence>
             ))
 

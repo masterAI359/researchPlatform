@@ -12,8 +12,6 @@ export function FinishedReading({ }) {
     const { showReadingTooltip } = investigateState.display
     const dispatch = useDispatch()
 
-    console.log(showReadingTooltip)
-
     return (
         <button
             onClick={() => {

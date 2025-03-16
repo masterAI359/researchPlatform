@@ -9,7 +9,6 @@ export const fetchUserCredentials = createAsyncThunk(
             const { data: { session } } = await supabase.auth.getSession()
 
             if (session) {
-                console.log(session)
                 return session
             }
 

@@ -18,8 +18,6 @@ export function GetTheseArticles() {
     const appDispatch = useAppdispatch()
     const dispatch = useDispatch()
 
-    console.log(articlesToSummarize)
-
     const variants = {
         closed: { opacity: 0 },
         open: { opacity: 1 }
@@ -87,7 +85,7 @@ function ArticlesSelected() {
             ).slice(0, 3);
             setSelected(filtered);
         } else {
-            console.log("No chosen articles to display")
+            ;
         }
 
 
@@ -102,7 +100,7 @@ function ArticlesSelected() {
         <motion.div className="w-full h-full  mx-auto">
             <div className="h-full grid  grid-cols-2 gap-y-4 lg:gridjustify-center lg:grid-cols-3 gap-x-2 lg:gap-x-8 items-center w-full lg:w-5/6 mx-auto">
                 {selected.length > 0 && selected.map((article: ArticleType, index: number) => (
-                    <ArticleLink article={article} key={index} index={index} />
+                    <ArticleLink article={article} key={article.url} index={index} />
                 ))}
             </div>
 

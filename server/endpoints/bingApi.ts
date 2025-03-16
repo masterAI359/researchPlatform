@@ -18,6 +18,8 @@ export const bingArticles = async (req: Request, res: Response) => {
 		search
 	)}+-site:msn.com&mkt=en-us&count=20&category=Articles&safeSearch=Strict&module=Images&responseFilter=News&textFormat-videos=HTML`;
 
+	console.log(search)
+
 	try {
 		const response = await fetch(endpoint, {
 			method: 'GET',
@@ -68,6 +70,7 @@ export const bingArticles = async (req: Request, res: Response) => {
 			date: new Date().getDate(),
 			data: organizedData,
 		};
+		console.log(result)
 		res.send(result);
 	} catch (err) {
 		console.error('error', err);

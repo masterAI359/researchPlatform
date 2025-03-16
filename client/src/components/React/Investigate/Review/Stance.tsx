@@ -9,8 +9,6 @@ export default function Stance({ }) {
     const { review } = investigateState
     const { takeAway, newPOV } = review
 
-    console.log(takeAway)
-
     return (
         <section
             className="w-full h-full xs:px-6 flex flex-col gap-y-1 items-center content-center mx-auto">

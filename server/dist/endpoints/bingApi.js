@@ -21,6 +21,7 @@ export const bingArticles = (req, res) => __awaiter(void 0, void 0, void 0, func
     const search = req.query.q;
     //const apiKey = 'ce2d91d82a8749c3a4f0eb2a64d9c77a';
     const endpoint = `https://api.bing.microsoft.com/v7.0/news/search?q=${encodeURIComponent(search)}+-site:msn.com&mkt=en-us&count=20&category=Articles&safeSearch=Strict&module=Images&responseFilter=News&textFormat-videos=HTML`;
+    console.log(search);
     try {
         const response = yield fetch(endpoint, {
             method: 'GET',
@@ -69,6 +70,7 @@ export const bingArticles = (req, res) => __awaiter(void 0, void 0, void 0, func
             date: new Date().getDate(),
             data: organizedData,
         };
+        console.log(result);
         res.send(result);
     }
     catch (err) {

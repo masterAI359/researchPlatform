@@ -13,7 +13,6 @@ export default function ArticleSaved({ article, index, }) {
     const [showNotification, setShowNotification] = useState<boolean>(false)
     const id = useSelector((state: RootState) => state.auth.user_id)
     const [open, setOpen] = useState<boolean>(false)
-    const readThisArticle = useSelector((state: RootState) => state.userdata.ArticleToReview)
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
@@ -36,8 +35,6 @@ export default function ArticleSaved({ article, index, }) {
         dispatch(readSavedArticle(article))
         navigate('/SavedArticle')
     }
-
-    console.log(readThisArticle)
 
     return (
         <main

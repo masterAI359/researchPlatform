@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-import { incrementStory, decrementStory, incrementStoryBy } from "@/ReduxToolKit/Reducers/Investigate/Reading"
+import { incrementStory, decrementStory, incrementStoryBy, resetData } from "@/ReduxToolKit/Reducers/Investigate/Reading"
+import { useEffect } from "react"
+
 
 
 export default function StoryPaginate() {
@@ -11,7 +13,14 @@ export default function StoryPaginate() {
     const { showContent } = display
     const dispatch = useDispatch()
 
-    console.log(summaries.length, currentStory)
+    useEffect(() => {
+
+
+        return () => {
+            dispatch(resetData())
+        }
+
+    }, [showContent, summaries])
 
     const decrement = () => {
         if (showContent) {
@@ -34,7 +43,7 @@ export default function StoryPaginate() {
     }
 
     return (
-        <div className="row flex mb-2">
+        <div className="row flex mb-2 justify-self-end">
             <button onClick={() => decrement()}
                 className="rounded-l-3xl border border-r-0 border-white/10
                          py-2 px-3 text-center text-sm transition-all shadow-sm 

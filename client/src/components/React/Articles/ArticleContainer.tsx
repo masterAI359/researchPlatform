@@ -4,23 +4,18 @@ import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
-import { useAppdispatch } from "@/Hooks/appDispatch"
 import { recordSources } from "@/ReduxToolKit/Reducers/UserContent.ts/SaveInvestigationSlice"
 import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
-import SummaryLoader from "../Loaders/ArticleLoader"
 import NoContent from "./Failed/NoContent"
 import Article from "./SuccessFull/Article"
-import ArticleLink from "../LinkComponents/ArticleLink"
 import ArticleLoader from "../Loaders/ArticleLoader"
+import StoryPaginate from "../Buttons/Pagination/StoryPaginate"
 
 export default function ArticleContainer({ }) {
   const investigateState = useSelector((state: RootState) => state.investigation)
-  const resources = useSelector((state: RootState) => state.saveResearch.sources)
   const { read } = investigateState
-  const { displayArticleContent } = investigateState.display
-  const { summaries, failedNotifications, currentStory, reading, ContentStatus } = read
-  const id = useSelector((state: RootState) => state.auth.user_id)
-  const appDispatch = useAppdispatch()
+  const { displayArticleContent, showContent } = investigateState.display
+  const { summaries, failedNotifications, currentStory, ContentStatus } = read
   const dispatch = useDispatch()
 
 
@@ -38,7 +33,6 @@ export default function ArticleContainer({ }) {
 
       let urls = scrapedURLs.concat(failedURLs)
 
-      console.log(urls)
       if (urls) {
         dispatch(recordSources(urls))
       }
@@ -52,6 +46,9 @@ export default function ArticleContainer({ }) {
         className="min-h-full 2xl:max-w-7xl xl:max-w-5xl lg:max-w-3xl md:max-w-3xl xs:px-2 md:px-8 scroll-smooth
       inset rounded-4xl mx-auto border-white/10 xs:mt-10 xl:mt-0 relative"
       >
+        <div className="hidden lg:block w-full flex flex-row-reverse p-0">
+          {ContentStatus === 'fulfilled' && showContent ? <StoryPaginate /> : null}
+        </div>
 
         <main
           className="2xl:max-w-6xl h-full w-full mx-auto 
@@ -62,7 +59,7 @@ export default function ArticleContainer({ }) {
           <div
             className="w-full h-full mx-auto relative grow shrink-0">
 
-            <AnimatePresence mode="wait">
+            <AnimatePresence>
               {ContentStatus === 'pending' && <ArticleLoader key='contentLoader' />}
               {ContentStatus === 'fulfilled' && summaries.length > 0 ? summaries?.map((articleData: any, index: number) =>
               (currentStory === index && <Article
@@ -70,7 +67,7 @@ export default function ArticleContainer({ }) {
                 index={index}
                 articleData={articleData}
               />)
-              ) : <NoContent />}
+              ) : <NoContent key='noResults' />}
             </AnimatePresence>
 
           </div>

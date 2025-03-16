@@ -56,7 +56,6 @@ export default function InvestigateContainer() {
 
   useEffect(() => {
 
-    console.log(showReadingTooltip)
 
     if (ContentStatus === 'pending') {
       scrollToView()

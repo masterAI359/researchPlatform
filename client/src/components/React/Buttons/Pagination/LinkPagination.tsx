@@ -2,7 +2,7 @@ import { motion } from "framer-motion"
 import { incrementPage, decrementPage, incrementPageBy } from "@/ReduxToolKit/Reducers/Investigate/SearchResults"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-import { isCookie } from "react-router-dom"
+import { useEffect, useState } from "react"
 
 
 const variants = {
@@ -15,11 +15,20 @@ const variants = {
 }
 
 
-export default function LinkPagination({ setPage, page }) {
+export default function LinkPagination({ }) {
     const investigateState = useSelector((state: RootState) => state.investigation)
+    const [pagesLength, setPagesLength] = useState<number | null>(null)
     const { search } = investigateState
     const { currentPage, pages } = search
     const dispatch = useDispatch()
+
+    useEffect(() => {
+
+        if (pages) {
+            setPagesLength(pages.length)
+        }
+
+    }, [pages])
 
     const decrement = () => {
 
@@ -39,7 +48,6 @@ export default function LinkPagination({ setPage, page }) {
     return (
         <motion.div
             layout
-            key='linkPagination'
             variants={variants}
             initial='hide'
             animate='show'
@@ -54,7 +62,7 @@ export default function LinkPagination({ setPage, page }) {
                         <path d="M 33.960938 2.9804688 A 2.0002 2.0002 0 0 0 32.585938 3.5859375 L 13.585938 22.585938 A 2.0002 2.0002 0 0 0 13.585938 25.414062 L 32.585938 44.414062 A 2.0002 2.0002 0 1 0 35.414062 41.585938 L 17.828125 24 L 35.414062 6.4140625 A 2.0002 2.0002 0 0 0 33.960938 2.9804688 z" fill="currentColor" />
                     </svg>
                 </button>
-                {pages.length > 1 ? pages.map((page: any, index: number) => (
+                {pagesLength > 1 && pages ? pages.map((page: any, index: number) => (
                     <button key={index} onClick={() => dispatch(incrementPageBy(index))}
                         className={`${currentPage === index ? 'bg-white/10' : 'bg-black'} 
                 text-white rounded-md rounded-r-none rounded-l-none border border-r-0 border-white/10 py-2 px-3
@@ -62,7 +70,7 @@ export default function LinkPagination({ setPage, page }) {
                         {index + 1}
                     </button>
                 )) : (<button
-                    className={`${page === 1 ? 'bg-white/10' : 'bg-black'} 
+                    className={`${currentPage === 1 ? 'bg-white/10' : 'bg-black'} 
                 text-white rounded-md rounded-r-none rounded-l-none border border-r-0 border-white/10 py-2 px-3
                  text-center text-sm transition-all shadow-sm hover:shadow-lg hover:bg-white/10`}>
                     1

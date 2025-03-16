@@ -33,6 +33,7 @@ export default function GuideSelectingArticles({ }) {
 
     return (
         <motion.div
+            key='selectTooltip'
             variants={variants}
             initial="closed"
             animate="open"

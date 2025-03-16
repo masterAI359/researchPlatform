@@ -22,7 +22,6 @@ export default function GuideDoneReading({ }) {
     const { showReadingTooltip } = display
     const dispatch = useDispatch()
 
-    console.log(showReadingTooltip)
 
     useEffect(() => {
 

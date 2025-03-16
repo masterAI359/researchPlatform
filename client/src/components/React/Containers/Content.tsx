@@ -1,17 +1,13 @@
 import { useEffect, } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import LinkGrid from "../LinkComponents/LinkGrid"
-import ControlPanel from "../Buttons/ButtonWrappers/ControlPanel"
 import ModalContainer from "./ModalContainer"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
 import ScrolltoTop from "../AppRouting/ScrollToTop"
 import ArticleContainer from "../Articles/ArticleContainer"
 
-export default function Content({
-}) {
-    const dispatch = useDispatch()
+export default function Content() {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { search, read, display } = investigateState
     const { showContent, showBackToSearchModal, showSearch,
@@ -46,12 +42,10 @@ export default function Content({
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ type: 'tween', duration: 0.5 }}
-                            className="w-full"
+                            className="w-full min-h-screen lg:pb-96"
                         >
-                            <ErrorBoundary>
-                                <LinkGrid
-                                />
-                            </ErrorBoundary>
+                            <LinkGrid
+                            />
 
                         </motion.div> : null}
 
@@ -62,7 +56,8 @@ export default function Content({
                             initial={{ opacity: 0 }}
                             animate={{ opacity: showReadingTooltip ? 0.5 : 1 }}
                             exit={{ opacity: 0 }}
-                            transition={{ type: 'tween', duration: 0.3 }}
+                            transition={{ type: 'tween', duration: 0.2 }}
+                            className="min-h-screen lg:pb-96"
                         >
                             <ArticleContainer />
                             <ScrolltoTop key='scroll' />

@@ -24,7 +24,6 @@ export default function Search({ }) {
     setPrevQuery(query)
   }
 
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     dispatch(resetArticles())
@@ -34,10 +33,7 @@ export default function Search({ }) {
 
   useEffect(() => {
 
-    console.log(query)
-
     if (getContent) {
-
       dispatch(GetArticleContent(articlesToSummarize))
       dispatch(displaySearch(false))
     }

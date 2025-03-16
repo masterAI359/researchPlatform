@@ -2,7 +2,7 @@ import { motion } from "framer-motion"
 import ScrolltoTop from "../AppRouting/ScrollToTop"
 import ArticleLink from "./ArticleLink"
 
-export default function Page({ pageContent }) {
+export default function Page({ pageContent, index }) {
 
     const variants = {
         show: {
@@ -17,6 +17,7 @@ export default function Page({ pageContent }) {
 
     return (
         <motion.ol
+            key={index}
             layout
             variants={variants}
             initial='hide'
@@ -24,12 +25,12 @@ export default function Page({ pageContent }) {
             exit='hide'
             className="relative max-w-4xl 2xl:max-w-6xl 2xl:w-full mx-auto justify-items-center
                     grid grid-cols-2 2xl:grid-cols-3 2xl:gap-y-10 2xl:gap-x-0 xs:gap-3 min-h-full">
-            <ScrolltoTop />
-            {pageContent?.map((article: ArticleType, index: number) => {
+            <ScrolltoTop key={index} />
+            {pageContent.map((article: ArticleType, index: number) => {
                 return (
                     <ArticleLink
                         index={index}
-                        key={index}
+                        key={article.url + index}
                         article={article}
                     />)
             })

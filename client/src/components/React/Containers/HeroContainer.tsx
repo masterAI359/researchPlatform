@@ -8,6 +8,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import ReadingHero from "../HeroComponents/ReadingHero"
+import { useEffect } from "react"
 
 
 
@@ -19,6 +20,10 @@ export default function HeroContainer({
     const { showMindMap, showSearch, showContent, showWrapUp, showCompletion, showResults, showWorkModal } = display
 
 
+    useEffect(() => {
+
+
+    }, [showContent, ContentStatus, showSearch])
 
     return (
         <section className={`w-full h-full shrink-0 mx-auto transition-opacity duration-200 ease-in-out ${showWorkModal ? 'opacity-50' : 'opacity-100'}`}>

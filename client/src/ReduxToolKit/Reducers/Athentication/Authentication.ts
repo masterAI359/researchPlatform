@@ -92,6 +92,7 @@ export const AuthenticationSlice = createSlice({
                 state.status = 'fulfilled';
                 state.user_id = action.payload.user.id
                 state.email = action.payload.user.email
+                state.authenticated = true
             })
             .addCase(fetchUserCredentials.rejected, (state, action) => {
                 state.status = 'rejected'

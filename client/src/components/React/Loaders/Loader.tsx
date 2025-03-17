@@ -2,6 +2,7 @@ export default function Loader() {
 
   return (
     <svg
+      key='loaderSpinner'
       aria-hidden="true"
       className="h-6 w-6
           text-black animate-spin-fast fill-white relative right-1 bottom-0"

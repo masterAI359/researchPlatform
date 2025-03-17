@@ -1,13 +1,11 @@
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/ReduxToolKit/store";
 
 //TODO: fix bug occurring when using the editor
 
 export default function StepsEditor({ setterFunction, context }) {
-    const [inputText, setInputText] = useState<string>('')
     const dispatch = useDispatch<AppDispatch>()
 
     const handleContent = () => {

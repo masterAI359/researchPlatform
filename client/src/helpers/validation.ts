@@ -30,8 +30,7 @@ export const requiredInput = (emailString: string, passwordString: string, sette
     const noSpecialChars = checkSpecialChars(splitPassword)
 
     if (validLength && isValidEmail && !noSpecialChars) {
-
-        setterFunction(true)
+        return setterFunction(true)
     }
 }
 
@@ -43,9 +42,9 @@ export const emailValidation = (emailEvaluated: string, setter: Function) => {
     const isValidEmail = validateEmail.test(emailEvaluated)
 
     if (isValidEmail) {
-        setter(true)
+        return setter(true)
     } else {
-        setter(false)
+        return setter(false)
     }
 
 }
@@ -53,8 +52,12 @@ export const emailValidation = (emailEvaluated: string, setter: Function) => {
 
 export const confirmPassword = (firstEntry: string, secondEntry: string, setter: Function) => {
 
+    console.log(firstEntry, secondEntry)
+
     if (firstEntry === secondEntry) {
-        setter(true)
+        return setter(true)
+    } else {
+        return setter(false)
     }
 
 }

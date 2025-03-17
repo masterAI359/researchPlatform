@@ -6,8 +6,8 @@ import { RootState } from "@/ReduxToolKit/store"
 import { Link } from "react-router-dom"
 import CreatingUser from "./AuthNotifications/CreatingUser"
 import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
-import { confirmPassword } from "@/helpers/validation"
-import { getNewEmail, getFirstPassword, getSecondPassword } from "@/ReduxToolKit/Reducers/Athentication/NewUserSlice"
+import { confirmPassword, emailValidation } from "@/helpers/validation"
+import { getNewEmail, getFirstPassword, getSecondPassword, showLengthRequirement, showSpecialCharsWarning, requestValidEmail } from "@/ReduxToolKit/Reducers/Athentication/NewUserSlice"
 import { useDispatch } from "react-redux"
 
 
@@ -16,16 +16,17 @@ export default function Signup() {
     const [canSubmit, setCanSubmit] = useState<boolean>(null)
     const [creating, setCreating] = useState<boolean>(false)
     const [createdUser, setCreatedUser] = useState<boolean>(null)
+    const [emailValid, setEmailValid] = useState<boolean>(null)
     const newEmail = useSelector((state: RootState) => state.newUser.emailInput)
     const firstPassword = useSelector((state: RootState) => state.newUser.firstPassword)
     const secondPassword = useSelector((state: RootState) => state.newUser.secondPassword)
+    const enterValidEmail = useSelector((state: RootState) => state.newUser.enterValidEmail)
     const dispatch = useDispatch()
 
     const handleEmail = (e: any) => {
 
         const email = e.target.value
         dispatch(getNewEmail(email))
-
     }
 
     const handlePassword = (e: any) => {
@@ -90,7 +91,13 @@ export default function Signup() {
 
     useEffect(() => {
 
-        console.log(acceptedInput)
+        if (newEmail) {
+            emailValidation(newEmail, setEmailValid)
+        }
+
+        if (emailValid === false) {
+            dispatch(requestValidEmail())
+        }
 
         if (secondPassword && firstPassword) {
             console.log('calling confirmation')
@@ -126,18 +133,24 @@ export default function Signup() {
                                             <div className="text-sm font-medium text-white">
                                                 Email
                                             </div>
+                                            {emailValid === false && enterValidEmail && <div className="w-auto">
+                                                <p className="text-red-500 text-sm">{enterValidEmail}</p>
+                                            </div>}
                                             <div className="w-fit">
-                                                <svg xmlns="http://www.w3.org/2000/svg" className={`${acceptedInput === true ? 'opacity-100' : 'opacity-0'} icon icon-tabler icon-tabler-check text-green-500 mx-auto`} width={16} height={16} viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                                {emailValid === true && <svg xmlns="http://www.w3.org/2000/svg" className={`icon icon-tabler icon-tabler-check text-green-500 mx-auto`} width={16} height={16} viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                     <path d="M5 12l5 5l10 -10" />
-                                                </svg>
+                                                </svg>}
+                                                {emailValid === false && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                                                    className="icon icon-tabler icons-tabler-outline text-red-500 icon-tabler-x"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
+                                                }
                                             </div>
                                         </div>
                                     </label>
                                     <input onChange={(e) => handleEmail(e)} id="email" name="email" type="email" autoComplete="email" placeholder="email@example.com"
                                         className={`block w-full px-3 py-3 border-2 rounded-xl appearance-none text-white placeholder-black/50 bg-white/5 focus:border-black 
                                     focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10
-                                    ${acceptedInput === false && 'border-red-500'} 
+                                    ${acceptedInput === false || emailValid === false && 'border-red-500'} 
                                     ${acceptedInput === true && 'border-green-500'}
                                     `}
                                         required />

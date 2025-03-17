@@ -42,9 +42,11 @@ export const emailValidation = (emailEvaluated: string, setter: Function) => {
     const isValidEmail = validateEmail.test(emailEvaluated)
 
     if (isValidEmail) {
-        return setter(true)
+        setter(true)
+        return true
     } else {
-        return setter(false)
+        setter(false)
+        return false
     }
 
 }

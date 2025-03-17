@@ -7,7 +7,10 @@ interface InitialStateType {
     secondPassword: string | null,
     canSubmit: boolean | null,
     acceptedInput: boolean | null,
-    accountCreated: boolean | null
+    accountCreated: boolean | null,
+    passWordLengthRequired: string | null,
+    mustHaveSpecialChars: string | null,
+    enterValidEmail: string | null
 }
 
 const InitialState: InitialStateType = {
@@ -16,7 +19,11 @@ const InitialState: InitialStateType = {
     secondPassword: null,
     canSubmit: null,
     acceptedInput: null,
-    accountCreated: null
+    accountCreated: null,
+    passWordLengthRequired: null,
+    mustHaveSpecialChars: null,
+    enterValidEmail: null
+
 }
 
 
@@ -32,11 +39,20 @@ const NewUserSlice = createSlice({
         },
         getSecondPassword: (state, action) => {
             state.secondPassword = action.payload
+        },
+        showLengthRequirement: (state) => {
+            state.passWordLengthRequired = 'password must be at least 8 characters'
+        },
+        showSpecialCharsWarning: (state) => {
+            state.mustHaveSpecialChars = 'password must contain at least 1 special character'
+        },
+        requestValidEmail: (state) => {
+            state.enterValidEmail = 'please enter a valid email address'
         }
     }
 })
 
 
-export const { getNewEmail, getFirstPassword, getSecondPassword } = NewUserSlice.actions
+export const { getNewEmail, getFirstPassword, getSecondPassword, showLengthRequirement, showSpecialCharsWarning, requestValidEmail } = NewUserSlice.actions
 
 export default NewUserSlice.reducer

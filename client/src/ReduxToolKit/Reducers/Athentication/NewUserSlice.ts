@@ -10,7 +10,8 @@ interface InitialStateType {
     accountCreated: boolean | null,
     passWordLengthRequired: string | null,
     mustHaveSpecialChars: string | null,
-    enterValidEmail: string | null
+    enterValidEmail: string | null,
+    mustMatchFirstPassword: string | null
 }
 
 const InitialState: InitialStateType = {
@@ -22,7 +23,8 @@ const InitialState: InitialStateType = {
     accountCreated: null,
     passWordLengthRequired: null,
     mustHaveSpecialChars: null,
-    enterValidEmail: null
+    enterValidEmail: null,
+    mustMatchFirstPassword: null
 
 }
 
@@ -40,19 +42,22 @@ const NewUserSlice = createSlice({
         getSecondPassword: (state, action) => {
             state.secondPassword = action.payload
         },
-        showLengthRequirement: (state) => {
-            state.passWordLengthRequired = 'password must be at least 8 characters'
+        showLengthRequirement: (state, action) => {
+            state.passWordLengthRequired = action.payload
         },
         showSpecialCharsWarning: (state) => {
             state.mustHaveSpecialChars = 'password must contain at least 1 special character'
         },
-        requestValidEmail: (state) => {
-            state.enterValidEmail = 'please enter a valid email address'
+        requestValidEmail: (state, action) => {
+            state.enterValidEmail = action.payload
+        },
+        matchPasswords: (state, action) => {
+            state.mustMatchFirstPassword = action.payload
         }
     }
 })
 
 
-export const { getNewEmail, getFirstPassword, getSecondPassword, showLengthRequirement, showSpecialCharsWarning, requestValidEmail } = NewUserSlice.actions
+export const { getNewEmail, getFirstPassword, getSecondPassword, showLengthRequirement, showSpecialCharsWarning, requestValidEmail, matchPasswords } = NewUserSlice.actions
 
 export default NewUserSlice.reducer

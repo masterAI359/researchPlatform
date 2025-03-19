@@ -31,6 +31,8 @@ export const requiredInput = (emailString: string, passwordString: string, sette
 
     if (validLength && isValidEmail && !noSpecialChars) {
         return setterFunction(true)
+    } else {
+        return setterFunction(false)
     }
 }
 

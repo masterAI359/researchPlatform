@@ -1,4 +1,5 @@
 import { RootState } from "@/ReduxToolKit/store"
+import { useState } from "react"
 import { useSelector } from "react-redux"
 
 
@@ -6,6 +7,7 @@ import { useSelector } from "react-redux"
 
 export default function ConfirmNewPassword({ acceptedInput, canSubmit, handleSecondEntry }) {
     const mustMatchPasswords = useSelector((state: RootState) => state.newUser.mustMatchFirstPassword)
+    const [showPassword, setShowPassword] = useState<boolean>(false)
 
     return (
         <div className="col-span-full">
@@ -27,8 +29,9 @@ export default function ConfirmNewPassword({ acceptedInput, canSubmit, handleSec
                         </div>
                     </div>
                 </label>
-                <input onChange={(e) => handleSecondEntry(e)} id="confirm_password" name="password" type="password" placeholder="Retype password here..." autoComplete="current-password"
-                    className={`block w-full px-3 py-3 border-2 rounded-xl appearance-none text-white placeholder-black/50 bg-white/5 focus:border-black 
+                <div className="relative w-full h-auto">
+                    <input onChange={(e) => handleSecondEntry(e)} id="confirm_password" name="password" type={showPassword ? 'text' : 'password'} placeholder="Retype password here..." autoComplete="current-password"
+                        className={`block w-full px-3 py-3 border-2 rounded-xl appearance-none text-white placeholder-black/50 bg-white/5 focus:border-white/5 
         focus:bg-transparent focus:outline-none focus:ring-black text-xs sm:text-sm placeholder-zinc-500 h-10
         ${canSubmit === false && 'border-red-500'}
         ${canSubmit === true && 'border-green-500'}
@@ -36,6 +39,14 @@ export default function ConfirmNewPassword({ acceptedInput, canSubmit, handleSec
         ${acceptedInput === true && 'border-green-500'}
         ${acceptedInput === false && 'border-red-500'}
         `} required />
+                    <button onClick={() => setShowPassword(prev => !prev)} className="w-fit h-fit absolute right-2 bottom-2 z-30 group">
+                        <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"
+                            className="icon icon-tabler text-white opacity-60 group-hover:opacity-100 transition-opacity duration-200 ease-in-out icons-tabler-outline icon-tabler-eye">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+
+                    </button>
+                </div>
+
             </div>
 
         </div>

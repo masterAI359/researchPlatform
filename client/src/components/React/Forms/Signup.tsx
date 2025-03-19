@@ -9,7 +9,7 @@ import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
 import { confirmPassword, emailValidation } from "@/helpers/validation"
 import { getNewEmail, getFirstPassword, getSecondPassword, showLengthRequirement, showSpecialCharsWarning, requestValidEmail, matchPasswords } from "@/ReduxToolKit/Reducers/Athentication/NewUserSlice"
 import { useDispatch } from "react-redux"
-import { AnimatePresence } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import NewEmail from "./InputFields/NewEmail"
 import NewPassword from "./InputFields/NewPassword"
 import ConfirmNewPassword from "./InputFields/ConfirmNewPassword"
@@ -30,10 +30,21 @@ export default function Signup() {
     const enterValidEmail = useSelector((state: RootState) => state.newUser.enterValidEmail)
     const dispatch = useDispatch()
 
+    const checkEmail = () => {
+        setTimeout(() => {
+            emailValidation(newEmail, setEmailValid)
+        }, 1000);
+    }
+
     const handleEmail = (e: any) => {
 
         const email = e.target.value
         dispatch(getNewEmail(email))
+        const splitEmail = email?.split('')
+
+        if (email && splitEmail.length > 4) {
+            checkEmail()
+        }
     }
 
     const handlePassword = (e: any) => {
@@ -116,15 +127,6 @@ export default function Signup() {
     useEffect(() => {
 
 
-        if (newEmail !== null && newEmail !== '') {
-            setTimeout(() => {
-                emailValidation(newEmail, setEmailValid)
-
-            }, 3000)
-            console.log(emailValid)
-
-        }
-
         if (emailValid === false) {
             dispatch(requestValidEmail('please enter a valid email address'))
         } else if (emailValid === true) {
@@ -146,7 +148,7 @@ export default function Signup() {
     return (
 
         <ErrorBoundary>
-            <section className="lg:p-8 overflow-hidden bg-black animate-fade-in">
+            <section className="lg:p-8 min-h-dvh overflow-hidden bg-black animate-fade-in relative">
                 {creating && <CreatingUser creating={creating} setCreating={setCreating} createdUser={createdUser} />}
                 <div className="mx-auto 2xl:max-w-7xl py-24 lg:px-16 md:px-12 px-8 xl:px-36">
                     <div className="border-b pb-12">
@@ -155,7 +157,8 @@ export default function Signup() {
                         </p>
                         <p className="mt-2 text-sm text-zinc-400">Create an account with us.</p>
                     </div>
-                    <div className="w-full gap-6 sm:gap-24 mx-auto grid grid-cols-1 mt-12 lg:grid-cols-2 items-end relative">
+                    <motion.div
+                        className="w-full gap-6 sm:gap-24 mx-auto grid grid-cols-1 mt-12 lg:grid-cols-2 items-start relative">
                         <form>
                             <div className="space-y-4">
                                 <NewEmail emailValid={emailValid} enterValidEmail={enterValidEmail} handleEmail={handleEmail} />
@@ -179,14 +182,16 @@ export default function Signup() {
                                     </p>
                                 </div>
                             </div>
-                        </form>
-                        <AnimatePresence>
-                            {canSubmit !== true && <NewPasswordGuide />}
+                            <AnimatePresence mode="popLayout">
+                                {canSubmit !== true && <NewPasswordGuide />}
 
-                        </AnimatePresence>
+                            </AnimatePresence>
+                        </form>
+
                         <OAuthLogins />
-                    </div>
+                    </motion.div>
                 </div>
+
             </section>
         </ErrorBoundary>
 

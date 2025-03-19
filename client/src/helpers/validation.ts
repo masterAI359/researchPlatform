@@ -38,6 +38,7 @@ export const requiredInput = (emailString: string, passwordString: string, sette
 
 
 export const emailValidation = (emailEvaluated: string, setter: Function) => {
+    console.log(emailEvaluated)
 
     const validateEmail = /[A-Za-z0-9\._%+\-]+@[A-Za-z0-9\.\-]+\.[A-Za-z]{2,}/gm
 
@@ -46,9 +47,12 @@ export const emailValidation = (emailEvaluated: string, setter: Function) => {
     if (isValidEmail) {
         setter(true)
         return true
-    } else {
+    } else if (isValidEmail === false && emailEvaluated !== '') {
         setter(false)
         return false
+    } else if (emailEvaluated === '' || emailEvaluated === null) {
+        setter(null)
+
     }
 
 }
@@ -59,9 +63,11 @@ export const confirmPassword = (firstEntry: string, secondEntry: string, setter:
     console.log(firstEntry, secondEntry)
 
     if (firstEntry === secondEntry) {
-        return setter(true)
+        setter(true)
+        return true
     } else {
-        return setter(false)
+        setter(false)
+        return false
     }
 
 }

@@ -45,7 +45,15 @@ export default function Signup() {
         const secondEntry = e.target.value
         dispatch(getSecondPassword(secondEntry))
         if (firstPassword) {
-            confirmPassword(firstPassword, secondEntry, setCanSubmit)
+
+            const confirmation = confirmPassword(firstPassword, secondEntry, setCanSubmit)
+
+            if (confirmation === false) {
+
+                dispatch(matchPasswords("Password entered must match the entry above"))
+            } else if (confirmation === true) {
+                dispatch(matchPasswords(null))
+            }
         }
     }
 
@@ -108,8 +116,11 @@ export default function Signup() {
     useEffect(() => {
 
 
-        if (newEmail) {
-            emailValidation(newEmail, setEmailValid)
+        if (newEmail !== null && newEmail !== '') {
+            setTimeout(() => {
+                emailValidation(newEmail, setEmailValid)
+
+            }, 3000)
             console.log(emailValid)
 
         }
@@ -126,23 +137,11 @@ export default function Signup() {
             dispatch(showLengthRequirement(null))
         }
 
-        if (firstPassword && newEmail) {
+        if (firstPassword && secondPassword && newEmail) {
             checkInput()
         }
 
-        if (firstPassword !== secondPassword) {
-            dispatch(matchPasswords("The password entered here must match the entry above"))
-            setCanSubmit(false)
-
-        } else if (firstPassword === secondPassword) {
-            dispatch(matchPasswords(null))
-        }
-
-
-
-
-
-    }, [firstPassword, secondPassword, acceptedInput, canSubmit, dispatch])
+    }, [firstPassword, secondPassword, acceptedInput, canSubmit, dispatch, newEmail])
 
     return (
 
@@ -156,7 +155,7 @@ export default function Signup() {
                         </p>
                         <p className="mt-2 text-sm text-zinc-400">Create an account with us.</p>
                     </div>
-                    <div className="w-full gap-6 sm:gap-24 mx-auto grid grid-cols-1 mt-12 lg:grid-cols-2 items-end">
+                    <div className="w-full gap-6 sm:gap-24 mx-auto grid grid-cols-1 mt-12 lg:grid-cols-2 items-end relative">
                         <form>
                             <div className="space-y-4">
                                 <NewEmail emailValid={emailValid} enterValidEmail={enterValidEmail} handleEmail={handleEmail} />
@@ -182,7 +181,7 @@ export default function Signup() {
                             </div>
                         </form>
                         <AnimatePresence>
-                            {first_pw_valid === false && <NewPasswordGuide />}
+                            {canSubmit !== true && <NewPasswordGuide />}
 
                         </AnimatePresence>
                         <OAuthLogins />

@@ -1,7 +1,7 @@
 import { supabase } from "@/SupaBase/supaBaseClient"
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { requiredInput } from "@/helpers/validation"
+import { requiredInput, emailValidation } from "@/helpers/validation"
 import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 import LoggingIn from "./AuthNotifications/LoggingIn"
@@ -11,6 +11,7 @@ import { googleAuth, signInWithTwitter } from "@/helpers/OauthLogin"
 export default function Login() {
     const [userEmail, setUserEmail] = useState<string>(null)
     const [userPassword, setUserPassword] = useState<string>(null)
+    const [validEmail, setValidEmail] = useState<boolean>(null)
     const [acceptedInput, setAcceptedInput] = useState<boolean>(null)
     const [loggingIn, setLoggingIn] = useState<boolean>(false)
     const [successfull, setSuccessful] = useState<boolean>(null)
@@ -25,10 +26,12 @@ export default function Login() {
 
     const handleEmail = (e: any) => {
         setUserEmail(e.target.value)
+
     }
 
     const handlePassword = (e: any) => {
         setUserPassword(e.target.value)
+
     }
 
 
@@ -43,16 +46,15 @@ export default function Login() {
                 password: userPassword
             })
             if (error) {
-                console.log(error)
+                console.log(error.message)
                 setSuccessful(false)
             } else if (data) {
                 console.log(data)
                 setSuccessful(true)
+                redirectUser()
             }
         } catch (error) {
             console.log(error)
-        } finally {
-            redirectUser()
         }
 
     }
@@ -67,9 +69,14 @@ export default function Login() {
 
     useEffect(() => {
 
+
+        if (userEmail) {
+            emailValidation(userEmail, setValidEmail)
+            console.log(validEmail)
+        }
+
         if (userEmail && userPassword) {
             requiredInput(userEmail, userPassword, setAcceptedInput)
-
         }
 
     }, [userEmail, userPassword])
@@ -93,14 +100,23 @@ export default function Login() {
                                 <label htmlFor="email" className="block mb-3 text-sm font-medium text-white">
                                     Email
                                 </label>
-                                <input onChange={(e) => handleEmail(e)} id="email" name="email" type="email" autoComplete="email" placeholder="email@example.com" className="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-white placeholder-black/50 bg-white/5 focus:border-black focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10" required />
+                                <input onChange={(e) => handleEmail(e)} id="email" name="email" type="email" autoComplete="email" placeholder="email@example.com"
+                                    className={`block w-full px-3 py-3 border-2 rounded-xl appearance-none text-white placeholder-black/50 bg-white/5 
+                                 focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10
+                                transition-all duration-200 ease-in-out
+                                ${validEmail === false && 'border-red-500'}
+                                ${validEmail === null && 'focus:border-white'}
+                                ${validEmail === true && 'border-green-500'}
+                                `} required />
                             </div>
                             <div className="col-span-full">
                                 <div>
                                     <label htmlFor="password" className="block mb-3 text-sm font-medium text-white">
                                         Password
                                     </label>
-                                    <input onChange={(e) => handlePassword(e)} id="password" name="password" type="password" placeholder="Type password here..." autoComplete="current-password" className="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-white placeholder-black/50 bg-white/5 focus:border-black focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10" required />
+                                    <input onChange={(e) => handlePassword(e)} id="password" name="password" type="password" placeholder="Type password here..." autoComplete="current-password"
+                                        className="block w-full px-3 py-3 border-2 border-white/5 rounded-xl appearance-none text-white placeholder-black/50 bg-white/5 focus:border-white focus:bg-transparent
+                                     focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10 transition-all duration-200 ease-in-out" required />
                                 </div>
 
                             </div>

@@ -23,7 +23,9 @@ export default function CreatingUser({ createdUser, setCreating, creating }) {
     const timer = () => {
         setTimeout(() => {
             setCreating(false)
-            navigate('/Profile')
+            if (createdUser) {
+                navigate('/Profile')
+            }
 
         }, 1000)
     }
@@ -35,9 +37,7 @@ export default function CreatingUser({ createdUser, setCreating, creating }) {
 
     useEffect(() => {
 
-        if (createdUser) {
-            redirectUser()
-        }
+        redirectUser()
 
     }, [createdUser])
 

@@ -53,11 +53,12 @@ const NewUserSlice = createSlice({
         },
         matchPasswords: (state, action) => {
             state.mustMatchFirstPassword = action.payload
-        }
+        },
+        clearNewUser: () => InitialState
     }
 })
 
 
-export const { getNewEmail, getFirstPassword, getSecondPassword, showLengthRequirement, showSpecialCharsWarning, requestValidEmail, matchPasswords } = NewUserSlice.actions
+export const { getNewEmail, getFirstPassword, getSecondPassword, showLengthRequirement, showSpecialCharsWarning, requestValidEmail, matchPasswords, clearNewUser } = NewUserSlice.actions
 
 export default NewUserSlice.reducer

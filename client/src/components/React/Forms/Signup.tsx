@@ -7,7 +7,7 @@ import { Link } from "react-router-dom"
 import CreatingUser from "./AuthNotifications/CreatingUser"
 import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
 import { confirmPassword, emailValidation } from "@/helpers/validation"
-import { getNewEmail, getFirstPassword, getSecondPassword, showLengthRequirement, showSpecialCharsWarning, requestValidEmail, matchPasswords } from "@/ReduxToolKit/Reducers/Athentication/NewUserSlice"
+import { getNewEmail, getFirstPassword, getSecondPassword, showLengthRequirement, showSpecialCharsWarning, requestValidEmail, matchPasswords, clearNewUser } from "@/ReduxToolKit/Reducers/Athentication/NewUserSlice"
 import { useDispatch } from "react-redux"
 import { AnimatePresence, motion } from "framer-motion"
 import NewEmail from "./InputFields/NewEmail"
@@ -15,6 +15,7 @@ import NewPassword from "./InputFields/NewPassword"
 import ConfirmNewPassword from "./InputFields/ConfirmNewPassword"
 import OAuthLogins from "./InputFields/OauthLogins"
 import NewPasswordGuide from "./InputGuides/NewPasswordGuide"
+import { AuthError } from "@supabase/supabase-js"
 //TODO: add messages for password validation
 
 export default function Signup() {
@@ -24,6 +25,7 @@ export default function Signup() {
     const [creating, setCreating] = useState<boolean>(false)
     const [createdUser, setCreatedUser] = useState<boolean>(null)
     const [emailValid, setEmailValid] = useState<boolean>(null)
+    const [errorMessage, setErrorMessage] = useState<string>(null)
     const newEmail = useSelector((state: RootState) => state.newUser.emailInput)
     const firstPassword = useSelector((state: RootState) => state.newUser.firstPassword)
     const secondPassword = useSelector((state: RootState) => state.newUser.secondPassword)
@@ -70,30 +72,24 @@ export default function Signup() {
 
 
     const checkInput = () => {
-
         requiredInput(newEmail, firstPassword, setValidFirstPassword)
-
-
-
-        console.log(first_pw_valid)
     }
-
 
 
     const createUser = async () => {
         setCreating(true)
-
         if (canSubmit) {
-
             try {
                 const { data, error } = await supabase.auth.signUp({
                     email: newEmail,
                     password: secondPassword,
                 })
-
                 if (error) {
                     console.log(error)
                     setCreatedUser(false)
+                    if (error.message.toLocaleLowerCase().includes('already registered')) {
+                        setErrorMessage('You already have an account!')
+                    }
                 } else if (data) {
                     setCreatedUser(true)
                 }
@@ -102,7 +98,6 @@ export default function Signup() {
                 console.log(error)
             } finally {
                 if (createdUser) {
-
                 }
             }
 
@@ -126,6 +121,7 @@ export default function Signup() {
 
     useEffect(() => {
 
+        console.log(errorMessage)
 
         if (emailValid === false) {
             dispatch(requestValidEmail('please enter a valid email address'))
@@ -143,13 +139,26 @@ export default function Signup() {
             checkInput()
         }
 
+        return () => {
+            clearNewUser()
+            setErrorMessage(null)
+            setCanSubmit(null)
+            setEmailValid(null)
+            setCreating(false)
+            setCreatedUser(null)
+            setAcceptedInput(null)
+
+        }
+
     }, [firstPassword, secondPassword, acceptedInput, canSubmit, dispatch, newEmail])
 
     return (
 
         <ErrorBoundary>
             <section className="lg:p-8 min-h-dvh overflow-hidden bg-black animate-fade-in relative">
-                {creating && <CreatingUser creating={creating} setCreating={setCreating} createdUser={createdUser} />}
+                <AnimatePresence>
+                    {creating && <CreatingUser creating={creating} setCreating={setCreating} createdUser={createdUser} />}
+                </AnimatePresence>
                 <div className="mx-auto 2xl:max-w-7xl py-24 lg:px-16 md:px-12 px-8 xl:px-36">
                     <div className="border-b pb-12">
                         <p className="text-3xl tracking-tight font-light lg:text-4xl text-white">
@@ -157,6 +166,20 @@ export default function Signup() {
                         </p>
                         <p className="mt-2 text-sm text-zinc-400">Create an account with us.</p>
                     </div>
+                    {errorMessage && <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ type: 'tween', duration: 0.2 }}
+                        className="text-white flex flex-nowrap lg:text-xl font-light translate-y-6 justify-center">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="currentColor"
+                                className="icon icon-tabler text-yellow-500 icons-tabler-filled icon-tabler-alert-triangle"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 1.67c.955 0 1.845 .467 2.39 1.247l.105 .16l8.114 13.548a2.914 2.914 0 0 1 -2.307 4.363l-.195 .008h-16.225a2.914 2.914 0 0 1 -2.582 -4.2l.099 -.185l8.11 -13.538a2.914 2.914 0 0 1 2.491 -1.403zm.01 13.33l-.127 .007a1 1 0 0 0 0 1.986l.117 .007l.127 -.007a1 1 0 0 0 0 -1.986l-.117 -.007zm-.01 -7a1 1 0 0 0 -.993 .883l-.007 .117v4l.007 .117a1 1 0 0 0 1.986 0l.007 -.117v-4l-.007 -.117a1 1 0 0 0 -.993 -.883z" /></svg>
+                        </span>
+
+                        {errorMessage} Please <Link className="mx-2 underline hover:no-underline hover:text-blue-500 transition-all duration-200 ease-in-out" to='/Login'>Log in</Link>
+                        instead
+                    </motion.div>}
                     <motion.div
                         className="w-full gap-6 sm:gap-24 mx-auto grid grid-cols-1 mt-12 lg:grid-cols-2 items-start relative">
                         <form>
@@ -173,12 +196,9 @@ export default function Signup() {
                                 </div>
                                 <div>
                                     <p className="font-medium text-sm leading-tight text-white mx-auto"> Already a member?
-
                                         <Link className="text-white underline hover:text-blue-400 ml-3" to={'/Login'}>
-
                                             Log in now
                                         </Link>
-
                                     </p>
                                 </div>
                             </div>

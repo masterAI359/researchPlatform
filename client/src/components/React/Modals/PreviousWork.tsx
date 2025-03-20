@@ -41,7 +41,7 @@ export function PreviousWork() {
 
         if (id) {
             localStorage.setItem("userWork", stringifiedData)
-            saveInvestigation(investigateData)
+            //  saveInvestigation(investigateData)
             dispatch({ type: 'clear' })
             displayWorkModal(false)
 

@@ -2,6 +2,7 @@ import { RootState } from "@/ReduxToolKit/store"
 import { useSelector, useDispatch } from "react-redux"
 import { AppDispatch } from "@/ReduxToolKit/store"
 import { presentArticles, presentResearch } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
+import { Link } from "react-router-dom";
 
 export default function ProfileMenu({ }) {
     const displaySavedArticles = useSelector((state: RootState) => state.profileNav.displaySavedArticles)
@@ -12,7 +13,8 @@ export default function ProfileMenu({ }) {
             <div className="flex items-center justify-between pt-2">
                 <div
                     onClick={() => {
-
+                        dispatch(presentArticles(false))
+                        dispatch(presentResearch(true))
                     }}
                     className="w-fit h-auto flex
             text-white text-xs font-light tracking-tight hover:text-blue-400 cursor-pointer
@@ -30,11 +32,14 @@ export default function ProfileMenu({ }) {
                             transition-all duration-200 ease-in-out`}>
                     Saved Articles
                 </div>
-                <div className="w-fit text-xs font-light tracking-tight text-nowrap h-auto flex
+                <Link to={'/ManageAccount'} >
+                    <div className="w-fit text-xs font-light tracking-tight text-nowrap h-auto flex
             text-white hover:text-blue-500 cursor-pointer
             transition-all duration-200 ease-in-out">
-                    Connecting Ideas
-                </div>
+                        Manage Account
+                    </div>
+                </Link>
+
             </div>
 
         </div>

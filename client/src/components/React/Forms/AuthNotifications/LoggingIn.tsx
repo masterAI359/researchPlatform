@@ -17,17 +17,15 @@ const variants = {
 
 export default function LoggingIn({ successful, setLoggingIn }) {
 
-    const timer = () => {
-        setTimeout(() => {
-            setLoggingIn(false)
-        }, 1500)
-    }
+
 
     useEffect(() => {
+        const timer = setTimeout(() => {
+            setLoggingIn(false)
+        }, 1500)
 
-        if (successful) {
-            timer()
-        }
+
+        return () => clearTimeout(timer)
 
     }, [successful])
 
@@ -39,7 +37,7 @@ export default function LoggingIn({ successful, setLoggingIn }) {
             animate='show'
             exit='hide'
             transition={{ type: 'tween', duration: 0.2 }}
-            className="absolute top-24 right-36 h-10 w-60 p-2 bg-mirage rounded-xl px-2"
+            className="absolute top-12 right-16 lg:top-24 lg:right-36 h-10 w-60 p-2 bg-mirage rounded-xl px-2"
         >
             <div className="flex w-full h-full items-center justify-between">
                 <div className="w-auto h-fit">

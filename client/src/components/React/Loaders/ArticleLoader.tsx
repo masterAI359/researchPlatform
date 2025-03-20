@@ -1,6 +1,7 @@
 import Lottie from "lottie-react"
 import { motion } from "framer-motion"
 import dataCollection from '../../../lotties/dataCollection.json'
+import vortex from '../../../lotties/vortex.json'
 import { createPortal } from "react-dom"
 
 const variants = {
@@ -30,7 +31,7 @@ export default function ArticleLoader() {
                 <div className="w-3/5 h-auto xl:-translate-x-8 2xl:translate-y-14 xl:-translate-y-52 lg:-translate-y-44 transition-all duration-200 ease-in-out">
                     <Lottie
 
-                        animationData={dataCollection}
+                        animationData={vortex}
                         autoPlay={true}
                         loop={true}
                         style={{ height: '100%', width: '100%' }}

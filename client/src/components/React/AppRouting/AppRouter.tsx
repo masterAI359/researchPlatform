@@ -14,6 +14,7 @@ import { store } from '../../../ReduxToolKit/store'
 import { Provider } from 'react-redux'
 import EmailForReset from "../Forms/EmailForReset"
 import UpdatePassword from "../Forms/UpdatePassword"
+import ManageAccount from "../User/ProfileNavigation/ManageAccount"
 
 
 export default function AppRouter() {
@@ -35,6 +36,7 @@ export default function AppRouter() {
                         <Route path="/UpdatePassword" element={<UpdatePassword />} />
                         <Route path="/SavedArticle" element={<ReadSavedArticle />} />
                         <Route path="ReviewInvestigation" element={<ReviewInvestigation />} />
+                        <Route path="/ManageAccount" element={<ManageAccount />} />
                     </Route>
                 </Routes>
             </BrowserRouter>

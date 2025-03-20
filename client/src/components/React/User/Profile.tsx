@@ -9,6 +9,7 @@ import ProfileMenu from "./ProfileNavigation/ProfileMenu";
 import SideBarMenu from "./ProfileNavigation/SideBar/SideBarMenu";
 import SavedArticles from "./DisplayContent/UserArticles/SavedArticles";
 import SavedResearchLayout from "./DisplayContent/SavedInvestigations.tsx/SavedResearchLayout";
+import DeleteUserAccount from "../Modals/DeleteUser";
 
 export default function Profile() {
     const displaySavedInvestigations = useSelector((state: RootState) => state.profileNav.displaySavedInvestigations)
@@ -23,7 +24,7 @@ export default function Profile() {
     }, [id])
 
     return (
-        <article className="w-full h-full flex relative justify-center scroll-smooth">
+        <article className={`w-full h-full flex relative justify-center scroll-smooth`}>
             <SideBarMenu />
             <main className="w-full flex relative justify-end xl:justify-center">
                 <section className="lg:p-8 w-full lg:w-auto">

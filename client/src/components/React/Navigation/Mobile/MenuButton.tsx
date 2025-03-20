@@ -12,13 +12,14 @@ export default function MenuButton({ toggle, isOpen }) {
 
 
     return (
-        <button className="fixed top-1 left-1 h-7 w-7 z-50"
+        <button className={`fixed right-1 top-1 h-7 w-fit z-50`}
             onClick={toggle}>
-            <motion.svg className="z-50"
+            <motion.svg className="z-50 text-white opacity-80"
                 width="23px"
                 height="23px"
                 viewBox="0 0 23 23"
                 initial='closed'
+
             >
                 <Path
                     isOpen={isOpen}
@@ -28,7 +29,7 @@ export default function MenuButton({ toggle, isOpen }) {
                     }}
                 />
                 <motion.path
-                    fill="transparent"
+                    fill="currentColor"
                     strokeWidth="2"
                     stroke="#ffffff"
                     strokeLinecap="round"

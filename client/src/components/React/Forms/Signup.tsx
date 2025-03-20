@@ -57,10 +57,10 @@ export default function Signup() {
     const handleSecondEntry = (e: any) => {
         const secondEntry = e.target.value
         dispatch(getSecondPassword(secondEntry))
-        if (firstPassword && canSubmit === false) {
+        if (canSubmit === false) {
             dispatch(matchPasswords("Password entered must match the entry above"))
-        } else {
-            dispatch(matchPasswords(null))
+        } else if (canSubmit === true) {
+            dispatch(matchPasswords(''))
         }
     }
 
@@ -105,10 +105,11 @@ export default function Signup() {
 
         e.preventDefault()
 
-        if (emailValid && first_pw_valid && canSubmit) {
+        console.log(canSubmit)
+
+        if (emailValid && canSubmit) {
             createUser()
         } else {
-            setCanSubmit(false)
         }
     }
 
@@ -148,7 +149,7 @@ export default function Signup() {
 
         }
 
-    }, [firstPassword, secondPassword, acceptedInput, canSubmit, dispatch, newEmail])
+    }, [firstPassword, secondPassword, acceptedInput, canSubmit, dispatch, newEmail, confirmPassword])
 
     return (
 

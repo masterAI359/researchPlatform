@@ -12,8 +12,8 @@ export default function BackToSavedResearch() {
     }
 
     return (
-        <button onClick={backToSaved} className="fixed top-1/2 left-12 text-white text-md font-light xs:w-14 xs:h-8
-        lg:w-14 lg:h-12 p-1.5 transition-all mx-auto flex
+        <button onClick={() => backToSaved()} className="absolute top-1 left-1 sm:fixed sm:top-1/2 lg:left-8 xl:left-10 2xl:left-12 text-white text-md font-light xs:w-14 xs:h-8
+        lg:w-14 lg:h-12 p-1.5 transition-all mx-auto flex z-50
         duration-200 bg-white hover:bg-white/10 items-center group
         rounded-2xl">
             <div className="absolute left-11 bottom-12 opacity-0 transition-all duration-200 ease-in-out rounded-lg 

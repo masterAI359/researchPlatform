@@ -8,7 +8,7 @@ export default function ReturnToReview() {
     }
 
     return (
-        <button onClick={backToReview} className="fixed top-1/2 left-12 text-white text-md font-light xs:w-14 xs:h-8
+        <button onClick={backToReview} className="absolute top-2 left-0 sm:fixed sm:top-1/2 sm:left-12 text-white text-md font-light xs:w-14 xs:h-8
         lg:w-14 lg:h-12 p-1.5 transition-all mx-auto flex
         duration-200 bg-white hover:bg-white/10 items-center group
         rounded-2xl">

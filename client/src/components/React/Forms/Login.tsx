@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom"
 import LoggingIn from "./AuthNotifications/LoggingIn"
 import { AnimatePresence } from "framer-motion"
 import { googleAuth, signInWithTwitter } from "@/helpers/OauthLogin"
+import Password from "./InputFields/Password"
 
 export default function Login() {
     const [userEmail, setUserEmail] = useState<string>(null)
@@ -63,7 +64,7 @@ export default function Login() {
     const submitAuth = async (e: any) => {
         e.preventDefault()
 
-        acceptedInput ? logInUser() : console.log("Input denied")
+        logInUser()
 
     }
 
@@ -82,7 +83,7 @@ export default function Login() {
     }, [userEmail, userPassword])
 
     return (
-        <section className="lg:p-8 overflow-hidden bg-black animate-fade-in">
+        <section className={`lg:p-8 overflow-hidden bg-black animate-fade-in`}>
             <AnimatePresence>
                 {loggingIn && <LoggingIn successful={successfull} setLoggingIn={setLoggingIn} />}
             </AnimatePresence>
@@ -94,7 +95,9 @@ export default function Login() {
                     <p className="mt-2 text-sm text-zinc-400">log in to manage your saved content.</p>
                 </div>
                 <div className="w-full gap-24 mx-auto grid grid-cols-1 mt-12 lg:grid-cols-2 items-center">
+
                     <form>
+                        {successfull === false && <p className="text-zinc-400 font-light lg:text-2xl -translate-y-6">The email or password you entered is incorrect. Please try again.</p>}
                         <div className="space-y-6">
                             <div className="col-span-full">
                                 <label htmlFor="email" className="block mb-3 text-sm font-medium text-white">
@@ -104,22 +107,12 @@ export default function Login() {
                                     className={`block w-full px-3 py-3 border-2 rounded-xl appearance-none text-white placeholder-black/50 bg-white/5 
                                  focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10
                                 transition-all duration-200 ease-in-out
-                                ${validEmail === false && 'border-red-500'}
-                                ${validEmail === null && 'focus:border-white'}
-                                ${validEmail === true && 'border-green-500'}
+                                ${validEmail === false && 'border-red-500 focus:border-red-500'}
+                                ${validEmail === null && 'focus:border-white border-white/5'}
+                                ${validEmail === true && 'border-green-500 focus:border-green-500'}
                                 `} required />
                             </div>
-                            <div className="col-span-full">
-                                <div>
-                                    <label htmlFor="password" className="block mb-3 text-sm font-medium text-white">
-                                        Password
-                                    </label>
-                                    <input onChange={(e) => handlePassword(e)} id="password" name="password" type="password" placeholder="Type password here..." autoComplete="current-password"
-                                        className="block w-full px-3 py-3 border-2 border-white/5 rounded-xl appearance-none text-white placeholder-black/50 bg-white/5 focus:border-white focus:bg-transparent
-                                     focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10 transition-all duration-200 ease-in-out" required />
-                                </div>
-
-                            </div>
+                            <Password handlePassword={handlePassword} acceptedInput={acceptedInput} />
                             <div className="col-span-full">
                                 <button onClick={(e) => { submitAuth(e) }} type="submit" className="text-sm py-2 px-4 border focus:ring-2 h-10 rounded-full border-zinc-100 
                                 bg-white hover:bg-black text-black duration-200 focus:ring-offset-2 focus:ring-white hover:text-white

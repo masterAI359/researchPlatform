@@ -160,3 +160,26 @@ export const getInvestigationSources = (sources: string[], savedArticles: any) =
     const savedFromResearch = getSaved()
     return savedFromResearch
 }
+
+
+export const deleteUser = async (id: string, setDeleting: Function, setDeletesuccessful: Function) => {
+
+    try {
+        setDeleting(true)
+        const { data, error } = await supabase.auth.admin.deleteUser(
+            id
+        )
+
+        if (data) {
+            setDeletesuccessful(true)
+            return data
+        } else if (error) {
+            setDeletesuccessful(false)
+            return error.message
+        }
+    } catch (error) {
+        console.log(error)
+    }
+
+
+}

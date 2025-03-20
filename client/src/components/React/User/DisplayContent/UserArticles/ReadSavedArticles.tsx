@@ -26,11 +26,11 @@ export default function ReadSavedArticle() {
 
     return (
         <section
-            className="min-h-full 2xl:w-full xs:px-2 md:px-8 scroll-smooth
-      inset mx-auto xs:mt-10 xl:mt-20 relative">
+            className="min-h-full  2xl:w-full md:px-8 scroll-smooth
+      inset mx-auto sm:mt-10 xl:mt-20 relative">
             {articlesContext ? <BackToSavedArticles /> : <ReturnToReview />}
             <main
-                className="xl:max-w-7xl xl:w-4/5 lg:w-3/4 md:w-3/4  h-full xs:w-full mx-auto 
+                className="xl:max-w-7xl xl:w-4/5 lg:w-3/4 md:w-3/4 mt-16 sm:mt-12 w-72 h-full mx-auto 
                  transition-all duration-1000 animate-fade-in mb-12
                  xl:px-24
                  ">

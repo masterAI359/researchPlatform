@@ -14,7 +14,7 @@ export const fetchUserCredentials = createAsyncThunk(
 
         } catch (error) {
             if (error) {
-                console.log(error)
+                console.log(error.message)
             }
         }
 
@@ -89,10 +89,19 @@ export const AuthenticationSlice = createSlice({
                 state.status = 'pending'
             })
             .addCase(fetchUserCredentials.fulfilled, (state, action) => {
-                state.status = 'fulfilled';
-                state.user_id = action.payload.user.id
-                state.email = action.payload.user.email
-                state.authenticated = true
+                if (action.payload && action.payload.user) {
+                    state.status = 'fulfilled';
+                    state.user_id = action.payload.user?.id || null;
+                    state.email = action.payload.user.email;
+                    state.authenticated = true;
+                    state.activeSession = action.payload
+                } else {
+                    state.user_id = null;
+                    state.email = null;
+                    state.email = null;
+                    state.authenticated = false
+                }
+
             })
             .addCase(fetchUserCredentials.rejected, (state, action) => {
                 state.status = 'rejected'

@@ -57,16 +57,10 @@ export default function Signup() {
     const handleSecondEntry = (e: any) => {
         const secondEntry = e.target.value
         dispatch(getSecondPassword(secondEntry))
-        if (firstPassword) {
-
-            const confirmation = confirmPassword(firstPassword, secondEntry, setCanSubmit)
-
-            if (confirmation === false) {
-
-                dispatch(matchPasswords("Password entered must match the entry above"))
-            } else if (confirmation === true) {
-                dispatch(matchPasswords(null))
-            }
+        if (firstPassword && canSubmit === false) {
+            dispatch(matchPasswords("Password entered must match the entry above"))
+        } else {
+            dispatch(matchPasswords(null))
         }
     }
 
@@ -135,8 +129,12 @@ export default function Signup() {
             dispatch(showLengthRequirement(null))
         }
 
-        if (firstPassword && secondPassword && newEmail) {
+        if (firstPassword && newEmail) {
             checkInput()
+        }
+
+        if (firstPassword && secondPassword) {
+            confirmPassword(firstPassword, secondPassword, setCanSubmit)
         }
 
         return () => {
@@ -159,9 +157,9 @@ export default function Signup() {
                 <AnimatePresence>
                     {creating && <CreatingUser creating={creating} setCreating={setCreating} createdUser={createdUser} />}
                 </AnimatePresence>
-                <div className="mx-auto 2xl:max-w-7xl py-24 lg:px-16 md:px-12 px-8 xl:px-36">
-                    <div className="border-b pb-12">
-                        <p className="text-3xl tracking-tight font-light lg:text-4xl text-white">
+                <div className="mx-auto 2xl:max-w-7xl py-12 sm:py-24 lg:px-16 md:px-12 px-8 xl:px-36">
+                    <div className="border-b pb-4 sm:pb-12">
+                        <p className="text-2xl tracking-tight font-light lg:text-4xl text-white">
                             Sign up.
                         </p>
                         <p className="mt-2 text-sm text-zinc-400">Create an account with us.</p>
@@ -202,7 +200,7 @@ export default function Signup() {
                                     </p>
                                 </div>
                             </div>
-                            <AnimatePresence mode="popLayout">
+                            <AnimatePresence>
                                 {canSubmit !== true && <NewPasswordGuide />}
 
                             </AnimatePresence>

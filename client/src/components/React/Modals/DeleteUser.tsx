@@ -39,11 +39,11 @@ export default function DeleteUserAccount({ setShowModal }) {
                 <p className="mx-auto mt-6 text-sm text-white" />
                 {deleteSuccessful !== false ? <div className="inline-flex flex-no-wrap gap-x-4 items-center mt-8 w-full">
 
-                    <button onClick={() => setShowModal(false)} type="button" className="text-sm py-2 w-full px-4 border focus:ring-2 rounded-full border-transparent bg-white hover:bg-white/10 text-black duration-200 focus:ring-offset-2 focus:ring-white hover:text-white inline-flex items-center justify-center ring-1 ring-transparent">
-                        No
-                    </button>
                     <button onClick={() => deleteUser(id, setDeleting, setDeleteSuccessful)} type="button" className="text-sm py-2 w-full px-4 border focus:ring-2 rounded-full border-transparent bg-white hover:bg-white/10 text-black duration-200 focus:ring-offset-2 focus:ring-white hover:text-white inline-flex items-center justify-center ring-1 ring-transparent">
                         Yes
+                    </button>
+                    <button onClick={() => setShowModal(false)} type="button" className="text-sm py-2 w-full px-4 border focus:ring-2 rounded-full border-transparent bg-white hover:bg-white/10 text-black duration-200 focus:ring-offset-2 focus:ring-white hover:text-white inline-flex items-center justify-center ring-1 ring-transparent">
+                        No
                     </button>
                 </div> : <div className="mx-auto min-w-full min-h-full flex items-center justify-center">
                     <p className="text-white font-light tracking-tight text-lg">

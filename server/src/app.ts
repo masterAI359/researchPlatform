@@ -6,7 +6,8 @@ import { fileURLToPath } from 'url';
 import { createClient } from '@supabase/supabase-js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
+const supabaseURL = process.env.SUPABASE_URL as string
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY as string
 
 //TODO: get the service role key from supabase to allow users to delete their accounts if desired
 
@@ -16,6 +17,7 @@ import {
 	bingArticles,
 } from '../endpoints/bingApi.js';
 import { tldrSummary } from '../endpoints/tldrSummary.js'
+import { deleteUser } from '../endpoints/deleteUser.js'
 import pkg from 'pg';
 
 
@@ -57,7 +59,11 @@ app.options('*', (req, res) => {
 	res.sendStatus(200);
 });
 
-
+export const supabase = createClient(supabaseURL, supabaseServiceKey, {
+	auth: {
+		persistSession: true
+	}
+})
 
 const { Client } = pkg;
 const client = new Client(
@@ -77,12 +83,6 @@ client
 })();
 
 const port = 5001;
-
-//app.get('/', (req: Request, res: Response) => {
-//	res.send('Hello World');
-//});
-
-
 
 
 app.get('/api', async (req: Request, res: Response) => {

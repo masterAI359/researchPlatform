@@ -7,6 +7,8 @@ import { formPages } from "@/helpers/Presentation"
 import LinkPagination from "../Buttons/Pagination/LinkPagination"
 import Pages from "./Pages"
 import LinkLoader from "../Loaders/LinkLoader"
+import SearchFailed from "../ErrorMessages/SearchFailed"
+import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
 
 
 const container = {
@@ -27,7 +29,7 @@ const container = {
 export default function LinkGrid() {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { search } = investigateState
-    const { articles, status } = search
+    const { articles, status, pages } = search
     const dispatch = useDispatch()
 
 
@@ -37,6 +39,7 @@ export default function LinkGrid() {
             const formedPages = formPages(articles)
             dispatch(getPages(formedPages))
         }
+
 
     }, [status, articles])
 
@@ -48,22 +51,26 @@ export default function LinkGrid() {
             animate="show"
             exit="hidden"
             transition={{ type: 'tween', duration: 0.2 }}
-            className="h-full w-full"
+            className="h-full w-full min-h-screen"
         >
             <div className={`h-full w-full mx-auto relative`}>
-                <AnimatePresence>
+                <ErrorBoundary>
+                    <AnimatePresence>
 
-                    {status === 'pending' && <LinkLoader />}
-                    {status === 'fulfilled' && articles && <LinkPagination key={'pagerOne'} />}
-                    {status === 'fulfilled' && articles &&
-                        <motion.div layout key='pagesContainer' className="relative inset-0 py-6 min-h-screen">
-                            <Pages />
-                        </motion.div>}
+                        {status === 'pending' && <LinkLoader />}
+                        {status === 'fulfilled' && articles && <LinkPagination identifier={'TopPager'} />}
+                        {status === 'fulfilled' && articles &&
+                            <motion.div layout key='pagesContainer' className="relative lg:min-h-168 inset-0 py-6">
+                                <Pages />
+                            </motion.div>}
+                        {status === 'fulfilled' && !articles && <SearchFailed />}
 
-                    {status === 'fulfilled' && articles && <LinkPagination key={'pagerTwo'} />}
+                        {status === 'fulfilled' && articles && <LinkPagination identifier={'BottomPager'} key={'pagerTwo'} />}
 
 
-                </AnimatePresence>
+                    </AnimatePresence>
+                </ErrorBoundary>
+
 
             </div>
         </motion.div>

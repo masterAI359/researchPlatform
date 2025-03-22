@@ -8,7 +8,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const supabaseURL = process.env.SUPABASE_URL;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY;
-//TODO: get the service role key from supabase to allow users to delete their accounts if desired
 const app = express();
 import { bingArticles } from '../endpoints/bingApi.js';
 import { tldrSummary } from '../endpoints/tldrSummary.js';
@@ -42,7 +41,6 @@ const port = 5001;
 app.get('/search/articles', bingArticles);
 app.get('/summarize', tldrSummary);
 app.get('/deleteUser', deleteUser);
-// handling unkown routes, allowing client side routing on refresh with react-router-dom library
 app.get('*', (req, res) => {
     try {
         console.log("Serving: " + path.join(__dirname, 'dist', 'index.html'));

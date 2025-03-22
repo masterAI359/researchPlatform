@@ -9,14 +9,10 @@ const __dirname = path.dirname(__filename);
 const supabaseURL = process.env.SUPABASE_URL as string
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY as string
 
-//TODO: get the service role key from supabase to allow users to delete their accounts if desired
-
-
 const app = express();
 import { bingArticles } from '../endpoints/bingApi.js';
 import { tldrSummary } from '../endpoints/tldrSummary.js'
 import { deleteUser } from '../endpoints/deleteUser.js'
-import pkg from 'pg';
 
 
 dotenv.config({ path: '../../.env' })
@@ -71,7 +67,7 @@ app.get('/search/articles', bingArticles);
 app.get('/summarize', tldrSummary);
 app.get('/deleteUser', deleteUser)
 
-// handling unkown routes, allowing client side routing on refresh with react-router-dom library
+
 app.get('*', (req: Request, res: Response) => {
 	try {
 		console.log("Serving: " + path.join(__dirname, 'dist', 'index.html'))
@@ -83,7 +79,6 @@ app.get('*', (req: Request, res: Response) => {
 			res.status(500).send('Lost Network Connection')
 		}
 	}
-
 })
 
 

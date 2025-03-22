@@ -54,8 +54,8 @@ const Step5Help: Help[] = [{
 }]
 
 const SummaryHelp: Help[] = [{
-    heading: "Test",
-    explanation: "test"
+    heading: "What do I do when I'm done reading?",
+    explanation: "On the panel of buttons at the bottom of the screen (bottom left if using a desktop) click the blue checkmark button when you're finished reading"
 }]
 
 const ResearchHelp: Help[] = [{

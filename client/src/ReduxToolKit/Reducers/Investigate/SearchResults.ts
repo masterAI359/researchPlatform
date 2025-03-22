@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { ArticleType } from "@/env";
 import { fetchArticles } from "@/helpers/FetchRequests";
 import { decrement, increment, incrementBy } from "./Steps";
+import { act } from "react";
 
 export const RetrieveArticles = createAsyncThunk(
     'investigate/fetchArticles',
@@ -61,7 +62,12 @@ export const SearchResultsSlice = createSlice({
         }),
             builder.addCase(RetrieveArticles.fulfilled, (state, action) => {
                 state.status = 'fulfilled'
-                state.articles = action.payload
+                if (action.payload.length === 0) {
+                    state.articles = null
+                } else {
+                    state.articles = action.payload
+
+                }
             }),
             builder.addCase(RetrieveArticles.rejected, (state, action) => {
                 state.status = 'rejected';

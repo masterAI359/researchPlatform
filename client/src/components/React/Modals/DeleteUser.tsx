@@ -1,12 +1,14 @@
 import { motion } from "framer-motion";
 import { createPortal } from "react-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import { useEffect, useState } from "react";
 import Lottie from "lottie-react";
 import blueCheck from '../../../lotties/blueCheck.json'
 import Loader from "../Loaders/Loader";
-
+import { presentDeleteModal } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
+import { useNavigate } from "react-router-dom";
+import { clearAuthSlice } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
 
 const variants = {
     closed: { opacity: 0 },
@@ -14,13 +16,31 @@ const variants = {
 }
 
 
-export default function DeleteUserAccount({ setShowModal }) {
+export default function DeleteUserAccount({ }) {
     const id = useSelector((state: RootState) => state.auth.user_id)
     const [deleting, setDeleting] = useState<boolean>(null)
     const [deleteSuccessful, setDeleteSuccessful] = useState<boolean>(null)
     const [responseMessage, setResponseMessage] = useState<string>(null)
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
-    console.log(id)
+
+    const redirect = () => {
+
+        setTimeout(() => {
+
+            navigate('/')
+        }, 200);
+
+    }
+
+    const removeModal = () => {
+        setTimeout(() => {
+
+            dispatch(presentDeleteModal(false))
+            redirect()
+        }, 1500);
+    }
 
 
 
@@ -61,15 +81,12 @@ export default function DeleteUserAccount({ setShowModal }) {
     }
 
     useEffect(() => {
-        const timer = () => {
-            setTimeout(() => {
 
-                setShowModal(false)
-            }, 1000)
-        }
 
         if (deleteSuccessful) {
-            timer()
+            dispatch(clearAuthSlice())
+            removeModal()
+
         }
 
     }, [deleteSuccessful])
@@ -85,8 +102,8 @@ export default function DeleteUserAccount({ setShowModal }) {
             animate="open"
             exit="closed"
             transition={{ duration: 0.2, type: 'tween' }}
-            className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50
-         xl:min-w-96 xl:min-h-80 w-80 flex flex-col items-start gap-x-8 gap-y-6 rounded-3xl p-8 
+            className="fixed top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50
+         xl:min-w-96 xl:min-h-80 w-80 flex flex-col items-start gap-x-8 gap-y-6 rounded-3xl p-6 
         sm:gap-y-10 sm:p-10 lg:col-span-2 lg:flex-row lg:items-center bg-ebony mt-2 
         shadow-inset text-center">
             <div className="lg:min-w-0 lg:flex-1 max-w-sm mx-auto">
@@ -96,7 +113,7 @@ export default function DeleteUserAccount({ setShowModal }) {
                     <span className="text-base font-medium text-zinc-400">This action cannot be undone</span><br></br>
                 </p>
                 <p className="mx-auto mt-6 text-sm text-white" />
-                {deleting === null && <DeleteAccountButtons id={id} setShowModal={setShowModal} deleteAccount={deleteAccount} />}
+                {deleting === null && <DeleteAccountButtons id={id} deleteAccount={deleteAccount} />}
                 {deleting === true && <PendingDeletion />}
                 {deleteSuccessful === true && <Deleted />}
 
@@ -112,17 +129,18 @@ export default function DeleteUserAccount({ setShowModal }) {
 }
 
 
-function DeleteAccountButtons({ setShowModal, deleteAccount, id }) {
+function DeleteAccountButtons({ deleteAccount, id }) {
+    const dispatch = useDispatch()
 
     return (
-        <div className="inline-flex flex-no-wrap gap-x-4 items-center mt-8 w-full">
-
+        <div className="inline-flex flex-no-wrap gap-x-8 items-center mt-8 w-full">
+            <button onClick={() => dispatch(presentDeleteModal(false))} type="button" className="text-sm py-2 w-full px-4 border focus:ring-2 rounded-full border-transparent bg-white hover:bg-white/10 text-black duration-200 focus:ring-offset-2 focus:ring-white hover:text-white inline-flex items-center justify-center ring-1 ring-transparent">
+                No
+            </button>
             <button onClick={() => deleteAccount(id)} type="button" className="text-sm py-2 w-full px-4 border focus:ring-2 rounded-full border-transparent bg-white hover:bg-white/10 text-black duration-200 focus:ring-offset-2 focus:ring-white hover:text-white inline-flex items-center justify-center ring-1 ring-transparent">
                 Yes
             </button>
-            <button onClick={() => setShowModal(false)} type="button" className="text-sm py-2 w-full px-4 border focus:ring-2 rounded-full border-transparent bg-white hover:bg-white/10 text-black duration-200 focus:ring-offset-2 focus:ring-white hover:text-white inline-flex items-center justify-center ring-1 ring-transparent">
-                No
-            </button>
+
         </div>
     )
 }
@@ -132,7 +150,7 @@ function PendingDeletion() {
 
     return (
         <div className="flex flex-nowrap justify-center w-full h-fit">
-            <div className="flex items-center w-fit mx-auto">
+            <div className="flex items-center gap-x-6 w-fit mx-auto">
                 <div className="text-zinc-400 font-light tracking-tight text-sm">
                     Deleting your account
                 </div>
@@ -152,7 +170,7 @@ function Deleted() {
         <div className="flex flex-nowrap justify-center w-full h-fit">
             <div className="flex items-center w-fit mx-auto">
                 <div className="text-zinc-400 font-light tracking-tight text-sm">
-                    Deleting your account
+                    Account Deleted Successfully
                 </div>
                 <div className="w-7 h-7 flex justify-center items-center relative">
                     <Lottie animationData={blueCheck} loop={false} autoPlay={true} className="absolute h-full w-full" />

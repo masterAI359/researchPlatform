@@ -3,7 +3,7 @@ import { RootState } from "@/ReduxToolKit/store"
 import { useEffect, useState } from "react"
 import { showLengthRequirement } from "@/ReduxToolKit/Reducers/Athentication/NewUserSlice"
 
-export default function NewPassword({ acceptedInput, canSubmit, handlePassword, first_pw_valid }) {
+export default function NewPassword({ acceptedInput, canSubmit, handlePassword, first_pw_valid, needSpecialChar }) {
     const passwordLengthRequired = useSelector((state: RootState) => state.newUser.passWordLengthRequired)
     const [showPassword, setShowPassword] = useState<boolean>(false)
     const newEmail = useSelector((state: RootState) => state.newUser.emailInput)
@@ -11,14 +11,14 @@ export default function NewPassword({ acceptedInput, canSubmit, handlePassword, 
 
     useEffect(() => {
 
-
+        console.log(newEmail)
 
         if (first_pw_valid === false) {
             dispatch(showLengthRequirement('password must be at least 8 characters'))
         } else if (first_pw_valid === true) {
             dispatch(showLengthRequirement(null))
         }
-    }, [first_pw_valid, canSubmit, acceptedInput, handlePassword])
+    }, [first_pw_valid, canSubmit, acceptedInput, handlePassword, needSpecialChar, newEmail])
 
     return (
         <div className="col-span-full">
@@ -29,6 +29,7 @@ export default function NewPassword({ acceptedInput, canSubmit, handlePassword, 
                             Password
                         </div>
                         {passwordLengthRequired && first_pw_valid === false && <p className="text-xs sm:text-sm font-light text-red-500">{passwordLengthRequired}</p>}
+                        {needSpecialChar && <p className="text-xs sm:text-sm font-light text-red-500">{needSpecialChar}</p>}
                         <div className="w-fit">
                             {canSubmit === true && <svg xmlns="http://www.w3.org/2000/svg" className={`icon icon-tabler icon-tabler-check text-green-500 mx-auto`} width={16} height={16} viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />

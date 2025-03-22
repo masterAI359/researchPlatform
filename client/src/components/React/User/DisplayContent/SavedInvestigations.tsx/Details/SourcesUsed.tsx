@@ -21,7 +21,7 @@ export default function SourcesUsed() {
                         </h2>
                     </div>
                     <div className="h-full w-full mt-12">
-                        <ul className="flex flex-col gap-12">
+                        <ul className="flex flex-col h-auto gap-12">
                             {sources.length > 0 ? sources?.map((source: any, index: number) => (
                                 <li>
                                     <ArticleSaved key={index} index={index} article={source} />

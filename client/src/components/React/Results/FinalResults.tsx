@@ -7,16 +7,23 @@ import { useEffect } from "react"
 import { AnimatePresence } from "framer-motion"
 import SavingResearch from "../Forms/AuthNotifications/SavingResearch"
 import { clearState } from "@/ReduxToolKit/Reducers/UserContent.ts/SaveInvestigationSlice"
+import ViewMyInvestigations from "../Buttons/ProcessButtons/ViewMyInvestigations"
+import { switchButtons } from "@/ReduxToolKit/Reducers/UserContent.ts/SaveInvestigationSlice"
 
 
 export default function FinalResults() {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const saveStatus = useSelector((state: RootState) => state.saveResearch.status)
+    const swapButtons = useSelector((state: RootState) => state.saveResearch.swapButtons)
     const dispatch = useDispatch()
     const { pov } = investigateState
     const { idea } = pov
 
     useEffect(() => {
+
+        if (saveStatus === 'fulfilled') {
+            dispatch(switchButtons(true))
+        }
 
     }, [saveStatus])
 
@@ -47,7 +54,7 @@ export default function FinalResults() {
                 </div>
 
                 <div className="flex mt-16 gap-x-2 2xl:gap-x-6 w-1/2 justify-center mx-auto">
-                    <SaveInvestigation />
+                    {swapButtons === true ? <ViewMyInvestigations /> : <SaveInvestigation />}
                     <InvestigateMore />
                 </div>
             </div>

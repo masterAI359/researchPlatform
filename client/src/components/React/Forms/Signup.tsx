@@ -117,6 +117,7 @@ export default function Signup() {
         if (firstPassword && secondPassword) {
             confirmPassword(firstPassword, secondPassword, setCanSubmit, setNeedSpecialChar)
             console.log({ "Can Submit": canSubmit })
+            console.log(needSpecialChar)
         }
 
         if (canSubmit === false) {
@@ -125,7 +126,6 @@ export default function Signup() {
             dispatch(matchPasswords(''))
         }
 
-        //    return () => { dispatch(clearNewUser()) }
 
     }, [firstPassword, secondPassword, acceptedInput, canSubmit, dispatch, newEmail, confirmPassword])
 
@@ -162,7 +162,7 @@ export default function Signup() {
                         <form>
                             <div className="space-y-4">
                                 <NewEmail emailValid={emailValid} enterValidEmail={enterValidEmail} setEmailValid={setEmailValid} />
-                                <NewPassword first_pw_valid={first_pw_valid} acceptedInput={acceptedInput} canSubmit={canSubmit} handlePassword={handlePassword} />
+                                <NewPassword needSpecialChar={needSpecialChar} first_pw_valid={first_pw_valid} acceptedInput={acceptedInput} canSubmit={canSubmit} handlePassword={handlePassword} />
                                 <ConfirmNewPassword acceptedInput={acceptedInput} canSubmit={canSubmit} handleSecondEntry={handleSecondEntry} setCanSubmit={setCanSubmit} setNeedSpecialChar={setNeedSpecialChar} />
                                 <div className="col-span-full">
                                     <button onClick={(e) => submitAccountCreation(e)} type="submit" className="text-sm py-2 px-4 border focus:ring-2 h-10 rounded-full border-zinc-100 

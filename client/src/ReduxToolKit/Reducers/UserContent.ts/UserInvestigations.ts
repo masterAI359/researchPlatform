@@ -63,6 +63,7 @@ const userInvestigationsSlice = createSlice({
             .addCase(fetchSavedInvestigations.fulfilled, (state, action) => {
                 state.status = 'fulfilled';
                 state.userResearch = action.payload
+
             })
             .addCase(fetchSavedInvestigations.rejected, (state, action) => {
                 state.status = 'rejected'

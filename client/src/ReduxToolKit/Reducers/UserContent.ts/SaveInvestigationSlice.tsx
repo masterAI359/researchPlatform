@@ -8,13 +8,15 @@ import { supabase } from "@/SupaBase/supaBaseClient";
 interface SaveInvestigation {
     status: string,
     saved: boolean,
-    sources: string[] | null
+    sources: string[] | null,
+    swapButtons: boolean | null
 }
 
 const initialState: SaveInvestigation = {
     status: 'idle',
     saved: false,
-    sources: null
+    sources: null,
+    swapButtons: false
 }
 
 export const saveUserInvestigation = createAsyncThunk(
@@ -58,6 +60,9 @@ const SaveInvestigationSlice = createSlice({
         recordSources: (state, action) => {
             state.sources = action.payload
         },
+        switchButtons: (state, action) => {
+            state.swapButtons = action.payload
+        },
         clearState: () => initialState
     },
     extraReducers: (builder) => {
@@ -77,6 +82,6 @@ const SaveInvestigationSlice = createSlice({
     }
 })
 
-export const { removeNotification, clearState, recordSources } = SaveInvestigationSlice.actions
+export const { removeNotification, clearState, recordSources, switchButtons } = SaveInvestigationSlice.actions
 
 export default SaveInvestigationSlice.reducer

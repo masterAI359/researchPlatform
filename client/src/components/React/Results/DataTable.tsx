@@ -11,7 +11,11 @@ export default function DataTable() {
     const { endingPerspective, merit, movedOnIdea } = review
 
 
-    const changed = endingPerspective === perspective
+    const changed = endingPerspective !== perspective
+
+    const finalOpinion = endingPerspective === 'Agree'
+
+    console.log(endingPerspective, perspective, changed)
 
     return (
         <table className="w-full 2xl:min-h-72 table-fixed border-separate border-spacing-x-10 text-left">
@@ -41,27 +45,6 @@ export default function DataTable() {
                     </th>
                 </tr>
                 <tr className="h-full 2xl:min-h-20">
-                    <th scope="row" className="py-4 text-xs md:text-sm 2xl:text-lg font-normal leading-6 text-white">
-                        Agree
-                        <div className="absolute inset-x-8 mt-4 h-px bg-ebony/50" />
-                    </th>
-                    <td className="px-6 py-4 xl:px-8">
-                        {endingPerspective !== perspective && <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-check text-green-500 mx-auto" width={16} height={16} viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M5 12l5 5l10 -10" />
-                        </svg>}
-                        <span className="sr-only">Included in Basic</span>
-                    </td>
-                    <td className="px-6 py-4 xl:px-8">
-                        {endingPerspective === perspective && <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-check text-green-500 mx-auto" width={16} height={16} viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M5 12l5 5l10 -10" />
-                        </svg>}
-                        <span className="sr-only">Included in Essential</span>
-                    </td>
-
-                </tr>
-                <tr className="h-full 2xl:min-h-20">
                     <th scope="row" className="py-4 text-xs 2xl:text-lg font-normal text-nowrap leading-6 text-white">
                         Had Merit
                         <div className="absolute inset-x-8 mt-4 h-px bg-ebony/50" />
@@ -74,6 +57,13 @@ export default function DataTable() {
                         <div className="absolute inset-x-8 mt-4 h-px bg-ebony/50" />
                     </th>
                     <TableRow truthyValue={changed} />
+                </tr>
+                <tr className="h-full 2xl:min-h-20">
+                    <th scope="row" className="py-4 text-xs md:text-sm 2xl:text-lg font-normal leading-6 text-white">
+                        Agree
+                        <div className="absolute inset-x-8 mt-4 h-px bg-ebony/50" />
+                    </th>
+                    <TableRow truthyValue={finalOpinion} />
                 </tr>
             </tbody>
         </table>

@@ -47,7 +47,7 @@ export default function HeroImage() {
 						</p>
 						<div className='relative w-full sm:w-[75%]   mt-8'>
 							<div className="flex gap-x-6 items-center w-full">
-								<GetStarted />
+								{!id && <GetStarted />}
 								<LearnMore />
 
 							</div>

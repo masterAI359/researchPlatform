@@ -4,11 +4,13 @@ interface NavigateProfile {
 
     displaySavedArticles: boolean,
     displaySavedInvestigations: boolean,
+    displayDeleteModal: boolean
 }
 
 const initialState: NavigateProfile = {
     displaySavedArticles: false,
-    displaySavedInvestigations: true
+    displaySavedInvestigations: true,
+    displayDeleteModal: false
 }
 
 
@@ -22,11 +24,14 @@ const ProfileNavigationSlice = createSlice({
         },
         presentResearch: (state, action) => {
             state.displaySavedInvestigations = action.payload
+        },
+        presentDeleteModal: (state, action) => {
+            state.displayDeleteModal = action.payload
         }
     }
 })
 
 
-export const { presentArticles, presentResearch } = ProfileNavigationSlice.actions
+export const { presentArticles, presentResearch, presentDeleteModal } = ProfileNavigationSlice.actions
 
 export default ProfileNavigationSlice.reducer

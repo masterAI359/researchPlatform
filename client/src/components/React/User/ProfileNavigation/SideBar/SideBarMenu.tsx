@@ -2,20 +2,27 @@ import { useDispatch, useSelector } from "react-redux";
 import { presentArticles, presentResearch } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
 import { showSignOut } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
 import Boards from "./Boards";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import DeleteUserAccount from "@/components/React/Modals/DeleteUser";
-
+import { AppDispatch, RootState } from "@/ReduxToolKit/store";
+import { presentDeleteModal } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
 
 export default function SideBarMenu({ }) {
-    const [showModal, setShowModal] = useState<boolean>(false)
+    const showDeleteModal = useSelector((state: RootState) => state.profileNav.displayDeleteModal)
     const dispatch = useDispatch()
+
+    useEffect(() => {
+
+        console.log(showDeleteModal)
+
+    }, [showDeleteModal])
 
     return (
 
         <div className="hidden md:block absolute left-0 z-30 transition-all duration-200 ease-in-out">
             <AnimatePresence>
-                {showModal && <DeleteUserAccount setShowModal={setShowModal} />}
+                {showDeleteModal === true && <DeleteUserAccount />}
             </AnimatePresence>
             <button data-drawer-target="separator-sidebar" data-drawer-toggle="separator-sidebar" aria-controls="separator-sidebar" type="button" className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
                 <span className="sr-only">Open sidebar</span>
@@ -61,15 +68,6 @@ export default function SideBarMenu({ }) {
                         {/* <Boards /> <------adding at a later date when react-flow is implemented to draw maps of larger arguments */}
                     </ul>
                     <ul className="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
-                        <li onClick={() => setShowModal(true)}>
-                            <a href="#" className="flex items-center p-2 rounded-lg dark:text-white hover:bg-white/10 group">
-                                <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"
-                                    className="icon icon-tabler text-white/60 group-hover:text-red-500 transition-all duration-200 ease-in-out icons-tabler-outline icon-tabler-trash"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg>
-
-                                <span className="flex-1 ms-3 whitespace-nowrap font-light">Delete Account</span>
-                            </a>
-
-                        </li>
                         <li onClick={() => dispatch(showSignOut(true))}>
                             <a href="#" className="flex items-center p-2 rounded-lg dark:text-white hover:bg-white/10 group">
                                 <svg className="shrink-0 w-6 h-6 text-white/60 transition duration-75  group-hover:text-gray-900 dark:group-hover:text-white" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0,0,256,256">
@@ -80,7 +78,13 @@ export default function SideBarMenu({ }) {
                                 <span className="flex-1 ms-3 whitespace-nowrap font-light">Sign Out</span>
                             </a>
                         </li>
-
+                        <li onClick={() => { dispatch(presentDeleteModal(true)) }}>
+                            <a href="#" className="flex items-center p-2 rounded-lg dark:text-white hover:bg-white/10 group">
+                                <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"
+                                    className="icon icon-tabler text-white/60 group-hover:text-red-500 transition-all duration-200 ease-in-out icons-tabler-outline icon-tabler-trash"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg>
+                                <span className="flex-1 ms-3 whitespace-nowrap font-light">Delete Account</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </aside>

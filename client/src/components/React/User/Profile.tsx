@@ -9,7 +9,6 @@ import ProfileMenu from "./ProfileNavigation/ProfileMenu";
 import SideBarMenu from "./ProfileNavigation/SideBar/SideBarMenu";
 import SavedArticles from "./DisplayContent/UserArticles/SavedArticles";
 import SavedResearchLayout from "./DisplayContent/SavedInvestigations.tsx/SavedResearchLayout";
-import DeleteUserAccount from "../Modals/DeleteUser";
 
 export default function Profile() {
     const displaySavedInvestigations = useSelector((state: RootState) => state.profileNav.displaySavedInvestigations)

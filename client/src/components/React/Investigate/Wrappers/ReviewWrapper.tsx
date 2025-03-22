@@ -6,6 +6,7 @@ import ReviewQuestions from "../Review/ReviewQuestions"
 export default function FinishLine() {
     const [step, setStep] = useState<number>(1)
 
+
     return (
         <main className="w-full h-full flex flex-col items-center gap-y-2 px-2">
             <article
@@ -22,7 +23,7 @@ export default function FinishLine() {
             </article>
             <footer className="w-full mx-auto">
                 <div className="w-full h-auto mx-auto block">
-                    <ReviewPagination setStep={setStep} />
+                    <ReviewPagination step={step} setStep={setStep} />
                 </div>
             </footer>
         </main>

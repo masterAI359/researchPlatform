@@ -1,9 +1,12 @@
 import { motion } from "framer-motion";
 import { createPortal } from "react-dom";
-import { deleteUser } from "@/helpers/SupabaseData"
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Lottie from "lottie-react";
+import blueCheck from '../../../lotties/blueCheck.json'
+import Loader from "../Loaders/Loader";
+
 
 const variants = {
     closed: { opacity: 0 },
@@ -15,8 +18,64 @@ export default function DeleteUserAccount({ setShowModal }) {
     const id = useSelector((state: RootState) => state.auth.user_id)
     const [deleting, setDeleting] = useState<boolean>(null)
     const [deleteSuccessful, setDeleteSuccessful] = useState<boolean>(null)
+    const [responseMessage, setResponseMessage] = useState<string>(null)
 
-    console.log(typeof id)
+    console.log(id)
+
+
+
+    const deleteAccount = async (id: string) => {
+
+        const encodedID = encodeURIComponent(id)
+
+        console.log(encodedID)
+
+        const options: OptionsTypes = {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'text/plain',
+            },
+        };
+
+        try {
+            setDeleting(true)
+            const deletion = await fetch(`/deleteUser?q=${encodedID}`, options)
+            if (!deletion.ok) {
+                throw new Error('Failed to connect to the database')
+            }
+
+            const response = await deletion.text()
+            if (response) {
+                setResponseMessage(response)
+                setDeleteSuccessful(true)
+                console.log(response)
+            }
+
+        } catch (error) {
+            setDeleteSuccessful(false)
+            console.log(error)
+        } finally {
+            setDeleting(false)
+        }
+    }
+
+    useEffect(() => {
+        const timer = () => {
+            setTimeout(() => {
+
+                setShowModal(false)
+            }, 1000)
+        }
+
+        if (deleteSuccessful) {
+            timer()
+        }
+
+    }, [deleteSuccessful])
+
+    console.log(deleteSuccessful)
+
 
     const modal = (
         <motion.div
@@ -37,19 +96,9 @@ export default function DeleteUserAccount({ setShowModal }) {
                     <span className="text-base font-medium text-zinc-400">This action cannot be undone</span><br></br>
                 </p>
                 <p className="mx-auto mt-6 text-sm text-white" />
-                {deleteSuccessful !== false ? <div className="inline-flex flex-no-wrap gap-x-4 items-center mt-8 w-full">
-
-                    <button onClick={() => deleteUser(id, setDeleting, setDeleteSuccessful)} type="button" className="text-sm py-2 w-full px-4 border focus:ring-2 rounded-full border-transparent bg-white hover:bg-white/10 text-black duration-200 focus:ring-offset-2 focus:ring-white hover:text-white inline-flex items-center justify-center ring-1 ring-transparent">
-                        Yes
-                    </button>
-                    <button onClick={() => setShowModal(false)} type="button" className="text-sm py-2 w-full px-4 border focus:ring-2 rounded-full border-transparent bg-white hover:bg-white/10 text-black duration-200 focus:ring-offset-2 focus:ring-white hover:text-white inline-flex items-center justify-center ring-1 ring-transparent">
-                        No
-                    </button>
-                </div> : <div className="mx-auto min-w-full min-h-full flex items-center justify-center">
-                    <p className="text-white font-light tracking-tight text-lg">
-                        {deleting && 'Deleting your account'}
-                    </p>
-                </div>}
+                {deleting === null && <DeleteAccountButtons id={id} setShowModal={setShowModal} deleteAccount={deleteAccount} />}
+                {deleting === true && <PendingDeletion />}
+                {deleteSuccessful === true && <Deleted />}
 
             </div>
         </motion.div>)
@@ -62,3 +111,53 @@ export default function DeleteUserAccount({ setShowModal }) {
 
 }
 
+
+function DeleteAccountButtons({ setShowModal, deleteAccount, id }) {
+
+    return (
+        <div className="inline-flex flex-no-wrap gap-x-4 items-center mt-8 w-full">
+
+            <button onClick={() => deleteAccount(id)} type="button" className="text-sm py-2 w-full px-4 border focus:ring-2 rounded-full border-transparent bg-white hover:bg-white/10 text-black duration-200 focus:ring-offset-2 focus:ring-white hover:text-white inline-flex items-center justify-center ring-1 ring-transparent">
+                Yes
+            </button>
+            <button onClick={() => setShowModal(false)} type="button" className="text-sm py-2 w-full px-4 border focus:ring-2 rounded-full border-transparent bg-white hover:bg-white/10 text-black duration-200 focus:ring-offset-2 focus:ring-white hover:text-white inline-flex items-center justify-center ring-1 ring-transparent">
+                No
+            </button>
+        </div>
+    )
+}
+
+
+function PendingDeletion() {
+
+    return (
+        <div className="flex flex-nowrap justify-center w-full h-fit">
+            <div className="flex items-center w-fit mx-auto">
+                <div className="text-zinc-400 font-light tracking-tight text-sm">
+                    Deleting your account
+                </div>
+                <div className="w-7 h-7 flex justify-center items-center relative">
+                    <Loader />
+                </div>
+            </div>
+        </div>
+    )
+}
+
+
+
+function Deleted() {
+
+    return (
+        <div className="flex flex-nowrap justify-center w-full h-fit">
+            <div className="flex items-center w-fit mx-auto">
+                <div className="text-zinc-400 font-light tracking-tight text-sm">
+                    Deleting your account
+                </div>
+                <div className="w-7 h-7 flex justify-center items-center relative">
+                    <Lottie animationData={blueCheck} loop={false} autoPlay={true} className="absolute h-full w-full" />
+                </div>
+            </div>
+        </div>
+    )
+}

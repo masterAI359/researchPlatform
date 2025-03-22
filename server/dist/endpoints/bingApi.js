@@ -70,7 +70,6 @@ export const bingArticles = (req, res) => __awaiter(void 0, void 0, void 0, func
             date: new Date().getDate(),
             data: organizedData,
         };
-        console.log(result);
         res.send(result);
     }
     catch (err) {

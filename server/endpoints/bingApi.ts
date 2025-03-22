@@ -70,7 +70,6 @@ export const bingArticles = async (req: Request, res: Response) => {
 			date: new Date().getDate(),
 			data: organizedData,
 		};
-		console.log(result)
 		res.send(result);
 	} catch (err) {
 		console.error('error', err);

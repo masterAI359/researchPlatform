@@ -12,23 +12,30 @@ dotenv.config({ path: envPath })
 
 export const deleteUser = async (req: Request, res: Response) => {
 
+    console.log('endpoint hit')
+
     const user = req.query.q as string;
 
-    try {
-        const { data, error } = await supabase.auth.admin.deleteUser(
-            user
-        )
+    console.log(user)
 
+    const decodedUser = decodeURIComponent(user)
+
+    console.log(decodedUser)
+
+    try {
+        console.log('deleting')
+        const { data, error } = await supabase.auth.admin.deleteUser(
+            decodedUser
+        )
         if (data) {
-            console.log(data)
-            res.send('Account deleted successfully')
+            console.log({ 'Data Recieved': data })
         } else if (error) {
             console.log(error.message)
-            res.send('There was an issue deleting your account')
         }
+        return res.send({ response: data })
 
     } catch (error) {
-        console.log(error)
-
+        console.log({ 'Encountered Error': error })
+        return res.status(500).json({ message: error })
     }
 }

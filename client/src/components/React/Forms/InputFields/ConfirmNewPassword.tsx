@@ -1,13 +1,30 @@
 import { RootState } from "@/ReduxToolKit/store"
-import { useState } from "react"
-import { useSelector } from "react-redux"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { confirmPassword } from "@/helpers/validation"
+import { getSecondPassword } from "@/ReduxToolKit/Reducers/Athentication/NewUserSlice"
 
 
 
-
-export default function ConfirmNewPassword({ acceptedInput, canSubmit, handleSecondEntry }) {
+export default function ConfirmNewPassword({ acceptedInput, canSubmit, setCanSubmit, setNeedSpecialChar, handleSecondEntry }) {
     const mustMatchPasswords = useSelector((state: RootState) => state.newUser.mustMatchFirstPassword)
+    const firstPassword = useSelector((state: RootState) => state.newUser.firstPassword)
+    const secondPassword = useSelector((state: RootState) => state.newUser.secondPassword)
     const [showPassword, setShowPassword] = useState<boolean>(false)
+    const dispatch = useDispatch()
+
+
+
+
+    useEffect(() => {
+
+        console.log(secondPassword)
+
+        if (firstPassword && secondPassword) {
+            confirmPassword(firstPassword, secondPassword, setCanSubmit, setNeedSpecialChar)
+        }
+
+    }, [firstPassword, mustMatchPasswords, canSubmit, secondPassword])
 
     return (
         <div className="col-span-full">

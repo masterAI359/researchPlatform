@@ -13,9 +13,7 @@ const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY as string
 
 
 const app = express();
-import {
-	bingArticles,
-} from '../endpoints/bingApi.js';
+import { bingArticles } from '../endpoints/bingApi.js';
 import { tldrSummary } from '../endpoints/tldrSummary.js'
 import { deleteUser } from '../endpoints/deleteUser.js'
 import pkg from 'pg';
@@ -65,39 +63,13 @@ export const supabase = createClient(supabaseURL, supabaseServiceKey, {
 	}
 })
 
-const { Client } = pkg;
-const client = new Client(
-	'postgresql://said:LWK2SWytsTGJFYIyWHBP3Q@cluster0-14450.7tt.aws-us-east-1.cockroachlabs.cloud:26257/elenchus?sslmode=verify-full'
-);
-client
-	.connect()
-	.then(() => console.log('Connected to the Elenchus Database'))
-	.catch((err: Error) => console.error('Error connecting to database: ', err));
-
-(async () => {
-	try {
-		const results = await client.query('SELECT NOW()');
-	} catch (err) {
-		console.error('error executing query:', err);
-	}
-})();
 
 const port = 5001;
 
 
-app.get('/api', async (req: Request, res: Response) => {
-	try {
-		const queryResult = await client.query('SELECT NOW() as current_time;');
-		const currentTime = queryResult.rows[0].current_time;
-		res.send(`Current Time: ${currentTime}`);
-	} catch (err: any) {
-		console.error('Error executing query', err.stack);
-		res.status(500).send('Error executing query');
-	}
-});
-
 app.get('/search/articles', bingArticles);
 app.get('/summarize', tldrSummary);
+app.get('/deleteUser', deleteUser)
 
 // handling unkown routes, allowing client side routing on refresh with react-router-dom library
 app.get('*', (req: Request, res: Response) => {

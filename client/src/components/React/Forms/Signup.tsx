@@ -26,28 +26,17 @@ export default function Signup() {
     const [createdUser, setCreatedUser] = useState<boolean>(null)
     const [emailValid, setEmailValid] = useState<boolean>(null)
     const [errorMessage, setErrorMessage] = useState<string>(null)
+    const [needSpecialChar, setNeedSpecialChar] = useState<string>(null)
     const newEmail = useSelector((state: RootState) => state.newUser.emailInput)
     const firstPassword = useSelector((state: RootState) => state.newUser.firstPassword)
     const secondPassword = useSelector((state: RootState) => state.newUser.secondPassword)
     const enterValidEmail = useSelector((state: RootState) => state.newUser.enterValidEmail)
     const dispatch = useDispatch()
 
-    const checkEmail = () => {
-        setTimeout(() => {
-            emailValidation(newEmail, setEmailValid)
-        }, 1000);
-    }
 
-    const handleEmail = (e: any) => {
 
-        const email = e.target.value
-        dispatch(getNewEmail(email))
-        const splitEmail = email?.split('')
 
-        if (email && splitEmail.length > 4) {
-            checkEmail()
-        }
-    }
+
 
     const handlePassword = (e: any) => {
         const password = e.target.value
@@ -57,11 +46,8 @@ export default function Signup() {
     const handleSecondEntry = (e: any) => {
         const secondEntry = e.target.value
         dispatch(getSecondPassword(secondEntry))
-        if (canSubmit === false) {
-            dispatch(matchPasswords("Password entered must match the entry above"))
-        } else if (canSubmit === true) {
-            dispatch(matchPasswords(''))
-        }
+        console.log('dispatching')
+        console.log(secondPassword)
     }
 
 
@@ -79,13 +65,16 @@ export default function Signup() {
                     password: secondPassword,
                 })
                 if (error) {
-                    console.log(error)
                     setCreatedUser(false)
                     if (error.message.toLocaleLowerCase().includes('already registered')) {
                         setErrorMessage('You already have an account!')
                     }
                 } else if (data) {
                     setCreatedUser(true)
+                    setCanSubmit(null)
+                    setAcceptedInput(null)
+                    setValidFirstPassword(null)
+                    setErrorMessage(null)
                 }
 
             } catch (error) {
@@ -105,7 +94,6 @@ export default function Signup() {
 
         e.preventDefault()
 
-        console.log(canSubmit)
 
         if (emailValid && canSubmit) {
             createUser()
@@ -116,18 +104,10 @@ export default function Signup() {
 
     useEffect(() => {
 
-        console.log(errorMessage)
-
         if (emailValid === false) {
             dispatch(requestValidEmail('please enter a valid email address'))
         } else if (emailValid === true) {
             dispatch(requestValidEmail(null))
-        }
-
-        if (first_pw_valid === false) {
-            dispatch(showLengthRequirement('password must be at least 8 characters'))
-        } else if (first_pw_valid === true) {
-            dispatch(showLengthRequirement(null))
         }
 
         if (firstPassword && newEmail) {
@@ -135,19 +115,17 @@ export default function Signup() {
         }
 
         if (firstPassword && secondPassword) {
-            confirmPassword(firstPassword, secondPassword, setCanSubmit)
+            confirmPassword(firstPassword, secondPassword, setCanSubmit, setNeedSpecialChar)
+            console.log({ "Can Submit": canSubmit })
         }
 
-        return () => {
-            clearNewUser()
-            setErrorMessage(null)
-            setCanSubmit(null)
-            setEmailValid(null)
-            setCreating(false)
-            setCreatedUser(null)
-            setAcceptedInput(null)
-
+        if (canSubmit === false) {
+            dispatch(matchPasswords("Password entered must match the entry above"))
+        } else if (canSubmit === true) {
+            dispatch(matchPasswords(''))
         }
+
+        //    return () => { dispatch(clearNewUser()) }
 
     }, [firstPassword, secondPassword, acceptedInput, canSubmit, dispatch, newEmail, confirmPassword])
 
@@ -183,9 +161,9 @@ export default function Signup() {
                         className="w-full gap-6 sm:gap-24 mx-auto grid grid-cols-1 mt-12 lg:grid-cols-2 items-start relative">
                         <form>
                             <div className="space-y-4">
-                                <NewEmail emailValid={emailValid} enterValidEmail={enterValidEmail} handleEmail={handleEmail} />
+                                <NewEmail emailValid={emailValid} enterValidEmail={enterValidEmail} setEmailValid={setEmailValid} />
                                 <NewPassword first_pw_valid={first_pw_valid} acceptedInput={acceptedInput} canSubmit={canSubmit} handlePassword={handlePassword} />
-                                <ConfirmNewPassword handleSecondEntry={handleSecondEntry} acceptedInput={acceptedInput} canSubmit={canSubmit} />
+                                <ConfirmNewPassword acceptedInput={acceptedInput} canSubmit={canSubmit} handleSecondEntry={handleSecondEntry} setCanSubmit={setCanSubmit} setNeedSpecialChar={setNeedSpecialChar} />
                                 <div className="col-span-full">
                                     <button onClick={(e) => submitAccountCreation(e)} type="submit" className="text-sm py-2 px-4 border focus:ring-2 h-10 rounded-full border-zinc-100 
                                 bg-white hover:bg-black text-black duration-200 focus:ring-offset-2 focus:ring-white hover:text-white

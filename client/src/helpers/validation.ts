@@ -29,6 +29,10 @@ export const requiredInput = (emailString: string, passwordString: string, sette
 
     const noSpecialChars = checkSpecialChars(splitPassword)
 
+    if (noSpecialChars) {
+        return
+    }
+
     if (validLength && isValidEmail && !noSpecialChars) {
         return setterFunction(true)
     } else {
@@ -58,16 +62,22 @@ export const emailValidation = (emailEvaluated: string, setter: Function) => {
 }
 
 
-export const confirmPassword = (firstEntry: string, secondEntry: string, setter: Function) => {
+export const confirmPassword = (firstEntry: string, secondEntry: string, setter: Function, errorSetter: Function) => {
 
     console.log(firstEntry, secondEntry)
 
-    if (firstEntry === secondEntry) {
+    const splitPW = firstEntry.split('')
+
+    const longEnough = splitPW.length >= 8
+
+    const noSpecialChars = checkSpecialChars(splitPW)
+
+    if (firstEntry === secondEntry && !noSpecialChars && longEnough) {
         setter(true)
         return true
     } else {
         setter(false)
-        return false
+        return errorSetter('Password must contain at least one special character')
     }
 
 }

@@ -22,6 +22,10 @@ export default defineConfig({
         '/summarize': {
           target: 'http://localhost:5001',
           changeOrigin: true
+        },
+        '/deleteUser': {
+          target: 'http://localhost:5001',
+          changeOrigin: true
         }
       }
     }

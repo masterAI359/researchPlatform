@@ -1,7 +1,32 @@
+import { RootState } from "@/ReduxToolKit/store"
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { emailValidation } from "@/helpers/validation"
+import { getNewEmail } from "@/ReduxToolKit/Reducers/Athentication/NewUserSlice"
+
+export default function NewEmail({ emailValid, enterValidEmail, setEmailValid }) {
+    const newEmail = useSelector((state: RootState) => state.newUser.emailInput)
+    const dispatch = useDispatch()
+
+    const checkEmail = () => {
+
+        emailValidation(newEmail, setEmailValid)
+    }
 
 
+    const handleEmail = (e: any) => {
 
-export default function NewEmail({ emailValid, enterValidEmail, handleEmail }) {
+        const email = e.target.value
+        dispatch(getNewEmail(email))
+    }
+
+    useEffect(() => {
+
+        if (newEmail) {
+            checkEmail()
+        }
+
+    }, [emailValid, enterValidEmail, handleEmail])
 
     return (
         <div className="col-span-full">

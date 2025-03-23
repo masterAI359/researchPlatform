@@ -1,7 +1,6 @@
 /// <reference path="../.astro/types.d.ts" />
 /// <reference types="astro/client" />
 
-import SelectArticles from "./components/React/ArticleComponents/SelectArticles";
 
 
 declare global {
@@ -71,13 +70,26 @@ declare global {
     title: string
   }
 
-  interface WindowProps {
-  }
+
   interface Help {
     heading: string,
     explanation: string
+
+  }
+
+  interface SavedArticle {
+    title: string,
+    provider: string,
+    authors: string[],
+    url: string,
+    image_url: string,
+    date: string,
+    fallbackDate: string | null,
+    summary: any,
+    text: string,
+    id: string,
   }
 
 }
 
-export { ArticleType, OptionsTypes, SelectedArticle, WindowProps, Perspectives, State, PremiseProps, Help };
+export { ArticleType, OptionsTypes, SelectedArticle, Perspectives, State, PremiseProps, Help, SavedArticle };

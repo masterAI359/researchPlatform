@@ -1,9 +1,11 @@
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-import { writingNote } from "@/ReduxToolKit/Reducers/NoteTaking"
+import { writingNote } from "@/ReduxToolKit/Reducers/Investigate/NoteTaking"
 
 export default function TakeNotes({ }) {
-    const takingNotes = useSelector((state: RootState) => state.notes.takingNotes)
+    const investigateState = useSelector((state: RootState) => state.investigation)
+    const { notes } = investigateState
+    const { takingNotes } = notes
     const dispatch = useDispatch()
 
     return (
@@ -13,7 +15,7 @@ export default function TakeNotes({ }) {
         rounded-lg transition-all duration-300 m-auto
         ease-in-out group">
 
-            <div className="fixed rounded-md z-50 -translate-y-16 -translate-x-4 mx-auto border border-slate-500 xl:p-2 opacity-0 group-hover:opacity-100 bg-astro_black shadow-black transition-opacity duration-300 ease-in-out">
+            <div className="fixed bg-black shadow-thick rounded-md z-50 -translate-y-16 -translate-x-4 mx-auto border border-slate-500 xl:p-2 opacity-0 md:group-hover:opacity-100 bg-astro_black transition-opacity duration-300 ease-in-out">
                 <p className="text-white" >Take Notes</p>
             </div>
 

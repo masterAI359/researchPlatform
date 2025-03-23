@@ -4,10 +4,12 @@ import { Step2Help } from "@/helpInfo/help"
 import StepsEditor from "../../TipTap/StepsEditor";
 import { RootState } from "@/ReduxToolKit/store";
 import { useSelector, useDispatch } from "react-redux";
-import { getBiases } from "@/ReduxToolKit/Reducers/UserPOV";
+import { getBiases } from "@/ReduxToolKit/Reducers/Investigate/UserPOV";
 
 export default function Step3({ containerWidth }: any) {
-  const biases = useSelector((state: RootState) => state.pov.biases)
+  const investigateState = useSelector((state: RootState) => state.investigation)
+  const { pov } = investigateState
+  const { biases } = pov
   const dispatch = useDispatch()
 
 
@@ -31,7 +33,7 @@ export default function Step3({ containerWidth }: any) {
           </div>
           <div className="text-center w-full">
             <div
-              className="block w-full xs:h-40 md:h-52 xl:h-80 text-md text-white bg-white/10 border-none focus:ring-1 focus:ring-white
+              className="block w-full h-44 sm:h-52 xl:h-80 text-md text-white bg-white/10 border-none focus:ring-1 focus:ring-white
     rounded-lg resize-none text-wrap flex justify-items-start"
             >
               <StepsEditor context={biases} setterFunction={getBiases} />

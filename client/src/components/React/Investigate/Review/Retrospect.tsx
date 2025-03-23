@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { finalPerspective } from "@/ReduxToolKit/Reducers/Review"
+import { finalPerspective } from "@/ReduxToolKit/Reducers/Investigate/Review"
 import Lottie from "lottie-react"
 import blueCheck from '../../../../lotties/blueCheck.json'
 import { RootState } from "@/ReduxToolKit/store"
@@ -11,16 +11,17 @@ const opinions: string[] = [
 ]
 
 export default function Retrospect() {
+    const investigateState = useSelector((state: RootState) => state.investigation)
+    const { review } = investigateState
+    const { endingPerspective } = review
     const dispatch = useDispatch()
-    const perspective = useSelector((state: RootState) => state.review.endingPerspective)
 
-    console.log(perspective)
 
     return (
 
         <div className="w-full h-full flex flex-col mx-auto gap-y-2">
             <header className="w-auto mx-auto mb-4">
-                <h1 className="text-white font-light text-xl">
+                <h1 className="text-white font-light text-sm 2xl:text-xl">
                     What's your perspective now?
                 </h1>
             </header>
@@ -37,7 +38,7 @@ export default function Retrospect() {
                         {opinion}
                         <div className="lg:min-h-10 lg:min-w-10 lg:max-h-10 lg:min-w-10 lg:p-0.5 
                   xs:max-w-7 xs:max-h-7 xs:min-w-7 xs:min-h-7 absolute xs:right-1 z-0 flex items-center justify-center">
-                            {perspective === opinion ? <Lottie className="box-content absolute xs:right-0 xl:translate-x-1.5"
+                            {endingPerspective === opinion ? <Lottie className="box-content absolute xs:right-0 xl:translate-x-1.5"
                                 animationData={blueCheck} loop={false} autoPlay={false} style={{ height: "100%", width: "100%", position: "relative" }} />
                                 : (
                                     <div className="xl:max-h-5 xl:max-w-5 xl:min-w-5 xl:min-h-5 xs:max-w-4 xs:max-h-4

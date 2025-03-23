@@ -1,13 +1,15 @@
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { useDispatch } from "react-redux";
-import { saveNote } from "@/ReduxToolKit/Reducers/NoteTaking";
+import { saveNote } from "@/ReduxToolKit/Reducers/Investigate/NoteTaking";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 
 
 export default function StepsEditor({ setterFunction, context }) {
-    const note = useSelector((state: RootState) => state.notes.noteTaken)
+    const investigateState = useSelector((state: RootState) => state.investigation)
+    const { notes } = investigateState
+    const { noteTaken } = notes
     const dispatch = useDispatch()
 
     const handleContent = () => {
@@ -17,7 +19,7 @@ export default function StepsEditor({ setterFunction, context }) {
     }
 
     const editor = useEditor({
-        content: `${note}`,
+        content: `${noteTaken}`,
         extensions: [
             StarterKit.configure({
                 heading: {

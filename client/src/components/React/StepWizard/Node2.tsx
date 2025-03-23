@@ -1,15 +1,21 @@
 import { motion } from "framer-motion";
+import { useSelector, useDispatch } from "react-redux";
+import { incrementBy } from "@/ReduxToolKit/Reducers/Investigate/Steps";
+import { RootState } from "@/ReduxToolKit/store";
 
-export default function ({ setCurrentStep, currentStep }) {
-
-
+export default function ({ }) {
+    const investigateState = useSelector((state: RootState) => state.investigation)
+    const { stepper } = investigateState
+    const { step } = stepper
+    const currentStep = step
+    const dispatch = useDispatch()
     return (
         <li className="flex flex-col md:w-full xs:w-full xs:h-20 lg:h-28 items-center">
             <div className="flex  items-center justify-center w-full h-full relative">
                 <motion.div
-                    onClick={() => setCurrentStep(1)}
-                    className="flex items-center justify-center rounded-full xs:max-w-7 xs:max-h-7
-                 lg:max-h-12 lg:max-w-12 xs:p-0.5 sm:p-1 md:1.5  shrink-0 z-10 hover:cursor-pointer transition-all duration-300 hover:scale-110"
+                    onClick={() => dispatch(incrementBy(1))}
+                    className="flex items-center justify-center rounded-full max-w-7 max-h-7
+                      sm:max-w-9 sm:max-h-9 sm:p-1  shrink-0 z-10 hover:cursor-pointer transition-all duration-300 hover:scale-110"
                     animate={{
                         backgroundColor: currentStep >= 2 ? "#2563eb" : "#374151",
                         boxShadow: currentStep === 1
@@ -32,7 +38,7 @@ export default function ({ setCurrentStep, currentStep }) {
                 />
             </div>
             <motion.div
-                className="left-0 md:text-sm xs:text-[0.6rem] text-left bg-transparent
+                className="left-0 text-[0.6rem] sm:text-sm text-left bg-transparent
             text-white self-start w-fit xl:ml-2"
                 animate={{ scale: 1, opacity: currentStep == 1 ? 1 : 0 }}
                 transition={{ duration: 0.7 }}

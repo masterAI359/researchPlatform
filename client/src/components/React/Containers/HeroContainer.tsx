@@ -1,112 +1,126 @@
 import InvestigateHero from "../HeroComponents/InvestigateHero"
 import SearchHero from "../HeroComponents/SearchHero"
-import SummaryHero from "../SummaryComponents/SuccessFull/SummaryHero"
 import ReviewWrapper from "../Investigate/Wrappers/ReviewWrapper"
+import FinalResults from "../Results/FinalResults"
 import CompletionHero from "../HeroComponents/CompletionHero"
-import SummaryLoader from "../Loaders/SummaryLoader"
+import ScrolltoTop from "../AppRouting/ScrollToTop"
 import { AnimatePresence, motion } from "framer-motion"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
+import ReadingHero from "../HeroComponents/ReadingHero"
+import { useEffect } from "react"
+
 
 
 export default function HeroContainer({
 }) {
-    const reading = useSelector((state: RootState) => state.read.reading)
-    const startSearch = useSelector((state: RootState) => state.search.startSearch)
-    const wrapUp = useSelector((state: RootState) => state.review.finished)
-    const completion = useSelector((state: RootState) => state.end.endProcess)
-    const loadingContent = useSelector((state: RootState) => state.read.loadingContent)
+    const investigateState = useSelector((state: RootState) => state.investigation)
+    const { read, display } = investigateState
+    const { ContentStatus } = read
+    const { showMindMap, showSearch, showContent, showWrapUp, showCompletion, showResults, showWorkModal } = display
 
-    console.log(startSearch)
+
+    useEffect(() => {
+
+
+    }, [showContent, ContentStatus, showSearch])
 
     return (
-        <AnimatePresence mode="popLayout">
+        <section className={`w-full h-full shrink-0 mx-auto transition-opacity duration-200 ease-in-out ${showWorkModal ? 'opacity-50' : 'opacity-100'}`}>
+            <AnimatePresence mode="wait">
 
-            {startSearch === null && (<motion.div
-                layout
-                key='Investigate'
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{
-                    type: 'tween',
-                    duration: 0.2
-                }}
-                className={`grid grid-cols-1 w-full h-auto mx-auto items-center`}>
-                <InvestigateHero
-                />
-
-            </motion.div>)}
-
-            {startSearch ?
-                (<motion.div
-                    layout
-                    key='Search'
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ type: 'tween', duration: 0.2 }}
-                >
-                    <SearchHero
-                    />
-                </motion.div>) : null}
-
-            {loadingContent &&
-                <motion.div
-                    layout
-                    key="loadingStories"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ type: 'tween', duration: 0.2 }}
-                >
-
-                </motion.div>
-            }
-
-            {reading &&
-                <motion.div
-                    layout
-                    key='Reading'
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ type: 'tween', duration: 0.5, ease: 'easeInOut' }}
-                >
-                    <SummaryHero />
-                </motion.div>
-            }
-
-            {wrapUp && <motion.div
-                layout
-                key='WrapUp'
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ type: 'tween', duration: 0.5, ease: 'easeInOut' }}
-            >
-                <ReviewWrapper />
-            </motion.div>}
-
-            {completion &&
-                <motion.div
-                    layout
-                    key='Completion'
+                {showMindMap && (<motion.div
+                    key='Investigate'
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{
                         type: 'tween',
-                        duration: 0.24,
-                        delay: 0.22,
+                        duration: 0.2
+                    }}
+                    className={`grid grid-cols-1 w-full h-auto mx-auto items-center`}>
+                    <InvestigateHero
+                    />
+
+                </motion.div>)}
+
+                {showSearch ?
+                    (<motion.div
+                        key='Search'
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ type: 'tween', duration: 0.2 }}
+                    >
+                        <SearchHero
+                        />
+
+                        <ScrolltoTop />
+
+                    </motion.div>) : null}
+
+                {showContent && ContentStatus === 'fulfilled' ?
+                    <motion.div
+                        key='Reading'
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ type: 'tween', duration: 0.5, ease: 'easeInOut' }}
+                    >
+                        <ReadingHero />
+                        <ScrolltoTop />
+                    </motion.div>
+                    : null}
+
+                {showWrapUp && <motion.div
+                    key='WrapUp'
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ type: 'tween', duration: 0.5, ease: 'easeInOut' }}
+                >
+                    <ReviewWrapper />
+                    <ScrolltoTop />
+                </motion.div>}
+
+                {showCompletion &&
+                    <motion.div
+                        key='Completion'
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{
+                            type: 'tween',
+                            duration: 0.24,
+                            delay: 0.22,
+                            ease: [0.4, 0, 0.2, 1],
+                        }}
+                    >
+                        <CompletionHero />
+                        <ScrolltoTop />
+                    </motion.div>
+                }
+
+                {showResults && <motion.div
+                    key='Results'
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="h-full w-full"
+                    transition={{
+                        type: 'tween',
+                        duration: 0.4,
+                        delay: 0.3,
                         ease: [0.4, 0, 0.2, 1],
                     }}
                 >
-                    <CompletionHero />
+                    <FinalResults />
+                    <ScrolltoTop />
                 </motion.div>
-            }
+                }
 
-        </AnimatePresence>
+            </AnimatePresence>
 
+        </section>
     )
 }

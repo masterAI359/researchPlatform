@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-
+import ErrorBoundary from '../ErrorBoundaries/ErrorBoundary';
 
 
 
@@ -41,7 +41,10 @@ export default function ArticlesResult() {
 					throw new Error('There was a network response issue!');
 				}
 				const jsonResponse = await response.json();
-				setArticles(jsonResponse.data);
+				if (jsonResponse) {
+					setArticles(jsonResponse.data);
+				}
+				console.log(jsonResponse)
 				sessionStorage.setItem('articles', JSON.stringify(jsonResponse));
 			} catch (err) {
 				console.log({ 'Fetch Failed': err });
@@ -89,114 +92,117 @@ export default function ArticlesResult() {
 						</div>
 						<div className='relative mx-auto lg:px-16'>
 							<div className='items-center space-x-6 pb-12 lg:pb-0 lg:space-x-8 overflow-y-hidden relative lg:px-4 mx-auto grid grid-cols-1 lg:grid-cols-2'>
-								<div className='grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8 lg:animate-scroller'>
-									{firstHalf.map((article) => (
-										<div
-											key={article.name}
-											className='relative rounded-3xl shadow-inset sm:opacity-0 lg:opacity-90 lg:hover:opacity-100 p-4 bg-white/5 lg:p-8 ring-1 ring-white/5'
-										>
-											<a href={article.url} target='_blank'>
-												<figcaption className='relative flex flex-row gap-4 pb-6 border-b border-white/10'>
-													<div className='overflow-hidden shrink-0'>
-														<img
-															src={
-																article.image.img
-																	? article.image.img
-																	: 'public/images/assets/cube.png'
-															}
-															className='object-cover rounded-full h-20 w-20 shrink-0'
-														/>
-													</div>
-													<div>
-														<div className='text-lg font-medium leading-6 text-white'>
-															{article.name}
+								{/* Error Boundary  */}
+								<ErrorBoundary>
+									<div className='grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8 lg:animate-scroller'>
+										{firstHalf.map((article) => (
+											<div
+												key={article.name}
+												className='relative rounded-3xl shadow-inset sm:opacity-0 lg:opacity-90 lg:hover:opacity-100 p-4 bg-white/5 lg:p-8 ring-1 ring-white/5'
+											>
+												<a href={article.url} target='_blank'>
+													<figcaption className='relative flex flex-row gap-4 pb-6 border-b border-white/10'>
+														<div className='overflow-hidden shrink-0'>
+															<img
+																src={
+																	article.image.img
+																		? article.image.img
+																		: 'public/images/assets/cube.png'
+																}
+																className='object-cover rounded-full h-20 w-20 shrink-0'
+															/>
 														</div>
-														<div className='mt-1'>
-															<span className='text-sm flex items-center gap-3 text-white/70 group-hover:text-white'>
-																<img
-																	className='h-8 w-auto'
-																	src={`../${article.logo}`}
-																	alt=''
-																/>
+														<div>
+															<div className='text-lg font-medium leading-6 text-white'>
+																{article.name}
+															</div>
+															<div className='mt-1'>
+																<span className='text-sm flex items-center gap-3 text-white/70 group-hover:text-white'>
+																	<img
+																		className='h-8 w-auto'
+																		src={`../${article.logo}`}
+																		alt=''
+																	/>
 
-																<p>{article.provider}</p>
+																	<p>{article.provider}</p>
 
-																{/*}	Published on{' '}
+																	{/*}	Published on{' '}
 																{article.datePublished.substring(0, 10)} at{' '}
 																{article.datePublished
 																	.substring(10, 16)
 																	.replace('T', ' ')}  {*/}
-															</span>
+																</span>
+															</div>
 														</div>
-													</div>
-												</figcaption>
-												<figure>
-													<div className='h-full group mt-2 pt-2'>
-														<blockquote className='relative'>
-															<p className='text-base text-white'>
-																"{article.description}"
-															</p>
-														</blockquote>
-													</div>
-												</figure>
-											</a>
-										</div>
-									))}
-								</div>
-								<div className='grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8 lg:animate-scroller'>
-									{secondHalf.map((article) => (
-										<div
-											key={article.name}
-											className='relative rounded-3xl shadow-inset sm:opacity-0 lg:opacity-90 lg:hover:opacity-100 p-4 bg-white/5 lg:p-8 ring-1 ring-white/5'
-										>
-											<a href={article.url} target='_blank'>
-												<figcaption className='relative flex flex-row gap-4 pb-6 border-b border-white/10'>
-													<div className='overflow-hidden shrink-0'>
-														<img
-															src={
-																article.image.img
-																	? article.image.img
-																	: 'public/images/assets/cube.png'
-															}
-															className='object-cover rounded-full h-20 w-20 shrink-0'
-														/>
-													</div>
-													<div>
-														<div className='text-lg font-medium leading-6 text-white'>
-															{article.name}
+													</figcaption>
+													<figure>
+														<div className='h-full group mt-2 pt-2'>
+															<blockquote className='relative'>
+																<p className='text-base text-white'>
+																	"{article.description}"
+																</p>
+															</blockquote>
 														</div>
-														<div className='mt-1'>
-															<span className='text-sm flex items-center gap-3 text-white/70 group-hover:text-white'>
+													</figure>
+												</a>
+											</div>
+										))}
+									</div>
+									<div className='grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8 lg:animate-scroller'>
+										{secondHalf.map((article) => (
+											<div
+												key={article.name}
+												className='relative rounded-3xl shadow-inset sm:opacity-0 lg:opacity-90 lg:hover:opacity-100 p-4 bg-white/5 lg:p-8 ring-1 ring-white/5'
+											>
+												<a href={article.url} target='_blank'>
+													<figcaption className='relative flex flex-row gap-4 pb-6 border-b border-white/10'>
+														<div className='overflow-hidden shrink-0'>
+															<img
+																src={
+																	article.image.img
+																		? article.image.img
+																		: 'public/images/assets/cube.png'
+																}
+																className='object-cover rounded-full h-20 w-20 shrink-0'
+															/>
+														</div>
+														<div>
+															<div className='text-lg font-medium leading-6 text-white'>
+																{article.name}
+															</div>
+															<div className='mt-1'>
+																<span className='text-sm flex items-center gap-3 text-white/70 group-hover:text-white'>
 
-																<img
-																	className='h-8 w-auto'
-																	src={`../${article.logo}`}
-																	alt=''
-																/>
+																	<img
+																		className='h-8 w-auto'
+																		src={`../${article.logo}`}
+																		alt=''
+																	/>
 
-																{article.provider}
-																{/*}			Published on{' '}
+																	{article.provider}
+																	{/*}			Published on{' '}
 																{article.datePublished.substring(0, 10)} at{' '}
 																{article.datePublished
 																	.substring(10, 16)
 																	.replace('T', ' ')}  {*/}
-															</span>
+																</span>
+															</div>
 														</div>
-													</div>
-												</figcaption>
-												<figure>
-													<div className='h-full group mt-2 pt-2'>
-														<blockquote className='relative'>
-															<p className='text-base text-white'>
-																"{article.description}"
-															</p>
-														</blockquote>
-													</div>
-												</figure>
-											</a>
-										</div>
-									))}
-								</div>
+													</figcaption>
+													<figure>
+														<div className='h-full group mt-2 pt-2'>
+															<blockquote className='relative'>
+																<p className='text-base text-white'>
+																	"{article.description}"
+																</p>
+															</blockquote>
+														</div>
+													</figure>
+												</a>
+											</div>
+										))}
+									</div>
+								</ErrorBoundary>
 							</div>
 						</div>
 					</div>

@@ -22,6 +22,10 @@ export default defineConfig({
         '/summarize': {
           target: 'http://localhost:5001',
           changeOrigin: true
+        },
+        '/deleteUser': {
+          target: 'http://localhost:5001',
+          changeOrigin: true
         }
       }
     }
@@ -37,7 +41,7 @@ export default defineConfig({
     skipInline: false,
     drafts: true
   },
-  site: 'https://lexingtonthemes.com',
+  site: 'https://elenchusapp.io/',
   integrations: [tailwind(), sitemap(), mdx(), devtoolBreakpoints(), react(), icon()],
   output: 'server',
   adapter: node({

@@ -1,40 +1,44 @@
 import Loader from "../../Loaders/Loader";
-import { useFetch } from "@/Hooks/useFetch";
 import { useDispatch, useSelector } from "react-redux";
-import { getQuery, searching } from "@/ReduxToolKit/Reducers/UserPOV";
-import { getStories } from "@/ReduxToolKit/Reducers/Reading";
+import { getQuery } from "@/ReduxToolKit/Reducers/Investigate/UserPOV";
 import { AppDispatch, RootState } from "@/ReduxToolKit/store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { RetrieveArticles, resetArticles } from "@/ReduxToolKit/Reducers/Investigate/SearchResults";
+import { GetArticleContent } from "@/ReduxToolKit/Reducers/Investigate/Reading";
+import { displaySearch, displayArticleContent } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
 
 export default function Search({ }) {
-  const { fetchArticles, fetchSummaries } = useFetch()
-  const query = useSelector((state: RootState) => state.pov.query)
-  const searched = useSelector((state: RootState) => state.pov.searching)
-  const loading = useSelector((state: RootState) => state.pov.loading)
-  const chosenArticles = useSelector((state: RootState) => state.getArticle.chosenArticles)
-  const gettingContent = useSelector((state: RootState) => state.read.getContent)
+  const [prevQuery, setPrevQuery] = useState<string>(null)
+  const investigateState = useSelector((state: RootState) => state.investigation)
+  const { pov, getArticle, read, search } = investigateState
+  const { query, searching } = pov
+  const { status } = search
+  const { chosenArticles } = getArticle
+  const { getContent } = read
+  const articlesToSummarize = encodeURIComponent(JSON.stringify(chosenArticles))
   const dispatch = useDispatch<AppDispatch>()
 
+  const getSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+    dispatch(getQuery(e.target.value))
+    setPrevQuery(query)
+  }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    dispatch(searching(true))
+    dispatch(resetArticles())
+    dispatch(RetrieveArticles(query))
+
   }
 
   useEffect(() => {
 
-    if (searched) {
-      fetchArticles(query)
-      dispatch(searching(false))
+    if (getContent) {
+      dispatch(GetArticleContent(articlesToSummarize))
+      dispatch(displaySearch(false))
     }
 
-    if (gettingContent) {
-      const articlesToSummarize = encodeURIComponent(JSON.stringify(chosenArticles))
-      fetchSummaries(articlesToSummarize)
-      dispatch(getStories(false))
-    }
-
-  }, [searched, gettingContent])
+  }, [searching, getContent])
 
   return (
     <div className="block box-border min-w-full max-w-full mx-auto xs:px-0 md:px-2 2xl:h-full no-scrollbar">
@@ -53,26 +57,30 @@ export default function Search({ }) {
           <div
             className="w-full">
             <div
-              className="relative mt-4 xs:p-1">
+              className="relative mt-4 lg:mb-4 xs:p-1 mx-auto flex justify-center items-center">
               <form
+                className="bg-white/10 text-white w-full h-fit 
+               border-none md:h-10 md:p-0 2xl:px-1 rounded-full relative
+               transition-colors xs:text-sm md:text-lg flex items-center prose"
                 onSubmit={handleSubmit}
               >
                 <input
-                  onChange={(e) => dispatch(getQuery(e.target.value))}
+                  onChange={(e) => getSearchInput(e)}
                   autoComplete="off"
                   type="text"
                   name="q"
-                  className="bg-white/10 text-white w-full h-fit 
-                  border-none h-12 xs:p-3  md:p-2 rounded-full relative
-		              transition-colors xs:text-sm md:text-lg flex items-center prose"
+                  className="bg-transparent text-white w-full h-fit 
+               border-none h-12 xs:p-3  md:p-2 rounded-full relative focus:ring-0
+               transition-colors xs:text-sm md:text-lg flex items-center"
                   placeholder="search" />
                 <button type="submit"
+                  className="relative"
                 >
                   {
-                    loading ? <Loader />
+                    status === 'pending' ? <Loader />
                       : <svg
-                        className="text-white xs:h-5 xs:w-5 absolute 
-                        xs:top-4 xs:right-4 md:top-4 md:bottom-4 md:right-4 fill-current"
+                        className="text-white h-4 w-4 relative
+                       bottom-0 right-2 fill-current"
                         xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
                         version="1.1" x="0px" y="0px" viewBox="0 0 56.966 56.966"
                         xmlSpace="preserve">

@@ -4,26 +4,39 @@ import InvestigateContainer from "../Containers/InvestigateContainer"
 import Navigation from "../Navigation/Navigation"
 import AboutContainer from "../Containers/AboutContainer"
 import Signup from "../Forms/Signup"
+import Login from "../Forms/Login"
+import Profile from "../User/Profile"
+import ReadSavedArticle from "../User/DisplayContent/UserArticles/ReadSavedArticles"
+import ReviewInvestigation from "../User/DisplayContent/SavedInvestigations.tsx/ReviewInvestigation"
 import ScrolltoTop from "./ScrollToTop"
+import SessionManager from "./SessionManager"
 import { store } from '../../../ReduxToolKit/store'
 import { Provider } from 'react-redux'
-
+import EmailForReset from "../Forms/EmailForReset"
+import UpdatePassword from "../Forms/UpdatePassword"
+import ManageAccount from "../User/ProfileNavigation/ManageAccount"
 
 
 export default function AppRouter() {
-
-
 
     return (
         <Provider store={store}>
             <BrowserRouter>
                 <ScrolltoTop />
+                <SessionManager />
                 <Routes>
                     <Route path='/' element={<Structure />}>
                         <Route index element={<HomeContainer />} />
                         <Route path='/Investigate' element={<InvestigateContainer />} />
                         <Route path='/About' element={<AboutContainer />} />
                         <Route path='/Signup' element={<Signup />} />
+                        <Route path='Login' element={<Login />} />
+                        <Route path='/Profile' element={<Profile />} />
+                        <Route path="/EmailForReset" element={<EmailForReset />} />
+                        <Route path="/UpdatePassword" element={<UpdatePassword />} />
+                        <Route path="/SavedArticle" element={<ReadSavedArticle />} />
+                        <Route path="ReviewInvestigation" element={<ReviewInvestigation />} />
+                        <Route path="/ManageAccount" element={<ManageAccount />} />
                     </Route>
                 </Routes>
             </BrowserRouter>

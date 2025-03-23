@@ -2,6 +2,8 @@
 const { title, description, url, socialImage, twitterImage, author } =
   Astro.props;
 let subtitle = "";
+const elenchus = '@/images/logos/elenchus.svg'
+
 ---
 
 <meta charset="UTF-8" />
@@ -26,7 +28,7 @@ let subtitle = "";
 {/* open graph Meta */ }
 <meta
   property="og:image"
-  content={Astro.site ? `${Astro.site}${socialImage}` : socialImage}
+  content={Astro.site ? `${Astro.site}${elenchus}` : elenchus}
 />
 {/*  Open Graph Twitter */ }
 
@@ -37,4 +39,4 @@ let subtitle = "";
   name="twitter:image"
   content={Astro.site ? `${Astro.site}${twitterImage}` : twitterImage}
 />
-<title>{title} - {subtitle}</title>
+<title>{title}</title>

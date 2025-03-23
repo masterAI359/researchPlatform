@@ -22,8 +22,11 @@ module.exports = {
       spacing: {
         '18': '72px',
         '22': '88px',
+        '28': '7.3rem',
+        '48': '12rem',
         '76': '310px',
-        '168': '656px'
+        '168': '656px',
+        '128': '32rem',
       },
       width: {
 
@@ -151,7 +154,7 @@ module.exports = {
       boxShadow: {
         "material": 'rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px',
         "blue-top": "0 -10px 20px -2px rgba(59, 130, 246, 0.5), 0 -6px 12px -4px rgba(59, 130, 246, 0.5)",
-        "blue-bottom": "0 4px 6px -1px rgba(59, 130, 246, 0.5), 0 2px 4px -2px rgba(59, 130, 246, 0.5)",
+        "blue-bottom": "0 4px 6px -1px rgba(59, 130, 246, 0.5), 0 6px 4px -2px rgba(59, 130, 246, 0.5)",
         thick: "0px 7px 32px rgb(0 0 0 / 35%);",
         inset:
           "inset 6px 84px 79px -40px hsla(0,0%,100%,.025), inset 0 -4px 1px -3px hsla(0,0%,100%,.25), inset 0 4px 1px -3px hsla(0,0%,100%,.25);",
@@ -216,6 +219,8 @@ module.exports = {
           /* Re-enable scrollbar behavior */
           '-webkit-overflow-scrolling': 'auto',
           '&::-webkit-scrollbar': {
+            width: '6px',
+            height: '16px',
             // You can also set width, color, etc. here if desired
             display: 'initial',
           },
@@ -223,6 +228,27 @@ module.exports = {
           '-ms-overflow-style': 'auto',
           'scrollbar-width': 'auto',
         },
+        '.thin-gray-scrollbar': {
+          // Enable smooth scrolling behavior if desired
+          '-webkit-overflow-scrolling': 'auto',
+          /* For Chrome, Safari and Opera */
+          '&::-webkit-scrollbar': {
+            width: '8px',  // sets the scrollbar width
+            height: '8px',
+          },
+          '&::-webkit-scrollbar-thumb': {
+            backgroundColor: '#a0aec0', // a Tailwind gray (gray-400) or any gray color you prefer
+            borderRadius: '9999px', // makes it fully rounded for a smooth look
+          },
+          '&::-webkit-scrollbar-track': {
+            opacity: 0.2,
+          },
+          /* For Firefox */
+          'scrollbar-width': 'thin',
+          /* For Internet Explorer 10+ */
+          '-ms-overflow-style': 'auto',
+        },
+
       }
 
       addUtilities(newUtilities, ['responsive'])

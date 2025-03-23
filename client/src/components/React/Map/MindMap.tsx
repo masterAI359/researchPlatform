@@ -11,12 +11,19 @@ import MindNode4 from "./Nodes/MindNode4"
 import SearchNode from "./Nodes/SearchNode"
 
 export default function MindMap({ }) {
-    const step = useSelector((state: RootState) => state.stepper.step)
+    const investigateState = useSelector((state: RootState) => state.investigation)
+    const { stepper } = investigateState
+    const { step } = stepper
 
     return (
         <div
-            className="text-white xs:h-fit md:h-full w-10/12 bg-white/10
-        mx-auto flex flex-col rounded-4xl relative">
+            className="lg:w-full xl:w-10/12 bg-white/10
+        flex flex-col rounded-4xl relative xl:justify-self-end">
+            <header className="h-auto w-full mx-auto">
+                <h1 className="text-zinc-600 md:hidden xl:block xl:text-2xl font-light tracking-tight text-center pt-2">
+                    Map of your Approach
+                </h1>
+            </header>
             <TopPath currentStep={step} />
             <MiddlePath currentStep={step} />
             <BottomPath currentStep={step} />

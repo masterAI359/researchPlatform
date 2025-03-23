@@ -2,22 +2,22 @@ import { AnimatePresence, motion } from "framer-motion"
 import { useState } from "react"
 import { createPortal } from "react-dom"
 import { useDispatch } from "react-redux"
-import { getHelp } from "@/ReduxToolKit/Reducers/HelpModal"
-import { Help } from "@/env"
-import { getQuery } from "@/ReduxToolKit/Reducers/UserPOV"
+import { getHelp } from "@/ReduxToolKit/Reducers/Investigate/HelpModal"
+import HelpModal from "../../Modals/HelpModal"
+
 
 export default function HelpButton({ info }) {
+    const [activeTab, setActiveTab] = useState(info[0])
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const dispatch = useDispatch()
+
+
 
     const handleExpand = () => {
         dispatch(getHelp(true))
         setIsOpen(isOpen => !isOpen);
 
     }
-
-
-
 
 
     return (
@@ -44,45 +44,11 @@ export default function HelpButton({ info }) {
 
             {createPortal(
                 <AnimatePresence mode="wait">
-
-                    {isOpen && <motion.div
-                        initial={{ scale: 0, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        exit={{ scale: 0, opacity: 0 }}
-                        transition={{ type: 'tween', duration: 0.15 }}
-                        className="bg-black opacity-100 h-auto shadow-black
-                         border border-2 border-border_gray shadow-thick rounded-4xl 
-                         z-50 fixed xs:bottom-4 xs:left-4 xl:pb-2 xl:bottom-24 lg:left-1/3 xl:w-[38rem]"
-                    >   <div className="pb-2">
-                            {info.map((element: Help) => (
-                                <div key={element.explanation} className="flex flex-col xs:gap-1 md:gap-5">
-                                    <div className="w-full mx-auto bg-black/50 flex h-full justify-between items-center py-2 my-auto rounded-t-4xl">
-                                        <h1 key={element.heading} className="text-white xs:text-lg md:text-2xl font-light tracking-tight ml-4">{element.heading}</h1>
-                                        <motion.div
-                                            whileTap={{ scale: 0.9 }}
-                                            transition={{ type: 'tween', duration: 0.2 }}
-                                            onClick={() => {
-                                                handleExpand();
-                                                { isOpen ? dispatch(getHelp(false)) : null }
-                                            }}
-                                            className="w-fit h-fit cursor-pointer p-1 mr-4 rounded-lg 
-                                            hover:bg-white/10 justify-self-center">
-                                            <svg
-                                                className="text-zinc-200 cursor-pointer opacity-55 hover:opacity-100 
-                                            transition-opacity duration-200 ease-in-out" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="28px" height="28px">
-                                                <path d="M 39.486328 6.9785156 A 1.50015 1.50015 0 0 0 38.439453 7.4394531 L 24 21.878906 L 9.5605469 7.4394531 A 1.50015 1.50015 0 0 0 8.484375 6.984375 A 1.50015 1.50015 0 0 0 7.4394531 9.5605469 L 21.878906 24 L 7.4394531 38.439453 A 1.50015 1.50015 0 1 0 9.5605469 40.560547 L 24 26.121094 L 38.439453 40.560547 A 1.50015 1.50015 0 1 0 40.560547 38.439453 L 26.121094 24 L 40.560547 9.5605469 A 1.50015 1.50015 0 0 0 39.486328 6.9785156 z" fill="currentColor" />
-                                            </svg>
-                                        </motion.div>
-                                    </div>
-                                    <p key={element.explanation} className="text-zinc-200 xs:text-sm 2xl:text-xl xl:text-lg lg:text-md md:text-md font-light tracking-tight w-11/12 mx-auto text-left md:leading-9 lg:leading-10">{element.explanation}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </motion.div>}
+                    {isOpen && <HelpModal info={info} handleExpand={handleExpand} activeTab={activeTab} setActiveTab={setActiveTab} isOpen={isOpen} />}
                 </AnimatePresence>,
                 document.body)}
-
         </motion.div>
-
     )
 }
+
+

@@ -3,10 +3,12 @@ import { Step3Help } from "@/helpInfo/help"
 import StepsEditor from "../../TipTap/StepsEditor";
 import { RootState } from "@/ReduxToolKit/store";
 import { useSelector } from "react-redux";
-import { getPremises } from "@/ReduxToolKit/Reducers/UserPOV";
+import { getPremises } from "@/ReduxToolKit/Reducers/Investigate/UserPOV";
 
 export default function Step4({ containerWidth }: any) {
-  const premises = useSelector((state: RootState) => state.pov.premises)
+  const investigateState = useSelector((state: RootState) => state.investigation)
+  const { pov } = investigateState
+  const { premises } = pov
 
   return (
     <div style={{ flexShrink: 0, maxWidth: containerWidth }}
@@ -29,7 +31,7 @@ text-center mx-auto xs:h-full box-border flex xs:px-2 md:px-0 basis-full'>
               </div>
 
             </div>
-            <div className="block w-full xs:h-40 md:h-52 xl:h-80 text-md text-white bg-white/10 border-none focus:ring-1 focus:ring-white
+            <div className="block w-full h-44 sm:h-52 xl:h-80 text-md text-white bg-white/10 border-none focus:ring-1 focus:ring-white
     rounded-lg resize-none text-wrap flex justify-items-start">
               <StepsEditor context={premises} setterFunction={getPremises} />
             </div>

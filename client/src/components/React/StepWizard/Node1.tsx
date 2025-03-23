@@ -1,16 +1,23 @@
+import { backToStart } from "@/ReduxToolKit/Reducers/Investigate/Steps"
+import { RootState } from "@/ReduxToolKit/store"
 import { motion } from "framer-motion"
+import { useDispatch, useSelector } from "react-redux"
 
-export default function Node1({ setCurrentStep, currentStep }) {
-
-
+export default function Node1({ }) {
+    const investigateState = useSelector((state: RootState) => state.investigation)
+    const { stepper } = investigateState
+    const { step } = stepper
+    const currentStep = step
+    const dispatch = useDispatch()
 
     return (
-        <li className="flex flex-col md:w-full xs:w-full xs:h-20 lg:h-28 items-center">
+        <li className="flex flex-col md:w-full xs:w-full h-20 items-center">
             <div className="flex items-center justify-center w-full h-full box-border">
                 <motion.div
-                    onClick={() => setCurrentStep(0)}
-                    className="flex items-center justify-self-start justify-center shrink-0 box-border xs:max-w-7 xs:max-h-7
-                            lg:max-h-12 lg:max-w-12 xs:p-0.5 sm:p-1 md:1.5 lg:p-2 rounded-full z-10 hover:cursor-pointer transition-all duration-300 hover:scale-110"
+                    onClick={() => dispatch(backToStart())}
+                    className="flex items-center justify-self-start justify-center shrink-0 box-border max-w-7 max-h-7 
+                            sm:max-w-9 sm:max-h-9 sm:p-1
+                            rounded-full z-10 hover:cursor-pointer transition-all duration-300 hover:scale-110"
                     animate={{
                         backgroundColor: currentStep === 0 ? "#374151" : "#2563eb",
                         boxShadow: currentStep === 0
@@ -34,7 +41,7 @@ export default function Node1({ setCurrentStep, currentStep }) {
             </div>
 
             <motion.div
-                className="md:text-sm xs:text-[0.6rem] text-left bg-transparent
+                className="text-[0.6rem] sm:text-sm text-left bg-transparent
                         text-white self-start w-fit "
                 animate={{ scale: 1, opacity: currentStep > 0 ? 0 : 1 }}
                 transition={{ duration: 0.7 }}

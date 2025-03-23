@@ -1,5 +1,4 @@
-import { useRef, useState, useLayoutEffect } from "react";
-import { WindowProps } from "@/env";
+import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import type { RootState } from '@/ReduxToolKit/store'
@@ -10,23 +9,24 @@ import Step4 from "../Steps/Step4";
 import Step5 from "../Steps/Step5";
 
 
-export default function WindowWrapper({ }: WindowProps) {
+export default function WindowWrapper({ }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const wizardRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState(null);
-  const step = useSelector((state: RootState) => state.stepper.step)
+  const investigateState = useSelector((state: RootState) => state.investigation)
+  const { stepper } = investigateState
+  const { step } = stepper
 
 
   return (
     <section
       ref={containerRef}
-      className="relative xs:h-fit md:min-h-full 
-      mx-auto xs:min-w-full xs:max-w-full xl:min-w-168 xl:w-3/4 xs:mb-4 2xl:mt-6
-      transition-all duration-400 animate-fade-in delay-300 no-scrollbar box-border flex shrink-0">
+      className="relative h-fit
+      mx-auto max-w-full sm:w-[27rem] md:w-11/12 lg:w-5/6 xl:w-full mb-4 md:mb-0
+      transition-all duration-400 animate-fade-in delay-300 no-scrollbar box-border flex">
       <div
         style={{ maxHeight: "fit" }}
-        className="flex xs:items-center 2xl:items-baseline
-        min-w-full xs:h-fit md:min-h-full lg:max-h-fit">
+        className="flex items-center 2xl:items-baseline h-fit
+        w-full sm:mx-auto sm:h-60 md:h-fit md:min-h-full lg:max-h-fit">
         <AnimatePresence mode="popLayout">
           {step === 0 && <motion.div
             layout
@@ -40,7 +40,7 @@ export default function WindowWrapper({ }: WindowProps) {
               opacity: 0,
               transition: { type: 'tween', duration: 0.2 }
             }}
-            className="min-w-full"
+            className="min-w-full shrink-0"
           >
             <Step1 containerWidth={containerWidth} />
           </motion.div>}
@@ -57,7 +57,7 @@ export default function WindowWrapper({ }: WindowProps) {
               opacity: 0,
               transition: { type: 'tween', duration: 0.2 }
             }}
-            className="min-w-full"
+            className="min-w-full shrink-0"
           >
             <Step2 containerWidth={containerWidth} />
           </motion.div>}
@@ -108,7 +108,7 @@ export default function WindowWrapper({ }: WindowProps) {
               opacity: 0,
               transition: { type: 'tween', duration: 0.2 }
             }}
-            className="min-w-full shrink-0"
+            className="w-full shrink-0"
           >
             <Step5 containerWidth={containerWidth} />
           </motion.div>

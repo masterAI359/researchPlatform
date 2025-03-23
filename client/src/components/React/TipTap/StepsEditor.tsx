@@ -1,20 +1,16 @@
-import { RootState } from "@/ReduxToolKit/store";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import { useDispatch, useSelector } from "react-redux";
-
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/ReduxToolKit/store";
 
 //TODO: fix bug occurring when using the editor
 
 export default function StepsEditor({ setterFunction, context }) {
-    const dispatch = useDispatch()
-    const idea = useSelector((state: RootState) => state.pov.idea)
-
+    const dispatch = useDispatch<AppDispatch>()
 
     const handleContent = () => {
-        let inputText = editor.getText()
-
-        dispatch(setterFunction(inputText))
+        let input = editor.getText()
+        dispatch(setterFunction(input))
     }
 
 
@@ -115,7 +111,7 @@ export default function StepsEditor({ setterFunction, context }) {
 
             <div onClick={handleContainerClick} className="h-full w-full">
                 <EditorContent style={{ textAlign: 'left', verticalAlign: 'top', minHeight: '90%', height: '100%', color: '#ffffff' }} editor={editor}
-                    className="text-white xs:text-xs md:text-lg focus:outline-none px-1 focus:border-none font-thin font-serif tracking-tight cursor-text
+                    className="text-white text-xs sm:text-base md:text-lg focus:outline-none px-1 focus:border-none font-thin font-serif tracking-tight cursor-text
              font-serif min-w-full h-full prose"
                 />
             </div>

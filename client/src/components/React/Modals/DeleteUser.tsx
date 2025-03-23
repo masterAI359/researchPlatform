@@ -62,7 +62,7 @@ export default function DeleteUserAccount({ }) {
         };
 
         try {
-            setDeleting(true)
+            console.log(deleting)
             const deletion = await fetch(`/deleteUser?q=${encodedID}`, options)
             if (!deletion.ok) {
                 throw new Error('Failed to connect to the database')
@@ -79,7 +79,6 @@ export default function DeleteUserAccount({ }) {
             setDeleteSuccessful(false)
             console.log(error)
         } finally {
-            setDeleting(false)
         }
     }
 
@@ -106,20 +105,25 @@ export default function DeleteUserAccount({ }) {
             exit="closed"
             transition={{ duration: 0.2, type: 'tween' }}
             className="fixed top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50
-         xl:min-w-96 xl:min-h-80 w-80 flex flex-col items-start gap-x-8 gap-y-6 rounded-3xl p-6 
+         md:min-w-96 xl:min-h-80 w-80 flex flex-col items-start gap-x-8 gap-y-6 rounded-3xl p-6 
         sm:gap-y-10 sm:p-10 lg:col-span-2 lg:flex-row lg:items-center bg-ebony mt-2 
         shadow-inset text-center">
             <div className="lg:min-w-0 lg:flex-1 max-w-sm mx-auto">
-                <p className="text-white xl:text-3xl font-light tracking-tight">Delete your account?</p>
+                <p className="text-white lg:text-3xl font-light tracking-tight">Delete Account</p>
                 <p className="mt-4">
                     <span className="text-2xl font-lighter text-white" />
                     <span className="text-base font-medium text-zinc-400">{showInput ? 'Enter your password below to delete your account' : "This action cannot be undone"}</span><br></br>
                 </p>
                 <p className="mx-auto mt-6 text-sm text-white" />
+                {deleteSuccessful === false && <div className="w-full h-auto mx-auto">
+                    <h1 className="text-base text-red-500 my-4 font-light tracking-tight">
+                        Invalid email or password
+                    </h1></div>}
                 {deleting === null && !showInput && <DeleteAccountButtons setShowInput={setShowInput} />}
-                {showInput === true && <EnterUserCredentials deleteAccount={deleteAccount} id={id} setShowInput={setShowInput} />}
+                {showInput === true && <EnterUserCredentials setDeleting={setDeleting} deleteAccount={deleteAccount} id={id} setShowInput={setShowInput} setDeleteSuccessful={setDeleteSuccessful} />}
                 {deleting === true && <PendingDeletion />}
                 {deleteSuccessful === true && <Deleted />}
+
 
             </div>
         </motion.div>)
@@ -133,9 +137,7 @@ export default function DeleteUserAccount({ }) {
 }
 
 
-function EnterUserCredentials({ deleteAccount, id, setShowInput }) {
-    const userPassword = useSelector((state: RootState) => state.auth.password)
-    const session = useSelector((state: RootState) => state.auth.activeSession)
+function EnterUserCredentials({ deleteAccount, id, setShowInput, setDeleteSuccessful, setDeleting }) {
     const [password, setPassword] = useState<string>(null)
     const [email, setEmail] = useState<string>(null)
 
@@ -152,7 +154,8 @@ function EnterUserCredentials({ deleteAccount, id, setShowInput }) {
     }
 
     const handleDelete = async () => {
-
+        setDeleting(true)
+        setShowInput(false)
         try {
             const { data, error } = await supabase.auth.signInWithPassword({
                 email: email,
@@ -162,12 +165,16 @@ function EnterUserCredentials({ deleteAccount, id, setShowInput }) {
             if (data.session) {
                 deleteAccount(id)
                 console.log('deleting')
-                setShowInput(false)
             } else if (error) {
-                console.log(error.message)
+                setDeleteSuccessful(false)
+                setShowInput(true)
             }
 
-        } catch (error) { }
+        } catch (error) {
+            console.log(error)
+        } finally {
+            setDeleting(false)
+        }
 
     }
 

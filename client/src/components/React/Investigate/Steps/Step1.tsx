@@ -61,7 +61,7 @@ export default function Step1({ containerWidth }: any) {
                                     </div>
                               </div>
                               <div className="flex justify-items-start gap-2 z-10 w-full">
-                                    <div className={`w-full bg-white/10 h-40 sm:h-52 md:w-full lg:h-60 xl:h-80 pb-8 sm:pb-7 rounded-lg border border-solid box-border
+                                    <div className={`w-full bg-white/10 h-44 sm:h-52 md:w-full lg:h-60 xl:h-80 pb-8 sm:pb-7 rounded-lg border border-solid box-border
                                     ${acceptInput === null ? 'border-transparent' : acceptInput === true ? 'border-green-500' : 'border-red-800'}`}>
                                           <StepsEditor context={idea} setterFunction={getIdea} />
                                           <div

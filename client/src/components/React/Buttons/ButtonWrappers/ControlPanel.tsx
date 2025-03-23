@@ -19,10 +19,6 @@ export default function ControlPanel({ }) {
             <div className="shrink-0 w-fit h-auto py-0.5 px-2 md:py-1.5 xl:px-2 2xl:px-2.5 md:hover:bg-border_gray transition-all ease-in-out flex justify-center border-r border-border_gray">
                 <FinishedReading />
             </div>
-            <div className="md:shrink-0 hidden md:block w-fit h-auto px-2 py-0.5 xl:px-2 2xl:px-2.5 md:hover:bg-border_gray transition-all ease-in-out flex justify-center ">
-                <CompareStories />
-
-            </div>
             <div className="shrink-0 lg:grow w-fit lg:rounded-r-full h-auto px-2 py-0.5 xl:px-2 2xl:px-2.5 md:hover:bg-border_gray transition-all ease-in-out flex justify-center xs:border-r lg:border-0 border-border_gray">
                 <TakeNotes />
             </div>

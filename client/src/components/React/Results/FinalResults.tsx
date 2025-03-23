@@ -36,8 +36,8 @@ export default function FinalResults() {
             <div className="2xl:max-w-7xl h-fit py-16 lg:px-16 md:px-12 px-2 xl:px-36 items-center relative w-full bg-gradientdown rounded-[3rem]">
                 <div className="text-center max-w-xl mx-auto">
                     <span className="text-md 2xl:text-lg text-blue-500 font-light"> Results</span>
-                    <h2 className="text-xl mt-6 tracking-tight font-light lg:text-2xl text-white">
-                        Your Investigation of the idea:  <span className="block text-zinc-400"> {idea}</span>
+                    <h2 className="text-sm md:text-xl mt-6 tracking-tight font-light lg:text-2xl text-white">
+                        Your Investigation of the idea:  <span className="block text-zinc-400 mt-2"> {idea}</span>
                     </h2>
                 </div>
 

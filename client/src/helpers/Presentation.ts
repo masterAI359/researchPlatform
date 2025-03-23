@@ -36,7 +36,7 @@ export const limitName = (name: string) => {
 
     for (let i = 0; i < splitName.length; i++) {
 
-        if (i <= 13) {
+        if (i <= 16) {
             shortenedArray.push(splitName[i])
 
         } else {

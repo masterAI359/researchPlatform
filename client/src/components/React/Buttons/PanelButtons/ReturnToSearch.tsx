@@ -24,7 +24,7 @@ export default function ReturnToSearch() {
         >
             {!showReadingTooltip && <div
                 className="fixed rounded-md z-50 -translate-y-16 -translate-x-4 mx-auto
-            border border-slate-500 xl:p-3 2xl:p-2 opacity-0 group-hover:opacity-100 bg-astro_black 
+            border border-slate-500 xl:p-3 2xl:p-2 opacity-0 md:group-hover:opacity-100 bg-astro_black 
             shadow-black transition-opacity duration-300 ease-in-out">
                 <p className="text-white" >Return to Search</p>
             </div>}

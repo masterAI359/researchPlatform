@@ -60,7 +60,7 @@ export default function LinkGrid() {
                         {status === 'pending' && <LinkLoader />}
                         {status === 'fulfilled' && articles && <LinkPagination identifier={'TopPager'} />}
                         {status === 'fulfilled' && articles &&
-                            <motion.div layout key='pagesContainer' className="relative lg:min-h-168 inset-0 py-6">
+                            <motion.div layout key='pagesContainer' className="relative min-h-screen inset-0 py-6">
                                 <Pages />
                             </motion.div>}
                         {status === 'fulfilled' && !articles && <SearchFailed />}

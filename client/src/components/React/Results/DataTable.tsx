@@ -15,7 +15,7 @@ export default function DataTable() {
 
     const finalOpinion = endingPerspective === 'Agree'
 
-    console.log(endingPerspective, perspective, changed)
+    console.log(merit)
 
     return (
         <table className="w-full 2xl:min-h-72 table-fixed border-separate border-spacing-x-10 text-left">
@@ -32,6 +32,9 @@ export default function DataTable() {
                     </th>
                     <th scope="col" className="md:px-6 pt-6 xl:px-8 xl:pt-8">
                         <div className="text-sm 2xl:text-lg text-white font-light text-center">Yes</div>
+                    </th>
+                    <th scope="col" className="md:px-6 pt-6 xl:px-8 xl:pt-8">
+                        <div className="text-sm 2xl:text-lg text-white font-light text-center">N/A</div>
                     </th>
 
                 </tr>

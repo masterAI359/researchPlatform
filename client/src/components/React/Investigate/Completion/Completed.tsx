@@ -27,7 +27,7 @@ export default function Completed() {
     }, [showComplete])
 
     return (
-        <article className="2xl:min-w-[60rem] h-fit md:h-full mx-auto flex flex-col items-center md:gap-y-6 relative">
+        <article className="2xl:min-w-[60rem] w-4/5 h-fit md:h-full mx-auto flex flex-col items-center md:gap-y-6 relative">
             <header className="h-fit w-full flex justify-center">
                 <h1 className="md:text-3xl text-white tracking-tight font-light">
                     All Done <span className="text-zinc-400">Case Closed</span>

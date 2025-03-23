@@ -21,7 +21,7 @@ export default function Step5({ containerWidth }) {
             className='w-full h-full
             flex items-center justify-start text-center basis-full'>
             <div className="block w-full max-w-full mx-auto px-2  md:h-full no-scrollbar">
-                <div className="w-full h-full mx-auto flex flex-col items-start box-border">
+                <div className="w-full h-full mx-auto flex flex-col items-start py-4 box-border">
                     <div className="w-full h-auto border-b border-white/10 mb-4">
                         <header className="w-full h-auto flex flex-row gap-x-8 md:gap-x-8 items-center">
                             <div className="w-fit flex justify-items-start">

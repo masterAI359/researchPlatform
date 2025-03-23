@@ -20,15 +20,15 @@ export default function ArticleLoader() {
             animate='show'
             exit='hide'
             transition={{ type: 'tween', duration: 0.2 }}
-            className='w-full h-full mx-auto flex flex-col-reverse items-center fixed bg-black top-0 right-0 bottom-0 left-0'>
+            className='w-full h-auto mx-auto flex flex-col-reverse items-start md:items-center fixed bg-black top-0 md:right-0 md:bottom-0 md:left-0'>
 
-            <header className='w-full h-fit mx-auto flex justify-center 2xl:-translate-y-40 xl:-translate-y-72 lg:-translate-y-80'>
+            <header className='w-3/4 h-fit mx-auto flex justify-center 2xl:-translate-y-40 xl:-translate-y-72 lg:-translate-y-80'>
                 <h1
-                    className='w-fit h-fit font-light tracking-tight md:text-3xl xl:text-4xl text-white animate-pulse'
+                    className='max-w-3/4 h-fit font-light text-wrap text-sm tracking-tight md:text-3xl xl:text-4xl text-white animate-pulse'
                 >Please wait just a few moments. We're gathering the chosen articles</h1>
             </header>
             <div className="w-full h-fit flex justify-center">
-                <div className="w-3/5 h-auto xl:-translate-x-8 2xl:translate-y-14 xl:-translate-y-52 lg:-translate-y-44 transition-all duration-200 ease-in-out">
+                <div className="w-4/5 md:w-3/5 h-auto xl:-translate-x-8 2xl:translate-y-14 xl:-translate-y-52 lg:-translate-y-44 transition-all duration-200 ease-in-out">
                     <Lottie
 
                         animationData={vortex}

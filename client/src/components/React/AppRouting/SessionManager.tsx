@@ -8,7 +8,6 @@ export default function SessionManager() {
 
     const restoreSession = async () => {
         const { data: { session } } = await supabase.auth.getSession();
-        console.log('Restored session:', session);
     };
 
     useEffect(() => {

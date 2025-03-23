@@ -24,7 +24,7 @@ export default function FailedNotification({ notification }) {
             initial={{ opacity: 0, y: 50, scale: 0.3 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, scale: 0.5, transition: { type: 'tween', duration: 0.15 } }}
-            className="xs:max-w-72 xs:max-h-36 md:max-w-44 xl:max-w-[29rem] xl:min-h-40 px-3 py-3 h-auto bg-ebony rounded-2xl xl:py-3 lg:py-2 flex content-start relative">
+            className="xs:max-w-72 xs:max-h-36 z-50 md:max-w-44 xl:max-w-[29rem] xl:min-h-40 px-3 py-3 h-auto bg-ebony rounded-2xl xl:py-3 lg:py-2 flex content-start relative">
 
             <div className="min-h-full w-full box-border flex gap-x-2 xl:my-1">
                 <div className="flex flex-col w-full xs:h-fit md:h-full md:gap-y-4 xs:gap-y-2">

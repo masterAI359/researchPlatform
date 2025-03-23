@@ -40,7 +40,7 @@ export default function SavingResearch({ }) {
             animate='show'
             exit='hide'
             transition={{ type: 'tween', duration: 0.3 }}
-            className="absolute top-24 right-36 h-10 w-52 py-5 bg-mirage rounded-xl px-2"
+            className="absolute top-24 right-36 h-10 w-52 py-5 bg-mirage z-30 rounded-xl px-2"
         >
             <div className="flex w-full h-full items-center justify-between">
                 <div className="w-auto h-fit">

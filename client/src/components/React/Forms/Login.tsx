@@ -96,14 +96,14 @@ export default function Login() {
                 </div>
                 <div className="w-full gap-24 mx-auto grid grid-cols-1 mt-12 lg:grid-cols-2 items-center">
 
-                    <form>
+                    <form autoComplete="off">
                         {successfull === false && <p className="text-zinc-400 font-light lg:text-2xl -translate-y-6">The email or password you entered is incorrect. Please try again.</p>}
                         <div className="space-y-6">
                             <div className="col-span-full">
                                 <label htmlFor="email" className="block mb-3 text-sm font-medium text-white">
                                     Email
                                 </label>
-                                <input onChange={(e) => handleEmail(e)} id="email" name="email" type="email" autoComplete="email" placeholder="email@example.com"
+                                <input onChange={(e) => handleEmail(e)} id="email" name="email" type="email" autoComplete="off" placeholder="email@example.com"
                                     className={`block w-full px-3 py-3 border-2 rounded-xl appearance-none text-white placeholder-black/50 bg-white/5 
                                  focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10
                                 transition-all duration-200 ease-in-out

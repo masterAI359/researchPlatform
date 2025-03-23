@@ -15,7 +15,7 @@ const variants = {
 }
 
 
-export default function LinkPagination({ }) {
+export default function LinkPagination({ identifier }) {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const [pagesLength, setPagesLength] = useState<number | null>(null)
     const { search } = investigateState
@@ -47,7 +47,7 @@ export default function LinkPagination({ }) {
 
     return (
         <motion.div
-            layout
+            key={identifier}
             variants={variants}
             initial='hide'
             animate='show'

@@ -41,7 +41,7 @@ export default defineConfig({
     skipInline: false,
     drafts: true
   },
-  site: 'https://lexingtonthemes.com',
+  site: 'https://elenchusapp.io/',
   integrations: [tailwind(), sitemap(), mdx(), devtoolBreakpoints(), react(), icon()],
   output: 'server',
   adapter: node({

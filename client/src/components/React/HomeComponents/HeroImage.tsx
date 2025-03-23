@@ -1,6 +1,3 @@
-import { useState } from "react";
-import Loader from "../Loaders/Loader";
-import Search from "../Investigate/Steps/Search";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import LearnMore from "../Buttons/HeroImageButtons/LearnMore";
@@ -9,10 +6,6 @@ import GetStarted from "../Buttons/HeroImageButtons/GetStarted";
 
 export default function HeroImage() {
 	const id = useSelector((state: RootState) => state.auth.user_id)
-
-	const [isLoading, setIsLoading] = useState(false)
-
-	console.log(id)
 
 	return (
 		<section className='md:p-8 xs:p-4 animate-fade-in duration-700 ease-in'>
@@ -42,16 +35,12 @@ export default function HeroImage() {
 							<span className="hidden sm:block"> This app guides you through examining your perspective
 								on the idea or statement of your choosing, and uncovering
 								the evidence behind them.</span>
-
-
 						</p>
 						<div className='relative w-full sm:w-[75%]   mt-8'>
 							<div className="flex gap-x-6 items-center w-full">
 								{!id && <GetStarted />}
 								<LearnMore />
-
 							</div>
-
 						</div>
 					</div>
 				</div>

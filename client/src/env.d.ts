@@ -1,7 +1,6 @@
 /// <reference path="../.astro/types.d.ts" />
 /// <reference types="astro/client" />
 
-import SelectArticles from "./components/React/LinkComponents/SelectLinks";
 
 
 declare global {

@@ -2,14 +2,14 @@
 import Metas from "../Astro/seo/Metas.astro";
 import Favicons from "../Astro/seo/Favicons.astro";
 const {
-  title = "Elenchus",
+  title = "elenchus",
   description = "#",
   url,
   socialImage = "/social-preview-image.png",
   twitterImage = "/twitter-preview-image.png", // Assuming you have a separate image for Twitter
   author = "Trent Irvin, Said Gadzhiev",
 } = Astro.props;
-const sanitizedTitle = title.toLowerCase().replaceAll(" ", "-");
+const sanitizedTitle = title.toLowerCase().replaceAll(" ", " ");
 ---
   <head>
     <Metas
@@ -22,7 +22,8 @@ const sanitizedTitle = title.toLowerCase().replaceAll(" ", "-");
       author={author}
       twitterImage={twitterImage}
     />
-    <Favicons />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/elenchus.png?v=1" />
 
     <link rel="preconnect" href="https://rsms.me/" />
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />

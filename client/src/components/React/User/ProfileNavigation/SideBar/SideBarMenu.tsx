@@ -14,7 +14,6 @@ export default function SideBarMenu({ }) {
 
     useEffect(() => {
 
-        console.log(showDeleteModal)
 
     }, [showDeleteModal])
 

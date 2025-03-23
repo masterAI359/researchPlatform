@@ -157,16 +157,6 @@ export default function Login() {
                             </span>
                             <span>Sign in with Google &nbsp; →</span>
                         </button>
-                        <button onClick={() => signInWithTwitter()} className="text-sm py-2 px-4 border focus:ring-2 rounded-full border-zinc-100 bg-zinc-100 hover:bg-zinc-50 duration-200 focus:ring-offset-2 gap-3 focus:ring-black text-black w-full inline-flex items-center justify-between ring-1 ring-transparent h-10" type="button">
-                            <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-brand-x" width={24} height={18} viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
-                                    <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
-                                </svg>
-                            </span>
-                            <span>Sign in with X &nbsp; →</span>
-                        </button>
                     </div>
                 </div>
             </div>

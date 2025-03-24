@@ -4,6 +4,10 @@
 	"description": "",
 	"main": "src/app.ts",
 	"type": "module",
+	"engines": {
+		"node": "22.x",
+		"npm": "10.x"
+	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"dev": "nodemon --watch src --ext ts --exec node --loader ts-node/esm src/app.ts",

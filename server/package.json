@@ -28,7 +28,8 @@
 		"pg": "^8.11.5",
 		"sanitize-html": "^2.13.0",
 		"string-strip-html": "^13.4.8",
-		"striptags": "^3.2.0"
+		"striptags": "^3.2.0",
+		"typescript": "^5.x.x"
 	},
 	"devDependencies": {
 		"@types/cors": "^2.8.17",

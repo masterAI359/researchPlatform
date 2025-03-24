@@ -7,8 +7,8 @@ const envPath = path.resolve(__dirname, '../../../.env');
 dotenv.config({ path: envPath })
 const BingKey = process.env.BING_KEY as string
 import { Request, Response } from 'express';
-import decodeItem from '../helpers/decodeItem.js';
-import { logoMap } from './logoMap.js'
+import decodeItem from '../helpers/decodeItem';
+import { logoMap } from './logoMap'
 
 
 export const bingArticles = async (req: Request, res: Response) => {

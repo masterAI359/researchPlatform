@@ -1,5 +1,5 @@
-import '../envConfig/Config.ts'
-import { SUPABASE_KEY, SUPABASE_URL, PORT } from '../envConfig/Config.ts';
+import '../envConfig/Config'
+import { SUPABASE_KEY, SUPABASE_URL, PORT } from '../envConfig/Config';
 import { fileURLToPath } from 'url';
 import path from 'path';
 const __filename = fileURLToPath(import.meta.url);
@@ -9,9 +9,9 @@ import cors from 'cors';
 import { createClient } from '@supabase/supabase-js';
 
 const app = express();
-import { bingArticles } from '../endpoints/bingApi.ts';
-import { tldrSummary } from '../endpoints/tldrSummary.ts'
-import { deleteUser } from '../endpoints/deleteUser.ts'
+import { bingArticles } from '../endpoints/bingApi';
+import { tldrSummary } from '../endpoints/tldrSummary'
+import { deleteUser } from '../endpoints/deleteUser'
 
 
 //change this origin to https://elenchus.io for production
@@ -38,7 +38,7 @@ app.use(function (req, res, next) {
 app.use(express.static(path.join(__dirname, '../../../client/dist')));
 
 app.options('*', (req, res) => {
-	res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
+	res.header('Access-Control-Allow-Origin', 'https://elenchusapp.io');
 	res.header(
 		'Access-Control-Allow-Methods',
 		'OPTIONS, HEAD, GET, PUT, POST, DELETE'
@@ -78,5 +78,5 @@ app.get('*', (req: Request, res: Response) => {
 
 app.listen(PORT, () => {
 
-	return console.log(`Express is listening at http://localhost:${PORT}`);
+	return console.log(`Express is listening at ${PORT}`);
 });

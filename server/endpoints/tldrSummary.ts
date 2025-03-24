@@ -1,11 +1,11 @@
 const envUrl = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(envUrl)
 const envPath = path.resolve(__dirname, '../../.env');
-import { TLDR_KEY } from '../envConfig/Config.js';
+import { TLDR_KEY } from '../envConfig/Config';
 import express, { query, Request, Response } from 'express'
 import * as path from 'path'
 import { fileURLToPath } from 'url';
-import decodeItem from '../helpers/decodeItem.js'
+import decodeItem from '../helpers/decodeItem'
 
 
 

@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 import * as dotenv from 'dotenv'
 import * as path from 'path'
 import { fileURLToPath } from 'url';
-import { supabase } from '../src/app.js'
+import { supabase } from '../src/app'
 
 const envUrl = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(envUrl)

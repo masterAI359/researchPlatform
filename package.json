@@ -1,7 +1,21 @@
 {
+  "name": "elenchus-root",
+  "private": true,
+  "scripts": {
+    "start": "node server/dist/src/app.js",
+    "heroku-postbuild": "npm run build:server && npm run build:client",
+    "build:server": "cd server && npm install && npm run build",
+    "build:client": "cd client && npm install && npm run build",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run dev"
+  },
   "dependencies": {
     "@atlaskit/pragmatic-drag-and-drop": "^1.4.0",
     "@supabase/supabase-js": "^2.49.1",
     "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
   }
 }

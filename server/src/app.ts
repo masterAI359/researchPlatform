@@ -37,7 +37,7 @@ app.use(function (req, res, next) {
 	next();
 });
 
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, '../../../client/dist')));
 console.log("Serving: " + path.join(__dirname, '../../../client/dist', 'index.html'))
 
 app.options('*', (req, res) => {
@@ -71,7 +71,7 @@ app.get('/deleteUser', deleteUser)
 app.get('*', (req: Request, res: Response) => {
 	try {
 		console.log("Serving: " + path.join(__dirname, 'dist', 'index.html'))
-		res.sendFile(path.join(__dirname, 'dist', 'index.html'))
+		res.sendFile(path.join(__dirname, '../../client/dist', 'index.html'))
 
 	} catch (err: any) {
 		if (err.code === 'ECONNRESET') {

@@ -1,4 +1,3 @@
-import { val } from 'cheerio/lib/api/attributes';
 import { Request, Response } from 'express';
 import decodeItem from '../helpers/decodeItem.js';
 import { logoMap } from './logoMap.js'

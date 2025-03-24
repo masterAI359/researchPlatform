@@ -62,7 +62,7 @@ export default function Search({ }) {
                 className="bg-white/10 text-white w-full h-fit 
                border-none md:h-10 md:p-0 2xl:px-1 rounded-full relative
                transition-colors xs:text-sm md:text-lg flex items-center prose"
-                onSubmit={handleSubmit}
+                onSubmit={(e) => handleSubmit(e)}
               >
                 <input
                   onChange={(e) => getSearchInput(e)}

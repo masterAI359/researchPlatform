@@ -18,9 +18,9 @@ export default function LinkLoader() {
   }
 
   const loaders = Array.from({ length: 10 }, (_, index) => (
-    <div key={`loader${index}`} className="relative p-4 lg:min-h-96 lg:max-h-96 lg:min-w-96 xs:max-h-60 xs:min-h-60 xs:max-w-60 bg-rich_black overflow-hidden shadow hover:shadow-md rounded-3xl">
+    <div key={`loader${index}`} className="p-3 md:p-4 xl:min-h-72 xl:max-h-72 xl:min-w-80 xl:max-w-80 lg:min-w-72 lg:max-w-72 lg:min-h-72 lg:max-h-72 h-44 w-44 relative rounded-xl md:rounded-3xl bg-rich_black overflow-hidden shadow hover:shadow-md rounded-3xl">
       <div className="animate-pulse flex flex-col">
-        <div className="rounded h-36  bg-inner_loader_black" />
+        <div className="rounded h-12 md:h-36  bg-inner_loader_black" />
         <div className="flex items-center mt-5">
           <div>
             <div className="rounded-full bg-inner_loader_black w-10 h-10" />
@@ -56,8 +56,8 @@ export default function LinkLoader() {
       exit="hidden"
     >
       <div
-        className="grid grid-cols-2 2xl:grid-cols-3 2xl:gap-12 h-auto lg:gap-16 xs:gap-1 mx-auto pointer-events-none 
-       py-16 xs:px-2 2xl:max-w-7xl w-full">
+        className="relative max-w-4xl 2xl:max-w-6xl 2xl:w-full mx-auto justify-items-center
+                    grid grid-cols-2 2xl:grid-cols-3 2xl:gap-y-10 2xl:gap-x-0 xs:gap-3 min-h-full py-24">
 
         {loaders}
 

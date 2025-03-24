@@ -3,6 +3,7 @@ import { incrementPage, decrementPage, incrementPageBy } from "@/ReduxToolKit/Re
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { useEffect, useState } from "react"
+import { boolean } from "astro:schema"
 
 
 const variants = {
@@ -18,6 +19,7 @@ const variants = {
 export default function LinkPagination({ identifier }) {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const [pagesLength, setPagesLength] = useState<number | null>(null)
+    const [scrollUp, setScrollUp] = useState<boolean>(false)
     const { search } = investigateState
     const { currentPage, pages } = search
     const dispatch = useDispatch()
@@ -28,19 +30,47 @@ export default function LinkPagination({ identifier }) {
             setPagesLength(pages.length)
         }
 
-    }, [pages])
+        if (scrollUp) {
+            window.scroll({
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+            })
+
+            setScrollUp(false)
+        }
+
+    }, [pages, currentPage, scrollUp])
 
     const decrement = () => {
 
-        if (currentPage > 0) {
+        if (currentPage > 0 && identifier === "BottomPager") {
+            setScrollUp(true)
+            dispatch(decrementPage())
+        } else if (currentPage > 0) {
             dispatch(decrementPage())
         }
     }
 
     const increment = () => {
 
-        if (currentPage <= 1) {
+
+
+        if (currentPage <= 1 && identifier === 'BottomPager') {
+            setScrollUp(true)
             dispatch(incrementPage())
+        } else if (currentPage <= 1) {
+            dispatch(incrementPage())
+        }
+    }
+
+    const handleNumberedClick = (index: number) => {
+
+        if (identifier === 'BottomPager') {
+            setScrollUp(true)
+            dispatch(incrementPageBy(index))
+        } else {
+            dispatch(incrementPageBy(index))
         }
     }
 
@@ -52,7 +82,7 @@ export default function LinkPagination({ identifier }) {
             initial='hide'
             animate='show'
             exit='hide'
-            className="relatvie w-full h-fit flex justify-center 2xl:mt-9 md:gap-x-6 mx-auto items-center">
+            className={`${identifier === 'BottomPager' && 'hidden xl:flex'} relatvie w-full h-fit flex justify-center md:gap-x-6 mx-auto items-center`}>
             <div className="row flex">
                 <button onClick={() => decrement()}
                     className="rounded-l-3xl border border-r-0 border-white/10
@@ -63,7 +93,7 @@ export default function LinkPagination({ identifier }) {
                     </svg>
                 </button>
                 {pagesLength > 1 && pages ? pages.map((page: any, index: number) => (
-                    <button key={index} onClick={() => dispatch(incrementPageBy(index))}
+                    <button key={index} onClick={() => handleNumberedClick(index)}
                         className={`${currentPage === index ? 'bg-white/10' : 'bg-black'} 
                 text-white rounded-md rounded-r-none rounded-l-none border border-r-0 border-white/10 py-2 px-3
                  text-center text-sm transition-all shadow-sm hover:shadow-lg hover:bg-white/10`}>

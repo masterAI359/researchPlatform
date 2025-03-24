@@ -35,6 +35,10 @@ export default function LinkGrid() {
 
     useEffect(() => {
 
+        if (articles !== null && articles.length < 1) {
+            console.log(articles)
+        }
+
         if (status === 'fulfilled' && articles) {
             const formedPages = formPages(articles)
             dispatch(getPages(formedPages))
@@ -58,14 +62,14 @@ export default function LinkGrid() {
                     <AnimatePresence>
 
                         {status === 'pending' && <LinkLoader />}
-                        {status === 'fulfilled' && articles && <LinkPagination identifier={'TopPager'} />}
+                        {status === 'fulfilled' && articles !== null && articles.length > 0 && <LinkPagination identifier={'TopPager'} />}
                         {status === 'fulfilled' && articles &&
-                            <motion.div layout key='pagesContainer' className="relative min-h-screen inset-0 py-6">
+                            <motion.div layout key='pagesContainer' className="relative min-h-screen inset-0 my-6">
                                 <Pages />
                             </motion.div>}
-                        {status === 'fulfilled' && !articles && <SearchFailed />}
+                        {(status === 'fulfilled' && !articles) || (articles && articles.length < 1) && <SearchFailed />}
 
-                        {status === 'fulfilled' && articles && <LinkPagination identifier={'BottomPager'} key={'pagerTwo'} />}
+                        {status === 'fulfilled' && articles !== null && articles.length !== 0 && <LinkPagination identifier={'BottomPager'} key={'pagerTwo'} />}
 
 
                     </AnimatePresence>

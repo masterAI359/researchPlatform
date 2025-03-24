@@ -99,7 +99,7 @@ export default function InvestigateContainer() {
       </div>
 
       <AnimatePresence>
-        {articles &&
+        {articles && articles.length > 0 &&
 
           <SelectArticles
             showSelect={showSelect}
@@ -110,7 +110,7 @@ export default function InvestigateContainer() {
       </AnimatePresence>
 
       <AnimatePresence >
-        {showContent && readyToRead && <PanelContainer />}
+        {showContent && <PanelContainer />}
       </AnimatePresence>
 
 

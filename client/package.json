@@ -9,7 +9,8 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "disable-toolbar": "astro preferences disable devToolbar"
   },
   "devDependencies": {
     "@astrojs/tailwind": "^5.1.0",

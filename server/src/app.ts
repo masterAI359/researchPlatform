@@ -1,5 +1,5 @@
 import '../envConfig/Config.ts'
-import { SUPABASE_KEY, SUPABASE_URL } from '../envConfig/Config.ts';
+import { SUPABASE_KEY, SUPABASE_URL, PORT } from '../envConfig/Config.ts';
 import { fileURLToPath } from 'url';
 import path from 'path';
 const __filename = fileURLToPath(import.meta.url);
@@ -56,7 +56,6 @@ export const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
 	}
 })
 
-const port = 5001;
 
 app.get('/search/articles', bingArticles);
 app.get('/summarize', tldrSummary);
@@ -77,7 +76,7 @@ app.get('*', (req: Request, res: Response) => {
 })
 
 
-app.listen(port, () => {
+app.listen(PORT, () => {
 
-	return console.log(`Express is listening at http://localhost:${port}`);
+	return console.log(`Express is listening at http://localhost:${PORT}`);
 });

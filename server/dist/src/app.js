@@ -24,7 +24,7 @@ app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     next();
 });
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, '../../../client/dist')));
 console.log("Serving: " + path.join(__dirname, '../../../client/dist', 'index.html'));
 app.options('*', (req, res) => {
     res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
@@ -44,7 +44,7 @@ app.get('/deleteUser', deleteUser);
 app.get('*', (req, res) => {
     try {
         console.log("Serving: " + path.join(__dirname, 'dist', 'index.html'));
-        res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+        res.sendFile(path.join(__dirname, '../../client/dist', 'index.html'));
     }
     catch (err) {
         if (err.code === 'ECONNRESET') {

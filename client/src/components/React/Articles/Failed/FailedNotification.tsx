@@ -24,24 +24,28 @@ export default function FailedNotification({ notification }) {
             initial={{ opacity: 0, y: 50, scale: 0.3 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, scale: 0.5, transition: { type: 'tween', duration: 0.15 } }}
-            className="xs:max-w-72 xs:max-h-36 z-50 md:max-w-44 xl:max-w-[29rem] xl:min-h-40 px-3 py-3 h-auto bg-ebony rounded-2xl xl:py-3 lg:py-2 flex content-start relative">
+            className="max-w-72 max-h-44 z-50 md:max-w-44 xl:max-w-[29rem] xl:min-h-40 px-3 py-3 h-auto bg-ebony rounded-2xl xl:py-3 lg:py-2 flex content-start relative">
 
             <div className="min-h-full w-full box-border flex gap-x-2 xl:my-1">
                 <div className="flex flex-col w-full xs:h-fit md:h-full md:gap-y-4 xs:gap-y-2">
                     <div className="flex gap-x-2 h-fit items-start xs:w-full md:w-3/4 lg:w-5/6 box-border">
-                        <div className="md:min-h-8 md:min-w-8 md:max-h-10 md:max-w-10 xs:w-24 xs:h-fit">
-                            <img className="max-h-full max-w-full" src={notification.logo} />
+                        <div className="md:min-h-8 md:min-w-8 md:max-h-10 md:max-w-10 max-w-6 max-h-6">
+                            <img className="max-h-8 max-w-full" src={notification.logo} />
                         </div>
-                        <p className="text-white text-xs md:text-sm font-bold">
+                        <p className="text-white text-xs md:text-sm font-bold hidden md:block">
                             {notification.source} article:
                             <span className="font-light"> '{notification.title}' </span>
                             <span className="font-bold text-red-600">failed to load</span>
                         </p>
+                        <p className="text-white text-xs md:text-sm font-bold block md:hidden">
+                            <span className="font-light"> '{notification.title}' </span>
+                            <span className="font-bold text-red-600">Denied access</span>
+                        </p>
                     </div>
                     <div>
-                        <button className="absolute xl:bottom-2 xl:left-2 right-0 bottom-0 bg-white/10 text-white rounded-full xs:w-24 md:w-28 border-transparent md:p-2 p-1
+                        <button className="absolute xl:bottom-2 xl:left-2 right-1 bottom-1 bg-white/10 text-white rounded-full xs:w-24 md:w-28 border-transparent md:p-2 p-1
                                 hover:bg-white hover:text-black hover:scale-110 transition-all duration-300 ease-in-out cursor-pointer text-xs md:text-sm"
-                        > <a href={notification.article_url} target="_blank">Visit Source</a>
+                        > <a href={notification.article_url} className="text-[0.6rem] sm:text-xs" target="_blank">Visit Source</a>
                         </button>
                     </div>
                 </div>

@@ -1,17 +1,14 @@
-import express, { query, Request, Response } from 'express'
-import * as dotenv from 'dotenv'
-import * as path from 'path'
-import { fileURLToPath } from 'url';
-import decodeItem from '../helpers/decodeItem.js'
-import { decodeArray } from '../helpers/decodeArray.js'
-
 const envUrl = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(envUrl)
 const envPath = path.resolve(__dirname, '../../.env');
+import { TLDR_KEY } from '../envConfig/Config.js';
+import express, { query, Request, Response } from 'express'
+import * as path from 'path'
+import { fileURLToPath } from 'url';
+import decodeItem from '../helpers/decodeItem.js'
 
-dotenv.config({ path: envPath })
 
-const TLDRKey = process.env.TLDR_KEY as string
+
 
 
 interface QueryType {
@@ -39,7 +36,7 @@ export const tldrSummary = async (req: Request, res: Response) => {
             }
         } catch (error) { }
 
-        throw new Error("Issue with Query to TLDR")
+        throw new Error(`Malformed URI error${res.status(500)}`)
     }
 
     const parsedQuery = JSON.parse(paramDecode(received))
@@ -73,7 +70,7 @@ export const tldrSummary = async (req: Request, res: Response) => {
                 const response = await fetch(url, {
                     method: 'POST',
                     headers: {
-                        'x-rapidapi-key': TLDRKey,
+                        'x-rapidapi-key': TLDR_KEY,
                         'x-rapidapi-host': 'tldrthis.p.rapidapi.com',
                         'Content-Type': 'application/json',
                     },

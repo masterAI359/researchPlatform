@@ -1,22 +1,20 @@
-import express, { Request, Response } from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import path from 'path';
+import '../envConfig/Config.ts'
+import { SUPABASE_KEY, SUPABASE_URL, PORT } from '../envConfig/Config.ts';
 import { fileURLToPath } from 'url';
-import { createClient } from '@supabase/supabase-js';
+import path from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const supabaseURL = process.env.SUPABASE_URL as string
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY as string
+import express, { Request, Response } from 'express';
+import cors from 'cors';
+import { createClient } from '@supabase/supabase-js';
 
 const app = express();
-import { bingArticles } from '../endpoints/bingApi.js';
-import { tldrSummary } from '../endpoints/tldrSummary.js'
-import { deleteUser } from '../endpoints/deleteUser.js'
+import { bingArticles } from '../endpoints/bingApi.ts';
+import { tldrSummary } from '../endpoints/tldrSummary.ts'
+import { deleteUser } from '../endpoints/deleteUser.ts'
 
 
-dotenv.config({ path: '../../.env' })
-
+//change this origin to https://elenchus.io for production
 const corsOptions: object = {
 	origin: '*',
 	methods: 'OPTIONS, HEAD, GET, PUT, POST, DELETE',
@@ -37,8 +35,7 @@ app.use(function (req, res, next) {
 	next();
 });
 
-app.use(express.static(path.join(__dirname, 'dist')));
-console.log("Serving: " + path.join(__dirname, '../../../client/dist', 'index.html'))
+app.use(express.static(path.join(__dirname, '../../../client/dist')));
 
 app.options('*', (req, res) => {
 	res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
@@ -53,14 +50,11 @@ app.options('*', (req, res) => {
 	res.sendStatus(200);
 });
 
-export const supabase = createClient(supabaseURL, supabaseServiceKey, {
+export const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
 	auth: {
 		persistSession: true
 	}
 })
-
-
-const port = 5001;
 
 
 app.get('/search/articles', bingArticles);
@@ -71,7 +65,7 @@ app.get('/deleteUser', deleteUser)
 app.get('*', (req: Request, res: Response) => {
 	try {
 		console.log("Serving: " + path.join(__dirname, 'dist', 'index.html'))
-		res.sendFile(path.join(__dirname, 'dist', 'index.html'))
+		res.sendFile(path.join(__dirname, '../../client/dist', 'index.html'))
 
 	} catch (err: any) {
 		if (err.code === 'ECONNRESET') {
@@ -82,7 +76,7 @@ app.get('*', (req: Request, res: Response) => {
 })
 
 
-app.listen(port, () => {
+app.listen(PORT, () => {
 
-	return console.log(`Express is listening at http://localhost:${port}`);
+	return console.log(`Express is listening at http://localhost:${PORT}`);
 });

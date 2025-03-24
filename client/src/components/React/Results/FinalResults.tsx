@@ -29,11 +29,11 @@ export default function FinalResults() {
 
 
     return (
-        <section className="lg:p-8 h-full w-full flex justify-center">
+        <section className="lg:p-8 p-2 h-full w-full flex justify-center mx-auto">
             <AnimatePresence>
                 {saveStatus !== 'idle' && <SavingResearch />}
             </AnimatePresence>
-            <div className="2xl:max-w-7xl h-fit py-16 lg:px-16 md:px-12 px-2 xl:px-36 items-center relative w-full bg-gradientdown rounded-[3rem]">
+            <div className="2xl:max-w-7xl h-fit py-16 lg:px-16 md:px-12 xl:px-36 items-center relative w-full bg-gradientdown rounded-[3rem]">
                 <div className="text-center max-w-xl mx-auto">
                     <span className="text-md 2xl:text-lg text-blue-500 font-light"> Results</span>
                     <h2 className="text-sm md:text-xl mt-6 tracking-tight font-light lg:text-2xl text-white">

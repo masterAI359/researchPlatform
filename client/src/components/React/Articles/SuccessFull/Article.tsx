@@ -37,8 +37,8 @@ export default function Article({ articleData, index }) {
                     duration: 0.1
                 }
             }}
-            className="relative top-0 left-0 right-0 flex flex-col
-            w-full h-full scrollbar-hide bg-black"
+            className="relative top-0 left-0 right-0 flex flex-col grow
+            w-full min-h-screen scrollbar-hide bg-black"
         >
 
             <ScrolltoTop />

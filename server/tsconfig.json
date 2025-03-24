@@ -2,14 +2,23 @@
 	"compilerOptions": {
 		"module": "ES2022",
 		"esModuleInterop": true,
-		"target": "es6",
-		"moduleResolution": "node",
+		"target": "ES2022",
+		"moduleResolution": "node10",
+		"noEmit": true,
+		"allowImportingTsExtensions": true,
 		"sourceMap": true,
 		"rootDir": "./",
 		"outDir": "./dist",
-		"strict": true
+		"strict": true,
 	},
-	"lib": ["es2015"],
-	"include": ["src/*/", "endpoints/logoMap.ts"],
-	"exclude": ["node_modules"]
+	"lib": [
+		"es2015"
+	],
+	"include": [
+		"src/*/",
+		"endpoints/logoMap.ts"
+	],
+	"exclude": [
+		"node_modules"
+	]
 }

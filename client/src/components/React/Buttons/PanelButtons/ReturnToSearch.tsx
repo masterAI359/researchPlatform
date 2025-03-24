@@ -3,6 +3,7 @@ import { displayReturnModal } from "@/ReduxToolKit/Reducers/Investigate/DisplayR
 import { resetResults } from "@/ReduxToolKit/Reducers/Investigate/SearchResults"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
+import { resetData, incrementStoryBy } from "@/ReduxToolKit/Reducers/Investigate/Reading"
 
 export default function ReturnToSearch() {
     const investigateState = useSelector((state: RootState) => state.investigation)
@@ -11,7 +12,7 @@ export default function ReturnToSearch() {
 
 
     const handleReturn = () => {
-        dispatch(resetResults())
+        dispatch(incrementStoryBy(0))
         dispatch(displayReturnModal(true))
     }
 
@@ -22,11 +23,12 @@ export default function ReturnToSearch() {
         duration-300 xs:max-w-8 xs:max-h-8 xl:max-w-7 xl:max-h-7 2xl:max-w-8 
         2xl:max-h-8 p-0.5 ease-in-out group relative"
         >
-            {!showReadingTooltip && <div
-                className="fixed rounded-md z-50 -translate-y-16 -translate-x-4 mx-auto
-            border border-slate-500 xl:p-3 2xl:p-2 opacity-0 md:group-hover:opacity-100 bg-astro_black 
-            shadow-black transition-opacity duration-300 ease-in-out">
-                <p className="text-white" >Return to Search</p>
+            {!showReadingTooltip && <div className="absolute p-1 bg-white z-50 opacity-0 transition-all duration-200 ease-in-out 
+            md:group-hover:opacity-100 bottom-10 -right-2
+            rounded-md items-center border border-astro_gray shadow-thick after:content-[''] after:absolute after:bottom-[-10px] after:left-1/2 
+            after:transform after:-translate-x-1/2 after:border-t-[10px] after:border-l-[10px] after:border-r-[10px] after:border-b-0 
+            after:border-t-white after:border-l-transparent after:border-r-transparent after:border-b-transparent">
+                <p className="text-black" >Back to search</p>
             </div>}
 
             <div className="h-full w-full box-border">

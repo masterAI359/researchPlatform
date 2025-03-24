@@ -62,12 +62,7 @@ export const SearchResultsSlice = createSlice({
         }),
             builder.addCase(RetrieveArticles.fulfilled, (state, action) => {
                 state.status = 'fulfilled'
-                if (action.payload.length === 0) {
-                    state.articles = null
-                } else {
-                    state.articles = action.payload
-
-                }
+                state.articles = action.payload
             }),
             builder.addCase(RetrieveArticles.rejected, (state, action) => {
                 state.status = 'rejected';

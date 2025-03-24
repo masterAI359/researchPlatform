@@ -3,16 +3,28 @@ import { useSelector } from "react-redux"
 import Page from "./Page"
 import { RootState } from "@/ReduxToolKit/store"
 
+//const variants = {
+//    show: {
+//        opacity: 1,
+//        transition: { type: 'tween', delay: 0.2, duration: 0.2 }
+//    },
+//    hide: {
+//        opacity: 0,
+//        transition: { type: 'tween', duration: 0.2 }
+//    }
+//}
+
 const variants = {
     show: {
         opacity: 1,
-        transition: { type: 'tween', delay: 0.2, duration: 0.2 }
+        transition: { type: 'tween', duration: 0.4, ease: 'easeInOut', delay: 0.4 }
     },
     hide: {
         opacity: 0,
-        transition: { type: 'tween', duration: 0.2 }
+        transition: { type: 'tween', duration: 0.4, ease: 'easeInOut' }
     }
-}
+};
+
 
 export default function Pages() {
     const investigateState = useSelector((state: RootState) => state.investigation)
@@ -27,6 +39,7 @@ export default function Pages() {
             animate='show'
             exit='hide'
             transition={{ type: 'tween', duration: 0.2 }}
+            className="relative"
         >
             {pages?.map((pageContent: any, index: number) => (
                 <AnimatePresence key={index} mode="wait">

@@ -8,7 +8,7 @@ export default function FinishLine() {
 
 
     return (
-        <main className="w-full h-full flex flex-col items-center gap-y-2 px-2">
+        <main className="w-full h-full flex flex-col pt-12 md:pt-0 items-center gap-y-2 px-2">
             <article
                 className="relative flex flex-col md:flex-row items-center 
                 md:gap-x-2 2xl:gap-x-0 relative mx-auto w-full h-full py-2 rounded-4xl gap-y-1

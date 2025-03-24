@@ -11,12 +11,15 @@ export default function TakeNotes({ }) {
     return (
         <button
             onClick={() => dispatch(writingNote(takingNotes === false ? true : false))}
-            className="md:w-auto md:h-auto xs:max-w-8 xs:max-h-8 xl:max-w-7 xl:max-h-7 2xl:max-w-8 2xl:max-h-8 p-0.5
-        rounded-lg transition-all duration-300 m-auto
+            className="md:w-fit md:h-auto xs:max-w-8 xs:max-h-8 xl:max-w-7 xl:max-h-7 2xl:max-w-8 2xl:max-h-8 p-0.5
+        rounded-lg transition-all duration-300 m-auto relative
         ease-in-out group">
 
-            <div className="fixed bg-black shadow-thick rounded-md z-50 -translate-y-16 -translate-x-4 mx-auto border border-slate-500 xl:p-2 opacity-0 md:group-hover:opacity-100 bg-astro_black transition-opacity duration-300 ease-in-out">
-                <p className="text-white" >Take Notes</p>
+            <div className="absolute p-1 bg-white z-50 hidden transition-all duration-200 ease-in-out md:group-hover:block bottom-10 -left-1
+            rounded-md items-center border border-astro_gray shadow-thick after:content-[''] after:absolute after:bottom-[-10px] after:left-1/2 
+            after:transform after:-translate-x-1/2 after:border-t-[10px] after:border-l-[10px] after:border-r-[10px] after:border-b-0 
+            after:border-t-white after:border-l-transparent after:border-r-transparent after:border-b-transparent">
+                <p className="text-black" >Take Notes</p>
             </div>
 
             <div className="h-full w-full box-border">

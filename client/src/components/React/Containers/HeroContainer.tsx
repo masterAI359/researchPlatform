@@ -95,6 +95,7 @@ export default function HeroContainer({
                             delay: 0.22,
                             ease: [0.4, 0, 0.2, 1],
                         }}
+
                     >
                         <CompletionHero />
                         <ScrolltoTop />
@@ -106,7 +107,7 @@ export default function HeroContainer({
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="h-full w-full"
+                    className="h-full w-full mx-auto"
                     transition={{
                         type: 'tween',
                         duration: 0.4,

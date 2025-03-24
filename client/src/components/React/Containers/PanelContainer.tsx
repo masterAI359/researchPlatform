@@ -8,7 +8,7 @@ import { RootState } from "@/ReduxToolKit/store";
 export default function PanelContainer() {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { showContent, showReadingTooltip } = investigateState.display
-    const { ContentStatus } = investigateState.read
+    const { ContentStatus, summaries } = investigateState.read
     const readyToRead = ContentStatus === 'fulfilled' || ContentStatus === 'rejected'
 
     return (
@@ -19,7 +19,7 @@ export default function PanelContainer() {
             transition={{ type: 'tween', duration: 0.2 }}
             className="w-full h-auto relative mx-auto"
         >
-            <ControlPanel />
+            {showContent && ContentStatus === 'fulfilled' && <ControlPanel />}
         </motion.div>
     )
 }

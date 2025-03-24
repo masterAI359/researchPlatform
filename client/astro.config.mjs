@@ -14,7 +14,7 @@ export default defineConfig({
   },
   vite: {
     server: {
-      proxy: {
+      proxy: process.env.NODE_ENV === 'development' ? {
         '/search': {
           target: 'http://localhost:5001',
           changeOrigin: true
@@ -27,20 +27,10 @@ export default defineConfig({
           target: 'http://localhost:5001',
           changeOrigin: true
         }
-      }
+      } : undefined
     }
   },
-  markdown: {
-    drafts: true,
-    shikiConfig: {
-      theme: 'css-variables'
-    }
-  },
-  shikiConfig: {
-    wrap: true,
-    skipInline: false,
-    drafts: true
-  },
+  markdown: { /* ... */ },
   site: 'https://elenchusapp.io/',
   integrations: [tailwind(), sitemap(), mdx(), devtoolBreakpoints(), react(), icon()],
   output: 'server',

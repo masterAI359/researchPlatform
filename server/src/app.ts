@@ -16,7 +16,7 @@ import { deleteUser } from '../endpoints/deleteUser.ts'
 
 //change this origin to https://elenchus.io for production
 const corsOptions: object = {
-	origin: '*',
+	origin: 'https://elenchusapp.io',
 	methods: 'OPTIONS, HEAD, GET, PUT, POST, DELETE',
 	allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept',
 };

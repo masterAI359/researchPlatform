@@ -11,20 +11,20 @@ import { fileURLToPath } from 'url';
 
 type LogoMap = Map<string, string>;
 
-const logosPath = `../../../client/public/images/logos`
+const logosPath = `../../client/public/images/logos`
 
 const __fileName = fileURLToPath(import.meta.url);
 
 const __dirname = path.dirname(__fileName)
 
-function fillLogoMap (logosPath: string) {
+function fillLogoMap(logosPath: string) {
     const logoMap: LogoMap = new Map<string, string>();
 
     const svgFiles = fs.readdirSync(logosPath)
 
     svgFiles.forEach((file: string) => {
 
-        if(path.extname(file) === '.svg') {
+        if (path.extname(file) === '.svg') {
 
             const publication = path.basename(file, '.svg');
 
@@ -38,7 +38,7 @@ function fillLogoMap (logosPath: string) {
 }
 
 
-const logosDirectory = path.resolve(__dirname, logosPath) 
+const logosDirectory = path.resolve(__dirname, logosPath)
 
 const logoMap = fillLogoMap(logosDirectory)
 

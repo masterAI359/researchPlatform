@@ -13,7 +13,6 @@ export default function ReturnToSearch() {
 
     const handleReturn = () => {
         dispatch(incrementStoryBy(0))
-        dispatch(resetData())
         dispatch(displayReturnModal(true))
     }
 

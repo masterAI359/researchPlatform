@@ -1,16 +1,25 @@
 import { useDispatch, useSelector } from "react-redux";
 import { initiateFinalProcess } from "@/ReduxToolKit/Reducers/Investigate/Review";
 import { isReading, resetData } from "@/ReduxToolKit/Reducers/Investigate/Reading";
-import { displayArticleContent, displayWrapUp } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
+import { displayArticleContent, displayReadingTooltip, displayWrapUp } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
 import GuideDoneReading from "../../Tooltips/GuideDoneReading";
 import { RootState } from "@/ReduxToolKit/store";
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 
 
 export function FinishedReading({ }) {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { showReadingTooltip } = investigateState.display
+    const { summaries } = investigateState.read
     const dispatch = useDispatch()
+
+    useLayoutEffect(() => {
+
+        if (summaries && summaries.length < 1) {
+            dispatch(displayReadingTooltip(false))
+        }
+
+    }, [])
 
     return (
         <button

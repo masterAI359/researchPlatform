@@ -1,4 +1,4 @@
-import { AnimatePresence } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import FailedLoading from "./Failed/FailedLoading"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
@@ -20,8 +20,6 @@ export default function ArticleContainer({ }) {
 
 
   useEffect(() => {
-
-    console.log(summaries)
 
     if (summaries || failedNotifications) {
 
@@ -46,7 +44,7 @@ export default function ArticleContainer({ }) {
     <ErrorBoundary>
       <div
         className="min-h-screen h-full 2xl:max-w-7xl xl:max-w-5xl lg:max-w-3xl md:max-w-3xl xs:px-2 md:px-8 scroll-smooth
-      inset rounded-4xl mx-auto border-white/10 xs:mt-10 xl:mt-0 relative"
+      inset mx-auto border-white/10 xs:mt-10 xl:mt-0 relative"
       >
         <div className="hidden lg:block w-full flex flex-row-reverse p-0">
           <ErrorBoundary>
@@ -60,11 +58,10 @@ export default function ArticleContainer({ }) {
                mb-12 flex flex-col
                  ">
 
+          <AnimatePresence>
+            <motion.div
+              className="w-full min-h-screen mx-auto relative grow shrink-0">
 
-          <div
-            className="w-full min-h-screen mx-auto relative grow shrink-0">
-
-            <AnimatePresence>
               {ContentStatus === 'pending' && <ArticleLoader key='contentLoader' />}
               {summaries ? summaries?.map((articleData: any, index: number) =>
               (currentStory === index && <Article
@@ -73,9 +70,10 @@ export default function ArticleContainer({ }) {
                 articleData={articleData}
               />)
               ) : <NoContent key='noResults' />}
-            </AnimatePresence>
 
-          </div>
+            </motion.div>
+          </AnimatePresence>
+
         </main>
         {ContentStatus === 'fulfilled' && <FailedLoading />}
       </div>

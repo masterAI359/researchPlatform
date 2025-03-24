@@ -38,7 +38,7 @@ export default function ArticleSaved({ article, index, }) {
 
     return (
         <main
-            key={index}
+            key={article.article_url}
             className="w-full 2xl:max-h-72 2xl:min-h-44
                 flex xs:flex-col xs:items-center md:flex-row md:justify-end z-1
                 xs:border-t xs:border-white/20 xs:px-2 md:py-3">

@@ -1,22 +1,20 @@
-import express, { Request, Response } from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import path from 'path';
+import '../envConfig/Config.ts'
+import { SUPABASE_KEY, SUPABASE_URL } from '../envConfig/Config.ts';
 import { fileURLToPath } from 'url';
-import { createClient } from '@supabase/supabase-js';
+import path from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const supabaseURL = process.env.SUPABASE_URL as string
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY as string
+import express, { Request, Response } from 'express';
+import cors from 'cors';
+import { createClient } from '@supabase/supabase-js';
 
 const app = express();
-import { bingArticles } from '../endpoints/bingApi.js';
-import { tldrSummary } from '../endpoints/tldrSummary.js'
-import { deleteUser } from '../endpoints/deleteUser.js'
+import { bingArticles } from '../endpoints/bingApi.ts';
+import { tldrSummary } from '../endpoints/tldrSummary.ts'
+import { deleteUser } from '../endpoints/deleteUser.ts'
 
 
-dotenv.config({ path: '../../.env' })
-
+//change this origin to https://elenchus.io for production
 const corsOptions: object = {
 	origin: '*',
 	methods: 'OPTIONS, HEAD, GET, PUT, POST, DELETE',
@@ -52,7 +50,7 @@ app.options('*', (req, res) => {
 	res.sendStatus(200);
 });
 
-export const supabase = createClient(supabaseURL, supabaseServiceKey, {
+export const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
 	auth: {
 		persistSession: true
 	}

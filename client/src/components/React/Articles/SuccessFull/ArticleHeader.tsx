@@ -25,8 +25,8 @@ export default function ArticleHeader({
 }) {
     const [showNotification, setShowNotification] = useState<boolean>(false)
     const id = useSelector((state: RootState) => state.auth.user_id)
-    const sources = useSelector((state: RootState) => state.saveResearch.sources)
     const [open, setOpen] = useState<boolean>(false)
+    const [showAllAuthors, setShowAllAuthors] = useState<boolean>(false)
 
 
     const formatDate = (datePublished: string) => {
@@ -67,6 +67,8 @@ export default function ArticleHeader({
         fallbackDate: article_pub_date,
         id: id,
     }
+
+    console.log(article_authors)
 
     const authShortened = limitArray(article_authors)
     const fallbackImage = '/images/logos/fallback.jpg'
@@ -115,7 +117,7 @@ export default function ArticleHeader({
                             </div>
                             <div className='max-w-96 flex flex-wrap mt-3 items-center'>
                                 <p className='text-white md:text-lg mr-2'>Authors - </p>
-                                {article_authors ? authShortened.map((author: string, index: number) => {
+                                {article_authors && showAllAuthors === false && authShortened.map((author: string, index: number) => {
 
                                     if (index + 1 < authShortened.length) {
                                         return (<p key={index} className="text-slate-400 md:text-lg font-serif mr-2">
@@ -126,7 +128,22 @@ export default function ArticleHeader({
                                             {author}
                                         </p>)
                                     }
-                                }) : (<p className='text-slate-300 md:text-lg font serif mr-2'>Could not determine. Visit the source to determine authors.</p>)}
+                                })}
+                                {article_authors && showAllAuthors === true && article_authors.map((author: string, index: number) => {
+
+                                    if (index + 1 < article_authors.length) {
+                                        return (<p key={index} className="text-slate-400 md:text-lg font-serif mr-2">
+                                            {author},
+                                        </p>)
+                                    } else if (index + 1 === article_authors.length) {
+                                        return (
+                                            <p key={index} className="text-slate-400 md:text-lg font-serif mr-2">
+                                                {author}
+                                            </p>
+                                        )
+                                    }
+                                })}
+                                {article_authors === null && (<p className="text-slate-400 font-serif">Authors could not be determined. Visit the source to view the article's authors.</p>)}
                             </div>
                         </div>
                     </div>
@@ -136,7 +153,7 @@ export default function ArticleHeader({
                         <SaveArticle open={open} dataToSave={dataToSave} showNotification={showNotification} setShowNotification={setShowNotification} />
                     </div>
                     <div className="w-auto h-auto">
-                        <MoreButton context={'reading'} key={article_title} open={open} setOpen={setOpen} article_url={article_url} showNotification={showNotification} />
+                        <MoreButton authors={article_authors} setShowAllAuthors={setShowAllAuthors} context={'reading'} key={article_title} open={open} setOpen={setOpen} article_url={article_url} showNotification={showNotification} />
                     </div>
                 </div>
             </section>

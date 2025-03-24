@@ -19,7 +19,7 @@ export default function PanelContainer() {
             transition={{ type: 'tween', duration: 0.2 }}
             className="w-full h-auto relative mx-auto"
         >
-            {showContent && summaries && summaries.length > 0 && <ControlPanel />}
+            {showContent && ContentStatus === 'fulfilled' && <ControlPanel />}
         </motion.div>
     )
 }

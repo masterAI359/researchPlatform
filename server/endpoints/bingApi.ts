@@ -1,6 +1,3 @@
-import { Request, Response } from 'express';
-import decodeItem from '../helpers/decodeItem.js';
-import { logoMap } from './logoMap.js'
 import * as dotenv from 'dotenv'
 import * as path from 'path'
 import { fileURLToPath } from 'url';
@@ -9,6 +6,10 @@ const __dirname = path.dirname(envUrl)
 const envPath = path.resolve(__dirname, '../../../.env');
 dotenv.config({ path: envPath })
 const BingKey = process.env.BING_KEY as string
+import { Request, Response } from 'express';
+import decodeItem from '../helpers/decodeItem.js';
+import { logoMap } from './logoMap.js'
+
 
 export const bingArticles = async (req: Request, res: Response) => {
 	const search = req.query.q as string;
@@ -25,7 +26,7 @@ export const bingArticles = async (req: Request, res: Response) => {
 			headers: { 'Ocp-Apim-Subscription-Key': BingKey },
 		});
 		if (!response.ok) {
-			throw new Error(`error: ${res.status(500)}`)
+			throw new Error(`Bing API failed with status ${res.status}: ${res.statusMessage}`);
 		}
 		const data = await response.json();
 		const dataValues = data.value;
@@ -71,7 +72,7 @@ export const bingArticles = async (req: Request, res: Response) => {
 		};
 		res.send(result);
 	} catch (err) {
-		console.error('error', err);
+		console.error("error:", JSON.stringify(err, null, 2));
 		res.status(500).send('error fetching search result');
 	}
 };

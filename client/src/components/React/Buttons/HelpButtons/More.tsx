@@ -1,7 +1,7 @@
 
 
 
-export default function More({ article_url, setOpen, context }) {
+export default function More({ article_url, setOpen, context, setShowAllAuthors, authors }) {
 
     return (
         <div className="bg-black border border-white/40 z-30 rounded-md xs:w-36 xl:w-36 h-auto p-3 absolute bottom-0 right-10">
@@ -19,7 +19,10 @@ export default function More({ article_url, setOpen, context }) {
                         Visit source
                     </a>
                 </li>
-                <li className="text-white text-left xs:text-xs hover:text-blue-400 transition-all cursor-pointer duration-200 ease-in-out md:text-sm font-light tracking-tight">
+                <li onClick={() => setShowAllAuthors(prev => !prev)} className={`
+                ${authors && authors.length < 3 ? 'pointer-events-none opacity-50' : 'opacity-100 pointer-events-auto'} 
+                text-white text-left xs:text-xs hover:text-blue-400 
+                    transition-all cursor-pointer duration-200 ease-in-out md:text-sm font-light tracking-tight`}>
                     <a href="#">
                         All authors
                     </a>

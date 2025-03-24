@@ -39,7 +39,7 @@ export const tldrSummary = async (req: Request, res: Response) => {
             }
         } catch (error) { }
 
-        throw new Error("Issue with Query to TLDR")
+        throw new Error(`Malformed URI error${res.status(500)}`)
     }
 
     const parsedQuery = JSON.parse(paramDecode(received))

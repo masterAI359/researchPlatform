@@ -31,6 +31,7 @@ export const deleteUser = async (req: Request, res: Response) => {
             console.log({ 'Data Recieved': data })
         } else if (error) {
             console.log(error.message)
+            res.status(500).json({ message: 'Database responded with an error' })
         }
         return res.send({ response: data })
 

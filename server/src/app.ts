@@ -38,7 +38,6 @@ app.use(function (req, res, next) {
 });
 
 app.use(express.static(path.join(__dirname, '../../../client/dist')));
-console.log("Serving: " + path.join(__dirname, '../../../client/dist', 'index.html'))
 
 app.options('*', (req, res) => {
 	res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
@@ -59,9 +58,7 @@ export const supabase = createClient(supabaseURL, supabaseServiceKey, {
 	}
 })
 
-
 const port = 5001;
-
 
 app.get('/search/articles', bingArticles);
 app.get('/summarize', tldrSummary);

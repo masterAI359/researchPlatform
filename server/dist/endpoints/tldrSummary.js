@@ -1,10 +1,10 @@
 const envUrl = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(envUrl);
 const envPath = path.resolve(__dirname, '../../.env');
-import { TLDR_KEY } from '../src/Config';
+import { TLDR_KEY } from '../src/Config.js';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
-import decodeItem from '../helpers/decodeItem';
+import decodeItem from '../helpers/decodeItem.js';
 export const tldrSummary = async (req, res) => {
     let failure = [];
     const received = req.query.q;

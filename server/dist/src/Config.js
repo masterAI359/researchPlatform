@@ -8,5 +8,5 @@ export const BING_KEY = process.env.BING_KEY;
 export const TLDR_KEY = process.env.TLDR_KEY;
 export const SUPABASE_URL = process.env.SUPABASE_URL;
 export const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY;
-export const PORT = process.env.PORT || 5001;
+export const PORT = (process.env.PORT || 5001);
 //# sourceMappingURL=Config.js.map

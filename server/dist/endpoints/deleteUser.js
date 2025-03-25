@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
-import { supabase } from '../src/app';
+import { supabase } from '../src/app.js';
 const envUrl = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(envUrl);
 const envPath = path.resolve(__dirname, '../../.env');

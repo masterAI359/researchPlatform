@@ -12,9 +12,9 @@
     },
     "include": [
         "src/**/*",
-        "scripts/**/*",
         "endpoints/**/*",
-        "envConfig/**/*"
+        "envConfig/**/*",
+        "scripts/**/*"
     ],
     "exclude": [
         "node_modules",

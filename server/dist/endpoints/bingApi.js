@@ -6,8 +6,9 @@ const __dirname = path.dirname(envUrl);
 const envPath = path.resolve(__dirname, '../../../.env');
 dotenv.config({ path: envPath });
 const BingKey = process.env.BING_KEY;
-import decodeItem from '../helpers/decodeItem';
-import { logoMap } from './logoMap';
+import decodeItem from '../helpers/decodeItem.js';
+import { logoMap } from './logoMap.js';
+const logoMapData = new Map(Object.entries(logoMap));
 export const bingArticles = async (req, res) => {
     const search = req.query.q;
     const endpoint = `https://api.bing.microsoft.com/v7.0/news/search?q=${encodeURIComponent(search)}+-site:msn.com&mkt=en-us&count=20&category=Articles&safeSearch=Strict&module=Images&responseFilter=News&textFormat-videos=HTML`;
@@ -25,11 +26,11 @@ export const bingArticles = async (req, res) => {
         const decodedData = dataValues.map((item) => decodeItem(item));
         const articlesWithLogos = Object.values(decodedData).map((article) => {
             const provider = article.provider[0].name.replace(/\s+/g, '').toLowerCase();
-            if (logoMap.has(provider)) {
-                article.logo = logoMap.get(provider);
+            if (logoMapData.has(provider)) {
+                article.logo = logoMapData.get(provider);
             }
             else {
-                article.logo = logoMap.get("fallback");
+                article.logo = logoMapData.get("fallback");
             }
             return article;
         });

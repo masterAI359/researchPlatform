@@ -22,7 +22,6 @@ app.use(function (req, res, next) {
     next();
 });
 const clientDistPath = path.resolve(__dirname, '../../../client/dist');
-app.use(express.static(path.join(clientDistPath)));
 app.options('*', (req, res) => {
     res.header('Access-Control-Allow-Origin', 'https://elenchusapp.io');
     res.header('Access-Control-Allow-Methods', 'OPTIONS, HEAD, GET, PUT, POST, DELETE');

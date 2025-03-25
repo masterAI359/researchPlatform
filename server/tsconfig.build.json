@@ -11,7 +11,9 @@
         "sourceMap": true
     },
     "include": [
-        "src/**/*"
+        "src/**/*",
+        "endpoints/**/*",
+        "envConfig/**/*"
     ],
     "exclude": [
         "node_modules",

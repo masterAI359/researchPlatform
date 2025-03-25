@@ -67,7 +67,8 @@ app.get('/deleteUser', deleteUser)
 app.get('*', (req: Request, res: Response) => {
 	try {
 		console.log("Serving: " + path.join(clientDistPath, 'index.html'))
-		res.sendFile(path.join(clientDistPath, 'index.html'))
+		res.sendFile(path.resolve(process.cwd(), 'client/dist/index.html'));
+
 
 	} catch (err: any) {
 		if (err.code === 'ECONNRESET') {

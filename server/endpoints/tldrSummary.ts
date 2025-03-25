@@ -5,7 +5,7 @@ import { TLDR_KEY } from '../src/Config.js';
 import express, { query, Request, Response } from 'express'
 import * as path from 'path'
 import { fileURLToPath } from 'url';
-import decodeItem from '../helpers/decodeItem'
+import decodeItem from '../helpers/decodeItem.js'
 
 
 

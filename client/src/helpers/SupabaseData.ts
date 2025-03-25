@@ -20,14 +20,12 @@ export const checkArticle = async (
         if (data !== null && data.length > 0) {
             setArticleExists(true)
         } else if (error) {
-            console.log(error)
         } else if (!currentSession) {
 
         } else {
             setArticleExists(false)
         }
     } catch (error) {
-        console.log(error)
     }
 }
 
@@ -57,7 +55,6 @@ export const saveArticle = async (dataToSave: SavedArticle, setShowNotification:
             }
 
         } catch (err) {
-            console.log(err)
         }
     } else if (!articleExists) {
         try {
@@ -77,7 +74,6 @@ export const saveArticle = async (dataToSave: SavedArticle, setShowNotification:
                 ])
                 .select()
             if (error) {
-                console.log(error)
 
             } else if (data.length > 0) {
                 setShowNotification(true)
@@ -85,7 +81,6 @@ export const saveArticle = async (dataToSave: SavedArticle, setShowNotification:
             } else {
             }
         } catch (err) {
-            console.log(err)
         }
     }
 
@@ -129,7 +124,6 @@ export const getUserInvestigations = async (id: number | string) => {
         .eq('user_id', id)
 
     if (error) {
-        console.log(error)
     } else if (data) {
 
     }
@@ -178,7 +172,6 @@ export const deleteUser = async (id: string, setDeleting: Function, setDeletesuc
             return error.message
         }
     } catch (error) {
-        console.log(error)
     }
 
 

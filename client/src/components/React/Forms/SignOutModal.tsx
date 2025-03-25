@@ -17,7 +17,6 @@ export default function SignOutModal({ }) {
     const dispatch = useDispatch()
 
     const redirectUser = () => {
-        console.log('invoked')
         navigate('/')
     }
 

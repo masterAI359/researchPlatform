@@ -13,7 +13,7 @@ export default function HeroImage() {
 			lg:py-32 bg-gradientdown rounded-[3rem] overflow-hidden relative'>
 				<img
 					className='sr-only lg:not-sr-only lg:absolute -mt-16 lg:left-80 opacity-70 top-20'
-					src='public/images/assets/cubeTwo.png'>
+					src='/images/assets/cubeTwo.png'>
 				</img>
 
 				<div className='max-w-xl'>

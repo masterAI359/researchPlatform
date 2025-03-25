@@ -63,7 +63,6 @@ export const emailValidation = (emailEvaluated: string, setter: Function) => {
 
 export const confirmPassword = (firstEntry: string, secondEntry: string, setter: Function, errorSetter: Function) => {
 
-    console.log('running confirmation')
 
     const splitPW = firstEntry.split('')
 

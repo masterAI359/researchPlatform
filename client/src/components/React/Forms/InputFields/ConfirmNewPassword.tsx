@@ -18,7 +18,6 @@ export default function ConfirmNewPassword({ acceptedInput, canSubmit, setCanSub
 
     useEffect(() => {
 
-        console.log(secondPassword)
 
         if (firstPassword && secondPassword) {
             confirmPassword(firstPassword, secondPassword, setCanSubmit, setNeedSpecialChar)

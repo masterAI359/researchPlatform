@@ -7,9 +7,7 @@ export const googleAuth = async () => {
     })
 
     if (data) {
-        console.log(data)
     } else if (error) {
-        console.log(error)
     }
 
 }
@@ -21,8 +19,6 @@ export const signInWithTwitter = async () => {
     })
 
     if (data) {
-        console.log(data)
     } else if (error) {
-        console.log(error)
     }
 }

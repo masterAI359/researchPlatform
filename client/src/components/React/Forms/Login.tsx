@@ -47,15 +47,12 @@ export default function Login() {
                 password: userPassword
             })
             if (error) {
-                console.log(error.message)
                 setSuccessful(false)
             } else if (data) {
-                console.log(data)
                 setSuccessful(true)
                 redirectUser()
             }
         } catch (error) {
-            console.log(error)
         }
 
     }
@@ -73,7 +70,6 @@ export default function Login() {
 
         if (userEmail) {
             emailValidation(userEmail, setValidEmail)
-            console.log(validEmail)
         }
 
         if (userEmail && userPassword) {

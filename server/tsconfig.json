@@ -18,7 +18,7 @@
 		"src/",
 		"helpers/",
 		"endpoints/",
-		"envConfig/Config.ts"
+		"src/Config.ts"
 	],
 	"exclude": [
 		"node_modules"

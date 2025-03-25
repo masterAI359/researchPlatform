@@ -1,5 +1,5 @@
-import '../envConfig/Config'
-import { SUPABASE_KEY, SUPABASE_URL, PORT } from '../envConfig/Config';
+import './Config'
+import { SUPABASE_KEY, SUPABASE_URL, PORT } from './Config';
 import { fileURLToPath } from 'url';
 import path from 'path';
 const __filename = fileURLToPath(import.meta.url);

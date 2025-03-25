@@ -66,17 +66,16 @@ app.get('/deleteUser', deleteUser)
 
 app.get('*', (req: Request, res: Response) => {
 	try {
-		console.log("Serving: " + path.join(clientDistPath, 'index.html'))
-		res.sendFile(path.resolve(process.cwd(), 'client/dist/index.html'));
-
-
+		const filePath = path.resolve(clientDistPath, 'index.html');
+		console.log("Serving:", filePath);
+		res.sendFile(filePath);
 	} catch (err: any) {
 		if (err.code === 'ECONNRESET') {
-			console.error('Connection reset by client')
-			res.status(500).send('Lost Network Connection')
+			console.error('Connection reset by client');
+			res.status(500).send('Lost Network Connection');
 		}
 	}
-})
+});
 
 
 app.listen(PORT, () => {

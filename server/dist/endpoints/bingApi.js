@@ -1,5 +1,3 @@
-import decodeItem from '../helpers/decodeItem.js';
-import { logoMap } from './logoMap.js';
 import * as dotenv from 'dotenv';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
@@ -8,9 +6,10 @@ const __dirname = path.dirname(envUrl);
 const envPath = path.resolve(__dirname, '../../../.env');
 dotenv.config({ path: envPath });
 const BingKey = process.env.BING_KEY;
+import decodeItem from '../helpers/decodeItem';
+import { logoMap } from './logoMap';
 export const bingArticles = async (req, res) => {
     const search = req.query.q;
-    //const apiKey = 'ce2d91d82a8749c3a4f0eb2a64d9c77a';
     const endpoint = `https://api.bing.microsoft.com/v7.0/news/search?q=${encodeURIComponent(search)}+-site:msn.com&mkt=en-us&count=20&category=Articles&safeSearch=Strict&module=Images&responseFilter=News&textFormat-videos=HTML`;
     console.log(search);
     try {
@@ -19,7 +18,7 @@ export const bingArticles = async (req, res) => {
             headers: { 'Ocp-Apim-Subscription-Key': BingKey },
         });
         if (!response.ok) {
-            throw new Error(`error: ${res.status(500)}`);
+            throw new Error(`Bing API failed with status ${res.status}: ${res.statusMessage}`);
         }
         const data = await response.json();
         const dataValues = data.value;
@@ -63,7 +62,7 @@ export const bingArticles = async (req, res) => {
         res.send(result);
     }
     catch (err) {
-        console.error('error', err);
+        console.error("error:", JSON.stringify(err, null, 2));
         res.status(500).send('error fetching search result');
     }
 };

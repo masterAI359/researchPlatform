@@ -1,12 +1,10 @@
-import * as dotenv from 'dotenv';
-import * as path from 'path';
-import { fileURLToPath } from 'url';
-import decodeItem from '../helpers/decodeItem.js';
 const envUrl = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(envUrl);
 const envPath = path.resolve(__dirname, '../../.env');
-dotenv.config({ path: envPath });
-const TLDRKey = process.env.TLDR_KEY;
+import { TLDR_KEY } from '../src/Config';
+import * as path from 'path';
+import { fileURLToPath } from 'url';
+import decodeItem from '../helpers/decodeItem';
 export const tldrSummary = async (req, res) => {
     let failure = [];
     const received = req.query.q;
@@ -19,7 +17,7 @@ export const tldrSummary = async (req, res) => {
             }
         }
         catch (error) { }
-        throw new Error("Issue with Query to TLDR");
+        throw new Error(`Malformed URI error${res.status(500)}`);
     };
     const parsedQuery = JSON.parse(paramDecode(received));
     const decodedQueryArray = parsedQuery;
@@ -33,13 +31,12 @@ export const tldrSummary = async (req, res) => {
     }
     try {
         const dataMap = query.map(async (article, index) => {
-            //   console.log({ "fetching data for: ": article.url });
             await delay(index * 2000);
             try {
                 const response = await fetch(url, {
                     method: 'POST',
                     headers: {
-                        'x-rapidapi-key': TLDRKey,
+                        'x-rapidapi-key': TLDR_KEY,
                         'x-rapidapi-host': 'tldrthis.p.rapidapi.com',
                         'Content-Type': 'application/json',
                     },
@@ -63,7 +60,6 @@ export const tldrSummary = async (req, res) => {
             }
             catch (error) {
                 console.error(`Error processing article ${article.url}:`, error);
-                // Return an object with the original article data plus the error message
                 const failedAttempt = {
                     title: article.title,
                     summary: [{ denied: 'We were denied access to the article from', failedArticle: `${article.source} - ${article.title}` }],
@@ -82,7 +78,6 @@ export const tldrSummary = async (req, res) => {
         });
         const success = returnValues.filter((result) => result !== undefined);
         const resultsObject = { retrieved: success, rejected: failure };
-        // console.log(resultsObject)
         res.json(resultsObject);
         failure = [];
     }

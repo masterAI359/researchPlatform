@@ -1,20 +1,18 @@
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import path from 'path';
+import './Config';
+import { SUPABASE_KEY, SUPABASE_URL, PORT } from './Config';
 import { fileURLToPath } from 'url';
-import { createClient } from '@supabase/supabase-js';
+import path from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const supabaseURL = process.env.SUPABASE_URL;
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY;
+import express from 'express';
+import cors from 'cors';
+import { createClient } from '@supabase/supabase-js';
 const app = express();
-import { bingArticles } from '../endpoints/bingApi.js';
-import { tldrSummary } from '../endpoints/tldrSummary.js';
-import { deleteUser } from '../endpoints/deleteUser.js';
-dotenv.config({ path: '../../.env' });
+import { bingArticles } from '../endpoints/bingApi';
+import { tldrSummary } from '../endpoints/tldrSummary';
+import { deleteUser } from '../endpoints/deleteUser';
 const corsOptions = {
-    origin: '*',
+    origin: 'https://elenchusapp.io',
     methods: 'OPTIONS, HEAD, GET, PUT, POST, DELETE',
     allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept',
 };
@@ -25,19 +23,17 @@ app.use(function (req, res, next) {
     next();
 });
 app.use(express.static(path.join(__dirname, '../../../client/dist')));
-console.log("Serving: " + path.join(__dirname, '../../../client/dist', 'index.html'));
 app.options('*', (req, res) => {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
+    res.header('Access-Control-Allow-Origin', 'https://elenchusapp.io');
     res.header('Access-Control-Allow-Methods', 'OPTIONS, HEAD, GET, PUT, POST, DELETE');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
     res.sendStatus(200);
 });
-export const supabase = createClient(supabaseURL, supabaseServiceKey, {
+export const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
     auth: {
         persistSession: true
     }
 });
-const port = 5001;
 app.get('/search/articles', bingArticles);
 app.get('/summarize', tldrSummary);
 app.get('/deleteUser', deleteUser);
@@ -53,7 +49,7 @@ app.get('*', (req, res) => {
         }
     }
 });
-app.listen(port, () => {
-    return console.log(`Express is listening at http://localhost:${port}`);
+app.listen(PORT, () => {
+    return console.log(`Express is listening at ${PORT}`);
 });
 //# sourceMappingURL=app.js.map

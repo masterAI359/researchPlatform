@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
-import { supabase } from '../src/app.js';
+import { supabase } from '../src/app';
 const envUrl = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(envUrl);
 const envPath = path.resolve(__dirname, '../../.env');
@@ -20,6 +20,7 @@ export const deleteUser = async (req, res) => {
         }
         else if (error) {
             console.log(error.message);
+            res.status(500).json({ message: 'Database responded with an error' });
         }
         return res.send({ response: data });
     }

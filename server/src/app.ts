@@ -1,5 +1,5 @@
-import './Config'
-import { SUPABASE_KEY, SUPABASE_URL, PORT } from './Config';
+import './Config.js'
+import { SUPABASE_KEY, SUPABASE_URL, PORT } from './Config.js';
 import { fileURLToPath } from 'url';
 import path from 'path';
 const __filename = fileURLToPath(import.meta.url);
@@ -9,9 +9,9 @@ import cors from 'cors';
 import { createClient } from '@supabase/supabase-js';
 
 const app = express();
-import { bingArticles } from '../endpoints/bingApi';
-import { tldrSummary } from '../endpoints/tldrSummary'
-import { deleteUser } from '../endpoints/deleteUser'
+import { bingArticles } from '../endpoints/bingApi.js';
+import { tldrSummary } from '../endpoints/tldrSummary.js';
+import { deleteUser } from '../endpoints/deleteUser.js';
 
 
 //change this origin to https://elenchus.io for production

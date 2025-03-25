@@ -10,6 +10,7 @@ import { Request, Response } from 'express';
 import decodeItem from '../helpers/decodeItem.js';
 import { logoMap } from './logoMap.js'
 
+const logoMapData = new Map(Object.entries(logoMap))
 
 export const bingArticles = async (req: Request, res: Response) => {
 	const search = req.query.q as string;
@@ -35,10 +36,10 @@ export const bingArticles = async (req: Request, res: Response) => {
 		const articlesWithLogos = Object.values(decodedData).map((article: any) => {
 			const provider = article.provider[0].name.replace(/\s+/g, '').toLowerCase();
 
-			if (logoMap.has(provider)) {
-				article.logo = logoMap.get(provider)
+			if (logoMapData.has(provider)) {
+				article.logo = logoMapData.get(provider)
 			} else {
-				article.logo = logoMap.get("fallback")
+				article.logo = logoMapData.get("fallback")
 			}
 			return article
 		})

@@ -12,4 +12,4 @@ export const BING_KEY = process.env.BING_KEY as string;
 export const TLDR_KEY = process.env.TLDR_KEY as string;
 export const SUPABASE_URL = process.env.SUPABASE_URL as string;
 export const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY as string;
-export const PORT = process.env.PORT as string || 5001
+export const PORT = (process.env.PORT || 5001) as string

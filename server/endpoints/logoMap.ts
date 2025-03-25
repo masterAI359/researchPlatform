@@ -1,55 +1,53 @@
-import express, { Request, Response } from 'express';
-import * as fs from 'fs';
-import * as path from 'path';
-import { fileURLToPath } from 'url';
-
-/**
- * Function to populate a Map with logo file paths
- * @param logosPath - The directory path containing the logo SVG files
- * @returns A Map with organization names as keys and file paths as values
- */
-
-type LogoMap = Map<string, string>;
-
-const logosPath = `../../client/public/images/logos`
-
-const __fileName = fileURLToPath(import.meta.url);
-
-const __dirname = path.dirname(__fileName)
-
-function fillLogoMap(logosPath: string) {
-    const logoMap: LogoMap = new Map<string, string>();
-
-    const svgFiles = fs.readdirSync(logosPath)
-
-    svgFiles.forEach((file: string) => {
-
-        if (path.extname(file) === '.svg') {
-
-            const publication = path.basename(file, '.svg');
-
-            const svgPath = `../../public/images/logos/${file}`
-
-            logoMap.set(publication, svgPath)
-        }
-    })
-
-    return logoMap
-}
-
-
-const logosDirectory = path.resolve(__dirname, logosPath)
-
-const logoMap = fillLogoMap(logosDirectory)
-
-export { logoMap }
-
-export const getLogoMap = (req: Request, res: Response) => {
-
-    res.send(Object.fromEntries(logoMap))
-}
-
-
-
-
-
+// 🛑 AUTO-GENERATED FILE — DO NOT EDIT DIRECTLY
+export const logoMap: Record<string, string> = {
+  "abc": "/images/logos/abc.svg",
+  "adobe": "/images/logos/adobe.svg",
+  "airbnb": "/images/logos/airbnb.svg",
+  "ap": "/images/logos/ap.svg",
+  "associatedpress": "/images/logos/associatedpress.svg",
+  "basecamp": "/images/logos/basecamp.svg",
+  "bleacherreport": "/images/logos/bleacherreport.svg",
+  "buio": "/images/logos/buio.svg",
+  "businessinsider": "/images/logos/businessinsider.svg",
+  "cbsnews": "/images/logos/cbsnews.svg",
+  "chicagosuntimes": "/images/logos/chicagosuntimes.svg",
+  "cnbc": "/images/logos/cnbc.svg",
+  "cnn": "/images/logos/cnn.svg",
+  "contentfull": "/images/logos/contentfull.svg",
+  "dribbble": "/images/logos/dribbble.svg",
+  "elenchus": "/images/logos/elenchus.svg",
+  "expandarrow": "/images/logos/expandarrow.svg",
+  "fallback": "/images/logos/fallback.svg",
+  "fallbackimage": "/images/logos/fallbackImage.svg",
+  "forbes": "/images/logos/forbes.svg",
+  "foxnews": "/images/logos/foxnews.svg",
+  "github": "/images/logos/github.svg",
+  "investopedia": "/images/logos/investopedia.svg",
+  "msnbc": "/images/logos/msnbc.svg",
+  "nationalbasketballassociation": "/images/logos/nationalbasketballassociation.svg",
+  "nbc": "/images/logos/nbc.svg",
+  "nbcnews": "/images/logos/nbcnews.svg",
+  "notion": "/images/logos/notion.svg",
+  "reuters": "/images/logos/reuters.svg",
+  "scrolldown": "/images/logos/scrolldown.svg",
+  "searchhistory": "/images/logos/searchhistory.svg",
+  "sky": "/images/logos/sky.svg",
+  "spacex": "/images/logos/spacex.svg",
+  "sportsillustrated": "/images/logos/sportsillustrated.svg",
+  "spotify": "/images/logos/spotify.svg",
+  "stripeintegation": "/images/logos/stripeintegation.svg",
+  "thenewyorker": "/images/logos/thenewyorker.svg",
+  "thenewyorktimes": "/images/logos/thenewyorktimes.svg",
+  "thesun": "/images/logos/thesun.svg",
+  "thewashingtonpost": "/images/logos/thewashingtonpost.svg",
+  "time": "/images/logos/time.svg",
+  "twich": "/images/logos/twich.svg",
+  "usatoday": "/images/logos/usatoday.svg",
+  "variety": "/images/logos/variety.svg",
+  "yahoo!finance": "/images/logos/yahoo!finance.svg",
+  "yahoo!news": "/images/logos/yahoo!news.svg",
+  "yahoo!sports": "/images/logos/yahoo!sports.svg",
+  "yahoo": "/images/logos/yahoo.svg",
+  "yahoonews": "/images/logos/yahoonews.svg",
+  "zoom": "/images/logos/zoom.svg"
+};

@@ -18,6 +18,7 @@
 		"src/",
 		"helpers/",
 		"endpoints/",
+		"scripts/",
 		"src/Config.ts"
 	],
 	"exclude": [

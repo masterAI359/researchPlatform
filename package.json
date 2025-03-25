@@ -16,6 +16,7 @@
     "dotenv": "^16.4.5"
   },
   "devDependencies": {
-    "concurrently": "^9.1.2"
+    "concurrently": "^9.1.2",
+    "ts-node": "^10.9.2"
   }
 }

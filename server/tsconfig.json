@@ -15,8 +15,10 @@
 		"es2015"
 	],
 	"include": [
-		"src/*/",
-		"endpoints/logoMap.ts"
+		"src/",
+		"helpers/",
+		"endpoints/",
+		"envConfig/Config.ts"
 	],
 	"exclude": [
 		"node_modules"

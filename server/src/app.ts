@@ -35,7 +35,9 @@ app.use(function (req, res, next) {
 	next();
 });
 
-app.use(express.static(path.join(__dirname, '../../../client/dist')));
+const clientDistPath = path.resolve(__dirname, '../../../client/dist');
+
+app.use(express.static(path.join(clientDistPath)));
 
 app.options('*', (req, res) => {
 	res.header('Access-Control-Allow-Origin', 'https://elenchusapp.io');
@@ -64,8 +66,8 @@ app.get('/deleteUser', deleteUser)
 
 app.get('*', (req: Request, res: Response) => {
 	try {
-		console.log("Serving: " + path.join(__dirname, 'dist', 'index.html'))
-		res.sendFile(path.join(__dirname, '../../../client/dist', 'index.html'))
+		console.log("Serving: " + path.join(clientDistPath, 'index.html'))
+		res.sendFile(path.join(clientDistPath, 'index.html'))
 
 	} catch (err: any) {
 		if (err.code === 'ECONNRESET') {

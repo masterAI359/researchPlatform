@@ -1,13 +1,20 @@
-import { Request, Response } from 'express'
 import * as dotenv from 'dotenv'
 import * as path from 'path'
 import { fileURLToPath } from 'url';
-import { supabase } from '../src/app.js'
-
 const envUrl = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(envUrl)
-const envPath = path.resolve(__dirname, '../../.env');
+const envPath = path.resolve(__dirname, '../.env');
 dotenv.config({ path: envPath })
+import { SUPABASE_KEY, SUPABASE_URL } from '../src/Config.js';
+import { Request, Response } from 'express'
+import { createClient } from '@supabase/supabase-js';
+
+
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
+    auth: {
+        persistSession: true
+    }
+})
 
 
 export const deleteUser = async (req: Request, res: Response) => {

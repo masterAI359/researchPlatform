@@ -1,1 +1,1 @@
-{"version":3,"file":"deleteUser.d.ts","sourceRoot":"","sources":["../../endpoints/deleteUser.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,QAAQ,EAAE,MAAM,SAAS,CAAA;AAY3C,eAAO,MAAM,UAAU,QAAe,OAAO,OAAO,QAAQ,gDA6B3D,CAAA"}
+{"version":3,"file":"deleteUser.d.ts","sourceRoot":"","sources":["../../endpoints/deleteUser.ts"],"names":[],"mappings":"AASA,OAAO,EAAE,OAAO,EAAE,QAAQ,EAAE,MAAM,SAAS,CAAA;AAW3C,eAAO,MAAM,UAAU,QAAe,OAAO,OAAO,QAAQ,gDA6B3D,CAAA"}

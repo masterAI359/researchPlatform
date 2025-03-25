@@ -6,7 +6,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 import express, { Request, Response } from 'express';
 import cors from 'cors';
-import { createClient } from '@supabase/supabase-js';
 
 const app = express();
 import { bingArticles } from '../endpoints/bingApi.js';
@@ -52,11 +51,7 @@ app.options('*', (req, res) => {
 	res.sendStatus(200);
 });
 
-export const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
-	auth: {
-		persistSession: true
-	}
-})
+
 
 
 app.get('/search/articles', bingArticles);

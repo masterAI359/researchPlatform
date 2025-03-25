@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "node server/dist/src/app.js",
-    "heroku-postbuild": "npm run build:server && npm run build:client",
+    "heroku-postbuild": "cp -r client/public/images/logos server/public/images/logos && npm run build:server && npm run build:client",
     "build:server": "cd server && npm install && npm run build",
     "build:client": "cd client && npm install --include=dev && npm run build",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",

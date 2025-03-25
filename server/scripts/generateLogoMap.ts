@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Adjust this path to match your old code
-const logosDir = path.resolve(__dirname, '../../client/public/images/logos');
+const logosDir = path.resolve(__dirname, '../public/images/logos');
 const outputPath = path.resolve(__dirname, '../endpoints/logoMap.ts');
 
 // Read SVG files from logos directory

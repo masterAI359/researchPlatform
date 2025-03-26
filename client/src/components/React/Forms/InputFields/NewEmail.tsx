@@ -51,7 +51,7 @@ export default function NewEmail({ emailValid, enterValidEmail, setEmailValid })
             </label>
             <input onChange={(e) => handleEmail(e)} id="email" name="email" type="email" autoComplete="email" placeholder="email@example.com"
                 className={`block w-full px-3 py-3 border-2 rounded-xl appearance-none bg-black text-white bg-white/5 focus:bg-black placeholder-black/50 focus:border-white/5 
-                                     focus:outline-none focus:ring-black text-xs sm:text-sm placeholder-zinc-500 h-10
+                                     focus:outline-none focus:ring-black text-base placeholder-zinc-500 h-10
                                     ${emailValid === false && 'border-red-500 focus:border-green-500'} 
                                     ${emailValid === true && 'border-green-500 focus:border-green-500'}
                                     ${emailValid === null && 'border-white/5 focus:border-white'}

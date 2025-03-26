@@ -71,7 +71,7 @@ export default function Search({ }) {
                   name="q"
                   className="bg-transparent text-white w-full h-fit 
                border-none h-12 xs:p-3  md:p-2 rounded-full relative focus:ring-0
-               transition-colors xs:text-sm md:text-lg flex items-center"
+               transition-colors text-base md:text-lg flex items-center"
                   placeholder="search" />
                 <button type="submit"
                   className="relative"

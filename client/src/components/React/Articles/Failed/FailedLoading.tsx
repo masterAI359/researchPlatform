@@ -15,7 +15,7 @@ export default function FailedLoading({ }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1, transition: { delay: 1.3 } }}
             exit={{ opacity: 0 }}
-            className="2xl:bottom-12 2xl:right-12 xl:bottom-2 md:bottom-5/6 bottom-4 right-2 md:right-3 flex fixed z-50 flex-col gap-y-6">
+            className="2xl:bottom-12 2xl:right-12 xl:bottom-2 md:bottom-5/6 bottom-16 right-2 md:right-3 flex fixed z-50 flex-col gap-y-6">
             <AnimatePresence initial={false}>
                 {failedNotifications?.map((notification: any) => (
                     <FailedNotification

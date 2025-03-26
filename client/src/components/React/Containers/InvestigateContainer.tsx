@@ -21,7 +21,7 @@ export default function InvestigateContainer() {
   const { takingNotes } = notes
   const { ContentStatus } = read
   const { finiished } = review
-  const [notePosition, setNotePosition] = useState({ x: 0, y: 500 })
+  const [notePosition, setNotePosition] = useState({ x: 12, y: 250 })
   const [constraints, setConstraints] = useState(null)
   const containerRef = useRef(null)
   const notesRef = useRef(null)

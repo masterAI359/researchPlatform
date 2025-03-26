@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { motion } from "framer-motion";
 import { supabase } from "@/SupaBase/supaBaseClient";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const variants = {
     closed: { opacity: 0 },
@@ -13,6 +14,8 @@ const variants = {
 
 
 export default function SignOutModal({ }) {
+    const [signingOut, setSigningOut] = useState<boolean>(null)
+    const [success, setSuccess] = useState<boolean>(null)
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
@@ -20,17 +23,43 @@ export default function SignOutModal({ }) {
         navigate('/')
     }
 
+    const remove = () => {
+        setTimeout(() => {
+            dispatch(showSignOut(false))
+            dispatch(clearAuthSlice())
+            redirectUser()
+        }, 2000)
+    }
+
+    const notifySuccess = () => {
+        setSuccess(true)
+        remove()
+    }
+
+    const notifyFailure = () => {
+
+        setSuccess(false)
+        setTimeout(() => {
+            setSigningOut(false)
+        }, 2000)
+    }
+
     const signOutUser = async () => {
 
-        const { error } = await supabase.auth.signOut()
+        setSigningOut(true)
 
-        if (error) {
-            console.log(error)
-        } else {
-            dispatch(clearAuthSlice())
-            dispatch(showSignOut(false))
-            redirectUser()
+        try {
+            const { error } = await supabase.auth.signOut()
+
+            if (error) {
+                notifySuccess()
+            }
+
+        } catch (error) {
+            notifyFailure()
         }
+
+
 
     }
 
@@ -67,5 +96,14 @@ export default function SignOutModal({ }) {
     return (
         createPortal(modal, document.body)
     )
+
+}
+
+
+//TODO: Add notification for the user so that they know they've signed out of elenchus
+
+
+function LoggingOut() {
+
 
 }

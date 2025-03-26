@@ -28,7 +28,6 @@ export default function ArticleLoader() {
                 >Please wait just a few moments
 
                 </h1>
-                <br></br>
                 <h1
                     className='block max-w-3/4 h-fit font-light text-center text-sm tracking-tight md:text-3xl xl:text-4xl text-zinc-400 animate-pulse'
                 >We're gathering the chosen articles

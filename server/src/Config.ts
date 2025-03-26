@@ -19,7 +19,6 @@ export const SUPABASE_URL = getEnvVar('SUPABASE_URL');
 export const SUPABASE_KEY = getEnvVar('SUPABASE_SERVICE_KEY');
 export const PORT = process.env.PORT || '5001';
 
-console.log('SUPABASE_URL:', process.env.SUPABASE_URL);
 
 
 

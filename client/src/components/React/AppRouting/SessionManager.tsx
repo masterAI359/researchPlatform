@@ -14,9 +14,6 @@ export default function SessionManager() {
 
         if (session) {
             appDispatch(fetchUserCredentials())
-        } else if (!session) {
-            appDispatch(clearAuthSlice())
-            navigate('/')
         }
     };
 
@@ -29,7 +26,7 @@ export default function SessionManager() {
             } else if (event === 'SIGNED_IN') {
                 appDispatch(fetchUserCredentials())
             } else if (event === 'SIGNED_OUT') {
-                appDispatch(clearAuthSlice())
+
             } else if (event === 'PASSWORD_RECOVERY') {
 
             } else if (event === 'TOKEN_REFRESHED') {

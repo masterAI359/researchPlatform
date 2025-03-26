@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import Loader from "../../Loaders/Loader";
-import LoggedInSuccessfully from "./LoggedInSuccessfully";
+import SuccessCheckMark from "./SuccessCheckMark";
 import { useEffect } from "react";
 
 
@@ -50,7 +50,7 @@ export default function LoggingIn({ successful, setLoggingIn }) {
                 <div className="w-auto h-fit relative">
                     <AnimatePresence mode="wait">
                         {successful === null && <PendingLogin />}
-                        {successful === true && <LoggedInSuccessfully />}
+                        {successful === true && <SuccessCheckMark />}
                         {successful === false && <FailedToLogin />}
                     </AnimatePresence>
                 </div>

@@ -2,7 +2,7 @@ import blueCheck from '../../../../lotties/blueCheck.json'
 import Lottie from 'lottie-react'
 import { motion } from 'framer-motion'
 
-export default function LoggedInSuccessfully() {
+export default function SuccessCheckMark() {
 
 
     const notificationVariants = {

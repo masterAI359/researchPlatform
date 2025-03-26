@@ -11,7 +11,8 @@ interface ArticleProps {
 
 export default function ArticleLink({ article, index }: ArticleProps) {
     const investigateState = useSelector((state: RootState) => state.investigation)
-    const { getArticle } = investigateState
+    const { getArticle, display } = investigateState
+    const { showGetArticlesModal } = display
     const { chosenArticles } = getArticle
     const dispatch = useDispatch()
 
@@ -84,15 +85,15 @@ export default function ArticleLink({ article, index }: ArticleProps) {
         <motion.li
             onClick={() => { chooseArticle(article) }}
             key={article.url}
-            className={`group cursor-pointer box-border list-none xl:min-h-72 xl:max-h-72 xl:min-w-80 xl:max-w-80 lg:min-w-72 lg:max-w-72 lg:min-h-72 lg:max-h-72 h-44 w-44 relative rounded-xl md:rounded-3xl text-white 
-            md:opacity-85 md:hover:opacity-100 bg-ebony transition-all ease-in-out duration-200 overflow-y-hidden
+            className={`group cursor-pointer box-border list-none xl:min-h-72 xl:max-h-72 xl:min-w-80 xl:max-w-80 lg:min-w-72 lg:max-w-72 lg:min-h-72 lg:max-h-72 h-44 w-40 relative rounded-xl md:rounded-3xl text-white 
+            md:opacity-85 md:hover:opacity-100 transition-all ease-in-out duration-200 overflow-y-hidden bg-ebony
             
-            ${isHilighted ? "shadow-blue-bottom" : "shadow-thick"}`}
+            ${isHilighted && !showGetArticlesModal ? "shadow-blue-bottom" : "shadow-material"}`}
         >
             <div className='relative w-full m-0 p-0 lg:max-h-36 lg:min-h-36 min-h-20 max-h-20  overflow-hidden'>
                 <div
                     style={{ backgroundImage: `url(${resizedImage})` }}
-                    className='absolute inset-0 w-full h-full bg-cover bg-center opacity-60 rounded-t-xl md:rounded-t-3xl'
+                    className='absolute inset-0 w-full h-full bg-cover bg-center opacity-40 rounded-t-xl md:rounded-t-3xl'
                 ></div>
                 <div className='relative z-10 p-4'>
 

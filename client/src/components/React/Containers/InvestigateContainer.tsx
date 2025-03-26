@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { RootState } from "@/ReduxToolKit/store";
 import { useDispatch, useSelector } from "react-redux";
+import { displaySelectBar } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
 import HeroContainer from "./HeroContainer";
 import Notes from "../Investigate/Notes/Notes";
 import SelectArticles from "../LinkComponents/SelectLinks";
@@ -9,7 +10,6 @@ import Content from "./Content";
 import PanelContainer from "./PanelContainer";
 
 export default function InvestigateContainer() {
-  const [showSelect, setShowSelect] = useState<boolean>(false)
   const dispatch = useDispatch()
   const investigateState = useSelector((state: RootState) => state.investigation)
   const signingOut = useSelector((state: RootState) => state.auth.signOut)
@@ -44,15 +44,6 @@ export default function InvestigateContainer() {
     containerRef.current.scrollIntoView({ behavior: "smooth", alignToTop: true })
   }
 
-  function hideSelect() {
-
-    if (chosenArticles.length > 0) {
-      setShowSelect(showSelect => !showSelect)
-
-    }
-  }
-
-
 
   useEffect(() => {
 
@@ -63,6 +54,7 @@ export default function InvestigateContainer() {
     if (finiished) {
       scrollToView()
     }
+
 
 
     if (containerRef.current && notesRef.current) {
@@ -102,8 +94,6 @@ export default function InvestigateContainer() {
         {articles && articles.length > 0 &&
 
           <SelectArticles
-            showSelect={showSelect}
-            hideSelect={hideSelect}
           />
         }
 

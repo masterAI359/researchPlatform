@@ -7,21 +7,33 @@ import SelectionRequired from "../Notifications/SelectionRequired"
 import { useEffect, useState } from "react"
 import GuideSelectingArticles from "../Tooltips/GuideSelectingArticles"
 
-interface SendForSummary {
-  hideSelect: Function,
-  showSelect: boolean,
-}
 
-export default function SelectLinks({ hideSelect }: SendForSummary) {
+export default function SelectLinks() {
   const investigateState = useSelector((state: RootState) => state.investigation)
   const { showSelectTooltip } = investigateState.display
   const { getArticle } = investigateState
   const { showSelectWarning, showGetArticlesModal } = investigateState.display
   const { chosenArticles } = getArticle
+  const [showSelect, setShowSelect] = useState<boolean>(false)
+
   const dispatch = useDispatch<AppDispatch>()
 
   const selectedTotal = chosenArticles.length
   const selectedArticles = `${selectedTotal}/3`
+
+  const timer = () => {
+    setTimeout(() => {
+
+      setShowSelect(prev => !prev)
+    }, 500)
+  }
+
+  function hideSelect() {
+
+    if (chosenArticles.length > 0) {
+      timer()
+    }
+  }
 
   const handleSummaries = () => {
 

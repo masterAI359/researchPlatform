@@ -1,5 +1,5 @@
 import './Config.js'
-import { SUPABASE_KEY, SUPABASE_URL, PORT } from './Config.js';
+import { PORT } from './Config.js';
 import { fileURLToPath } from 'url';
 import path from 'path';
 const __filename = fileURLToPath(import.meta.url);
@@ -14,7 +14,6 @@ import { tldrSummary } from '../endpoints/tldrSummary.js';
 import { deleteUser } from '../endpoints/deleteUser.js';
 
 
-//change this origin to https://elenchus.io for production
 const corsOptions: object = {
 	origin: 'https://elenchusapp.io',
 	methods: 'OPTIONS, HEAD, GET, PUT, POST, DELETE',
@@ -39,7 +38,6 @@ const clientDistPath = path.resolve(__dirname, '../../../client/dist');
 
 mime.define({ 'image/svg+xml': ['svg'] });
 
-//app.use(express.static(path.join(clientDistPath)));
 
 app.use(
 	express.static(path.join(clientDistPath), {

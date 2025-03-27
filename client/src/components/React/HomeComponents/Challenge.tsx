@@ -5,7 +5,7 @@ export default function Challenge() {
     return (
         <section className="lg:p-8 xs:p-4 animate-fade-in ease-in duration-700">
             <div className="px-8 py-12 lg:py-24 mx-auto md:px-12 lg:px-16 xl:px-36 2xl:max-w-7xl">
-                <div className="grid grid-cols-1 gap-12 md:grid md:grid-cols-2 lg:gap-24 items-center h-[50rem] w-72 sm:w-96 md:w-auto md:h-auto mx-auto">
+                <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:gap-24 items-center">
                     <div>
                         <span className="text-blue-400"> Investigate</span>
                         <h2 className="text-3xl mt-6 tracking-tight font-light lg:text-4xl text-white">
@@ -29,7 +29,7 @@ export default function Challenge() {
                             </div>
                         </div>
                     </div>
-                    <img className="max-w-full" src="/images/assets/circuitry.svg" alt="#" />
+                    <img className="h-96 w-96 md:h-auto md:w-auto" src="/images/assets/circuitry.svg" alt="#" />
                 </div>
             </div>
         </section>

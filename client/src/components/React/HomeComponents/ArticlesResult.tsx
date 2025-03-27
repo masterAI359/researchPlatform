@@ -90,11 +90,11 @@ export default function ArticlesResult() {
 								</p>
 							</div>
 						</div>
-						<div className='relative mx-auto lg:px-16'>
-							<div className='items-center space-x-6 pb-12 lg:pb-0 lg:space-x-8 max-h-dvh md:max-h-full overflow-y-hidden relative lg:px-4 mx-auto grid grid-cols-1 lg:grid-cols-2'>
+						<div className='relative mx-auto lg:px-16 overflow-y-hidden'>
+							<div className='items-center space-x-6 pb-12 lg:pb-0 lg:space-x-8 animate-scroller2 md:animate-none md:overflow-y-hidden relative lg:px-4 mx-auto grid grid-cols-1 lg:grid-cols-2'>
 								{/* Error Boundary  */}
 								<ErrorBoundary>
-									<div className='grid flex-shrink-0 grid-cols-1 items-center gap-y-6 lg:gap-y-8 animate-scroller'>
+									<div className='grid flex-shrink-0 h-full grid-cols-1 items-center gap-y-10 lg:gap-y-8 lg:animate-scroller2'>
 										{firstHalf.map((article) => (
 											<div
 												key={article.name}
@@ -144,7 +144,7 @@ export default function ArticlesResult() {
 											</div>
 										))}
 									</div>
-									<div className='grid lg:flex-shrink-0 grid-cols-1 items-center gap-y-6 lg:gap-y-8 lg:animate-scroller'>
+									<div className='grid flex-shrink-0 grid-cols-1 items-center justify-items-center mt-6 md:mt-0 gap-y-6 lg:gap-y-8 lg:animate-scroller'>
 										{secondHalf.map((article) => (
 											<div
 												key={article.name}

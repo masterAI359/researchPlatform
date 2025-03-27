@@ -34,7 +34,7 @@ export const StepSlice = createSlice({
             state.step -= 1
         },
         incrementBy: (state, action: PayloadAction<number>) => {
-            state.step += action.payload
+            state.step = action.payload
         },
         backToStart: (state) => {
             state.step = 0

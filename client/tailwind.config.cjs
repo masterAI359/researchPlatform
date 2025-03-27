@@ -91,7 +91,7 @@ module.exports = {
         "spin-reverse": "spin-reverse 1s linear infinite",
         "spin-reverse-slow": "spin-reverse 4s linear infinite",
         "spin-reverse-slower": "spin-reverse 6s linear infinite",
-        scroller: "scroller 15s linear infinite",
+        scroller: "scroller 30s linear infinite",
         scroller2: "scroller2 20s linear infinite",
         "fade-in": "fade-in 0.5s linear forwards",
       },

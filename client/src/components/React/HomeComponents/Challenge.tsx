@@ -29,7 +29,7 @@ export default function Challenge() {
                             </div>
                         </div>
                     </div>
-                    <img className="mt-12 lg:mt-0" src="/images/assets/circuitry.svg" alt="#" />
+                    <img className="max-w-full" src="/images/assets/circuitry.svg" alt="#" />
                 </div>
             </div>
         </section>

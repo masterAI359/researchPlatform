@@ -6,6 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 import express, { Request, Response } from 'express';
 import cors from 'cors';
+import mime from 'mime'
 
 const app = express();
 import { bingArticles } from '../endpoints/bingApi.js';
@@ -35,6 +36,8 @@ app.use(function (req, res, next) {
 });
 
 const clientDistPath = path.resolve(__dirname, '../../../client/dist');
+
+mime.define({ 'image/svg+xml': ['svg'] });
 
 app.use(express.static(path.join(clientDistPath)));
 

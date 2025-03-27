@@ -75,7 +75,7 @@ export default function ArticlesResult() {
 				<div className='xs:p-4 md:px-8 py-12 mx-auto md:px-12 lg:px-0 xl:px-0 2xl:max-w-7xl'>
 					<div className='relative flex flex-col bg-gradientup ring-1 ring-white/10 rounded-4xl px-6 md:pt-24 lg:flex lg:pt-0'>
 						<div className='lg:p-20 lg:pb-0'>
-							<div className='grid grid-cols-1 lg:grid-cols-2 lg:border-b items-end border-white/10 py-12'>
+							<div className='grid grid-cols-1 lg:grid-cols-2 border-b items-end border-white/10 py-12'>
 								<div>
 									<span className='text-white'>Current Events</span>
 									<h2 className='text-3xl mt-6 tracking-tight font-light lg:text-4xl text-white'>
@@ -91,14 +91,14 @@ export default function ArticlesResult() {
 							</div>
 						</div>
 						<div className='relative mx-auto lg:px-16'>
-							<div className='items-center space-x-6 pb-12 lg:pb-0 lg:space-x-8 overflow-y-hidden relative lg:px-4 mx-auto grid grid-cols-1 lg:grid-cols-2'>
+							<div className='items-center space-x-6 pb-12 lg:pb-0 lg:space-x-8 max-h-dvh md:max-h-full overflow-y-hidden relative lg:px-4 mx-auto grid grid-cols-1 lg:grid-cols-2'>
 								{/* Error Boundary  */}
 								<ErrorBoundary>
-									<div className='grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8 lg:animate-scroller'>
+									<div className='grid flex-shrink-0 grid-cols-1 items-center gap-y-6 lg:gap-y-8 animate-scroller'>
 										{firstHalf.map((article) => (
 											<div
 												key={article.name}
-												className='relative rounded-3xl shadow-inset sm:opacity-0 lg:opacity-90 lg:hover:opacity-100 p-4 bg-white/5 lg:p-8 ring-1 ring-white/5'
+												className='relative rounded-3xl shadow-inset lg:opacity-90 lg:hover:opacity-100 p-4 bg-white/5 lg:p-8 ring-1 ring-white/5'
 											>
 												<a href={article.url} target='_blank'>
 													<figcaption className='relative flex flex-row gap-4 pb-6 border-b border-white/10'>
@@ -126,11 +126,7 @@ export default function ArticlesResult() {
 
 																	<p>{article.provider}</p>
 
-																	{/*}	Published on{' '}
-																{article.datePublished.substring(0, 10)} at{' '}
-																{article.datePublished
-																	.substring(10, 16)
-																	.replace('T', ' ')}  {*/}
+
 																</span>
 															</div>
 														</div>
@@ -148,11 +144,11 @@ export default function ArticlesResult() {
 											</div>
 										))}
 									</div>
-									<div className='grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8 lg:animate-scroller'>
+									<div className='grid lg:flex-shrink-0 grid-cols-1 items-center gap-y-6 lg:gap-y-8 lg:animate-scroller'>
 										{secondHalf.map((article) => (
 											<div
 												key={article.name}
-												className='relative rounded-3xl shadow-inset sm:opacity-0 lg:opacity-90 lg:hover:opacity-100 p-4 bg-white/5 lg:p-8 ring-1 ring-white/5'
+												className='relative rounded-3xl shadow-inset lg:opacity-90 lg:hover:opacity-100 p-4 bg-white/5 lg:p-8 ring-1 ring-white/5'
 											>
 												<a href={article.url} target='_blank'>
 													<figcaption className='relative flex flex-row gap-4 pb-6 border-b border-white/10'>

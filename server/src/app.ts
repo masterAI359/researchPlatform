@@ -39,7 +39,18 @@ const clientDistPath = path.resolve(__dirname, '../../../client/dist');
 
 mime.define({ 'image/svg+xml': ['svg'] });
 
-app.use(express.static(path.join(clientDistPath)));
+//app.use(express.static(path.join(clientDistPath)));
+
+app.use(
+	express.static(path.join(clientDistPath), {
+		setHeaders: (res, filePath) => {
+			if (filePath.endsWith('.svg')) {
+				res.setHeader('Content-Type', 'image/svg+xml');
+			}
+		},
+	})
+);
+
 
 
 app.options('*', (req, res) => {

@@ -20,24 +20,19 @@ export default function CreatingUser({ createdUser, setCreating, creating }) {
     const [redirecting, setRedirecting] = useState<boolean>(false)
     const navigate = useNavigate()
 
-    const timer = () => {
-        setTimeout(() => {
+
+    useEffect(() => {
+
+        const timer = setTimeout(() => {
             setCreating(false)
             if (createdUser) {
                 navigate('/Profile')
             }
 
         }, 1000)
-    }
 
-    const redirectUser = () => {
 
-        timer()
-    }
-
-    useEffect(() => {
-
-        redirectUser()
+        return () => clearTimeout(timer)
 
     }, [createdUser])
 

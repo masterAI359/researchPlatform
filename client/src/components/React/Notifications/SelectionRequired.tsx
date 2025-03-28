@@ -12,9 +12,7 @@ export default function SelectionRequired() {
             dispatch(displaySelectionWarning(false))
         }, 3000)
 
-        return () => {
-            clearTimeout(timer)
-        }
+        return () => clearTimeout(timer)
     })
 
     const variants = {

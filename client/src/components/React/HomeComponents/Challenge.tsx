@@ -43,7 +43,7 @@ function Circuitry() {
 
 
     return (
-        <svg viewBox="0 0 207 207" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width={"100%"} height={"100%"} viewBox="0 0 207 207" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g style={{ mixBlendMode: 'multiply' }} clipPath="url(#clip0_1198_4763)">
                 <path d="M4.4 107.4C6.55391 107.4 8.3 105.654 8.3 103.5C8.3 101.346 6.55391 99.6 4.4 99.6C2.24609 99.6 0.5 101.346 0.5 103.5C0.5 105.654 2.24609 107.4 4.4 107.4Z" stroke="#ffffff80" strokeMiterlimit={10} />
                 <path d="M5.9 124.6C8.05391 124.6 9.8 122.854 9.8 120.7C9.8 118.546 8.05391 116.8 5.9 116.8C3.74609 116.8 2 118.546 2 120.7C2 122.854 3.74609 124.6 5.9 124.6Z" stroke="#ffffff80" strokeMiterlimit={10} />

@@ -166,9 +166,9 @@ function Circuitry() {
                 <path d="M9.80005 120.7H32.4001" stroke="#ffffff80" strokeMiterlimit={10} />
             </g>
             <defs>
-                <clipPath id="clip0_1198_4763">
+                {/* <clipPath id="clip0_1198_4763">
                     <rect width={207} height={207} fill="#ffffff80" />
-                </clipPath>
+                </clipPath> */}
             </defs>
         </svg>
 

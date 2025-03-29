@@ -10,7 +10,7 @@
     ],
     "target": "ESNext",
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "node10",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
@@ -30,8 +30,8 @@
   "include": [
     "src/**/*",
     "astro.config.mjs"
-  ],
+, "public/scripts/AppLoader.js"  ],
   "exclude": [
-    "node_modules"
+    "node_modules",
   ]
 }

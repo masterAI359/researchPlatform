@@ -17,7 +17,8 @@
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.15",
     "@types/react-lottie": "^1.2.10",
-    "astro": "^4.5.16"
+    "astro": "^4.5.16",
+    "astro-eslint-parser": "^1.2.2"
   },
   "dependencies": {
     "@astrojs/mdx": "^2.2.4",
@@ -39,6 +40,7 @@
     "astro-icon": "^1.1.1",
     "framer-motion": "^11.3.31",
     "lottie-react": "^2.4.0",
+    "lottie-web": "^5.12.2",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

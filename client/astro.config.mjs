@@ -4,10 +4,8 @@ import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
 import devtoolBreakpoints from 'astro-devtool-breakpoints';
 import react from '@astrojs/react';
-//import node from '@astrojs/node';
 import icon from "astro-icon";
 
-// https://astro.build/config
 export default defineConfig({
   server: {
     port: 5173

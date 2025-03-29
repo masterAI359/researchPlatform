@@ -44,7 +44,6 @@ export default function ArticlesResult() {
 				if (jsonResponse) {
 					setArticles(jsonResponse.data);
 				}
-				console.log(jsonResponse)
 				sessionStorage.setItem('articles', JSON.stringify(jsonResponse));
 			} catch (err) {
 				console.log({ 'Fetch Failed': err });

@@ -89,7 +89,8 @@ export const saveArticle = async (dataToSave: SavedArticle, setShowNotification:
 
 
 
-export const saveInvestigation = async (investigationData: any, setSavingInvestigation: Function, setSaveSuccessful: Function) => {
+
+export const saveInvestigation = async (investigationData: any, setSavingInvestigation?: Function, setSaveSuccessful?: Function) => {
 
     const { idea, initial_perspective, biases, premises, ending_perspective, changed_opinion, new_concepts, takeaway, user_id } = investigationData
 
@@ -108,9 +109,12 @@ export const saveInvestigation = async (investigationData: any, setSavingInvesti
         }]).select()
 
     if (error) {
-        console.log(error)
+    
+        console.log(error.message)
+        return false
     } else if (data) {
         setSaveSuccessful(true)
+        return true
     }
 
 }
@@ -131,6 +135,7 @@ export const getUserInvestigations = async (id: number | string) => {
 }
 
 export const getInvestigationSources = (sources: string[], savedArticles: any) => {
+    
     function getSaved() {
         let savedSources = []
 

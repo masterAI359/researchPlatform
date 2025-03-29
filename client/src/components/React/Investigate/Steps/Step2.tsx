@@ -55,7 +55,7 @@ export default function Step2({ containerWidth }: any) {
 
         <div className="w-full flex items-center sm:h-52 md:h-full">
 
-          <div className="flex w-fit mx-auto xs:gap-x-16 xl:gap-x-36 box-border">
+          <div className="flex w-fit mx-auto xs:gap-x-16 xl:gap-x-16 2xl:gap-x-36 box-border">
             <div
               className="flex flex-col md:gap-y-2 xs:gap-y-1 items-center text-center my-auto"
             >
@@ -68,10 +68,14 @@ export default function Step2({ containerWidth }: any) {
                   key={opinion}
                 >
                   <div
-                    className="bg-white text-black xl:text-lg lg:text-[0.8rem] text-[0.6rem] sm:text-sm font-light tracking-tight
+                    className={`bg-white xl:text-lg lg:text-[0.8rem] text-[0.6rem] sm:text-sm tracking-tight
               rounded-lg xl:w-60 xl:h-16 lg:w-[12rem] md:w-[12rem] md:h-12 sm:w-40 sm:h-11 w-28 h-9
                cursor-pointer md:hover:bg-white/20 md:hover:text-white transition-all duration-200 ease-in-out
-                flex justify-between items-center lg:px-4 xs:px-2 grow-0 gap-3"
+                flex justify-between items-center lg:px-4 xs:px-2 grow-0 gap-3
+                ${perspective === null && 'text-black'}
+                ${perspective !== null && perspective === opinion && 'text-black'}
+                ${perspective !== null && perspective !== opinion && 'text-zinc-500'}
+                `}
                     data-set={opinion}
                     onClick={(e) => getPOV(e)}
                   >
@@ -100,9 +104,14 @@ export default function Step2({ containerWidth }: any) {
                   className="relative"
                 >
                   <div
-                    className="bg-white text-black xl:text-lg lg:text-[0.8rem] text-[0.65rem] sm:text-sm font-light tracking-tight
-              rounded-lg xl:w-60 xl:h-16 lg:w-[12rem] md:w-[12rem] md:h-12 sm:w-40 sm:h-11 w-28 h-9 transition-all duration-200 ease-in-out
-               cursor-pointer md:hover:bg-white/20 md:hover:text-white flex justify-between items-center lg:px-4 xs:px-1.5 grow-0 gap-3"
+        className={`bg-white xl:text-lg lg:text-[0.8rem] text-[0.6rem] sm:text-sm tracking-tight
+          rounded-lg xl:w-60 xl:h-16 lg:w-[12rem] md:w-[12rem] md:h-12 sm:w-40 sm:h-11 w-28 h-9
+           cursor-pointer md:hover:bg-white/20 md:hover:text-white transition-all duration-200 ease-in-out
+            flex justify-between items-center lg:px-4 xs:px-2 grow-0 gap-3
+            ${expertise === null && 'text-black'}
+            ${expertise !== null && expertise === item && 'text-black'}
+            ${expertise !== null && expertise !== item && 'text-zinc-500'}
+            `}
                     data-set={item}
                     onClick={(e) => { assignKnowledge(e) }}
                   >{item}

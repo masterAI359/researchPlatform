@@ -4,6 +4,7 @@ import { fetchSavedInvestigations } from "@/ReduxToolKit/Reducers/UserContent.ts
 import { useDispatch } from "react-redux"
 import { AppDispatch } from "@/ReduxToolKit/store"
 import { saveUserInvestigation } from "@/ReduxToolKit/Reducers/UserContent.ts/SaveInvestigationSlice"
+import { useEffect, useState } from "react"
 
 
 export default function SaveInvestigation({ }) {
@@ -11,6 +12,7 @@ export default function SaveInvestigation({ }) {
     const saved = useSelector((state: RootState) => state.saveResearch.saved)
     const sources = useSelector((state: RootState) => state.saveResearch.sources)
     const investigateState = useSelector((state: RootState) => state.investigation)
+    const [prevWork, setPrevWork] = useState<any>(null)
     const { pov, review } = investigateState
     const { idea, premises, perspective, expertise, biases } = pov
     const { endingPerspective, newConcepts, newPOV, merit, takeaway } = review
@@ -30,6 +32,21 @@ export default function SaveInvestigation({ }) {
         sources: sources
     }
 
+    useEffect(() => {
+
+        const storedWork: any = localStorage.getItem('userWork')
+
+        if(storedWork) {
+            setPrevWork(storedWork)
+        }
+
+        console.log(storedWork)
+        
+
+    }, [])
+
+
+    
     return (
         <button
             onClick={() => {

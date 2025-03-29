@@ -4,9 +4,9 @@ import { supabase } from "@/SupaBase/supaBaseClient";
 
 export const fetchUserCredentials = createAsyncThunk(
     'user/credentials',
-    async (thunkAPI) => {
+    async (session: any, thunkAPI) => {
         try {
-            const { data: { session } } = await supabase.auth.getSession()
+           
 
             if (session) {
                 return session
@@ -15,6 +15,7 @@ export const fetchUserCredentials = createAsyncThunk(
         } catch (error) {
             if (error) {
                 console.log(error.message)
+                return thunkAPI.rejectWithValue(error.message)
             }
         }
 

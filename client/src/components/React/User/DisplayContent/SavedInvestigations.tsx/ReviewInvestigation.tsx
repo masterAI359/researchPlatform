@@ -2,13 +2,14 @@ import { useSelector, useDispatch } from "react-redux"
 import DetailsTable from "./Details/DetailsTable"
 import SourcesUsed from "./Details/SourcesUsed"
 import { RootState } from "@/ReduxToolKit/store"
-import { useLayoutEffect } from "react"
+import { useLayoutEffect, useState } from "react"
 import { getInvestigationSources } from "@/helpers/SupabaseData"
 import { getSourcesToReview } from "@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations"
 import BackToSavedResearch from "./BackToSavedResearch"
 
 export default function ReviewInvestigation() {
     const investigation = useSelector((state: RootState) => state.userWork.investigationToReview)
+    const [stored, setStored] = useState<any>()
     const sources = investigation.sources
     const savedArticles = useSelector((state: RootState) => state.userdata.userArticles)
     const savedSources = savedArticles
@@ -16,6 +17,9 @@ export default function ReviewInvestigation() {
     const dispatch = useDispatch()
 
     useLayoutEffect(() => {
+
+        setStored(localStorage.getItem('storedResearch'))
+
         if (sources) {
             const retrieved = getInvestigationSources(sources, savedSources)
 
@@ -24,7 +28,9 @@ export default function ReviewInvestigation() {
             }
         }
 
-    }, [])
+        console.log(stored)
+
+    }, [stored])
 
 
     return (

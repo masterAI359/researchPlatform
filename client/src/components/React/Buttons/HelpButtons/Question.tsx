@@ -22,9 +22,9 @@ export default function HelpButton({ info }) {
 
     return (
         <motion.div
-            className="w-full flex flex-row items-center gap-2 group relative">
-            <div className="rounded-md xl:h-fit xl:w-16 flex mx-auto bg:black opacity-0 absolute xl:-translate-y-9 xl:-translate-x-8
-                border border-astro_gray md:group-hover:opacity-100 transition-opacity duration-200 ease-in-out">
+            className="w-full flex flex-row items-center gap-2 group relative z-10">
+            <div className="rounded-md xl:h-fit xl:w-16 flex mx-auto z-30 hidden absolute md:left-6 lg:left-6 lg:bottom-4
+                border bg-black border-astro_gray md:group-hover:block transition-opacity duration-200 ease-in-out">
 
                 <h1 className="text-white xl:text-xs text-center font-light tracking-tight justify-self-start text-center w-full">Click for help
                 </h1>

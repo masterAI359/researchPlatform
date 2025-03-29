@@ -73,7 +73,13 @@ app.get('/deleteUser', deleteUser)
 
 
 app.get('*', (req: Request, res: Response) => {
+
+	if(req) {
+		console.log("catch-all route hit")
+	}
+
 	try {
+		console.log('running catch-all route')
 		const filePath = path.resolve(clientDistPath, 'index.html');
 		console.log("Serving:", filePath);
 		res.sendFile(filePath);

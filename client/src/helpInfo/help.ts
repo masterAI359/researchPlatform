@@ -13,12 +13,19 @@ const Step1Help: Help[] = [
         This is a claim we can gather evidence to support or reject it.`
     }
 
-
-
 ];
 
 
-const Step2Help: Help[] = [{
+const Step2Help: Help[] = [
+    {
+         heading: 'What to do here?',
+         explanation: `Here you're going to select first what your personal perspective is on the idea you entered in the previous step. Just 
+         Select whether you agree with it, disagree or even have no opinion on the matter(in which case you'll select 'Neutral'). Then select what 
+         level of prior knowledge you have on the idea you entered in the previous step.
+         `
+
+    },
+    {
     heading: "Why is this important?",
     explanation: `To have an honest inquiry, we must acknowledge what our personal beliefs are before we dig in.
     If we don't reflect on how we feel about a topic, or the parties involved, we're more likely to search only for 
@@ -26,7 +33,16 @@ const Step2Help: Help[] = [{
     conclusion before we can actually support it.`
 }]
 
+
 const Step3Help: Help[] = [{
+    heading: "What is the purpose of this?",
+    explanation: `Biases(i.e. our emotional investment) can drive us to seek out selective evidence and miss the big picture. As human beings we're driven to things
+    that make us feel good, not necessarily finding the truth. Our level of expertise in a topic is also a good indicator of how much we're relying on
+    the impressions we've formed prior as opposed to the evidence we've sifted through.`
+}]
+
+
+const Step4Help: Help[] = [{
     heading: "What is this asking me?",
     explanation: `What conditions must be met in order for the idea you're investigating to have merit? And if you're tackling a rather 
     big and broad idea, think of this step as a way to break down that idea into smaller questions. Those smaller ideas make up the premises 
@@ -39,12 +55,7 @@ const Step3Help: Help[] = [{
 }
 ]
 
-const Step4Help: Help[] = [{
-    heading: "Why am i measuring these?",
-    explanation: `Emotional investment can drive us to seek out selective evidence and miss the big picture. As human beings we're driven to things
-    that make us feel good, not necessarily finding the truth. Our level of expertise in a topic is also a good indicator of how much we're relying on
-    the impressions we've formed prior as opposed to the evidence we've sifted through.`
-}]
+
 
 const Step5Help: Help[] = [{
     heading: "What exaclty am i looking for?",

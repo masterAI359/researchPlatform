@@ -67,9 +67,6 @@ export default function ArticleHeader({
         fallbackDate: article_pub_date,
         id: id,
     }
-
-    console.log(article_authors)
-
     const authShortened = limitArray(article_authors)
     const fallbackImage = '/images/logos/fallback.jpg'
     const storyImage = article_image || fallbackImage

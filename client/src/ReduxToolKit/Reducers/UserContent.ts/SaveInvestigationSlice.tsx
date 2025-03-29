@@ -63,7 +63,10 @@ const SaveInvestigationSlice = createSlice({
         switchButtons: (state, action) => {
             state.swapButtons = action.payload
         },
-        clearState: () => initialState
+        researchSaved: (state, action) => {
+            state.saved = action.payload
+        },
+        clearSaveInvestigationSlice: () => initialState
     },
     extraReducers: (builder) => {
 
@@ -73,7 +76,6 @@ const SaveInvestigationSlice = createSlice({
             })
             .addCase(saveUserInvestigation.fulfilled, (state, action) => {
                 state.status = 'fulfilled'
-                state.saved = true
             })
             .addCase(saveUserInvestigation.rejected, (state, action) => {
                 state.status = 'rejected'
@@ -82,6 +84,6 @@ const SaveInvestigationSlice = createSlice({
     }
 })
 
-export const { removeNotification, clearState, recordSources, switchButtons } = SaveInvestigationSlice.actions
+export const { removeNotification, clearSaveInvestigationSlice, recordSources, switchButtons, researchSaved } = SaveInvestigationSlice.actions
 
 export default SaveInvestigationSlice.reducer

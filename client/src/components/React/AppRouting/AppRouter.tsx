@@ -27,16 +27,16 @@ export default function AppRouter() {
                 <Routes>
                     <Route path='/' element={<Structure />}>
                         <Route index element={<HomeContainer />} />
-                        <Route path='/Investigate' element={<InvestigateContainer />} />
-                        <Route path='/About' element={<AboutContainer />} />
-                        <Route path='/Signup' element={<Signup />} />
-                        <Route path='Login' element={<Login />} />
-                        <Route path='/Profile' element={<Profile />} />
-                        <Route path="/EmailForReset" element={<EmailForReset />} />
-                        <Route path="/UpdatePassword" element={<UpdatePassword />} />
-                        <Route path="/SavedArticle" element={<ReadSavedArticle />} />
-                        <Route path="ReviewInvestigation" element={<ReviewInvestigation />} />
-                        <Route path="/ManageAccount" element={<ManageAccount />} />
+                        <Route path='/investigate' element={<InvestigateContainer />} />
+                        <Route path='/about' element={<AboutContainer />} />
+                        <Route path='/signup' element={<Signup />} />
+                        <Route path='/login' element={<Login />} />
+                        <Route path='/profile' element={<Profile />} />
+                        <Route path="/emailForReset" element={<EmailForReset />} />
+                        <Route path="/updatePassword" element={<UpdatePassword />} />
+                        <Route path="/savedArticle" element={<ReadSavedArticle />} />
+                        <Route path="/reviewInvestigation" element={<ReviewInvestigation />} />
+                        <Route path="/manageAccount" element={<ManageAccount />} />
                     </Route>
                 </Routes>
             </BrowserRouter>

@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router-dom"
-
+import { useDispatch } from "react-redux"
+import { clearSaveInvestigationSlice } from "@/ReduxToolKit/Reducers/UserContent.ts/SaveInvestigationSlice"
 
 
 
 export default function ViewMyInvestigations() {
+    const dispatch = useDispatch()
     const navigate = useNavigate()
 
     const goToProfile = () => {

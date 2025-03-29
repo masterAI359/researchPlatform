@@ -8,12 +8,12 @@ export default function HelpModal({ info, handleExpand, isOpen, setActiveTab, ac
 
     return (
         <motion.div
-            initial={{ scale: 0, opacity: 0 }}
+            initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0, opacity: 0 }}
+            exit={{ scale: 0.8, opacity: 0 }}
             transition={{ type: 'tween', duration: 0.15 }}
-            className="bg-black opacity-100 h-auto shadow-black
-                         border border-2 border-white/10 shadow-thick rounded-4xl 
+            className="bg-mirage opacity-100 h-auto shadow-black
+                         border border-2 border-white/10 shadow-thick rounded-xl 
                          z-50 absolute bottom-12 xl:pb-2 xl:bottom-24 sm:bottom-16 sm:w-[33rem] 
                          md:left-1/4 lg:left-1/3 sm:left-20 xl:w-[38rem] pb-6
                          overflow-hidden"
@@ -26,18 +26,18 @@ export default function HelpModal({ info, handleExpand, isOpen, setActiveTab, ac
                         handleExpand();
                         { isOpen ? dispatch(getHelp(false)) : null }
                     }}
-                    className="w-fit h-fit cursor-pointer p-1 mr-4 rounded-lg 
+                    className="w-8 h-8 cursor-pointer p-1 mr-4 rounded-lg 
                                             hover:bg-white/10 absolute right-0 top-2">
                     <svg
                         className="text-zinc-200 cursor-pointer opacity-55 hover:opacity-100 
-                                            transition-opacity duration-200 ease-in-out" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="28px" height="28px">
+                                            transition-opacity duration-200 ease-in-out" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="100%" height="100%">
                         <path d="M 39.486328 6.9785156 A 1.50015 1.50015 0 0 0 38.439453 7.4394531 L 24 21.878906 L 9.5605469 7.4394531 A 1.50015 1.50015 0 0 0 8.484375 6.984375 A 1.50015 1.50015 0 0 0 7.4394531 9.5605469 L 21.878906 24 L 7.4394531 38.439453 A 1.50015 1.50015 0 1 0 9.5605469 40.560547 L 24 26.121094 L 38.439453 40.560547 A 1.50015 1.50015 0 1 0 40.560547 38.439453 L 26.121094 24 L 40.560547 9.5605469 A 1.50015 1.50015 0 0 0 39.486328 6.9785156 z" fill="currentColor" />
                     </svg>
                 </motion.div>
                 <ul className="flex items-center justify-start h-fit cursor-pointer overflow-hidden">
                     {info.map((element: Help, index: number) => (
                         <motion.li
-                            className={`p-2 `}
+                            className={`p-1 `}
                             key={element.heading}
                             initial={false}
                             animate={{
@@ -46,7 +46,7 @@ export default function HelpModal({ info, handleExpand, isOpen, setActiveTab, ac
                             }}
                             onClick={() => setActiveTab(info[index])}
                         >
-                            <h1 className={`font-light tracking-tight text-md md:text-xl ${info[index] === activeTab ? 'text-white' : 'text-zinc-400'}`}>{element.heading}</h1>
+                            <h1 className={`font-light tracking-tight text-sm md:text-xl p-2 rounded-md text-white  ${info[index] === activeTab ? ' bg-black/30' : 'bg-black/25'}`}>{element.heading}</h1>
 
                         </motion.li>
                     ))}

@@ -1,47 +1,27 @@
 import { RootState } from "@/ReduxToolKit/store"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { saveInvestigation } from "@/helpers/SupabaseData"
 import { displayWorkModal } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
 import { PreviousWork } from "../../Modals/PreviousWork"
 import { useNavigate } from "react-router-dom"
-import { clearState } from "@/ReduxToolKit/Reducers/UserContent.ts/SaveInvestigationSlice"
 
 export default function InvestigateMore() {
     const [open, setOpen] = useState<boolean>(false)
     const id = useSelector((state: RootState) => state.auth.user_id)
     const saved = useSelector((state: RootState) => state.saveResearch.saved)
     const investigateState = useSelector((state: RootState) => state.investigation)
-    const { pov, review } = investigateState
-    const { idea, premises, perspective, biases } = pov
-    const { endingPerspective, newConcepts, newPOV, takeaway } = review
     const dispatch = useDispatch()
-    const navigate = useNavigate()
-
-    const investigateData = {
-        idea: idea,
-        premises: premises,
-        perspective: perspective,
-        biases: biases,
-        ending_perspective: endingPerspective,
-        new_concepts: newConcepts,
-        changed_opinion: newPOV,
-        takeaway: takeaway,
-        user_id: id
-    }
-
-
-
 
 
     const showModal = () => {
 
-        if (saved) {
+        if (saved && id) {
             dispatch({ type: 'clear' })
-            dispatch(clearState())
-        } else {
+        } else if(id && !saved) {
             displayWorkModal(true)
             setOpen(true)
+        } else if (!id) {
+            dispatch({ type: 'clear'})
         }
 
     }

@@ -41,7 +41,7 @@ export function GetTheseArticles() {
             initial="closed"
             animate="open"
             exit="closed"
-            className="fixed bottom-12 xl:bottom-44 z-40 2xl:left-72 xl:left-44 lg:left-32 md:left-24
+            className="fixed bottom-32 xl:bottom-44 z-40 2xl:left-72 xl:left-44 lg:left-32 md:left-24
           flex flex-col items-center gap-6 rounded-3xl p-2 md:p-8 w-full md:w-4/5 lg:w-4/5 xl:w-4/5 2xl:w-2/3 h-auto
         sm:gap-y-10 sm:p-10 bg-gradient-to-tr from-ebony to-mirage mt-2 
         shadow-inset text-center">

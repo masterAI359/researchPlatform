@@ -1,5 +1,5 @@
 import HelpButton from "../../Buttons/HelpButtons/Question";
-import { Step3Help } from "@/helpInfo/help"
+import { Step4Help } from "@/helpInfo/help";
 import StepsEditor from "../../TipTap/StepsEditor";
 import { RootState } from "@/ReduxToolKit/store";
 import { useSelector } from "react-redux";
@@ -27,7 +27,7 @@ text-center mx-auto xs:h-full box-border flex xs:px-2 md:px-0 basis-full'>
               </div>
 
               <div className="w-fit h-full justify-items-start xs:mb-2 opacity-100">
-                <HelpButton info={Step3Help} />
+                <HelpButton info={Step4Help} />
               </div>
 
             </div>

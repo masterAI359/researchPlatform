@@ -4,9 +4,9 @@ export default function MindNode3({ currentStep }) {
 
     return (
         <div className={`${currentStep < 2 ? 'opacity-100 pointer-events-none' : 'opacity-100 pointer-events-auto'} 
-        ${currentStep === 2 ? 'scale-110' : null} bg-ebony 
+        ${currentStep === 2 ? 'scale-110' : null} bg-gradient-to-tr from-ebony to-mirage
          xl:w-36 xl:h-12 md:w-24 md:h-10 lg:w-32 lg:h-11 p-1 absolute xl:top-40  xl:right-6 lg:top-28 lg:right-6 md:top-22 md:right-4  flex items-center justify-beetween
-      ${currentStep < 2 ? 'border border-2 border-button_gray' : 'border border-2 border-button_blue'} rounded-3xl transition-all duration-200 ease-in-out`}>
+      ${currentStep < 2 ? 'border border-1 border-button_gray' : 'border border-2 border-button_blue'} rounded-3xl transition-all duration-200 ease-in-out`}>
             <div className='flex gap-2 items-center w-full h-full box-border'>
                 <motion.div
                     className="flex items-center justify-center rounded-full md:max-w-7 md:max-h-7 lg:max-h-8 lg:max-w-8 xl:max-h-9 xl:max-w-9 xl:p-1 md:p-0.5  shrink-0 z-10 hover:cursor-pointer transition-all duration-300"

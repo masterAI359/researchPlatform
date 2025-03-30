@@ -7,7 +7,7 @@ export default function MindNode2({ currentStep }) {
 
             <div className={`${currentStep < 1 ? 'opacity-100 pointer-events-none' : 'opacity-100 pointer-events-auto'} 
         transition-all duration-200 ease-in-out ${currentStep === 1 ? 'scale-110' : null}
-         bg-ebony md:w-24 md:h-10 lg:w-32 lg:h-11 xl:w-36 xl:h-12 p-1 relative flex items-center justify-beetween
+         bg-gradient-to-tr from-ebony to-mirage md:w-24 md:h-10 lg:w-32 lg:h-11 xl:w-36 xl:h-12 p-1 relative flex items-center justify-beetween
          ${currentStep < 1 ? 'border border-2 border-button_gray' : 'border border-2 border-button_blue'} rounded-3xl`}>
                 <div className='flex gap-2 items-center w-full h-full box-border'>
                     <motion.div

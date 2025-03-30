@@ -5,8 +5,8 @@ export default function MindNode1({ currentStep }) {
     return (
         <div className="h-fit w-fit flex flex-col justify-center absolute md:top-1 lg:top-3 xl:top-14 left-1/2 left-1/2 transform -translate-x-1/2 mx-auto">
             <div className={`${currentStep === 0 ? 'scale-110' : null} transition-all justify-between
-            ease-in-out duration-200 bg-ebony w-24 h-10 lg:w-32 lg:h-11 xl:w-36 xl:h-12 p-1 flex items-center 
-          ${currentStep < 0 ? 'border border-2 border-button_gray' : 'border border-2 border-button_blue'}
+            ease-in-out duration-200 bg-gradient-to-tr from-ebony to-mirage w-24 h-10 lg:w-32 lg:h-11 xl:w-36 xl:h-12 p-1 flex items-center 
+          ${currentStep < 0 ? 'shadow-inset' : 'border border-1 border-button_blue'}
             rounded-3xl`}>
 
                 <motion.div

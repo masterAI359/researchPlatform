@@ -1,55 +1,7 @@
-//import { useState, useEffect } from "react";
-//import HelpButton from "../../Buttons/HelpButtons/Question";
-//import { Step3Help } from "@/helpInfo/help"
-//import StepsEditor from "../../TipTap/StepsEditor";
-//import { RootState } from "@/ReduxToolKit/store";
-//import { useSelector, useDispatch } from "react-redux";
-//import { getBiases } from "@/ReduxToolKit/Reducers/Investigate/UserPOV";
-//
-//export default function Step3({ containerWidth }: any) {
-//  const investigateState = useSelector((state: RootState) => state.investigation)
-//  const { pov } = investigateState
-//  const { biases } = pov
-//  const dispatch = useDispatch()
-//
-//
-//
-//  return (
-//    <div style={{ flexShrink: 0, maxWidth: containerWidth }}
-//      className='xs:w-full
-//  text-center mx-auto xs:h-full box-border flex xs:px-2 md:px-0 basis-full'>
-//      <div className={`h-fit box-border content-start mx-auto min-w-full max-w-full inline-block`}>
-//        <div className="flex flex-col items-center w-full">
-//
-//          <div className="w-full box-border border-b h-fit border-white/10 
-//        rounded-lg xs:mb-2 lg:mb-4 flex flex-row xs:gap-x-4 md:gap-x-8 items-baseline">
-//            <div className="w-fit flex justify-items-start">
-//              <h1 className="2xl:text-3xl md:text-2xl tracking-tight font-light text-white pb-2 xs:text-md">Explore our biases
-//              </h1>
-//            </div>
-//            <div className="w-fit h-full justify-items-start translate-y-1 opacity-100">
-//              <HelpButton info={Step3Help} />
-//            </div>
-//          </div>
-//          <div className="text-center w-full">
-//            <div
-//              className="block w-full h-44 sm:h-52 xl:h-80 text-md text-white bg-white/10 border-none focus:ring-1 focus:ring-white
-//    rounded-lg resize-none text-wrap flex justify-items-start"
-//            >
-//              <StepsEditor context={biases} setterFunction={getBiases} />
-//            </div>
-//          </div>
-//        </div>
-//      </div>
-//    </div>
-//  )
-//}
-
-
 import Lottie from "lottie-react"
 import blueCheck from '../../../../lotties/blueCheck.json'
 import HelpButton from "../../Buttons/HelpButtons/Question"
-import { Step2Help } from "@/helpInfo/help"
+import { Step3Help } from "@/helpInfo/help"
 import { getBiases } from "@/ReduxToolKit/Reducers/Investigate/UserPOV"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
@@ -84,7 +36,7 @@ export default function Step2({ containerWidth }: any) {
               Acknowledge biases
             </h1>
             <div className="w-fit self-center">
-              <HelpButton info={Step2Help} />
+              <HelpButton info={Step3Help} />
 
             </div>
           </header>

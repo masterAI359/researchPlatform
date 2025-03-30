@@ -5,7 +5,7 @@ export default function SearchNode({ currentStep }) {
 
     return (
         <div className="w-fit h-fit absolute xs:bottom-3 md:bottom-2 xl:bottom-4 left-1/2 left-1/2 transform -translate-x-1/2">
-            <div className={`xl:w-36 xl:h-12 lg:w-32 lg:h-11 md:w-24 md:h-10 p-0.5 lg:p-1 bg-ebony border border-3 border-button_blue
+            <div className={`xl:w-36 xl:h-12 lg:w-32 lg:h-11 md:w-24 md:h-10 p-0.5 lg:p-1 bg-gradient-to-tr from-ebony to-mirage border border-3 border-button_blue
                  rounded-3xl flex items-center gap-x-1 xl:gap-x-6 transition-all duration-200 ease-in-out
                   ${currentStep < 4 ? 'border border-2 border-button_gray' : 'border border-2 border-button_blue'}
                  `}>

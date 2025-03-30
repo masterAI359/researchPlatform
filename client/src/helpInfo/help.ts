@@ -36,9 +36,8 @@ const Step2Help: Help[] = [
 
 const Step3Help: Help[] = [{
     heading: "What is the purpose of this?",
-    explanation: `Biases(i.e. our emotional investment) can drive us to seek out selective evidence and miss the big picture. As human beings we're driven to things
-    that make us feel good, not necessarily finding the truth. Our level of expertise in a topic is also a good indicator of how much we're relying on
-    the impressions we've formed prior as opposed to the evidence we've sifted through.`
+    explanation: `Biases( i.e. our emotional investment) can drive us to seek out selective evidence and miss the big picture. As human beings we're driven to things
+    that make us feel good, not necessarily finding the truth.`
 }]
 
 

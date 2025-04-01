@@ -61,7 +61,7 @@ export const emailValidation = (emailEvaluated: string, setter: Function) => {
 }
 
 
-export const confirmPassword = (firstEntry: string, secondEntry: string, setter: Function, errorSetter: Function) => {
+export const confirmPassword = (firstEntry: string, secondEntry: string, setter: Function, errorSetter?: Function) => {
 
 
     const splitPW = firstEntry.split('')

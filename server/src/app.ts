@@ -12,6 +12,7 @@ const app = express();
 import { bingArticles } from '../endpoints/bingApi.js';
 import { tldrSummary } from '../endpoints/tldrSummary.js';
 import { deleteUser } from '../endpoints/deleteUser.js';
+import { updateUserPassword } from '../endpoints/updateUser.js';
 
 
 const corsOptions: object = {
@@ -69,7 +70,8 @@ app.options('*', (req, res) => {
 
 app.get('/search/articles', bingArticles);
 app.get('/summarize', tldrSummary);
-app.get('/deleteUser', deleteUser)
+app.get('/deleteUser', deleteUser);
+app.get('/updatePassword', updateUserPassword);
 
 
 app.get('*', (req: Request, res: Response) => {

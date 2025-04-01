@@ -16,6 +16,7 @@ export default function Login() {
     const [acceptedInput, setAcceptedInput] = useState<boolean>(null)
     const [loggingIn, setLoggingIn] = useState<boolean>(false)
     const [successfull, setSuccessful] = useState<boolean>(null)
+    const [errorMessage, setErrorMessage] = useState<string>(null)
     const navigate = useNavigate()
 
 
@@ -37,8 +38,6 @@ export default function Login() {
 
 
     const logInUser = async () => {
-
-
 
         try {
             setLoggingIn(true)

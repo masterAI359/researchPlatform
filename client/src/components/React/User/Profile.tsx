@@ -9,10 +9,12 @@ import ProfileMenu from "./ProfileNavigation/ProfileMenu";
 import SideBarMenu from "./ProfileNavigation/SideBar/SideBarMenu";
 import SavedArticles from "./DisplayContent/UserArticles/SavedArticles";
 import SavedResearchLayout from "./DisplayContent/SavedInvestigations.tsx/SavedResearchLayout";
+import DesktopAccMngmt from "./ProfileNavigation/DesktopAccMngmt";
 
 export default function Profile() {
     const displaySavedInvestigations = useSelector((state: RootState) => state.profileNav.displaySavedInvestigations)
     const displaySavedArticles = useSelector((state: RootState) => state.profileNav.displaySavedArticles)
+    const displayAccountManagement = useSelector((state: RootState) => state.profileNav.displayAccountManagement)
     const id = useSelector((state: RootState) => state.auth.user_id)
     const dispatch = useDispatch<AppDispatch>()
 
@@ -44,6 +46,7 @@ export default function Profile() {
                             <AnimatePresence mode="wait">
                                 {displaySavedArticles && <SavedArticles />}
                                 {displaySavedInvestigations && <SavedResearchLayout />}
+                                {displayAccountManagement && <DesktopAccMngmt />}
                             </AnimatePresence>
                         </div>
                     </div>

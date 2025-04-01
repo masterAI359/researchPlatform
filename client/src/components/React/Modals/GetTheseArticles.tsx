@@ -81,14 +81,14 @@ export function GetTheseArticles() {
 function ArticlesSelected() {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { chosenArticles } = investigateState.getArticle
-    const { articles } = investigateState.search
+    const { articleOptions } = investigateState.search
     const { ContentStatus } = investigateState.read
     const [selected, setSelected] = useState([])
 
     useEffect(() => {
 
         if (chosenArticles.length > 0) {
-            const filtered: ArticleType[] = articles.filter(article1 =>
+            const filtered: ArticleType[] = articleOptions.filter(article1 =>
                 chosenArticles.some(article2 => article1.url === article2.url)
             ).slice(0, 3);
             setSelected(filtered);
@@ -101,7 +101,7 @@ function ArticlesSelected() {
         return () => {
             setSelected([])
         }
-    }, [articles, chosenArticles]);
+    }, [articleOptions, chosenArticles]);
 
 
     return (

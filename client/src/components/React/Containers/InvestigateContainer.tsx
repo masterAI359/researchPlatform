@@ -15,7 +15,7 @@ export default function InvestigateContainer() {
   const signingOut = useSelector((state: RootState) => state.auth.signOut)
   const { notes, read, review, help, getArticle, search } = investigateState
   const { showContent, showReadingTooltip } = investigateState.display
-  const { articles } = search
+  const { articleOptions } = search
   const { chosenArticles } = getArticle
   const { gettingHelp } = help
   const { takingNotes } = notes
@@ -91,7 +91,7 @@ export default function InvestigateContainer() {
       </div>
 
       <AnimatePresence>
-        {articles && articles.length > 0 &&
+        {articleOptions && articleOptions.length > 0 &&
 
           <SelectArticles
           />

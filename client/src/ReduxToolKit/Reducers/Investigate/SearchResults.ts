@@ -15,14 +15,14 @@ export const RetrieveArticles = createAsyncThunk(
 
 
 interface ArticleArrayType {
-    articles: Array<ArticleType> | null,
+    articleOptions: Array<ArticleType> | null,
     status: string,
     pages: any,
     currentPage: number | null
 }
 
 const initialState: ArticleArrayType = {
-    articles: null,
+    articleOptions: null,
     status: 'idle',
     pages: null,
     currentPage: 0
@@ -35,7 +35,7 @@ export const SearchResultsSlice = createSlice({
     initialState: initialState,
     reducers: {
         searchResults: (state, action) => {
-            state.articles = action.payload
+            state.articleOptions = action.payload
         },
         getPages: (state, action) => {
             state.pages = action.payload
@@ -51,7 +51,7 @@ export const SearchResultsSlice = createSlice({
         },
         resetResults: () => initialState,
         resetArticles: (state) => {
-            state.articles = null
+            state.articleOptions = null
         }
 
     },
@@ -62,7 +62,7 @@ export const SearchResultsSlice = createSlice({
         }),
             builder.addCase(RetrieveArticles.fulfilled, (state, action) => {
                 state.status = 'fulfilled'
-                state.articles = action.payload
+                state.articleOptions = action.payload
             }),
             builder.addCase(RetrieveArticles.rejected, (state, action) => {
                 state.status = 'rejected';

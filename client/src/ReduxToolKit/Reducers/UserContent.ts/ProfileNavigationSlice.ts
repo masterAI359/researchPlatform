@@ -1,16 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { acceptedInput } from "../Investigate/Steps";
 
 interface NavigateProfile {
 
     displaySavedArticles: boolean,
     displaySavedInvestigations: boolean,
-    displayDeleteModal: boolean
+    displayDeleteModal: boolean,
+    displayAccountManagement: boolean
 }
 
 const initialState: NavigateProfile = {
     displaySavedArticles: false,
     displaySavedInvestigations: true,
-    displayDeleteModal: false
+    displayDeleteModal: false,
+    displayAccountManagement: false
 }
 
 
@@ -27,11 +30,14 @@ const ProfileNavigationSlice = createSlice({
         },
         presentDeleteModal: (state, action) => {
             state.displayDeleteModal = action.payload
+        },
+        presentManagement: (state, action) => {
+            state.displayAccountManagement = action.payload
         }
     }
 })
 
 
-export const { presentArticles, presentResearch, presentDeleteModal } = ProfileNavigationSlice.actions
+export const { presentArticles, presentResearch, presentDeleteModal, presentManagement } = ProfileNavigationSlice.actions
 
 export default ProfileNavigationSlice.reducer

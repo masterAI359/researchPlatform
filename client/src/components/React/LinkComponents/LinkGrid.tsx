@@ -29,23 +29,23 @@ const container = {
 export default function LinkGrid() {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { search } = investigateState
-    const { articles, status, pages } = search
+    const { articleOptions, status, pages } = search
     const dispatch = useDispatch()
 
 
     useEffect(() => {
 
-        if (articles !== null && articles.length < 1) {
-            console.log(articles)
+        if (articleOptions !== null && articleOptions.length < 1) {
+            console.log(articleOptions)
         }
 
-        if (status === 'fulfilled' && articles) {
-            const formedPages = formPages(articles)
+        if (status === 'fulfilled' && articleOptions) {
+            const formedPages = formPages(articleOptions)
             dispatch(getPages(formedPages))
         }
 
 
-    }, [status, articles])
+    }, [status, articleOptions])
 
     return (
         <motion.div
@@ -62,14 +62,14 @@ export default function LinkGrid() {
                     <AnimatePresence>
 
                         {status === 'pending' && <LinkLoader />}
-                        {status === 'fulfilled' && articles !== null && articles.length > 0 && <LinkPagination identifier={'TopPager'} />}
-                        {status === 'fulfilled' && articles &&
+                        {status === 'fulfilled' && articleOptions !== null && articleOptions.length > 0 && <LinkPagination identifier={'TopPager'} />}
+                        {status === 'fulfilled' && articleOptions &&
                             <motion.div layout key='pagesContainer' className="relative min-h-screen inset-0 my-6">
                                 <Pages />
                             </motion.div>}
-                        {(status === 'fulfilled' && !articles) || (articles && articles.length < 1) && <SearchFailed />}
+                        {(status === 'fulfilled' && !articleOptions) || (articleOptions && articleOptions.length < 1) && <SearchFailed />}
 
-                        {status === 'fulfilled' && articles !== null && articles.length !== 0 && <LinkPagination identifier={'BottomPager'} key={'pagerTwo'} />}
+                        {status === 'fulfilled' && articleOptions !== null && articleOptions.length !== 0 && <LinkPagination identifier={'BottomPager'} key={'pagerTwo'} />}
 
 
                     </AnimatePresence>

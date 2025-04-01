@@ -3,15 +3,21 @@ import { RootState } from "@/ReduxToolKit/store"
 import { useEffect, useState } from "react"
 import { showLengthRequirement } from "@/ReduxToolKit/Reducers/Athentication/NewUserSlice"
 
-export default function NewPassword({ acceptedInput, canSubmit, handlePassword, first_pw_valid, needSpecialChar }) {
+interface NewPassword {
+    acceptedInput?: boolean | null,
+    canSubmit?: boolean | null,
+    handlePassword?: Function,
+    first_pw_valid?: boolean | null,
+    needSpecialChar?: string | null
+}
+
+export default function NewPassword({ acceptedInput, canSubmit, handlePassword, first_pw_valid, needSpecialChar }: NewPassword) {
     const passwordLengthRequired = useSelector((state: RootState) => state.newUser.passWordLengthRequired)
     const [showPassword, setShowPassword] = useState<boolean>(false)
     const newEmail = useSelector((state: RootState) => state.newUser.emailInput)
     const dispatch = useDispatch()
 
     useEffect(() => {
-
-        console.log(newEmail)
 
         if (first_pw_valid === false) {
             dispatch(showLengthRequirement('password must be at least 8 characters'))

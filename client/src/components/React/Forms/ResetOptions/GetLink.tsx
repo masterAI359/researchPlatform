@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { emailValidation } from "@/helpers/validation"
 import { AnimatePresence, motion } from "framer-motion"
 import Emailing from "../AuthNotifications/Emailing"
+import { Link } from "react-router-dom"
 
 export default function GetLink({ }) {
     const [emailToReset, setEmailToReset] = useState<string>(null)
@@ -24,7 +25,7 @@ export default function GetLink({ }) {
         try {
             if (validEmail) {
                 const sent = await supabase.auth.resetPasswordForEmail(emailToReset, {
-                     redirectTo: 'https://elenchusapp.io/UpdatePassword',
+                     redirectTo: 'https://elenchusapp.io/updatePassword',
                  })
                  if(sent) {
                      setEmailSent(true)                
@@ -78,7 +79,8 @@ export default function GetLink({ }) {
                         <label htmlFor="email" className="block mb-3 text-sm font-medium text-white">
                             Email
                         </label>
-                        <input onChange={(e) => emailInput(e)} id="email" name="email" type="email" autoComplete="email" placeholder="email@example.com" className="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-white placeholder-black/50 bg-white/5 focus:border-black focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10" required />
+                        <input onChange={(e) => emailInput(e)} id="email" name="email" type="email" autoComplete="email" placeholder="email@example.com" 
+                        className="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-white placeholder-black/50 bg-white/5 focus:border-white/10 focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10" required />
                     </div>
                     <div className="col-span-full">
                         <button onClick={(e) => handleResetLink(e, emailToReset)} type="button" className="text-sm py-2 px-4 border focus:ring-2 h-10 rounded-full border-zinc-100 bg-white hover:bg-black/10 text-black duration-200 focus:ring-offset-2 focus:ring-white hover:text-white w-full inline-flex items-center justify-center ring-1 ring-transparent">
@@ -86,9 +88,11 @@ export default function GetLink({ }) {
                         </button>
                     </div>
                     <div>
+                    <Link to={'/login'} >
                         <p className="font-medium text-sm leading-tight text-white mx-auto">
-                            Already have a password? <a className="text-white underline hover:text-blue-400 ml-3" href="/login">Log in instead</a>
+                            Already have a password? <a className="text-white underline hover:text-blue-400 ml-3" href="#">Log in instead</a>
                         </p>
+                        </Link>
                     </div>
                 </div>
             </form>

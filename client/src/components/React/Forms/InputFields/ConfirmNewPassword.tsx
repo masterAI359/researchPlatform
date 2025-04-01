@@ -4,17 +4,20 @@ import { useDispatch, useSelector } from "react-redux"
 import { confirmPassword } from "@/helpers/validation"
 import { getSecondPassword } from "@/ReduxToolKit/Reducers/Athentication/NewUserSlice"
 
+interface Confirm {
+    acceptedInput?: boolean,
+    canSubmit?: boolean,
+    setCanSubmit: Function,
+    setNeedSpecialChar?: Function,
+    handleSecondEntry?: Function
+}
 
 
-export default function ConfirmNewPassword({ acceptedInput, canSubmit, setCanSubmit, setNeedSpecialChar, handleSecondEntry }) {
+export default function ConfirmNewPassword({ acceptedInput, canSubmit, setCanSubmit, setNeedSpecialChar, handleSecondEntry }: Confirm) {
     const mustMatchPasswords = useSelector((state: RootState) => state.newUser.mustMatchFirstPassword)
     const firstPassword = useSelector((state: RootState) => state.newUser.firstPassword)
     const secondPassword = useSelector((state: RootState) => state.newUser.secondPassword)
     const [showPassword, setShowPassword] = useState<boolean>(false)
-    const dispatch = useDispatch()
-
-
-
 
     useEffect(() => {
 

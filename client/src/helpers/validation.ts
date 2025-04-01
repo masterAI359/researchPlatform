@@ -61,7 +61,7 @@ export const emailValidation = (emailEvaluated: string, setter: Function) => {
 }
 
 
-export const confirmPassword = (firstEntry: string, secondEntry: string, setter: Function, errorSetter?: Function) => {
+export const confirmPassword = (firstEntry?: string | null, secondEntry?: string | null, setter?: Function, errorSetter?: Function) => {
 
 
     const splitPW = firstEntry.split('')
@@ -81,5 +81,23 @@ export const confirmPassword = (firstEntry: string, secondEntry: string, setter:
         setter(false)
     }
 
+}
+
+export const confirmFirstPassword = (firstEntry: string, setter: Function) => {
+
+
+    const splitPW = firstEntry.split('')
+
+    const longEnough = splitPW.length >= 8
+
+    const noSpecialChars = checkSpecialChars(splitPW)
+
+  
+
+    if(!noSpecialChars && longEnough) {
+        setter(true)
+    } else {
+        setter(false)
+    }
 }
 

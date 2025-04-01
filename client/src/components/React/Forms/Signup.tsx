@@ -7,7 +7,7 @@ import { Link } from "react-router-dom"
 import CreatingUser from "./AuthNotifications/CreatingUser"
 import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
 import { confirmPassword, emailValidation } from "@/helpers/validation"
-import { getNewEmail, getFirstPassword, getSecondPassword, showLengthRequirement, showSpecialCharsWarning, requestValidEmail, matchPasswords, clearNewUser } from "@/ReduxToolKit/Reducers/Athentication/NewUserSlice"
+import { getFirstPassword, getSecondPassword, requestValidEmail, matchPasswords } from "@/ReduxToolKit/Reducers/Athentication/NewUserSlice"
 import { useDispatch } from "react-redux"
 import { AnimatePresence, motion } from "framer-motion"
 import NewEmail from "./InputFields/NewEmail"
@@ -15,8 +15,6 @@ import NewPassword from "./InputFields/NewPassword"
 import ConfirmNewPassword from "./InputFields/ConfirmNewPassword"
 import OAuthLogins from "./InputFields/OauthLogins"
 import NewPasswordGuide from "./InputGuides/NewPasswordGuide"
-import { AuthError } from "@supabase/supabase-js"
-//TODO: add messages for password validation
 
 export default function Signup() {
     const [acceptedInput, setAcceptedInput] = useState<boolean>(null)

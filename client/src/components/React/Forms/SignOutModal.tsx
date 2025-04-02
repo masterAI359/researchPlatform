@@ -34,6 +34,7 @@ export default function SignOutModal({ }) {
 
             if (error) {
                 setSuccess(false)
+                console.log(error.message)
             } else {
                 setSuccess(true)
             }

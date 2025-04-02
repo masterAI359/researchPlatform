@@ -9,6 +9,8 @@ import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { Link } from "react-router-dom"
+import { AnimatePresence } from "framer-motion"
+import Resetting from "../AuthNotifications/ResettingPassword"
 
 export default function ResetPassword({ }) {
     
@@ -19,6 +21,7 @@ export default function ResetPassword({ }) {
     const secondPassword = useSelector((state: RootState) => state.newUser.secondPassword)
     const firstPassword = useSelector((state: RootState) => state.newUser.firstPassword)
     const [successfullyChanged, setSuccessFullyChanged] = useState<boolean>(null)
+    const [resetting, setResetting] = useState<boolean>(null)
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
@@ -42,6 +45,7 @@ export default function ResetPassword({ }) {
     const resetPassword = async (e: any) => {
 
         e.preventDefault()
+        setResetting(true)
 
         if (validEntries) {
 
@@ -86,6 +90,9 @@ export default function ResetPassword({ }) {
 
     return (
         <div className="w-full max-w-md md:max-w-sm mx-auto">
+            <AnimatePresence>
+                {resetting && <Resetting setResetting={setResetting} successfullyChanged={successfullyChanged} />}
+            </AnimatePresence>
             <div className="flex flex-col">
                 <div className="border-b pb-12">
                     <p className="text-3xl tracking-tight font-light lg:text-4xl text-white">
@@ -120,5 +127,7 @@ export default function ResetPassword({ }) {
         </div>
     )
 }
+
+
 
 

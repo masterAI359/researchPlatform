@@ -25,7 +25,7 @@ export default function GetLink({ }) {
         try {
             if (validEmail) {
                 const sent = await supabase.auth.resetPasswordForEmail(emailToReset, {
-                     redirectTo: 'https://elenchusapp.io/updatePassword',
+                     redirectTo: 'https://elenchusapp.io',
                  })
                  if(sent) {
                      setEmailSent(true)                

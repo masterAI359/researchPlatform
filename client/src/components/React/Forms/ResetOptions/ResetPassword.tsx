@@ -47,7 +47,7 @@ export default function ResetPassword({ }) {
         e.preventDefault()
         setResetting(true)
 
-        if (validEntries) {
+        if (canSubmit) {
 
             const { data, error } = await supabase.auth.updateUser({
                 password: secondPassword
@@ -56,9 +56,9 @@ export default function ResetPassword({ }) {
             console.log(data, error)
 
             if (error) {
-                console.log(error)
+                console.log(error.message)
                 setSuccessFullyChanged(false)
-            } else {
+            } else if(data) {
                 setSuccessFullyChanged(true)
                 console.log({ "Successful Password Change: ": data })
                 redirectUser()

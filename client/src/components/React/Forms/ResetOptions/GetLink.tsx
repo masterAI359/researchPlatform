@@ -39,14 +39,13 @@ export default function GetLink({ }) {
         } finally {
             
         }
-
-      
-
-
     }
+    
 
 
     useEffect(() => {
+
+        
 
         if (emailToReset !== null) {
 

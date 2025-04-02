@@ -3,9 +3,11 @@ import { supabase } from "@/SupaBase/supaBaseClient";
 import { useAppdispatch } from "@/Hooks/appDispatch";
 import { fetchUserCredentials } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
 import { combineSlices } from "@reduxjs/toolkit";
+import { useNavigate } from "react-router-dom";
 
 export default function SessionManager() {
     const appDispatch = useAppdispatch()
+    const navigate = useNavigate()
 
     const restoreSession = async () => {
         const { data: { session } } = await supabase.auth.getSession();
@@ -26,7 +28,7 @@ export default function SessionManager() {
             } else if (event === 'SIGNED_OUT') {
 
             } else if (event === 'PASSWORD_RECOVERY') {
-
+                navigate('/updatePassword')
             } else if (event === 'TOKEN_REFRESHED') {
                 restoreSession()
             } else if (event === 'USER_UPDATED') {

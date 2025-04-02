@@ -36,7 +36,7 @@ export default function ConfirmNewPassword({ acceptedInput, canSubmit, setCanSub
                         <div className="text-xs sm:text-sm font-medium text-white">
                             Confirm Password
                         </div>
-                        {mustMatchPasswords !== null && <p className="text-xs sm:text-sm font-light text-red-500">{mustMatchPasswords}</p>}
+                        {mustMatchPasswords !== null || mustMatchPasswords !== '' && <p className="text-xs sm:text-sm font-light text-red-500">{mustMatchPasswords}</p>}
                         <div className="w-fit">
                             {canSubmit === true && <svg xmlns="http://www.w3.org/2000/svg" className={`icon icon-tabler icon-tabler-check text-green-500 mx-auto`} width={16} height={16} viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />

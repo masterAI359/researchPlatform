@@ -25,10 +25,7 @@ export default function ResetPassword({ }) {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const redirectUser = () => {
-        console.log('invoked')
-        navigate('/Login')
-    }
+ 
 
     const handlePassword = (e: any) => {
         const password = e.target.value
@@ -60,9 +57,6 @@ export default function ResetPassword({ }) {
                 setSuccessFullyChanged(false)
             } else if(data) {
                 setSuccessFullyChanged(true)
-                console.log({ "Successful Password Change: ": data })
-                redirectUser()
-
             }
 
         } else {

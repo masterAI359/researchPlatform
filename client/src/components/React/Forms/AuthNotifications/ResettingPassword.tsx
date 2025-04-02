@@ -3,6 +3,7 @@ import Pending from "./Pending"
 import Success from "./Success"
 import Failed from "./Failed"
 import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 
 const variants = {
     show: {
@@ -15,6 +16,7 @@ const variants = {
     }
 }
 export default function Resetting ({ setResetting, successfullyChanged }) {
+    const navigate = useNavigate()
 
     
     useEffect(() => {
@@ -22,6 +24,7 @@ export default function Resetting ({ setResetting, successfullyChanged }) {
         const timer = setTimeout(() => {
 
             setResetting(false)
+            navigate('/')
         }, 2500)
 
         return () => clearTimeout(timer)

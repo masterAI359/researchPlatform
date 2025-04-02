@@ -53,6 +53,8 @@ export default function ResetPassword({ }) {
                 password: secondPassword
             })
 
+            console.log(data, error)
+
             if (error) {
                 console.log(error)
                 setSuccessFullyChanged(false)
@@ -73,6 +75,10 @@ export default function ResetPassword({ }) {
 
         if(firstPassword) {
             confirmFirstPassword(firstPassword, setValidFirstPassword)
+        }
+
+        if(firstPassword && secondPassword) {
+            confirmPassword(firstPassword, secondPassword, setCanSubmit, setNeedSpecialChar)
         }
 
         if (canSubmit === false) {

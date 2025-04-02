@@ -28,7 +28,7 @@ export default function SessionManager() {
             } else if (event === 'SIGNED_OUT') {
 
             } else if (event === 'PASSWORD_RECOVERY') {
-                navigate('/updatePassword')
+              //  navigate('/updatePassword')
             } else if (event === 'TOKEN_REFRESHED') {
                 restoreSession()
             } else if (event === 'USER_UPDATED') {

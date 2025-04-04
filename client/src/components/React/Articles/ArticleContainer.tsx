@@ -63,7 +63,7 @@ export default function ArticleContainer({ }) {
               className="w-full min-h-screen mx-auto relative grow shrink-0">
 
               {ContentStatus === 'pending' && <ArticleLoader key='contentLoader' />}
-              {summaries ? summaries?.map((articleData: any, index: number) =>
+              {summaries && summaries.length > 0 ? summaries?.map((articleData: any, index: number) =>
               (currentStory === index && <Article
                 key={index}
                 index={index}

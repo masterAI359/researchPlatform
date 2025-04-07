@@ -65,7 +65,7 @@ export default function ArticlesResult() {
 
 	const [firstHalf, secondHalf] = splitArray(articles);
 
-
+ const fallbackImage = '/images/logos/fallback.jpg'
 
 
 	return (
@@ -106,7 +106,7 @@ export default function ArticlesResult() {
 																src={
 																	article.image.img
 																		? article.image.img
-																		: 'public/images/assets/cube.png'
+																		: fallbackImage
 																}
 																className='object-cover rounded-full h-20 w-20 shrink-0'
 															/>

@@ -22,8 +22,6 @@ export const tldrSummary = async (req: Request, res: Response) => {
 
     const received = req.query.q as string;
 
-    console.log({ "Recieved Query": received }, typeof received)
-
     const paramDecode = (item: string) => {
 
         try {
@@ -57,9 +55,6 @@ export const tldrSummary = async (req: Request, res: Response) => {
 
     try {
         const dataMap = query.map(async (article, index) => {
-
-
-            //   console.log({ "fetching data for: ": article.url });
 
             await delay(index * 2000);
 

@@ -156,7 +156,7 @@ export default function ArticlesResult() {
 																src={
 																	article.image.img
 																		? article.image.img
-																		: 'public/images/assets/cube.png'
+																		: fallbackImage
 																}
 																className='object-cover rounded-full h-20 w-20 shrink-0'
 															/>
@@ -175,11 +175,6 @@ export default function ArticlesResult() {
 																	/>
 
 																	{article.provider}
-																	{/*}			Published on{' '}
-																{article.datePublished.substring(0, 10)} at{' '}
-																{article.datePublished
-																	.substring(10, 16)
-																	.replace('T', ' ')}  {*/}
 																</span>
 															</div>
 														</div>

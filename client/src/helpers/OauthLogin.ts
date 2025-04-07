@@ -13,12 +13,4 @@ export const googleAuth = async () => {
 }
 
 
-export const signInWithTwitter = async () => {
-    const { data, error } = await supabase.auth.signInWithOAuth({
-        provider: 'twitter',
-    })
 
-    if (data) {
-    } else if (error) {
-    }
-}

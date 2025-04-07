@@ -10,7 +10,6 @@ import { presentDeleteModal } from "@/ReduxToolKit/Reducers/UserContent.ts/Profi
 import { useNavigate } from "react-router-dom";
 import { clearAuthSlice } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
 import { supabase } from "@/SupaBase/supaBaseClient";
-import { error } from "astro/dist/core/logger/core";
 
 const variants = {
     closed: { opacity: 0 },
@@ -23,7 +22,6 @@ export default function DeleteUserAccount({ }) {
     const [deleting, setDeleting] = useState<boolean>(null)
     const [deleteSuccessful, setDeleteSuccessful] = useState<boolean>(null)
     const [showInput, setShowInput] = useState<boolean>(null)
-    const [responseMessage, setResponseMessage] = useState<string>(null)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -70,7 +68,6 @@ export default function DeleteUserAccount({ }) {
 
             const response = await deletion.text()
             if (response) {
-                setResponseMessage(response)
                 setDeleteSuccessful(true)
                 console.log(response)
             }

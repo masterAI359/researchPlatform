@@ -1,7 +1,6 @@
 import ResetPassword from "./ResetOptions/ResetPassword"
 import { supabase } from "@/SupaBase/supaBaseClient"
 import { useEffect } from "react"
-import { useDispatch } from "react-redux"
 
 
 export default function UpdatePassword() {

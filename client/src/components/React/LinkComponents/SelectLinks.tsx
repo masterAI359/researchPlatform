@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion"
+import { motion } from "framer-motion"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { displayGetArticlesModal, displaySelectionWarning } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"

@@ -1,12 +1,11 @@
 import { supabase } from "@/SupaBase/supaBaseClient"
 import { useEffect, useState } from "react"
-import { useDispatch } from "react-redux"
 import { requiredInput, emailValidation } from "@/helpers/validation"
 import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 import LoggingIn from "./AuthNotifications/LoggingIn"
 import { AnimatePresence } from "framer-motion"
-import { googleAuth, signInWithTwitter } from "@/helpers/OauthLogin"
+import { googleAuth } from "@/helpers/OauthLogin"
 import Password from "./InputFields/Password"
 
 export default function Login() {

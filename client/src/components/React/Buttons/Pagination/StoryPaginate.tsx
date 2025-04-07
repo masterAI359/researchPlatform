@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-import { incrementStory, decrementStory, incrementStoryBy, resetData } from "@/ReduxToolKit/Reducers/Investigate/Reading"
+import { incrementStory, decrementStory, incrementStoryBy } from "@/ReduxToolKit/Reducers/Investigate/Reading"
 import { useEffect } from "react"
 
 
@@ -8,7 +8,7 @@ import { useEffect } from "react"
 export default function StoryPaginate() {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { read } = investigateState
-    const { currentStory, summaries } = read
+    const { currentStory, articles} = read
     const { display } = investigateState
     const { showContent } = display
     const dispatch = useDispatch()
@@ -17,7 +17,7 @@ export default function StoryPaginate() {
 
 
 
-    }, [showContent, summaries])
+    }, [showContent, articles])
 
     const decrement = () => {
         if (showContent) {
@@ -31,7 +31,7 @@ export default function StoryPaginate() {
     const increment = () => {
 
         if (showContent) {
-            if (currentStory < summaries.length - 1) {
+            if (currentStory < articles.length - 1) {
                 dispatch(incrementStory())
             }
         }
@@ -49,7 +49,7 @@ export default function StoryPaginate() {
                     <path d="M 33.960938 2.9804688 A 2.0002 2.0002 0 0 0 32.585938 3.5859375 L 13.585938 22.585938 A 2.0002 2.0002 0 0 0 13.585938 25.414062 L 32.585938 44.414062 A 2.0002 2.0002 0 1 0 35.414062 41.585938 L 17.828125 24 L 35.414062 6.4140625 A 2.0002 2.0002 0 0 0 33.960938 2.9804688 z" fill="currentColor" />
                 </svg>
             </button>
-            {(summaries !== null) || (summaries && summaries.length > 1) ? summaries.map((page: any, index: number) => (
+            {(articles !== null) || (articles && articles.length > 1) ? articles.map((page: any, index: number) => (
                 <button key={index} onClick={() => dispatch(incrementStoryBy(index))}
                     className={`${currentStory === index ? 'bg-white/10' : 'bg-black'} 
                         text-white rounded-md rounded-r-none rounded-l-none border border-r-0 border-white/10 py-2 px-3

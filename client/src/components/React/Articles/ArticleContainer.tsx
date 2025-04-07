@@ -15,15 +15,15 @@ export default function ArticleContainer({ }) {
   const investigateState = useSelector((state: RootState) => state.investigation)
   const { read } = investigateState
   const { displayArticleContent, showContent } = investigateState.display
-  const { summaries, failedNotifications, currentStory, ContentStatus } = read
+  const { articles, failedNotifications, currentStory, ContentStatus } = read
   const dispatch = useDispatch()
 
 
   useEffect(() => {
 
-    if (summaries || failedNotifications) {
+    if (articles || failedNotifications) {
 
-      const scrapedURLs = summaries?.map((item: any) => {
+      const scrapedURLs = articles?.map((item: any) => {
         return item.article_url
       })
 
@@ -38,7 +38,7 @@ export default function ArticleContainer({ }) {
       }
     }
 
-  }, [displayArticleContent, summaries, failedNotifications])
+  }, [displayArticleContent, articles, failedNotifications])
 
   return (
     <ErrorBoundary>
@@ -48,7 +48,7 @@ export default function ArticleContainer({ }) {
       >
         <div className="hidden lg:block w-full flex flex-row-reverse p-0">
           <ErrorBoundary>
-            {ContentStatus === 'fulfilled' && showContent && summaries !== null ? <StoryPaginate /> : null}
+            {ContentStatus === 'fulfilled' && showContent && articles !== null ? <StoryPaginate /> : null}
 
           </ErrorBoundary>
         </div>
@@ -63,7 +63,7 @@ export default function ArticleContainer({ }) {
               className="w-full min-h-screen mx-auto relative grow shrink-0">
 
               {ContentStatus === 'pending' && <ArticleLoader key='contentLoader' />}
-              {summaries && summaries.length > 0 ? summaries?.map((articleData: any, index: number) =>
+              {articles && articles.length > 0 ? articles?.map((articleData: any, index: number) =>
               (currentStory === index && <Article
                 key={index}
                 index={index}

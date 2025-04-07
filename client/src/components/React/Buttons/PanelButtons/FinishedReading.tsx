@@ -1,10 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { initiateFinalProcess } from "@/ReduxToolKit/Reducers/Investigate/Review";
-import { isReading, resetData } from "@/ReduxToolKit/Reducers/Investigate/Reading";
 import { displayArticleContent, displayReadingTooltip, displayWrapUp } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
 import GuideDoneReading from "../../Tooltips/GuideDoneReading";
 import { RootState } from "@/ReduxToolKit/store";
-import { useEffect, useLayoutEffect } from "react";
+import { useLayoutEffect } from "react";
 
 
 export function FinishedReading({ }) {

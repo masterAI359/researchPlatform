@@ -8,11 +8,11 @@ export default function HelpModal({ info, handleExpand, isOpen, setActiveTab, ac
 
     return (
         <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
+            initial={{ scale: 1, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}
-            transition={{ type: 'tween', duration: 0.15 }}
-            className="bg-mirage opacity-100 h-auto shadow-black
+            transition={{ type: 'tween', duration: 0.3, delay: 0.3 }}
+            className="bg-mirage opacity-100 h-auto
                          border border-2 border-white/10 shadow-thick rounded-xl 
                          z-50 absolute bottom-12 xl:pb-2 xl:bottom-24 sm:bottom-16 sm:w-[33rem] 
                          md:left-1/4 lg:left-1/3 sm:left-20 xl:w-[38rem] pb-6
@@ -27,7 +27,7 @@ export default function HelpModal({ info, handleExpand, isOpen, setActiveTab, ac
                         { isOpen ? dispatch(getHelp(false)) : null }
                     }}
                     className="w-8 h-8 cursor-pointer p-1 mr-4 rounded-lg 
-                                            hover:bg-white/10 absolute right-0 top-2">
+                                            hover:bg-white/10 absolute -right-3 top-1">
                     <svg
                         className="text-zinc-200 cursor-pointer opacity-55 hover:opacity-100 
                                             transition-opacity duration-200 ease-in-out" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="100%" height="100%">

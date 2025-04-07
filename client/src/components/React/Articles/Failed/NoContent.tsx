@@ -1,7 +1,18 @@
 import { motion } from "framer-motion"
-
+import { useEffect } from "react"
+import { resetResults } from "@/ReduxToolKit/Reducers/Investigate/SearchResults"
+import { useDispatch } from "react-redux"
 
 export default function NoContent() {
+    const dispatch = useDispatch()
+
+
+
+    useEffect(() => {
+
+        dispatch(resetResults())
+
+    }, [])
 
 
     return (

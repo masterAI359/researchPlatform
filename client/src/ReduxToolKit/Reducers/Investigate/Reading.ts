@@ -33,7 +33,7 @@ export const GetArticleContent = createAsyncThunk('content/getArticleContent',
 interface ReadingState {
 
     getContent: boolean | null,
-    summaries: Array<any> | null,
+    articles: Array<any> | null,
     failedNotifications: Array<any> | null,
     currentStory: number | null,
     reading: boolean | null,
@@ -45,7 +45,7 @@ interface ReadingState {
 const initialState: ReadingState = {
 
     getContent: false,
-    summaries: null,
+    articles: null,
     failedNotifications: null,
     currentStory: 0,
     reading: false,
@@ -62,7 +62,7 @@ export const ReadingSlice = createSlice({
             state.getContent = action.payload
         },
         articleData: (state, action) => {
-            state.summaries = action.payload
+            state.articles = action.payload
         },
         rejected: (state, action) => {
             state.failedNotifications = action.payload
@@ -82,7 +82,7 @@ export const ReadingSlice = createSlice({
         isReading: (state, action) => {
             state.reading = action.payload
         },
-        resetData: () => initialState,
+        resetReadingSlice: () => initialState,
         limitPagination: (state, action) => {
             state.paginateLimit = action.payload
         }
@@ -92,7 +92,7 @@ export const ReadingSlice = createSlice({
 
         builder.addCase(GetArticleContent.fulfilled, (state, action) => {
             state.ContentStatus = 'fulfilled'
-            state.summaries = action.payload.retrieved
+            state.articles = action.payload.retrieved
             state.failedNotifications = action.payload.rejected
         }),
             builder.addCase(GetArticleContent.rejected, (state, action) => {
@@ -112,7 +112,7 @@ export const {
     decrementStory,
     incrementStoryBy,
     isReading,
-    resetData,
+    resetReadingSlice,
     closeNotification,
     limitPagination } = ReadingSlice.actions
 

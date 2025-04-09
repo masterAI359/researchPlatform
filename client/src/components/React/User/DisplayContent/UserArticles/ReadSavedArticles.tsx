@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux"
 import BackToSavedArticles from "../../../Buttons/NavigatingButtons/BackToSavedArticles"
 import ReturnToReview from "../../ProfileNavigation/ReturnToReview"
 import Article from "@/components/React/Articles/SuccessFull/Article"
+import ErrorBoundary from "@/components/React/ErrorBoundaries/ErrorBoundary"
+import LostData from "@/components/React/ErrorMessages/LostData"
 
 export default function ReadSavedArticle() {
     const savedArticle = useSelector((state: RootState) => state.userdata.ArticleToReview)
@@ -25,10 +27,12 @@ export default function ReadSavedArticle() {
     }
 
     return (
+       
         <section
             className="min-h-full  2xl:w-full md:px-8 scroll-smooth
       inset mx-auto sm:mt-10 xl:mt-20 relative">
             {articlesContext ? <BackToSavedArticles /> : <ReturnToReview />}
+            <ErrorBoundary fallback={ <LostData /> }>
             <main
                 className="xl:max-w-7xl xl:w-4/5 lg:w-3/4 md:w-3/4 mt-16 sm:mt-12 w-72 h-full mx-auto 
                  transition-all duration-1000 animate-fade-in mb-12
@@ -38,6 +42,8 @@ export default function ReadSavedArticle() {
                     {savedArticle && <Article articleData={displayData} index={0} />}
                 </AnimatePresence>
             </main>
+            </ErrorBoundary>
+          
 
         </section>
     )

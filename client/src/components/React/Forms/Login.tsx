@@ -99,7 +99,7 @@ export default function Login() {
                                 </label>
                                 <input onChange={(e) => handleEmail(e)} id="email" name="email" type="email" autoComplete="off" placeholder="email@example.com"
                                     className={`block w-full px-3 py-3 border-2 rounded-xl appearance-none text-white placeholder-black/50 bg-white/5 
-                                 focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10
+                                 focus:bg-transparent focus:outline-none focus:ring-black text-base sm:text-sm placeholder-zinc-500 h-10
                                 transition-all duration-200 ease-in-out
                                 ${validEmail === false && 'border-red-500 focus:border-red-500'}
                                 ${validEmail === null && 'focus:border-white border-white/5'}

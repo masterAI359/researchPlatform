@@ -1,22 +1,22 @@
 import { useDispatch, useSelector } from "react-redux";
 import { presentArticles, presentResearch } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
 import { showSignOut } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
-import Boards from "./Boards";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import DeleteUserAccount from "@/components/React/Modals/DeleteUser";
-import { AppDispatch, RootState } from "@/ReduxToolKit/store";
+import { RootState } from "@/ReduxToolKit/store";
 import { presentManagement} from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
-import { Link } from "react-router-dom";
 
 export default function SideBarMenu({ }) {
     const showDeleteModal = useSelector((state: RootState) => state.profileNav.displayDeleteModal)
+    const profileNavigationState = useSelector((state: RootState) => state.profileNav)
+    const { displaySavedInvestigations, displaySavedArticles } = profileNavigationState
     const dispatch = useDispatch()
-
+  
     useEffect(() => {
 
 
-    }, [showDeleteModal])
+    }, [showDeleteModal, displaySavedArticles, displaySavedInvestigations])
 
     return (
 
@@ -59,12 +59,12 @@ export default function SideBarMenu({ }) {
                             }}
                         >
                             <div className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-white/10 group">
-                                <svg className="shrink-0 w-6 h-6 text-white/60 transition duration-75  group-hover:text-gray-900 dark:group-hover:text-white"
+                                <svg className={`shrink-0 w-6 h-6 transition duration-75 dark:group-hover:text-white ${displaySavedArticles === true ? 'text-blue-400' : 'text-white/60'}`}
                                     xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width={30} height={30} viewBox="0,0,256,256">
                                     <g fill="currentColor" fillRule="nonzero" stroke="none" strokeWidth={1} strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit={10} strokeDasharray="" strokeDashoffset={0} fontFamily="none" fontWeight="none" fontSize="none" textAnchor="none" style={{ mixBlendMode: 'normal' }}><g transform="scale(8.53333,8.53333)"><path d="M23,27l-8,-7l-8,7v-22c0,-1.105 0.895,-2 2,-2h12c1.105,0 2,0.895 2,2z" /></g></g>
                                 </svg>
 
-                                <span className="flex-1 ms-3 whitespace-nowrap font-light">Saved Articles</span>
+                                <span className={`flex-1 ms-3 whitespace-nowrap font-light ${displaySavedArticles === true ? 'text-blue-400' : 'text-white'}`}>Saved Articles</span>
                             </div>
                         </li>
                         {/* <Boards /> <------adding at a later date when react-flow is implemented to draw maps of larger arguments */}

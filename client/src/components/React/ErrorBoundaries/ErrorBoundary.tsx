@@ -3,7 +3,8 @@ import ErrorMessage from '../ErrorMessages/SearchFailed'
 import { error } from 'astro/dist/core/logger/core'
 
 interface Props {
-    children: React.ReactNode
+    children: React.ReactNode,
+    fallback?: React.ReactNode
 }
 
 interface State {

@@ -12,7 +12,7 @@ export default function Password({ handlePassword, acceptedInput }) {
                 </label>
                 <input onChange={(e) => handlePassword(e)} id="password" name="password" type={showPassword ? 'text' : 'password'} placeholder="Type password here..." autoComplete="current-password"
                     className={`block w-full px-3 py-3 border-2 rounded-xl appearance-none text-white placeholder-black/50 bg-white/5 focus:bg-black
-                                    focus:outline-none focus:ring-black text-xs sm:text-sm placeholder-zinc-500 h-10 relative
+                                    focus:outline-none focus:ring-black text-base sm:text-sm placeholder-zinc-500 h-10 relative
                                     ${acceptedInput === null && 'focus:border-white border-white/5'}
                                     ${acceptedInput === false && 'focus:border-red-500 border-red-500'}
                                     ${acceptedInput === true && 'focus:border-green-500 border-green-500'}`}

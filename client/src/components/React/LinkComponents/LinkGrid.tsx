@@ -58,7 +58,7 @@ export default function LinkGrid() {
             className="h-full w-full min-h-screen"
         >
             <div className={`h-full w-full mx-auto relative`}>
-                <ErrorBoundary>
+                <ErrorBoundary fallback={ <SearchFailed />}>
                     <AnimatePresence>
 
                         {status === 'pending' && <LinkLoader />}

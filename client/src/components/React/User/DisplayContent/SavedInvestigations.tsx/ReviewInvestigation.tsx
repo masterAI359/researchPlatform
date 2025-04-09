@@ -30,10 +30,6 @@ export default function ReviewInvestigation() {
             console.log(sources)
         }
 
-       return () => {
-        dispatch(getSourcesToReview(null))
-       }
-
     }, [])
 
 

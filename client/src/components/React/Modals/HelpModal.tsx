@@ -11,7 +11,7 @@ export default function HelpModal({ info, handleExpand, isOpen, setActiveTab, ac
             initial={{ scale: 1, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}
-            transition={{ type: 'tween', duration: 0.3, delay: 0.3 }}
+            transition={{ type: 'tween', duration: 0.3, delay: 0.15 }}
             className="bg-mirage opacity-100 h-auto
                          border border-2 border-white/10 shadow-thick rounded-xl 
                          z-50 absolute bottom-12 xl:pb-2 xl:bottom-24 sm:bottom-16 sm:w-[33rem] 

@@ -6,7 +6,7 @@ export default function ProcessMap({ investigationDetails }) {
     return (
         <dl
             className="grid grid-cols-1 gap-12 mt-12 md:grid-cols-3 lg:space-y-0 lg:gap-24">
-            {investigationDetails.map((detail: any, index: number) => (
+            {investigationDetails?.map((detail: any, index: number) => (
                 <div key={index}>
                     <dt className="inline-flex items-center gap-3">
                         <div className="flex items-center text-white">

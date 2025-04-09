@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { presentResearch } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
+import { reviewThisResearch } from "@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations";
 export default function BackToSavedResearch() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -8,6 +9,7 @@ export default function BackToSavedResearch() {
     const backToSaved = () => {
         navigate('/Profile')
         dispatch(presentResearch(true))
+        dispatch(reviewThisResearch(null))
 
     }
 

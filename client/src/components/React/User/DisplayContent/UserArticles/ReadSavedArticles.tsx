@@ -6,6 +6,8 @@ import ReturnToReview from "../../ProfileNavigation/ReturnToReview"
 import Article from "@/components/React/Articles/SuccessFull/Article"
 import ErrorBoundary from "@/components/React/ErrorBoundaries/ErrorBoundary"
 import LostData from "@/components/React/ErrorMessages/LostData"
+import { useEffect } from "react"
+import { readSavedArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
 
 export default function ReadSavedArticle() {
     const savedArticle = useSelector((state: RootState) => state.userdata.ArticleToReview)
@@ -25,6 +27,14 @@ export default function ReadSavedArticle() {
         logo: null,
         source: savedArticle.provider
     }
+
+
+    useEffect(() => {
+
+        return () => {
+            dispatch(readSavedArticle(null))
+        }
+    }, [])
 
     return (
        

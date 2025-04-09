@@ -2,21 +2,22 @@ import Thumbnail from "./Thumbnail"
 import { useNavigate } from "react-router-dom"
 import { reviewThisResearch } from "@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations"
 import { useDispatch } from "react-redux"
-import { useState } from "react"
 
 export default function PriorInvestigation({ investigation }) {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const [dataToStore, setDataToStore] = useState<any>(null)
 
     function reviewResearch() {
+
         dispatch(reviewThisResearch(investigation))
-        const data = investigation
-        localStorage.setItem('storedResearch', data)
+      
         setTimeout(() => {
-            navigate('/ReviewInvestigation')
+            navigate('/reviewInvestigation')
         }, 150)
     }
+
+
+
 
     return (
         <div className="md:flex w-full  h-auto">

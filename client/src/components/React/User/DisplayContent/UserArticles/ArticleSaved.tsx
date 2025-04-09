@@ -80,8 +80,8 @@ export default function ArticleSaved({ article, index, }) {
                                 <h1 onClick={handleArticleSelection}
                                     className="cursor-pointer text-sm xl:text-base 2xl:text-lg w-full hover:text-blue-400 transition-all duration-200
                                         ease-in-out text-white text-left font-light tracking-tight self-center relative group">
-                                    <p className="absolute lg:-left-24 opacity-0 p-2 rounded-lg border border-white/10 text-xs
-                                             group-hover:text-white font-light group-hover:opacity-100 group-hover:bg-ebony text-nowrap
+                                    <p className="absolute lg:-left-24 lg:top-6 shadow-thick bg-white z-30 hidden p-2 rounded-lg border border-white/10 text-xs
+                                             group-hover:text-black font-bold md:group-hover:block group-hover:bg-white text-nowrap
                                             transition-all duration-200 ease-in-out">click to read</p>
                                     {article.title}
                                 </h1>

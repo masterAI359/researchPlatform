@@ -2,12 +2,17 @@ import { useEffect } from "react";
 import { supabase } from "@/SupaBase/supaBaseClient";
 import { useAppdispatch } from "@/Hooks/appDispatch";
 import { fetchUserCredentials } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
-import { combineSlices } from "@reduxjs/toolkit";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/ReduxToolKit/store";
+import { getSourcesToReview } from "@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations";
 
 export default function SessionManager() {
     const appDispatch = useAppdispatch()
+    const dispatch = useDispatch()
     const navigate = useNavigate()
+    const sources = useSelector((state: RootState) => state.userWork.sourcesToReview)
+    const sourcesToDispatch = sources
 
     const restoreSession = async () => {
         const { data: { session } } = await supabase.auth.getSession();
@@ -18,6 +23,16 @@ export default function SessionManager() {
     };
 
     useEffect(() => {
+
+        if(sources) {
+         localStorage.setItem('cachedSources', JSON.stringify(sourcesToDispatch))
+         
+        }
+
+        if(!sources) {
+            const cachedSources = (JSON.parse(localStorage.getItem('cachedSources')))
+            dispatch(getSourcesToReview(cachedSources))
+        }
 
         const { data } = supabase.auth.onAuthStateChange((event, session) => {
 
@@ -43,7 +58,7 @@ export default function SessionManager() {
 
 
 
-    }, [])
+    }, [sources])
 
 
 

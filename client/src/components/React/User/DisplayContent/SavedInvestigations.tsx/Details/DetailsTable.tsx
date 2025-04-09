@@ -2,6 +2,8 @@ import { RootState } from "@/ReduxToolKit/store";
 import { useSelector } from "react-redux";
 import ProcessMap from "./ProcessMap";
 import { useEffect } from "react";
+import ErrorBoundary from "@/components/React/ErrorBoundaries/ErrorBoundary";
+import LostData from "@/components/React/ErrorMessages/LostData";
 
 interface InvestigationData {
     id: string,
@@ -33,6 +35,7 @@ export default function DetailsTable() {
             icon: "tracking",
             title: "Biases",
             description: `${biases ? biases : 'N/A'}`,
+        
         },
         {
             id: "automatedReporting",
@@ -79,7 +82,9 @@ export default function DetailsTable() {
                                 >from beginning to end</span>
                             </h2>
                         </div>
-                        <ProcessMap investigationDetails={investigationDetails} />
+                        <ErrorBoundary fallback={ <LostData />}>
+                       <ProcessMap investigationDetails={investigationDetails} />
+                        </ErrorBoundary>
                     </div>
                 </div>
             </section>
@@ -90,52 +95,3 @@ export default function DetailsTable() {
 }
 
 
-{/* <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    fill="none"
-                                                    viewBox="0 0 24 24"
-                                                    stroke-width="1.5"
-                                                    stroke="currentColor"
-                                                    className="size-6">
-                                                    <path
-                                                        stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                        d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                </svg> */}
-
-
-
-{/* <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    className="icon icon-tabler size-5 icon-tabler-key"
-
-                                                    viewBox="0 0 24 24"
-                                                    stroke-width="1.5"
-                                                    stroke="currentColor"
-                                                    fill="none"
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round">
-                                                    <path
-                                                        stroke="none"
-                                                        d="M0 0h24v24H0z"
-                                                        fill="none" />
-                                                    <circle
-                                                        cx="8"
-                                                        cy="15"
-                                                        r="4" />
-                                                    <line
-                                                        x1="10.85"
-                                                        y1="12.15"
-                                                        x2="19"
-                                                        y2="4" />
-                                                    <line
-                                                        x1="18"
-                                                        y1="5"
-                                                        x2="20"
-                                                        y2="7" />
-                                                    <line
-                                                        x1="15"
-                                                        y1="8"
-                                                        x2="17"
-                                                        y2="10" />
-                                                </svg> */}

@@ -11,26 +11,23 @@ import LostData from "@/components/React/ErrorMessages/LostData"
 
 export default function ReviewInvestigation() {
     const investigation = useSelector((state: RootState) => state.userWork.investigationToReview)
-    const sources = useSelector((state: RootState) => state.userWork.sourcesToReview)
+    const sources = investigation.sources
     const savedArticles = useSelector((state: RootState) => state.userdata.userArticles)
     const dispatch = useDispatch()
     const cachedSources = JSON.parse(localStorage.getItem('cachedSources'))
 
     useLayoutEffect(() => {
-
-        if (sources) {
-            const retrieved = getInvestigationSources(sources, savedArticles)
+        const retrieved = getInvestigationSources(sources, savedArticles)
             if (retrieved) {
+                console.log('Getting sources')
                 dispatch(getSourcesToReview(retrieved))
             }
-        } 
 
         if(!sources && cachedSources) {
             dispatch(getSourcesToReview(cachedSources))
-            console.log(sources)
         }
 
-    }, [])
+    }, [investigation])
 
 
     return (

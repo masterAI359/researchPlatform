@@ -6,14 +6,15 @@ import { useDispatch } from "react-redux"
 export default function PriorInvestigation({ investigation }) {
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    
 
     function reviewResearch() {
-
         dispatch(reviewThisResearch(investigation))
-      
         setTimeout(() => {
             navigate('/reviewInvestigation')
         }, 150)
+
+    
     }
 
 

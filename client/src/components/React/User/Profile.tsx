@@ -9,7 +9,7 @@ import ProfileMenu from "./ProfileNavigation/ProfileMenu";
 import SideBarMenu from "./ProfileNavigation/SideBar/SideBarMenu";
 import SavedArticles from "./DisplayContent/UserArticles/SavedArticles";
 import SavedResearchLayout from "./DisplayContent/SavedInvestigations.tsx/SavedResearchLayout";
-import DesktopAccMngmt from "./ProfileNavigation/DesktopAccMngmt";
+import DesktopAccMngmt from "./ProfileNavigation/AccountManagement/DesktopAccMngmt";
 
 export default function Profile() {
     const displaySavedInvestigations = useSelector((state: RootState) => state.profileNav.displaySavedInvestigations)
@@ -27,23 +27,14 @@ export default function Profile() {
     }, [id])
 
     return (
-        <article className={`w-full h-full flex relative justify-center scroll-smooth`}>
+        <article className={`w-full h-full flex relative justify-center scroll-smooth animate-fade-in transition-all duration-300 ease-in-out`}>
             <SideBarMenu />
-            <main className="w-full flex relative justify-end xl:justify-center">
-                <section className="lg:p-8 w-full lg:w-auto">
-                    <div className="mx-auto 2xl:max-w-7xl pb-8 lg:px-16 md:px-12 xs:px-2 xl:px-2 items-center relative w-full">
-                        <div className="relative 2xl:max-w-7xl 2xl:min-w-[78rem] lg:flex-col overflow-hidden p-8 lg:flex lg:p-12">
-                            <div className="pb-12 flex">
-                                <div>
-                                    <span className="text-blue-400 2xl:text-lg font-light tracking-tight w-fit relative">Your Library</span>
-                                </div>
-                            </div>
-
                             <ProfileMenu />
-                        </div>
-
-                        <div className="2xl:max-w-7xl flex flex-col lg:px-0">
-                            <AnimatePresence mode="wait">
+            <main className="w-full flex relative justify-end xl:justify-center">
+                <section className="lg:p-8 w-full">
+                    <div className="mx-auto w-full pb-8 relative flex justify-end 2xl:px-24">
+                        <div className="w-full sm:w-11/12 md:w-2/3 2xl:w-3/4 py-12">
+                            <AnimatePresence>
                                 {displaySavedArticles && <SavedArticles />}
                                 {displaySavedInvestigations && <SavedResearchLayout />}
                                 {displayAccountManagement && <DesktopAccMngmt />}

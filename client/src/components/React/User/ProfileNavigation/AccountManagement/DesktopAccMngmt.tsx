@@ -1,10 +1,11 @@
-import { AnimatePresence } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { useState } from "react"
-import DeleteUserAccount from "../../Modals/DeleteUser"
+import DeleteUserAccount from "../../../Modals/DeleteUser"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { presentDeleteModal } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice"
 import { useNavigate } from "react-router-dom"
+import AccountActions from "./AccountActions"
 
 export default function DesktopAccMngmt () {
     const showDeleteModal = useSelector((state: RootState) => state.profileNav.displayDeleteModal)
@@ -17,18 +18,20 @@ export default function DesktopAccMngmt () {
     }
 
     return (
-        <section
+        <motion.section
+            key={'accountManagement'}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1}}
+            exit={{ opacity: 0}}
+            transition={{ type: 'tween', duration: 0.3 }}
             className="min-h-svh 2xl:w-full md:px-8 scroll-smooth
   inset mx-auto relative">
-            <header className="mx-auto w-full h-auto">
-                <h1 className="text-blue-400 ml-24 text-2xl font-light tracking-tight">
-                    Manage your account
-                </h1>
-            </header>
             <AnimatePresence>
                 {showDeleteModal && <DeleteUserAccount />}
             </AnimatePresence>
-            <main
+
+            <AccountActions />
+           {/* <main
                 className="xl:max-w-7xl xl:w-4/5 lg:w-3/4 flex flex-col gap-y-12 items-center justify-center
         md:w-3/4 md:mt-16 sm:mt-0 w-72 h-full mx-auto mt-12 
         transition-all duration-1000 animate-fade-in 
@@ -57,7 +60,7 @@ export default function DesktopAccMngmt () {
                                 <span className="flex-1 whitespace-nowrap xl:text-xl font-light">Delete Account</span>
                             </a>
                 </div>
-            </main>
-        </section>
+            </main> */}
+        </motion.section>
     )
 }

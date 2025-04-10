@@ -37,7 +37,7 @@ export default function SavedArticles({ }) {
         <ErrorBoundary>
             <ScrolltoTop />
             <div className="w-full h-full mx-auto animate-fade-in duration-300 delay-200 ease-in">
-                <h1 className="text-white font-light tracking-tight 2xl:text-3xl xs:text-center md:text-left">
+                <h1 className="text-blue-500 mt-6 md:mt-0 tracking-tight 2xl:text-base xs:text-center md:text-left">
                     Your Saved Articles
                 </h1>
 
@@ -47,10 +47,10 @@ export default function SavedArticles({ }) {
                     initial='closed'
                     animate='open'
                     exit='closed'
-                    className="w-full 2xl:px-2 xs:gap-3 h-full mt-12">
+                    className="w-full 2xl:px-2 gap-3 h-full mt-24">
 
 
-                    <article className="w-full flex flex-col gap-y-4 h-auto items-end xs:px-4 md:px-0">
+                    <article className="w-full flex flex-col h-auto items-end xs:px-4 md:px-0">
                         {userArticles.map((article: any, index: number) => (
                             <ArticleSaved key={index} article={article} index={index} />
                         ))}

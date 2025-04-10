@@ -15,7 +15,7 @@ export default function SourcesUsed() {
     return (
         <section className="lg:p-8">
             <div
-                className="mx-auto 2xl:max-w-7xl py-12 2xl:py-0 lg:px-16 md:px-12 px-2 xl:px-36 items-center relative w-full">
+                className="mx-auto 2xl:max-w-7xl py-12 2xl:py-0 lg:px-16 md:px-12 px-2 xl:px-12 items-center relative w-full">
                 <div
                     className="relative isolate lg:flex-col overflow-hidden bg-gradient-to-tr from-ebony to-mirage rounded-4xl p-10 lg:flex">
                     <div className="pb-12">

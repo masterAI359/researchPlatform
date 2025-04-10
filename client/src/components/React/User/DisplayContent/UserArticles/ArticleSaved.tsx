@@ -3,7 +3,6 @@ import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { limitArray } from "@/helpers/Presentation"
 import Bookmark from "../../../Buttons/SaveButtons/SaveArticle"
-import MoreButton from "../../../Buttons/HelpButtons/MoreButton"
 import { readSavedArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
 import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
@@ -28,6 +27,9 @@ export default function ArticleSaved({ article, index, }) {
         fallbackDate: null,
         id: id
     }
+
+    const fallbackImage = '/images/logos/fallback.jpg'
+    const image = article.image_url || fallbackImage
 
     const authorsShortened = limitArray(article.authors)
 
@@ -54,11 +56,11 @@ export default function ArticleSaved({ article, index, }) {
                 <div className="flex flex-col h-auto w-auto">
                     <div className="flex xs:flex-col md:flex-row-reverse md:gap-x-4 md:justify-between h-full w-full items-center">
 
-                        <figcaption className='relative cursor-pointer w-full 2xl:max-h-44 2xl:min-h-44 2xl:max-w-72 2xl:min-w-72 xl:max-w-60 xl:max-h-40 lg:max-w-52 lg:h-36 h-72
+                        <figcaption className='relative cursor-pointer w-full max-h-44 2xl:max-h-44 2xl:min-h-44 2xl:max-w-72 2xl:min-w-72 xl:max-w-60 xl:max-h-40 lg:max-w-52 lg:h-36 h-72
                         md:max-w-44 md:max-h-32
                         overflow-hidden'>
                             <div
-                                style={{ backgroundImage: `url(${article.image_url})` }}
+                                style={{ backgroundImage: `url(${image})` }}
                                 className='absolute inset-0 w-full h-full bg-cover bg-center opacity-60
                                 transition-all duration-200 ease-in-out
                                 rounded-3xl'
@@ -75,7 +77,7 @@ export default function ArticleSaved({ article, index, }) {
                             </div>
                         </figcaption>
 
-                        <div className="flex flex-col h-full w-full justify-between">
+                        <div className="flex flex-col h-fit md:h-full my-10 md:my-0 w-full justify-between">
                             <div className="w-full h-auto">
                                 <h1 onClick={handleArticleSelection}
                                     className="cursor-pointer text-sm xl:text-base 2xl:text-lg w-full hover:text-blue-400 transition-all duration-200
@@ -87,7 +89,7 @@ export default function ArticleSaved({ article, index, }) {
                                 </h1>
                             </div>
 
-                            <div className="flex flex-col h-full items-start group gap-y-4 mt-2">
+                            <div className="flex flex-col h-auto md:h-full py-2 items-start group gap-y-4 mt-2">
                                 <div className="w-auto h-fit">
                                     <p className="text-white font-light text-xs 2xl:text-sm group-hover:text-blue-400 transition-all duration-200 ease-in-out">
                                         Source: <span className="text-zinc-400">

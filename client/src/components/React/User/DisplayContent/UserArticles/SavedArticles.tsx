@@ -37,7 +37,7 @@ export default function SavedArticles({ }) {
         <ErrorBoundary>
             <ScrolltoTop />
             <div className="w-full lg:w-5/6 2xl:w-4/5 h-full mx-auto animate-fade-in duration-300 delay-200 ease-in relative">
-                <h1 className="text-blue-500 mt-6 md:mt-0 tracking-tight 2xl:text-base">
+                <h1 className="text-blue-500 mt-6 md:mt-10 ml-6 xl:ml-32 lg:ml-44 md:ml-52 md:mt-0 tracking-tight 2xl:text-base">
                     Saved Articles
                 </h1>
 

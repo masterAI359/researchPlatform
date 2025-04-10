@@ -1,23 +1,37 @@
-const pricingPlans = [
+import { useDispatch } from "react-redux";
+import { presentDeleteModal } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
+import { useNavigate } from "react-router-dom";
+
+export default function AccountActions () {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const actions = [
     {
       title: "Change Password",
-      price: "$999/month",
-      description: "Super for hobbist",
+      description: "get a link for password reset",
   
-      isPopular: false,
+      isPermanent: false,
     },
     {
       title: "Delete Account",
-      price: "$1,999/month",
-      description: "50% off for the 3 first clients!",
+      description: "permanently delete your account",
   
-      isPopular: true,
+      isPermanent: true,
     },
   ];
 
 
+  const deleteAction = actions[1]
+  const changeAction = actions[0]
 
-export default function AccountActions () {
+
+  function getResetLink () {
+
+    navigate('/emailForReset')
+  }
+
+
     return (
       <section className="lg:p-8">
         <div className="mx-auto 2xl:max-w-7xl py-6 lg:px-16 md:px-12 px-8 xl:px-36 items-center lg:py-24 relative w-full">
@@ -32,34 +46,58 @@ export default function AccountActions () {
             </div>
             <div className="pt-6">
               <div className="space-y-4 sm:space-y-0 text-left sm:grid sm:grid-cols-2 sm:gap-6 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:grid-cols-2 ring-1 ring-white/10 rounded-3xl p-2">
-                {pricingPlans.map((plan, index) => (
                   <section
-                    key={index}
-                    className={`flex flex-col px-6 py-8 lg:order-none ${plan.isPopular ? "bg-gradientdown bg-ebony shadow-inset rounded-3xl order-first" : ""}`}
+                    className={`flex flex-col px-6 py-8 lg:order-none ${changeAction.isPermanent ? "bg-gradient-to-tr from-ebony to-mirage shadow-inset rounded-3xl order-first" : ""}`}
                   >
                     <div className="h-full">
                       <div className="gap-12 w-full">
                         <div>
                           <div className="flex justify-between items-center">
-                            <h3 className={`text-lg ${plan.isPopular ? "text-blue-400" : "text-white"}`}>
-                              {plan.title}
+                            <h3 className={`text-lg ${changeAction.isPermanent ? "text-blue-400" : "text-white"}`}>
+                              {changeAction.title}
                             
                             </h3>
                           </div>
-                          <p className="mt-3 text-sm text-white">{plan.description}</p>
+                          <p className="mt-3 text-sm text-white">{changeAction.description}</p>
                         </div>
                       </div>
                       <div className="mt-8 w-full">
                         <button
+                          onClick={() => getResetLink()}
                           type="button"
                           className="text-sm py-2 w-full px-4 border focus:ring-2 rounded-full border-transparent bg-white hover:bg-white/10 text-black duration-200 focus:ring-offset-2 focus:ring-white hover:text-white inline-flex items-center justify-center ring-1 ring-transparent"
                         >
-                          Get started
+                          {changeAction.title === 'Change Password' ? 'Get a link' : 'Delete my account'}
                         </button>
                       </div>
                     </div>
                   </section>
-                ))}
+                 <section
+                    className={`flex flex-col px-6 py-8 lg:order-none ${deleteAction.isPermanent ? "bg-gradient-to-tr from-ebony to-mirage shadow-inset rounded-3xl order-first" : ""}`}
+                  >
+                    <div className="h-full">
+                      <div className="gap-12 w-full">
+                        <div>
+                          <div className="flex justify-between items-center">
+                            <h3 className={`text-lg ${deleteAction.isPermanent ? "text-blue-400" : "text-white"}`}>
+                              {deleteAction.title}
+                            
+                            </h3>
+                          </div>
+                          <p className="mt-3 text-sm text-white">{deleteAction.description}</p>
+                        </div>
+                      </div>
+                      <div className="mt-8 w-full">
+                        <button
+                          onClick={() => dispatch(presentDeleteModal(true))}
+                          type="button"
+                          className="text-sm py-2 w-full px-4 border focus:ring-2 rounded-full border-transparent bg-white hover:bg-white/10 text-black duration-200 focus:ring-offset-2 focus:ring-white hover:text-white inline-flex items-center justify-center ring-1 ring-transparent"
+                        >
+                          {deleteAction.title === 'Change Password' ? 'Get a link' : 'Delete my account'}
+                        </button>
+                      </div>
+                    </div>
+                  </section>
               </div>
             </div>
           </div>

@@ -36,9 +36,9 @@ export default function SavedArticles({ }) {
     return (
         <ErrorBoundary>
             <ScrolltoTop />
-            <div className="w-full h-full mx-auto animate-fade-in duration-300 delay-200 ease-in">
-                <h1 className="text-blue-500 mt-6 md:mt-0 tracking-tight 2xl:text-base xs:text-center md:text-left">
-                    Your Saved Articles
+            <div className="w-full lg:w-5/6 2xl:w-4/5 h-full mx-auto animate-fade-in duration-300 delay-200 ease-in relative">
+                <h1 className="text-blue-500 mt-6 md:mt-0 tracking-tight 2xl:text-base">
+                    Saved Articles
                 </h1>
 
                 <motion.section
@@ -47,10 +47,10 @@ export default function SavedArticles({ }) {
                     initial='closed'
                     animate='open'
                     exit='closed'
-                    className="w-full 2xl:px-2 gap-3 h-full mt-24">
+                    className="w-full 2xl:px-2 gap-3 h-full mt-24 flex justify-end">
 
 
-                    <article className="w-full flex flex-col h-auto items-end xs:px-4 md:px-0">
+                    <article className="w-full  2xl:w-11/12 xl:w-4/5 md:w-3/4 flex flex-col h-auto items-end px-4 md:px-0">
                         {userArticles.map((article: any, index: number) => (
                             <ArticleSaved key={index} article={article} index={index} />
                         ))}

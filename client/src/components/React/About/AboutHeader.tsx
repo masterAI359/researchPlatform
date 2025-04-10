@@ -2,7 +2,7 @@ export default function AboutHeader() {
 
     return (
         <section className="lg:p-8">
-            <div className="mx-auto 2xl:max-w-7xl py-24 lg:px-16 md:px-12 px-8 xl:px-36 items-center lg:py-40 relative w-full bg-gradientdown rounded-4xl">
+            <div className="mx-auto 2xl:max-w-6xl py-24 lg:px-16 md:px-12 items-center lg:pt-36 relative w-full bg-gradientdown rounded-4xl">
                 <div className="max-w-xl mx-auto">
                     <div>
                         <span className="relative rounded-full px-3 py-1 text-sm leading-6 text-white ring-1 ring-white/10">

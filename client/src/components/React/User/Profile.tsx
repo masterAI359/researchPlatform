@@ -29,11 +29,11 @@ export default function Profile() {
     return (
         <article className={`w-full h-full flex relative justify-center scroll-smooth animate-fade-in transition-all duration-300 ease-in-out`}>
             <SideBarMenu />
-                            <ProfileMenu />
+                <ProfileMenu />
             <main className="w-full flex relative justify-end xl:justify-center">
                 <section className="lg:p-8 w-full">
-                    <div className="mx-auto w-full pb-8 relative flex justify-end 2xl:px-24">
-                        <div className="w-full sm:w-11/12 md:w-2/3 2xl:w-3/4 py-12">
+                    <div className="mx-auto w-full pb-8 relative flex justify-center 2xl:px-24">
+                        <div className="w-full h-auto py-12">
                             <AnimatePresence>
                                 {displaySavedArticles && <SavedArticles />}
                                 {displaySavedInvestigations && <SavedResearchLayout />}

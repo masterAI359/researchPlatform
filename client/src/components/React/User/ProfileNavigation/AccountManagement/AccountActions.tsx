@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { presentDeleteModal } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
 import { useNavigate } from "react-router-dom";
+import ScrolltoTop from "@/components/React/AppRouting/ScrollToTop";
 
 export default function AccountActions () {
   const dispatch = useDispatch()
@@ -34,6 +35,7 @@ export default function AccountActions () {
 
     return (
       <section className="lg:p-8">
+        <ScrolltoTop />
         <div className="mx-auto 2xl:max-w-7xl py-6 lg:px-16 md:px-12 px-8 xl:px-36 items-center lg:py-24 relative w-full">
           <div>
             <div className="grid grid-cols-1 lg:grid-cols-2 pb-6 gap-12 border-b border-white/10 items-end">

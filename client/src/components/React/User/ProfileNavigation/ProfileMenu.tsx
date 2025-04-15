@@ -15,6 +15,7 @@ export default function MobileProfileNav () {
     onClick={() => {
         dispatch(presentArticles(false))
         dispatch(presentResearch(true))
+        dispatch(presentManagement(false))
     }}
     type="button" className="inline-flex flex-col items-center justify-center px-5   group">
       <svg className="w-5 h-5 mb-2 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -26,6 +27,7 @@ export default function MobileProfileNav () {
      onClick={() => {
         dispatch(presentArticles(true))
         dispatch(presentResearch(false))
+        dispatch(presentManagement(false))
     }}
     type="button" className="inline-flex flex-col items-center justify-center px-5  group">
       <svg className="w-5 h-5 mb-2 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">

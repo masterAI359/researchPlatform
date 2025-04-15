@@ -8,6 +8,7 @@ import { getSourcesToReview } from "@/ReduxToolKit/Reducers/UserContent.ts/UserI
 import BackToSavedResearch from "./BackToSavedResearch"
 import ErrorBoundary from "@/components/React/ErrorBoundaries/ErrorBoundary"
 import LostData from "@/components/React/ErrorMessages/LostData"
+import ScrolltoTop from "@/components/React/AppRouting/ScrollToTop"
 
 export default function ReviewInvestigation() {
     const investigation = useSelector((state: RootState) => state.userWork.investigationToReview)
@@ -34,6 +35,7 @@ export default function ReviewInvestigation() {
         <section
             className="min-h-full 2xl:w-full xs:px-2 md:px-8 scroll-smooth
   inset mx-auto mt-0 md:mt-6 relative animate-fade-in duration-200">
+            <ScrolltoTop />
             <BackToSavedResearch />
             <ErrorBoundary fallback={ <LostData /> }>
            {investigation !== null && <>

@@ -1,7 +1,7 @@
 
 
 
-export default function More({ article_url, setOpen, context, setShowAllAuthors, authors }) {
+export default function More({ article_url, setOpen, context, setShowAllAuthors, authors, setFullStory, fullStory }) {
 
     return (
         <div className="bg-black border border-white/40 z-30 rounded-md xs:w-36 xl:w-36 h-auto p-3 absolute bottom-0 right-10">
@@ -35,6 +35,13 @@ export default function More({ article_url, setOpen, context, setShowAllAuthors,
                         </p>
                     </li>
                 }
+               {/* <li onClick={() => setFullStory(prev => !prev)} className={`
+                text-white text-left xs:text-xs hover:text-blue-400 
+                    transition-all cursor-pointer duration-200 ease-in-out md:text-sm font-light tracking-tight`}>
+                    <a href="#">
+                        View {fullStory ? 'summary' : 'full text'}
+                    </a>
+                </li> */}
 
             </ul>
         </div>

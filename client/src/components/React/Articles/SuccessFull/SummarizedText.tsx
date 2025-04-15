@@ -4,7 +4,7 @@
 
 export default function SummarizedText({ summary }) {
 
-
+    console.log(summary)
     return (
         <div
             className={` text-white 2xl:text-xl whitespace-pre-wrap pb-7 pt-6 transition-all duration-300 ease-in-out`}

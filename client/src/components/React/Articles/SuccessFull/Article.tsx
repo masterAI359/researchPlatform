@@ -7,6 +7,7 @@ import ArticleContent from './ArticleContent';
 
 export default function Article({ articleData, index }) {
     const [fullStory, setFullStory] = useState(true);
+    console.log(articleData)
     const {
         summary,
         article_image,
@@ -18,7 +19,11 @@ export default function Article({ articleData, index }) {
         article_text,
         logo,
         source,
+        cleanedAuthors,
+        cleanedSummary
     } = articleData;
+
+    
 
 
     return (
@@ -44,19 +49,9 @@ export default function Article({ articleData, index }) {
             <ScrolltoTop />
 
             <ArticleHeader
-                date={date}
-                index={index}
-                logo={logo}
-                source={source}
-                article_title={article_title}
-                article_pub_date={article_pub_date}
-                article_image={article_image}
-                article_authors={article_authors}
-                fullStory={fullStory}
-                article_url={article_url}
+                articleData={articleData}
                 setFullStory={setFullStory}
-                article_text={article_text}
-                summary={summary}
+                fullStory={fullStory}
             />
             <ArticleContent
                 article_text={article_text}

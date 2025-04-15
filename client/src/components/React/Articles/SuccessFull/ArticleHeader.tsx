@@ -7,26 +7,25 @@ import { RootState } from "@/ReduxToolKit/store";
 import { useState } from "react";
 
 
-export default function ArticleHeader({
-    article_image,
-    logo,
-    source,
-    date,
-    article_pub_date,
-    article_title,
-    index,
-    article_authors,
-    fullStory,
-    setFullStory,
-    article_url,
-    article_text,
-    summary
-
-}) {
+export default function ArticleHeader({ articleData, setFullStory, fullStory }) {
     const [showNotification, setShowNotification] = useState<boolean>(false)
     const id = useSelector((state: RootState) => state.auth.user_id)
     const [open, setOpen] = useState<boolean>(false)
     const [showAllAuthors, setShowAllAuthors] = useState<boolean>(false)
+
+    const {    article_image,
+        logo,
+        source,
+        date,
+        article_pub_date,
+        article_title,
+        index,
+        article_authors,
+        article_url,
+        article_text,
+        summary,
+        cleanedAuthors} = articleData
+
 
 
     const formatDate = (datePublished: string) => {
@@ -150,7 +149,7 @@ export default function ArticleHeader({
                         <SaveArticle open={open} dataToSave={dataToSave} showNotification={showNotification} setShowNotification={setShowNotification} />
                     </div>
                     <div className="w-auto h-auto">
-                        <MoreButton authors={article_authors} setShowAllAuthors={setShowAllAuthors} context={'reading'} key={article_title} open={open} setOpen={setOpen} article_url={article_url} showNotification={showNotification} />
+                        <MoreButton fullStory={fullStory} setFullStory={setFullStory} authors={article_authors} setShowAllAuthors={setShowAllAuthors} context={'reading'} key={article_title} open={open} setOpen={setOpen} article_url={article_url} showNotification={showNotification} />
                     </div>
                 </div>
             </section>

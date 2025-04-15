@@ -6,6 +6,7 @@ import express, { query, Request, Response } from 'express'
 import * as path from 'path'
 import { fileURLToPath } from 'url';
 import decodeItem from '../helpers/decodeItem.js'
+import cleanseAuthorList from '../helpers/authorCleanup.js';
 
 
 interface QueryType {
@@ -84,6 +85,7 @@ export const tldrSummary = async (req: Request, res: Response) => {
                 data.source = article.source;
                 data.date = article.date;
                 const decodedData = decodeItem(data)
+                decodedData.cleanedAuthors = cleanseAuthorList(decodedData.article_authors)
                 return decodedData
             } catch (error: any) {
                 console.error(`Error processing article ${article.url}:`, error);
@@ -114,7 +116,7 @@ export const tldrSummary = async (req: Request, res: Response) => {
         const success = returnValues.filter((result: any) => result !== undefined)
 
         const resultsObject = { retrieved: success, rejected: failure }
-        // console.log(resultsObject)
+        console.log(resultsObject)
         res.json(resultsObject);
         failure = []
     } catch (error) {

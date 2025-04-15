@@ -1,7 +1,5 @@
 import { motion } from "framer-motion"
 import FullText from "./FullText"
-import SummarizedText from "./SummarizedText"
-
 
 export default function ArticleContent({ article_text, summary, fullStory }: any) {
 
@@ -15,4 +13,3 @@ export default function ArticleContent({ article_text, summary, fullStory }: any
     )
 }
 
-//{/*fullStory ? <FullText article_text={article_text} /> : <SummarizedText summary={summary} /> */}

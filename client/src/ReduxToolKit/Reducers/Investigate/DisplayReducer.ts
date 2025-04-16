@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { acceptedInput } from "./Steps";
 
 interface Display {
     showMindMap: boolean,
@@ -13,7 +14,8 @@ interface Display {
     showGetArticlesModal: boolean
     showSelectWarning: boolean,
     showSelectTooltip: boolean,
-    showReadingTooltip: boolean
+    showReadingTooltip: boolean,
+    showFeedBackForm: boolean
 }
 
 const initialState: Display = {
@@ -29,7 +31,8 @@ const initialState: Display = {
     showGetArticlesModal: false,
     showSelectWarning: false,
     showSelectTooltip: true,
-    showReadingTooltip: true
+    showReadingTooltip: true,
+    showFeedBackForm: false
 
 }
 
@@ -76,12 +79,15 @@ const DisplaySlice = createSlice({
         },
         displaySelectBar: (state, action) => {
             state.showSelectBar = action.payload
+        },
+        displayFeedBackForm: (state, action) => {
+            state.showFeedBackForm = action.payload
         }
     }
 })
 
 export const { displayMindMap, displaySearch, displayArticleContent, displayCompletion, displayWrapUp, displayResults,
     displayWorkModal, displayReturnModal, displayGetArticlesModal, displaySelectionWarning, displaySelectTooltip, displayReadingTooltip,
-    displaySelectBar } = DisplaySlice.actions
+    displaySelectBar, displayFeedBackForm } = DisplaySlice.actions
 
 export default DisplaySlice.reducer

@@ -8,30 +8,37 @@ import { AnimatePresence } from "framer-motion"
 import SavingResearch from "../Forms/AuthNotifications/SavingResearch"
 import ViewMyInvestigations from "../Buttons/ProcessButtons/ViewMyInvestigations"
 import { researchSaved } from "@/ReduxToolKit/Reducers/UserContent.ts/SaveInvestigationSlice"
+import { displayFeedBackForm } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
+import FeedBackForm from "../Forms/UserFeedback/FeedbackForm"
 
 
 export default function FinalResults() {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const saveStatus = useSelector((state: RootState) => state.saveResearch.status)
     const saved = useSelector((state: RootState) => state.saveResearch.saved)
+    const feedbackStatus = useSelector((state: RootState) => state.feedback.status)
     const dispatch = useDispatch()
     const { pov } = investigateState
     const { idea } = pov
 
     useEffect(() => {
+        console.log(feedbackStatus)
 
         if(saveStatus === 'fulfilled') {
             dispatch(researchSaved(true))
         }
 
 
-    }, [saveStatus])
+    }, [saveStatus, feedbackStatus])
 
 
     return (
         <section className="lg:p-8 p-2 h-full w-full flex justify-center mx-auto">
             <AnimatePresence>
                 {saveStatus !== 'idle' && <SavingResearch />}
+            </AnimatePresence>
+            <AnimatePresence>
+                {feedbackStatus === 'idle' && <FeedBackForm />}
             </AnimatePresence>
             <div className="2xl:max-w-7xl h-fit py-16 lg:px-16 md:px-12 xl:px-36 items-center relative w-full bg-gradientdown rounded-[3rem]">
                 <div className="text-center max-w-xl mx-auto">

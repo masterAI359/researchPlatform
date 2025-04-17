@@ -5,7 +5,8 @@ interface FeedbackTypes {
 
     status: string,
     authorEmail: string | null,
-    message: string | null
+    message: string | null,
+    seen: boolean | null
 }
 
 
@@ -13,7 +14,8 @@ const initialState: FeedbackTypes = {
 
     status: 'idle',
     authorEmail: null,
-    message: null
+    message: null,
+    seen: null
 }
 
 
@@ -33,9 +35,11 @@ export const FeedBackSlice = createSlice({
         feedbackSubmitted: (state) => {
             state.status = 'fullfilled'
         },
-        stopAskingForFeedBack: (state) => {
-            state.status = 'rejected'
-        }
+        stopAskingForFeedBack: (state, action) => {
+            state.seen = action.payload
+        },
+
+
     }
 })
 

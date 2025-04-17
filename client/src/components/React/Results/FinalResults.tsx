@@ -3,7 +3,7 @@ import InvestigateMore from "../Buttons/ProcessButtons/InvestigateMore"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import DataTable from "./DataTable"
-import { useEffect } from "react"
+import { useLayoutEffect } from "react"
 import { AnimatePresence } from "framer-motion"
 import SavingResearch from "../Forms/AuthNotifications/SavingResearch"
 import ViewMyInvestigations from "../Buttons/ProcessButtons/ViewMyInvestigations"
@@ -17,28 +17,35 @@ export default function FinalResults() {
     const saveStatus = useSelector((state: RootState) => state.saveResearch.status)
     const saved = useSelector((state: RootState) => state.saveResearch.saved)
     const feedbackStatus = useSelector((state: RootState) => state.feedback.status)
+    const seenFeedbackForm = useSelector((state: RootState) => state.feedback.seen)
+    const { display } = investigateState
+    const { showFeedBackForm } = display
     const dispatch = useDispatch()
     const { pov } = investigateState
     const { idea } = pov
 
-    useEffect(() => {
-        console.log(feedbackStatus)
+    useLayoutEffect(() => {
 
         if(saveStatus === 'fulfilled') {
             dispatch(researchSaved(true))
         }
 
+        if(seenFeedbackForm === true) {
+            dispatch(displayFeedBackForm(false))
+        }
 
-    }, [saveStatus, feedbackStatus])
+
+    }, [saveStatus, feedbackStatus, showFeedBackForm, seenFeedbackForm])
 
 
     return (
-        <section className="lg:p-8 p-2 h-full w-full flex justify-center mx-auto">
+        <section className={`lg:p-8 p-2 h-full w-full flex justify-center mx-auto transition-all duration-200 ease-in-out 
+        ${showFeedBackForm ? 'pointer-events-none opacity-50' : 'pointer-events-auto opacity-100'}`}>
             <AnimatePresence>
                 {saveStatus !== 'idle' && <SavingResearch />}
             </AnimatePresence>
             <AnimatePresence>
-                {feedbackStatus === 'idle' && <FeedBackForm />}
+                {showFeedBackForm && <FeedBackForm />}
             </AnimatePresence>
             <div className="2xl:max-w-7xl h-fit py-16 lg:px-16 md:px-12 xl:px-36 items-center relative w-full bg-gradientdown rounded-[3rem]">
                 <div className="text-center max-w-xl mx-auto">

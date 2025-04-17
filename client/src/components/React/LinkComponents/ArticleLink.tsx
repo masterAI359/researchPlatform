@@ -86,9 +86,9 @@ export default function ArticleLink({ article, index }: ArticleProps) {
             onClick={() => { chooseArticle(article) }}
             key={article.url}
             className={`group cursor-pointer box-border list-none xl:min-h-72 xl:max-h-72 xl:min-w-80 xl:max-w-80 lg:min-w-72 lg:max-w-72 lg:min-h-72 lg:max-h-72 h-44 w-40 relative rounded-xl md:rounded-3xl text-white 
-            md:opacity-85 md:hover:opacity-100 transition-all ease-in-out duration-200 overflow-y-hidden bg-ebony
+            md:opacity-85 md:hover:opacity-100 transition-all ease-in-out duration-200 overflow-y-hidden
             
-            ${isHilighted && !showGetArticlesModal ? "shadow-blue-bottom" : "shadow-material"}`}
+            ${isHilighted && !showGetArticlesModal ? "shadow-blue-bottom bg-ebony" : "shadow-material bg-mirage"}`}
         >
             <div className='relative w-full m-0 p-0 lg:max-h-36 lg:min-h-36 min-h-20 max-h-20  overflow-hidden'>
                 <div

@@ -165,6 +165,7 @@ export const getInvestigationSources = (sources: string[], savedArticles: any) =
 
 export const deleteUser = async (id: string, setDeleting: Function, setDeletesuccessful: Function) => {
 
+
     try {
         setDeleting(true)
         const { data, error } = await supabase.auth.admin.deleteUser(
@@ -182,4 +183,26 @@ export const deleteUser = async (id: string, setDeleting: Function, setDeletesuc
     }
 
 
+}
+
+
+export const submitFeedback = async (authorEmail: string, message: string, setFeedbackSubmitted: Function) => {
+
+    try {
+
+        const { data, error } = await supabase
+        .from('user_feedback')
+        .insert({
+            email: authorEmail,
+            message: message
+        })
+
+        if(data) console.log(data)
+        if(error) console.log(error.message)
+        setFeedbackSubmitted(true)
+
+    } catch (error) {
+        setFeedbackSubmitted(false)
+        console.log(error)
+    }
 }

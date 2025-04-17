@@ -7,7 +7,6 @@ import ArticleContent from './ArticleContent';
 
 export default function Article({ articleData, index }) {
     const [fullStory, setFullStory] = useState(true);
-    console.log(articleData)
     const {
         summary,
         article_image,

@@ -32,7 +32,7 @@ const initialState: Display = {
     showSelectWarning: false,
     showSelectTooltip: true,
     showReadingTooltip: true,
-    showFeedBackForm: false
+    showFeedBackForm: null
 
 }
 

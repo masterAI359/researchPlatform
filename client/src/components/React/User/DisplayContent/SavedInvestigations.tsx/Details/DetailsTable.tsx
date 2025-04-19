@@ -12,6 +12,15 @@ interface InvestigationData {
     description: string | null
 }
 
+interface ThoughtMap {
+    idea: string | null,
+    initial_perspective: string | null,
+    biases: string | null,
+    premises: string | null,
+    ending_perspective: string | null,
+    changed_opinion: boolean | null
+}
+
 
 export default function DetailsTable() {
     const investigation = useSelector((state: RootState) => state.userWork.investigationToReview)
@@ -47,7 +56,7 @@ export default function DetailsTable() {
             id: "scalableSolutions",
             icon: "scalable",
             title: "Once you dug in",
-            description: `${changed_opinion ? 'You had a shift in perspective, having been moved by the evidence' : "You weren't moved to change your perspective by the available evidence"}`,
+            description: `${changed_opinion === true ? 'You had a shift in perspective, having been moved by the evidence' : "You weren't moved to change your perspective by the available evidence"}`,
         },
         {
             id: "secureDataManagement",

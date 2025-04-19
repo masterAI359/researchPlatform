@@ -1,14 +1,12 @@
 import SaveInvestigation from "../Buttons/ProcessButtons/SaveInvestigation"
 import InvestigateMore from "../Buttons/ProcessButtons/InvestigateMore"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import DataTable from "./DataTable"
-import { useLayoutEffect } from "react"
+import { useEffect } from "react"
 import { AnimatePresence } from "framer-motion"
 import SavingResearch from "../Forms/AuthNotifications/SavingResearch"
 import ViewMyInvestigations from "../Buttons/ProcessButtons/ViewMyInvestigations"
-import { researchSaved } from "@/ReduxToolKit/Reducers/UserContent.ts/SaveInvestigationSlice"
-import { displayFeedBackForm } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
 import FeedBackForm from "../Forms/UserFeedback/FeedbackForm"
 
 
@@ -16,27 +14,16 @@ export default function FinalResults() {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const saveStatus = useSelector((state: RootState) => state.saveResearch.status)
     const saved = useSelector((state: RootState) => state.saveResearch.saved)
-    const feedbackStatus = useSelector((state: RootState) => state.feedback.status)
     const seenFeedbackForm = useSelector((state: RootState) => state.feedback.seen)
     const declinedFeedBack = useSelector((state: RootState) => state.feedback.declined)
     const { display } = investigateState
     const { showFeedBackForm } = display
-    const dispatch = useDispatch()
     const { pov } = investigateState
     const { idea } = pov
 
-    useLayoutEffect(() => {
 
-        if(saveStatus === 'fulfilled') {
-            dispatch(researchSaved(true))
-        }
-
-        if(seenFeedbackForm === true || declinedFeedBack === true) {
-            dispatch(displayFeedBackForm(false))
-        }
-
-
-    }, [saveStatus, feedbackStatus, showFeedBackForm, seenFeedbackForm, declinedFeedBack])
+    useEffect(() => {
+    }, [saved, showFeedBackForm, seenFeedbackForm, declinedFeedBack])
 
 
     return (
@@ -69,7 +56,7 @@ export default function FinalResults() {
                 </div>
 
                 <div className="flex mt-16 gap-x-2 2xl:gap-x-6 w-1/2 justify-center mx-auto">
-                    {saved === true ? <ViewMyInvestigations /> : <SaveInvestigation />}
+                    {saved === true && showFeedBackForm !== null ? <ViewMyInvestigations /> : <SaveInvestigation />}
                     <InvestigateMore />
                 </div>
             </div>

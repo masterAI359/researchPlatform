@@ -9,7 +9,6 @@ export default function SourcesUsed() {
     const sources = useSelector((state: RootState) => state.userWork.sourcesToReview)
 
     useEffect(() => {
-        console.log(sources)
     }, [sources])
 
     return (

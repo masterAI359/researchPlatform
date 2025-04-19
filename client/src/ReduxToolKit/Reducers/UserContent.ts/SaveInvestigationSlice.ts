@@ -14,7 +14,7 @@ interface SaveInvestigation {
 
 const initialState: SaveInvestigation = {
     status: 'idle',
-    saved: false,
+    saved: null,
     sources: null,
     swapButtons: false
 }
@@ -75,10 +75,12 @@ const SaveInvestigationSlice = createSlice({
                 state.status = 'pending'
             })
             .addCase(saveUserInvestigation.fulfilled, (state, action) => {
-                state.status = 'fulfilled'
+                state.status = 'fulfilled';
+                state.saved = true
             })
             .addCase(saveUserInvestigation.rejected, (state, action) => {
-                state.status = 'rejected'
+                state.status = 'rejected';
+                state.saved = false
 
             })
     }

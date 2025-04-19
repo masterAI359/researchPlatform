@@ -136,7 +136,6 @@ export const getUserInvestigations = async (id: number | string) => {
 
 export const getInvestigationSources = (sources: string[], savedArticles: any) => {
 
-    console.log('running')
     
     function getSaved() {
         let savedSources = []

@@ -20,7 +20,6 @@ export default function ReviewInvestigation() {
     useLayoutEffect(() => {
         const retrieved = getInvestigationSources(sources, savedArticles)
             if (retrieved) {
-                console.log('Getting sources')
                 dispatch(getSourcesToReview(retrieved))
             }
 

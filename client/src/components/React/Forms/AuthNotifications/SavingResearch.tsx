@@ -4,12 +4,16 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import { useDispatch } from "react-redux";
 import { removeNotification } from "@/ReduxToolKit/Reducers/UserContent.ts/SaveInvestigationSlice";
+import { displayFeedBackForm } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
 import Failed from "./Failed";
 import Pending from "./Pending";
 import Success from "./Success";
+import { stopAskingForFeedBack } from "@/ReduxToolKit/Reducers/Feedback/FeedbackSlice";
 
 export default function SavingResearch({ }) {
     const saveStatus = useSelector((state: RootState) => state.saveResearch.status)
+    const declinedFeedback = useSelector((state: RootState) => state.feedback.declined)
+    const seenFeedBackForm = useSelector((state: RootState) => state.feedback.seen)
     const dispatch = useDispatch()
 
     const variants = {
@@ -27,6 +31,10 @@ export default function SavingResearch({ }) {
 
         const timer = setTimeout(() => {
             dispatch(removeNotification('idle'))
+            if(declinedFeedback !== true && seenFeedBackForm !== true) {
+            dispatch(displayFeedBackForm(true))
+            }
+            dispatch(stopAskingForFeedBack(true))
         }, 2000)
 
 

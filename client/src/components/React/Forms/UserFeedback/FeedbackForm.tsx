@@ -58,6 +58,7 @@ const dispatch = useDispatch()
 
       if(feedbackSubmitted) {
         dispatch(stopAskingForFeedBack(true))
+        dispatch(displayFeedBackForm(false))
       }
 
     }, [authorEmail, message, needInput, submitted, seenFeedbackForm])
@@ -65,8 +66,8 @@ const dispatch = useDispatch()
     const form = (
      <motion.div 
      initial={{ opacity: 0}}
-     animate={{ opacity: 1}}
-     exit={{ opacity: 0 }}
+     animate={{ opacity: 1, transition: { delay: 0.2, duration: 0.2 }}}
+     exit={{ opacity: 0, transition: { delay: 0.1, duration: 0.2} }}
      className="fixed top-24 md:top-36 left-0.5 md:left-1/2 md:transform md:-translate-x-1/2 md:max-w-xl flex w-full max-w-[23rem] 
      md:max-w-xl flex-col items-center shadow-material rounded-xl md:rounded-3xl bg-gradient-to-tr from-ebony to-mirage p-8">
       <div onClick={closeFeedback} className="w-fit rounded-md p-1.5 md:hover:bg-white/10 transition-all duration-200 ease-in-out h-fit flex justify-end absolute top-2 right-2 cursor-pointer"> 

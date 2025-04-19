@@ -4,22 +4,18 @@ import { fetchSavedInvestigations } from "@/ReduxToolKit/Reducers/UserContent.ts
 import { useDispatch } from "react-redux"
 import { AppDispatch } from "@/ReduxToolKit/store"
 import { saveUserInvestigation } from "@/ReduxToolKit/Reducers/UserContent.ts/SaveInvestigationSlice"
-import { displayFeedBackForm } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
-import { useEffect, useRef, useState } from "react"
-
+import { useEffect, useState } from "react"
 
 export default function SaveInvestigation({ }) {
     const id = useSelector((state: RootState) => state.auth.user_id)
     const saved = useSelector((state: RootState) => state.saveResearch.saved)
     const sources = useSelector((state: RootState) => state.saveResearch.sources)
     const investigateState = useSelector((state: RootState) => state.investigation)
-    const seenFeedback = useSelector((state: RootState) => state.feedback.seen)
     const [prevWork, setPrevWork] = useState<any>(null)
     const { pov, review } = investigateState
     const { idea, premises, perspective, expertise, biases } = pov
-    const { endingPerspective, newConcepts, newPOV, merit, takeaway } = review
+    const { endingPerspective, newConcepts, newPOV, merit, takeaway, movedOnIdea } = review
     const dispatch = useDispatch<AppDispatch>()
-    const timeOutRef = useRef(null);
 
     const investigateData = {
         idea: idea,
@@ -28,20 +24,14 @@ export default function SaveInvestigation({ }) {
         biases: biases,
         ending_perspective: endingPerspective,
         new_concepts: newConcepts,
-        changed_opinion: newPOV,
+        changed_opinion: movedOnIdea,
         takeaway: takeaway,
         had_merit: merit,
         user_id: id,
         sources: sources
     }
 
-    const askForFeedBack = () => {
 
-        timeOutRef.current = setTimeout(() => {
-
-            dispatch(displayFeedBackForm(true))
-        }, 2000)
-    }
 
     useEffect(() => {
 
@@ -51,31 +41,18 @@ export default function SaveInvestigation({ }) {
             setPrevWork(storedWork)
         }
 
-        return () => clearTimeout(timeOutRef.current)
-
-    }, [seenFeedback])
-
-    const handleFeedback = () => {
-        if(!seenFeedback) {
-          askForFeedBack()
-        }
-    }
-
+    }, [saved])
 
     const handleSave = () => {
         dispatch(saveUserInvestigation(investigateData))
         dispatch(fetchSavedInvestigations(id))
-        handleFeedback()
     }
 
 
     
     return (
         <button
-            onClick={() => {
-                dispatch(saveUserInvestigation(investigateData))
-                dispatch(fetchSavedInvestigations(id))
-            }}
+            onClick={handleSave}
             className={`bg-white w-auto 2xl:w-60 hover:bg-white/10 group shadow-thick 
                     transition-all duration-200 ease-in-out rounded-full h-fit py-2 px-4 mx-auto flex items-center`}>
             <p className={`${saved ? 'text-slate-500' : 'text-black'} transition-all duration-200 ease-in-out

@@ -9,13 +9,9 @@ export default function DataTable() {
     const { pov, review } = investigateState
     const { idea, perspective, expertise } = pov
     const { endingPerspective, merit, movedOnIdea } = review
-
-
     const changed = endingPerspective !== perspective
-
     const finalOpinion = endingPerspective === 'Agree'
 
-    console.log(merit)
 
     return (
         <table className="w-full 2xl:min-h-72 table-fixed border-separate border-spacing-x-10 text-left">

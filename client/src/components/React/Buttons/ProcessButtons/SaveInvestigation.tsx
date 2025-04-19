@@ -4,7 +4,8 @@ import { fetchSavedInvestigations } from "@/ReduxToolKit/Reducers/UserContent.ts
 import { useDispatch } from "react-redux"
 import { AppDispatch } from "@/ReduxToolKit/store"
 import { saveUserInvestigation } from "@/ReduxToolKit/Reducers/UserContent.ts/SaveInvestigationSlice"
-import { useEffect, useState } from "react"
+import { displayFeedBackForm } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
+import { useEffect, useRef, useState } from "react"
 
 
 export default function SaveInvestigation({ }) {
@@ -12,11 +13,13 @@ export default function SaveInvestigation({ }) {
     const saved = useSelector((state: RootState) => state.saveResearch.saved)
     const sources = useSelector((state: RootState) => state.saveResearch.sources)
     const investigateState = useSelector((state: RootState) => state.investigation)
+    const seenFeedback = useSelector((state: RootState) => state.feedback.seen)
     const [prevWork, setPrevWork] = useState<any>(null)
     const { pov, review } = investigateState
     const { idea, premises, perspective, expertise, biases } = pov
     const { endingPerspective, newConcepts, newPOV, merit, takeaway } = review
     const dispatch = useDispatch<AppDispatch>()
+    const timeOutRef = useRef(null);
 
     const investigateData = {
         idea: idea,
@@ -32,6 +35,14 @@ export default function SaveInvestigation({ }) {
         sources: sources
     }
 
+    const askForFeedBack = () => {
+
+        timeOutRef.current = setTimeout(() => {
+
+            dispatch(displayFeedBackForm(true))
+        }, 2000)
+    }
+
     useEffect(() => {
 
         const storedWork: any = localStorage.getItem('userWork')
@@ -40,10 +51,22 @@ export default function SaveInvestigation({ }) {
             setPrevWork(storedWork)
         }
 
-        console.log(storedWork)
-        
+        return () => clearTimeout(timeOutRef.current)
 
-    }, [])
+    }, [seenFeedback])
+
+    const handleFeedback = () => {
+        if(!seenFeedback) {
+          askForFeedBack()
+        }
+    }
+
+
+    const handleSave = () => {
+        dispatch(saveUserInvestigation(investigateData))
+        dispatch(fetchSavedInvestigations(id))
+        handleFeedback()
+    }
 
 
     

@@ -18,6 +18,7 @@ export default function FinalResults() {
     const saved = useSelector((state: RootState) => state.saveResearch.saved)
     const feedbackStatus = useSelector((state: RootState) => state.feedback.status)
     const seenFeedbackForm = useSelector((state: RootState) => state.feedback.seen)
+    const declinedFeedBack = useSelector((state: RootState) => state.feedback.declined)
     const { display } = investigateState
     const { showFeedBackForm } = display
     const dispatch = useDispatch()
@@ -30,12 +31,12 @@ export default function FinalResults() {
             dispatch(researchSaved(true))
         }
 
-        if(seenFeedbackForm === true) {
+        if(seenFeedbackForm === true || declinedFeedBack === true) {
             dispatch(displayFeedBackForm(false))
         }
 
 
-    }, [saveStatus, feedbackStatus, showFeedBackForm, seenFeedbackForm])
+    }, [saveStatus, feedbackStatus, showFeedBackForm, seenFeedbackForm, declinedFeedBack])
 
 
     return (

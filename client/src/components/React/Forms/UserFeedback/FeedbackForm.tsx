@@ -2,7 +2,7 @@ import { createPortal } from "react-dom"
 import { AnimatePresence, motion } from "framer-motion"
 import { useDispatch, useSelector } from "react-redux"
 import { displayFeedBackForm } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
-import { getAuthorEmail, getFeedBackMessage, stopAskingForFeedBack } from "@/ReduxToolKit/Reducers/Feedback/FeedbackSlice"
+import { getAuthorEmail, getFeedBackMessage, stopAskingForFeedBack, declineFeedBack } from "@/ReduxToolKit/Reducers/Feedback/FeedbackSlice"
 import React, { useEffect, useState } from "react"
 import { RootState } from "@/ReduxToolKit/store"
 import { submitFeedback } from "@/helpers/SupabaseData"
@@ -19,7 +19,7 @@ const [feedbackSubmitted, setFeedbacksubmitted] = useState<boolean>(null)
 const dispatch = useDispatch()
 
     const closeFeedback = () => {
-
+        dispatch(declineFeedBack(true))
         dispatch(displayFeedBackForm(false))
         dispatch(stopAskingForFeedBack(true))
     }

@@ -14,6 +14,7 @@ export default function NextButton({ }) {
   const dispatch = useDispatch()
 
   const handleStep = () => {
+    window.dispatchEvent(new CustomEvent('nextStepClick'))
     if (denied === false) {
       dispatch(increment())
     } else if (denied === true) {
@@ -21,10 +22,10 @@ export default function NextButton({ }) {
     } else if (denied === null) {
       dispatch((denyIncrement(true)))
     }
-    if (idea === '') {
-      dispatch(denyIncrement(true))
-      dispatch(acceptedInput(false))
-    }
+    //if (idea === '') {
+    //  dispatch(denyIncrement(true))
+    //  dispatch(acceptedInput(false))
+    //}
   }
 
   return (
@@ -40,7 +41,7 @@ export default function NextButton({ }) {
         onClick={handleStep}
         className="text-white text-md font-light w-14 h-10
           lg:w-14 lg:h-12 p-1.5 transition-all mx-auto flex
-          duration-200 bg-white md:hover:bg-white/10 items-center group
+          duration-200 bg-white md:hover:bg-white/10 items-center group shadow-material_2
           rounded-2xl">
         <span className="mx-auto flex items-center justify-center">
           <svg className={`p-3 ${step >= 4 ? 'text-zinc-400' : 'text-black md:group-hover:text-white'}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="100%" height="100%">

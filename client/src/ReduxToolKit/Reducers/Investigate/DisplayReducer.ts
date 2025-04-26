@@ -15,7 +15,8 @@ interface Display {
     showSelectWarning: boolean,
     showSelectTooltip: boolean,
     showReadingTooltip: boolean,
-    showFeedBackForm: boolean
+    showFeedBackForm: boolean,
+    showBlueSkySearch: boolean
 }
 
 const initialState: Display = {
@@ -32,8 +33,8 @@ const initialState: Display = {
     showSelectWarning: false,
     showSelectTooltip: true,
     showReadingTooltip: true,
-    showFeedBackForm: null
-
+    showFeedBackForm: null,
+    showBlueSkySearch: false
 }
 
 
@@ -82,12 +83,15 @@ const DisplaySlice = createSlice({
         },
         displayFeedBackForm: (state, action) => {
             state.showFeedBackForm = action.payload
+        },
+        displayBlueSkySearch: (state, action) => {
+            state.showBlueSkySearch = action.payload
         }
     }
 })
 
 export const { displayMindMap, displaySearch, displayArticleContent, displayCompletion, displayWrapUp, displayResults,
     displayWorkModal, displayReturnModal, displayGetArticlesModal, displaySelectionWarning, displaySelectTooltip, displayReadingTooltip,
-    displaySelectBar, displayFeedBackForm } = DisplaySlice.actions
+    displaySelectBar, displayFeedBackForm, displayBlueSkySearch } = DisplaySlice.actions
 
 export default DisplaySlice.reducer

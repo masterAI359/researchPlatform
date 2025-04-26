@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { acceptedInput } from './Steps'
 
 const options: OptionsTypes = {
     method: 'GET',
@@ -85,6 +86,9 @@ export const ReadingSlice = createSlice({
         resetReadingSlice: () => initialState,
         limitPagination: (state, action) => {
             state.paginateLimit = action.payload
+        },
+        restoreStatus: (state) => {
+            state.ContentStatus = 'idle';
         }
 
     },
@@ -114,6 +118,7 @@ export const {
     isReading,
     resetReadingSlice,
     closeNotification,
-    limitPagination } = ReadingSlice.actions
+    limitPagination,
+restoreStatus } = ReadingSlice.actions
 
 export default ReadingSlice.reducer

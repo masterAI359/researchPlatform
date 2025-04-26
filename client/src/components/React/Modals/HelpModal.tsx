@@ -8,10 +8,10 @@ export default function HelpModal({ info, handleExpand, isOpen, setActiveTab, ac
 
     return (
         <motion.div
-            initial={{ scale: 1, opacity: 0 }}
+            initial={{ scale: 0.6, opacity: 0.6 }}
             animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.8, opacity: 0 }}
-            transition={{ type: 'tween', duration: 0.3, delay: 0.15 }}
+            exit={{ scale: 0, opacity: 0 }}
+            transition={{ type: "spring", stiffness: 800, damping: 25, duration: 0.1 } }
             className="bg-mirage opacity-100 h-auto
                          border border-2 border-white/10 shadow-thick rounded-xl 
                          z-50 absolute bottom-12 xl:pb-2 xl:bottom-24 sm:bottom-16 sm:w-[33rem] 

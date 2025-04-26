@@ -17,7 +17,7 @@ export default function MindMap({ }) {
 
     return (
         <div
-            className="lg:w-full xl:w-10/12 bg-white/10
+            className="lg:w-full xl:w-10/12 bg-white/10 shadow-material_2
         flex flex-col rounded-4xl relative xl:justify-self-end">
             <header className="h-auto w-full mx-auto">
                 <h1 className="text-zinc-600 md:hidden xl:block xl:text-2xl font-light tracking-tight text-center pt-2">

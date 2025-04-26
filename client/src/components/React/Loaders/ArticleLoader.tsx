@@ -1,6 +1,5 @@
 import Lottie from "lottie-react"
 import { motion } from "framer-motion"
-import dataCollection from '../../../lotties/dataCollection.json'
 import vortex from '../../../lotties/vortex.json'
 import { createPortal } from "react-dom"
 

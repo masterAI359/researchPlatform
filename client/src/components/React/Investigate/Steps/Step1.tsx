@@ -12,6 +12,7 @@ import { RootState } from "@/ReduxToolKit/store"
 
 export default function Step1({ containerWidth }: any) {
       const investigateState = useSelector((state: RootState) => state.investigation)
+      const [nextClicked, setNextClicked] = useState<boolean>(false);
       const { stepper, pov } = investigateState
       const { step, acceptInput } = stepper
       const { idea } = pov
@@ -26,19 +27,25 @@ export default function Step1({ containerWidth }: any) {
 
 
       useEffect(() => {
+            window.addEventListener('nextStepClick', () => {
+                  setNextClicked(true)
+            })
 
             let words: number = null
-            words = wordCount(idea)
+            if(nextClicked) {
+                  words = wordCount(idea);
+            }
+           
 
-            if (words < 5) {
+            if (words < 5 && words !== null) {
                   dispatch(denyIncrement(true))
                   dispatch(acceptedInput(false))
-            } else if (words >= 5) {
+            } else if (words >= 5 && words !== null) {
                   dispatch(denyIncrement(false))
                   dispatch(acceptedInput(true))
             }
 
-      }, [idea, acceptInput])
+      }, [idea, acceptInput, nextClicked])
 
 
       return (
@@ -61,7 +68,7 @@ export default function Step1({ containerWidth }: any) {
                                     </div>
                               </div>
                               <div className="flex justify-items-start gap-2 z-10 w-full">
-                                    <div className={`w-full bg-white/10 h-44 sm:h-52 md:w-full lg:h-60 xl:h-80 pb-8 sm:pb-7 rounded-lg border border-solid box-border
+                                    <div className={`w-full bg-white/10 h-44 sm:h-52 md:w-full lg:h-60 xl:h-80 pb-8 sm:pb-7 rounded-lg border border-solid box-border shadow-material_2
                                     ${acceptInput === null ? 'border-transparent' : acceptInput === true ? 'border-green-500' : 'border-red-800'}`}>
                                           <StepsEditor context={idea} setterFunction={getIdea} />
                                           <div

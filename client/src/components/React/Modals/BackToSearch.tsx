@@ -3,7 +3,7 @@ import { createPortal } from "react-dom"
 import { displayArticleContent, displaySearch, displayReturnModal, displaySelectTooltip } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
 import { clearChosenArticles } from "@/ReduxToolKit/Reducers/Investigate/ChosenArticles"
 import { useDispatch } from "react-redux"
-import { resetReadingSlice } from "@/ReduxToolKit/Reducers/Investigate/Reading"
+import { resetReadingSlice, restoreStatus } from "@/ReduxToolKit/Reducers/Investigate/Reading"
 import { resetResults } from "@/ReduxToolKit/Reducers/Investigate/SearchResults"
 
 export function BackToSearch({ }) {
@@ -13,6 +13,7 @@ export function BackToSearch({ }) {
         dispatch(displayArticleContent(false))
         dispatch(resetReadingSlice())
         dispatch(resetResults())
+        dispatch(restoreStatus())
         dispatch(displaySearch(true))
         dispatch(displayReturnModal(false))
         dispatch(clearChosenArticles())

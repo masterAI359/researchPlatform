@@ -62,10 +62,9 @@ export default function HeroContainer({
                 {showContent && ContentStatus === 'fulfilled' ?
                     <motion.div
                         key='Reading'
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ type: 'tween', duration: 0.5, ease: 'easeInOut' }}
+                        initial={{ opacity: 0}}
+                        animate={{ opacity: 1, transition: { type: 'tween', duration: 0.3 }}}
+                        exit={{ opacity: 0, transition: { type: 'tween', duration: 0.3} }}
                     >
                         <ReadingHero />
                         <ScrolltoTop />

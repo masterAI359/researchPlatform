@@ -1,7 +1,7 @@
 
 
 
-export default function More({ article_url, setOpen, context, setShowAllAuthors, authors, setFullStory, fullStory }) {
+export default function More({ article_url, setOpen, context, setShowAllAuthors, authors, showAllAuthors }) {
 
     return (
         <div className="bg-black border border-white/40 z-30 rounded-md xs:w-36 xl:w-36 h-auto p-3 absolute bottom-0 right-10">
@@ -24,7 +24,7 @@ export default function More({ article_url, setOpen, context, setShowAllAuthors,
                 text-white text-left xs:text-xs hover:text-blue-400 
                     transition-all cursor-pointer duration-200 ease-in-out md:text-sm font-light tracking-tight`}>
                     <a href="#">
-                        All authors
+                        {showAllAuthors ? 'Collapse authors' : 'All authors'}
                     </a>
                 </li>
                 {context === "profile" &&

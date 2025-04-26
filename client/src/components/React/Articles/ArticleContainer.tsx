@@ -21,6 +21,8 @@ export default function ArticleContainer({ }) {
 
   useEffect(() => {
 
+    console.log(ContentStatus)
+
     if (articles || failedNotifications) {
 
       const scrapedURLs = articles?.map((item: any) => {
@@ -38,7 +40,7 @@ export default function ArticleContainer({ }) {
       }
     }
 
-  }, [displayArticleContent, articles, failedNotifications])
+  }, [displayArticleContent, articles, failedNotifications, ContentStatus])
 
   return (
     <ErrorBoundary>

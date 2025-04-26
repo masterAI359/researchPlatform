@@ -23,7 +23,7 @@ export default function BackButton({ }) {
             >
                 <button
                     onClick={() => dispatch(decrement())}
-                    className={`text-zinc-400 xs:w-14 h-10
+                    className={`text-zinc-400 xs:w-14 h-10 shadow-material_2
                     lg:w-14 mx-auto lg:h-12 p-1.5 transition-all 
                     duration-200 bg-white md:hover:bg-white/10 
                     flex items-center group rounded-2xl

@@ -9,7 +9,7 @@ import ReviewReducer from '../Investigate/Review'
 import HelpReducer from '../Investigate/HelpModal'
 import EndInvestigateReducer from '../Investigate/EndInvestigation'
 import DisplayReducer from '../Investigate/DisplayReducer'
-
+import BlueSkySlice from "../Investigate/BlueSkySlice";
 
 const investigateReducer = combineReducers({
     stepper: StepsReducer,
@@ -21,7 +21,8 @@ const investigateReducer = combineReducers({
     review: ReviewReducer,
     help: HelpReducer,
     end: EndInvestigateReducer,
-    display: DisplayReducer
+    display: DisplayReducer,
+    bluesky: BlueSkySlice
 })
 
 

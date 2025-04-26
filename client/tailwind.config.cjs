@@ -152,7 +152,9 @@ module.exports = {
         },
       },
       boxShadow: {
+        "drops": "rgba(0, 0, 0, 0.16) 0px 1px 4px;",
         "material": 'rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px',
+        "material_2": "rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;",
         "blue-top": "0 -10px 20px -2px rgba(59, 130, 246, 0.5), 0 -6px 12px -4px rgba(59, 130, 246, 0.5)",
         "blue-bottom": "0 4px 6px -1px rgba(59, 130, 246, 0.5), 0 6px 4px -2px rgba(59, 130, 246, 0.5)",
         thick: "0px 7px 32px rgb(0 0 0 / 35%);",

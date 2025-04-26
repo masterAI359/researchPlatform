@@ -6,7 +6,8 @@ import userInvestigationSlice from './Reducers/UserContent.ts/UserInvestigations
 import ProfileNavigationSlice from './Reducers/UserContent.ts/ProfileNavigationSlice'
 import SaveInvestigationSlice from './Reducers/UserContent.ts/SaveInvestigationSlice'
 import NewUserSlice from './Reducers/Athentication/NewUserSlice'
-import  FeedBackSlice  from './Reducers/Feedback/FeedbackSlice'
+import FeedBackSlice  from './Reducers/Feedback/FeedbackSlice'
+
 
 export const store = configureStore({
     reducer: {

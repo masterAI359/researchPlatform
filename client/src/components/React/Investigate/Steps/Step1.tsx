@@ -6,13 +6,17 @@ import { getIdea } from "@/ReduxToolKit/Reducers/Investigate/UserPOV"
 import { acceptedInput, denyIncrement } from "@/ReduxToolKit/Reducers/Investigate/Steps"
 import { useSelector, useDispatch } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
+import { AnimatePresence } from "framer-motion"
+import BlueSkyPosts from "../../Modals/BlueSkyPosts"
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 
 
 export default function Step1({ containerWidth }: any) {
       const investigateState = useSelector((state: RootState) => state.investigation)
+
       const [nextClicked, setNextClicked] = useState<boolean>(false);
+      const { showBlueSkySearch } = investigateState.display;
       const { stepper, pov } = investigateState
       const { step, acceptInput } = stepper
       const { idea } = pov
@@ -45,14 +49,13 @@ export default function Step1({ containerWidth }: any) {
                   dispatch(acceptedInput(true))
             }
 
-      }, [idea, acceptInput, nextClicked])
+      }, [idea, acceptInput, nextClicked, showBlueSkySearch])
 
 
       return (
             <div
                   className='xs:w-full shrink-0 snap-center snap-always
                   text-center mx-auto xs:h-full box-border flex xs:px-2 basis-full'>
-
                   <div className="inline-block min-h-full box-border min-w-full max-w-full">
                         <div className="flex-col items-center h-full w-full box-border">
                               <div className="w-full box-border border-b h-fit border-white/10 mb-4 flex flex-row gap-x-8 items-baseline">

@@ -39,14 +39,14 @@ export default function BlueSkyPosts () {
     }
 
 
-    const blueSkyModal = (
+    return (
       <motion.div 
       variants={variants}
       initial='hidden'
       animate='open'
       exit='hidden'
       transition={{ type: "spring", stiffness: 600, damping: 25, duration: 0.05 }}
-      className="bg-gradient-up rounded-3xl p-8 w-80 md:max-w-7xl 2xl:min-h-168"
+      className="z-50 absolute top-44 bg-gradientdown rounded-3xl p-8 w-full h-auto 2xl:max-h-[40rem] 2xl:max-w-7xl"
       >
          <div className="block box-border min-w-full max-w-full mx-auto xs:px-0 md:px-2 2xl:h-full no-scrollbar">
         
@@ -66,7 +66,7 @@ export default function BlueSkyPosts () {
                     <div
                       className="relative mt-4 lg:mb-4 xs:p-1 mx-auto flex justify-center items-center">
                       <form
-                        className="bg-white/10 text-white w-full h-fit 
+                        className="bg-white/10 text-white w-full h-fit 2xl:min-w-96
                        border-none md:h-10 md:p-0 2xl:px-1 rounded-full relative
                        transition-colors xs:text-sm md:text-lg flex items-center prose"
                       >
@@ -106,7 +106,5 @@ export default function BlueSkyPosts () {
 
       </motion.div>
     )
-
-
-    return createPortal(blueSkyModal, document.body);
+    
 }

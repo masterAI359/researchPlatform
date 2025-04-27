@@ -8,13 +8,16 @@ import Notes from "../Investigate/Notes/Notes";
 import SelectArticles from "../LinkComponents/SelectLinks";
 import Content from "./Content";
 import PanelContainer from "./PanelContainer";
+import SearchBlueSky from "../Buttons/ProcessButtons/SearchBlueSky";
+import BlueSkyPosts from "../Modals/BlueSkyPosts";
 
 export default function InvestigateContainer() {
   const dispatch = useDispatch()
   const investigateState = useSelector((state: RootState) => state.investigation)
   const signingOut = useSelector((state: RootState) => state.auth.signOut)
   const { notes, read, review, help, getArticle, search } = investigateState
-  const { showContent, showReadingTooltip } = investigateState.display
+  const { showContent, showReadingTooltip, showBlueSkySearch } = investigateState.display
+  const { step } = investigateState.stepper;
   const { articleOptions } = search
   const { chosenArticles } = getArticle
   const { gettingHelp } = help
@@ -76,7 +79,7 @@ export default function InvestigateContainer() {
       ref={containerRef}
       className={`w-full shrink-0 flex flex-col transition-opacity duration-200 ease-in-out h-full mx-auto justify-center
          items-center relative box-border min-h-svh 
-         ${signingOut || gettingHelp ? 'opacity-50 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
+         ${signingOut || gettingHelp  ? 'opacity-50 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
       <HeroContainer
         key={'HeroContainer'}
       />
@@ -101,6 +104,8 @@ export default function InvestigateContainer() {
 
       <AnimatePresence >
         {showContent && <PanelContainer />}
+        {step === 0 && <SearchBlueSky />}
+        {showBlueSkySearch && <BlueSkyPosts />}
       </AnimatePresence>
 
 

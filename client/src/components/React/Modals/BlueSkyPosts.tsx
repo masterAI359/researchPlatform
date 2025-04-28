@@ -2,9 +2,11 @@ import { createPortal } from "react-dom";
 import { searchBlueSky } from "@/ReduxToolKit/Reducers/Investigate/BlueSkySlice";
 import { motion } from "framer-motion";
 import Loader from "../Loaders/Loader";
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
+import { useAppdispatch } from "@/Hooks/appDispatch";
+import { AppDispatch } from "@/ReduxToolKit/store";
 
 const variants = {
     hidden: {
@@ -20,27 +22,41 @@ const variants = {
 export default function BlueSkyPosts () {
     const investigateState = useSelector((state: RootState) => state.investigation);
     const { bluesky } = investigateState;
-    const { status } = bluesky;
+    const { status, posts } = bluesky;
     const [postQuery, setPostQuery] = useState<string>(null);
     const encodedQuery = encodeURIComponent(postQuery);
+    const dispatch = useDispatch<AppDispatch>();
 
     const retrieveInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         const target = e.target.value;
         setPostQuery(target)
     }
 
-    const submitForPosts = (e:React.FormEvent<HTMLFormElement>) => {
+    const submitForPosts = (e:React.FormEvent<HTMLButtonElement>) => {
         e.preventDefault();
         if(encodedQuery) {
-            searchBlueSky(encodedQuery);
+          dispatch(searchBlueSky(encodedQuery));
         } else {
-            window.alert('You need to type a query to search!')
+            window.alert('You need to type a query to search!');
         }
     }
 
 
+    useEffect(() =>{
+
+      console.log(status)
+
+      if(posts) {
+        console.log(posts)
+      }
+
+
+
+    }, [status, posts])
+
     return (
       <motion.div 
+      key="BlueSkyModal"
       variants={variants}
       initial='hidden'
       animate='open'
@@ -71,6 +87,7 @@ export default function BlueSkyPosts () {
                        transition-colors xs:text-sm md:text-lg flex items-center prose"
                       >
                         <input
+                          onChange={(e) => retrieveInput(e)}
                           autoComplete="off"
                           type="text"
                           name="q"
@@ -78,7 +95,9 @@ export default function BlueSkyPosts () {
                        border-none h-12 xs:p-3  md:p-2 rounded-full relative focus:ring-0
                        transition-colors text-base md:text-lg flex items-center"
                           placeholder="search" />
-                        <button type="submit"
+                        <button 
+                        onClick={(e) => submitForPosts(e)}
+                        type="submit"
                           className="relative"
                         >
                           {

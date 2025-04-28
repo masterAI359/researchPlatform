@@ -15,9 +15,14 @@ export const searchBlueSky = createAsyncThunk(
 
         try {
             const response = await fetch(`/searchBlueSky?q=${query}`, options);
-            const results = response.json();
-            console.log(results)
-            return results;
+            if(response.ok) {
+                const results = response.json();
+                console.log(results)
+                return results;
+            } else {
+                return thunkAPI.rejectWithValue('Connection refused');
+            }
+           
         } catch (error) {
             if(error) {
                 return thunkAPI.rejectWithValue(error)

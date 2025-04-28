@@ -16,6 +16,7 @@ export default function SearchBlueSky () {
 
     return (
         <button 
+        key="blueSkyButton"
         onClick={showBlueSkySearchForm}
         type="button" 
         className="fixed lg:bottom-24 lg:left-16 rounded-full w-36 lg:w-52 h-auto p-2 bg-white text-white group

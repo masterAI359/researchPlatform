@@ -1,18 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
 import { displayBlueSkySearch } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
-import { RootState } from "@/ReduxToolKit/store";
+import { RootState, AppDispatch } from "@/ReduxToolKit/store";
+import { getFeed } from "@/ReduxToolKit/Reducers/Investigate/BlueSkySlice";
 
 export default function SearchBlueSky () {
     const investigateState = useSelector((state: RootState) => state.investigation);
     const { showBlueSkySearch } = investigateState.display;
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
 
     console.log(showBlueSkySearch)
 
     const showBlueSkySearchForm = () => {
         if(showBlueSkySearch === true) dispatch(displayBlueSkySearch(false))
         if(showBlueSkySearch === false) dispatch(displayBlueSkySearch(true))
-        
+        dispatch(getFeed());
     }
 
     return (

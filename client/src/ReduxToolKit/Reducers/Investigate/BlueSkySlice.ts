@@ -33,8 +33,8 @@ export const searchBlueSky = createAsyncThunk(
 
 
 export const getFeed = createAsyncThunk(
-    'investigate/getFeed',
-    async (thunkAPI) => {
+    'investigate/getBlueSkyFeed',
+    async (_: void , thunkAPI) => {
         const options: OptionsTypes = {
             method: 'GET',
             headers: {
@@ -46,8 +46,8 @@ export const getFeed = createAsyncThunk(
         try {
             const req = await fetch('/getBlueSkyFeed', options);
             if(req.ok) {
-                const res = req.json();
-                return res;
+                const data = await req.json();
+                return data;
             }
         } catch (error) {
             if(error) console.log(error)
@@ -60,12 +60,14 @@ interface BSTypes {
 
     status: string,
     posts: any | null,
+    errorMessage: string | null
 
 }
 
 const initialState: BSTypes = {
     status: 'idle',
-    posts: null
+    posts: null,
+    errorMessage: null
 }
 
 
@@ -92,10 +94,11 @@ export const BlueSkySlice = createSlice({
         })
         builder.addCase(getFeed.fulfilled, (state, action) => {
             state.status = 'fulfilled';
-            state.posts = action.payload.posts;
+            state.posts = action.payload.feed;
         })
         builder.addCase(getFeed.rejected, (state) => {
             state.status = 'rejected';
+            state.errorMessage = 'Could Not fetch BlueSky Feed'
         })
     }
 });

@@ -24,6 +24,10 @@ export default defineConfig({
         '/deleteUser': {
           target: 'http://localhost:5001',
           changeOrigin: true
+        },
+        '/getBlueSkyFeed': {
+          target: 'http://localhost:5001',
+          changeOrigin: true
         }
       } : undefined
     }

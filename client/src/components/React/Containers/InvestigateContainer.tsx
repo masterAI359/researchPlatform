@@ -9,7 +9,7 @@ import SelectArticles from "../LinkComponents/SelectLinks";
 import Content from "./Content";
 import PanelContainer from "./PanelContainer";
 import SearchBlueSky from "../Buttons/ProcessButtons/SearchBlueSky";
-import BlueSkyPosts from "../Modals/BlueSkyPosts";
+import BlueSkyPosts from "../Investigate/BlueSky/BlueSkyPosts";
 import { getFeed } from "@/ReduxToolKit/Reducers/Investigate/BlueSkySlice";
 import { AppDispatch } from "@/ReduxToolKit/store";
 
@@ -32,8 +32,6 @@ export default function InvestigateContainer() {
   const notesRef = useRef(null)
   const readyToRead = ContentStatus === 'fulfilled' || ContentStatus === 'rejected'
 
-
-
   function handleDragConstraints() {
     const constraintsRect = containerRef.current.getBoundingClientRect();
     const notesRect = notesRef.current.getBoundingClientRect();
@@ -44,30 +42,23 @@ export default function InvestigateContainer() {
       bottom: constraintsRect.height - notesRect.height
     })
   }
-
+  
   function scrollToView() {
     containerRef.current.scrollIntoView({ behavior: "smooth", alignToTop: true })
   }
 
-
   useEffect(() => {
-
-
     if (ContentStatus === 'pending') {
       scrollToView()
     }
     if (finiished) {
       scrollToView()
     }
-
-
-
     if (containerRef.current && notesRef.current) {
 
       handleDragConstraints()
     }
   }, [finiished])
-
 
   useEffect(() => {
 
@@ -87,30 +78,20 @@ export default function InvestigateContainer() {
       />}
       {showBlueSkySearch && <BlueSkyPosts />}
       <div className="w-full h-full grow mx-auto xl:mt-6">
-        <motion.div
-          key="StoryContainer"
-        >
+        <motion.div key="StoryContainer">
           <Content
           />
         </motion.div>
       </div>
-
       <AnimatePresence>
         {articleOptions && articleOptions.length > 0 &&
-
-          <SelectArticles
-          />
+          <SelectArticles/>
         }
-
       </AnimatePresence>
-
       <AnimatePresence >
         {showContent && <PanelContainer />}
         {step === 0 && <SearchBlueSky />}
-       
       </AnimatePresence>
-
-
       <AnimatePresence>
         {takingNotes &&
           <Notes
@@ -121,7 +102,6 @@ export default function InvestigateContainer() {
           />
         }
       </AnimatePresence>
-
     </section>
   )
 }

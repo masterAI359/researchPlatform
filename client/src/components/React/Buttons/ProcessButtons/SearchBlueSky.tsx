@@ -12,6 +12,7 @@ export default function SearchBlueSky () {
     const showBlueSkySearchForm = () => {
         if(showBlueSkySearch === true) dispatch(displayBlueSkySearch(false))
         if(showBlueSkySearch === false) dispatch(displayBlueSkySearch(true))
+        
     }
 
     return (
@@ -19,13 +20,13 @@ export default function SearchBlueSky () {
         key="blueSkyButton"
         onClick={showBlueSkySearchForm}
         type="button" 
-        className="fixed lg:bottom-24 lg:left-16 rounded-full w-36 lg:w-52 h-auto p-2 bg-white text-white group
+        className="fixed lg:bottom-24 xl:left-6 2xl:left-16 rounded-full w-36 lg:w-40 2xl:w-52 h-auto p-1.5 2xl:p-2 bg-white text-white group
         md:hover:bg-white/10 md:hover:scale-110 transition-all ease-in-out duration-200 shadow-material_2
         flex items-center justify-center"
         >
         <div className="w-auto h-auto mx-auto">
-            <p className="text-base text-black group-hover:text-white">
-                Search Bluesky
+            <p className="text-sm 2xl:text-sm text-black group-hover:text-white">
+               {showBlueSkySearch ? 'Close BlueSky Search' : 'Search BlueSky'}
             </p>
         </div>
         <div className="w-7 h-7 mx-auto text-button_blue">

@@ -11,14 +11,14 @@ export default function HelpModal({ info, handleExpand, isOpen, setActiveTab, ac
             initial={{ scale: 0.8, opacity: 0.6 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}
-            transition={{ type: 'tween', duration: 0.2 }}
-            className="bg-mirage opacity-100 h-auto
-                         border border-2 border-white/10 shadow-thick rounded-xl 
+            transition={{ type: 'tween', duration: 0.1 }}
+            className=" bg-gradient-to-tr from-ebony to-mirage opacity-100 h-auto
+                         border border-2 border-white/10 shadow-material rounded-xl 
                          z-50 absolute bottom-12 xl:pb-2 xl:bottom-24 sm:bottom-16 sm:w-[33rem] 
                          md:left-1/4 lg:left-1/3 sm:left-20 xl:w-[38rem] pb-6
                          overflow-hidden"
         >
-            <header className="w-full h-auto relative bg-white/5 flex items-start p-2">
+            <header className="w-full h-auto relative bg-white/5 flex items-start">
                 <motion.div
                     whileTap={{ scale: 0.9 }}
                     transition={{ type: 'tween', duration: 0.2 }}
@@ -26,8 +26,8 @@ export default function HelpModal({ info, handleExpand, isOpen, setActiveTab, ac
                         handleExpand();
                         { isOpen ? dispatch(getHelp(false)) : null }
                     }}
-                    className="w-8 h-8 cursor-pointer p-1 mr-4 rounded-lg 
-                                            hover:bg-white/10 absolute -right-3 top-1">
+                    className="w-8 h-8 cursor-pointer p-1.5 mr-4 rounded-lg 
+                                            hover:bg-white/10 transition-all duration-200 ease-in-out absolute -right-3 top-1">
                     <svg
                         className="text-zinc-200 cursor-pointer opacity-55 hover:opacity-100 
                                             transition-opacity duration-200 ease-in-out" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="100%" height="100%">

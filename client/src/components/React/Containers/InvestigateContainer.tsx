@@ -10,9 +10,11 @@ import Content from "./Content";
 import PanelContainer from "./PanelContainer";
 import SearchBlueSky from "../Buttons/ProcessButtons/SearchBlueSky";
 import BlueSkyPosts from "../Modals/BlueSkyPosts";
+import { getFeed } from "@/ReduxToolKit/Reducers/Investigate/BlueSkySlice";
+import { AppDispatch } from "@/ReduxToolKit/store";
 
 export default function InvestigateContainer() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const investigateState = useSelector((state: RootState) => state.investigation)
   const signingOut = useSelector((state: RootState) => state.auth.signOut)
   const { notes, read, review, help, getArticle, search } = investigateState
@@ -77,13 +79,13 @@ export default function InvestigateContainer() {
   return (
     <section
       ref={containerRef}
-      className={`w-full shrink-0 flex flex-col transition-opacity duration-200 ease-in-out h-full mx-auto justify-center
-         items-center relative box-border min-h-svh 
-         ${signingOut || gettingHelp  ? 'opacity-50 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
-      <HeroContainer
+      className={`w-full shrink-0 flex flex-col grow transition-opacity duration-200 ease-in-out h-full mx-auto justify-center
+         items-center relative box-border min-h-svh
+         ${signingOut || gettingHelp  ? 'opacity-80 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
+    {!showBlueSkySearch &&  <HeroContainer
         key={'HeroContainer'}
-      />
-
+      />}
+      {showBlueSkySearch && <BlueSkyPosts />}
       <div className="w-full h-full grow mx-auto xl:mt-6">
         <motion.div
           key="StoryContainer"
@@ -105,7 +107,7 @@ export default function InvestigateContainer() {
       <AnimatePresence >
         {showContent && <PanelContainer />}
         {step === 0 && <SearchBlueSky />}
-        {showBlueSkySearch && <BlueSkyPosts />}
+       
       </AnimatePresence>
 
 

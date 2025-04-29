@@ -32,6 +32,30 @@ export const searchBlueSky = createAsyncThunk(
 )
 
 
+export const getFeed = createAsyncThunk(
+    'investigate/getFeed',
+    async (thunkAPI) => {
+        const options: OptionsTypes = {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            }
+        }
+
+        try {
+            const req = await fetch('/getBlueSkyFeed', options);
+            if(req.ok) {
+                const res = req.json();
+                return res;
+            }
+        } catch (error) {
+            if(error) console.log(error)
+        }
+    }
+)
+
+
 interface BSTypes {
 
     status: string,
@@ -48,7 +72,9 @@ const initialState: BSTypes = {
 export const BlueSkySlice = createSlice({
     name: 'blueSkyPosts',
     initialState: initialState,
-    reducers: {},
+    reducers: {
+        resetBlueSkyState: () => initialState
+    },
     extraReducers: (builder) => {
 
         builder.addCase(searchBlueSky.pending, (state) => {
@@ -56,13 +82,24 @@ export const BlueSkySlice = createSlice({
         })
         builder.addCase(searchBlueSky.fulfilled, (state, action) => {
             state.status = 'fulfilled';
-            state.posts = action.payload;
+            state.posts = action.payload.posts;
         })
         builder.addCase(searchBlueSky.rejected, (state) => {
             state.status = 'rejected'
         })
+        builder.addCase(getFeed.pending, (state) => {
+            state.status = 'pending';
+        })
+        builder.addCase(getFeed.fulfilled, (state, action) => {
+            state.status = 'fulfilled';
+            state.posts = action.payload.posts;
+        })
+        builder.addCase(getFeed.rejected, (state) => {
+            state.status = 'rejected';
+        })
     }
 });
 
+export const { resetBlueSkyState } = BlueSkySlice.actions;
 
 export default BlueSkySlice.reducer;

@@ -13,6 +13,7 @@ import { bingArticles } from '../endpoints/bingApi.js';
 import { tldrSummary } from '../endpoints/tldrSummary.js';
 import { deleteUser } from '../endpoints/deleteUser.js';
 import { searchBlueSkyPosts } from '../endpoints/blueskyApi.js';
+import { getBlueSkyFeed } from '../endpoints/blueskyApi.js';
 
 
 const corsOptions: object = {
@@ -72,6 +73,7 @@ app.get('/search/articles', bingArticles);
 app.get('/summarize', tldrSummary);
 app.get('/deleteUser', deleteUser);
 app.get('/searchBlueSky', searchBlueSkyPosts);
+app.get('/getBlueSkyFeed', getBlueSkyFeed);
 
 app.get('*', (req: Request, res: Response) => {
 

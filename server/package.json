@@ -19,6 +19,7 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
+		"@atproto/api": "^0.15.5",
 		"@supabase/supabase-js": "^2.49.3",
 		"axios": "^1.6.8",
 		"azure-cognitiveservices-websearch": "^2.0.0",

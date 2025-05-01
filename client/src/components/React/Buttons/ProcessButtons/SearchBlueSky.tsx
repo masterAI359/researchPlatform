@@ -8,8 +8,6 @@ export default function SearchBlueSky () {
     const { showBlueSkySearch } = investigateState.display;
     const dispatch = useDispatch<AppDispatch>();
 
-    console.log(showBlueSkySearch)
-
     const showBlueSkySearchForm = () => {
         if(showBlueSkySearch === true) dispatch(displayBlueSkySearch(false))
         if(showBlueSkySearch === false) dispatch(displayBlueSkySearch(true))
@@ -21,12 +19,12 @@ export default function SearchBlueSky () {
         key="blueSkyButton"
         onClick={showBlueSkySearchForm}
         type="button" 
-        className="fixed lg:bottom-24 xl:left-6 2xl:left-16 rounded-full w-36 lg:w-40 2xl:w-52 h-auto p-1.5 2xl:p-2 bg-white text-white group
+        className="rounded-full w-36 lg:w-40 2xl:w-52 h-auto px-2 py-0.5 lg:py-1 lg:px-3 bg-white text-white group
         md:hover:bg-white/10 md:hover:scale-110 transition-all ease-in-out duration-200 shadow-material_2
         flex items-center justify-center"
         >
         <div className="w-auto h-auto mx-auto">
-            <p className="text-sm 2xl:text-sm text-black group-hover:text-white">
+            <p className="text-sm 2xl:text-sm text-black group-hover:text-white text-nowrap">
                {showBlueSkySearch ? 'Close BlueSky Search' : 'Search BlueSky'}
             </p>
         </div>

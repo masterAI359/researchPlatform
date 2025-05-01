@@ -1,4 +1,3 @@
-import * as React from "react";
 import { motion } from "framer-motion";
 import Path from "./Paths";
 
@@ -8,8 +7,6 @@ const middlePathVariants = {
 }
 
 export default function MenuButton({ toggle, isOpen }) {
-
-
 
     return (
         <button className={`fixed right-1 top-1 h-7 w-fit z-50`}
@@ -52,10 +49,3 @@ export default function MenuButton({ toggle, isOpen }) {
 };
 
 
-//<motion.path
-//fill="transparent"
-//strokeWidth="3"
-//stroke="#ffffff"
-//strokeLinecap="round"
-//animate={isOpen ? variants.open : variants.closed}
-///>

@@ -12,6 +12,7 @@ import SearchBlueSky from "../Buttons/ProcessButtons/SearchBlueSky";
 import BlueSkyPosts from "../BlueSky/BlueSkyPosts";
 import { getFeed } from "@/ReduxToolKit/Reducers/BlueSky/BlueSkySlice";
 import { AppDispatch } from "@/ReduxToolKit/store";
+import BlueSkySuggestion from "../Buttons/ButtonWrappers/BlueSkySuggestion";
 
 export default function InvestigateContainer() {
   const dispatch = useDispatch<AppDispatch>()
@@ -89,7 +90,7 @@ export default function InvestigateContainer() {
       </AnimatePresence>
       <AnimatePresence >
         {showContent && <PanelContainer />}
-        {step === 0 && <SearchBlueSky />}
+        {step === 0 && <BlueSkySuggestion />}
       </AnimatePresence>
       <AnimatePresence>
         {takingNotes &&

@@ -7,7 +7,7 @@ import { acceptedInput, denyIncrement } from "@/ReduxToolKit/Reducers/Investigat
 import { useSelector, useDispatch } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { AnimatePresence } from "framer-motion"
-import BlueSkyPosts from "../BlueSky/BlueSkyPosts"
+import BlueSkyPosts from "../../BlueSky/BlueSkyPosts"
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 

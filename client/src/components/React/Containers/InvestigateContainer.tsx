@@ -9,8 +9,8 @@ import SelectArticles from "../LinkComponents/SelectLinks";
 import Content from "./Content";
 import PanelContainer from "./PanelContainer";
 import SearchBlueSky from "../Buttons/ProcessButtons/SearchBlueSky";
-import BlueSkyPosts from "../Investigate/BlueSky/BlueSkyPosts";
-import { getFeed } from "@/ReduxToolKit/Reducers/Investigate/BlueSkySlice";
+import BlueSkyPosts from "../BlueSky/BlueSkyPosts";
+import { getFeed } from "@/ReduxToolKit/Reducers/BlueSky/BlueSkySlice";
 import { AppDispatch } from "@/ReduxToolKit/store";
 
 export default function InvestigateContainer() {
@@ -21,7 +21,6 @@ export default function InvestigateContainer() {
   const { showContent, showReadingTooltip, showBlueSkySearch } = investigateState.display
   const { step } = investigateState.stepper;
   const { articleOptions } = search
-  const { chosenArticles } = getArticle
   const { gettingHelp } = help
   const { takingNotes } = notes
   const { ContentStatus } = read
@@ -30,7 +29,6 @@ export default function InvestigateContainer() {
   const [constraints, setConstraints] = useState(null)
   const containerRef = useRef(null)
   const notesRef = useRef(null)
-  const readyToRead = ContentStatus === 'fulfilled' || ContentStatus === 'rejected'
 
   function handleDragConstraints() {
     const constraintsRect = containerRef.current.getBoundingClientRect();
@@ -48,6 +46,7 @@ export default function InvestigateContainer() {
   }
 
   useEffect(() => {
+
     if (ContentStatus === 'pending') {
       scrollToView()
     }

@@ -7,7 +7,7 @@ import ProfileNavigationSlice from './Reducers/UserContent.ts/ProfileNavigationS
 import SaveInvestigationSlice from './Reducers/UserContent.ts/SaveInvestigationSlice'
 import NewUserSlice from './Reducers/Athentication/NewUserSlice'
 import FeedBackSlice  from './Reducers/Feedback/FeedbackSlice'
-
+import BlueSkySlice from './Reducers/BlueSky/BlueSkySlice'
 
 export const store = configureStore({
     reducer: {
@@ -18,7 +18,8 @@ export const store = configureStore({
         profileNav: ProfileNavigationSlice,
         saveResearch: SaveInvestigationSlice,
         newUser: NewUserSlice,
-        feedback: FeedBackSlice
+        feedback: FeedBackSlice,
+        bluesky: BlueSkySlice
     }
 
 })

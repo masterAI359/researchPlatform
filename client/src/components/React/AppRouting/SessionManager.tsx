@@ -4,15 +4,17 @@ import { useAppdispatch } from "@/Hooks/appDispatch";
 import { fetchUserCredentials } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/ReduxToolKit/store";
+import { AppDispatch, RootState } from "@/ReduxToolKit/store";
 import { getSourcesToReview } from "@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations";
+import { getFeed } from "@/ReduxToolKit/Reducers/BlueSky/BlueSkySlice";
 
 export default function SessionManager() {
     const appDispatch = useAppdispatch()
-    const dispatch = useDispatch()
+    const dispatch = useDispatch<AppDispatch>()
     const navigate = useNavigate()
     const sources = useSelector((state: RootState) => state.userWork.sourcesToReview)
     const sourcesToDispatch = sources
+    const posts = useSelector((state: RootState) => state.bluesky.posts);
 
     const restoreSession = async () => {
         const { data: { session } } = await supabase.auth.getSession();
@@ -33,6 +35,7 @@ export default function SessionManager() {
             const cachedSources = (JSON.parse(localStorage.getItem('cachedSources')))
             dispatch(getSourcesToReview(cachedSources))
         }
+
 
         const { data } = supabase.auth.onAuthStateChange((event, session) => {
 
@@ -58,7 +61,7 @@ export default function SessionManager() {
 
 
 
-    }, [sources])
+    }, [sources, posts])
 
 
 

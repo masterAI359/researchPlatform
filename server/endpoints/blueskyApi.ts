@@ -2,6 +2,7 @@ import { BLUESKY_EMAIL, BLUESKY_PASSWORD } from '../src/Config.js';
 import { Request, Response as ExpRes } from 'express'
 import decodeItem from '../helpers/decodeItem.js';
 import { AtpAgent, AtpSessionData } from '@atproto/api';
+import { unwrapObjects } from '../helpers/unwrapObjects.js';
 
 const agent = new AtpAgent({ service: 'https://bsky.social' })
 
@@ -41,13 +42,16 @@ export const searchBlueSkyPosts = async (req: Request, res: ExpRes) => {
 
 
 export const getBlueSkyFeed = async (req: Request, res: ExpRes) => {
+ 
   try {
+    console.log('try suggested feeds')
     await agent.login({
       identifier: BLUESKY_EMAIL,
       password:   BLUESKY_PASSWORD,
     })
     
     const suggested = await agent.api.app.bsky.feed.getSuggestedFeeds({})
+    console.log('suggested feeds: ' + suggested.data.feeds)
     const gens = suggested.data.feeds
     const feedUri = gens.find(g => g.uri.includes('verified-news'))?.uri
     if (!feedUri) {
@@ -58,9 +62,10 @@ export const getBlueSkyFeed = async (req: Request, res: ExpRes) => {
       limit: 20,
     })
     
-    const feedData = decodeItem(feed.data);
-    console.log(feedData.feed)
-    return res.json(decodeItem(feedData));
+    const feedData = decodeItem(feed.data.feed);
+    const unwrappedPosts = unwrapObjects(feedData);
+    console.log({ "FeedData": unwrappedPosts }, { "Length": unwrappedPosts.length })
+    return res.json(unwrappedPosts);
     
   } catch (err: any) {
     console.error('BlueSky error:', err)

@@ -94,7 +94,7 @@ export const BlueSkySlice = createSlice({
         })
         builder.addCase(getFeed.fulfilled, (state, action) => {
             state.status = 'fulfilled';
-            state.posts = action.payload.feed;
+            state.posts = action.payload;
         })
         builder.addCase(getFeed.rejected, (state) => {
             state.status = 'rejected';

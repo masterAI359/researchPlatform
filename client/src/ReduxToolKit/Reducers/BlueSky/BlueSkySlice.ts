@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { OptionsTypes } from "@/env";
 
-
 export const searchBlueSky = createAsyncThunk(
     'investigate/getBlueSkyPosts', 
     async (query: string, thunkAPI) => {
@@ -60,14 +59,16 @@ interface BSTypes {
 
     status: string,
     posts: any | null,
-    errorMessage: string | null
+    errorMessage: string | null,
+    selected: any
 
 }
 
 const initialState: BSTypes = {
     status: 'idle',
     posts: null,
-    errorMessage: null
+    errorMessage: null,
+    selected: null
 }
 
 
@@ -75,7 +76,11 @@ export const BlueSkySlice = createSlice({
     name: 'blueSkyPosts',
     initialState: initialState,
     reducers: {
+        selectPost: (state, action) => {
+             state.selected = action.payload
+        },
         resetBlueSkyState: () => initialState
+       
     },
     extraReducers: (builder) => {
 
@@ -103,6 +108,6 @@ export const BlueSkySlice = createSlice({
     }
 });
 
-export const { resetBlueSkyState } = BlueSkySlice.actions;
+export const { resetBlueSkyState, selectPost } = BlueSkySlice.actions;
 
 export default BlueSkySlice.reducer;

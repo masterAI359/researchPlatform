@@ -52,7 +52,7 @@ export default function InvestigateContainer() {
       scrollToView()
     }
     if (finiished) {
-      scrollToView()
+     // scrollToView()
     }
     if (containerRef.current && notesRef.current) {
 

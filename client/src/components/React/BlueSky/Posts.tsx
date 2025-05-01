@@ -1,7 +1,7 @@
 import { useState, useLayoutEffect } from "react";
 import { useDispatch } from "react-redux";
 import { resetBlueSkyState } from "@/ReduxToolKit/Reducers/BlueSky/BlueSkySlice";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { BSPost } from "./BSPost";
 import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary";
 
@@ -9,11 +9,11 @@ export default function Posts ({ posts }) {
     const [firstHalf, setFirstHalf] = useState<any>(null);
     const [secondHalf, setSecondHalf] = useState<any>(null);
     const [clicked, setClicked]= useState<boolean>(false);
-    const [selected, setSelected] = useState<any>(null);
     const [searched, setSearched] = useState<boolean>(false)
     const dispatch = useDispatch()
 
  useLayoutEffect(() => {
+
 
   const handleNew = () => {
     setSearched(true)
@@ -75,13 +75,17 @@ export default function Posts ({ posts }) {
 						</div>
             <ErrorBoundary>
             <div className='relative mx-auto px-4 lg:px-16 overflow-y-hidden'>
-							<div className='items-center space-x-6 pb-12 lg:pb-0 lg:space-x-8 animate-scroller2 md:animate-none overflow-y-hidden relative lg:px-4 mx-auto grid grid-cols-1 lg:grid-cols-2'>
-									 <div className={`relative flex-shrink-0 h-full items-center ${clicked ? '' : 'lg:animate-scroller2'} `}>
+							<div className='items-center space-x-6 pb-12 lg:pb-0 lg:space-x-8 animate-scroller2 md:animate-none relative lg:px-4 mx-auto grid grid-cols-1 lg:grid-cols-2'>
+									 <div style={{
+                    animationPlayState: clicked ? 'paused' : 'running'
+                   }} className={`relative flex-shrink-0 h-full items-center animate-scroller2`}>
 										{firstHalf !== null && firstHalf.map((post: any) => (
                       <BSPost key={post.record.text} post={post} setClicked={setClicked}/>
 										))}
 									</div>
-									<div className={`relative flex-shrink-0 h-full items-center ${clicked ? 'animate-none' : 'lg:animate-scroller'} `}>
+									<div style={{
+                    animationPlayState: clicked ? 'paused' : 'running'
+                   }} className={`relative flex-shrink-0 h-full items-center animate-scroller`}>
 										{secondHalf !== null && secondHalf.map((post: any) => (
 										<BSPost key={post.record.text} post={post} setClicked={setClicked}/>
 										))}

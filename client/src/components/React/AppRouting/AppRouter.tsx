@@ -21,7 +21,7 @@ export default function AppRouter() {
     return (
         <Provider store={store}>
             <BrowserRouter>
-                <ScrolltoTop />
+               { <ScrolltoTop /> }
                 <SessionManager />
                 <Routes>
                     <Route path='/' element={<Structure />}>

@@ -1,19 +1,31 @@
 import { motion } from "framer-motion";
 import { useSelector, useDispatch } from "react-redux";
-import { incrementBy } from "@/ReduxToolKit/Reducers/Investigate/Steps";
+import { incrementBy, denyIncrement, acceptedInput } from "@/ReduxToolKit/Reducers/Investigate/Steps";
 import { RootState } from "@/ReduxToolKit/store";
 
 export default function ({ }) {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { stepper } = investigateState
-    const { step } = stepper
+    const { step, denied, acceptInput } = stepper
     const currentStep = step
     const dispatch = useDispatch()
+
+    const selectStep = (dnd: boolean) => {
+
+        if(dnd === false && acceptInput === true) {
+            dispatch(incrementBy(1));
+        } else if(dnd === null || dnd === true) {
+            dispatch(denyIncrement(true));
+            dispatch(acceptedInput(false));
+            alert('First input field is required!')
+        }
+    };
+
     return (
         <li className="flex flex-col md:w-full xs:w-full xs:h-20 lg:h-28 items-center">
             <div className="flex  items-center justify-center w-full h-full relative">
                 <motion.div
-                    onClick={() => dispatch(incrementBy(1))}
+                    onClick={() => selectStep(denied)}
                     className="flex items-center justify-center rounded-full max-w-7 max-h-7
                       sm:max-w-9 sm:max-h-9 sm:p-1  shrink-0 z-10 hover:cursor-pointer transition-all duration-300 hover:scale-110"
                     animate={{

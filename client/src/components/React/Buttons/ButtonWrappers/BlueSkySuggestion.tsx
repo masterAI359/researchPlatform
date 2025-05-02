@@ -10,7 +10,7 @@ export default function BlueSkySuggestion () {
 
     return (
         <motion.div 
-        className="w-auto h-auto flex flex-col gap-2 lg:gap-6 items-center justify-center lg:flex-row fixed bottom-16 lg:left-16"
+        className="w-auto h-auto flex flex-col gap-2 lg:gap-6 items-center justify-center lg:flex-row sticky  bottom-12 lg:bottom-16 lg:left-16"
         >
           {!showBlueSkySearch &&  <div className="w-auto h-fit">
                 <p className="text-base text-zinc-400 font-light">

@@ -205,6 +205,15 @@ module.exports = {
     require("tailwind-scrollbar-hide"),
     require('@tailwindcss/typography'),
     require('tailwind-scrollbar')({ nocompatible: true, preferredStrategy: 'pseudoelements' }),
+    function({ addBase }) {
+      addBase({
+        ".ProseMirror": {
+          whiteSpace:   "pre-wrap",
+          overflowWrap: "anywhere",
+          wordBreak:    "break-all",
+        },
+      });
+    },
     function ({ addUtilities }) {
       const newUtilities = {
         '.no-scrollbar': {

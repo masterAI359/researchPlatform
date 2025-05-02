@@ -6,6 +6,7 @@ import Popover from "../Tooltips/Popover";
 import UseThisPost from "./UseThisPost";
 import { AnimatePresence } from "framer-motion";
 import { getIdea } from "@/ReduxToolKit/Reducers/Investigate/UserPOV";
+import NormalizeBlueSkyText from "@/helpers/Normailize";
 
 export function BSPost({ post, setClicked, context }) {
   const selected = useSelector((state: RootState) => state.bluesky.selected)
@@ -20,7 +21,9 @@ export function BSPost({ post, setClicked, context }) {
       dispatch(selectPost(null))
     } else {
       dispatch(selectPost(text))
-      dispatch(getIdea(text))
+      console.log(selected)
+      //const normalized: string = NormalizeBlueSkyText(selected);
+      dispatch(getIdea(text));
     }
   }
 

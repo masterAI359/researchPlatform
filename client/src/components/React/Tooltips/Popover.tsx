@@ -13,7 +13,7 @@ export default function Popover({ children }) {
       animate="open"
       exit="closed"
       // ← positions the popover *just* to the right of its parent
-      className="absolute bottom-60 xl:bottom-3/4 left-16 xl:left-1/2 ml-2 z-50"
+      className="absolute bottom-52 xl:bottom-3/4 left-16 xl:left-1/2 ml-2 z-50"
     >
       {/* make this container relative so the arrow can position itself */}
       <div className="relative bg-white 2xl:h-52 p-2 rounded-3xl shadow-material">

@@ -25,6 +25,7 @@ export default function Step1({ containerWidth }: any) {
             }
       }
 
+      console.log(idea)
 
       useEffect(() => {
 
@@ -65,9 +66,9 @@ export default function Step1({ containerWidth }: any) {
 
       return (
             <div
-                  className='xs:w-full shrink-0 snap-center snap-always
+                  className='w-full shrink-0 snap-center snap-always
                   text-center mx-auto xs:h-full box-border flex xs:px-2 basis-full'>
-                  <div className="inline-block min-h-full box-border min-w-full max-w-full">
+                  <div className="w-full box-border">
                         <div className="flex-col items-center h-full w-full box-border">
                               <div className="w-full box-border border-b h-fit border-white/10 mb-4 flex flex-row gap-x-8 items-baseline">
                                     <div className="w-fit flex justify-items-start">
@@ -82,7 +83,7 @@ export default function Step1({ containerWidth }: any) {
                                     </div>
                               </div>
                               <div className="flex justify-items-start gap-2 z-10 w-full">
-                                    <div className={`w-full bg-white/10 h-44 sm:h-52 md:w-full lg:h-60 xl:h-80 pb-8 sm:pb-7 rounded-lg border border-solid box-border shadow-material_2
+                                    <div className={`w-full max-w-full overflow-hidden grow-0 bg-white/10 h-44 sm:h-52 md:w-full lg:h-60 xl:h-80 pb-8 sm:pb-7 rounded-lg border border-solid box-border shadow-material_2
                                     ${acceptInput === null ? 'border-transparent' : acceptInput === true ? 'border-green-500' : 'border-red-800'}`}>
                                           <StepsEditor context={chosenTake} setterFunction={getIdea}/>
                                           <div

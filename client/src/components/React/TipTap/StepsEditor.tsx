@@ -44,16 +44,8 @@ export default function StepsEditor({ setterFunction, context }) {
         }
     }
 
-
-    useEffect(() => {
-
-
-    }, [selected])
-
-
-
     return (
-        <div className="w-full h-full box-border mx-auto">
+        <div className="w-full max-w-168 h-full box-border mx-auto">
             <div className="control-group w-full flex px-1 bg-white/10 rounded-t-lg">
                 <div className="button-group w-full mx-auto text-white flex gap-x-3 pt-1">
 
@@ -119,10 +111,10 @@ export default function StepsEditor({ setterFunction, context }) {
                 </div>
             </div>
 
-            <div onClick={handleContainerClick} className="h-full w-full">
-                <EditorContent style={{ textAlign: 'left', verticalAlign: 'top', minHeight: '90%', height: '100%', color: '#ffffff' }} editor={editor}
-                    className="text-white text-base md:text-lg focus:outline-none px-1 focus:border-none font-thin font-serif tracking-tight cursor-text
-             font-serif min-w-full h-full prose"
+            <div onClick={handleContainerClick} className="h-full w-full box-border max-w-80 md:max-w-full">
+                <EditorContent style={{ textAlign: 'left', verticalAlign: 'top', minHeight: '90%', height: '100%', color: '#ffffff', maxWidth: '100%' }} editor={editor}
+                    className="text-white whitespace-pre-wrap break-words text-sm sm:text-base md:text-lg focus:outline-none px-1 focus:border-none font-light font-serif tracking-tight cursor-text
+             font-serif w-full overflow-hidden h-full prose"
                 />
             </div>
 

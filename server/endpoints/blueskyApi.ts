@@ -7,7 +7,7 @@ import { unwrapObjects } from '../helpers/unwrapObjects.js';
 const agent = new AtpAgent({ service: 'https://bsky.social' })
 
 export const searchBlueSkyPosts = async (req: Request, res: ExpRes) => {
-  const query = String(req.query.q ?? '')
+  const query = req.query.q as string
 
   try {
     const { data: session} = await agent.login({

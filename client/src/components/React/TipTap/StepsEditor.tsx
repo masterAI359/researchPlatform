@@ -1,15 +1,17 @@
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/ReduxToolKit/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/ReduxToolKit/store";
 import { useEffect } from "react";
 
 //TODO: fix bug occurring when using the editor
 
-export default function StepsEditor({ setterFunction, context, chosenIdea }) {
-    const dispatch = useDispatch<AppDispatch>()
+export default function StepsEditor({ setterFunction, context }) {
+    const investigateState = useSelector((state: RootState) => state.investigation);
+    const { step } = investigateState.stepper;
+    const selected = useSelector((state: RootState) => state.bluesky.selected)
+    const dispatch = useDispatch<AppDispatch>();
 
-    console.log(chosenIdea)
     const handleContent = () => {
         let input = editor.getText()
         dispatch(setterFunction(input))
@@ -17,7 +19,7 @@ export default function StepsEditor({ setterFunction, context, chosenIdea }) {
 
 
     const editor = useEditor({
-        content: `${chosenIdea ? chosenIdea : context}
+        content: `${context}
           `,
         extensions: [
             StarterKit.configure({
@@ -46,7 +48,7 @@ export default function StepsEditor({ setterFunction, context, chosenIdea }) {
     useEffect(() => {
 
 
-    }, [chosenIdea])
+    }, [selected])
 
 
 

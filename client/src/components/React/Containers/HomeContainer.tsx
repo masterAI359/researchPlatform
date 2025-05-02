@@ -30,7 +30,7 @@ export default function HomeContainer({ }) {
             <HeroImage />
             <Challenge />
            {/* <ArticlesResult /> */}
-            <BlueSkyPosts />
+            <BlueSkyPosts context = {'home'}/>
         </section>
     )
 }

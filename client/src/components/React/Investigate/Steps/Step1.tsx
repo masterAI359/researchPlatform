@@ -6,11 +6,6 @@ import { getIdea } from "@/ReduxToolKit/Reducers/Investigate/UserPOV"
 import { acceptedInput, denyIncrement } from "@/ReduxToolKit/Reducers/Investigate/Steps"
 import { useSelector, useDispatch } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-import { AnimatePresence } from "framer-motion"
-import BlueSkyPosts from "../../BlueSky/BlueSkyPosts"
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-
 
 export default function Step1({ containerWidth }: any) {
       const investigateState = useSelector((state: RootState) => state.investigation)
@@ -18,10 +13,10 @@ export default function Step1({ containerWidth }: any) {
       const [nextClicked, setNextClicked] = useState<boolean>(false);
       const { showBlueSkySearch } = investigateState.display;
       const { stepper, pov } = investigateState
-      const { step, acceptInput } = stepper
+      const { step, acceptInput, denied } = stepper
       const { idea } = pov
       const dispatch = useDispatch()
-      const chosenTake = selected ? selected.record.text : ''
+      const chosenTake = selected ? selected : idea;
 
       let wordCount = (statement: string) => {
             if (statement !== '') {
@@ -33,10 +28,9 @@ export default function Step1({ containerWidth }: any) {
 
       useEffect(() => {
 
-            if(selected) {
-                  dispatch(getIdea(selected.record.text));
-                  console.log(idea)
-            }
+
+            if(selected && idea !== '') return
+           
 
             window.addEventListener('nextStepClick', () => {
                   setNextClicked(true)
@@ -45,6 +39,16 @@ export default function Step1({ containerWidth }: any) {
             let words: number = null
             if(nextClicked) {
                   words = wordCount(idea);
+            } 
+
+            if(selected && idea !== '') {
+                  dispatch(acceptedInput(true))
+            } else if(selected && idea === '') {
+                  dispatch(acceptedInput(false))
+            }
+
+            if(selected) {
+                  words = wordCount(idea)
             }
            
 
@@ -56,7 +60,7 @@ export default function Step1({ containerWidth }: any) {
                   dispatch(acceptedInput(true))
             }
 
-      }, [idea, acceptInput, nextClicked, showBlueSkySearch, selected])
+      }, [idea, acceptInput, nextClicked, showBlueSkySearch, selected, denied])
 
 
       return (
@@ -80,7 +84,7 @@ export default function Step1({ containerWidth }: any) {
                               <div className="flex justify-items-start gap-2 z-10 w-full">
                                     <div className={`w-full bg-white/10 h-44 sm:h-52 md:w-full lg:h-60 xl:h-80 pb-8 sm:pb-7 rounded-lg border border-solid box-border shadow-material_2
                                     ${acceptInput === null ? 'border-transparent' : acceptInput === true ? 'border-green-500' : 'border-red-800'}`}>
-                                          <StepsEditor context={idea} setterFunction={getIdea} chosenIdea={chosenTake}/>
+                                          <StepsEditor context={chosenTake} setterFunction={getIdea}/>
                                           <div
                                                 className={`flex flex-row-reverse items-center w-full h-fit`}>
                                                 <div className="justify-self-end h-fit w-auto rounded-full">

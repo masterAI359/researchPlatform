@@ -19,8 +19,7 @@ const variants = {
     }
 }
 
-export default function BlueSkyPosts () {
-    const investigateState = useSelector((state: RootState) => state.investigation);
+export default function BlueSkyPosts ({ context }) {
     const posts = useSelector((state: RootState) => state.bluesky.posts);
     const status = useSelector((state: RootState) => state.bluesky.status);
     const [postQuery, setPostQuery] = useState<string>(null);
@@ -51,10 +50,10 @@ export default function BlueSkyPosts () {
       animate='open'
       exit='hidden'
       transition={{ type: "spring", stiffness: 600, damping: 25, duration: 0.05 }}
-      className="lg:p-8"
+      className="lg:p-8 w-full"
       >
-        <div  className='p-4 md:px-8 py-12 mx-auto md:px-12 lg:px-0 xl:px-0 2xl:max-w-7xl'>
-        <div className="bg-gradientup mx-auto overflow-y-hidden flex flex-col grow rounded-3xl w-full h-auto xl:max-w-5xl 2xl:max-w-7xl">
+        <div  className='p-4 md:px-8 w-full py-12 mx-auto md:px-12 lg:px-0 xl:px-0  2xl:max-w-7xl'>
+        <div className="bg-gradientup mx-auto overflow-y-hidden flex flex-col shrink-0 grow rounded-3xl w-full h-auto xl:max-w-5xl 2xl:min-w-7xl 2xl:max-w-7xl">
         <div className="block box-border min-w-full max-w-full mx-auto xs:px-0 md:px-2 2xl:h-full no-scrollbar">
         
         <div
@@ -107,7 +106,7 @@ export default function BlueSkyPosts () {
       </div>
       <ErrorBoundary fallback={'Error occured'}>
       <AnimatePresence>
-        <Posts posts={posts} />
+        <Posts context={context} posts={posts} />
       </AnimatePresence>
       </ErrorBoundary>
         </div>

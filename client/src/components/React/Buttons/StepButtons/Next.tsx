@@ -2,10 +2,12 @@ import type { RootState } from '@/ReduxToolKit/store'
 import { useSelector, useDispatch } from 'react-redux'
 import { increment, denyIncrement, acceptedInput } from "@/ReduxToolKit/Reducers/Investigate/Steps";
 import { motion } from "framer-motion";
+import { selectPost } from '@/ReduxToolKit/Reducers/BlueSky/BlueSkySlice';
 
 
 export default function NextButton({ }) {
   const investigateState = useSelector((state: RootState) => state.investigation)
+  const selected = useSelector((state: RootState) => state.bluesky.selected)
   const { stepper, help, pov } = investigateState
   const { step, denied } = stepper
   const { idea } = pov
@@ -15,17 +17,16 @@ export default function NextButton({ }) {
 
   const handleStep = () => {
     window.dispatchEvent(new CustomEvent('nextStepClick'))
-    if (denied === false) {
+    if (denied === false && idea !== '') {
       dispatch(increment())
+      dispatch(selectPost(null))
     } else if (denied === true) {
       ;
-    } else if (denied === null) {
+    } else if (denied === null && selected === null || idea === '') {
+      dispatch(acceptedInput(false))
       dispatch((denyIncrement(true)))
     }
-    //if (idea === '') {
-    //  dispatch(denyIncrement(true))
-    //  dispatch(acceptedInput(false))
-    //}
+    
   }
 
   return (

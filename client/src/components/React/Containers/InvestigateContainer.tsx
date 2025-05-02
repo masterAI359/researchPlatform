@@ -74,7 +74,7 @@ export default function InvestigateContainer() {
     {!showBlueSkySearch &&  <HeroContainer
         key={'HeroContainer'}
       />}
-      {showBlueSkySearch && <BlueSkyPosts />}
+      {showBlueSkySearch && <BlueSkyPosts context ={'investigate'}/>}
       <div className="w-full h-full grow mx-auto xl:mt-6">
         <motion.div key="StoryContainer">
           <Content

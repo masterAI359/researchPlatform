@@ -58,14 +58,16 @@ export const getFeed = createAsyncThunk(
 interface BSTypes {
 
     status: string,
+    feedStatus: string 
     posts: any | null,
     errorMessage: string | null,
     selected: any
-
+    
 }
 
 const initialState: BSTypes = {
     status: 'idle',
+    feedStatus: 'idle',
     posts: null,
     errorMessage: null,
     selected: null
@@ -95,14 +97,14 @@ export const BlueSkySlice = createSlice({
             state.status = 'rejected'
         })
         builder.addCase(getFeed.pending, (state) => {
-            state.status = 'pending';
+            state.feedStatus = 'pending';
         })
         builder.addCase(getFeed.fulfilled, (state, action) => {
-            state.status = 'fulfilled';
+            state.feedStatus = 'fulfilled';
             state.posts = action.payload;
         })
         builder.addCase(getFeed.rejected, (state) => {
-            state.status = 'rejected';
+            state.feedStatus = 'rejected';
             state.errorMessage = 'Could Not fetch BlueSky Feed'
         })
     }

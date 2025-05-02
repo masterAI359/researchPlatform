@@ -21,7 +21,6 @@ export default function ArticleContainer({ }) {
 
   useEffect(() => {
 
-    console.log(ContentStatus)
 
     if (articles || failedNotifications) {
 

@@ -14,8 +14,8 @@ export default function BackToSavedResearch() {
     }
 
     return (
-        <button type="button" onClick={backToSaved} className="absolute top-2 md:top-1/3 md:left-0.5 z-30 left-2 md:fixed xl:top-1/2 xl:left-12 text-white font-light w-20 h-8 md:w-16 md:h-12 md:w-14
-          lg:w-14 lg:h-12 p-3 sm:p-1.5 transition-all flex justify-center
+        <button type="button" onClick={backToSaved} className="absolute top-4 md:top-1/3 md:left-0.5 z-30 left-2 md:fixed xl:top-1/2 xl:left-12 text-white font-light w-12 h-6 md:w-16 md:h-12 md:w-14
+          lg:w-14 lg:h-12 p-3 sm:p-1.5 transition-all flex justify-center shadow-blue-bottom
           duration-200 bg-white hover:bg-white/10 items-center group
           rounded-2xl">
             <div className="absolute left-11 bottom-12 opacity-0 transition-all duration-200 ease-in-out rounded-lg 

@@ -21,12 +21,18 @@ export default function MobileProfileNav () {
         dispatch(presentManagement(false))
     }}
     type="button" className="inline-flex flex-col items-center justify-center px-5   group">
-      <svg className={`w-5 h-5 mb-2 text-xs transition-all duration-200 ease-in-out
+      <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" 
+      className={`icon icon-tabler icons-tabler-outline icon-tabler-device-ipad-search
+        ${showInvestigations ? 'text-blue-500' : 'text-zinc-400'}
+      `}><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M11.5 21h-5.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v6" />
+      <path d="M9 18h2" /><path d="M18 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M20.2 20.2l1.8 1.8" /></svg>
+
+      {/* <svg className={`w-5 h-5 mb-2 text-xs transition-all duration-200 ease-in-out
         ${showInvestigations ? 'text-blue-500' : 'text-zinc-400'}
         `}
       aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
         <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
-      </svg>
+      </svg> */}
       <span className={`text-xs transition-all duration-200 ease-in-out
         ${showInvestigations ? 'text-blue-500' : 'text-zinc-400'}
         `}>Investigations</span>

@@ -10,6 +10,7 @@
 		"rootDir": "./",
 		"outDir": "./dist",
 		"strict": true,
+		"skipLibCheck": true
 	},
 	"lib": [
 		"es2015"

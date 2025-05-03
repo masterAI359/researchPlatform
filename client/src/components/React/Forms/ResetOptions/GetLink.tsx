@@ -52,7 +52,6 @@ export default function GetLink({ }) {
             emailValidation(emailToReset, setValidEmail)
         }
 
-        console.log(emailToReset, validEmail)
     }, [emailToReset, validEmail])
 
 

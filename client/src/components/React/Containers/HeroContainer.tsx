@@ -41,6 +41,7 @@ export default function HeroContainer({
                     className={`grid grid-cols-1 w-full h-auto mx-auto items-center`}>
                     <InvestigateHero
                     />
+                    <ScrolltoTop />
 
                 </motion.div>)}
 
@@ -59,7 +60,7 @@ export default function HeroContainer({
 
                     </motion.div>) : null}
 
-                {showContent && ContentStatus === 'fulfilled' ?
+                {showContent && ContentStatus !== 'idle' && ContentStatus !== 'pending' ?
                     <motion.div
                         key='Reading'
                         initial={{ opacity: 0}}

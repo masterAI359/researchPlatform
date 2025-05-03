@@ -47,7 +47,7 @@ export default function ArticleContainer({ }) {
         className="min-h-screen h-full 2xl:max-w-7xl xl:max-w-5xl lg:max-w-3xl md:max-w-3xl xs:px-2 md:px-8 scroll-smooth
       inset mx-auto border-white/10 xs:mt-10 xl:mt-0 relative"
       >
-        <div className="hidden lg:block w-full flex flex-row-reverse p-0">
+        <div className="hidden lg:block w-full 2xl:px-6 flex flex-row-reverse p-0">
           <ErrorBoundary>
             {ContentStatus === 'fulfilled' && showContent && articles !== null ? <StoryPaginate /> : null}
 
@@ -64,13 +64,15 @@ export default function ArticleContainer({ }) {
               className="w-full min-h-screen mx-auto relative grow shrink-0">
 
               {ContentStatus === 'pending' && <ArticleLoader key='contentLoader' />}
-              {articles && articles.length > 0 ? articles?.map((articleData: any, index: number) =>
+              {articles && articles.length > 0 && articles?.map((articleData: any, index: number) =>
               (currentStory === index && <Article
                 key={index}
                 index={index}
                 articleData={articleData}
               />)
-              ) : <NoContent key='noResults' />}
+              )}
+
+              {ContentStatus === 'fulfilled' && articles.length < 1 &&  <NoContent key='noResults' />}
 
             </motion.div>
           </AnimatePresence>

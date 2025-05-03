@@ -26,14 +26,14 @@ export default function ReviewPOV() {
                         </h1>
                     </div>
                     <div className="w-full h-full">
-                        <p className="text-zinc-300 text-xs font-light tracking-tight">
+                        <p className="text-zinc-300 text-sm font-light tracking-tight">
                             {idea}
                         </p>
                     </div>
                 </div>
                 <div className="w-full h-full flex flex-col gap-y-4 lg:min-h-20">
                     <div className="w-full border-b border-white/20">
-                        <h1 className="text-white font-light mb-0.5 text-sm 2xl:text-xl ">
+                        <h1 className="text-white font-light mb-0.5 text-base 2xl:text-xl ">
                             <em> Initial Perspective</em>
 
                         </h1>

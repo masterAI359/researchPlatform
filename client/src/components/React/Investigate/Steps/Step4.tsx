@@ -31,7 +31,7 @@ text-center mx-auto xs:h-full box-border flex xs:px-2 md:px-0 basis-full'>
               </div>
 
             </div>
-            <div className="block w-full h-44 sm:h-52 xl:h-80 text-md text-white bg-white/10 border-none focus:ring-1 focus:ring-white shadow-material_2
+            <div className="block w-full border-none h-44 sm:h-52 xl:h-80 2xl:max-w-168 text-md text-white bg-white/10 focus:ring-1 focus:ring-white shadow-material_2
     rounded-lg resize-none text-wrap flex justify-items-start">
               <StepsEditor context={premises} setterFunction={getPremises} />
             </div>

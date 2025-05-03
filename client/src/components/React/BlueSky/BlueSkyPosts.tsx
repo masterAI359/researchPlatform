@@ -52,8 +52,8 @@ export default function BlueSkyPosts ({ context }) {
       transition={{ type: "spring", stiffness: 600, damping: 25, duration: 0.05 }}
       className="lg:p-8 w-full"
       >
-        <div  className='p-4 md:px-8 w-full py-12 mx-auto md:px-12 lg:px-0 xl:px-0  2xl:max-w-7xl'>
-        <div className="bg-gradientup mx-auto overflow-y-hidden flex flex-col shrink-0 grow rounded-3xl w-full h-auto xl:max-w-5xl 2xl:min-w-7xl 2xl:max-w-7xl">
+        <div  className='mt-12 md:mt-0 p-4 md:px-8 w-full py-12 mx-auto md:px-12 lg:px-0 xl:px-0  2xl:max-w-7xl'>
+        <div className="bg-gradientup mx-auto overflow-y-hidden flex flex-col shrink-0 grow rounded-3xl w-full h-auto md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:min-w-6xl 2xl:max-w-6xl">
         <div className="block box-border min-w-full max-w-full mx-auto xs:px-0 md:px-2 2xl:h-full no-scrollbar">
         
         <div

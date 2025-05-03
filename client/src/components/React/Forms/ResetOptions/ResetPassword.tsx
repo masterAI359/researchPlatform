@@ -35,8 +35,6 @@ export default function ResetPassword({ }) {
     const handleSecondEntry = (e: any) => {
         const secondEntry = e.target.value
         dispatch(getSecondPassword(secondEntry))
-        console.log('dispatching')
-        console.log(secondPassword)
     }
 
     const resetPassword = async (e: any) => {

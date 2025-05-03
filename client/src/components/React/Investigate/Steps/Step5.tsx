@@ -52,11 +52,11 @@ export default function Step5({ containerWidth }) {
                         <div className="w-fit h-fit 2xl:mt-0 mt-2 md:mx-0">
                             <motion.button
                                 onClick={beginSearch}
-                                whileTap={{ scale: 0.95 }}
+                                whileTap={{ scale: 0.9 }}
                                 transition={{ type: 'tween', duration: 0.1 }}
                                 className="bg-white rounded-full group 2xl:-translate-x-1
                              md:p-0 xl:mt-8 w-32 h-8 xl:w-44 xl:h-10 mx-auto flex items-center 
-                            text-center hover:bg-white/10 transition-all duration-200 ease-in-out">
+                            text-center hover:bg-white/10 transition-all duration-200 ease-in-out shadow-material_2">
                                 <div className="w-full h-full flex justify-between items-center">
                                     <div className="w-auto h-auto mx-auto">
                                         <p className="text-black group-hover:text-white font-light text-sm text-center xl:text-lg w-fit">

@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { displayBlueSkySearch } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
 import { RootState, AppDispatch } from "@/ReduxToolKit/store";
 import { getFeed } from "@/ReduxToolKit/Reducers/BlueSky/BlueSkySlice";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function SearchBlueSky () {
     const investigateState = useSelector((state: RootState) => state.investigation);
@@ -19,18 +20,35 @@ export default function SearchBlueSky () {
         key="blueSkyButton"
         onClick={showBlueSkySearchForm}
         type="button" 
-        className="rounded-full w-40 md:w-36 lg:w-44 2xl:w-52 h-auto px-2 py-1 lg:py-2 lg:px-3 bg-white text-white group
-        md:group-hover:bg-white/10 md:hover:scale-110 transition-all ease-in-out duration-200 shadow-material_2
+        className="rounded-full w-fit h-auto p-2 bg-black border border-white/20 text-white
+        md:group-hover:bg-white transition-all ease-in-out duration-200 shadow-material
         flex items-center justify-center gap-2"
         >
-        <div className="w-auto h-auto mx-auto">
-            <p className="text-sm 2xl:text-sm text-black md:group-hover:text-white text-nowrap">
-               {showBlueSkySearch ? 'Close' : 'Search BlueSky'}
-            </p>
-        </div>
-        <div className="max-h-7 max-w-7 h-auto w-auto mx-auto text-button_blue">
-        <svg xmlns="http://www.w3.org/2000/svg" width={'100%'} height={'100%'} viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-brand-bluesky"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M6.335 5.144c-1.654 -1.199 -4.335 -2.127 -4.335 .826c0 .59 .35 4.953 .556 5.661c.713 2.463 3.13 2.75 5.444 2.369c-4.045 .665 -4.889 3.208 -2.667 5.41c1.03 1.018 1.913 1.59 2.667 1.59c2 0 3.134 -2.769 3.5 -3.5c.333 -.667 .5 -1.167 .5 -1.5c0 .333 .167 .833 .5 1.5c.366 .731 1.5 3.5 3.5 3.5c.754 0 1.637 -.571 2.667 -1.59c2.222 -2.203 1.378 -4.746 -2.667 -5.41c2.314 .38 4.73 .094 5.444 -2.369c.206 -.708 .556 -5.072 .556 -5.661c0 -2.953 -2.68 -2.025 -4.335 -.826c-2.293 1.662 -4.76 5.048 -5.665 6.856c-.905 -1.808 -3.372 -5.194 -5.665 -6.856z" /></svg>
-        </div>
+        <AnimatePresence mode="wait">
+        {showBlueSkySearch 
+        && <motion.div
+            key='openbs'
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0 }}
+            transition={{ type: 'tween', duration: 0.1 }}
+        className="max-h-6 max-w-6 h-auto w-auto mx-auto">
+<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="md:group-hover:text-red-500 transition-all duration-200 ease-in-out icon icon-tabler icons-tabler-outline text-white icon-tabler-x"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
+        </motion.div> }
+
+        {!showBlueSkySearch && <motion.div
+        key='closebs'
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0 }}
+        transition={{ type: 'tween', duration: 0.1 }}
+        className="max-h-6 max-w-6 h-auto w-auto mx-auto text-button_blue md:group-hover:text-black">
+        <svg xmlns="http://www.w3.org/2000/svg" width={'100%'} height={'100%'} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"
+         className="icon icon-tabler icons-tabler-outline transition-all duration-200 ease-in-out icon-tabler-brand-bluesky"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M6.335 5.144c-1.654 -1.199 -4.335 -2.127 -4.335 .826c0 .59 .35 4.953 .556 5.661c.713 2.463 3.13 2.75 5.444 2.369c-4.045 .665 -4.889 3.208 -2.667 5.41c1.03 1.018 1.913 1.59 2.667 1.59c2 0 3.134 -2.769 3.5 -3.5c.333 -.667 .5 -1.167 .5 -1.5c0 .333 .167 .833 .5 1.5c.366 .731 1.5 3.5 3.5 3.5c.754 0 1.637 -.571 2.667 -1.59c2.222 -2.203 1.378 -4.746 -2.667 -5.41c2.314 .38 4.73 .094 5.444 -2.369c.206 -.708 .556 -5.072 .556 -5.661c0 -2.953 -2.68 -2.025 -4.335 -.826c-2.293 1.662 -4.76 5.048 -5.665 6.856c-.905 -1.808 -3.372 -5.194 -5.665 -6.856z" /></svg>
+
+        </motion.div>}
+        </AnimatePresence>
+      
         </button>
 
     )

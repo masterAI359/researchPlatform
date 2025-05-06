@@ -1,5 +1,5 @@
 import { searchBlueSky } from "@/ReduxToolKit/Reducers/BlueSky/BlueSkySlice";
-import { AnimatePresence, motion } from "framer-motion";
+import {  motion } from "framer-motion";
 import Loader from "../Loaders/Loader";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -51,7 +51,7 @@ export default function BlueSkyPosts ({ context }) {
       animate='open'
       exit='hidden'
       transition={{ type: "spring", stiffness: 600, damping: 25, duration: 0.05 }}
-      className="lg:p-8 w-full"
+      className="lg:p-8 w-full relative"
       >
         <div  className='mt-12 md:mt-6 p-4 md:px-8 w-full py-6 mx-auto md:px-12 lg:px-0 xl:px-0  2xl:max-w-7xl'>
         <div className="bg-gradientup mx-auto flex flex-col shrink-0 grow rounded-3xl w-full h-auto md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:min-w-6xl 2xl:max-w-6xl relative overflow-hidden">
@@ -115,7 +115,7 @@ export default function BlueSkyPosts ({ context }) {
 							</div>
 						</div>
       <ErrorBoundary fallback={'Error occured'}>
-        <Posts context={context} posts={posts} />
+    <Posts key={'postsfetched'} context={context} posts={posts} />
       </ErrorBoundary>
         </div>
         </div>

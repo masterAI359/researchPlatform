@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       animation: {
         wiggle: 'wiggle 1s ease-in-out 3',
+        pulsedot: 'pulsedot 1.5s ease-in-out infinite',
       },
       backgroundImage: {
         'fallback': 'url(src/public/images/fallbacks/fallbackImage.svg)'
@@ -97,6 +98,23 @@ module.exports = {
         "fade-in": "fade-in 0.5s linear forwards",
       },
       keyframes: {
+        pulsedot: {
+          '0%': {
+            transform: 'scale(0.8)',
+            backgroundColor: '#b3d4fc',
+            boxShadow: '0 0 0 0 rgba(178, 212, 252, 0.7)',
+          },
+          '50%': {
+            transform: 'scale(1.2)',
+            backgroundColor: '#6793fb',
+            boxShadow: '0 0 0 10px rgba(178, 212, 252, 0)',
+          },
+          '100%': {
+            transform: 'scale(0.8)',
+            backgroundColor: '#b3d4fc',
+            boxShadow: '0 0 0 0 rgba(178, 212, 252, 0.7)',
+          },
+        },
         wiggle: {
           '0%, 100%': { transform: 'rotate(-3deg)' },
           '50%': { transform: 'rotate(3deg)' },

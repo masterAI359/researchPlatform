@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { RootState } from "@/ReduxToolKit/store";
 import { useDispatch, useSelector } from "react-redux";
-import { displaySelectBar } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
 import HeroContainer from "./HeroContainer";
 import Notes from "../Investigate/Notes/Notes";
 import SelectArticles from "../LinkComponents/SelectLinks";
@@ -10,15 +9,14 @@ import Content from "./Content";
 import PanelContainer from "./PanelContainer";
 import BlueSkyPosts from "../BlueSky/BlueSkyPosts";
 import { AppDispatch } from "@/ReduxToolKit/store";
-import BlueSkySuggestion from "../Buttons/ButtonWrappers/BlueSkySuggestion";
+import InputOptions from "../Investigate/Steps/InputOptions";
 
 export default function InvestigateContainer() {
   const dispatch = useDispatch<AppDispatch>()
   const investigateState = useSelector((state: RootState) => state.investigation)
   const signingOut = useSelector((state: RootState) => state.auth.signOut)
-  const { notes, read, review, help, getArticle, search } = investigateState
-  const { showContent, showReadingTooltip, showBlueSkySearch } = investigateState.display
-  const { step } = investigateState.stepper;
+  const { notes, read, review, help, search } = investigateState
+  const { showContent, showBlueSkySearch } = investigateState.display
   const { articleOptions } = search
   const { gettingHelp } = help
   const { takingNotes } = notes
@@ -71,7 +69,10 @@ export default function InvestigateContainer() {
       className={`w-full shrink-0 flex flex-col grow transition-opacity duration-200 ease-in-out h-full mx-auto justify-center
          items-center relative box-border min-h-svh
          ${signingOut || gettingHelp  ? 'opacity-80 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
-    {!showBlueSkySearch &&  <HeroContainer
+
+        {showBlueSkySearch === null && <InputOptions />}
+        
+    {showBlueSkySearch === false && <HeroContainer
         key={'HeroContainer'}
       />}
       {showBlueSkySearch && <BlueSkyPosts context ={'investigate'}/>}
@@ -88,7 +89,6 @@ export default function InvestigateContainer() {
       </AnimatePresence>
       <AnimatePresence >
         {showContent && <PanelContainer />}
-        {step === 0 && <BlueSkySuggestion />}
       </AnimatePresence>
       <AnimatePresence>
         {takingNotes &&

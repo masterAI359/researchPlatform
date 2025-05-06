@@ -6,23 +6,23 @@ import Popover from "../Tooltips/Popover";
 import UseThisPost from "./UseThisPost";
 import { AnimatePresence } from "framer-motion";
 import { getIdea } from "@/ReduxToolKit/Reducers/Investigate/UserPOV";
-import NormalizeBlueSkyText from "@/helpers/Normailize";
 
 export function BSPost({ post, setClicked, context }) {
   const selected = useSelector((state: RootState) => state.bluesky.selected)
   const dispatch = useDispatch();
   const handle = limitName(post.author.handle);
-  const text = post.record.text
-
+  const text = post.record.text;
 
   const choosePost = () => {
     setClicked(prev => !prev);
-    if(selected === post.record.text) {
+    if(selected !== null && selected === text) {
       dispatch(selectPost(null))
+      setClicked(false)
+    } else if(selected && selected !== text) {
+      
     } else {
       dispatch(selectPost(text))
-      console.log(selected)
-      //const normalized: string = NormalizeBlueSkyText(selected);
+      setClicked(true)
       dispatch(getIdea(text));
     }
   }
@@ -41,7 +41,7 @@ export function BSPost({ post, setClicked, context }) {
       </Popover>}
       </AnimatePresence>
      
-        <figcaption className={`relative flex flex-row items-center gap-2 pb-6 border-b ${post === selected ? 'border-black/10' : 'border-white/10'}`}>
+        <figcaption className={`relative flex flex-row items-center gap-2 pb-6 border-b ${text === selected ? 'border-black/10' : 'border-white/10'}`}>
           <div className='overflow-hidden shrink-0'>
             <img
               src={post.author.avatar ? post.author.avatar : null}

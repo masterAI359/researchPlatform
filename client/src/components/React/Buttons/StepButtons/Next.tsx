@@ -1,8 +1,9 @@
 import type { RootState } from '@/ReduxToolKit/store'
 import { useSelector, useDispatch } from 'react-redux'
-import { increment, denyIncrement, acceptedInput } from "@/ReduxToolKit/Reducers/Investigate/Steps";
+import { increment, denyIncrement, acceptedInput, incrementBy } from "@/ReduxToolKit/Reducers/Investigate/Steps";
 import { motion } from "framer-motion";
 import { selectPost } from '@/ReduxToolKit/Reducers/BlueSky/BlueSkySlice';
+import { useEffect, useRef } from 'react';
 
 
 export default function NextButton({ }) {
@@ -12,6 +13,7 @@ export default function NextButton({ }) {
   const { step, denied } = stepper
   const { idea } = pov
   const { gettingHelp } = help
+  const timerRef = useRef<ReturnType<typeof setTimeout>>();
 
   const dispatch = useDispatch()
 
@@ -26,8 +28,15 @@ export default function NextButton({ }) {
       dispatch(acceptedInput(false))
       dispatch((denyIncrement(true)))
     }
+
     
   }
+
+    useEffect(() => {
+
+    return () => window.removeEventListener('nextStepClick', handleStep);
+
+    }, [denied])
 
   return (
     <motion.div

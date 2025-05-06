@@ -25,7 +25,9 @@ export default function Step1({ containerWidth }: any) {
             }
       }
 
-      console.log(idea)
+   
+        
+
 
       useEffect(() => {
 

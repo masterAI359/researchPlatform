@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { displayBlueSkySearch } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
 import { useNavigate } from "react-router-dom"
-import { RootState } from "@/ReduxToolKit/store"
 import { selectPost } from "@/ReduxToolKit/Reducers/BlueSky/BlueSkySlice"
 import { acceptedInput, denyIncrement } from "@/ReduxToolKit/Reducers/Investigate/Steps"
 
@@ -11,20 +10,15 @@ interface UseThis {
 }
 
 export default function UseThisPost ({ context, post }: UseThis) {
-    const selected = useSelector((state: RootState) => state.bluesky.selected);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-
     const investigateThis = (cntxt: string) => {
-
         if(cntxt === 'investigate') {
             dispatch(displayBlueSkySearch(false));
             dispatch(acceptedInput(true))
-            dispatch(denyIncrement(false))
         } else {
             navigate('/investigate');
-            dispatch(acceptedInput(true))
             dispatch(denyIncrement(false))
         }
     }
@@ -32,7 +26,6 @@ export default function UseThisPost ({ context, post }: UseThis) {
     const unselect = () => {
             dispatch(selectPost(null))
     }
- 
 
     return (
         <div key={post.record.createdAt}  className="relative h-auto w-auto flex flex-col items-start gap-x-8 gap-y-6 rounded-3xl p-8 

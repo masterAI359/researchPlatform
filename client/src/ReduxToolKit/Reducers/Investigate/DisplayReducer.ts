@@ -16,7 +16,7 @@ interface Display {
     showSelectTooltip: boolean,
     showReadingTooltip: boolean,
     showFeedBackForm: boolean,
-    showBlueSkySearch: boolean
+    showBlueSkySearch: boolean | null
 }
 
 const initialState: Display = {
@@ -34,7 +34,7 @@ const initialState: Display = {
     showSelectTooltip: true,
     showReadingTooltip: true,
     showFeedBackForm: null,
-    showBlueSkySearch: false
+    showBlueSkySearch: null
 }
 
 

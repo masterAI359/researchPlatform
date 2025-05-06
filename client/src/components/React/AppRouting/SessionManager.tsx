@@ -36,7 +36,6 @@ export default function SessionManager() {
             dispatch(getSourcesToReview(cachedSources))
         }
 
-
         const { data } = supabase.auth.onAuthStateChange((event, session) => {
 
             if (event === 'INITIAL_SESSION') {

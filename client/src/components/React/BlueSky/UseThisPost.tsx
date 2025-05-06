@@ -15,6 +15,7 @@ export default function UseThisPost ({ context, post }: UseThis) {
 
     const investigateThis = (cntxt: string) => {
         if(cntxt === 'investigate') {
+            dispatch(denyIncrement(false));
             dispatch(displayBlueSkySearch(false));
             dispatch(acceptedInput(true))
         } else {

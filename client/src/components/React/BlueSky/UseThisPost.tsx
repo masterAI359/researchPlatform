@@ -21,6 +21,7 @@ export default function UseThisPost ({ context, post }: UseThis) {
         } else {
             navigate('/investigate');
             dispatch(denyIncrement(false))
+            dispatch(displayBlueSkySearch(false))
         }
     }
 

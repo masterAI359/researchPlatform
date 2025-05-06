@@ -20,7 +20,7 @@ export default function Stance({ }) {
                 </div>
             </header>
             <main className="xs:w-full xs:h-auto mx-auto mb-4">
-                <div className="w-full xs:h-36 2xl:h-52 bg-white/10 rounded-lg">
+                <div className="w-full xs:h-32 sm:h-36 2xl:h-52 bg-white/10 rounded-lg">
                     <StepsEditor context={takeAway} setterFunction={getTakeAways} />
                 </div>
             </main>

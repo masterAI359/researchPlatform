@@ -107,7 +107,7 @@ export default function HeroContainer({
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="h-full w-full mx-auto"
+                    className="h-full w-full max-w-full mx-auto"
                     transition={{
                         type: 'tween',
                         duration: 0.4,

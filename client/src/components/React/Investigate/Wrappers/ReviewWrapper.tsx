@@ -8,16 +8,16 @@ export default function FinishLine() {
 
 
     return (
-        <main className="w-full h-full flex flex-col pt-12 md:pt-0 items-center gap-y-2 px-2">
+        <main className="w-full h-full flex flex-col pt-6 md:pt-16 lg:pt-0 items-center gap-y-1.5 p-1">
             <article
                 className="relative flex flex-col md:flex-row items-center 
-                md:gap-x-2 2xl:gap-x-0 relative mx-auto w-full h-full py-2 rounded-4xl gap-y-1
-                2xl:w-fit 2xl:h-full   2xl:max-w-7xl 
-             2xl:px-2 bg-ebony shadow-inset overflow-hidden 2xl:mt-16">
-                <div className="flex flex-col px-2 2xl:px-1 h-full w-full">
+                md:gap-x-2 2xl:gap-x-0.5 relative mx-auto w-full h-full p-2 rounded-4xl gap-y-0.5
+                2xl:w-fit 2xl:h-full 2xl:max-w-7xl xl:max-w-6xl
+              bg-ebony shadow-inset overflow-hidden lg:mt-16">
+                <div className="flex flex-col 2xl:px-1 h-full w-full">
                     <ReviewPOV />
                 </div>
-                <div className="flex flex-col px-2 2xl:px-1 h-full w-full">
+                <div className="flex flex-col 2xl:px-1 h-full w-full">
                     <ReviewQuestions step={step} />
                 </div>
             </article>

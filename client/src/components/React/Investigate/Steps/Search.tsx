@@ -2,13 +2,12 @@ import Loader from "../../Loaders/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { getQuery } from "@/ReduxToolKit/Reducers/Investigate/UserPOV";
 import { AppDispatch, RootState } from "@/ReduxToolKit/store";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { RetrieveArticles, resetArticles } from "@/ReduxToolKit/Reducers/Investigate/SearchResults";
 import { GetArticleContent } from "@/ReduxToolKit/Reducers/Investigate/Reading";
-import { displaySearch, displayArticleContent } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
+import { displaySearch } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
 
 export default function Search({ }) {
-  const [prevQuery, setPrevQuery] = useState<string>(null)
   const investigateState = useSelector((state: RootState) => state.investigation)
   const { pov, getArticle, read, search } = investigateState
   const { query, searching } = pov
@@ -21,7 +20,6 @@ export default function Search({ }) {
   const getSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 
     dispatch(getQuery(e.target.value))
-    setPrevQuery(query)
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

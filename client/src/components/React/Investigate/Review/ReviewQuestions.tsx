@@ -20,15 +20,15 @@ export default function ReviewQuestions({ step }) {
     const { merit, movedOnIdea } = investigateState.review
 
     return (
-        <div className="h-full py-6 opacity-100 z-1 xs:w-full 2xl:w-[36rem] 2xl:h-[32rem] 2xl:p-10 md:grow mx-auto flex flex-col
+        <div className="h-72 md:h-80 lg:h-88 py-6 opacity-100 z-1 xs:w-full 2xl:w-[36rem] 2xl:h-[32rem] xl:h-96 2xl:p-10 md:grow mx-auto flex flex-col
         2xl:min-h-96 
-        flex-none gap-y-2 md:gap-y-16 bg-gradientdown rounded-3xl ring-1 ring-inset ring-white/5">
+        flex-none gap-y-4 md:gap-y-7 bg-gradientdown rounded-3xl ring-1 ring-inset ring-white/5">
             <header className="w-full h-auto">
-                <h1 className="text-white text-lg 2xl:text-4xl w-full font-light tracking-tight text-center">
+                <h1 className="text-white text-lg lg:text-2xl 2xl:text-4xl w-full font-light tracking-tight text-center">
                     Where you are now?
                 </h1>
             </header>
-            <main className="w-full h-full mx-auto">
+            <main className="w-full h-full mx-auto flex flex-col items-center justify-center">
                 <AnimatePresence mode="wait">
                     {step === 1 &&
                         <motion.div
@@ -38,8 +38,8 @@ export default function ReviewQuestions({ step }) {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ type: 'tween', duration: 0.2 }}
-                            className="w-full h-auto flex flex-col gap-y-3 justify-center">
-                            <div className="flex flex-col gap-y-2 md:py-5 items-center h-full mx-auto">
+                            className="w-full h-auto flex flex-col gap-y-6 justify-center items-center">
+                            <div className="flex flex-col gap-y-2 md:py-3 items-center h-full mx-auto">
                                 <h1 className="text-white font-light w-full tracking-tight text-sm 2xl:text-lg ">
                                     {questions[0]}
                                 </h1>
@@ -83,6 +83,7 @@ export default function ReviewQuestions({ step }) {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ type: 'tween', duration: 0.2 }}
+                            className="w-full"
                         >
                             <Stance />
                         </motion.div>

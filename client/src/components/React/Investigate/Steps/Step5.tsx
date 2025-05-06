@@ -29,14 +29,14 @@ export default function Step5({ containerWidth }) {
                                     Now we search for evidence
                                 </h1>
                             </div>
-                            <div className="w-fit h-full">
+                            <div className="w-fit h-full pb-1">
                                 <HelpButton
                                     info={Step5Help}
                                 />
                             </div>
                         </header>
                     </div>
-                    <main className="w-fit h-full flex flex-col justify-start md:justify-center gap-y-4 md:gap-y-2 xl:mt-16">
+                    <main className="w-full md:w-fit h-full flex flex-col justify-start md:justify-center gap-y-5 md:gap-y-2 xl:mt-16">
                         <div className="w-full h-full flex flex-col gap-y-4">
                             <p className="text-xs xl:text-lg w-fit text-white font-light tracking-tight text-left">
                                 The idea: <span className="text-zinc-400 font-light tracking-tight">
@@ -49,12 +49,12 @@ export default function Step5({ containerWidth }) {
                                 Let's look for some evidence to support the idea you're evaluating
                             </p>
                         </div>
-                        <div className="w-fit h-fit 2xl:mt-0 mt-2 md:mx-0">
+                        <div className="w-fit h-fit 2xl:mt-0 mt-2 mx-auto md:mx-0">
                             <motion.button
                                 onClick={beginSearch}
                                 whileTap={{ scale: 0.9 }}
                                 transition={{ type: 'tween', duration: 0.1 }}
-                                className="bg-white rounded-full group 2xl:-translate-x-1
+                                className="bg-white rounded-full group 2xl:-translate-x-1 mb-2 sm:mb-0
                              md:p-0 xl:mt-8 w-32 h-8 xl:w-44 xl:h-10 mx-auto flex items-center 
                             text-center hover:bg-white/10 transition-all duration-200 ease-in-out shadow-material_2">
                                 <div className="w-full h-full flex justify-between items-center">

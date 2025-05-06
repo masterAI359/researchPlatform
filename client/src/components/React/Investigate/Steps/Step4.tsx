@@ -12,21 +12,21 @@ export default function Step4({ containerWidth }: any) {
 
   return (
     <div style={{ flexShrink: 0, maxWidth: containerWidth }}
-      className='xs:w-full
+      className='w-full 2xl:max-w-168
 text-center mx-auto xs:h-full box-border flex xs:px-2 md:px-0 basis-full'>
       <div className="inline-block h-fit box-border mx-auto min-w-full max-w-full 2xl:h-full">
         <div className="flex flex-col items-center w-full 
        xs:px-0 relative lg:rounded-t-[3rem]">
           <div className="text-center relative z-10 w-full">
-            <div className="w-full box-border border-b h-fit border-white/10 lg:mb-4 xs:mb-2
+            <div className="w-full box-border border-b h-fit border-white/10 lg:mb-4 mb-2
            flex flex-row gap-x-8 xs:items-center  md:items-baseline">
               <div className="w-fit flex justify-items-start">
-                <h1 className="2xl:text-3xl md:text-2xl xs:text-md tracking-tight font-light text-white pb-2">
+                <h1 className="2xl:text-3xl md:text-2xl xs:text-md tracking-tight font-light text-white">
                   What would support this claim?
                 </h1>
               </div>
 
-              <div className="w-fit h-full justify-items-start xs:mb-2 opacity-100">
+              <div className="w-fit h-full justify-items-start mb-1 sm:mb-2 opacity-100">
                 <HelpButton info={Step4Help} />
               </div>
 

@@ -31,7 +31,7 @@ export default function Step2({ containerWidth }: any) {
       <div
         className="min-w-full lg:h-full content-center mx-auto box-border flex flex-col justify-center my-auto md:px-0">
         <div className="w-full h-auto border-b border-white/10 mb-4">
-          <header className="w-auto h-auto mx-auto mb-1 2xl:mb-2 flex sm:gap-x-8 xs:gap-x-4 items-center">
+          <header className="w-auto h-auto mx-auto mb-1 2xl:mb-2 flex gap-x-8 items-center">
             <h1 className="text-white text-nowrap 2xl:text-3xl md:text-2xl sm:text-xl xs:text-md font-light tracking-tight text-left w-auto sm:w-auto">
               Acknowledge biases
             </h1>

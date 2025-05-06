@@ -57,7 +57,7 @@ export default function InvestigateContainer() {
   return (
     <section
       ref={containerRef}
-      className={`max-w-full md:w-full shrink-0 flex flex-col grow transition-opacity duration-200 ease-in-out h-full mx-auto justify-center
+      className={`max-w-full sm:max-w-dvw md:w-full shrink-0 flex flex-col grow transition-opacity duration-200 ease-in-out h-full mx-auto justify-center
          items-center relative box-border min-h-svh
          ${signingOut || gettingHelp  ? 'opacity-80 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
 

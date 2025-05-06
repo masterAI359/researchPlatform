@@ -37,24 +37,15 @@ export default function InvestigateContainer() {
       bottom: constraintsRect.height - notesRect.height
     })
   }
-  
-  function scrollToView() {
-    containerRef.current.scrollIntoView({ behavior: "smooth", alignToTop: true })
-  }
+
 
   useEffect(() => {
-
-    if (ContentStatus === 'pending') {
-      scrollToView()
-    }
-    if (finiished) {
-     // scrollToView()
-    }
+   
     if (containerRef.current && notesRef.current) {
 
       handleDragConstraints()
     }
-  }, [finiished])
+  }, [])
 
   useEffect(() => {
 
@@ -66,7 +57,7 @@ export default function InvestigateContainer() {
   return (
     <section
       ref={containerRef}
-      className={`w-full shrink-0 flex flex-col grow transition-opacity duration-200 ease-in-out h-full mx-auto justify-center
+      className={`max-w-full md:w-full shrink-0 flex flex-col grow transition-opacity duration-200 ease-in-out h-full mx-auto justify-center
          items-center relative box-border min-h-svh
          ${signingOut || gettingHelp  ? 'opacity-80 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
 
@@ -77,10 +68,8 @@ export default function InvestigateContainer() {
       />}
       {showBlueSkySearch && <BlueSkyPosts context ={'investigate'}/>}
       <div className="w-full h-full grow mx-auto xl:mt-6">
-        <motion.div key="StoryContainer">
           <Content
           />
-        </motion.div>
       </div>
       <AnimatePresence>
         {articleOptions && articleOptions.length > 0 &&

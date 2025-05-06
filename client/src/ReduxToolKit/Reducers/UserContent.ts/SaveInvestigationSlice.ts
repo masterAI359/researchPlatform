@@ -23,7 +23,6 @@ export const saveUserInvestigation = createAsyncThunk(
     'user/SaveInvestigation',
     async (investigationData: any, thunkAPI) => {
         const { idea, initial_perspective, biases, premises, ending_perspective, changed_opinion, new_concepts, takeaway, user_id, had_merit, sources } = investigationData
-        console.log(sources)
         const { data, error } = await supabase
             .from('investigations')
             .insert([{

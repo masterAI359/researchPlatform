@@ -58,15 +58,15 @@ export default function Posts ({ posts, context }) {
 									 <div style={{
                     animationPlayState: selected ? 'paused' : 'running'
                    }} className={`relative flex-shrink-0 h-full items-center animate-scroller2`}>
-										{firstHalf !== null && firstHalf.map((post: any) => (
-                      <BSPost context={context} key={post.record.text} post={post} setClicked={setClicked}/>
+										{firstHalf !== null && firstHalf.map((post: any, index: number) => (
+                      <BSPost context={context} key={post.record.text + index.toString()} post={post} setClicked={setClicked}/>
 										))}
 									</div>
 									<div style={{
                     animationPlayState: selected ? 'paused' : 'running'
                    }} className={`relative flex-shrink-0 h-full items-center animate-scroller`}>
-										{secondHalf !== null && secondHalf.map((post: any) => (
-										<BSPost context={context} key={post.record.text} post={post} setClicked={setClicked}/>
+										{secondHalf !== null && secondHalf.map((post: any, index: number) => (
+										<BSPost context={context} key={post.record.text + index.toString()} post={post} setClicked={setClicked}/>
 										))}
 									</div>
 							</div>

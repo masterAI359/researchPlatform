@@ -10,7 +10,7 @@ export default function StepWizard({ currentStep, setCurrentStep }: any) {
 
 
     return (
-        <motion.div className="w-full h-fit flex items-baseline mx-auto absolute top-0 sm:-top-4 block md:hidden">
+        <motion.div className="w-full h-fit flex items-baseline mx-auto absolute top-0 sm:-top-4 block lg:hidden">
             <motion.ol
                 className="flex items-center my-auto justify-center justify-between
          w-11/12 sm:w-2/3 lg:w-5/6 lg:mx-auto xs:h-28 lg:min-h-28 mx-auto">

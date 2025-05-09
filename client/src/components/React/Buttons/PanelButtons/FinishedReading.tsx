@@ -33,7 +33,7 @@ export function FinishedReading({ }) {
 
 
             {showReadingTooltip && <GuideDoneReading />}
-            {!showReadingTooltip && <div className="absolute p-1 bg-white z-50 hidden transition-all duration-200 ease-in-out md:group-hover:block bottom-11 -left-1
+            {!showReadingTooltip && <div className="absolute p-1 bg-white z-50 hidden transition-all duration-200 ease-in-out md:group-hover:block bottom-12 -left-5
             rounded-md items-center border border-astro_gray shadow-thick after:content-[''] after:absolute after:bottom-[-10px] after:left-1/2 
             after:transform after:-translate-x-1/2 after:border-t-[10px] after:border-l-[10px] after:border-r-[10px] after:border-b-0 
             after:border-t-white after:border-l-transparent after:border-r-transparent after:border-b-transparent">

@@ -15,7 +15,7 @@ export default function TakeNotes({ }) {
         rounded-lg transition-all duration-300 m-auto relative
         ease-in-out group">
 
-            <div className="absolute p-1 bg-white z-50 hidden transition-all duration-200 ease-in-out md:group-hover:block bottom-10 -left-1
+            <div className="absolute p-1 bg-white z-50 hidden transition-all duration-200 ease-in-out md:group-hover:block bottom-12 -left-4
             rounded-md items-center border border-astro_gray shadow-thick after:content-[''] after:absolute after:bottom-[-10px] after:left-1/2 
             after:transform after:-translate-x-1/2 after:border-t-[10px] after:border-l-[10px] after:border-r-[10px] after:border-b-0 
             after:border-t-white after:border-l-transparent after:border-r-transparent after:border-b-transparent">

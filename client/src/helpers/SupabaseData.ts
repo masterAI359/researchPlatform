@@ -4,11 +4,13 @@ import { SavedArticle } from "@/env";
 
 
 export const checkArticle = async (
-    setArticleExists: Function,
+    setArticleExists: (articleExists: boolean) => void,
     article_url: string,
     id: string,
-    currentSession: any
-) => {
+    currentSession: { user: { id: string} } | null
+        
+    ): Promise<void> => {
+
 
     try {
         const { data, error } = await supabase
@@ -29,7 +31,14 @@ export const checkArticle = async (
     }
 }
 
-export const saveArticle = async (dataToSave: SavedArticle, setShowNotification: Function, setArticleExists: Function, articleExists: boolean, setRegisteredExclusiveFeature: Function) => {
+export const saveArticle = async (
+    dataToSave: SavedArticle,
+    setShowNotification: (showNotification: boolean) => void, 
+    setArticleExists: (articleExists: boolean) => void, 
+    articleExists: boolean, 
+    setRegisteredExclusiveFeature: (registeredExlusiveFeature: boolean) => void
+
+): Promise<void> => {
 
     const { text, url, id, image_url, summary, title, authors, date, provider, fallbackDate } = dataToSave
 
@@ -90,7 +99,10 @@ export const saveArticle = async (dataToSave: SavedArticle, setShowNotification:
 
 
 
-export const saveInvestigation = async (investigationData: any, setSavingInvestigation?: Function, setSaveSuccessful?: Function) => {
+export const saveInvestigation = async (investigationData: any, setSavingInvestigation?: Function, setSaveSuccessful?: Function
+
+
+): Promise<boolean> => {
 
     const { idea, initial_perspective, biases, premises, ending_perspective, changed_opinion, new_concepts, takeaway, user_id } = investigationData
 
@@ -113,7 +125,7 @@ export const saveInvestigation = async (investigationData: any, setSavingInvesti
         console.log(error.message)
         return false
     } else if (data) {
-        setSaveSuccessful(true)
+        setSaveSuccessful?.(true)
         return true
     }
 

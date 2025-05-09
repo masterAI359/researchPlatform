@@ -9,6 +9,7 @@ import ReviewReducer from '../Investigate/Review'
 import HelpReducer from '../Investigate/HelpModal'
 import EndInvestigateReducer from '../Investigate/EndInvestigation'
 import DisplayReducer from '../Investigate/DisplayReducer'
+import WikipediaSlice  from "../Investigate/WikipediaSlice";
 
 const investigateReducer = combineReducers({
     stepper: StepsReducer,
@@ -21,6 +22,8 @@ const investigateReducer = combineReducers({
     help: HelpReducer,
     end: EndInvestigateReducer,
     display: DisplayReducer,
+    wiki: WikipediaSlice
+
 })
 
 

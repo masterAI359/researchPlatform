@@ -1,0 +1,7 @@
+/* FullText component CSS for highlighting text */
+
+::selection {
+    background-color: white;
+    color: black;
+
+}

@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, isRejectedWithValue } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, isRejectedWithValue, PayloadAction } from "@reduxjs/toolkit";
 import { act } from "react";
 
 
@@ -68,7 +68,7 @@ export const WikipediaSlice = createSlice({
         selectingText: (state) => {
             state.gettingSelection = !state.gettingSelection
         },
-        getModalPosition: (state, action) => {
+        getModalPosition: (state, action: PayloadAction<{x: number, y: number}>) => {
          state.modalPosition = action.payload
         },
         getSelectedText: (state, action) => {

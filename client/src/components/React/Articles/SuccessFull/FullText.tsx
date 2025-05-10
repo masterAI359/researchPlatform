@@ -1,28 +1,24 @@
 import { AppDispatch, RootState } from "@/ReduxToolKit/store"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getModalPosition, getSelectedText } from "@/ReduxToolKit/Reducers/Investigate/WikipediaSlice";
-
+import TextPopover from "../../Tooltips/TextPopover";
+import { ExtractThis } from "../../Tooltips/TextPopover";
 
 export default function FullText({ article_text }) {
     const investigateState = useSelector((state: RootState) => state.investigation);
     const dispatch = useDispatch<AppDispatch>();
     const { gettingSelection, modalPosition, selectedText } = investigateState.wiki;
-    const [before, setBefore] = useState();
-    const [after, setAfter] = useState();
-    const [highlighted, setHighlighted] = useState();
    
     const handleHighlightStart = (e: React.MouseEvent<HTMLDivElement>) => {
         console.log('start called', gettingSelection)
         if(!gettingSelection) {
             return
         } else {
-            const rect = e.currentTarget.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+            const x: number = e.pageX;
+            const y: number = e.pageY;
+        
             dispatch(getModalPosition({x, y}));
-
-        window.getSelection()?.removeAllRanges();
         }
 
     }
@@ -34,50 +30,35 @@ export default function FullText({ article_text }) {
 
         if(selection && selection.rangeCount > 0) {
             const selectedTextString = selection.toString().trim();
-            const range = selection.getRangeAt(0)
-            console.log(range)
-            const start = article_text.slice(0, range.startOffset)
-            const end = article_text.slice(range.endOffset);
-            setBefore(start)
-            setAfter(end);
             dispatch(getSelectedText(selectedTextString));
         }
         }
     }
 
     useEffect(() => {
-
-        console.log({ "Before": before});
-        console.log({ "After": after});
+      
         console.log({ "Highlighted": selectedText });
+        console.log(modalPosition)
 
-    }, [before, after])
+    }, [selectedText])
     
 
-    const mark = (
-        <>
-        <span className="text-white font-serif">
-            {before}
-        </span>
-         <span className="bg-white text-black w-fit rounded-md">
-            {selectedText}
-        </span>
-          <span className="text-white font-serif">
-            {after}
-        </span>
-        </>
-        
-    )
+   
 
 
     return (
         <div
             onMouseDown={(e) => handleHighlightStart(e)}
             onMouseUp={handleHighlightEnd}
-            className={`pt-6 text-white h-full font-serif xl:text-lg font-light tracking-tight 
-                xs:leading-6 md:leading-8 whitespace-pre-wrap  pb-16 transition-all duration-1000 ease-in-out`}
+            className={`pt-6 text-white w-full h-full font-serif xl:text-lg font-light tracking-tight relative 
+                xs:leading-6 md:leading-8 whitespace-pre-wrap  pb-16 transition-all duration-1000 ease-in-out
+                selection:bg-blue-300 selection:text-black`}
         >
-           {!selectedText ? article_text : mark}
+            {selectedText && 
+            <TextPopover>
+                <ExtractThis />    
+                </TextPopover>}
+            {article_text}
         </div>
     )
 }

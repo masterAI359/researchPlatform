@@ -25,10 +25,12 @@ export default function WikiExtractLoader () {
         animate="open"
         exit="closed"
         transition={{ type: 'tween', duration: 0.2 }}
-        className="h-52 w-52 relative"
+        className="h-24 w-24 relative flex items-center justify-center"
         
         >
-            <Lottie animationData={loadingWiki} autoPlay={true} loop={true} width={50} height={50} />
+            <div className="w-fit h-fit">
+            <Lottie animationData={loadingWiki} autoPlay={true} loop={true} width={25} height={25} />
+            </div>
         </motion.div>
     )
 }

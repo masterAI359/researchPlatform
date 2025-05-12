@@ -28,7 +28,7 @@ export default function FullText({ article_text }) {
 
     const handleHighlightEnd = () => {
         if(gettingSelection) {
-  const selection = window.getSelection();
+        const selection = window.getSelection();
 
         if(selection && selection.rangeCount > 0) {
             const selectedTextString = selection.toString().trim();

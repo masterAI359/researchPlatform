@@ -1,4 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { act } from "react";
+
+
+interface Extracts {
+    title: string,
+    extract: string
+}
 
 interface FinishedState {
     wrapUp: boolean | null,
@@ -9,6 +16,7 @@ interface FinishedState {
     merit: boolean | null,
     movedOnIdea: boolean | null,
     takeAway: string | null,
+    extracts: Extracts[]
 }
 
 
@@ -22,6 +30,12 @@ const initialState: FinishedState = {
     merit: null,
     movedOnIdea: null,
     takeAway: '',
+    extracts: []
+}
+
+type UpdateExtractPayload = {
+    title: string;
+    extract: string;
 }
 
 export const ReviewSlice = createSlice({
@@ -52,7 +66,18 @@ export const ReviewSlice = createSlice({
         getTakeAways: (state, action) => {
             state.takeAway = action.payload
         },
+        getExtract: (state, action: PayloadAction<UpdateExtractPayload>) => {
+            const { title, extract } = action.payload;
+            const extracted = {title: title, extract: extract}
+            const exists = state.extracts.some((obj: Extracts) => obj.title === extracted.title);
 
+            if(exists) {
+                state.extracts = state.extracts.filter((obj) => obj.title !== extracted.title);
+            } else {
+                state.extracts.push(extracted);
+            }
+
+        }
 
     }
 })
@@ -67,7 +92,7 @@ export const {
     getMerit,
     moved,
     getTakeAways,
-
+    getExtract
 } = ReviewSlice.actions
 
 export default ReviewSlice.reducer

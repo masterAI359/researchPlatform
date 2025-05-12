@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createPortal } from "react-dom";
-import { getWikiExtract } from "@/ReduxToolKit/Reducers/Investigate/WikipediaSlice";
+import { getSelectedText, getWikiExtract } from "@/ReduxToolKit/Reducers/Investigate/WikipediaSlice";
 import WikiExtractLoader from "../Loaders/WikiExtractLoader";
 
 const variants = {
@@ -60,7 +60,8 @@ export function ExtractThis () {
     const retrieveWikiExtract = () => {
 
       console.log('calling')
-      dispatch(getWikiExtract(selectedText))
+      dispatch(getWikiExtract(selectedText));
+      dispatch(getSelectedText(null));
     }
 
     return (

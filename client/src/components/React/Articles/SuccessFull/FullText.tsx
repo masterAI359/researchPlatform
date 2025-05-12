@@ -1,14 +1,16 @@
 import { AppDispatch, RootState } from "@/ReduxToolKit/store"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getModalPosition, getSelectedText } from "@/ReduxToolKit/Reducers/Investigate/WikipediaSlice";
+import { clearWikiSlice, getModalPosition, getSelectedText, selectingText } from "@/ReduxToolKit/Reducers/Investigate/WikipediaSlice";
 import TextPopover from "../../Tooltips/TextPopover";
 import { ExtractThis } from "../../Tooltips/TextPopover";
+import { AnimatePresence } from "framer-motion";
+import WikiTermExtract from "../../Modals/WikiTermExtract";
 
 export default function FullText({ article_text }) {
     const investigateState = useSelector((state: RootState) => state.investigation);
     const dispatch = useDispatch<AppDispatch>();
-    const { gettingSelection, modalPosition, selectedText } = investigateState.wiki;
+    const { gettingSelection, modalPosition, selectedText, extract, status } = investigateState.wiki;
    
     const handleHighlightStart = (e: React.MouseEvent<HTMLDivElement>) => {
         console.log('start called', gettingSelection)
@@ -31,16 +33,20 @@ export default function FullText({ article_text }) {
         if(selection && selection.rangeCount > 0) {
             const selectedTextString = selection.toString().trim();
             dispatch(getSelectedText(selectedTextString));
+            dispatch(selectingText())
         }
         }
     }
 
     useEffect(() => {
       
-        console.log({ "Highlighted": selectedText });
-        console.log(modalPosition)
+       
 
-    }, [selectedText])
+      //  return () => {
+      //      dispatch(clearWikiSlice());
+      //  }
+
+    }, [status, selectedText])
     
 
    
@@ -54,10 +60,14 @@ export default function FullText({ article_text }) {
                 xs:leading-6 md:leading-8 whitespace-pre-wrap  pb-16 transition-all duration-1000 ease-in-out
                 selection:bg-blue-300 selection:text-black`}
         >
-            {selectedText && 
+            {selectedText && status === 'idle' &&
             <TextPopover>
                 <ExtractThis />    
                 </TextPopover>}
+
+            <AnimatePresence>
+                {status !== 'idle' && <WikiTermExtract />}
+            </AnimatePresence>
             {article_text}
         </div>
     )

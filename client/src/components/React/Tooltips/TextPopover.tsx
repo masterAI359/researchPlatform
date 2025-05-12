@@ -1,8 +1,10 @@
-import { RootState } from "@/ReduxToolKit/store";
-import { motion } from "framer-motion";
+import { AppDispatch, RootState } from "@/ReduxToolKit/store";
+import { motion, AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createPortal } from "react-dom";
+import { getWikiExtract } from "@/ReduxToolKit/Reducers/Investigate/WikipediaSlice";
+import WikiExtractLoader from "../Loaders/WikiExtractLoader";
 
 const variants = {
   closed: { opacity: 0 },
@@ -11,18 +13,17 @@ const variants = {
 
 export default function TextPopover({ children }) {
     const investigateState = useSelector((state: RootState) => state.investigation);
-    const { modalPosition } = investigateState.wiki;
+    const { modalPosition, status, extract } = investigateState.wiki;
 
     useEffect(() => {
 
-      console.log(modalPosition.x, modalPosition.y)
-    }, [modalPosition])
+    }, [modalPosition, status])
 
     if(!modalPosition) return null
 
  const textpopovercomponent = (
     <motion.div
-    style={{ top: modalPosition.y-235, left: modalPosition.x -140, position: 'absolute'}}
+    style={{ top: modalPosition.y-227, left: modalPosition.x -140, position: 'absolute'}}
       variants={variants}
       initial="closed"
       animate="open"
@@ -41,7 +42,7 @@ export default function TextPopover({ children }) {
             border-r-8 border-r-transparent
             border-t-8 border-t-white
           "
-        />
+        ></div>
        
       </div>
     </motion.div>
@@ -54,6 +55,13 @@ export default function TextPopover({ children }) {
 export function ExtractThis () {
     const investigateState = useSelector((state: RootState) => state.investigation);
     const { selectedText } = investigateState.wiki;
+    const dispatch = useDispatch<AppDispatch>();
+
+    const retrieveWikiExtract = () => {
+
+      console.log('calling')
+      dispatch(getWikiExtract(selectedText))
+    }
 
     return (
           <div className="relative h-fit w-fit flex flex-col items-start gap-x-8 gap-y-6 rounded-3xl p-8
@@ -69,7 +77,9 @@ export function ExtractThis () {
                 </p>
                 <p className="mx-auto text-sm text-white" />
                 <div className="inline-flex flex-no-wrap gap-x-4 items-center mt-8 w-full">
-                    <button type="button" className="text-sm py-2 w-full px-4 border focus:ring-2 rounded-full border-transparent bg-black lg:hover:bg-blue-500 text-white duration-200 focus:ring-offset-2 focus:ring-white hover:text-white inline-flex items-center justify-center ring-1 ring-transparent">
+                    <button
+                    onClick={retrieveWikiExtract}
+                    type="button" className="text-sm py-2 w-full px-4 border focus:ring-2 rounded-full border-transparent bg-black lg:hover:bg-blue-500 text-white duration-200 focus:ring-offset-2 focus:ring-white hover:text-white inline-flex items-center justify-center ring-1 ring-transparent">
                         Yes
                     </button>
                     <button  type="button" className="text-sm py-2 w-full px-4 border focus:ring-2 rounded-full border-transparent bg-black lg:hover:bg-black/60 text-white duration-200 focus:ring-offset-2 focus:ring-white hover:text-white inline-flex items-center justify-center ring-1 ring-transparent">

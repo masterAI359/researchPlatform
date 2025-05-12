@@ -14,6 +14,8 @@ export const getWikiExtract = createAsyncThunk('investigate/getWikiExtract', asy
     term: string
     ):Promise<any> => {
 
+    console.log('calling wikipedia thunk')
+
     const encodedQuery: string = encodeURIComponent(term);
 
     const url: string = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodedQuery}`;
@@ -86,8 +88,8 @@ export const WikipediaSlice = createSlice({
             state.extract = action.payload.extract;
             state.title = action.payload.title;
             state.timestamp = action.payload.timestamp;
-            state.desktopLink = action.payload.desktop.page;
-            state.mobileLink = action.payload.mobile.page;
+        //    state.desktopLink = action.payload.desktop.page;
+        //    state.mobileLink = action.payload.mobile.page;
         })
         builder.addCase(getWikiExtract.rejected, (state) => {
             state.status = 'rejected';

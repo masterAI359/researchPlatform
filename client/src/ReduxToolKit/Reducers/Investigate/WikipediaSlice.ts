@@ -11,7 +11,7 @@ const options: OptionsTypes = {
 }
 
 export const getWikiExtract = createAsyncThunk('investigate/getWikiExtract', async (
-    term: string
+    term: string, thunkAPI
     ):Promise<any> => {
 
     console.log('calling wikipedia thunk')
@@ -30,6 +30,7 @@ export const getWikiExtract = createAsyncThunk('investigate/getWikiExtract', asy
 
     } catch (err) {
         console.log(err);
+        return thunkAPI.rejectWithValue('Issue extracting from Wikipedia')
     }
 })
 

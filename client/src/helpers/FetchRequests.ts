@@ -47,11 +47,14 @@ export const getWikiDetails = async (
     try {
             const result = await fetch(url, options);
             if(!result.ok) {
+               
                 throw new Error('Could not connect to Wikipedia API!');
             }
             const data = await result.json();
             if(data) {
                 setExplanation(data);
+            } else {
+                 setExplanation("failed to connect to Wikipedia API :/")
             }
 
     } catch (err) {

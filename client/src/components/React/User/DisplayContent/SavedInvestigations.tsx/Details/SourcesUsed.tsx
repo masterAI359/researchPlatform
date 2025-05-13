@@ -1,39 +1,82 @@
 import { RootState } from "@/ReduxToolKit/store"
-import { useSelector } from "react-redux"
-import ArticleSaved from "../../UserArticles/ArticleSaved"
-import NoSavedSources from "../NoSavedSources"
-import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { readSavedArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
+import { useNavigate } from "react-router-dom"
 
-
-export default function SourcesUsed() {
-    const sources = useSelector((state: RootState) => state.userWork.sourcesToReview)
-
-    useEffect(() => {
-    }, [sources])
+export function SourcesFromResearch () {
+const sources = useSelector((state: RootState) => state.userWork.sourcesToReview)
 
     return (
-        <section className="lg:p-8">
-            <div
-                className="mx-auto 2xl:max-w-7xl py-12 2xl:py-0 lg:px-16 md:px-12 px-2 xl:px-12 items-center relative w-full">
-                <div
-                    className="relative isolate lg:flex-col overflow-hidden bg-gradient-to-tr from-ebony to-mirage rounded-4xl p-10 lg:flex">
-                    <div className="pb-12">
-                        <h2
-                            className="text-3xl tracking-tight font-light lg:text-3xl text-white">
-                            Saved Sources
-                        </h2>
-                    </div>
-                    <div className="h-full w-full mt-12">
-                        <ul className="flex flex-col h-auto gap-12">
-                            {sources !== null && sources.length > 0 ? sources?.map((source: any, index: number) => (
-                                <li key={source.article_url}>
-                                    <ArticleSaved key={index} index={index} article={source} />
-                                </li>
-                            )) : <NoSavedSources />}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
+         <ol role="list" className="grid gap-12 mt-24 max-w-5xl mx-auto">
+             <span className="text-blue-400">Sources used</span>
+            {
+              sources.map((source) => (
+                  <ArticleFromResearch
+                   source={source}
+                  />
+                ))
+            }
+          </ol>
+    )
+}
+
+
+function ArticleFromResearch ({ 
+    source
+ }) {
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const articleData = {    
+        article_image: source.image_url,
+        logo: null,
+        source: source.provider,
+        date: source.date,
+        article_pub_date: source.date_published,
+        article_title: source.title,
+        article_authors: source.authors,
+        article_url: source.url,
+        article_text: source.text,
+        summary: source.summary,
+        }
+
+    console.log(source.date_published)
+
+     const handleArticleSelection = () => {
+            dispatch(readSavedArticle(source))
+            navigate('/SavedArticle')
+        }
+
+
+    return (
+
+        
+        <li key={source.id} className="cursor-pointer">
+  <a
+    className="grid grid-cols-1 gap-12 lg:gap-24 md:grid-cols-2 items-center"
+    href={source.url}
+    title={source.title}>
+    <div className="group"  onClick={handleArticleSelection}>
+      <h3
+       
+        className="text-3xl mt-6 tracking-tight font-light lg:text-4xl text-white/80 md:group-hover:text-white transition-all duration-200 ease-in-out">
+        {source.title}
+      </h3>
+      <p className="text-zinc-400 text-xs mt-6">
+        {source.authors[0]} - <span> <time className="text-zinc-400 md:group-hover:text-blue-400 transition-all ease-in-out duration-200" dateTime={source.pubDate}>{source.date_published}</time></span>
+      </p>
+         <p className="text-zinc-400 text-xs mt-6">
+        Published by - <span className="text-zinc-400 md:group-hover:text-blue-400 transition-all ease-in-out duration-200">{source.provider} </span>
+      </p>
+    </div>
+    <img
+      className="aspect-[16/9] w-4/5 rounded-3xl bg-zinc-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+      width="560"
+      height="380"
+      src={source.image_url}
+    />
+  </a>
+</li>
     )
 }

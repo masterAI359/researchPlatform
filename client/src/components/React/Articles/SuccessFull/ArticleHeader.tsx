@@ -19,12 +19,11 @@ export default function ArticleHeader({ articleData, setFullStory, fullStory }) 
         date,
         article_pub_date,
         article_title,
-        index,
         article_authors,
         article_url,
         article_text,
         summary,
-        cleanedAuthors} = articleData
+        } = articleData
 
 
 
@@ -53,6 +52,7 @@ export default function ArticleHeader({ articleData, setFullStory, fullStory }) 
 
     const dateFormatted = date ? formatDate(date) : formatDate(article_pub_date)
 
+    if(date) console.log(date);
 
     const dataToSave: SavedArticle = {
         title: article_title,

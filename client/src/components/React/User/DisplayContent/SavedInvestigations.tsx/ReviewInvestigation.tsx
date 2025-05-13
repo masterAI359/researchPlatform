@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux"
 import DetailsTable from "./Details/DetailsTable"
-import SourcesUsed from "./Details/SourcesUsed"
+import { SourcesFromResearch } from "./Details/SourcesUsed"
 import { RootState } from "@/ReduxToolKit/store"
 import { useLayoutEffect } from "react"
 import { getInvestigationSources } from "@/helpers/SupabaseData"
@@ -9,9 +9,11 @@ import BackToSavedResearch from "./BackToSavedResearch"
 import ErrorBoundary from "@/components/React/ErrorBoundaries/ErrorBoundary"
 import LostData from "@/components/React/ErrorMessages/LostData"
 import ScrolltoTop from "@/components/React/AppRouting/ScrollToTop"
+import { Terms } from "./Details/WikipediaTerms"
 
 export default function ReviewInvestigation() {
     const investigation = useSelector((state: RootState) => state.userWork.investigationToReview)
+    const { wikipedia_extracts } = investigation;
     const sources = investigation.sources
     const savedArticles = useSelector((state: RootState) => state.userdata.userArticles)
     const dispatch = useDispatch()
@@ -36,12 +38,16 @@ export default function ReviewInvestigation() {
   inset mx-auto mt-0 md:mt-6 relative animate-fade-in duration-200">
             <ScrolltoTop />
             <BackToSavedResearch />
-            <ErrorBoundary fallback={ <LostData /> }>
+            <div className="w-full h-full flex flex-col gap-y-24 items-center justify-center">
+ <ErrorBoundary fallback={ <LostData /> }>
            {investigation !== null && <>
             <DetailsTable />
-             <SourcesUsed />
+            <SourcesFromResearch />
+          {wikipedia_extracts &&  <Terms />}
            </>}
             </ErrorBoundary>
+            </div>
+           
            
         </section>
     )

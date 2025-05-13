@@ -5,8 +5,8 @@ import { AppDispatch, RootState } from "@/ReduxToolKit/store";
 import { useEffect, useState } from "react";
 import WikiExtractLoader from "../Loaders/WikiExtractLoader";
 import { getExtract } from "@/ReduxToolKit/Reducers/Investigate/Review";
-import { Extracts } from "@/ReduxToolKit/Reducers/Investigate/Review";
 import ExtractNotification from "../Notifications/ExtractNotification";
+import { Extracts } from "@/ReduxToolKit/Reducers/Investigate/Review";
 
 const variants = {
 
@@ -19,7 +19,12 @@ const variants = {
 }
 
 
-export default function WikiTermExtract ({ article_url}) {
+interface WikiTerm {
+    article_url?: string,
+    data?: Extracts
+}
+
+export default function WikiTermExtract ({ article_url, data }: WikiTerm) {
     const investigateState = useSelector((state: RootState) => state.investigation);
     const { extract, title, timestamp, status } = investigateState.wiki;
     const { extracts } = investigateState.review;
@@ -27,6 +32,8 @@ export default function WikiTermExtract ({ article_url}) {
     const [showNotification, setShowNotification] = useState<boolean>(null);
     const updatedTime: string | null = timestamp ? timestamp.split('').slice(0, 10) : null;
     const saved: boolean | null = extract ?  extracts.some((item: any) => item.title === title) : null
+
+    
 
 
     useEffect(() => {

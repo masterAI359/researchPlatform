@@ -38,7 +38,6 @@ export default function WikiTermExtract ({ article_url, data }: WikiTerm) {
 
     useEffect(() => {
 
-        console.log(extract)
 
     }, [status, extract, saved, showNotification])
 

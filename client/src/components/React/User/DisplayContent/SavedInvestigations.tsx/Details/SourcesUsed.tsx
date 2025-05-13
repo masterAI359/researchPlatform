@@ -28,20 +28,8 @@ function ArticleFromResearch ({
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const articleData = {    
-        article_image: source.image_url,
-        logo: null,
-        source: source.provider,
-        date: source.date,
-        article_pub_date: source.date_published,
-        article_title: source.title,
-        article_authors: source.authors,
-        article_url: source.url,
-        article_text: source.text,
-        summary: source.summary,
-        }
 
-    console.log(source.date_published)
+
 
      const handleArticleSelection = () => {
             dispatch(readSavedArticle(source))

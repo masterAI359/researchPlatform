@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { act } from "react";
 
 
-interface Extracts {
+export interface Extracts {
     title: string,
     extract: string
 }

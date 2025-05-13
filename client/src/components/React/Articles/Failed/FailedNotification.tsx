@@ -31,7 +31,7 @@ export default function FailedNotification({ notification }) {
                 count++
                 stringArr.push(newArr[i])
 
-                if (count >= 40) {
+                if (count >= 38) {
                     break
                 }
             }
@@ -56,10 +56,10 @@ export default function FailedNotification({ notification }) {
             initial={{ opacity: 0, y: 50, scale: 0.3 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, scale: 0.5, transition: { type: 'tween', duration: 0.15 } }}
-            className="relative w-80 md:w-96 h-44 sm:h-32 z-50 md:max-w-44 xl:max-w-[29rem] h-auto bg-gradient-to-tr from-ebony to-mirage rounded-2xl xl:pb-12 lg:py-2 flex content-start"
+            className="relative w-80 md:w-96 h-44 sm:h-32 z-50 md:max-w-44 xl:max-w-[29rem] h-auto bg-gradient-to-tr from-ebony to-mirage shadow-material rounded-2xl xl:pb-12 lg:py-2 flex content-start"
         >
             {/* Main content */}
-            <div className="xl:w-4/5 box-border flex gap-x-2 pl-2 pb-6 pt-2 pr-16 sm:pr-0 sm:pl-0 sm:pt-0 sm:pb-0 
+            <div className="xl:w-5/6 box-border flex gap-x-2 pl-2 pb-6 pt-2 pr-16 sm:pr-0 sm:pl-0 sm:pt-0 sm:pb-0 
             relative h-28 w-full sm:h-auto sm:w-auto">
                 <div className="flex w-full h-full relative md:pl-2">
                     <div className="flex gap-2 h-auto items-start xs:w-full md:w-3/4 lg:w-5/6 box-border">
@@ -68,8 +68,8 @@ export default function FailedNotification({ notification }) {
                         </div>
                         <p className="text-white text-xs md:text-sm font-bold hidden md:block">
                             {notification.source} article:
-                            <span className="font-light"> '{shortenedTitle}' </span>
-                            <span className="font-bold text-red-600">failed to load</span>
+                            <span className="font-light text-xs"> '{shortenedTitle}' </span>
+                            <span className="font-bold text-red-600 text-xs">failed to load</span>
                         </p>
                         <p className="text-white text-sm md:text-sm block md:hidden">
                             <span className="text-sm font-light tracking-tight text-white"><em>{notification.source} article:</em></span>
@@ -82,7 +82,7 @@ export default function FailedNotification({ notification }) {
 
             {/* Visit Source button fixed at bottom right */}
             <button
-                className="absolute left-2 bottom-2 bg-white sm:bg-white/10 group text-white rounded-full w-auto px-2 h-fit md:w-28 border-transparent md:p-2 p-1
+                className="absolute left-2 bottom-2 bg-white sm:bg-white/10 group text-white rounded-full w-auto px-2 h-fit md:w-28 border-transparent md:p-1.5 p-1
                      sm:hover:bg-white sm:hover:text-black transition-all duration-300 ease-in-out cursor-pointer md:text-sm"
             >
                 <a href={notification.article_url} className="text-base text-black md:group-hover:text-black md:text-white sm:text-xs" target="_blank">

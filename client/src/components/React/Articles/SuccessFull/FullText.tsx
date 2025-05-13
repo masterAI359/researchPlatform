@@ -7,7 +7,7 @@ import { ExtractThis } from "../../Tooltips/TextPopover";
 import { AnimatePresence } from "framer-motion";
 import WikiTermExtract from "../../Modals/WikiTermExtract";
 
-export default function FullText({ article_text }) {
+export default function FullText({ article_text, article_url }) {
     const investigateState = useSelector((state: RootState) => state.investigation);
     const dispatch = useDispatch<AppDispatch>();
     const { gettingSelection, modalPosition, selectedText, extract, status } = investigateState.wiki;
@@ -66,7 +66,7 @@ export default function FullText({ article_text }) {
                 </TextPopover>}
 
             <AnimatePresence>
-                {status !== 'idle' && <WikiTermExtract />}
+                {status !== 'idle' && <WikiTermExtract article_url={article_url}/>}
             </AnimatePresence>
             {article_text}
         </div>

@@ -62,6 +62,7 @@ export default function Article({ articleData, index }) {
                 fullStory={fullStory}
             />
             <ArticleContent
+                article_url={article_url}
                 article_text={article_text}
                 summary={summary}
                 fullStory={fullStory}

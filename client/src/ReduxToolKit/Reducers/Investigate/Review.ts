@@ -4,7 +4,8 @@ import { act } from "react";
 
 export interface Extracts {
     title: string,
-    extract: string
+    extract: string,
+    associatedArticle: string
 }
 
 interface FinishedState {
@@ -36,6 +37,7 @@ const initialState: FinishedState = {
 type UpdateExtractPayload = {
     title: string;
     extract: string;
+    associatedArticle: string
 }
 
 export const ReviewSlice = createSlice({
@@ -67,8 +69,8 @@ export const ReviewSlice = createSlice({
             state.takeAway = action.payload
         },
         getExtract: (state, action: PayloadAction<UpdateExtractPayload>) => {
-            const { title, extract } = action.payload;
-            const extracted = {title: title, extract: extract}
+            const { title, extract, associatedArticle } = action.payload;
+            const extracted = {title: title, extract: extract, associatedArticle: associatedArticle}
             const exists = state.extracts.some((obj: Extracts) => obj.title === extracted.title);
 
             if(exists) {

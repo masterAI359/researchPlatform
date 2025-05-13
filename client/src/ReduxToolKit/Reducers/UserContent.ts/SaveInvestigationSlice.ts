@@ -1,9 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { supabase } from "@/SupaBase/supaBaseClient";
 
-//TODO: save the URL's of the associated articles from the user's investigation at the time
-
-
 
 interface SaveInvestigation {
     status: string,
@@ -22,7 +19,7 @@ const initialState: SaveInvestigation = {
 export const saveUserInvestigation = createAsyncThunk(
     'user/SaveInvestigation',
     async (investigationData: any, thunkAPI) => {
-        const { idea, initial_perspective, biases, premises, ending_perspective, changed_opinion, new_concepts, takeaway, user_id, had_merit, sources } = investigationData
+        const { idea, initial_perspective, biases, premises, ending_perspective, changed_opinion, new_concepts, takeaway, user_id, had_merit, sources, wikipedia_extracts } = investigationData
         const { data, error } = await supabase
             .from('investigations')
             .insert([{
@@ -36,7 +33,8 @@ export const saveUserInvestigation = createAsyncThunk(
                 takeaway: takeaway,
                 had_merit: had_merit,
                 user_id: user_id,
-                sources: sources
+                sources: sources,
+                wikipedia_extracts: wikipedia_extracts
             }]).select()
         if (error) {
             console.log(error.message)

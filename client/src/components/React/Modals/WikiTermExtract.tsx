@@ -19,7 +19,7 @@ const variants = {
 }
 
 
-export default function WikiTermExtract () {
+export default function WikiTermExtract ({ article_url}) {
     const investigateState = useSelector((state: RootState) => state.investigation);
     const { extract, title, timestamp, status } = investigateState.wiki;
     const { extracts } = investigateState.review;
@@ -39,7 +39,7 @@ export default function WikiTermExtract () {
 
 
     const handleSave = async () => {
-        dispatch(getExtract({ title: title, extract: extract}));
+        dispatch(getExtract({ title: title, extract: extract, associatedArticle: article_url}));
         setShowNotification(true);
     }
 

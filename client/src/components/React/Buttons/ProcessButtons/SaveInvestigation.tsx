@@ -14,7 +14,7 @@ export default function SaveInvestigation({ }) {
     const [prevWork, setPrevWork] = useState<any>(null)
     const { pov, review } = investigateState
     const { idea, premises, perspective, expertise, biases } = pov
-    const { endingPerspective, newConcepts, newPOV, merit, takeaway, movedOnIdea } = review
+    const { endingPerspective, newConcepts, newPOV, merit, takeaway, movedOnIdea, extracts } = review
     const dispatch = useDispatch<AppDispatch>()
 
     const investigateData = {
@@ -28,7 +28,8 @@ export default function SaveInvestigation({ }) {
         takeaway: takeaway,
         had_merit: merit,
         user_id: id,
-        sources: sources
+        sources: sources,
+        wikipedia_extracts: extracts
     }
 
 

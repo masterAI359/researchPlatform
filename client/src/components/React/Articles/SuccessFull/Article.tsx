@@ -11,7 +11,7 @@ import { clearWikiSlice } from '@/ReduxToolKit/Reducers/Investigate/WikipediaSli
 export default function Article({ articleData, index }) {
     const investigateState = useSelector((state: RootState) => state.investigation);
     const dispatch = useDispatch<AppDispatch>();
-    const { gettingSelection } = investigateState.wiki;
+    const { gettingSelection, status } = investigateState.wiki;
     const [fullStory, setFullStory] = useState<boolean>(true);
     const {
         summary,
@@ -50,8 +50,10 @@ export default function Article({ articleData, index }) {
                     duration: 0.1
                 }
             }}
-            className="relative top-0 left-0 right-0 flex flex-col grow
-            w-full min-h-screen scrollbar-hide bg-black"
+            className={`relative top-0 left-0 right-0 flex flex-col grow
+            w-full min-h-screen scrollbar-hide bg-black transition-all duration-200 ease-in-out
+            ${status === 'fulfilled' ? 'opacity-50 md:opacity-100' : 'opacity-100'}
+            `}
         >
 
             <ScrolltoTop />

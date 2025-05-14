@@ -217,3 +217,9 @@ export const submitFeedback = async (authorEmail: string, message: string, setFe
         console.log(error)
     }
 }
+
+
+export const checkForActiveSession = async (): Promise<boolean> => {
+        const { data: { session } } = await supabase.auth.getSession();
+          return session ? true : false;
+    }

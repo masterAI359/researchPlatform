@@ -7,10 +7,16 @@ import { ExtractThis } from "../../Tooltips/TextPopover";
 import { AnimatePresence } from "framer-motion";
 import WikiTermExtract from "../../Modals/WikiTermExtract";
 
+interface WikiTypes {
+    gettingSelection: boolean,
+    selectedText: string | null,
+    status: string
+}
+
 export default function FullText({ article_text, article_url }) {
     const investigateState = useSelector((state: RootState) => state.investigation);
     const dispatch = useDispatch<AppDispatch>();
-    const { gettingSelection, modalPosition, selectedText, extract, status } = investigateState.wiki;
+    const { gettingSelection, selectedText, status }: WikiTypes = investigateState.wiki;
    
     const handleHighlightStart = (e: React.MouseEvent<HTMLDivElement>) => {
         console.log('start called', gettingSelection)
@@ -33,7 +39,7 @@ export default function FullText({ article_text, article_url }) {
         if(selection && selection.rangeCount > 0) {
             const selectedTextString = selection.toString().trim();
             dispatch(getSelectedText(selectedTextString));
-            dispatch(selectingText())
+            dispatch(selectingText(false))
         }
         }
     }
@@ -42,11 +48,8 @@ export default function FullText({ article_text, article_url }) {
       
        
 
-      //  return () => {
-      //      dispatch(clearWikiSlice());
-      //  }
 
-    }, [status, selectedText])
+    }, [status, selectedText, gettingSelection])
     
 
    
@@ -56,8 +59,8 @@ export default function FullText({ article_text, article_url }) {
         <div
             onMouseDown={(e) => handleHighlightStart(e)}
             onMouseUp={handleHighlightEnd}
-            className={`pt-6 text-white w-full h-full font-serif xl:text-lg font-light tracking-tight relative 
-                xs:leading-6 md:leading-8 whitespace-pre-wrap  pb-16 transition-all duration-1000 ease-in-out
+            className={`pt-6 text-white w-full h-full xl:text-xl tracking-tight relative 
+                leading-6 md:leading-6 whitespace-pre-wrap  pb-16 transition-all duration-1000 ease-in-out
                 selection:bg-blue-300 selection:text-black`}
         >
             {selectedText && status === 'idle' &&
@@ -68,7 +71,9 @@ export default function FullText({ article_text, article_url }) {
             <AnimatePresence>
                 {status !== 'idle' && <WikiTermExtract article_url={article_url}/>}
             </AnimatePresence>
-            {article_text}
+            <p className="font-light xl:text-xl tracking-tight text-white">
+                {article_text}
+            </p>
         </div>
     )
 }

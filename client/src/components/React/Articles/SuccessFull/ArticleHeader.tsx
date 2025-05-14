@@ -52,7 +52,6 @@ export default function ArticleHeader({ articleData, setFullStory, fullStory }) 
 
     const dateFormatted = date ? formatDate(date) : formatDate(article_pub_date)
 
-    if(date) console.log(date);
 
     const dataToSave: SavedArticle = {
         title: article_title,
@@ -73,7 +72,7 @@ export default function ArticleHeader({ articleData, setFullStory, fullStory }) 
     return (
         <header
             className="relative flex mx-auto box-border border-b border-white/20 w-full h-full 2xl:mb-1">
-            <section className="flex xs:flex-col xs:gap-y-2 md:flex-row md:gap-x-4 items-center w-full h-full mx-auto xs:pb-2 xl:pb-2">
+            <section className="flex flex-col gap-y-2 md:flex-row md:gap-x-4 items-center w-full h-full mx-auto pb-2">
                 <div className="w-fit flex items-center">
                     <div className="xs:h-full flex flex-row justify-start relative">
                         <div
@@ -99,8 +98,8 @@ export default function ArticleHeader({ articleData, setFullStory, fullStory }) 
                         </div>
                     </div>
                 </div>
-
-                <figcaption className="w-full h-full flex items-baseline self-end">
+            <article className="w-full h-full flex items-center justify-between self-end pt-4 md:pt-0">
+                    <figcaption className="w-auto md:w-full h-full flex items-baseline self-start md:self-end">
                     <div className='flex md:flex-col h-full w-full box-border xl:gap-y-4 self-end'>
                         <div className='w-full h-full box-border flex flex-col md:gap-y-4 justify-end'>
 
@@ -112,15 +111,15 @@ export default function ArticleHeader({ articleData, setFullStory, fullStory }) 
                                 </p>
                             </div>
                             <div className='max-w-96 flex flex-wrap mt-3 items-center'>
-                                <p className='text-white md:text-lg mr-2'>Authors - </p>
+                                <p className='text-white text-sm md:text-lg mr-2'>Authors - </p>
                                 {article_authors && showAllAuthors === false && authShortened.map((author: string, index: number) => {
 
                                     if (index + 1 < authShortened.length) {
-                                        return (<p key={index} className="text-slate-400 md:text-lg font-serif mr-2">
+                                        return (<p key={index} className="text-slate-400 md:text-lg text-sm font-serif mr-2">
                                             {author},
                                         </p>)
                                     } else if (index + 1 === authShortened.length) {
-                                        return (<p key={index} className="text-slate-400 md:text-lg font-serif mr-2">
+                                        return (<p key={index} className="text-slate-400 md:text-lg text-sm font-serif mr-2">
                                             {author}
                                         </p>)
                                     }
@@ -144,7 +143,7 @@ export default function ArticleHeader({ articleData, setFullStory, fullStory }) 
                         </div>
                     </div>
                 </figcaption>
-                <div className="self-end w-auto h-auto flex flex-col gap-y-6 items-center">
+                <div className="self-end w-auto h-full flex flex-col gap-y-1 md:gap-y-6 items-center">
                     <div className="w-auto h-auto flex justify-start">
                         <SaveArticle open={open} dataToSave={dataToSave} showNotification={showNotification} setShowNotification={setShowNotification} />
                     </div>
@@ -152,6 +151,9 @@ export default function ArticleHeader({ articleData, setFullStory, fullStory }) 
                         <MoreButton showAllAuthors={showAllAuthors} fullStory={fullStory} setFullStory={setFullStory} authors={article_authors} setShowAllAuthors={setShowAllAuthors} context={'reading'} key={article_title} open={open} setOpen={setOpen} article_url={article_url} showNotification={showNotification} />
                     </div>
                 </div>
+                </article>
+
+                
             </section>
         </header>
     )

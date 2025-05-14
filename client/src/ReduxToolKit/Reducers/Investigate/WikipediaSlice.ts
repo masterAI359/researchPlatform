@@ -23,14 +23,26 @@ export const getWikiExtract = createAsyncThunk('investigate/getWikiExtract', asy
     try {
             const result = await fetch(url, options);
             if(!result.ok) {
-                throw new Error('Could not connect to Wikipedia API!');
+                const status = result.status;
+                let message = 'An unexpected error occurred while retrieving information.';
+                if (status === 404) {
+                  message = 'No summary was found for the highlighted term. Be carefult to only highlight a short phrase or a short phrase, else we cannot retrieve any information';
+                } else if (status === 429) {
+                  message = 'Too many requests. Please try again shortly.';
+                } else if (status >= 500) {
+                  message = 'Wikipedia is currently unavailable. Please try again later.';
+                }
+                    throw new Error(message);
             }
             const data = await result.json();
-            if(data) return data;
+            if(data) {
+                console.log(data)
+                return data
+            };
 
     } catch (err) {
         console.log(err);
-        return thunkAPI.rejectWithValue('Issue extracting from Wikipedia')
+        return thunkAPI.rejectWithValue(`${err.message}` || 'Unknown Error')
     }
 })
 
@@ -43,24 +55,28 @@ interface WikiTypes {
     gettingSelection: boolean
     status: string,
     extract: string | null,
+    description: string | null
     title: string | null,
     timestamp: string | null,
     desktopLink: string | null,
     mobileLink: string | null,
     modalPosition: modalXY | null
-    selectedText: string | null
+    selectedText: string | null,
+    errormessage: any
 }
 
 const initialState: WikiTypes = {
     gettingSelection: false,
     status: 'idle',
     extract: null,
+    description: null,
     title: null,
     timestamp: null,
     desktopLink: null,
     mobileLink: null,
     modalPosition: null,
-    selectedText: null
+    selectedText: null,
+    errormessage: null
 }
 
 
@@ -68,8 +84,8 @@ export const WikipediaSlice = createSlice({
     name: 'investigate/wikiExtract',
     initialState: initialState,
     reducers: {
-        selectingText: (state) => {
-            state.gettingSelection = !state.gettingSelection
+        selectingText: (state, action) => {
+            state.gettingSelection = action.payload;
         },
         getModalPosition: (state, action: PayloadAction<{x: number, y: number}>) => {
          state.modalPosition = action.payload
@@ -89,11 +105,11 @@ export const WikipediaSlice = createSlice({
             state.extract = action.payload.extract;
             state.title = action.payload.title;
             state.timestamp = action.payload.timestamp;
-        //    state.desktopLink = action.payload.desktop.page;
-        //    state.mobileLink = action.payload.mobile.page;
+            state.description = action.payload.description;
         })
-        builder.addCase(getWikiExtract.rejected, (state) => {
+        builder.addCase(getWikiExtract.rejected, (state, action) => {
             state.status = 'rejected';
+            state.errormessage = action.payload;
         })
     }
 })

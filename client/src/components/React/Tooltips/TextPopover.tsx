@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createPortal } from "react-dom";
-import { getSelectedText, getWikiExtract } from "@/ReduxToolKit/Reducers/Investigate/WikipediaSlice";
-import WikiExtractLoader from "../Loaders/WikiExtractLoader";
+import { clearWikiSlice, getSelectedText, getWikiExtract, selectingText } from "@/ReduxToolKit/Reducers/Investigate/WikipediaSlice";
+
 
 const variants = {
   closed: { opacity: 0 },
@@ -58,10 +58,13 @@ export function ExtractThis () {
     const dispatch = useDispatch<AppDispatch>();
 
     const retrieveWikiExtract = () => {
-
-      console.log('calling')
+      console.log('retreive function triggered')
       dispatch(getWikiExtract(selectedText));
-      dispatch(getSelectedText(null));
+    }
+
+
+    const handleDeny = () => {
+      dispatch(selectingText(false))
     }
 
     return (
@@ -83,7 +86,7 @@ export function ExtractThis () {
                     type="button" className="text-sm py-2 w-full px-4 border focus:ring-2 rounded-full border-transparent bg-black lg:hover:bg-blue-500 text-white duration-200 focus:ring-offset-2 focus:ring-white hover:text-white inline-flex items-center justify-center ring-1 ring-transparent">
                         Yes
                     </button>
-                    <button  type="button" className="text-sm py-2 w-full px-4 border focus:ring-2 rounded-full border-transparent bg-black lg:hover:bg-black/60 text-white duration-200 focus:ring-offset-2 focus:ring-white hover:text-white inline-flex items-center justify-center ring-1 ring-transparent">
+                    <button onClick={handleDeny}  type="button" className="text-sm py-2 w-full px-4 border focus:ring-2 rounded-full border-transparent bg-black lg:hover:bg-black/60 text-white duration-200 focus:ring-offset-2 focus:ring-white hover:text-white inline-flex items-center justify-center ring-1 ring-transparent">
                         No
                     </button>
                 </div>

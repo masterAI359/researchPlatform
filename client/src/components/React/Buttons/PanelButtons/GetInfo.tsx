@@ -8,17 +8,14 @@ export default function GetInfo () {
     const { gettingSelection } = investigateState.wiki;
     const dispatch = useDispatch<AppDispatch>();
 
-    const handleToggle = () => {
-        if(gettingSelection === true) {
-            dispatch(clearWikiSlice());
-        } else {
-            dispatch(selectingText());
-        }
-    };
+    const toggle = () => {
+        gettingSelection === false ? dispatch(selectingText(true)) : dispatch(selectingText(false))
+    }
+
 
     return (
          <button
-            onClick={handleToggle}
+            onClick={toggle}
                     className="md:w-fit md:h-auto xs:max-w-8 xs:max-h-8 xl:max-w-7 xl:max-h-7 2xl:max-w-8 2xl:max-h-8 p-0.5
                 rounded-lg transition-all duration-300 m-auto relative
                 ease-in-out group">

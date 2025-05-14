@@ -57,7 +57,7 @@ export default function Content() {
                             animate={{ opacity: showReadingTooltip ? 0.5 : 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ type: 'tween', duration: 0.2 }}
-                            className="min-h-screen lg:pb-96"
+                            className="min-h-screen 2xl:max-w-5xl xl:max-w-4xl mx-auto lg:pb-96"
                         >
                             <ArticleContainer />
                             <ScrolltoTop key='scroll' />

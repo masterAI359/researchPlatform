@@ -7,16 +7,17 @@ import React, { useEffect, useState } from "react"
 import { RootState } from "@/ReduxToolKit/store"
 import { submitFeedback } from "@/helpers/SupabaseData"
 import SubmittingFeedback from "../AuthNotifications/SubmittingFeedback"
+import { checkForActiveSession } from "@/helpers/SupabaseData"
 
 export default function FeedBackForm () {
 const email = useSelector((state: RootState) => state.auth.email)
 const authorEmail = useSelector((state: RootState) => state.feedback.authorEmail)
 const message = useSelector((state: RootState) => state.feedback.message)
 const seenFeedbackForm = useSelector((state: RootState) => state.feedback.seen)
+const [loggedIn, setLoggedIn] = useState<boolean>(null);
 const [needInput, setNeedInput] = useState<boolean>(null)
 const [submitted, setSubmitted] = useState<boolean>(false)
 const [feedbackSubmitted, setFeedbacksubmitted] = useState<boolean>(null)
-const emailsubmission = email ? email : authorEmail;
 const dispatch = useDispatch()
 
     const closeFeedback = () => {
@@ -32,27 +33,24 @@ const dispatch = useDispatch()
 
     const getMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
       const target = e.target.value;
+      console.log(target)
       dispatch(getFeedBackMessage(target))
     }
 
-    const giveFeedback = () => {
-      if(authorEmail && message || email && message) {
-        setSubmitted(true)
+
+    const giveFeedback = async () => {
+      console.log(loggedIn && message)
+      if((!needInput && message) || (!loggedIn && message && authorEmail)) {
+        setSubmitted(true);
       } else {
         setNeedInput(true)
       }
-    }
-
+    };
+   
 
     useEffect(() => {
+      console.log(message, submitted)
 
-      if(email) {
-        dispatch(getAuthorEmail(email));
-      }
-
-      if(authorEmail !== null && authorEmail !== '' && message !== null && message !== '' && message !== undefined && authorEmail !== undefined) {
-        setNeedInput(false)
-      } 
 
       if(submitted) {
         submitFeedback(authorEmail, message, setFeedbacksubmitted)
@@ -63,13 +61,20 @@ const dispatch = useDispatch()
         dispatch(stopAskingForFeedBack(true))
         dispatch(displayFeedBackForm(false))
       }
+    }, [authorEmail, message, needInput, submitted, seenFeedbackForm, email])
 
-      return () => {
+
+    useEffect(() => {
+
+      checkForActiveSession().then(setLoggedIn);
+
+      return() => {
         dispatch(getAuthorEmail(null));
         dispatch(getFeedBackMessage(null));
       }
+    }, []);
 
-    }, [authorEmail, message, needInput, submitted, seenFeedbackForm, email])
+
 
     const form = (
      <motion.div 

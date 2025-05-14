@@ -1,5 +1,4 @@
 import TakeNotes from "../PanelButtons/TakeNotes"
-import { CompareStories } from "./CompareStories"
 import { FinishedReading } from "../PanelButtons/FinishedReading"
 import ReturnToSearch from "../PanelButtons/ReturnToSearch"
 import StoryPaginate from "../Pagination/StoryPaginate"
@@ -24,13 +23,13 @@ export default function ControlPanel({ }) {
             <div className="shrink-0 w-fit h-auto py-0.5 px-2 md:py-1.5 xl:px-2 2xl:px-2.5 md:hover:bg-border_gray transition-all ease-in-out flex justify-center border-r border-border_gray">
                 <FinishedReading />
             </div>
-            <div className="shrink-0 w-fit h-auto px-2.5 py-0.5 xl:px-2.5 md:hover:bg-border_gray transition-all ease-in-out flex justify-center border-r lg:border-0 border-border_gray">
+            <div className="hidden lg:flex shrink-0 w-fit h-auto px-2.5 xl:px-2.5 md:hover:bg-border_gray transition-all ease-in-out justify-center items-center border-r lg:border-0 border-border_gray">
                 <GetInfo />
             </div>
             <div className="shrink-0 w-fit h-auto lg:rounded-r-full px-2.5 py-0.5 xl:px-2.5 md:hover:bg-border_gray transition-all ease-in-out flex justify-center xs:border-r lg:border-0 border-border_gray">
                 <TakeNotes />
             </div>
-            {showContent && <div className="block md:hidden grow shrink-0 justify-end w-fit h-auto py-1.5 xl:px-2 2xl:px-2.5 lg:hover:bg-border_gray transition-all ease-in-out flex justify-center lg:border-0 border-border_gray">
+            {showContent && <div className="flex lg:hidden grow shrink-0 justify-end w-fit h-auto py-1.5 xl:px-2 2xl:px-2.5 lg:hover:bg-border_gray transition-all ease-in-out flex justify-center lg:border-0 border-border_gray">
                 <StoryPaginate />
             </div>}
         </div>

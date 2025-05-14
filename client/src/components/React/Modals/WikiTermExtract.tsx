@@ -39,7 +39,6 @@ export default function WikiTermExtract ({ article_url, data }: WikiTerm) {
 
     useEffect(() => {
 
-        if(errormessage) console.log(errormessage);
 
     }, [status, extract, saved, showNotification, errormessage])
 

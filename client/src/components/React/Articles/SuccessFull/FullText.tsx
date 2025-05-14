@@ -19,7 +19,6 @@ export default function FullText({ article_text, article_url }) {
     const { gettingSelection, selectedText, status }: WikiTypes = investigateState.wiki;
    
     const handleHighlightStart = (e: React.MouseEvent<HTMLDivElement>) => {
-        console.log('start called', gettingSelection)
         if(!gettingSelection) {
             return
         } else {
@@ -30,7 +29,6 @@ export default function FullText({ article_text, article_url }) {
         }
 
     }
-
 
     const handleHighlightEnd = () => {
         if(gettingSelection) {
@@ -45,15 +43,8 @@ export default function FullText({ article_text, article_url }) {
     }
 
     useEffect(() => {
-      
-       
-
-
     }, [status, selectedText, gettingSelection])
     
-
-   
-
 
     return (
         <div

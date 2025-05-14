@@ -58,7 +58,6 @@ export function ExtractThis () {
     const dispatch = useDispatch<AppDispatch>();
 
     const retrieveWikiExtract = () => {
-      console.log('retreive function triggered')
       dispatch(getWikiExtract(selectedText));
     }
 

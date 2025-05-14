@@ -1,6 +1,4 @@
-import { createSlice, createAsyncThunk, isRejectedWithValue, PayloadAction } from "@reduxjs/toolkit";
-import { act } from "react";
-
+import { createSlice, createAsyncThunk,  PayloadAction } from "@reduxjs/toolkit";
 
 const options: OptionsTypes = {
     method: 'GET',
@@ -14,10 +12,7 @@ export const getWikiExtract = createAsyncThunk('investigate/getWikiExtract', asy
     term: string, thunkAPI
     ):Promise<any> => {
 
-    console.log('calling wikipedia thunk')
-
     const encodedQuery: string = encodeURIComponent(term);
-
     const url: string = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodedQuery}`;
 
     try {

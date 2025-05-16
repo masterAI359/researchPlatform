@@ -15,9 +15,6 @@ export default function StoryPaginate() {
     const dispatch = useDispatch()
 
     useEffect(() => {
-
-
-
     }, [showContent, articles])
 
     const decrement = () => {
@@ -41,7 +38,7 @@ export default function StoryPaginate() {
     }
 
     return (
-        <div className="row flex justify-self-end">
+        <div className="row flex justify-self-end lg:fixed 2xl:right-20 2xl:bottom-16 xl:right-12 xl:bottom-12 lg:bottom-10 lg:right-8">
             <button onClick={() => decrement()}
                 className="rounded-l-3xl border border-r-0 border-white/10
                          py-2 px-3 text-center text-sm transition-all shadow-sm 
@@ -54,7 +51,7 @@ export default function StoryPaginate() {
                 <button key={index} onClick={() => dispatch(incrementStoryBy(index))}
                     className={`${currentStory === index ? 'bg-white/10' : 'bg-black'} 
                         text-white rounded-md rounded-r-none rounded-l-none border border-r-0 border-white/10 py-2 px-3
-                         text-center text-sm transition-all shadow-sm hover:shadow-lg hover:bg-white/10`}>
+                         text-center text-sm lg:text-base transition-all shadow-sm hover:shadow-lg hover:bg-white/10`}>
                     {index + 1}
                 </button>
             )) : (<button

@@ -10,6 +10,7 @@ import PanelContainer from "./PanelContainer";
 import BlueSkyPosts from "../BlueSky/BlueSkyPosts";
 import { AppDispatch } from "@/ReduxToolKit/store";
 import InputOptions from "../Investigate/Steps/InputOptions";
+import StoryPaginate from "../Buttons/Pagination/StoryPaginate";
 
 export default function InvestigateContainer() {
   const dispatch = useDispatch<AppDispatch>()

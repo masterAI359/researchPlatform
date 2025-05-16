@@ -5,7 +5,7 @@ import ModalContainer from "./ModalContainer"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import ScrolltoTop from "../AppRouting/ScrollToTop"
-import ArticleContainer from "../Articles/ArticleContainer"
+import ArticleContainer from "./ArticleContainer"
 
 export default function Content() {
     const investigateState = useSelector((state: RootState) => state.investigation)

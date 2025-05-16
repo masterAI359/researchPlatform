@@ -3,12 +3,12 @@ import GuideDoneReading from "../Tooltips/GuideDoneReading";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
-
+import StoryPaginate from "../Buttons/Pagination/StoryPaginate";
 
 export default function PanelContainer() {
     const investigateState = useSelector((state: RootState) => state.investigation)
-    const { showContent, showReadingTooltip } = investigateState.display
-    const { ContentStatus } = investigateState.read
+    const { showContent } = investigateState.display
+    const { ContentStatus, articles } = investigateState.read
 
     return (
         <motion.div
@@ -19,6 +19,7 @@ export default function PanelContainer() {
             className="w-full h-auto relative mx-auto"
         >
             {showContent && ContentStatus === 'fulfilled' && <ControlPanel />}
+             {ContentStatus === 'fulfilled' && showContent && articles !== null ? <StoryPaginate /> : null}
         </motion.div>
     )
 }

@@ -67,7 +67,7 @@ export default function HeroContainer({
                         animate={{ opacity: 1, transition: { type: 'tween', duration: 0.3 }}}
                         exit={{ opacity: 0, transition: { type: 'tween', duration: 0.3} }}
                     >
-                        <ReadingHero />
+                   { /*    <ReadingHero /> */}
                         <ScrolltoTop />
                     </motion.div>
                     : null}

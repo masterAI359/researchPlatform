@@ -19,7 +19,7 @@ interface QueryType {
 
 export const tldrSummary = async (req: Request, res: Response) => {
 
-    let failure: any = []
+    let failure: any = [];
 
     const received = req.query.q as string;
 
@@ -88,8 +88,6 @@ export const tldrSummary = async (req: Request, res: Response) => {
                 decodedData.cleanedAuthors = cleanseAuthorList(decodedData.article_authors)
                 return decodedData
             } catch (error: any) {
-                console.error(`Error processing article ${article.url}:`, error);
-                // Return an object with the original article data plus the error message
                 const failedAttempt = {
                     title: article.title,
                     summary: [{ denied: 'We were denied access to the article from', failedArticle: `${article.source} - ${article.title}` }],
@@ -118,7 +116,7 @@ export const tldrSummary = async (req: Request, res: Response) => {
         const resultsObject = { retrieved: success, rejected: failure }
         console.log(resultsObject)
         res.json(resultsObject);
-        failure = []
+        failure = null
     } catch (error) {
         console.error("Error in tldrSummary:", error);
         res.status(500).send('Internal Server Error');

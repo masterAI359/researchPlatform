@@ -60,11 +60,11 @@ export default function WikiTermExtract ({ article_url, data }: WikiTerm) {
         animate='open'
         exit='closed'
         transition={{ type: "tween", duration: 0.2 }}
-        className="w-80 h-fit py-2 px-4 rounded-3xl  bg-gradient-to-tr from-ebony to-mirage shadow-inset 
-        flex flex-col items-center fixed xl:right-2 xl:bottom-2 2xl:right-4 bottom-4"
+        className="w-80 h-auto py-2 px-4 rounded-3xl  bg-gradient-to-tr from-ebony to-mirage shadow-inset 
+        flex flex-col items-center fixed 2xl:left-14 2xl:bottom-44"
         > 
         <div className="min-w-full max-w-full h-auto relative">
-            <div onClick={() => dispatch(clearWikiSlice())} className="absolute w-8 h-8 top-0 right-0 rounded-full p-1 md:hover:bg-white/10">
+            <div onClick={() => dispatch(clearWikiSlice())} className="cursor-pointer transition-all duration-200 ease-in-out absolute w-8 h-8 top-0 right-0 rounded-full p-1 md:hover:bg-white/10">
              <svg xmlns="http://www.w3.org/2000/svg" width={'100%'} height={'100%'} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" 
               className="icon icon-tabler text-white icons-tabler-outline icon-tabler-x"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
             </div>
@@ -100,7 +100,7 @@ export default function WikiTermExtract ({ article_url, data }: WikiTerm) {
                  <div className="text-zinc-400 text-sm font-light tracking-tight">Last Updated: <span className="text-white">{updatedTime ? updatedTime : null}</span></div>
                 <div className="h-6 w-6 cursor-pointer group relative">
                     <div className="rounded-md xl:h-fit md:w-24 flex xs:hidden md:block 
-                mx-auto group-hover:bg-white opacity-0 absolute md:-left-24 -top-6
+                mx-auto group-hover:bg-white opacity-0 absolute md:-left-24 top-3
                 border border-gray group-hover:opacity-100 transition-all 
                 z-50 duration-200 ease-in-out">
 
@@ -140,7 +140,7 @@ function Description () {
     useEffect(() => {}, [readExtract])
 
     return (
-        <motion.main className="2xl:min-h-36 relative min-w-full max-w-full h-auto flex flex-col gap-y-6 mb-6 items-center justify-between transition-all duration-400 ease-in-out">
+        <motion.main className="2xl:min-h-36 relative min-w-full max-w-full h-auto flex flex-col gap-y-6 mb-6 items-center justify-between transition-all duration-400 ease-in-out ">
   <AnimatePresence mode="popLayout">
       {!readExtract &&  
       <motion.div
@@ -158,8 +158,11 @@ function Description () {
         initial={{ opacity: 0, scale: 0 }}
        animate={{ opacity: 1, scale: 1, transition: { type: 'tween', duration: 0.2 }}}
        exit={{ opacity: 0, scale: 1, transition: { type: 'tween', duration: 0.2 } }}
-        className="text-white 2xl:text-base lg:text-sm text-xs font-light tracking-tight mt-4">
+        className="h-72 w-full border-b border-white/20 mt-4 overflow-y-hidden relative">
+            <div className="absolute inset-0 text-white 2xl:text-sm  overflow-y-scroll no-scrollbar lg:text-sm text-xs font-light tracking-tight">
                 {extract}
+
+            </div>
             </motion.div>}
         </AnimatePresence>
             <div className="w-full h-fit flex items-center justify-center gap-x-2">

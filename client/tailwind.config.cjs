@@ -272,6 +272,7 @@ module.exports = {
           },
           '&::-webkit-scrollbar-track': {
             opacity: 0.2,
+            backgroundColor: 'transparent'
           },
           /* For Firefox */
           'scrollbar-width': 'thin',

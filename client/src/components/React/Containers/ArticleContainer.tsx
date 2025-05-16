@@ -1,13 +1,13 @@
 import { AnimatePresence, motion } from "framer-motion"
-import FailedLoading from "./Failed/FailedLoading"
+import FailedLoading from "../Articles/Failed/FailedLoading"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { recordSources } from "@/ReduxToolKit/Reducers/UserContent.ts/SaveInvestigationSlice"
 import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
-import NoContent from "./Failed/NoContent"
-import Article from "./SuccessFull/Article"
+import NoContent from "../Articles/Failed/NoContent"
+import Article from "../Articles/SuccessFull/Article"
 import ArticleLoader from "../Loaders/ArticleLoader"
 import StoryPaginate from "../Buttons/Pagination/StoryPaginate"
 
@@ -45,20 +45,16 @@ export default function ArticleContainer({ }) {
     <ErrorBoundary>
       <div
         className="min-h-screen h-full 2xl:max-w-7xl xl:max-w-5xl lg:max-w-3xl md:max-w-3xl xs:px-2 md:px-8 scroll-smooth
-      inset mx-auto border-white/10 xs:mt-10 xl:mt-0 relative"
+      inset mx-auto border-white/10 xs:mt-10 xl:mt-12 relative"
       >
-        <div className="hidden lg:block w-full 2xl:px-6 flex flex-row-reverse p-0">
-          <ErrorBoundary>
+         {/* <ErrorBoundary>
             {ContentStatus === 'fulfilled' && showContent && articles !== null ? <StoryPaginate /> : null}
-
           </ErrorBoundary>
-        </div>
-
+*/}
         <main
           className="2xl:max-w-6xl h-full w-full mx-auto 
                mb-12 flex flex-col
                  ">
-
           <AnimatePresence>
             <motion.div
               className="w-full min-h-screen mx-auto relative grow shrink-0">
@@ -71,9 +67,7 @@ export default function ArticleContainer({ }) {
                 articleData={articleData}
               />)
               )}
-
               {ContentStatus === 'fulfilled' && articles.length < 1 &&  <NoContent key='noResults' />}
-
             </motion.div>
           </AnimatePresence>
 

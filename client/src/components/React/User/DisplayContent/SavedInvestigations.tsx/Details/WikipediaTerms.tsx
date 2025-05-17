@@ -38,7 +38,7 @@ export function Terms () {
           </div>
         </div>
 
-        <ul className="flex gap-3 overflow-x-scroll pb-24 pt-12 scrollbar-hide snap-mandatory snap-x w-full">
+        <ul className="flex gap-3 overflow-x-scroll pb-24 pt-12 scrollbar-hide snap-mandatory snap-x w-full no-scrollbar">
           {wikipedia_extracts?.map((list, idx) => (
             <li key={idx} className="items-center justify-center w-full flex flex-col shrink-0 snap-start">
               <ul className="grid grid-cols-1 lg:grid-cols-4 gap-3 group h-full">

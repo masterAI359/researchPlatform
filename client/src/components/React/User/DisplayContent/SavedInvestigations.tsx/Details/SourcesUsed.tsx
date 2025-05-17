@@ -7,7 +7,7 @@ export function SourcesFromResearch () {
 const sources = useSelector((state: RootState) => state.userWork.sourcesToReview)
 
     return (
-         <ol role="list" className="grid gap-12 mt-24 max-w-5xl mx-auto">
+         <ol role="list" className="grid gap-12 mt-24 max-w-5xl mx-auto lg:px-16 xl:px-0 md:px-12 px-8">
              <span className="text-blue-400">Sources used</span>
             {
               sources.map((source) => (

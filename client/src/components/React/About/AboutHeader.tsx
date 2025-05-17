@@ -11,7 +11,7 @@ export default function AboutHeader() {
                         <h1 className="text-3xl mt-6 tracking-tight font-light lg:text-4xl text-white">
                             Bringing Clarity<span className="block text-zinc-400">to the muddy waters</span>
                         </h1>
-                        <div className="mt-6 text-white space-y-3">
+                        <div className="mt-6 text-white font-light space-y-3">
                             <p>
                                 Welcome to elenchus, where we believe true understanding comes from
                                 a deliberate exploration of information. Our goal is to make the process
@@ -35,7 +35,7 @@ export default function AboutHeader() {
                                 We make learning a deliberate and convenient process,
                                 to save you time and get to the point. We offer an in-house all-in one experience,
                                 serving you straight up news and extracting the real meat of the story. Web together your entire
-                                thought process and clear up the muddy waters we all too often look at the world through
+                                thought process and clear up the foggy lense we all too often look at the world through
                                 in this digital age.
                             </p>
                             <p />

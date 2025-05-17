@@ -46,8 +46,8 @@ export default function StepsEditor({ setterFunction, context }) {
 
     return (
         <div className="w-full max-w-168 h-full box-border mx-auto">
-            <div className="control-group w-full flex bg-white/10 rounded-t-lg">
-                <div className="button-group w-full mx-auto text-white flex gap-x-3 pt-1">
+            <div className="control-group w-full flex  bg-white/10 rounded-t-lg">
+                <div className="button-group w-full mx-auto text-white flex gap-x-3">
 
                     <button
                         onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}

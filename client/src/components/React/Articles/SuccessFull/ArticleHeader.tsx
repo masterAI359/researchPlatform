@@ -77,7 +77,7 @@ export default function ArticleHeader({ articleData, setFullStory, fullStory }) 
                     <div className="xs:h-full flex flex-row justify-start relative">
                         <div
                             style={{ backgroundImage: `url("${storyImage}")` }}
-                            className='absolute inset-0 xs:w-full xs:h-full xl:w-full
+                            className='absolute inset-0 w-full h-full xl:w-full
                             bg-cover bg-center opacity-60 xs:rounded-xl xl:rounded-lg'
                         >
                         </div>

@@ -12,18 +12,19 @@ export default function BackToSavedArticles() {
 
 
     return (
-        <button onClick={backToSaved} className="absolute top-2 -left-1 sm:fixed sm:top-1/2 sm:left-12 text-white font-light w-12 h-8
-          lg:w-14 lg:h-12 p-1 sm:p-1.5 transition-all flex justify-start sm:justify-center 
-          duration-200 bg-white hover:bg-white/10 items-center group
-          rounded-2xl">
-            <div className="absolute left-11 bottom-12 opacity-0 transition-all duration-200 ease-in-out rounded-lg 
-            group-hover:opacity-100 group-hover:bg-white group-hover:text-black p-2 text-sm">go back</div>
-            <span className="flex items-center justify-center h-fit w-full p-1 sm:p-0">
-                <svg className={`sm:p-1.5 w-7 h-7 p-1 mx-auto rounded-full text-black group-hover:text-white`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="100%" height="100%">
-                    <path d="M 33.960938 2.9804688 A 2.0002 2.0002 0 0 0 32.585938 3.5859375 L 13.585938 22.585938 A 2.0002 2.0002 0 0 0 13.585938 25.414062 L 32.585938 44.414062 A 2.0002 2.0002 0 1 0 35.414062 41.585938 L 17.828125 24 L 35.414062 6.4140625 A 2.0002 2.0002 0 0 0 33.960938 2.9804688 z" fill="currentColor" />
-                </svg>
+        <button onClick={backToSaved} className="absolute z-50 md:z-1 top-3 left-0 sm:left-0 md:left-0 lg:left-1.5 xl:left-2 md:fixed md:top-1/2 sm:left-12 xs:w-14 xs:h-8
+        lg:w-16 lg:h-auto p-2 transition-all mx-auto flex
+        duration-300 hover:bg-white/10 items-center group
+        rounded-2xl">
+             <div className="absolute p-1 bg-white z-50 hidden transition-all duration-200 ease-in-out md:group-hover:block 2xl:p-2 lg:bottom-16 2xl:-left-3 xl:left-0 lg:left-2 bottom-12 -left-5
+                    rounded-md items-center border border-astro_gray shadow-thick after:content-[''] after:absolute after:bottom-[-10px] after:left-1/2 
+                    after:transform after:-translate-x-1/2 after:border-t-[10px] after:border-l-[10px] after:border-r-[10px] after:border-b-0 
+                    after:border-t-white after:border-l-transparent after:border-r-transparent after:border-b-transparent">
+                        <p className="text-black text-wrap 2xl:text-nowrap">go back</p>
+                    </div>
+            <span className="mx-auto text-white lg:text-zinc-400 text-2xl sm:text-lg md:text-xl lg:text-3xl font-light">
+               ←
             </span>
-
         </button>
     )
 }

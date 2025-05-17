@@ -9,7 +9,6 @@ import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
 import NoContent from "../Articles/Failed/NoContent"
 import Article from "../Articles/SuccessFull/Article"
 import ArticleLoader from "../Loaders/ArticleLoader"
-import StoryPaginate from "../Buttons/Pagination/StoryPaginate"
 
 export default function ArticleContainer({ }) {
   const investigateState = useSelector((state: RootState) => state.investigation)
@@ -47,10 +46,7 @@ export default function ArticleContainer({ }) {
         className="min-h-screen h-full 2xl:max-w-7xl xl:max-w-5xl lg:max-w-3xl md:max-w-3xl xs:px-2 md:px-8 scroll-smooth
       inset mx-auto border-white/10 xs:mt-10 xl:mt-12 relative"
       >
-         {/* <ErrorBoundary>
-            {ContentStatus === 'fulfilled' && showContent && articles !== null ? <StoryPaginate /> : null}
-          </ErrorBoundary>
-*/}
+    
         <main
           className="2xl:max-w-6xl h-full w-full mx-auto 
                mb-12 flex flex-col

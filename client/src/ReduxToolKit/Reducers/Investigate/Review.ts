@@ -8,6 +8,8 @@ export interface Extracts {
     associatedArticle: string
 }
 
+//ending perspective should be changed to a boolean value
+
 interface FinishedState {
     wrapUp: boolean | null,
     endingPerspective: string | null,

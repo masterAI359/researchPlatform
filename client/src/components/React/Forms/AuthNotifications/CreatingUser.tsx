@@ -47,7 +47,7 @@ export default function CreatingUser({ createdUser, setCreating, creating }) {
             animate='show'
             exit='hide'
             transition={{ type: 'tween', duration: 0.2 }}
-            className="absolute top-24 right-36 h-10 w-60 p-2 bg-mirage border border-zinc-700 rounded-xl px-2"
+            className="fixed top-24 right-36 h-10 w-60 p-2 bg-mirage border border-zinc-700 rounded-xl px-2"
         >
             <div key='title' className="flex w-full h-full items-center justify-between">
                 <div key='titleContainer' className="w-auto h-fit">

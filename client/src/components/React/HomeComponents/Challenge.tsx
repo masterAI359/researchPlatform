@@ -10,7 +10,7 @@ export default function Challenge() {
                         <span className="text-blue-400"> Investigate</span>
                         <h2 className="text-3xl mt-6 tracking-tight font-light lg:text-4xl text-white">
                             Challenge a perspective
-                            <span className="block text-zinc-400">web togther ideas</span>
+                            <span className="block text-zinc-400">web together ideas</span>
                         </h2>
                         <p className="mt-4 text-base text-white text-balance">
                             When was the last time something invoked a sense of frustration,

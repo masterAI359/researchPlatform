@@ -1,5 +1,4 @@
 import { motion } from "framer-motion"
-import ScrolltoTop from "../AppRouting/ScrollToTop"
 import ArticleLink from "./ArticleLink"
 
 export default function Page({ pageContent, index }) {

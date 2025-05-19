@@ -3,13 +3,14 @@ import { useSelector, useDispatch } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { choose, discard, } from "@/ReduxToolKit/Reducers/Investigate/ChosenArticles"
 import { motion } from "framer-motion"
+import { memo } from "react"
 
 interface ArticleProps {
     article: ArticleType,
     index: number
 }
 
-export default function ArticleLink({ article, index }: ArticleProps) {
+    const ArticleLink = memo(({ article, index }: ArticleProps) => {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { getArticle, display } = investigateState
     const { showGetArticlesModal } = display
@@ -17,7 +18,6 @@ export default function ArticleLink({ article, index }: ArticleProps) {
     const dispatch = useDispatch()
 
     const { url, name, provider, image, description, datePublished, logo } = article;
-    //const thumbnail = image.img
     const isHilighted = chosenArticles.some(item => item.url === article.url)
 
 
@@ -78,7 +78,7 @@ export default function ArticleLink({ article, index }: ArticleProps) {
 
 
 
-    }
+    };
 
 
     return (
@@ -131,5 +131,7 @@ export default function ArticleLink({ article, index }: ArticleProps) {
             </div>
         </motion.li>
     );
-}
+});
 
+
+export default ArticleLink;

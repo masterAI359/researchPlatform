@@ -2,20 +2,24 @@ import { RootState } from "@/ReduxToolKit/store"
 import { useDispatch, useSelector } from "react-redux"
 import { readSavedArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
 import { useNavigate } from "react-router-dom"
+import ErrMessage from "@/components/React/ErrorMessages/ErrMessage"
 
 export function SourcesFromResearch () {
-const sources = useSelector((state: RootState) => state.userWork.sourcesToReview)
+    const sources = useSelector((state: RootState) => state.userWork.sourcesToReview);
+    const errorMessage = "No sources were saved during this inquiry"
+
 
     return (
          <ol role="list" className="grid gap-12 mt-24 max-w-5xl mx-auto lg:px-16 xl:px-0 md:px-12 px-8">
              <span className="text-blue-400">Sources used</span>
             {
-              sources.map((source) => (
+              sources && sources.map((source) => (
                   <ArticleFromResearch
                    source={source}
                   />
                 ))
             }
+            {sources && sources.length < 1 && <ErrMessage message={errorMessage} />}
           </ol>
     )
 }
@@ -52,7 +56,7 @@ function ArticleFromResearch ({
         {source.title}
       </h3>
       <p className="text-zinc-400 text-xs mt-6">
-        {source.authors[0]} - <span> <time className="text-zinc-400 md:group-hover:text-blue-400 transition-all ease-in-out duration-200" dateTime={source.pubDate}>{source.date_published}</time></span>
+        {source.authors ? source.authors[0] : 'Authors not available'} - <span> <time className="text-zinc-400 md:group-hover:text-blue-400 transition-all ease-in-out duration-200" dateTime={source.pubDate}>{source.date_published}</time></span>
       </p>
          <p className="text-zinc-400 text-xs mt-6">
         Published by - <span className="text-zinc-400 md:group-hover:text-blue-400 transition-all ease-in-out duration-200">{source.provider} </span>

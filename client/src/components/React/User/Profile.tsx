@@ -12,6 +12,7 @@ import SavedResearchLayout from "./DisplayContent/SavedInvestigations.tsx/SavedR
 import DesktopAccMngmt from "./ProfileNavigation/AccountManagement/DesktopAccMngmt";
 
 export default function Profile() {
+    const signingOut = useSelector((state: RootState) => state.auth.signOut);
     const displaySavedInvestigations = useSelector((state: RootState) => state.profileNav.displaySavedInvestigations)
     const displaySavedArticles = useSelector((state: RootState) => state.profileNav.displaySavedArticles)
     const displayAccountManagement = useSelector((state: RootState) => state.profileNav.displayAccountManagement)
@@ -24,10 +25,12 @@ export default function Profile() {
             dispatch(fetchSavedInvestigations(id))
         }
         
-    }, [id])
+    }, [])
 
     return (
-        <article className={`w-full h-full flex relative justify-center scroll-smooth animate-fade-in transition-all duration-300 ease-in-out`}>
+        <article className={`w-full h-full flex relative justify-center scroll-smooth 
+        animate-fade-in transition-all duration-300 ease-in-out
+        ${signingOut ? 'opacity-50 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
             <SideBarMenu />
                 <ProfileMenu />
             <main className="w-full flex relative justify-end xl:justify-center">

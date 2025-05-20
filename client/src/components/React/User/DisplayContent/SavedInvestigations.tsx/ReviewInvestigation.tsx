@@ -13,7 +13,6 @@ import { Terms } from "./Details/WikipediaTerms"
 
 export default function ReviewInvestigation() {
     const investigation = useSelector((state: RootState) => state.userWork.investigationToReview)
-    const { wikipedia_extracts } = investigation;
     const sources = investigation.sources
     const savedArticles = useSelector((state: RootState) => state.userdata.userArticles)
     const dispatch = useDispatch()
@@ -28,7 +27,6 @@ export default function ReviewInvestigation() {
         if(!sources && cachedSources) {
             dispatch(getSourcesToReview(cachedSources))
         }
-
     }, [investigation])
 
 
@@ -40,11 +38,9 @@ export default function ReviewInvestigation() {
             <BackToSavedResearch />
             <div className="w-full h-full flex flex-col gap-y-24 items-center justify-center">
  <ErrorBoundary fallback={ <LostData /> }>
-           {investigation !== null && <>
-            <DetailsTable />
-            <SourcesFromResearch />
-          {wikipedia_extracts &&  <Terms />}
-           </>}
+             <DetailsTable />
+            <SourcesFromResearch  />
+            <Terms/>
             </ErrorBoundary>
             </div>
            

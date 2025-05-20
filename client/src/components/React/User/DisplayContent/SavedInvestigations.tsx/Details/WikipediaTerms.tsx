@@ -1,10 +1,13 @@
+import ErrMessage from "@/components/React/ErrorMessages/ErrMessage";
 import { RootState } from "@/ReduxToolKit/store"
 import { useSelector } from "react-redux"
 
 export function Terms () {
   const research = useSelector((state: RootState) => state.userWork.investigationToReview);
     const { wikipedia_extracts } = research;
-    const excess: boolean | null = wikipedia_extracts ? wikipedia_extracts.length > 4 : null
+    const excess: boolean | null = wikipedia_extracts ? wikipedia_extracts.length > 4 : null;
+    const errorMessage = "No extracts were saved while reading articles";
+
 
     return (
   <section className="lg:p-8">
@@ -39,7 +42,7 @@ export function Terms () {
         </div>
 
         <ul className="flex gap-3 overflow-x-scroll pb-24 pt-12 scrollbar-hide snap-mandatory snap-x w-full no-scrollbar">
-          {wikipedia_extracts?.map((list, idx) => (
+          {wikipedia_extracts && wikipedia_extracts !== null && wikipedia_extracts?.map((list, idx) => (
             <li key={idx} className="items-center justify-center w-full flex flex-col shrink-0 snap-start">
               <ul className="grid grid-cols-1 lg:grid-cols-4 gap-3 group h-full">
                 {wikipedia_extracts?.map((item, index) => (
@@ -71,6 +74,7 @@ export function Terms () {
               </ul>
             </li>
           ))}
+          {wikipedia_extracts && wikipedia_extracts.length < 1 && <ErrMessage message={errorMessage} />}
         </ul>
       </div>
     </div>

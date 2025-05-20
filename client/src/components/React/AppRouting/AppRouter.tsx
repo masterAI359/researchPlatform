@@ -10,19 +10,25 @@ import ReadSavedArticle from "../User/DisplayContent/UserArticles/ReadSavedArtic
 import ReviewInvestigation from "../User/DisplayContent/SavedInvestigations.tsx/ReviewInvestigation"
 import ScrolltoTop from "./ScrollToTop"
 import SessionManager from "./SessionManager"
-import { store } from '../../../ReduxToolKit/store'
-import { Provider } from 'react-redux'
+import { RootState, store } from '../../../ReduxToolKit/store'
+import { Provider, useSelector } from 'react-redux'
 import EmailForReset from "../Forms/EmailForReset"
 import UpdatePassword from "../Forms/UpdatePassword"
+import { AnimatePresence } from "framer-motion"
+import SignOutModal from "../Forms/SignOutModal"
 
 
 export default function AppRouter() {
+    const signingOut = useSelector((state: RootState) => state.auth.signOut);
 
     return (
         <Provider store={store}>
             <BrowserRouter>
                { <ScrolltoTop /> }
                 <SessionManager />
+                <AnimatePresence>
+                    {signingOut && <SignOutModal />}
+                </AnimatePresence>
                 <Routes>
                     <Route path='/' element={<Structure />}>
                         <Route index element={<HomeContainer />} />
@@ -49,6 +55,7 @@ function Structure() {
     return (
         <>
             <Navigation />
+            
             <Outlet />
         </>
     )

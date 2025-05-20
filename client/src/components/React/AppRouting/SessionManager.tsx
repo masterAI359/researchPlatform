@@ -52,18 +52,11 @@ export default function SessionManager() {
                 appDispatch(fetchUserCredentials(session))
             }
         })
-
         return () => {
             data.subscription.unsubscribe()
 
         }
 
-
-
-    }, [sources, posts])
-
-
-
+    }, []);
     return null
-
 }

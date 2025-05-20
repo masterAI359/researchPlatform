@@ -1,7 +1,7 @@
 import { createPortal } from "react-dom";
 import { showSignOut, clearAuthSlice } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
 import { useDispatch } from "react-redux";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, delay } from "framer-motion";
 import { supabase } from "@/SupaBase/supaBaseClient";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -12,7 +12,7 @@ import Failed from "./AuthNotifications/Failed";
 
 const variants = {
     closed: { opacity: 0 },
-    open: { opacity: 1 }
+    open: { opacity: 1, transition: { type: 'tween', delay: 0.3, duration: 0.2 }}
 }
 
 
@@ -47,6 +47,7 @@ export default function SignOutModal({ }) {
     }
 
     useEffect(() => {
+        console.log('rendering')
 
         console.log({ "Success": success, "Signing Out": signingOut })
     }, [success, signingOut])
@@ -58,7 +59,7 @@ export default function SignOutModal({ }) {
             initial="closed"
             animate="open"
             exit="closed"
-            className="fixed top-1/2 md:top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50
+            className="fixed top-1/3 md:top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50
          xl:min-w-96 xl:min-h-80 w-80 h-60 flex flex-col items-start gap-x-8 gap-y-6 rounded-3xl p-8 
         sm:gap-y-10 sm:p-10 lg:col-span-2 lg:flex-row lg:items-center bg-ebony mt-2 
         shadow-inset text-center">

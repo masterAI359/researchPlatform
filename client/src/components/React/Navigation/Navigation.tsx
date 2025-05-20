@@ -1,15 +1,14 @@
-import { useEffect, useLayoutEffect, useState } from "react"
 import MobileMenu from "./Mobile/MobileMenu"
 import DeskTopContent from "./Desktop/DeskTopContent"
+import useMediaQuery from "@/Hooks/useMediaQuery"
 
 export default function Navigation() {
-	const [mobileView, setMobileView] = useState(false)
-
+	const isDesktop = useMediaQuery("(min-width: 768px)");
 
 	return (
 		<>
-			<DeskTopContent />
-			<MobileMenu />
+			{isDesktop && <DeskTopContent />}
+			{!isDesktop && <MobileMenu />}
 		</>
 	)
 

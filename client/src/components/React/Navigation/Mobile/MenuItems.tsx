@@ -36,14 +36,18 @@ export default function MenuItem({ id, text, link, isOpen, toggle, icon }) {
             className="w-auto mx-auto z-50"
             onClick={toggle}
         >
-            <div className="w-52 text-center bg-gradient-to-tr from-ebony to-mirage shadow-inset rounded-xl h-auto mx-auto p-4 flex items-center justify-start gap-x-4">
+                    <Link to={link}>
+                      <div className="w-52 text-center bg-gradient-to-tr from-ebony to-mirage shadow-inset rounded-xl h-auto mx-auto p-4 flex items-center justify-start gap-x-4">
                 <div className="w-auto h-auto">
                     <img className="max-w-6 max-h-6" src={icon} />
                 </div>
                 <p className="text-base text-white font-light tracking-tight text-nowrap">
-                    <Link to={link}>{text}</Link>
+                    {text}
                 </p>
             </div>
+                    </Link>
+
+          
 
         </motion.li>
     )

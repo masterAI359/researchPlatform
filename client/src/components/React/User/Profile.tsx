@@ -10,6 +10,7 @@ import SideBarMenu from "./ProfileNavigation/SideBar/SideBarMenu";
 import SavedArticles from "./DisplayContent/UserArticles/SavedArticles";
 import SavedResearchLayout from "./DisplayContent/SavedInvestigations.tsx/SavedResearchLayout";
 import DesktopAccMngmt from "./ProfileNavigation/AccountManagement/DesktopAccMngmt";
+import { ScrollUp } from "../AppRouting/ScrollToTop";
 
 export default function Profile() {
     const signingOut = useSelector((state: RootState) => state.auth.signOut);
@@ -24,6 +25,8 @@ export default function Profile() {
             dispatch(fetchSavedArticles(id))
             dispatch(fetchSavedInvestigations(id))
         }
+
+        ScrollUp();
         
     }, [])
 

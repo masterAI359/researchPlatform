@@ -9,7 +9,6 @@ import Pending from "./AuthNotifications/Pending";
 import Success from "./AuthNotifications/Success";
 import Failed from "./AuthNotifications/Failed";
 
-
 const variants = {
     closed: { opacity: 0 },
     open: { opacity: 1, transition: { type: 'tween', delay: 0.3, duration: 0.2 }}

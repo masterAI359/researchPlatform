@@ -10,6 +10,7 @@ import PanelContainer from "./PanelContainer";
 import BlueSkyPosts from "../BlueSky/BlueSkyPosts";
 import { AppDispatch } from "@/ReduxToolKit/store";
 import InputOptions from "../Investigate/Steps/InputOptions";
+import { ScrollUp } from "../AppRouting/ScrollToTop";
 
 export default function InvestigateContainer() {
   const dispatch = useDispatch<AppDispatch>()
@@ -46,6 +47,8 @@ export default function InvestigateContainer() {
   }, [])
 
   useEffect(() => {
+
+    ScrollUp();
 
     return () => {
       dispatch({ type: 'clear' })

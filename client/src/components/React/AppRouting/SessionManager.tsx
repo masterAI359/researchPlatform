@@ -24,6 +24,9 @@ export default function SessionManager() {
         }
     };
 
+    const sess = restoreSession();
+    
+
     useEffect(() => {
 
         if(sources) {
@@ -57,6 +60,6 @@ export default function SessionManager() {
 
         }
 
-    }, []);
+    }, [sess]);
     return null
 }

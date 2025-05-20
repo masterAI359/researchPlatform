@@ -7,8 +7,12 @@ import LoggingIn from "./AuthNotifications/LoggingIn"
 import { AnimatePresence } from "framer-motion"
 import { googleAuth } from "@/helpers/OauthLogin"
 import Password from "./InputFields/Password"
+import SessionManager from "../AppRouting/SessionManager"
+import { useSelector } from "react-redux"
+import { RootState } from "@/ReduxToolKit/store"
 
 export default function Login() {
+    const id = useSelector((state: RootState) => state.auth.user_id);
     const [userEmail, setUserEmail] = useState<string>(null)
     const [userPassword, setUserPassword] = useState<string>(null)
     const [validEmail, setValidEmail] = useState<boolean>(null)
@@ -78,6 +82,7 @@ export default function Login() {
 
     return (
         <section className={`lg:p-8 overflow-hidden bg-black animate-fade-in`}>
+           {!id && <SessionManager />}
             <AnimatePresence>
                 {loggingIn && <LoggingIn successful={successfull} setLoggingIn={setLoggingIn} />}
             </AnimatePresence>

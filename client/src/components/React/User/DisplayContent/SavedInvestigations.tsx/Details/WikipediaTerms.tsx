@@ -1,6 +1,26 @@
 import ErrMessage from "@/components/React/ErrorMessages/ErrMessage";
+import ExtractNotification from "@/components/React/Notifications/ExtractNotification";
 import { RootState } from "@/ReduxToolKit/store"
+import { canSplit } from "@tiptap/pm/transform";
+import { useState } from "react";
 import { useSelector } from "react-redux"
+
+
+type ExtractItem = {
+  associatedArtilce: string,
+  extract: string,
+  title: string 
+}
+
+interface TermListItem {
+  item: ExtractItem,
+  index: number
+}
+
+interface TermsTypes {
+  wikipedia_extracts: TermListItem[],
+  excess: boolean | null
+}
 
 export function Terms () {
   const research = useSelector((state: RootState) => state.userWork.investigationToReview);
@@ -22,17 +42,73 @@ export function Terms () {
         </p>
       </div>
 
-      <div className="flex flex-col w-full">
+      <TermList wikipedia_extracts={wikipedia_extracts} excess={excess}/>
+   
+    </div>
+  </section>
+);
+
+}
+
+
+
+function TermList ({ wikipedia_extracts, excess}: TermsTypes) {
+
+    const [page, setPage] = useState<number>(0);
+    
+
+    console.log(page)
+
+    const scrollToNext = (index: number, snapPoints) => {
+
+      const target = snapPoints[index] as HTMLElement | null;
+      if(target && index < snapPoints.length) {
+        target.scrollIntoView({ behavior: "smooth", inline: "start", block: 'nearest'})
+      };
+     
+    };
+
+    const scrollBack = (index, snapPoints) => {
+     
+      const target = snapPoints[index] as HTMLElement | null;
+      if(target) {
+        target.scrollIntoView({behavior: "smooth", inline: "start", block: "nearest"})
+      }
+    };
+
+    const handleBackClick = () => {
+      const snapPoints = document.querySelectorAll('[data-value="snapPoint"]');
+      if(page - 1 >= 0) {
+        const prevPage = page - 1;
+        scrollBack(prevPage, snapPoints);
+        setPage(prevPage);
+      }
+    }
+
+    const handleNextClick = () => {
+      const snapPoints = document.querySelectorAll('[data-value="snapPoint"]');
+      const max = snapPoints.length - 1;
+      if(page + 1 <= max) {
+        const nextPage = page + 1;
+        scrollToNext(nextPage, snapPoints);
+        setPage(nextPage);
+      }
+    }
+
+
+  return (
+
+       <div className="flex flex-col w-full gap-y-4 2xl:gap-y-12">
         <div className="grid grid-cols-1 lg:grid-cols-4 pb-6 border-b border-white/10">
           <div className="items-center inline-flex lg:col-start-4 lg:ml-auto lg:px-2 mb-4 order-last space-x-2">
-            <button className={`bg-white/5 hover:bg-white/10 focus:bg-transparent 
+            <button onClick={handleBackClick} type="button" className={`bg-white/5 hover:bg-white/10 focus:bg-transparent 
               rounded-2xl inline-flex items-center text-center p-4 ring-1 ring-white/10 ${excess ? 'text-white' : 'text-zinc-600'}`}>
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
               </svg>
               <span className="sr-only">Skip to previous slide page</span>
             </button>
-            <button className="bg-white/5 hover:bg-white/10 focus:bg-transparent rounded-2xl inline-flex items-center text-center text-white p-4 ring-1 ring-white/10 group">
+            <button onClick={handleNextClick} type="button" className="bg-white/5 hover:bg-white/10 focus:bg-transparent rounded-2xl inline-flex items-center text-center text-white p-4 ring-1 ring-white/10 group">
               <svg xmlns="http://www.w3.org/2000/svg" className={`h-4 w-4 ${excess ? 'text-white' : 'text-zinc-600'}  md:group-hover:text-white`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
               </svg>
@@ -40,15 +116,27 @@ export function Terms () {
             </button>
           </div>
         </div>
-
-        <ul className="flex gap-3 overflow-x-scroll pb-24 pt-12 scrollbar-hide snap-mandatory snap-x w-full no-scrollbar">
-          {wikipedia_extracts && wikipedia_extracts !== null && wikipedia_extracts?.map((list, idx) => (
-            <li key={idx} className="items-center justify-center w-full flex flex-col shrink-0 snap-start">
-              <ul className="grid grid-cols-1 lg:grid-cols-4 gap-3 group h-full">
+<section id="carousel" className="w-full h-fit overflow-x-auto no-scrollbar overflow-y-hidden" >
+ <ul className="flex gap-3 group h-full">
                 {wikipedia_extracts?.map((item, index) => (
-                  <li key={index} className="bg-ebony shadow-inset rounded-3xl p-4">
+                  <TermListItem key={index} item={item} index={index} />
+                ))}
+              </ul>
+            </section>
+      </div>
+  )
+}
+
+function TermListItem ({ index, item }) {
+
+  {/* ************* my thought here was to get the 'snapPoint' attribute from every 4th element to use as the point the carousel would scroll to *********** */}
+
+  const snapPoint = index % 4 === 0 ? 'snapPoint' : null;
+
+  return (
+     <li key={item.extract + index} data-value={snapPoint} className="bg-ebony shadow-inset rounded-3xl p-4 w-[calc((100%-3rem)/4)] shrink-0">
                     <figure>
-                      <div>
+                      <div className="pb-4" >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           className="icon icon-tabler icon-tabler-circle-check text-white"
@@ -66,22 +154,15 @@ export function Terms () {
                           <path d="M9 12l2 2l4 -4" />
                         </svg>
                         <p className="font-medium leading-6 text-white mt-6">{item.title}</p>
-                        <p className="text-xs 2xl:text-sm font-light mt-2 text-zinc-300">{item.extract}</p>
+                        <div className="h-60 w-full border-b border-white/20 mt-4 overflow-y-hidden relative">
+                         <div className="absolute inset-0 text-white 2xl:text-sm overflow-y-scroll no-scrollbar lg:text-sm text-xs font-light tracking-tight">
+                         <p className="text-xs 2xl:text-sm font-light mt-2 text-zinc-300 overflow-y-scroll no-scrollbar">{item.extract}</p>
+
+                         </div>
+                        </div>
+                       
                       </div>
                     </figure>
                   </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-          {wikipedia_extracts && wikipedia_extracts.length < 1 && <ErrMessage message={errorMessage} />}
-        </ul>
-      </div>
-    </div>
-  </section>
-);
-
+  )
 }
-
-
-

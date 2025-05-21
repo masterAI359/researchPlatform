@@ -42,8 +42,8 @@ export function Terms () {
         </p>
       </div>
 
-      <TermList wikipedia_extracts={wikipedia_extracts} excess={excess}/>
-   
+      {wikipedia_extracts && <TermList wikipedia_extracts={wikipedia_extracts} excess={excess}/>}
+      {!wikipedia_extracts && <ErrMessage message={errorMessage} />}
     </div>
   </section>
 );
@@ -100,7 +100,7 @@ function TermList ({ wikipedia_extracts, excess}: TermsTypes) {
 
        <div className="flex flex-col w-full gap-y-4 2xl:gap-y-12">
         <div className="grid grid-cols-1 lg:grid-cols-4 pb-6 border-b border-white/10">
-          <div className="items-center inline-flex lg:col-start-4 lg:ml-auto lg:px-2 mb-4 order-last space-x-2">
+          <div className="hidden lg:inline-flex items-center inline-flex lg:col-start-4 lg:ml-auto lg:px-2 mb-4 order-last space-x-2">
             <button onClick={handleBackClick} type="button" className={`bg-white/5 hover:bg-white/10 focus:bg-transparent 
               rounded-2xl inline-flex items-center text-center p-4 ring-1 ring-white/10 ${excess ? 'text-white' : 'text-zinc-600'}`}>
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -116,8 +116,8 @@ function TermList ({ wikipedia_extracts, excess}: TermsTypes) {
             </button>
           </div>
         </div>
-<section id="carousel" className="w-full h-fit overflow-x-auto no-scrollbar overflow-y-hidden" >
- <ul className="flex gap-3 group h-full">
+<section id="carousel" className="w-full 2xl:max-w-7xl xl:max-w-5xl lg:max-w-5xl md:max-w-3xl h-fit overflow-x-auto no-scrollbar overflow-y-hidden" >
+ <ul className="flex flex-wrap lg:flex-nowrap gap-3 group h-full">
                 {wikipedia_extracts?.map((item, index) => (
                   <TermListItem key={index} item={item} index={index} />
                 ))}
@@ -128,13 +128,10 @@ function TermList ({ wikipedia_extracts, excess}: TermsTypes) {
 }
 
 function TermListItem ({ index, item }) {
-
-  {/* ************* my thought here was to get the 'snapPoint' attribute from every 4th element to use as the point the carousel would scroll to *********** */}
-
   const snapPoint = index % 4 === 0 ? 'snapPoint' : null;
 
   return (
-     <li key={item.extract + index} data-value={snapPoint} className="bg-ebony shadow-inset rounded-3xl p-4 w-[calc((100%-3rem)/4)] shrink-0">
+     <li key={item.extract + index} data-value={snapPoint} className="bg-ebony shadow-inset rounded-3xl p-4 w-[calc((100%-3rem)/2)] lg:w-[calc((100%-3rem)/4)] grow-0 shrink-0">
                     <figure>
                       <div className="pb-4" >
                         <svg
@@ -154,7 +151,7 @@ function TermListItem ({ index, item }) {
                           <path d="M9 12l2 2l4 -4" />
                         </svg>
                         <p className="font-medium leading-6 text-white mt-6">{item.title}</p>
-                        <div className="h-60 w-full border-b border-white/20 mt-4 overflow-y-hidden relative">
+                        <div className="h-52 w-full border-b border-white/20 mt-4 overflow-y-hidden relative">
                          <div className="absolute inset-0 text-white 2xl:text-sm overflow-y-scroll no-scrollbar lg:text-sm text-xs font-light tracking-tight">
                          <p className="text-xs 2xl:text-sm font-light mt-2 text-zinc-300 overflow-y-scroll no-scrollbar">{item.extract}</p>
 

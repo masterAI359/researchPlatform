@@ -116,10 +116,10 @@ function TermList ({ wikipedia_extracts, excess}: TermsTypes) {
             </button>
           </div>
         </div>
-<section id="carousel" className="w-full 2xl:max-w-7xl xl:max-w-5xl lg:max-w-5xl md:max-w-3xl h-fit overflow-x-auto no-scrollbar overflow-y-hidden" >
- <ul className="flex flex-wrap lg:flex-nowrap gap-3 group h-full">
+<section id="carousel" className="w-full 2xl:max-w-full 2xl:min-w-168 xl:max-w-5xl lg:max-w-5xl md:max-w-3xl h-fit overflow-x-auto no-scrollbar overflow-y-hidden" >
+ <ul className={`flex flex-wrap gap-1 sm:gap-2 lg:gap-3 lg:flex-nowrap group h-full`}>
                 {wikipedia_extracts?.map((item, index) => (
-                  <TermListItem key={index} item={item} index={index} />
+                  <TermListItem key={index} item={item} index={index} numItems={wikipedia_extracts.length}/>
                 ))}
               </ul>
             </section>
@@ -127,11 +127,21 @@ function TermList ({ wikipedia_extracts, excess}: TermsTypes) {
   )
 }
 
-function TermListItem ({ index, item }) {
+function TermListItem ({ index, item, numItems }) {
   const snapPoint = index % 4 === 0 ? 'snapPoint' : null;
 
+  const widthClass =
+  numItems < 2
+    ? "w-60"
+    : numItems === 2
+    ? "w-[calc((100%-0.75rem)/2)]"
+    : numItems === 3
+    ? "w-[calc((100%-1.5rem)/3)]"
+    : "w-[calc((100%-3rem)/4)]";
+
+
   return (
-     <li key={item.extract + index} data-value={snapPoint} className="bg-ebony shadow-inset rounded-3xl p-4 w-[calc((100%-3rem)/2)] lg:w-[calc((100%-3rem)/4)] grow-0 shrink-0">
+     <li key={item.extract + index} data-value={snapPoint} className={`w-full sm:w-[calc((100%-2rem)/2)] lg:${widthClass} bg-ebony shadow-inset rounded-3xl p-4 grow-0 shrink-0`}>
                     <figure>
                       <div className="pb-4" >
                         <svg

@@ -11,6 +11,7 @@ import SavedArticles from "./DisplayContent/UserArticles/SavedArticles";
 import SavedResearchLayout from "./DisplayContent/SavedInvestigations.tsx/SavedResearchLayout";
 import DesktopAccMngmt from "./ProfileNavigation/AccountManagement/DesktopAccMngmt";
 import { ScrollUp } from "../AppRouting/ScrollToTop";
+import Dashboard from "./Dashboard";
 
 export default function Profile() {
     const signingOut = useSelector((state: RootState) => state.auth.signOut);
@@ -41,8 +42,9 @@ export default function Profile() {
                     <div className="mx-auto w-full pb-8 relative flex justify-center 2xl:px-24">
                         <div className="w-full h-auto py-12">
                             <AnimatePresence>
+                                
                                 {displaySavedArticles && <SavedArticles />}
-                                {displaySavedInvestigations && <SavedResearchLayout />}
+                                {displaySavedInvestigations && <Dashboard/>}
                                 {displayAccountManagement && <DesktopAccMngmt />}
                             </AnimatePresence>
                         </div>

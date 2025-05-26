@@ -19,13 +19,22 @@ export default function Profile() {
     const displaySavedArticles = useSelector((state: RootState) => state.profileNav.displaySavedArticles)
     const displayAccountManagement = useSelector((state: RootState) => state.profileNav.displayAccountManagement)
     const id = useSelector((state: RootState) => state.auth.user_id)
+    const articles = useSelector((state: RootState) => state.userdata.userArticles);
     const dispatch = useDispatch<AppDispatch>()
+
+   // const getAllSidesRatings = () => {}
 
     useLayoutEffect(() => {
         if(id) {
             dispatch(fetchSavedArticles(id))
             dispatch(fetchSavedInvestigations(id))
+
+            if(articles) {
+                //code to get AllSides ratings
+            }
         }
+
+
 
         ScrollUp();
         

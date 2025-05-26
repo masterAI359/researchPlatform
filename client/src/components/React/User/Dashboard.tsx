@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import SourceChart from "../Charts/SourceChart";
 import { ChartContainer } from "../Charts/SourceChart";
+import StatsSection from "../Charts/Stats";
 
 const variants = {
     open: { opacity: 1},
@@ -16,12 +17,12 @@ export default function Dashboard () {
         animate='open'
         exit='closed'
         transition={{ type: 'tween', duration: 0.2 }}
-        className="w-full h-full flex flex-col justify-center items-center grow 2xl:pb-96"
+        className="w-full h-full flex flex-col 2xl:gap-y-24 justify-center items-center grow 2xl:pb-96"
         >
            
-
-            <ChartContainer/>
            
+            <ChartContainer/>
+            <StatsSection />
 
         </motion.section>
     )

@@ -62,3 +62,16 @@ export const getWikiDetails = async (
     }
 
 }
+
+
+
+const getAllSidesRatings = (articles: SavedArticle[]) => {
+
+    const articleProviders = articles.map((article: SavedArticle) => {
+
+        return article.provider;
+    });
+
+    
+
+}

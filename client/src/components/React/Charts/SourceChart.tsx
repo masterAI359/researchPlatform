@@ -22,7 +22,7 @@ export default function SourceChart () {
       data: [12, 19, 3],
       backgroundColor: [
         '#ffffff80',
-        "#364EF5",
+        '#2628a1',
        '#EDEADE',
       
       ],
@@ -44,9 +44,9 @@ export default function SourceChart () {
         animate='open'
         exit='closed'
         transition={{ type: 'tween', duration: 0.2 }}
-        className="pt-24 w-auto h-128"
+        className="pt-28 w-auto h-128 flex items-center justify-center"
         >
-        <Doughnut data={data} />
+        <Doughnut className="cursor-pointer" data={data} />
         </motion.div>
     )
 }
@@ -63,7 +63,7 @@ export function ChartContainer () {
         exit='closed'
         transition={{ type: 'tween', duration: 0.2 }}
        className="lg:p-8">
-  <div className="px-8 py-12 mx-auto md:px-12 lg:px-16 xl:px-36 2xl:max-w-7xl">
+  <div className="px-8 mx-auto md:px-12 lg:px-16 xl:px-36 2xl:max-w-7xl">
     <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:gap-24 items-center">
       <div>
         <span className="text-blue-400"> Comparative Analysis</span>
@@ -71,9 +71,7 @@ export function ChartContainer () {
           Source diversity <span className="block text-zinc-400"></span>
         </h2>
         <p className="mt-4 text-base text-white">
-          Identify trends, spot patterns, and uncover relationships between
-          variables with ease. Our comparative charts provide a comprehensive
-          view of your data for analysis.
+          Identify trends in the sources you choose to inform yourself with
         </p>
         <ul role="list" className="text-sm text-white mt-4 flex flex-col pt-4 border-t border-white/10">
           <li className="inline-flex items-center">
@@ -81,20 +79,20 @@ export function ChartContainer () {
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <path d="M5 12l5 5l10 -10" />
             </svg>
-            <span className="ml-3">3x Prebuilt landing Pages</span>
+            <span className="ml-3">Rated by <a className="text-blue-400" href="https://mediabiasfactcheck.com/" target="_blank">Media Bias/Fact Check Ratings(MBFC) </a></span>
           </li>
           <li className="inline-flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-check" width={16} height={16} viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <path d="M5 12l5 5l10 -10" />
             </svg>
-            <span className="ml-3">Comprehensive Styleguide</span>
+            <span className="ml-3">Maintain awareness of potential ideological blindspots</span>
           </li><li className="inline-flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-check" width={16} height={16} viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <path d="M5 12l5 5l10 -10" />
             </svg>
-            <span className="ml-3">Prebuilt sections Sections</span>
+            <span className="ml-3">Visualize balance or bias in your chosen sources of information</span>
           </li>
         </ul>
       </div>

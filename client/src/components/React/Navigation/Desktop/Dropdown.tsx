@@ -23,10 +23,10 @@ export default function DropdownMenu({ isOpen, setIsOpen }) {
 
     }, [email, id])
 
-
+ //**********Do not forget to change this back -->   <Link to={email ? '/Profile' : '/Login'} > */
     return (
         <div className="relative block">
-            <Link to={email ? '/Profile' : '/Login'} >
+            <Link to={'/Profile'} >
                 <button
                     onClick={() => setIsOpen((prev) => !prev)}
                     className="flex flex-nowrap group items-center justify-between 2xl:w-auto

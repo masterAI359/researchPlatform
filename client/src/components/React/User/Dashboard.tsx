@@ -17,12 +17,18 @@ export default function Dashboard () {
         animate='open'
         exit='closed'
         transition={{ type: 'tween', duration: 0.2 }}
-        className="w-full h-full flex flex-col 2xl:gap-y-24 justify-center items-center grow 2xl:pb-96"
+        className="2xl:max-w- h-full relative md:right-0 md:bottom-0 flex flex-col
+        2xl:gap-y-24 justify-center items-center 2xl:px-52 grow 2xl:pb-96"
         >
-           
-           
+            <div className="w-full flex justify-start 2xl:px-24">
             <ChartContainer/>
+
+            </div>
+           
+            <div className="w-full flex justify-start 2xl:px-24">
             <StatsSection />
+
+            </div>
 
         </motion.section>
     )

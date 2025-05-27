@@ -63,7 +63,7 @@ export function ChartContainer () {
         exit='closed'
         transition={{ type: 'tween', duration: 0.2 }}
        className="lg:p-8">
-  <div className="px-8 mx-auto md:px-12 lg:px-16 xl:px-36 2xl:max-w-7xl">
+  <div className="mx-auto 2xl:max-w-7xl">
     <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:gap-24 items-center">
       <div>
         <span className="text-blue-400"> Comparative Analysis</span>

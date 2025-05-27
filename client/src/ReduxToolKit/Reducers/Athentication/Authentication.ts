@@ -43,7 +43,7 @@ const initialState: Authentication = {
     email: null,
     signOut: false,
     signedIn: false,
-    user_id: null,
+    user_id: '87cd3093-80f0-4a0e-853f-28963dc36c89',
     status: 'idle'
 };
 

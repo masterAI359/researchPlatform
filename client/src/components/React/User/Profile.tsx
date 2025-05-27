@@ -28,10 +28,6 @@ export default function Profile() {
         if(id) {
             dispatch(fetchSavedArticles(id))
             dispatch(fetchSavedInvestigations(id))
-
-            if(articles) {
-                //code to get AllSides ratings
-            }
         }
 
 
@@ -41,24 +37,18 @@ export default function Profile() {
     }, [])
 
     return (
-        <article className={`w-full h-full flex relative justify-center scroll-smooth 
+        <article className={`w-full h-full flex relative md:justify-between justify-center scroll-smooth 
         animate-fade-in transition-all duration-300 ease-in-out
         ${signingOut ? 'opacity-50 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
             <SideBarMenu />
                 <ProfileMenu />
-            <main className="w-full flex relative justify-end xl:justify-center">
-                <section className="lg:p-8 w-full">
-                    <div className="mx-auto w-full pb-8 relative flex justify-center 2xl:px-24">
-                        <div className="w-full h-auto py-12">
+            <main className="w-full flex relative h-auto justify-end">
                             <AnimatePresence>
                                 
                                 {displaySavedArticles && <SavedArticles />}
                                 {displaySavedInvestigations && <Dashboard/>}
                                 {displayAccountManagement && <DesktopAccMngmt />}
                             </AnimatePresence>
-                        </div>
-                    </div>
-                </section>
             </main>
         </article>
     )

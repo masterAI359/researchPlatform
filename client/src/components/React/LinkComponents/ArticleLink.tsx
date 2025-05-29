@@ -114,7 +114,7 @@ interface ArticleProps {
                         />
                     </div>
 
-                    <div className='h-full text-sm xs:text-xs lg:text-lg font-serif text-white'>
+                    <div className='h-full text-sm text-nowrap xs:text-xs lg:text-base font-serif text-white'>
                         {provider}
                     </div>
                 </div>

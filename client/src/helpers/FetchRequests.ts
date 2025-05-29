@@ -1,4 +1,5 @@
 
+
 const options: OptionsTypes = {
     method: 'GET',
     headers: {
@@ -64,13 +65,40 @@ export const getWikiDetails = async (
 }
 
 
+export const supabaseSignIn = async (email: string, password: string, setLogginIn: (loggingIn: boolean) => void, setSuccessful: (successful: boolean) => void, dispatch: any, fetchUserCredentials: Function) => {
 
-const getAllSidesRatings = (articles: SavedArticle[]) => {
+    try {
+    setLogginIn(true);
 
-    const articleProviders = articles.map((article: SavedArticle) => {
-
-        return article.provider;
+    const response = await fetch('http://localhost:5001/supabaseLogIn', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            email: email,
+            password: password
+        }),
     });
+
+    if(!response.ok) {
+        setSuccessful(false)
+      const errorText = await response.text(); // or .json() if you return JSON
+    console.error('Server responded with:', response.status, errorText);
+    setSuccessful(false);
+    throw new Error(`Server error: ${response.status}`);
+    }
+    const sessionData = await response.json();
+    if(sessionData) {
+        console.log(sessionData)
+        setSuccessful(true);
+        setLogginIn(false);
+        dispatch(fetchUserCredentials(sessionData))
+    };
+
+    } catch (error) {
+        console.log(error)
+    }
 
     
 

@@ -14,15 +14,19 @@ import { tldrSummary } from '../endpoints/tldrSummary.js';
 import { deleteUser } from '../endpoints/deleteUser.js';
 import { searchBlueSkyPosts } from '../endpoints/blueskyApi.js';
 import { getBlueSkyFeed } from '../endpoints/blueskyApi.js';
+import { supabaseLogin } from '../endpoints/serverClient.js';
+import { getUserArticles } from '../endpoints/serverClient.js';
 
 
 const corsOptions: object = {
-	origin: 'https://elenchusapp.io',
+	origin: ['https://elenchusapp.io', 'http://localhost:5173'],
 	methods: 'OPTIONS, HEAD, GET, PUT, POST, DELETE',
 	allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept',
 };
 
 app.use(cors(corsOptions));
+
+app.use(express.json());
 
 app.use(function (req, res, next) {
 	res.header(
@@ -74,6 +78,8 @@ app.get('/summarize', tldrSummary);
 app.get('/deleteUser', deleteUser);
 app.get('/searchBlueSky', searchBlueSkyPosts);
 app.get('/getBlueSkyFeed', getBlueSkyFeed);
+app.post('/supabaseLogIn', supabaseLogin);
+app.post('/getUserArticles', getUserArticles);
 
 app.get('*', (req: Request, res: Response) => {
 

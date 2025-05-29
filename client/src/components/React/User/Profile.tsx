@@ -34,7 +34,7 @@ export default function Profile() {
 
         ScrollUp();
         
-    }, [])
+    }, []);
 
     return (
         <article className={`w-full h-full flex relative md:justify-between justify-center scroll-smooth 

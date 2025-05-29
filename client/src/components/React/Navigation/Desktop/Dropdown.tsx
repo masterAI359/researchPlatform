@@ -15,6 +15,8 @@ export default function DropdownMenu({ isOpen, setIsOpen }) {
 
     useEffect(() => {
 
+        if(email) console.log(email)
+
         if (email) {
             setShortEmail(limitName(email))
         } else {
@@ -23,10 +25,10 @@ export default function DropdownMenu({ isOpen, setIsOpen }) {
 
     }, [email, id])
 
- //**********Do not forget to change this back -->   <Link to={email ? '/Profile' : '/Login'} > */
+ //**********Do not forget to change this back -->    */
     return (
         <div className="relative block">
-            <Link to={'/Profile'} >
+            <Link to={email ? '/Profile' : '/Login'} >
                 <button
                     onClick={() => setIsOpen((prev) => !prev)}
                     className="flex flex-nowrap group items-center justify-between 2xl:w-auto

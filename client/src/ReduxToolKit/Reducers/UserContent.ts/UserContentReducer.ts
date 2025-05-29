@@ -22,15 +22,25 @@ const initialState: UserContent = {
 export const fetchSavedArticles = createAsyncThunk(
     'user/articles',
     async (id: string, thunkAPI) => {
-        const { data, error } = await supabase
-            .from('articles')
-            .select()
-            .eq('user_id', id)
+        try {
+   const data = await fetch('http://localhost:5001/getUserArticles', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            id: id,
+          
+        }),
+    })
 
-        if (error) {
-            return thunkAPI.rejectWithValue(error.message)
-        }
-        return data
+        const articles = await data.json();
+        if(articles) return articles;
+
+        } catch(error) {
+            return thunkAPI.rejectWithValue(error);
+        };
+     
     }
 );
 

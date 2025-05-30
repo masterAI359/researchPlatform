@@ -41,7 +41,7 @@ export const supabaseLogin = async (req: Request, res: Response) => {
 
 export const getMBFC = async (req: Request, res: Response) => {
 
-
+    //**  NEED TO ADD THIS ENDPOINT TO THE TLDRTHIS ENDPOINT TO FETCH THE RATINGS UPON EACH SUCCESSFUL EXTRACTION OF ARTICLES ** */
 
     try {
 

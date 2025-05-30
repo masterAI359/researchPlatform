@@ -6,14 +6,16 @@ interface NavigateProfile {
     displaySavedArticles: boolean,
     displaySavedInvestigations: boolean,
     displayDeleteModal: boolean,
-    displayAccountManagement: boolean
+    displayAccountManagement: boolean,
+    displayDashboard: boolean
 }
 
 const initialState: NavigateProfile = {
     displaySavedArticles: false,
-    displaySavedInvestigations: true,
+    displaySavedInvestigations: false,
     displayDeleteModal: false,
-    displayAccountManagement: false
+    displayAccountManagement: false,
+    displayDashboard: true
 }
 
 
@@ -22,22 +24,39 @@ const ProfileNavigationSlice = createSlice({
     name: 'profileNav',
     initialState: initialState,
     reducers: {
-        presentArticles: (state, action) => {
-            state.displaySavedArticles = action.payload
+        presentArticles: (state) => {
+            state.displaySavedArticles = true;
+            state.displayAccountManagement = false;
+            state.displayDashboard = false;
+            state.displaySavedInvestigations = false;
+
         },
-        presentResearch: (state, action) => {
-            state.displaySavedInvestigations = action.payload
+        presentResearch: (state) => {
+            state.displaySavedInvestigations = true;
+            state.displayAccountManagement = false;
+            state.displaySavedArticles = false;
+            state.displayDashboard = false;
         },
         presentDeleteModal: (state, action) => {
-            state.displayDeleteModal = action.payload
+            state.displayDeleteModal = action.payload;
+
         },
-        presentManagement: (state, action) => {
-            state.displayAccountManagement = action.payload
+        presentManagement: (state) => {
+            state.displayAccountManagement = true;
+            state.displayDashboard = false;
+            state.displaySavedArticles = false;
+            state.displaySavedInvestigations = false;
+        },
+        presentDashboard: (state) => {
+            state.displayDashboard = true;
+            state.displaySavedInvestigations = false;
+            state.displaySavedArticles = false;
+            state.displayAccountManagement = false;
         }
     }
-})
+});
 
 
-export const { presentArticles, presentResearch, presentDeleteModal, presentManagement } = ProfileNavigationSlice.actions
+export const { presentArticles, presentResearch, presentDeleteModal, presentManagement, presentDashboard } = ProfileNavigationSlice.actions;
 
-export default ProfileNavigationSlice.reducer
+export default ProfileNavigationSlice.reducer;

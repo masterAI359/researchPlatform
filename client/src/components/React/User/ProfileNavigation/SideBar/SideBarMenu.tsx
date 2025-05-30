@@ -5,14 +5,14 @@ import { useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import DeleteUserAccount from "@/components/React/Modals/DeleteUser";
 import { RootState } from "@/ReduxToolKit/store";
-import { presentManagement} from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
+import { presentManagement, presentDashboard } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
 
 export default function SideBarMenu({ }) {
     const showDeleteModal = useSelector((state: RootState) => state.profileNav.displayDeleteModal)
     const profileNavigationState = useSelector((state: RootState) => state.profileNav)
     const { displaySavedInvestigations, displaySavedArticles } = profileNavigationState
     const dispatch = useDispatch()
-  
+
     useEffect(() => {
 
 
@@ -20,7 +20,7 @@ export default function SideBarMenu({ }) {
 
     return (
 
-        <div className="hidden md:block absolute left-0 z-30 transition-all duration-200 ease-in-out">
+        <div className="hidden md:block fixed left-0 z-30 transition-all duration-200 ease-in-out">
             <AnimatePresence>
                 {showDeleteModal === true && <DeleteUserAccount />}
             </AnimatePresence>
@@ -30,20 +30,30 @@ export default function SideBarMenu({ }) {
                     <path clipRule="evenodd" fillRule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z" />
                 </svg>
             </button>
-            <aside id="separator-sidebar" className="fixed top-16 left-0 z-1 md:w-44 xl:w-52 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+            <aside id="separator-sidebar" className="fixed top-12 left-0 z-1 md:w-44 xl:w-52 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
                 <div className="h-full px-3 py-4 overflow-y-auto bg-black border-r border-white/10">
                     <ul className="space-y-2 font-medium">
                         <li className="cursor-pointer"
                             onClick={() => {
-                                dispatch(presentResearch(true))
-                                dispatch(presentArticles(false))
-                                dispatch(presentManagement(false))
+                                dispatch(presentDashboard());
                             }}
                         >
                             <div className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-white/10 group">
-                                <svg className="shrink-0 p-0.5  w-6 h-6 text-white/60 transition duration-75  group-hover:text-gray-900 dark:group-hover:text-white" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0,0,256,256">
-                                    <g fill="currentColor" fillRule="nonzero" stroke="none" strokeWidth={1} strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit={10} strokeDasharray="" strokeDashoffset={0} fontFamily="none" fontWeight="none" fontSize="none" textAnchor="none" style={{ mixBlendMode: 'normal' }}><g transform="scale(2,2)"><path d="M54,1c-29.22,0 -53,23.78 -53,53c0,29.22 23.78,53 53,53c13.54,0 25.89953,-5.11023 35.26953,-13.49023l32.32031,32.32031c0.59,0.59 1.3511,0.88086 2.1211,0.88086c0.77,0 1.53914,-0.29086 2.11914,-0.88086c1.17,-1.17 1.17,-3.07024 0,-4.24024l-32.32031,-32.32031c8.38,-9.37 13.49023,-21.73953 13.49023,-35.26953c0,-3.32 -0.30992,-6.65062 -0.91992,-9.89062c-0.31,-1.63 -1.87,-2.69867 -3.5,-2.38867c-1.63,0.31 -2.70063,1.88 -2.39063,3.5c0.53,2.88 0.81055,5.8293 0.81055,8.7793c0,25.92 -21.08,47 -47,47c-25.92,0 -47,-21.08 -47,-47c0,-25.92 21.08,-47 47,-47c12.55,0 24.36047,4.88953 33.23047,13.76953c1.17,1.17 3.07023,1.17 4.24023,0c1.17,-1.17 1.17,-3.07023 0,-4.24023c-10,-10.02 -23.3107,-15.5293 -37.4707,-15.5293zM102,1c-1.66,0 -3,1.34 -3,3c0,1.66 1.34,3 3,3h14.75977l-45.34961,45.33984c-0.76,0.75 -2.07008,0.76 -2.83008,0l-12.91992,-12.92969c-1.51,-1.51 -3.52016,-2.33984 -5.66016,-2.33984c-2.14,0 -4.15016,0.82984 -5.66016,2.33984l-23.45898,23.4707c-1.17,1.17 -1.17,3.06828 0,4.23828c0.58,0.59 1.34914,0.88086 2.11914,0.88086c0.77,0 1.53914,-0.29086 2.11914,-0.88086l23.46094,-23.45898c0.76,-0.75 2.07008,-0.76 2.83008,0l12.92969,12.92969c1.51,1.51 3.52016,2.33984 5.66016,2.33984c2.14,0 4.15016,-0.82984 5.66016,-2.33984l45.33984,-45.34961v14.75977c0,1.66 1.34,3 3,3c1.66,0 3,-1.34 3,-3v-22c0,-1.66 -1.34,-3 -3,-3z" /></g></g>
-                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"
+                                    className="icon icon-tabler icons-tabler-outline icon-tabler-dashboard shrink-0  w-6 h-6 text-white/60 transition duration-75  group-hover:text-gray-900 dark:group-hover:text-white"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 13m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M13.45 11.55l2.05 -2.05" /><path d="M6.4 20a9 9 0 1 1 11.2 0z" /></svg>
+                                <span className="ms-3 text-white xl:text-base md:text-sm font-light">Dashboard</span>
+                            </div>
+
+
+                        </li>
+                        <li className="cursor-pointer"
+                            onClick={() => {
+                                dispatch(presentResearch())
+                            }}
+                        >
+                            <div className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-white/10 group">
+                                <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"
+                                    className="icon icon-tabler icons-tabler-outline icon-tabler-clipboard-check shrink-0  w-6 h-6 text-white/60 transition duration-75  group-hover:text-gray-900 dark:group-hover:text-white"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 14l2 2l4 -4" /></svg>
 
                                 <span className="ms-3 text-white xl:text-base md:text-sm font-light">Investigations</span>
                             </div>
@@ -53,9 +63,7 @@ export default function SideBarMenu({ }) {
 
                         <li className="cursor-pointer"
                             onClick={() => {
-                                dispatch(presentResearch(false))
-                                dispatch(presentArticles(true))
-                                dispatch(presentManagement(false))
+                                dispatch(presentArticles());
                             }}
                         >
                             <div className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-white/10 group">
@@ -78,16 +86,14 @@ export default function SideBarMenu({ }) {
                                 <div className="flex-1 w-full grow xl:text-base md:text-sm whitespace-nowrap font-light grow">Sign Out</div>
                             </div>
                         </li>
-                        <li 
-                        className="cursor-pointer hover:bg-white/10 group w-full rounded-lg"
-                        onClick={() => {
-                            dispatch(presentManagement(true))
-                            dispatch(presentArticles(false))
-                            dispatch(presentResearch(false))
+                        <li
+                            className="cursor-pointer hover:bg-white/10 group w-full rounded-lg"
+                            onClick={() => {
+                                dispatch(presentManagement());
                             }}>
                             <a href="#" className="flex items-center gap-x-2 md:p-1.5 xl:p-2 rounded-lg dark:text-white">
-                          <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" 
-                          className="icon icon-tabler text-white/60 group-hover:text-white transition-all duration-200 ease-in-out icons-tabler-outline icon-tabler-settings"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" /><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"
+                                    className="icon icon-tabler text-white/60 group-hover:text-white transition-all duration-200 ease-in-out icons-tabler-outline icon-tabler-settings"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" /><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /></svg>
 
                                 <span className="flex-1 whitespace-nowrap md:text-sm xl:text-base font-light">Manage Account</span>
                             </a>

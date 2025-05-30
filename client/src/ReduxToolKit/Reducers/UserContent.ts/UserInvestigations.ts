@@ -1,24 +1,29 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { supabase } from "@/SupaBase/supaBaseClient";
 
-export const fetchSavedInvestigations = createAsyncThunk(
-    'user/investigations',
-    async (id: string | number, thunkAPI) => {
+type ID = string | number;
 
-        const { data, error } = await supabase
-            .from('investigations')
-            .select()
-            .eq('user_id', id)
+export const fetchSavedInvestigations = createAsyncThunk('user/investigations', async (id: ID, thunkAPI) => {
 
+    try {
+        const response = await fetch('http://localhost:5001/getUserResearch', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                id: id,
+            }),
+        });
+
+        const investigations = await response.json();
+        if (investigations) return investigations;
+
+    } catch (error) {
         if (error) {
-            return thunkAPI.rejectWithValue(error.message)
-        }
-        if (data) {
-            return data
-
-        }
+            return thunkAPI.rejectWithValue(error);
+        };
     }
-)
+});
 
 
 interface SavedInvestigations {

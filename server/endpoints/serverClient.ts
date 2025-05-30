@@ -22,18 +22,18 @@ export const supabaseLogin = async (req: Request, res: Response) => {
     const { email, password } = req.body;
 
     try {
-            const response = await supabase.auth.signInWithPassword({
-                email: email,
-                password: password
-            });
+        const response = await supabase.auth.signInWithPassword({
+            email: email,
+            password: password
+        });
 
-            if(response.data) {
-                const data = response.data;
-                console.log(data)
-                res.send(data);
-            };
+        if (response.data) {
+            const data = response.data;
+            console.log(data)
+            res.send(data);
+        };
 
-    } catch(error) { 
+    } catch (error) {
         console.log(error);
     }
 }
@@ -46,7 +46,7 @@ export const getMBFC = async (req: Request, res: Response) => {
     try {
 
 
-    } catch(error) {
+    } catch (error) {
         console.log(error)
     }
 }
@@ -59,16 +59,15 @@ export const getUserArticles = async (req: Request, res: Response) => {
 
     try {
         const { data, error } = await supabase
-        .from('articles')
-        .select()
-        .eq('user_id', id)
+            .from('articles')
+            .select()
+            .eq('user_id', id)
 
-        if(data) {
-            console.log(data)
+        if (data) {
             res.send(data)
         };
 
-        if(error) {
+        if (error) {
             console.log(error.message);
         };
 
@@ -77,6 +76,34 @@ export const getUserArticles = async (req: Request, res: Response) => {
         console.log(error);
     };
 };
+
+
+
+export const getUserResearch = async (req: Request, res: Response) => {
+
+    const { id } = req.body;
+
+    try {
+
+        const { data, error } = await supabase
+            .from('investigations')
+            .select()
+            .eq('user_id', id)
+
+        if (data) {
+            console.log(data);
+            res.send(data);
+        };
+
+        if (error) {
+            console.log(error.message);
+        };
+
+
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 
 

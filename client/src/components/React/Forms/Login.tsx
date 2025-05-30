@@ -46,23 +46,17 @@ export default function Login() {
 
     const logInUser = async () => {
 
-        supabaseSignIn(userEmail, userPassword, setLoggingIn, setSuccessful, dispatch, fetchUserCredentials);
+        const signin = await supabaseSignIn(userEmail, userPassword, setLoggingIn, setSuccessful, dispatch, fetchUserCredentials);
+        if (signin) {
+            console.log(signin)
+            setSuccessful(true);
+            redirectUser();
+        }
 
-   //     try {
-   //         setLoggingIn(true)
-   //         const { data, error } = await supabase.auth.signInWithPassword({
-   //             email: userEmail,
-   //             password: userPassword
-   //         })
-   //         if (error) {
-   //             setSuccessful(false)
-   //         } else if (data) {
-   //             setSuccessful(true)
-   //             redirectUser()
-   //         }
-   //     } catch (error) {
-   //     }
-
+        if (signin === false) {
+            console.log(signin)
+            setSuccessful(false)
+        }
     }
 
 
@@ -89,7 +83,7 @@ export default function Login() {
 
     return (
         <section className={`lg:p-8 overflow-hidden bg-black animate-fade-in`}>
-           {!id && <SessionManager />}
+            {!id && <SessionManager />}
             <AnimatePresence>
                 {loggingIn && <LoggingIn successful={successfull} setLoggingIn={setLoggingIn} />}
             </AnimatePresence>
@@ -169,3 +163,21 @@ export default function Login() {
         </section>
     )
 }
+
+
+
+
+//     try {
+//         setLoggingIn(true)
+//         const { data, error } = await supabase.auth.signInWithPassword({
+//             email: userEmail,
+//             password: userPassword
+//         })
+//         if (error) {
+//             setSuccessful(false)
+//         } else if (data) {
+//             setSuccessful(true)
+//             redirectUser()
+//         }
+//     } catch (error) {
+//     }

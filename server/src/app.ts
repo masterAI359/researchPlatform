@@ -16,6 +16,7 @@ import { searchBlueSkyPosts } from '../endpoints/blueskyApi.js';
 import { getBlueSkyFeed } from '../endpoints/blueskyApi.js';
 import { supabaseLogin } from '../endpoints/serverClient.js';
 import { getUserArticles } from '../endpoints/serverClient.js';
+import { getUserResearch } from '../endpoints/serverClient.js';
 
 
 const corsOptions: object = {
@@ -80,10 +81,11 @@ app.get('/searchBlueSky', searchBlueSkyPosts);
 app.get('/getBlueSkyFeed', getBlueSkyFeed);
 app.post('/supabaseLogIn', supabaseLogin);
 app.post('/getUserArticles', getUserArticles);
+app.post('/getUserResearch', getUserResearch);
 
 app.get('*', (req: Request, res: Response) => {
 
-	if(req) {
+	if (req) {
 		console.log("catch-all route hit")
 	}
 

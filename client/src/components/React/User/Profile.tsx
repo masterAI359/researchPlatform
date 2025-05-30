@@ -48,7 +48,7 @@ export default function Profile() {
         ${signingOut ? 'opacity-50 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
             <SideBarMenu />
             <ProfileMenu />
-            <main className="w-full flex border relative h-auto xl:py-32 lg:py-24">
+            <main className="w-full flex relative h-auto lg:py-24">
                 <AnimatePresence>
                     {displayDashboard && <Dashboard />}
                     {displaySavedArticles && <SavedArticles />}

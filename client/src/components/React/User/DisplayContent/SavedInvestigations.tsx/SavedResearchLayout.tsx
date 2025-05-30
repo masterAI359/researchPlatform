@@ -41,7 +41,7 @@ export default function SavedResearchLayout() {
             className="w-full">
             <ScrolltoTop />
             <div className="px-8 py-12 w-full">
-                <div className="relative text-center lg:text-left">
+                <div className="relative text-left lg:left-60 lg:pb-16">
                     <span className="text-blue-400"> Investigations </span>
                     <h2 className="text-base mt-6 tracking-tight font-light lg:text-4xl text-white text-center lg:text-left">
                         A timeline of your<span className="block text-zinc-400">research and conclusions.</span>
@@ -54,7 +54,7 @@ export default function SavedResearchLayout() {
                         animate='open'
                         exit='closed'
                         transition={{ duration: 0.2, type: 'tween', delay: 0.2 }}
-                        className="mx-auto w-full border mt-12">
+                        className="mx-auto w-full lg:w-4/5 mt-12">
                         {timeline.map((investigation: any, index: number) => (
                             <PriorInvestigation key={index} investigation={investigation} />
                         ))}

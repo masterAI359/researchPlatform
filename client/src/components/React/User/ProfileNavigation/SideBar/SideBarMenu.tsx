@@ -10,13 +10,11 @@ import { presentManagement, presentDashboard } from "@/ReduxToolKit/Reducers/Use
 export default function SideBarMenu({ }) {
     const showDeleteModal = useSelector((state: RootState) => state.profileNav.displayDeleteModal)
     const profileNavigationState = useSelector((state: RootState) => state.profileNav)
-    const { displaySavedInvestigations, displaySavedArticles } = profileNavigationState
+    const { displaySavedArticles } = profileNavigationState
     const dispatch = useDispatch()
 
     useEffect(() => {
-
-
-    }, [showDeleteModal, displaySavedArticles, displaySavedInvestigations])
+    }, [showDeleteModal])
 
     return (
 

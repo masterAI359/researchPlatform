@@ -26,7 +26,7 @@ export default function Profile() {
 
     // const getAllSidesRatings = () => {}
 
-    console.log(presentDashboard, presentResearch);
+
 
     useLayoutEffect(() => {
         if (id) {

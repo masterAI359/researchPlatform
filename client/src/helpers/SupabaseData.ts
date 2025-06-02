@@ -1,46 +1,35 @@
 import { supabase } from "@/SupaBase/supaBaseClient";
 import { SavedArticle } from "@/env";
+import { useSelector } from "react-redux";
 
 
 
 export const checkArticle = async (
     setArticleExists: (articleExists: boolean) => void,
     article_url: string,
-    id: string,
-    currentSession: { user: { id: string} } | null
-        
-    ): Promise<void> => {
+    userArticles: SavedArticle[]
 
-
-    try {
-        const { data, error } = await supabase
-            .from('articles')
-            .select('article_url')
-            .eq('user_id', id)
-            .eq('article_url', article_url)
-
-        if (data !== null && data.length > 0) {
-            setArticleExists(true)
-        } else if (error) {
-        } else if (!currentSession) {
-
-        } else {
-            setArticleExists(false)
-        }
-    } catch (error) {
+): Promise<void> => {
+    const exists = userArticles.find((article: SavedArticle) => article_url === article.url);
+    if (exists) {
+        setArticleExists(true);
+    } else {
+        setArticleExists(false)
     }
 }
 
 export const saveArticle = async (
     dataToSave: SavedArticle,
-    setShowNotification: (showNotification: boolean) => void, 
-    setArticleExists: (articleExists: boolean) => void, 
-    articleExists: boolean, 
-    setRegisteredExclusiveFeature: (registeredExlusiveFeature: boolean) => void
+    setShowNotification: (showNotification: boolean) => void,
+    setArticleExists: (articleExists: boolean) => void,
+    articleExists: boolean,
+    setRegisteredExclusiveFeature: (registeredExlusiveFeature: boolean) => void,
+    id: string | number,
+    userArticles: SavedArticle[]
 
 ): Promise<void> => {
 
-    const { text, url, id, image_url, summary, title, authors, date, provider, fallbackDate } = dataToSave
+
 
 
     if (!id) {
@@ -48,53 +37,39 @@ export const saveArticle = async (
         return
     }
 
-    if (articleExists) {
-        try {
-            const response = await supabase
-                .from('articles')
-                .delete()
-                .eq('user_id', id)
-                .eq('article_url', url)
+    try {
+
+        if (!articleExists) {
+            const response = await fetch('http://localhost:5001/handleArticleSave', {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    dataToSave: dataToSave,
+                }),
+            })
+
+            if (!response.ok) {
+                throw new Error('could not fetch endpoint');
+            };
 
             if (response) {
-                setShowNotification(true)
-                setArticleExists(false)
-            } else {
-                console.log("Issue deleting data")
+                setArticleExists(true);
+                setShowNotification(true);
             }
-
-        } catch (err) {
         }
-    } else if (!articleExists) {
-        try {
-            const { data, error } = await supabase.from('articles')
-                .insert([
-                    {
-                        title: title,
-                        image_url: image_url,
-                        provider: provider,
-                        full_text: text,
-                        authors: authors,
-                        date_published: date ? date : fallbackDate,
-                        article_url: url,
-                        summary: summary,
-                        user_id: id
-                    }
-                ])
-                .select()
-            if (error) {
 
-            } else if (data.length > 0) {
-                setShowNotification(true)
-                setArticleExists(true)
-            } else {
-            }
-        } catch (err) {
+        if (articleExists) {
+
         }
+    } catch (error) {
+        console.log(error)
     }
-
-
 }
+
+
 
 
 
@@ -121,7 +96,7 @@ export const saveInvestigation = async (investigationData: any, setSavingInvesti
         }]).select()
 
     if (error) {
-    
+
         console.log(error.message)
         return false
     } else if (data) {
@@ -149,7 +124,7 @@ export const getUserInvestigations = async (id: number | string) => {
 export const getInvestigationSources = (sources: string[], savedArticles: any) => {
 
     //might implement two pointer algorithm on this function for performance optimization
-    
+
     function getSaved() {
         let savedSources = []
 
@@ -203,14 +178,14 @@ export const submitFeedback = async (authorEmail: string, message: string, setFe
     try {
 
         const { data, error } = await supabase
-        .from('user_feedback')
-        .insert({
-            email: authorEmail,
-            message: message
-        })
+            .from('user_feedback')
+            .insert({
+                email: authorEmail,
+                message: message
+            })
 
-        if(data) console.log(data)
-        if(error) console.log(error.message)
+        if (data) console.log(data)
+        if (error) console.log(error.message)
         setFeedbackSubmitted(true)
 
     } catch (error) {
@@ -221,6 +196,6 @@ export const submitFeedback = async (authorEmail: string, message: string, setFe
 
 
 export const checkForActiveSession = async (): Promise<boolean> => {
-        const { data: { session } } = await supabase.auth.getSession();
-          return session ? true : false;
-    }
+    const { data: { session } } = await supabase.auth.getSession();
+    return session ? true : false;
+}

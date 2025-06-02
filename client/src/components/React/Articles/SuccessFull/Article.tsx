@@ -20,18 +20,16 @@ export default function Article({ articleData, index }) {
     } = articleData;
 
 
+
     useEffect(() => {
-
-      
-
 
         return () => {
             dispatch(clearWikiSlice());
         }
-        
+
     }, [])
 
-  
+
 
 
     return (

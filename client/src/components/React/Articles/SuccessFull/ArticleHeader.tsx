@@ -13,7 +13,7 @@ export default function ArticleHeader({ articleData, setFullStory, fullStory }) 
     const [open, setOpen] = useState<boolean>(false)
     const [showAllAuthors, setShowAllAuthors] = useState<boolean>(false)
 
-    const {    article_image,
+    const { article_image,
         logo,
         source,
         date,
@@ -23,9 +23,21 @@ export default function ArticleHeader({ articleData, setFullStory, fullStory }) 
         article_url,
         article_text,
         summary,
-        } = articleData
+        bias
+    } = articleData
 
+    let rating: string | null;
+    let factual_reporting: string | null;
+    let country: string | null;
 
+    if (bias) {
+        rating = bias.bias || null;
+        factual_reporting = bias.factual_reporting;
+        country = bias.country;
+
+        console.log(rating);
+        console.log(factual_reporting);
+    }
 
     const formatDate = (datePublished: string) => {
         if (datePublished) {
@@ -64,6 +76,9 @@ export default function ArticleHeader({ articleData, setFullStory, fullStory }) 
         summary: summary,
         fallbackDate: article_pub_date,
         id: id,
+        provider_reporting: factual_reporting,
+        provider_bias: rating,
+        country: country
     }
     const authShortened = limitArray(article_authors)
     const fallbackImage = '/images/logos/fallback.jpg'
@@ -98,62 +113,62 @@ export default function ArticleHeader({ articleData, setFullStory, fullStory }) 
                         </div>
                     </div>
                 </div>
-            <article className="w-full h-full flex items-center justify-between self-end pt-4 md:pt-0">
+                <article className="w-full h-full flex items-center justify-between self-end pt-4 md:pt-0">
                     <figcaption className="w-auto md:w-full h-full flex items-baseline self-start md:self-end">
-                    <div className='flex md:flex-col h-full w-full box-border xl:gap-y-4 self-end'>
-                        <div className='w-full h-full box-border flex flex-col md:gap-y-4 justify-end'>
+                        <div className='flex md:flex-col h-full w-full box-border xl:gap-y-4 self-end'>
+                            <div className='w-full h-full box-border flex flex-col md:gap-y-4 justify-end'>
 
-                            <div>
-                                <p className="text-white font-light xs:text-sm md:text-lg font-serif">
-                                    Published - <span className="text-slate-400 font-light xs:text-sm md:text-lg font-serif">
-                                        {date ? dateFormatted : article_pub_date}{' '}
-                                    </span>
-                                </p>
-                            </div>
-                            <div className='max-w-96 flex flex-wrap mt-3 items-center'>
-                                <p className='text-white text-sm md:text-lg mr-2'>Authors - </p>
-                                {article_authors && showAllAuthors === false && authShortened.map((author: string, index: number) => {
+                                <div>
+                                    <p className="text-white font-light xs:text-sm md:text-lg font-serif">
+                                        Published - <span className="text-slate-400 font-light xs:text-sm md:text-lg font-serif">
+                                            {date ? dateFormatted : article_pub_date}{' '}
+                                        </span>
+                                    </p>
+                                </div>
+                                <div className='max-w-96 flex flex-wrap mt-3 items-center'>
+                                    <p className='text-white text-sm md:text-lg mr-2'>Authors - </p>
+                                    {article_authors && showAllAuthors === false && authShortened.map((author: string, index: number) => {
 
-                                    if (index + 1 < authShortened.length) {
-                                        return (<p key={index} className="text-slate-400 md:text-lg text-sm font-serif mr-2">
-                                            {author},
-                                        </p>)
-                                    } else if (index + 1 === authShortened.length) {
-                                        return (<p key={index} className="text-slate-400 md:text-lg text-sm font-serif mr-2">
-                                            {author}
-                                        </p>)
-                                    }
-                                })}
-                                {article_authors && showAllAuthors === true && article_authors.map((author: string, index: number) => {
-
-                                    if (index + 1 < article_authors.length) {
-                                        return (<p key={index} className="text-slate-400 md:text-lg font-serif mr-2">
-                                            {author},
-                                        </p>)
-                                    } else if (index + 1 === article_authors.length) {
-                                        return (
-                                            <p key={index} className="text-slate-400 md:text-lg font-serif mr-2">
+                                        if (index + 1 < authShortened.length) {
+                                            return (<p key={index} className="text-slate-400 md:text-lg text-sm font-serif mr-2">
+                                                {author},
+                                            </p>)
+                                        } else if (index + 1 === authShortened.length) {
+                                            return (<p key={index} className="text-slate-400 md:text-lg text-sm font-serif mr-2">
                                                 {author}
-                                            </p>
-                                        )
-                                    }
-                                })}
-                                {article_authors === null && (<p className="text-slate-400 font-serif">Authors could not be determined. Visit the source to view the article's authors.</p>)}
+                                            </p>)
+                                        }
+                                    })}
+                                    {article_authors && showAllAuthors === true && article_authors.map((author: string, index: number) => {
+
+                                        if (index + 1 < article_authors.length) {
+                                            return (<p key={index} className="text-slate-400 md:text-lg font-serif mr-2">
+                                                {author},
+                                            </p>)
+                                        } else if (index + 1 === article_authors.length) {
+                                            return (
+                                                <p key={index} className="text-slate-400 md:text-lg font-serif mr-2">
+                                                    {author}
+                                                </p>
+                                            )
+                                        }
+                                    })}
+                                    {article_authors === null && (<p className="text-slate-400 font-serif">Authors could not be determined. Visit the source to view the article's authors.</p>)}
+                                </div>
                             </div>
                         </div>
+                    </figcaption>
+                    <div className="self-end w-auto h-full flex flex-col gap-y-1 md:gap-y-6 items-center">
+                        <div className="w-auto h-auto flex justify-start">
+                            <SaveArticle open={open} dataToSave={dataToSave} showNotification={showNotification} setShowNotification={setShowNotification} />
+                        </div>
+                        <div className="w-auto h-auto">
+                            <MoreButton showAllAuthors={showAllAuthors} fullStory={fullStory} setFullStory={setFullStory} authors={article_authors} setShowAllAuthors={setShowAllAuthors} context={'reading'} key={article_title} open={open} setOpen={setOpen} article_url={article_url} showNotification={showNotification} />
+                        </div>
                     </div>
-                </figcaption>
-                <div className="self-end w-auto h-full flex flex-col gap-y-1 md:gap-y-6 items-center">
-                    <div className="w-auto h-auto flex justify-start">
-                        <SaveArticle open={open} dataToSave={dataToSave} showNotification={showNotification} setShowNotification={setShowNotification} />
-                    </div>
-                    <div className="w-auto h-auto">
-                        <MoreButton showAllAuthors={showAllAuthors} fullStory={fullStory} setFullStory={setFullStory} authors={article_authors} setShowAllAuthors={setShowAllAuthors} context={'reading'} key={article_title} open={open} setOpen={setOpen} article_url={article_url} showNotification={showNotification} />
-                    </div>
-                </div>
                 </article>
 
-                
+
             </section>
         </header>
     )

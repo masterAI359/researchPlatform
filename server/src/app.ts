@@ -7,7 +7,7 @@ const __dirname = path.dirname(__filename);
 import express, { Request, Response } from 'express';
 import cors from 'cors';
 import mime from 'mime'
-
+import cookieParser from 'cookie-parser';
 const app = express();
 import { bingArticles } from '../endpoints/bingApi.js';
 import { tldrSummary } from '../endpoints/tldrSummary.js';
@@ -17,27 +17,24 @@ import { getBlueSkyFeed } from '../endpoints/blueskyApi.js';
 import { supabaseLogin } from '../endpoints/serverClient.js';
 import { getUserArticles } from '../endpoints/serverClient.js';
 import { getUserResearch } from '../endpoints/serverClient.js';
-
+import { handleArticleSave } from '../endpoints/serverClient.js';
 
 const corsOptions: object = {
 	origin: ['https://elenchusapp.io', 'http://localhost:5173'],
+	credentials: true,
 	methods: 'OPTIONS, HEAD, GET, PUT, POST, DELETE',
 	allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept',
 };
 
 app.use(cors(corsOptions));
-
 app.use(express.json());
+app.use(cookieParser()); //*************** COOKIE PARSER HERE  */
 
 app.use(function (req, res, next) {
-	res.header(
-		'Access-Control-Allow-Methods',
-		'OPTIONS, HEAD, GET, PUT, POST, DELETE'
-	);
-	res.header(
-		'Access-Control-Allow-Headers',
-		'Origin, X-Requested-With, Content-Type, Accept'
-	);
+	res.header('Access-Control-Allow-Origin', req.headers.origin || '');
+	res.header('Access-Control-Allow-Credentials', 'true');
+	res.header('Access-Control-Allow-Methods', 'OPTIONS, HEAD, GET, PUT, POST, DELETE');
+	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 	next();
 });
 
@@ -82,6 +79,7 @@ app.get('/getBlueSkyFeed', getBlueSkyFeed);
 app.post('/supabaseLogIn', supabaseLogin);
 app.post('/getUserArticles', getUserArticles);
 app.post('/getUserResearch', getUserResearch);
+app.post('/handleArticleSave', handleArticleSave);
 
 app.get('*', (req: Request, res: Response) => {
 

@@ -7,6 +7,7 @@ import * as path from 'path'
 import { fileURLToPath } from 'url';
 import decodeItem from '../helpers/decodeItem.js'
 import cleanseAuthorList from '../helpers/authorCleanup.js';
+import { getMediaBiases } from './mediaBias.js';
 
 
 interface QueryType {
@@ -57,6 +58,11 @@ export const tldrSummary = async (req: Request, res: Response) => {
     try {
         const dataMap = query.map(async (article, index) => {
 
+            const santizedSource = article.source.trim();
+            const bias = await getMediaBiases(santizedSource);
+
+
+
             await delay(index * 2000);
 
             try {
@@ -84,6 +90,7 @@ export const tldrSummary = async (req: Request, res: Response) => {
                 data.logo = article.logo;
                 data.source = article.source;
                 data.date = article.date;
+                data.bias = bias;
                 const decodedData = decodeItem(data)
                 decodedData.cleanedAuthors = cleanseAuthorList(decodedData.article_authors)
                 return decodedData
@@ -114,7 +121,6 @@ export const tldrSummary = async (req: Request, res: Response) => {
         const success = returnValues.filter((result: any) => result !== undefined)
 
         const resultsObject = { retrieved: success, rejected: failure }
-        console.log(resultsObject)
         res.json(resultsObject);
         failure = null
     } catch (error) {

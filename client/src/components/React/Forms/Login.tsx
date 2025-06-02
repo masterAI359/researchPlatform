@@ -46,6 +46,7 @@ export default function Login() {
 
     const logInUser = async () => {
 
+
         const signin = await supabaseSignIn(userEmail, userPassword, setLoggingIn, setSuccessful, dispatch, fetchUserCredentials);
         if (signin) {
             console.log(signin)

@@ -72,6 +72,7 @@ export const supabaseSignIn = async (email: string, password: string, setLogginI
 
         const response = await fetch('http://localhost:5001/supabaseLogIn', {
             method: 'POST',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -92,7 +93,6 @@ export const supabaseSignIn = async (email: string, password: string, setLogginI
         if (sessionData) {
             console.log(sessionData)
             setSuccessful(true);
-            setLogginIn(false);
             dispatch(fetchUserCredentials(sessionData))
             return true;
         };

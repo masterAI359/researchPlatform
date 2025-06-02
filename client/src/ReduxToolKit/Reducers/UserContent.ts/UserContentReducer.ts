@@ -23,24 +23,25 @@ export const fetchSavedArticles = createAsyncThunk(
     'user/articles',
     async (id: string, thunkAPI) => {
         try {
-   const data = await fetch('http://localhost:5001/getUserArticles', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            id: id,
-          
-        }),
-    })
+            const data = await fetch('http://localhost:5001/getUserArticles', {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id: id,
 
-        const articles = await data.json();
-        if(articles) return articles;
+                }),
+            })
 
-        } catch(error) {
+            const articles = await data.json();
+            if (articles) return articles;
+
+        } catch (error) {
             return thunkAPI.rejectWithValue(error);
         };
-     
+
     }
 );
 

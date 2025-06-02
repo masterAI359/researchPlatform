@@ -7,6 +7,7 @@ export const fetchSavedInvestigations = createAsyncThunk('user/investigations', 
     try {
         const response = await fetch('http://localhost:5001/getUserResearch', {
             method: 'POST',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
             },

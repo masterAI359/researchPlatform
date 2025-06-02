@@ -3,40 +3,43 @@ import NotifySavedArticle from "../../Notifications/NotifySaved"
 import { saveArticle, checkArticle } from "@/helpers/SupabaseData"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-import { useLayoutEffect, useState } from "react"
+import { useEffect, useLayoutEffect, useState } from "react"
 import RegisteredUsersOnly from "../../Notifications/RegisteredUsersOnly"
 import { supabase } from "@/SupaBase/supaBaseClient"
 
 export default function Bookmark({ dataToSave, showNotification, setShowNotification, open }) {
     const id = useSelector((state: RootState) => state.auth.user_id)
+    const userArticles = useSelector((state: RootState) => state.userdata.userArticles);
     const [articleExists, setArticleExists] = useState<boolean>(false)
     const [registeredExclusiveFeature, setRegisteredExclusiveFeature] = useState<boolean>(false)
     const [currentSession, setCurrentSession] = useState<any>(null)
     const { url } = dataToSave
 
     useLayoutEffect(() => {
-        const fetchSession = async () => {
-            const {
-                data: { session },
-                error,
-            } = await supabase.auth.getSession();
 
-            if (session) {
-                setCurrentSession(session)
-            } else if (error) {
-                setRegisteredExclusiveFeature(true)
-            }
-        }
 
-        fetchSession()
 
-        checkArticle(setArticleExists, url, id, currentSession)
+        checkArticle(setArticleExists, url, userArticles);
 
     }, [articleExists, showNotification])
 
+    //   useEffect(() => {
+    //
+    //
+    //   }, [])
+    //
+    //
+    //   const handleSaveClick = async () => {
+    //
+    //     const result = await saveArticle(dataToSave, setShowNotification, setArticleExists, articleExists, setRegisteredExclusiveFeature, id, userArticles)
+    //
+    //
+    //     
+    //   }
+
 
     return (
-        <div onClick={() => { saveArticle(dataToSave, setShowNotification, setArticleExists, articleExists, setRegisteredExclusiveFeature,) }}
+        <div onClick={() => { saveArticle(dataToSave, setShowNotification, setArticleExists, articleExists, setRegisteredExclusiveFeature, id, userArticles) }}
             className={`${open ? 'pointer-events-none' : 'pointer-events-auto'} w-full h-full self-start flex items-center justify-start group relative cursor-pointer`}>
             {!showNotification && !registeredExclusiveFeature ? <div className="rounded-md xl:h-fit md:w-24 flex xs:hidden md:block 
                 mx-auto group-hover:bg-black opacity-0 absolute md:right-7

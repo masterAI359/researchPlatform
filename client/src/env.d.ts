@@ -88,6 +88,9 @@ declare global {
     summary: any,
     text: string,
     id: string,
+    provider_reporting?: string | null,
+    provider_bias?: string | null,
+    country?: string | null
   }
 
 }

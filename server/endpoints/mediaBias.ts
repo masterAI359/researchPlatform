@@ -5,9 +5,7 @@ const envUrl = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(envUrl)
 const envPath = path.resolve(__dirname, '../.env');
 dotenv.config({ path: envPath })
-import { TLDR_KEY } from '../src/Config.js';
 import { SUPABASE_KEY, SUPABASE_URL } from '../src/Config.js';
-import { Request, Response } from 'express'
 import { createClient } from '@supabase/supabase-js';
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
@@ -17,29 +15,20 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
 })
 
 
-interface SourceProviders {
-    sourceName: string
-};
-
-
-export const getMediaBiases = async (req: Request, res: Response) => {
-    const received = req.query.q as string;
-    const url = 'https://media-bias-fact-check-ratings-api2.p.rapidapi.com/fetch-data';
-    const options = {
-	method: 'GET',
-	headers: {
-        
-		'x-rapidapi-host': 'media-bias-fact-check-ratings-api2.p.rapidapi.com',
-        'x-rapidapi-key': TLDR_KEY,
-	}
-};
-
+export const getMediaBiases = async (provider: string) => {
 
     try {
+        const { data, error } = await supabase
+            .from('sources')
+            .select()
+            .ilike('name', provider)
+            .single();
 
-        const response = await fetch(url, options)
+        if (data) return data;
 
-    } catch(err) {
-        console.log(err)
-    }
-}
+        if (error) console.log(error.message);
+
+    } catch (error) {
+        console.log(error);
+    };
+};

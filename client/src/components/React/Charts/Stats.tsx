@@ -50,12 +50,15 @@ export default function StatsSection() {
               <span className="block text-zinc-300">by the numbers</span>
             </h2>
             <p className="mt-6 text-sm text-white">
-            See how your thinking shifts over time — whether you change your mind, confirm a belief, stay neutral, or need more info. These insights reveal your patterns in processing evidence and forming opinions.
+              See how your thinking shifts over time — whether you change your mind, confirm a belief, stay neutral, or need more info. These insights reveal your patterns in processing evidence and forming opinions.
+            </p>
+            <p className="mt-6 text-sm text-white">
+              Over all of your investigations:
             </p>
             <dl className="mt-12 grid max-w-xl grid-cols-1 gap-8 sm:grid-cols-2">
-              <StatItem label="Changed Opinion" target={20} />
+              <StatItem label="Changed your opinion" target={20} />
               <StatItem label="Validated your POV" target={34} />
-              <StatItem label="Remained Neutral" target={40} />
+              <StatItem label="Remained neutral" target={40} />
               <StatItem label="Needed more information" target={20} />
             </dl>
           </div>

@@ -9,11 +9,12 @@ import { SUPABASE_KEY, SUPABASE_URL } from '../src/Config.js';
 import { Request, Response } from 'express'
 import { createClient } from '@supabase/supabase-js';
 import { error } from 'console';
+import { data } from 'cheerio/lib/api/attributes.js';
 
 
 export const createSupabaseFromRequest = (req: Request) => {
     const accessToken = req.cookies['sb-access-token'];
-    console.log('access token from cookie:', req.cookies['sb-access-token']);
+    // console.log('access token from cookie:', req.cookies['sb-access-token']);
 
 
     return createClient(SUPABASE_URL, SUPABASE_KEY, {
@@ -132,14 +133,14 @@ const saveArticleForUser = async (req: Request) => {
             .upsert(
                 [
                     {
-                        title,
-                        image_url,
-                        provider,
+                        title: title,
+                        image_url: image_url,
+                        provider: provider,
                         full_text: text,
-                        authors,
+                        authors: authors,
                         date_published: date || fallbackDate,
                         article_url: url,
-                        summary,
+                        summary: summary,
                         user_id: id,
                         provider_bias: rating,
                         provider_reporting: factual_reporting,
@@ -155,7 +156,8 @@ const saveArticleForUser = async (req: Request) => {
 
         if (data) {
             console.log(data)
-            return data
+            const message = "Saved";
+            return message;
         }
 
         if (error) {
@@ -171,18 +173,27 @@ const saveArticleForUser = async (req: Request) => {
 const deleteArticleForUser = async (req: Request) => {
 
     const supabase = createSupabaseFromRequest(req);
-    const dataToSave = req.body
+    const { dataToSave } = req.body;
     const { url, id } = dataToSave;
 
     try {
-        const response = await supabase.from('articles')
+        const response = await supabase
+            .from('articles')
             .delete()
             .eq('user_id', id)
-            .eq('article_url', url);
+            .eq('article_url', url)
+            .select();
+
+
+        if (response?.error) {
+            console.error('Deleting error', response.error.message);
+            return null;
+        };
 
         if (response) {
-            return (response.data);
-        }
+            const message = "Deleted";
+            return message;
+        };
 
     } catch (error) {
         console.log(error);
@@ -193,20 +204,25 @@ const deleteArticleForUser = async (req: Request) => {
 
 export const handleArticleSave = async (req: Request, res: Response) => {
 
+    console.log('hit article save handler!');
+
     const { articleExists } = req.body;
 
     try {
         let result;
 
         if (articleExists) {
+            console.log('deleting')
             result = await deleteArticleForUser(req);
         } else {
+            console.log('saving')
             result = await saveArticleForUser(req);
         }
 
         if (result) {
-            console.log(result);
-            res.send(result);
+            const responseObject = { Succes: true, message: result };
+            console.log(responseObject);
+            res.status(200).send(responseObject);
         } else {
             res.status(500).json({ error: `Database operation failed to execute.` });
         }

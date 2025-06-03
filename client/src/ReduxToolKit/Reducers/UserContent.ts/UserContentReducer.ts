@@ -57,7 +57,11 @@ const UserContentSlice = createSlice({
         },
         readSavedArticle: (state, action) => {
             state.ArticleToReview = action.payload
-        }
+        },
+        removeSavedArticle: (state, action) => {
+            state.userArticles = state.userArticles.splice(action.payload, 1);
+        },
+
     },
     extraReducers: builder => {
 
@@ -76,6 +80,6 @@ const UserContentSlice = createSlice({
     }
 })
 
-export const { clearUser, supabaseContext, readSavedArticle } = UserContentSlice.actions
+export const { clearUser, supabaseContext, readSavedArticle, removeSavedArticle } = UserContentSlice.actions
 
 export default UserContentSlice.reducer

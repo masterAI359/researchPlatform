@@ -1,22 +1,25 @@
 import { supabase } from "@/SupaBase/supaBaseClient";
 import { SavedArticle } from "@/env";
-import { useSelector } from "react-redux";
 
 
 
 export const checkArticle = async (
     setArticleExists: (articleExists: boolean) => void,
     article_url: string,
-    userArticles: SavedArticle[]
+    userArticles: SavedArticle[],
 
 ): Promise<void> => {
-    const exists = userArticles.find((article: SavedArticle) => article_url === article.url);
+    const exists = userArticles.some((article: any) => article_url === article.article_url);
+
+    console.log({ CheckResult: exists });
+
     if (exists) {
         setArticleExists(true);
     } else {
-        setArticleExists(false)
-    }
+        setArticleExists(false);
+    };
 }
+
 
 export const saveArticle = async (
     dataToSave: SavedArticle,
@@ -25,12 +28,10 @@ export const saveArticle = async (
     articleExists: boolean,
     setRegisteredExclusiveFeature: (registeredExlusiveFeature: boolean) => void,
     id: string | number,
-    userArticles: SavedArticle[]
-
-): Promise<void> => {
+): Promise<string> => {
 
 
-
+    console.log('called')
 
     if (!id) {
         setRegisteredExclusiveFeature(true)
@@ -39,31 +40,38 @@ export const saveArticle = async (
 
     try {
 
-        if (!articleExists) {
-            const response = await fetch('http://localhost:5001/handleArticleSave', {
-                method: 'POST',
-                credentials: 'include',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    dataToSave: dataToSave,
-                }),
-            })
+        const response = await fetch('http://localhost:5001/articleOperation', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                dataToSave: dataToSave,
+                articleExists: articleExists
+            }),
+        })
 
-            if (!response.ok) {
-                throw new Error('could not fetch endpoint');
-            };
+        if (!response.ok) {
+            throw new Error('could not fetch endpoint');
+        };
 
-            if (response) {
-                setArticleExists(true);
-                setShowNotification(true);
+        const result = await response.json();
+
+        if (result) {
+            console.log(result.message)
+            if (result.message === "Saved") {
+                setArticleExists(true)
+                setShowNotification(true)
+            } else if (result.message === "Deleted") {
+                setArticleExists(false)
+                setShowNotification(true)
             }
+            return result.message;
         }
 
-        if (articleExists) {
 
-        }
+
     } catch (error) {
         console.log(error)
     }

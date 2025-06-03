@@ -79,7 +79,7 @@ app.get('/getBlueSkyFeed', getBlueSkyFeed);
 app.post('/supabaseLogIn', supabaseLogin);
 app.post('/getUserArticles', getUserArticles);
 app.post('/getUserResearch', getUserResearch);
-app.post('/handleArticleSave', handleArticleSave);
+app.post('/articleOperation', handleArticleSave);
 
 app.get('*', (req: Request, res: Response) => {
 

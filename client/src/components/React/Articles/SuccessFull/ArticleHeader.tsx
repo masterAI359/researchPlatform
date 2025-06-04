@@ -73,13 +73,21 @@ export default function ArticleHeader({ articleData, setFullStory, fullStory }) 
                                 {article_title}
                             </h3>
                             <p className="text-zinc-400 text-xs mt-6">
-                                {article_authors ? article_authors[0] : 'Authors not available'} - <span> <time className="text-zinc-400 transition-all ease-in-out duration-200" dateTime={article_pub_date}>{dateFormatted ? dateFormatted : article_pub_date}</time></span>
+                                {article_authors ? article_authors[0] : 'Authors not available'} <span>
+                                    <span className="text-zinc-400">-</span> <time className="text-zinc-400 transition-all ease-in-out duration-200" dateTime={article_pub_date}>
+                                        {dateFormatted ? dateFormatted : article_pub_date}
+                                    </time>
+                                </span>
                             </p>
-                            <p className="text-zinc-400 text-xs mt-6">
-                                Published by - <span className="text-zinc-400 transition-all ease-in-out duration-200">{source} {country ? `- Country of origin: ${country}` : ''} </span>
+                            <p className="text-blue-400 text-xs mt-6">
+                                Published by <span className="text-zinc-400">-</span> <span className="text-zinc-400 transition-all ease-in-out duration-200">
+                                    {source} {country ? `- Country of origin: ${country}` : ''}
+                                </span>
                             </p>
-                            <p className="text-zinc-400 text-xs mt-6">
-                                Source bias - {bias ? bias : 'Unkown'}
+                            <p className="text-blue-400 text-xs mt-6">
+                                Source bias <span className="text-zinc-400">-</span> <span className="text-zinc-400">
+                                    {bias ? bias : 'Unkown'}
+                                </span>
                             </p>
                         </div>
 

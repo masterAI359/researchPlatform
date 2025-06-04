@@ -125,7 +125,7 @@ export const getUserResearch = async (req: Request, res: Response) => {
 const saveArticleForUser = async (req: Request) => {
     const supabase = createSupabaseFromRequest(req);
     const { dataToSave } = req.body;
-    const { text, url, id, image_url, summary, title, authors, date, provider, fallbackDate, factual_reporting, rating, country } = dataToSave;
+    const { text, url, id, image_url, summary, title, authors, date, provider, fallbackDate, factual_reporting, bias, country } = dataToSave;
 
     try {
         const { data, error } = await supabase
@@ -142,9 +142,9 @@ const saveArticleForUser = async (req: Request) => {
                         article_url: url,
                         summary: summary,
                         user_id: id,
-                        provider_bias: rating,
-                        provider_reporting: factual_reporting,
-                        country_origin: country,
+                        bias: bias,
+                        factual_reporting: factual_reporting,
+                        country: country,
                     },
                 ],
                 {
@@ -245,7 +245,6 @@ export const saveResearch = async (req: Request, res: Response) => {
                 {
                     idea: investigation.idea,
                     initial_perspective: investigation.initial_perspective,
-                    biases: investigation.biases,
                     premises: investigation.premises,
                     ending_perspective: investigation.ending_perspective,
                     changed_opinion: investigation.changed_opinion,

@@ -42,8 +42,8 @@ export default function ArticleHeader({ articleData, setFullStory, fullStory }) 
         summary: summary,
         fallbackDate: article_pub_date,
         id: id,
-        provider_reporting: factual_reporting,
-        provider_bias: bias,
+        factual_reporting: factual_reporting,
+        bias: bias,
         country: country
     }
     const authShortened = limitArray(article_authors)

@@ -20,7 +20,6 @@ export default function Article({ articleData, index }) {
     } = articleData;
 
 
-
     useEffect(() => {
 
         return () => {

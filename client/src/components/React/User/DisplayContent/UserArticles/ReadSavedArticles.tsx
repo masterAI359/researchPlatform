@@ -25,7 +25,9 @@ export default function ReadSavedArticle() {
         article_authors: savedArticle.authors,
         article_text: savedArticle.full_text,
         logo: null,
-        source: savedArticle.provider
+        source: savedArticle.provider,
+        bias: savedArticle.bias,
+        factual_reporting: savedArticle.factual_reporting
     }
 
 

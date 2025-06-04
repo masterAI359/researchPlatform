@@ -17,6 +17,7 @@ export default function ArticleContainer({ }) {
   const { articles, failedNotifications, currentStory, ContentStatus } = read
   const dispatch = useDispatch()
 
+  console.log(articles)
 
   useEffect(() => {
 
@@ -46,7 +47,7 @@ export default function ArticleContainer({ }) {
         className="min-h-screen h-full 2xl:max-w-7xl xl:max-w-5xl lg:max-w-3xl md:max-w-3xl xs:px-2 md:px-8 scroll-smooth
       inset mx-auto border-white/10 xs:mt-10 xl:mt-12 relative"
       >
-    
+
         <main
           className="2xl:max-w-6xl h-full w-full mx-auto 
                mb-12 flex flex-col
@@ -63,7 +64,7 @@ export default function ArticleContainer({ }) {
                 articleData={articleData}
               />)
               )}
-              {ContentStatus === 'fulfilled' && articles.length < 1 &&  <NoContent key='noResults' />}
+              {ContentStatus === 'fulfilled' && articles.length < 1 && <NoContent key='noResults' />}
             </motion.div>
           </AnimatePresence>
 

@@ -57,10 +57,10 @@ export default function ArticleHeader({ articleData, setFullStory, fullStory }) 
 
                 <article className="w-full h-full flex items-center justify-between self-end pt-4 md:pt-0">
                     <div
-                        className="flex justify-start items-center gap-x-4 w-4/5">
+                        className="flex flex-col lg:flex-row justify-start items-center lg:gap-x-4 w-full lg:w-4/5">
                         <div className="w-full h-auto">
                             <img
-                                className="aspect-[16/9] rounded-3xl bg-zinc-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+                                className="aspect-[16/9] rounded-2xl lg:rounded-3xl bg-zinc-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
                                 width="400"
                                 src={article_image}
                             />
@@ -69,24 +69,24 @@ export default function ArticleHeader({ articleData, setFullStory, fullStory }) 
                         <div className="group w-full">
                             <h3
 
-                                className="text-3xl mt-6 tracking-tight font-light lg:text-3xl text-white/80  transition-all duration-200 ease-in-out">
+                                className="text-xl md:text-xl mt-6 tracking-tight font-light lg:text-2xl xl:text-3xl text-white/80  transition-all duration-200 ease-in-out">
                                 {article_title}
                             </h3>
-                            <p className="text-zinc-400 text-xs mt-6">
-                                {article_authors ? article_authors[0] : 'Authors not available'} <span>
+                            <p className="text-blue-400 text-xs mt-6">
+                                {source} <span>
                                     <span className="text-zinc-400">-</span> <time className="text-zinc-400 transition-all ease-in-out duration-200" dateTime={article_pub_date}>
                                         {dateFormatted ? dateFormatted : article_pub_date}
                                     </time>
                                 </span>
                             </p>
                             <p className="text-blue-400 text-xs mt-6">
-                                Published by <span className="text-zinc-400">-</span> <span className="text-zinc-400 transition-all ease-in-out duration-200">
-                                    {source} {country ? `- Country of origin: ${country}` : ''}
+                                Source Bias <span className="text-zinc-400">-</span> <span className="text-zinc-400 transition-all ease-in-out duration-200">
+                                    {bias ? bias : 'Unknown'}
                                 </span>
                             </p>
                             <p className="text-blue-400 text-xs mt-6">
-                                Source bias <span className="text-zinc-400">-</span> <span className="text-zinc-400">
-                                    {bias ? bias : 'Unkown'}
+                                Factual Reporting <span className="text-zinc-400">-</span> <span className="text-zinc-400">
+                                    {factual_reporting ? factual_reporting : 'Unknown'}
                                 </span>
                             </p>
                         </div>

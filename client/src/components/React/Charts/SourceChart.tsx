@@ -44,7 +44,7 @@ export default function SourceChart() {
       animate='open'
       exit='closed'
       transition={{ type: 'tween', duration: 0.2 }}
-      className="w-auto h-128 flex items-center justify-center"
+      className="w-auto h-96 lg:h-128 flex items-center justify-center"
     >
       <Doughnut className="cursor-pointer" data={data} />
     </motion.div>
@@ -64,7 +64,7 @@ export function ChartContainer() {
       transition={{ type: 'tween', duration: 0.2 }}
       className="lg:p-8">
       <div className="mx-auto 2xl:max-w-7xl">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:gap-24 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:gap-24 items-center">
           <div>
             <span className="text-blue-400"> Comparative Analysis</span>
             <h2 className="text-3xl mt-6 tracking-tight font-light lg:text-4xl text-white">

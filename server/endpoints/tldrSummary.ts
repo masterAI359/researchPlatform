@@ -18,6 +18,12 @@ interface QueryType {
     title: string
 }
 
+interface BiasTypes {
+    country: string | null,
+    bias: string | null,
+    factual_reporting: string | null
+}
+
 export const tldrSummary = async (req: Request, res: Response) => {
 
     let failure: any = [];
@@ -59,8 +65,7 @@ export const tldrSummary = async (req: Request, res: Response) => {
         const dataMap = query.map(async (article, index) => {
 
             const santizedSource = article.source.trim();
-            const bias = await getMediaBiases(santizedSource);
-
+            const biasRatings = await getMediaBiases(santizedSource);
 
 
             await delay(index * 2000);
@@ -90,10 +95,12 @@ export const tldrSummary = async (req: Request, res: Response) => {
                 data.logo = article.logo;
                 data.source = article.source;
                 data.date = article.date;
-                data.bias = bias;
-                const decodedData = decodeItem(data)
-                decodedData.cleanedAuthors = cleanseAuthorList(decodedData.article_authors)
-                return decodedData
+                data.bias = biasRatings?.bias ?? null;
+                data.country = biasRatings?.country ?? null;
+                data.factual_reporting = biasRatings?.factual_reporting ?? null;
+                const decodedData = decodeItem(data);
+                decodedData.cleanedAuthors = cleanseAuthorList(decodedData.article_authors);
+                return decodedData;
             } catch (error: any) {
                 const failedAttempt = {
                     title: article.title,

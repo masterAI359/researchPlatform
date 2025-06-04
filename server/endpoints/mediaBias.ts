@@ -14,6 +14,13 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
     }
 })
 
+interface BiasTypes {
+    country: string | null,
+    bias: string | null,
+    factual_reporting: string | null
+}
+
+
 
 export const getMediaBiases = async (provider: string) => {
 
@@ -24,11 +31,14 @@ export const getMediaBiases = async (provider: string) => {
             .ilike('name', provider)
             .single();
 
-        if (data) return data;
+        if (data) {
+            const { country, bias, factual_reporting }: BiasTypes = data;
+            return { country, bias, factual_reporting };
+        }
 
         if (error) console.log(error.message);
 
     } catch (error) {
-        console.log(error);
+        throw new Error('Error fetching the data from DB');
     };
 };

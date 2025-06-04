@@ -67,5 +67,28 @@ export const formPages = (links: any) => {
 }
 
 
+export const formatDate = (datePublished: string) => {
+    if (datePublished) {
+        const splitDate = datePublished.split(" ")
+        const addCommas = splitDate.map((str: string, index: number) => {
+
+            if (splitDate.length === index + 2) {
+                return str + ','
+            } else {
+                return str
+            }
+        })
+
+        const formatted = addCommas.join(" ")
+
+
+        return formatted
+    } else {
+        return "Date unavailable, visit source to see date of publication."
+    }
+
+
+}
+
 
 

@@ -18,6 +18,7 @@ import { supabaseLogin } from '../endpoints/serverClient.js';
 import { getUserArticles } from '../endpoints/serverClient.js';
 import { getUserResearch } from '../endpoints/serverClient.js';
 import { handleArticleSave } from '../endpoints/serverClient.js';
+import { saveResearch } from '../endpoints/serverClient.js';
 
 const corsOptions: object = {
 	origin: ['https://elenchusapp.io', 'http://localhost:5173'],
@@ -80,6 +81,7 @@ app.post('/supabaseLogIn', supabaseLogin);
 app.post('/getUserArticles', getUserArticles);
 app.post('/getUserResearch', getUserResearch);
 app.post('/articleOperation', handleArticleSave);
+app.post('/saveResearch', saveResearch);
 
 app.get('*', (req: Request, res: Response) => {
 

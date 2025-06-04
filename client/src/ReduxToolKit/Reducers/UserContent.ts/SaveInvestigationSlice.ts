@@ -19,30 +19,36 @@ const initialState: SaveInvestigation = {
 export const saveUserInvestigation = createAsyncThunk(
     'user/SaveInvestigation',
     async (investigationData: any, thunkAPI) => {
-        const { idea, initial_perspective, biases, premises, ending_perspective, changed_opinion, new_concepts, takeaway, user_id, had_merit, sources, wikipedia_extracts } = investigationData
-        const { data, error } = await supabase
-            .from('investigations')
-            .insert([{
-                idea: idea,
-                initial_perspective: initial_perspective,
-                biases: biases,
-                premises: premises,
-                ending_perspective: ending_perspective,
-                changed_opinion: changed_opinion,
-                new_concepts: new_concepts,
-                takeaway: takeaway,
-                had_merit: had_merit,
-                user_id: user_id,
-                sources: sources,
-                wikipedia_extracts: wikipedia_extracts
-            }]).select()
-        if (error) {
-            console.log(error.message)
-            return thunkAPI.rejectWithValue(error.message)
-        } else if (data) {
-            return data
+
+        const investigation = investigationData;
+        const url: string = 'http://localhost:5001/saveResearch';
+
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    investigation: investigation
+                })
+            })
+
+            if (!response.ok) {
+                throw new Error(`Unable to connect to endpoint: ${url} - Error Message: ${response.statusText}`);
+            }
+
+            const result = await response.json();
+
+            if (result) {
+                return result
+            }
+
+        } catch (error) {
+            const errorMessage = thunkAPI.rejectWithValue(error.message);
+            return errorMessage;
         }
-        console.log(data)
     }
 )
 

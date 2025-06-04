@@ -79,56 +79,6 @@ export const saveArticle = async (
 
 
 
-
-
-
-export const saveInvestigation = async (investigationData: any, setSavingInvestigation?: Function, setSaveSuccessful?: Function
-
-
-): Promise<boolean> => {
-
-    const { idea, initial_perspective, biases, premises, ending_perspective, changed_opinion, new_concepts, takeaway, user_id } = investigationData
-
-    const { data, error } = await supabase
-        .from('investigations')
-        .insert([{
-            idea: idea,
-            initial_perspective: initial_perspective,
-            biases: biases,
-            premises: premises,
-            ending_perspective: ending_perspective,
-            changed_opinion: changed_opinion,
-            new_concepts: new_concepts,
-            takeaway: takeaway,
-            user_id: user_id
-        }]).select()
-
-    if (error) {
-
-        console.log(error.message)
-        return false
-    } else if (data) {
-        setSaveSuccessful?.(true)
-        return true
-    }
-
-}
-
-
-export const getUserInvestigations = async (id: number | string) => {
-
-    const { data, error } = await supabase
-        .from('investigations')
-        .select()
-        .eq('user_id', id)
-
-    if (error) {
-    } else if (data) {
-
-    }
-
-}
-
 export const getInvestigationSources = (sources: string[], savedArticles: any) => {
 
     //might implement two pointer algorithm on this function for performance optimization
@@ -160,7 +110,6 @@ export const getInvestigationSources = (sources: string[], savedArticles: any) =
 
 export const deleteUser = async (id: string, setDeleting: Function, setDeletesuccessful: Function) => {
 
-
     try {
         setDeleting(true)
         const { data, error } = await supabase.auth.admin.deleteUser(
@@ -176,8 +125,6 @@ export const deleteUser = async (id: string, setDeleting: Function, setDeletesuc
         }
     } catch (error) {
     }
-
-
 }
 
 
@@ -201,7 +148,6 @@ export const submitFeedback = async (authorEmail: string, message: string, setFe
         console.log(error)
     }
 }
-
 
 export const checkForActiveSession = async (): Promise<boolean> => {
     const { data: { session } } = await supabase.auth.getSession();

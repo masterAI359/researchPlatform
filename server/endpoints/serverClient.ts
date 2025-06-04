@@ -234,6 +234,48 @@ export const handleArticleSave = async (req: Request, res: Response) => {
 
 
 
+export const saveResearch = async (req: Request, res: Response) => {
+    const supabase = createSupabaseFromRequest(req);
+    const { investigation } = req.body;
+
+    try {
+        const { data, error } = await supabase
+            .from('investigations')
+            .upsert([
+                {
+                    idea: investigation.idea,
+                    initial_perspective: investigation.initial_perspective,
+                    biases: investigation.biases,
+                    premises: investigation.premises,
+                    ending_perspective: investigation.ending_perspective,
+                    changed_opinion: investigation.changed_opinion,
+                    new_concepts: investigation.new_concepts,
+                    takeaway: investigation.takeaway,
+                    had_merit: investigation.had_merit,
+                    user_id: investigation.user_id,
+                    sources: investigation.sources,
+                    wikipedia_extracts: investigation.wikipedia_extracts
+                }
+            ])
+            .select();
+
+        if (data) {
+            const response = { message: "Saved research data", data: data };
+            res.send(response);
+
+        } else if (error) {
+            const response = { message: error.message, data: null };
+            res.send(response);
+        };
+
+    } catch (error) {
+        console.error("Unexpected error saving research: ", error);
+        return res.status(500).json({ message: "Internal Server Error", data: null });
+    }
+}
+
+
+
 
 
 

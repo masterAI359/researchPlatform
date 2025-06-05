@@ -1,6 +1,7 @@
+import { articleData } from "@/ReduxToolKit/Reducers/Investigate/Reading";
 
 
-export const leftBiasSources = (articles: SavedArticle[]) => {
+export const numBiasSources = (articles: SavedArticle[], leaningOne: string, leaningTwo?: string) => {
 
     let count: number = 0;
 
@@ -8,9 +9,9 @@ export const leftBiasSources = (articles: SavedArticle[]) => {
 
         let bias: string | null = articles[i].bias;
 
-        if (bias === 'Left-Center') {
+        if (bias === leaningOne) {
             count++
-        } else if (bias === 'Left') {
+        } else if (leaningTwo && bias === leaningTwo) {
             count++
         } else {
             continue
@@ -38,3 +39,4 @@ export const rightBiasSources = (articles: SavedArticle[]) => {
 
     return count;
 };
+

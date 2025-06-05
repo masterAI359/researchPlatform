@@ -4,7 +4,8 @@ import { motion } from "framer-motion";
 import { useRef } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
-import { leftBiasSources, rightBiasSources } from "@/helpers/Ratings";
+import { numBiasSources, rightBiasSources } from "@/helpers/Ratings";
+import { ChartData } from "chart.js";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -14,33 +15,65 @@ const variants = {
 };
 
 
+
+
 export default function SourceChart() {
   const userArticles = useSelector((state: RootState) => state.userdata.userArticles);
   const chartRef = useRef(null);
 
-  const numLeftBias = leftBiasSources(userArticles);
-  const numRightBias = rightBiasSources(userArticles);
+  const numLeftSources: number | null = numBiasSources(userArticles, "Left", "Left-Center");
+  const numRightSources: number | null = numBiasSources(userArticles, "Right", "Right-Center");
+  const numCenterSources: number | null = numBiasSources(userArticles, "LeastBiased");
+  const numConspiracySources: number | null = numBiasSources(userArticles, "Conspiracy-Pseuodscience");
+  const numQuestionableSources: number | null = numBiasSources(userArticles, 'Questionable');
+  const numSatireSources: number | null = numBiasSources(userArticles, "Satire");
+  const numScientificSources: number | null = numBiasSources(userArticles, "Pro-Science");
 
-  console.log(numLeftBias, numRightBias);
 
-  const ratings = ['Least Biased', 'Left Bias', 'Left-Center Bias', 'Right-Center Bias', 'Right Bias', 'Conspiracy-Pseuodscience', 'Questionable Sources', 'Pro-Science - Bias and Credibility', 'Satire'];
+  const ratings: string[] = [
+    'Right Sources',
+    'Left Sources',
+    'Center Sources',
+    'Conspiracy Sources',
+    'Questionable Sources',
+    'Scientific Sources',
+    'Satire'
+  ];
 
-  const data = {
-    labels: ['Right-Leaning', 'Left-Leaning', 'Center'],
+  const sourceBiasCounts: number[] = [
+    numRightSources,
+    numLeftSources,
+    numCenterSources,
+    numConspiracySources,
+    numQuestionableSources,
+    numSatireSources,
+    numScientificSources
+  ];
+
+
+  const data: ChartData<'doughnut', number[], string> = {
+    labels: ratings,
     datasets: [
       {
         label: '# of sources',
-        data: [12, 19, 3],
+        data: sourceBiasCounts,
         backgroundColor: [
-          '#ffffff80',
+          '#27292d',
           '#2628a1',
-          '#EDEADE',
-
+          '#71717a',
+          '#b37800',
+          '#8695f9',
+          '#2e8b57',
+          '#9470c4'
         ],
         borderColor: [
-          '#ffffff80',
+          '#27292d',
           "#364EF5",
-          '#EDEADE',
+          '#71717a',
+          '#b37800',
+          '#8695f9',
+          '#2e8b57',
+          '#9470c4'
         ],
         borderWidth: 1,
       },

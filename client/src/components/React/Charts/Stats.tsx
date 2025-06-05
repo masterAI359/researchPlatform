@@ -5,6 +5,9 @@ function StatItem({ label, target }) {
   const ref = useRef<HTMLDivElement | null>(null);
   const hasStarted = useRef(false);
 
+
+  let Colorref = 'bg-gradient-to-r from-blue-300 via-blue-400'
+
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting && !hasStarted.current) {
@@ -42,7 +45,7 @@ export default function StatsSection() {
   return (
     <section className="lg:p-8">
       <div className="mx-auto w-full 2xl:max-w-7xl">
-        <div className="2xl:max-w-7xl  relative isolate overflow-hidden bg-gradientup ring-1 ring-white/10 rounded-4xl px-6 pt-16 sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
+        <div className="2xl:max-w-7xl  relative isolate overflow-hidden  bg-gradientup ring-1 ring-white/10 rounded-4xl px-6 pt-16 sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
           <div className="mx-auto max-w-2xl text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
             <span className="text-white">Investigation Statistics</span>
             <h2 className="text-3xl mt-6 tracking-tight font-light lg:text-4xl text-white">

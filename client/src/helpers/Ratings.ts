@@ -1,6 +1,3 @@
-import { articleData } from "@/ReduxToolKit/Reducers/Investigate/Reading";
-
-
 export const numBiasSources = (articles: SavedArticle[], leaningOne: string, leaningTwo?: string) => {
 
     let count: number = 0;

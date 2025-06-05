@@ -8,7 +8,7 @@ import { AppDispatch, RootState } from '@/ReduxToolKit/store';
 import { clearWikiSlice } from '@/ReduxToolKit/Reducers/Investigate/WikipediaSlice';
 
 
-export default function Article({ articleData, index }) {
+export default function Article({ articleData }) {
     const investigateState = useSelector((state: RootState) => state.investigation);
     const dispatch = useDispatch<AppDispatch>();
     const { gettingSelection, status } = investigateState.wiki;

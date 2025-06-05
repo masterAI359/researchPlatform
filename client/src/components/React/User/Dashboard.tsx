@@ -1,8 +1,6 @@
 import { motion } from "framer-motion";
 import { ChartWrapper } from "../Charts/DonutChart/SourceChart";
 import StatsSection from "../Charts/Stats";
-import { useSelector } from "react-redux";
-import { RootState } from "@/ReduxToolKit/store";
 
 const variants = {
     open: { opacity: 1 },
@@ -10,9 +8,6 @@ const variants = {
 };
 
 export default function Dashboard() {
-    const email = useSelector((state: RootState) => state.auth.email);
-
-    console.log(email)
 
     return (
         <motion.section

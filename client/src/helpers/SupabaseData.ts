@@ -11,8 +11,6 @@ export const checkArticle = async (
 ): Promise<void> => {
     const exists = userArticles.some((article: any) => article_url === article.article_url);
 
-    console.log({ CheckResult: exists });
-
     if (exists) {
         setArticleExists(true);
     } else {
@@ -29,9 +27,6 @@ export const saveArticle = async (
     setRegisteredExclusiveFeature: (registeredExlusiveFeature: boolean) => void,
     id: string | number,
 ): Promise<string> => {
-
-
-    console.log('called')
 
     if (!id) {
         setRegisteredExclusiveFeature(true)
@@ -69,9 +64,6 @@ export const saveArticle = async (
             }
             return result.message;
         }
-
-
-
     } catch (error) {
         console.log(error)
     }
@@ -138,10 +130,14 @@ export const submitFeedback = async (authorEmail: string, message: string, setFe
                 email: authorEmail,
                 message: message
             })
+            .select();
 
-        if (data) console.log(data)
+        if (data) {
+            setFeedbackSubmitted(true)
+
+        }
+
         if (error) console.log(error.message)
-        setFeedbackSubmitted(true)
 
     } catch (error) {
         setFeedbackSubmitted(false)

@@ -4,6 +4,9 @@ export default function NoContent() {
 
     return (
         <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             key='noContent'
         >
             <div className="w-full h-full flex items-center justify-center">

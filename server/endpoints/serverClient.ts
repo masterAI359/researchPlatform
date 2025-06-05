@@ -8,14 +8,10 @@ dotenv.config({ path: envPath })
 import { SUPABASE_KEY, SUPABASE_URL } from '../src/Config.js';
 import { Request, Response } from 'express'
 import { createClient } from '@supabase/supabase-js';
-import { error } from 'console';
-import { data } from 'cheerio/lib/api/attributes.js';
 
 
 export const createSupabaseFromRequest = (req: Request) => {
     const accessToken = req.cookies['sb-access-token'];
-    // console.log('access token from cookie:', req.cookies['sb-access-token']);
-
 
     return createClient(SUPABASE_URL, SUPABASE_KEY, {
         global: {
@@ -23,7 +19,23 @@ export const createSupabaseFromRequest = (req: Request) => {
                 Authorization: `Bearer ${accessToken}`,
             },
         },
+        auth: {
+            persistSession: false,
+        },
     });
+};
+
+
+export const getUserAndSupabase = async (req: Request, res: Response) => {
+    const supabase = createSupabaseFromRequest(req);
+    const { data: { user }, error } = await supabase.auth.getUser();
+
+    if (!user || error) {
+        res.status(401).json({ error: 'Unauthorized' });
+        return null;
+    }
+
+    return { supabase, user };
 };
 
 
@@ -31,6 +43,7 @@ export const createSupabaseFromRequest = (req: Request) => {
 
 export const supabaseLogin = async (req: Request, res: Response) => {
     const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
     const { email, password } = req.body;
 
     try {
@@ -68,8 +81,12 @@ export const supabaseLogin = async (req: Request, res: Response) => {
 
 
 export const getUserArticles = async (req: Request, res: Response) => {
-    const supabase = createSupabaseFromRequest(req);
-    const { id } = req.body;
+    const session = await getUserAndSupabase(req, res);
+
+    if (!session) return;
+
+    const { supabase, user } = session;
+
 
     console.log('🍪 Incoming cookies in getUserArticles:', req.cookies);
 
@@ -77,7 +94,7 @@ export const getUserArticles = async (req: Request, res: Response) => {
         const { data, error } = await supabase
             .from('articles')
             .select()
-            .eq('user_id', id)
+            .eq('user_id', user.id)
 
         if (data) {
             res.send(data)
@@ -96,18 +113,21 @@ export const getUserArticles = async (req: Request, res: Response) => {
 
 
 export const getUserResearch = async (req: Request, res: Response) => {
-    const supabase = createSupabaseFromRequest(req);
-    const { id } = req.body;
+
+    const session = await getUserAndSupabase(req, res);
+
+    if (!session) return;
+
+    const { supabase, user } = session;
 
     try {
 
         const { data, error } = await supabase
             .from('investigations')
             .select()
-            .eq('user_id', id)
+            .eq('user_id', user.id)
 
         if (data) {
-            console.log(data);
             res.send(data);
         };
 
@@ -122,10 +142,15 @@ export const getUserResearch = async (req: Request, res: Response) => {
 }
 
 
-const saveArticleForUser = async (req: Request) => {
-    const supabase = createSupabaseFromRequest(req);
+const saveArticleForUser = async (req: Request, res: Response) => {
+    const session = await getUserAndSupabase(req, res);
+
+    if (!session) return;
+
+    const { supabase, user } = session;
+
     const { dataToSave } = req.body;
-    const { text, url, id, image_url, summary, title, authors, date, provider, fallbackDate, factual_reporting, bias, country } = dataToSave;
+    const { text, url, image_url, summary, title, authors, date, provider, fallbackDate, factual_reporting, bias, country } = dataToSave;
 
     try {
         const { data, error } = await supabase
@@ -141,7 +166,7 @@ const saveArticleForUser = async (req: Request) => {
                         date_published: date || fallbackDate,
                         article_url: url,
                         summary: summary,
-                        user_id: id,
+                        user_id: user.id,
                         bias: bias,
                         factual_reporting: factual_reporting,
                         country: country,
@@ -170,17 +195,22 @@ const saveArticleForUser = async (req: Request) => {
 };
 
 
-const deleteArticleForUser = async (req: Request) => {
+const deleteArticleForUser = async (req: Request, res: Response) => {
 
-    const supabase = createSupabaseFromRequest(req);
+    const session = await getUserAndSupabase(req, res);
+
+    if (!session) return;
+
+    const { supabase, user } = session;
+
     const { dataToSave } = req.body;
-    const { url, id } = dataToSave;
+    const { url } = dataToSave;
 
     try {
         const response = await supabase
             .from('articles')
             .delete()
-            .eq('user_id', id)
+            .eq('user_id', user.id)
             .eq('article_url', url)
             .select();
 
@@ -213,10 +243,10 @@ export const handleArticleSave = async (req: Request, res: Response) => {
 
         if (articleExists) {
             console.log('deleting')
-            result = await deleteArticleForUser(req);
+            result = await deleteArticleForUser(req, res);
         } else {
             console.log('saving')
-            result = await saveArticleForUser(req);
+            result = await saveArticleForUser(req, res);
         }
 
         if (result) {
@@ -235,7 +265,12 @@ export const handleArticleSave = async (req: Request, res: Response) => {
 
 
 export const saveResearch = async (req: Request, res: Response) => {
-    const supabase = createSupabaseFromRequest(req);
+    const session = await getUserAndSupabase(req, res);
+
+    if (!session) return;
+
+    const { supabase, user } = session;
+
     const { investigation } = req.body;
 
     try {
@@ -251,7 +286,7 @@ export const saveResearch = async (req: Request, res: Response) => {
                     new_concepts: investigation.new_concepts,
                     takeaway: investigation.takeaway,
                     had_merit: investigation.had_merit,
-                    user_id: investigation.user_id,
+                    user_id: user.id,
                     sources: investigation.sources,
                     wikipedia_extracts: investigation.wikipedia_extracts
                 }

@@ -49,13 +49,11 @@ export default function Login() {
 
         const signin = await supabaseSignIn(userEmail, userPassword, setLoggingIn, setSuccessful, dispatch, fetchUserCredentials);
         if (signin) {
-            console.log(signin)
             setSuccessful(true);
             redirectUser();
         }
 
         if (signin === false) {
-            console.log(signin)
             setSuccessful(false)
         }
     }
@@ -70,7 +68,6 @@ export default function Login() {
 
     useEffect(() => {
 
-        console.log(id)
 
         if (userEmail) {
             emailValidation(userEmail, setValidEmail)

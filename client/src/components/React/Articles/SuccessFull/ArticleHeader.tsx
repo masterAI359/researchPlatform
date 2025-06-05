@@ -1,7 +1,6 @@
 import MoreButton from "../../Buttons/HelpButtons/MoreButton";
 import SaveArticle from "../../Buttons/SaveButtons/SaveArticle";
 import { SavedArticle } from "@/env";
-import { limitArray } from "@/helpers/Presentation";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import { useState } from "react";
@@ -46,7 +45,6 @@ export default function ArticleHeader({ articleData, setFullStory, fullStory }) 
         bias: bias,
         country: country
     }
-    const authShortened = limitArray(article_authors)
     const fallbackImage = '/images/logos/fallback.jpg'
     const storyImage = article_image || fallbackImage
 

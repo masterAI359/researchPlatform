@@ -18,11 +18,17 @@ interface QueryType {
     title: string
 }
 
-interface BiasTypes {
-    country: string | null,
-    bias: string | null,
-    factual_reporting: string | null
+const cleanURL = (url: string) => {
+    try {
+        const u = new URL(url);
+        u.search = ""; // removes query params
+        return u.toString();
+    } catch {
+        return url;
+    }
 }
+
+
 
 export const tldrSummary = async (req: Request, res: Response) => {
 
@@ -67,6 +73,7 @@ export const tldrSummary = async (req: Request, res: Response) => {
             const santizedSource = article.source.trim();
             const biasRatings = await getMediaBiases(santizedSource);
 
+            const urlClean = cleanURL(article.url);
 
             await delay(index * 2000);
 
@@ -79,7 +86,7 @@ export const tldrSummary = async (req: Request, res: Response) => {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        url: article.url,
+                        url: urlClean,
                         num_sentences: 5,
                         is_detailed: true,
                     })

@@ -58,7 +58,6 @@ export default function SourceChart() {
     '#8695f9',
   ]
 
-  console.log(sourceBiasCounts);
 
   const data: ChartData<'doughnut', number[], string> = {
     labels: ratings,

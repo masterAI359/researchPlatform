@@ -91,7 +91,6 @@ export const supabaseSignIn = async (email: string, password: string, setLogginI
         }
         const sessionData = await response.json();
         if (sessionData) {
-            console.log(sessionData)
             setSuccessful(true);
             dispatch(fetchUserCredentials(sessionData))
             return true;

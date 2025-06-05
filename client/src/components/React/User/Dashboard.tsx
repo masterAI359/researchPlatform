@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
-import SourceChart from "../Charts/SourceChart";
-import { ChartContainer } from "../Charts/SourceChart";
+import { ChartWrapper } from "../Charts/DonutChart/SourceChart";
 import StatsSection from "../Charts/Stats";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
@@ -28,7 +27,7 @@ export default function Dashboard() {
         p-4 md:p-0
         "
         >
-            <ChartContainer />
+            <ChartWrapper />
             <StatsSection />
         </motion.section>
     )

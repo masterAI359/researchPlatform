@@ -21,7 +21,7 @@ export const saveUserInvestigation = createAsyncThunk(
     async (investigationData: any, thunkAPI) => {
 
         const investigation = investigationData;
-        const url: string = 'http://localhost:5001/saveResearch';
+        const url: string = '/saveResearch';
 
         try {
             const response = await fetch(url, {

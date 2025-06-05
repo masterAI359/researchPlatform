@@ -35,7 +35,7 @@ export const saveArticle = async (
 
     try {
 
-        const response = await fetch('http://localhost:5001/articleOperation', {
+        const response = await fetch('/articleOperation', {
             method: 'POST',
             credentials: 'include',
             headers: {

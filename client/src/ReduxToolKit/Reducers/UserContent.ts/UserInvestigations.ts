@@ -5,7 +5,7 @@ type ID = string | number;
 export const fetchSavedInvestigations = createAsyncThunk('user/investigations', async (id: ID, thunkAPI) => {
 
     try {
-        const response = await fetch('http://localhost:5001/getUserResearch', {
+        const response = await fetch('/getUserResearch', {
             method: 'POST',
             credentials: 'include',
             headers: {

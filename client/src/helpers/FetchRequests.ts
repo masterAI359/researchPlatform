@@ -70,7 +70,7 @@ export const supabaseSignIn = async (email: string, password: string, setLogginI
     try {
         setLogginIn(true);
 
-        const response = await fetch('http://localhost:5001/supabaseLogIn', {
+        const response = await fetch('/supabaseLogIn', {
             method: 'POST',
             credentials: 'include',
             headers: {

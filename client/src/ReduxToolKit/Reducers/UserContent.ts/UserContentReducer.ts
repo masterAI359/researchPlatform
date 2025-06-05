@@ -23,7 +23,7 @@ export const fetchSavedArticles = createAsyncThunk(
     'user/articles',
     async (id: string, thunkAPI) => {
         try {
-            const data = await fetch('http://localhost:5001/getUserArticles', {
+            const data = await fetch('/getUserArticles', {
                 method: 'POST',
                 credentials: 'include',
                 headers: {

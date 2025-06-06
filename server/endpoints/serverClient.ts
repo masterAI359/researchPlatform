@@ -20,7 +20,7 @@ export const createSupabaseFromRequest = (req: Request) => {
             },
         },
         auth: {
-            persistSession: false,
+            persistSession: true,
         },
     });
 };
@@ -38,6 +38,16 @@ export const getUserAndSupabase = async (req: Request, res: Response) => {
     return { supabase, user };
 };
 
+
+export const getCurrentUser = async (req: Request, res: Response) => {
+    const session = await getUserAndSupabase(req, res);
+
+    if (!session) return;
+
+    const { user } = session;
+
+    return res.status(200).json({ user });
+};
 
 
 
@@ -77,6 +87,45 @@ export const supabaseLogin = async (req: Request, res: Response) => {
         console.log(error);
     }
 }
+
+
+export const signUserOut = async (req: Request, res: Response) => {
+
+    try {
+        res.clearCookie('sb-access-token');
+        res.clearCookie('sb-refresh-token');
+        res.status(200).json({ message: 'Signed out successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to sign out' });
+    }
+
+};
+
+
+export const resetUserPassword = async (req: Request, res: Response) => {
+    const supabase = createClient(SUPABASE_URL, SUPABASE_KEY)
+    const { email } = req.body;
+
+    if (!email) {
+        return res.status(400).json({ error: 'Email is required.' });
+    }
+
+    try {
+        const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+            redirectTo: 'https://elenchusapp.io/reset-password',
+        });
+
+        if (error) {
+            return res.status(500).json({ error: error.message });
+        }
+
+        return res.status(200).json({ message: 'Reset email sent.', data: data });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: 'Unexpected server error.', data: null });
+    }
+};
 
 
 

@@ -1,55 +1,43 @@
 import { createPortal } from "react-dom";
 import { showSignOut, clearAuthSlice } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
 import { useDispatch } from "react-redux";
-import { motion, AnimatePresence, delay } from "framer-motion";
-import { supabase } from "@/SupaBase/supaBaseClient";
+import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Pending from "./AuthNotifications/Pending";
 import Success from "./AuthNotifications/Success";
 import Failed from "./AuthNotifications/Failed";
+import { fetchSignOut } from "@/helpers/FetchRequests";
 
 const variants = {
     closed: { opacity: 0 },
-    open: { opacity: 1, transition: { type: 'tween', delay: 0.3, duration: 0.2 }}
+    open: { opacity: 1, transition: { type: 'tween', delay: 0.3, duration: 0.2 } }
 }
 
 
 
 export default function SignOutModal({ }) {
-    const [signingOut, setSigningOut] = useState<boolean>(null)
+    const [signingOut, setSigningOut] = useState<boolean>(false)
     const [success, setSuccess] = useState<boolean>(null)
+    const navigate = useNavigate();
     const dispatch = useDispatch()
 
 
+    function redirect() {
+        setTimeout(() => {
+            navigate('/');
+        }, 900);
+    };
 
-
-
-
-    const signOutUser = async () => {
+    const signOutUser = () => {
 
         setSigningOut(true)
 
-        try {
-            const { error } = await supabase.auth.signOut()
+        fetchSignOut(setSuccess);
 
-            if (error) {
-                setSuccess(false)
-                console.log(error.message)
-            } else {
-                setSuccess(true)
-            }
+    };
 
-        } catch (error) {
-            setSuccess(false)
-        }
-    }
-
-    useEffect(() => {
-        console.log('rendering')
-
-        console.log({ "Success": success, "Signing Out": signingOut })
-    }, [success, signingOut])
+    useEffect(() => { }, [signingOut, success]);
 
 
     const modal = (
@@ -63,7 +51,7 @@ export default function SignOutModal({ }) {
         sm:gap-y-10 sm:p-10 lg:col-span-2 lg:flex-row lg:items-center bg-ebony mt-2 
         shadow-inset text-center">
             <AnimatePresence>
-                {signingOut && <SigningOut signingOut={signingOut} setSigningOut={setSigningOut} success={success} />}
+                {signingOut !== false && <SigningOut signingOut={signingOut} setSigningOut={setSigningOut} success={success} />}
             </AnimatePresence>
             <div className="lg:min-w-0 lg:flex-1 max-w-sm mx-auto">
                 <p className="text-white xl:text-4xl">Sign out</p>

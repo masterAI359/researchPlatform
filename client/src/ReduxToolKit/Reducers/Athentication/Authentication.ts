@@ -1,12 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { supabase } from "@/SupaBase/supaBaseClient";
 
 
 export const fetchUserCredentials = createAsyncThunk(
     'user/credentials',
     async (session: any, thunkAPI) => {
         try {
-           
+
 
             if (session) {
                 return session
@@ -43,7 +42,7 @@ const initialState: Authentication = {
     email: null,
     signOut: false,
     signedIn: false,
-    user_id: '87cd3093-80f0-4a0e-853f-28963dc36c89',
+    user_id: null,
     status: 'idle'
 };
 

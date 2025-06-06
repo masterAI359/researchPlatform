@@ -106,3 +106,68 @@ export const supabaseSignIn = async (email: string, password: string, setLogginI
         return false;
     };
 };
+
+
+
+export const fetchSignOut = async (setSuccess: (success: boolean) => void) => {
+
+    try {
+        console.log('running');
+        const response = await fetch('/signUserOut', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            setSuccess(false)
+            throw new Error('Could not reach endpoint for signout');
+        }
+
+        const result = await response.json();
+
+        if (result) {
+            console.log(result.message);
+            setSuccess(true);
+        }
+
+    } catch (error) {
+        setSuccess(false);
+        console.error(error);
+    }
+}
+
+
+export const sendEmailResetLink = async (email: string, setEmailSent: (emailSent: boolean) => void) => {
+
+    try {
+
+        const response = await fetch('/resetUserPassword', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: email,
+            }),
+        });
+        if (!response.ok) {
+            setEmailSent(false);
+            throw new Error('could not connect to password reset endpoint');
+        };
+
+        const result = await response.json();
+
+        if (result.message === 'Reset email sent.') {
+            setEmailSent(true)
+        }
+
+
+    } catch (error) {
+        console.log(error)
+        setEmailSent(false)
+    }
+
+}

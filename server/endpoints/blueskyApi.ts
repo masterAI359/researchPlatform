@@ -10,12 +10,12 @@ export const searchBlueSkyPosts = async (req: Request, res: ExpRes) => {
   const query = req.query.q as string
 
   try {
-    const { data: session} = await agent.login({
+    const { data: session } = await agent.login({
       identifier: BLUESKY_EMAIL,
-      password:   BLUESKY_PASSWORD,
-      
+      password: BLUESKY_PASSWORD,
+
     })
-    const jwt  = session.accessJwt
+    const jwt = session.accessJwt
 
     const result = await agent.api.app.bsky.feed.searchPosts(
       { q: query },
@@ -27,7 +27,7 @@ export const searchBlueSkyPosts = async (req: Request, res: ExpRes) => {
     )
 
     const cleansed = decodeItem(result.data)
-    
+
     return res.json(cleansed)
 
   } catch (err: any) {
@@ -42,31 +42,31 @@ export const searchBlueSkyPosts = async (req: Request, res: ExpRes) => {
 
 
 export const getBlueSkyFeed = async (req: Request, res: ExpRes) => {
- 
+
   try {
     console.log('try suggested feeds')
     await agent.login({
       identifier: BLUESKY_EMAIL,
-      password:   BLUESKY_PASSWORD,
+      password: BLUESKY_PASSWORD,
     })
-    
+
     const suggested = await agent.api.app.bsky.feed.getSuggestedFeeds({})
-    console.log('suggested feeds: ' + suggested.data.feeds)
+    //console.log('suggested feeds: ' + suggested.data.feeds)
     const gens = suggested.data.feeds
     const feedUri = gens.find(g => g.uri.includes('verified-news'))?.uri
     if (!feedUri) {
       return res.status(404).send('Couldn’t find verified-news generator')
     }
     const feed = await agent.api.app.bsky.feed.getFeed({
-      feed:  feedUri,
+      feed: feedUri,
       limit: 20,
     })
-    
+
     const feedData = decodeItem(feed.data.feed);
     const unwrappedPosts = unwrapObjects(feedData);
-    console.log({ "FeedData": unwrappedPosts }, { "Length": unwrappedPosts.length })
+    //console.log({ "FeedData": unwrappedPosts }, { "Length": unwrappedPosts.length })
     return res.json(unwrappedPosts);
-    
+
   } catch (err: any) {
     console.error('BlueSky error:', err)
     return res

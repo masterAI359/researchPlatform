@@ -48,6 +48,18 @@ export default defineConfig({
         '/saveResearch': {
           target: 'http://localhost:5001',
           changeOrigin: true
+        },
+        '/signUserOut': {
+          target: 'http://localhost:5001',
+          changeOrigin: true
+        },
+        '/resetUserPassword': {
+          target: 'http://localhost:5001',
+          changeOrigin: true
+        },
+        '/getCurrentUser': {
+          target: 'http://localhost:5001',
+          changeOrigin: true
         }
       } : undefined
     }

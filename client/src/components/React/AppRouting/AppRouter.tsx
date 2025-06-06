@@ -11,26 +11,25 @@ import ReviewInvestigation from "../User/DisplayContent/SavedInvestigations.tsx/
 import EmailForReset from "../Forms/EmailForReset"
 import UpdatePassword from "../Forms/UpdatePassword"
 
-
 export default function AppRouter() {
 
     return (
-            <BrowserRouter>
-                <Routes>
-                    <Route path='/' element={<Structure />}>
-                        <Route index element={<HomeContainer />} />
-                        <Route path='/investigate' element={<InvestigateContainer />} />
-                        <Route path='/about' element={<AboutContainer />} />
-                        <Route path='/signup' element={<Signup />} />
-                        <Route path='/login' element={<Login />} />
-                        <Route path='/profile' element={<Profile />} />
-                        <Route path="/emailForReset" element={<EmailForReset />} />
-                        <Route path="/updatePassword" element={<UpdatePassword />} />
-                        <Route path="/savedArticle" element={<ReadSavedArticle />} />
-                        <Route path="/reviewInvestigation" element={<ReviewInvestigation />} />
-                    </Route>
-                </Routes>
-            </BrowserRouter>
+        <BrowserRouter>
+            <Routes>
+                <Route path='/' element={<Structure />}>
+                    <Route index element={<HomeContainer />} />
+                    <Route path='/investigate' element={<InvestigateContainer />} />
+                    <Route path='/about' element={<AboutContainer />} />
+                    <Route path='/signup' element={<Signup />} />
+                    <Route path='/login' element={<Login />} />
+                    <Route path='/profile' element={<Profile />} />
+                    <Route path="/emailForReset" element={<EmailForReset />} />
+                    <Route path="/updatePassword" element={<UpdatePassword />} />
+                    <Route path="/savedArticle" element={<ReadSavedArticle />} />
+                    <Route path="/reviewInvestigation" element={<ReviewInvestigation />} />
+                </Route>
+            </Routes>
+        </BrowserRouter>
 
     )
 }
@@ -41,7 +40,6 @@ function Structure() {
     return (
         <>
             <Navigation />
-            
             <Outlet />
         </>
     )

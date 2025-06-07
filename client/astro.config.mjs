@@ -28,6 +28,38 @@ export default defineConfig({
         '/getBlueSkyFeed': {
           target: 'http://localhost:5001',
           changeOrigin: true
+        },
+        '/supabaseLogIn': {
+          target: 'http://localhost:5001',
+          changeOrigin: true
+        },
+        '/getUserArticles': {
+          target: 'http://localhost:5001',
+          changeOrigin: true
+        },
+        '/getUserResearch': {
+          target: 'http://localhost:5001',
+          changeOrigin: true
+        },
+        '/articleOperation': {
+          target: 'http://localhost:5001',
+          changeOrigin: true
+        },
+        '/saveResearch': {
+          target: 'http://localhost:5001',
+          changeOrigin: true
+        },
+        '/signUserOut': {
+          target: 'http://localhost:5001',
+          changeOrigin: true
+        },
+        '/resetUserPassword': {
+          target: 'http://localhost:5001',
+          changeOrigin: true
+        },
+        '/getCurrentUser': {
+          target: 'http://localhost:5001',
+          changeOrigin: true
         }
       } : undefined
     }
@@ -36,5 +68,4 @@ export default defineConfig({
   site: 'https://elenchusapp.io/',
   integrations: [tailwind(), sitemap(), mdx(), devtoolBreakpoints(), react(), icon()],
   output: 'static',
-
 });

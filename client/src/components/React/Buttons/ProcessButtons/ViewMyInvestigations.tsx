@@ -1,11 +1,6 @@
 import { useNavigate } from "react-router-dom"
-import { useDispatch } from "react-redux"
-import { clearSaveInvestigationSlice } from "@/ReduxToolKit/Reducers/UserContent.ts/SaveInvestigationSlice"
-
-
 
 export default function ViewMyInvestigations() {
-    const dispatch = useDispatch()
     const navigate = useNavigate()
 
     const goToProfile = () => {
@@ -20,7 +15,7 @@ export default function ViewMyInvestigations() {
                             transition-all duration-200 ease-in-out rounded-full h-fit py-2 px-4 mx-auto flex items-center`}>
             <p className={`text-black transition-all duration-200 ease-in-out
                      w-full text-xs 2xl:text-lg text-nowrap group-hover:text-white font-light text-center`}>
-                See my research <span className="ml-2">&#8594;</span>
+                Go to Dashboard <span className="ml-2">&#8594;</span>
             </p>
         </button>
     )

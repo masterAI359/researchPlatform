@@ -32,7 +32,7 @@ export function BSPost({ post, setClicked, context }) {
       onClick={choosePost}
       key={post.record.text}
       className={`relative rounded-3xl shadow-inset  my-8 lg:hover:opacity-100 py-2 px-2  lg:p-6 ring-1 ring-white/5 cursor-pointer flex flex-col gap-y-2
-        ${text === selected ? 'bg-white shadow-material border border-2 border-black/20 lg:scale-105' : 'lg:opacity-90 bg-white/5'}
+        ${text === selected ? 'bg-white shadow-material border border-2 border-black/20 lg:scale-105 z-40' : 'lg:opacity-90 bg-white/5'}
         `}
     >
       <AnimatePresence>

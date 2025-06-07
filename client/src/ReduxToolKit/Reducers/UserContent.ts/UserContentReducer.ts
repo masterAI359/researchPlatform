@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { supabase } from "@/SupaBase/supaBaseClient";
 
-//TODO: learn about the extra reducers within slices of state. This could simplify the loading states and active states for our components
 
 interface UserContent {
     status: string,
@@ -23,15 +22,26 @@ const initialState: UserContent = {
 export const fetchSavedArticles = createAsyncThunk(
     'user/articles',
     async (id: string, thunkAPI) => {
-        const { data, error } = await supabase
-            .from('articles')
-            .select()
-            .eq('user_id', id)
+        try {
+            const data = await fetch('/getUserArticles', {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id: id,
 
-        if (error) {
-            return thunkAPI.rejectWithValue(error.message)
-        }
-        return data
+                }),
+            })
+
+            const articles = await data.json();
+            if (articles) return articles;
+
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error);
+        };
+
     }
 );
 
@@ -47,7 +57,11 @@ const UserContentSlice = createSlice({
         },
         readSavedArticle: (state, action) => {
             state.ArticleToReview = action.payload
-        }
+        },
+        removeSavedArticle: (state, action) => {
+            state.userArticles = state.userArticles.splice(action.payload, 1);
+        },
+
     },
     extraReducers: builder => {
 
@@ -63,12 +77,9 @@ const UserContentSlice = createSlice({
                 state.status = 'failed';
                 state.error = action.payload
             })
-
-
-
     }
 })
 
-export const { clearUser, supabaseContext, readSavedArticle } = UserContentSlice.actions
+export const { clearUser, supabaseContext, readSavedArticle, removeSavedArticle } = UserContentSlice.actions
 
 export default UserContentSlice.reducer

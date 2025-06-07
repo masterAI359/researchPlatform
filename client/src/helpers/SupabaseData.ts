@@ -6,150 +6,75 @@ import { SavedArticle } from "@/env";
 export const checkArticle = async (
     setArticleExists: (articleExists: boolean) => void,
     article_url: string,
-    id: string,
-    currentSession: { user: { id: string} } | null
-        
-    ): Promise<void> => {
+    userArticles: SavedArticle[],
 
+): Promise<void> => {
+    const exists = userArticles.some((article: any) => article_url === article.article_url);
 
-    try {
-        const { data, error } = await supabase
-            .from('articles')
-            .select('article_url')
-            .eq('user_id', id)
-            .eq('article_url', article_url)
-
-        if (data !== null && data.length > 0) {
-            setArticleExists(true)
-        } else if (error) {
-        } else if (!currentSession) {
-
-        } else {
-            setArticleExists(false)
-        }
-    } catch (error) {
-    }
+    if (exists) {
+        setArticleExists(true);
+    } else {
+        setArticleExists(false);
+    };
 }
+
 
 export const saveArticle = async (
     dataToSave: SavedArticle,
-    setShowNotification: (showNotification: boolean) => void, 
-    setArticleExists: (articleExists: boolean) => void, 
-    articleExists: boolean, 
-    setRegisteredExclusiveFeature: (registeredExlusiveFeature: boolean) => void
-
-): Promise<void> => {
-
-    const { text, url, id, image_url, summary, title, authors, date, provider, fallbackDate } = dataToSave
-
+    setShowNotification: (showNotification: boolean) => void,
+    setArticleExists: (articleExists: boolean) => void,
+    articleExists: boolean,
+    setRegisteredExclusiveFeature: (registeredExlusiveFeature: boolean) => void,
+    id: string | number,
+): Promise<string> => {
 
     if (!id) {
         setRegisteredExclusiveFeature(true)
         return
     }
 
-    if (articleExists) {
-        try {
-            const response = await supabase
-                .from('articles')
-                .delete()
-                .eq('user_id', id)
-                .eq('article_url', url)
+    try {
 
-            if (response) {
-                setShowNotification(true)
-                setArticleExists(false)
-            } else {
-                console.log("Issue deleting data")
-            }
+        const response = await fetch('/articleOperation', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                dataToSave: dataToSave,
+                articleExists: articleExists
+            }),
+        })
 
-        } catch (err) {
-        }
-    } else if (!articleExists) {
-        try {
-            const { data, error } = await supabase.from('articles')
-                .insert([
-                    {
-                        title: title,
-                        image_url: image_url,
-                        provider: provider,
-                        full_text: text,
-                        authors: authors,
-                        date_published: date ? date : fallbackDate,
-                        article_url: url,
-                        summary: summary,
-                        user_id: id
-                    }
-                ])
-                .select()
-            if (error) {
+        if (!response.ok) {
+            throw new Error('could not fetch endpoint');
+        };
 
-            } else if (data.length > 0) {
-                setShowNotification(true)
+        const result = await response.json();
+
+        if (result) {
+            console.log(result.message)
+            if (result.message === "Saved") {
                 setArticleExists(true)
-            } else {
+                setShowNotification(true)
+            } else if (result.message === "Deleted") {
+                setArticleExists(false)
+                setShowNotification(true)
             }
-        } catch (err) {
+            return result.message;
         }
+    } catch (error) {
+        console.log(error)
     }
-
-
 }
 
 
-
-
-export const saveInvestigation = async (investigationData: any, setSavingInvestigation?: Function, setSaveSuccessful?: Function
-
-
-): Promise<boolean> => {
-
-    const { idea, initial_perspective, biases, premises, ending_perspective, changed_opinion, new_concepts, takeaway, user_id } = investigationData
-
-    const { data, error } = await supabase
-        .from('investigations')
-        .insert([{
-            idea: idea,
-            initial_perspective: initial_perspective,
-            biases: biases,
-            premises: premises,
-            ending_perspective: ending_perspective,
-            changed_opinion: changed_opinion,
-            new_concepts: new_concepts,
-            takeaway: takeaway,
-            user_id: user_id
-        }]).select()
-
-    if (error) {
-    
-        console.log(error.message)
-        return false
-    } else if (data) {
-        setSaveSuccessful?.(true)
-        return true
-    }
-
-}
-
-
-export const getUserInvestigations = async (id: number | string) => {
-
-    const { data, error } = await supabase
-        .from('investigations')
-        .select()
-        .eq('user_id', id)
-
-    if (error) {
-    } else if (data) {
-
-    }
-
-}
 
 export const getInvestigationSources = (sources: string[], savedArticles: any) => {
 
     //might implement two pointer algorithm on this function for performance optimization
-    
+
     function getSaved() {
         let savedSources = []
 
@@ -177,7 +102,6 @@ export const getInvestigationSources = (sources: string[], savedArticles: any) =
 
 export const deleteUser = async (id: string, setDeleting: Function, setDeletesuccessful: Function) => {
 
-
     try {
         setDeleting(true)
         const { data, error } = await supabase.auth.admin.deleteUser(
@@ -193,8 +117,6 @@ export const deleteUser = async (id: string, setDeleting: Function, setDeletesuc
         }
     } catch (error) {
     }
-
-
 }
 
 
@@ -203,15 +125,19 @@ export const submitFeedback = async (authorEmail: string, message: string, setFe
     try {
 
         const { data, error } = await supabase
-        .from('user_feedback')
-        .insert({
-            email: authorEmail,
-            message: message
-        })
+            .from('user_feedback')
+            .insert({
+                email: authorEmail,
+                message: message
+            })
+            .select();
 
-        if(data) console.log(data)
-        if(error) console.log(error.message)
-        setFeedbackSubmitted(true)
+        if (data) {
+            setFeedbackSubmitted(true)
+
+        }
+
+        if (error) console.log(error.message)
 
     } catch (error) {
         setFeedbackSubmitted(false)
@@ -219,8 +145,7 @@ export const submitFeedback = async (authorEmail: string, message: string, setFe
     }
 }
 
-
 export const checkForActiveSession = async (): Promise<boolean> => {
-        const { data: { session } } = await supabase.auth.getSession();
-          return session ? true : false;
-    }
+    const { data: { session } } = await supabase.auth.getSession();
+    return session ? true : false;
+}

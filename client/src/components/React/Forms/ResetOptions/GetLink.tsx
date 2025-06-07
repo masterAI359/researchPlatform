@@ -4,6 +4,7 @@ import { emailValidation } from "@/helpers/validation"
 import { AnimatePresence, motion } from "framer-motion"
 import Emailing from "../AuthNotifications/Emailing"
 import { Link } from "react-router-dom"
+import { sendEmailResetLink } from "@/helpers/FetchRequests"
 
 export default function GetLink({ }) {
     const [emailToReset, setEmailToReset] = useState<string>(null)
@@ -13,39 +14,21 @@ export default function GetLink({ }) {
 
 
     const emailInput = (e: any) => {
-
         setEmailToReset(e.target.value)
     }
 
-    const handleResetLink = async (e: any, mail: string) => {
+    const handleResetLink = async (e: any, email: string) => {
         e.preventDefault()
+        setPending(true)
 
-        setPending(true)        
-
-        try {
-            if (validEmail) {
-                const sent = await supabase.auth.resetPasswordForEmail(emailToReset, {
-                     redirectTo: 'https://elenchusapp.io',
-                 })
-                 if(sent) {
-                     setEmailSent(true)                
-                 } else if (!sent) {
-                     setEmailSent(false)
-                 }
-             }
-
-        } catch (error) {
-            console.log(error)
-        } finally {
-            
-        }
+        if (validEmail) {
+            sendEmailResetLink(email, setEmailSent);
+        };
     }
-    
+
 
 
     useEffect(() => {
-
-        
 
         if (emailToReset !== null) {
 
@@ -77,8 +60,8 @@ export default function GetLink({ }) {
                         <label htmlFor="email" className="block mb-3 text-sm font-medium text-white">
                             Email
                         </label>
-                        <input onChange={(e) => emailInput(e)} id="email" name="email" type="email" autoComplete="email" placeholder="email@example.com" 
-                        className="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-white placeholder-black/50 bg-white/5 focus:border-white/10 focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10" required />
+                        <input onChange={(e) => emailInput(e)} id="email" name="email" type="email" autoComplete="email" placeholder="email@example.com"
+                            className="block w-full px-3 py-3 border-2 border-zinc-100 rounded-xl appearance-none text-white placeholder-black/50 bg-white/5 focus:border-white/10 focus:bg-transparent focus:outline-none focus:ring-black sm:text-sm placeholder-zinc-500 h-10" required />
                     </div>
                     <div className="col-span-full">
                         <button onClick={(e) => handleResetLink(e, emailToReset)} type="button" className="text-sm py-2 px-4 border focus:ring-2 h-10 rounded-full border-zinc-100 bg-white hover:bg-black/10 text-black duration-200 focus:ring-offset-2 focus:ring-white hover:text-white w-full inline-flex items-center justify-center ring-1 ring-transparent">
@@ -86,10 +69,10 @@ export default function GetLink({ }) {
                         </button>
                     </div>
                     <div>
-                    <Link to={'/login'} >
-                        <p className="font-medium text-sm leading-tight text-white mx-auto">
-                            Already have a password? <a className="text-white underline hover:text-blue-400 ml-3" href="#">Log in instead</a>
-                        </p>
+                        <Link to={'/login'} >
+                            <p className="font-medium text-sm leading-tight text-white mx-auto">
+                                Already have a password? <a className="text-white underline hover:text-blue-400 ml-3" href="#">Log in instead</a>
+                            </p>
                         </Link>
                     </div>
                 </div>
@@ -99,7 +82,7 @@ export default function GetLink({ }) {
     )
 }
 
-function Instructions () {
+function Instructions() {
 
     return (
         <div className="bg-white/5 w-full my-8 p-6 h-auto rounded-lg">

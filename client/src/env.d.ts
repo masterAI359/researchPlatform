@@ -88,8 +88,18 @@ declare global {
     summary: any,
     text: string,
     id: string,
+    factual_reporting?: string | null,
+    bias?: string | null,
+    country?: string | null
+  }
+
+  interface Calculations {
+    change: number | null,
+    valid: number | null,
+    neutral: number | null,
+    needMore: number | null
   }
 
 }
 
-export { ArticleType, OptionsTypes, SelectedArticle, Perspectives, State, PremiseProps, Help, SavedArticle };
+export { ArticleType, OptionsTypes, SelectedArticle, Perspectives, State, PremiseProps, Help, SavedArticle, Calculations };

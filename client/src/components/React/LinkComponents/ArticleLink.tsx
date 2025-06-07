@@ -10,7 +10,7 @@ interface ArticleProps {
     index: number
 }
 
-    const ArticleLink = memo(({ article, index }: ArticleProps) => {
+const ArticleLink = memo(({ article, index }: ArticleProps) => {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { getArticle, display } = investigateState
     const { showGetArticlesModal } = display
@@ -86,7 +86,7 @@ interface ArticleProps {
             onClick={() => { chooseArticle(article) }}
             key={article.url}
             className={`group cursor-pointer box-border list-none xl:min-h-72 xl:max-h-72 xl:min-w-80 xl:max-w-80 lg:min-w-72 lg:max-w-72 lg:min-h-72 lg:max-h-72 h-44 w-40 relative rounded-xl md:rounded-3xl text-white 
-            md:opacity-85 md:hover:opacity-100 transition-all ease-in-out duration-200 overflow-y-hidden
+            md:opacity-85 md:hover:opacity-100 transition-all ease-in-out duration-200 overflow-y-hidden overflow-x-hidden
             
             ${isHilighted && !showGetArticlesModal ? "shadow-blue-bottom bg-ebony" : "shadow-material bg-mirage"}`}
         >
@@ -114,7 +114,7 @@ interface ArticleProps {
                         />
                     </div>
 
-                    <div className='h-full text-sm xs:text-xs lg:text-lg font-serif text-white'>
+                    <div className='h-full text-sm xs:text-xs text-left lg:text-base font-serif text-white'>
                         {provider}
                     </div>
                 </div>

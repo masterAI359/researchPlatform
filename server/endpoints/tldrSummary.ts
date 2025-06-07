@@ -7,6 +7,7 @@ import * as path from 'path'
 import { fileURLToPath } from 'url';
 import decodeItem from '../helpers/decodeItem.js'
 import cleanseAuthorList from '../helpers/authorCleanup.js';
+import { getMediaBiases } from './mediaBias.js';
 
 
 interface QueryType {
@@ -16,6 +17,18 @@ interface QueryType {
     logo: string,
     title: string
 }
+
+const cleanURL = (url: string) => {
+    try {
+        const u = new URL(url);
+        u.search = ""; // removes query params
+        return u.toString();
+    } catch {
+        return url;
+    }
+}
+
+
 
 export const tldrSummary = async (req: Request, res: Response) => {
 
@@ -57,6 +70,11 @@ export const tldrSummary = async (req: Request, res: Response) => {
     try {
         const dataMap = query.map(async (article, index) => {
 
+            const santizedSource = article.source.trim();
+            const biasRatings = await getMediaBiases(santizedSource);
+
+            const urlClean = cleanURL(article.url);
+
             await delay(index * 2000);
 
             try {
@@ -68,7 +86,7 @@ export const tldrSummary = async (req: Request, res: Response) => {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        url: article.url,
+                        url: urlClean,
                         num_sentences: 5,
                         is_detailed: true,
                     })
@@ -84,9 +102,12 @@ export const tldrSummary = async (req: Request, res: Response) => {
                 data.logo = article.logo;
                 data.source = article.source;
                 data.date = article.date;
-                const decodedData = decodeItem(data)
-                decodedData.cleanedAuthors = cleanseAuthorList(decodedData.article_authors)
-                return decodedData
+                data.bias = biasRatings?.bias ?? null;
+                data.country = biasRatings?.country ?? null;
+                data.factual_reporting = biasRatings?.factual_reporting ?? null;
+                const decodedData = decodeItem(data);
+                decodedData.cleanedAuthors = cleanseAuthorList(decodedData.article_authors);
+                return decodedData;
             } catch (error: any) {
                 const failedAttempt = {
                     title: article.title,
@@ -114,7 +135,6 @@ export const tldrSummary = async (req: Request, res: Response) => {
         const success = returnValues.filter((result: any) => result !== undefined)
 
         const resultsObject = { retrieved: success, rejected: failure }
-        console.log(resultsObject)
         res.json(resultsObject);
         failure = null
     } catch (error) {

@@ -1,4 +1,5 @@
 
+
 const options: OptionsTypes = {
     method: 'GET',
     headers: {
@@ -38,27 +39,135 @@ export const encodeArray = (array: any) => {
 export const getWikiDetails = async (
     term: string,
     setExplanation: (explanation: any) => void
-    ):Promise<void> => {
+): Promise<void> => {
 
     const encodedQuery: string = encodeURIComponent(term);
 
     const url: string = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodedQuery}`;
 
     try {
-            const result = await fetch(url, options);
-            if(!result.ok) {
-               
-                throw new Error('Could not connect to Wikipedia API!');
-            }
-            const data = await result.json();
-            if(data) {
-                setExplanation(data);
-            } else {
-                 setExplanation("failed to connect to Wikipedia API :/")
-            }
+        const result = await fetch(url, options);
+        if (!result.ok) {
+
+            throw new Error('Could not connect to Wikipedia API!');
+        }
+        const data = await result.json();
+        if (data) {
+            setExplanation(data);
+        } else {
+            setExplanation("failed to connect to Wikipedia API :/")
+        }
 
     } catch (err) {
         console.log(err);
+    }
+
+}
+
+
+export const supabaseSignIn = async (email: string, password: string, setLogginIn: (loggingIn: boolean) => void, setSuccessful: (successful: boolean) => void, dispatch: any, fetchUserCredentials: Function) => {
+
+    try {
+        setLogginIn(true);
+
+        const response = await fetch('/supabaseLogIn', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            }),
+        });
+
+        if (!response.ok) {
+            setSuccessful(false)
+            const errorText = await response.text(); // or .json() if you return JSON
+            console.error('Server responded with:', response.status, errorText);
+            setSuccessful(false);
+            throw new Error(`Server error: ${response.status}`);
+        }
+        const sessionData = await response.json();
+        if (sessionData) {
+            setSuccessful(true);
+            dispatch(fetchUserCredentials(sessionData))
+            return true;
+        };
+
+        if (!sessionData) {
+            return false;
+        };
+
+    } catch (error) {
+
+        console.log(error);
+        return false;
+    };
+};
+
+
+
+export const fetchSignOut = async (setSuccess: (success: boolean) => void) => {
+
+    try {
+        console.log('running');
+        const response = await fetch('/signUserOut', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            setSuccess(false)
+            throw new Error('Could not reach endpoint for signout');
+        }
+
+        const result = await response.json();
+
+        if (result) {
+            console.log(result.message);
+            setSuccess(true);
+        }
+
+    } catch (error) {
+        setSuccess(false);
+        console.error(error);
+    }
+}
+
+
+export const sendEmailResetLink = async (email: string, setEmailSent: (emailSent: boolean) => void) => {
+
+    try {
+
+        const response = await fetch('/resetUserPassword', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: email,
+            }),
+        });
+        if (!response.ok) {
+            setEmailSent(false);
+            throw new Error('could not connect to password reset endpoint');
+        };
+
+        const result = await response.json();
+
+        if (result.message === 'Reset email sent.') {
+            setEmailSent(true)
+        }
+
+
+    } catch (error) {
+        console.log(error)
+        setEmailSent(false)
     }
 
 }

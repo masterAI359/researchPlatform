@@ -8,8 +8,12 @@ import { AnimatePresence } from "framer-motion"
 import { googleAuth } from "@/helpers/OauthLogin"
 import Password from "./InputFields/Password"
 import SessionManager from "../AppRouting/SessionManager"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
+import { supabaseSignIn } from "@/helpers/FetchRequests"
+import { useAppdispatch } from "@/Hooks/appDispatch"
+import { AppDispatch } from "@/ReduxToolKit/store"
+import { fetchUserCredentials } from "@/ReduxToolKit/Reducers/Athentication/Authentication"
 
 export default function Login() {
     const id = useSelector((state: RootState) => state.auth.user_id);
@@ -21,7 +25,7 @@ export default function Login() {
     const [successfull, setSuccessful] = useState<boolean>(null)
     const [errorMessage, setErrorMessage] = useState<string>(null)
     const navigate = useNavigate()
-
+    const dispatch = useAppdispatch();
 
     const redirectUser = () => {
         setTimeout(() => {
@@ -42,21 +46,16 @@ export default function Login() {
 
     const logInUser = async () => {
 
-        try {
-            setLoggingIn(true)
-            const { data, error } = await supabase.auth.signInWithPassword({
-                email: userEmail,
-                password: userPassword
-            })
-            if (error) {
-                setSuccessful(false)
-            } else if (data) {
-                setSuccessful(true)
-                redirectUser()
-            }
-        } catch (error) {
+
+        const signin = await supabaseSignIn(userEmail, userPassword, setLoggingIn, setSuccessful, dispatch, fetchUserCredentials);
+        if (signin) {
+            setSuccessful(true);
+            redirectUser();
         }
 
+        if (signin === false) {
+            setSuccessful(false)
+        }
     }
 
 
@@ -78,11 +77,11 @@ export default function Login() {
             requiredInput(userEmail, userPassword, setAcceptedInput)
         }
 
-    }, [userEmail, userPassword])
+    }, [userEmail, userPassword, id])
 
     return (
         <section className={`lg:p-8 overflow-hidden bg-black animate-fade-in`}>
-           {!id && <SessionManager />}
+            {!id && <SessionManager />}
             <AnimatePresence>
                 {loggingIn && <LoggingIn successful={successfull} setLoggingIn={setLoggingIn} />}
             </AnimatePresence>
@@ -162,3 +161,21 @@ export default function Login() {
         </section>
     )
 }
+
+
+
+
+//     try {
+//         setLoggingIn(true)
+//         const { data, error } = await supabase.auth.signInWithPassword({
+//             email: userEmail,
+//             password: userPassword
+//         })
+//         if (error) {
+//             setSuccessful(false)
+//         } else if (data) {
+//             setSuccessful(true)
+//             redirectUser()
+//         }
+//     } catch (error) {
+//     }

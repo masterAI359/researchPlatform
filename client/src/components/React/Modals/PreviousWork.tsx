@@ -1,18 +1,16 @@
 import { motion } from "framer-motion"
 import { createPortal } from "react-dom"
-import { saveInvestigation } from "@/helpers/SupabaseData"
 import { useSelector, useDispatch } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-import { useNavigate } from "react-router-dom"
 import { displayWorkModal } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
 
 export function PreviousWork() {
-    const id = useSelector((state: RootState) => state.auth.user_id)
-    const investigateState = useSelector((state: RootState) => state.investigation)
-    const { pov, review } = investigateState
-    const { idea, premises, perspective, biases } = pov
-    const { endingPerspective, newConcepts, newPOV, takeaway } = review
-    const dispatch = useDispatch()
+    const id = useSelector((state: RootState) => state.auth.user_id);
+    const investigateState = useSelector((state: RootState) => state.investigation);
+    const { pov, review } = investigateState;
+    const { idea, premises, perspective, biases } = pov;
+    const { endingPerspective, newConcepts, newPOV, takeaway } = review;
+    const dispatch = useDispatch();
 
     const investigateData = {
         idea: idea,
@@ -41,7 +39,7 @@ export function PreviousWork() {
 
         if (id) {
             localStorage.setItem("userWork", stringifiedData)
-            saveInvestigation(investigateData)
+            //   dispatch(saveUserInvestigation(investigateData))
             dispatch({ type: 'clear' })
             displayWorkModal(false)
 

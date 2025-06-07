@@ -8,17 +8,17 @@ export default function HelpModal({ info, handleExpand, isOpen, setActiveTab, ac
 
     return (
         <motion.div
-            initial={{ scale: 0.8, opacity: 0.6 }}
+            initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}
             transition={{ type: 'tween', duration: 0.1 }}
             className=" bg-gradient-to-tr from-ebony to-mirage opacity-100 h-auto
-                         border border-2 border-white/10 shadow-material rounded-xl 
+                         shadow-material rounded-xl 
                          z-50 absolute bottom-12 xl:pb-2 xl:bottom-24 sm:bottom-16 sm:w-[33rem] 
                          md:left-1/4 lg:left-1/3 sm:left-20 xl:w-[38rem] pb-6
                          overflow-hidden"
         >
-            <header className="w-full h-auto relative bg-white/5 flex items-start">
+            <header className="w-full h-auto relative flex items-start">
                 <motion.div
                     whileTap={{ scale: 0.9 }}
                     transition={{ type: 'tween', duration: 0.2 }}
@@ -46,7 +46,7 @@ export default function HelpModal({ info, handleExpand, isOpen, setActiveTab, ac
                             }}
                             onClick={() => setActiveTab(info[index])}
                         >
-                            <h1 className={`font-light tracking-tight text-sm md:text-xl p-2 rounded-md text-white  ${info[index] === activeTab ? ' bg-black/30' : 'bg-black/25'}`}>{element.heading}</h1>
+                            <h1 className={`font-light tracking-tight text-sm md:text-xl p-2 rounded-md text-white  ${info[index] === activeTab ? ' bg-black/30' : 'bg-white/5'}`}>{element.heading}</h1>
 
                         </motion.li>
                     ))}

@@ -1,3 +1,5 @@
+import { Calculations } from "@/env";
+
 
 export const numBiasSources = (articles: SavedArticle[], leaningOne: string, leaningTwo?: string) => {
 
@@ -21,7 +23,6 @@ export const numBiasSources = (articles: SavedArticle[], leaningOne: string, lea
 
 
 export const calcPercentageChanged = (investigations: any) => {
-    if (investigations.length < 1 || investigations === null) return;
     let counter: number = 0;
     let total: number = investigations.length;
     for (let i = 0; i < investigations.length; i++) {
@@ -34,13 +35,12 @@ export const calcPercentageChanged = (investigations: any) => {
     };
 
     let percentage: number = Math.floor((counter / total) * 100);
-    return percentage;
+    return percentage ?? 0;
 };
 
 
 export const calcValidated = (investigations: any) => {
 
-    if (investigations.length < 1 || investigations === null) return;
     let counter: number = 0;
     let total: number = investigations.length;
     for (let i = 0; i < investigations.length; i++) {
@@ -53,14 +53,13 @@ export const calcValidated = (investigations: any) => {
     };
 
     let percentage: number = Math.floor((counter / total) * 100);
-    return percentage;
+    return percentage ?? 0;
 }
 
 
 
 export const calcNeutral = (investigations: any) => {
 
-    if (investigations.length < 1 || investigations === null) return;
     let counter: number = 0;
     let total: number = investigations.length;
     for (let i = 0; i < investigations.length; i++) {
@@ -73,14 +72,13 @@ export const calcNeutral = (investigations: any) => {
     };
 
     let percentage: number = Math.floor((counter / total) * 100);
-    return percentage;
+    return percentage ?? 0;
 };
 
 
 
 export const calcNeedMore = (investigations: any) => {
 
-    if (investigations.length < 1 || investigations === null) return;
     let counter: number = 0;
     let total: number = investigations.length;
     for (let i = 0; i < investigations.length; i++) {
@@ -93,7 +91,7 @@ export const calcNeedMore = (investigations: any) => {
     };
 
     let percentage: number = Math.floor((counter / total) * 100);
-    return percentage;
+    return percentage ?? 0;
 };
 
 
@@ -103,10 +101,7 @@ export const calculatePercentages = (investigations: any) => {
     const validatedPercent = calcValidated(investigations);
     const neutralPercent = calcNeutral(investigations);
     const needMorePercent = calcNeedMore(investigations);
-
-    if (changePercent && validatedPercent && neutralPercent && needMorePercent) {
-
-        return { change: changePercent, valid: validatedPercent, neutral: neutralPercent, needMore: needMorePercent };
-    };
+    const calculations: Calculations = { change: changePercent, valid: validatedPercent, neutral: neutralPercent, needMore: needMorePercent };
+    return calculations;
 
 };

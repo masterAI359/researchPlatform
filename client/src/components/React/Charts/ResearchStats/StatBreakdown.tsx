@@ -9,6 +9,7 @@ interface Stats {
 
 export default function StatBreakdown({ percentChanged, validated, neutral, needMore }: Stats) {
 
+
     return (
         <dl className="mt-12 grid max-w-xl grid-cols-1 gap-8 sm:grid-cols-2">
             <StatItem label="Changed your opinion" target={percentChanged} />

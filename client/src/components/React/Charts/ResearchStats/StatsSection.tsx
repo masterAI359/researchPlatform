@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import StatBreakdown from "./StatBreakdown";
 import { RootState } from "@/ReduxToolKit/store";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useLayoutEffect } from "react";
 import { calculatePercentages } from "@/helpers/Ratings";
 import { Calculations } from "@/env";
 
@@ -26,14 +26,17 @@ export default function StatsSection() {
     }
 
 
-    useEffect(() => {
+    useLayoutEffect(() => {
+        if (!investigations || investigations.length === 0) return;
 
-        const calculated = calculatePercentages(investigations);
+        if (investigations) {
+            const calculated = calculatePercentages(investigations);
 
-        if (calculated) {
+            if (calculated) {
+                getStats(calculated);
+            };
+        }
 
-            getStats(calculated);
-        };
 
     }, [investigations]);
 

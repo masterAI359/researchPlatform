@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ChartWrapper } from "../Charts/DonutChart/SourceChart";
-import StatsSection from "../Charts/Stats";
+import StatsSection from "../Charts/ResearchStats/StatsSection";
 
 const variants = {
     open: { opacity: 1 },

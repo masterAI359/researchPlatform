@@ -35,10 +35,13 @@ export default function Profile() {
 
 
     return (
-        <article className={`w-full h-full flex relative md:justify-between justify-center scroll-smooth 
-        animate-fade-in transition-all duration-300 ease-in-out
-        ${signingOut ? 'opacity-50 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
-            <SideBarMenu />
+        <article className={`w-full h-full grid relative grid-cols-1 scroll-smooth 
+        animate-fade-in transition-all duration-300 ease-in-out md:grid-cols-[auto,1fr]
+        ${signingOut ? 'opacity-50 pointer-events-none' : 'opacity-100 pointer-events-auto'} 2xl:py-12`}>
+            <div className="hidden md:block h-full">
+                <SideBarMenu />
+            </div>
+
             <ProfileMenu />
             <Display />
         </article>

@@ -1,21 +1,17 @@
-import { useState } from "react"
-import { useSelector } from "react-redux"
-import { RootState } from "@/ReduxToolKit/store"
-import { limitArray } from "@/helpers/Presentation"
-import Bookmark from "../../../Buttons/SaveButtons/SaveArticle"
 import { readSavedArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
 import { useDispatch } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { presentThisArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice"
 
 
 export default function ArticleSaved({ article, index, }) {
-  const navigate = useNavigate()
   const dispatch = useDispatch()
 
 
   const handleArticleSelection = () => {
-    dispatch(readSavedArticle(article))
-    navigate('/SavedArticle')
+    dispatch(readSavedArticle(article));
+    setTimeout(() => {
+      dispatch(presentThisArticle());
+    }, 150)
   }
 
   return (

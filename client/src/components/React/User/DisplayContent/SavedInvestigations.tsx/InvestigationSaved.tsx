@@ -1,20 +1,19 @@
 import Thumbnail from "./Thumbnail"
-import { useNavigate } from "react-router-dom"
+//import { useNavigate } from "react-router-dom"
 import { reviewThisResearch } from "@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations"
 import { useDispatch } from "react-redux"
+import { presentThisInvestigation } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice"
 
 export default function PriorInvestigation({ investigation }) {
     const dispatch = useDispatch()
-    const navigate = useNavigate()
-    
+    //  const navigate = useNavigate()
+
 
     function reviewResearch() {
         dispatch(reviewThisResearch(investigation))
         setTimeout(() => {
-            navigate('/reviewInvestigation')
-        }, 150)
-
-    
+            dispatch(presentThisInvestigation());
+        }, 150);
     }
 
 

@@ -6,8 +6,6 @@ import AboutContainer from "../Containers/AboutContainer"
 import Signup from "../Forms/Signup"
 import Login from "../Forms/Login"
 import Profile from "../User/Profile"
-import ReadSavedArticle from "../User/DisplayContent/UserArticles/ReadSavedArticles"
-import ReviewInvestigation from "../User/DisplayContent/SavedInvestigations.tsx/ReviewInvestigation"
 import EmailForReset from "../Forms/EmailForReset"
 import UpdatePassword from "../Forms/UpdatePassword"
 
@@ -25,8 +23,6 @@ export default function AppRouter() {
                     <Route path='/profile' element={<Profile />} />
                     <Route path="/emailForReset" element={<EmailForReset />} />
                     <Route path="/updatePassword" element={<UpdatePassword />} />
-                    <Route path="/savedArticle" element={<ReadSavedArticle />} />
-                    <Route path="/reviewInvestigation" element={<ReviewInvestigation />} />
                 </Route>
             </Routes>
         </BrowserRouter>

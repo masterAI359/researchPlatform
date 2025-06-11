@@ -7,7 +7,11 @@ interface NavigateProfile {
     displaySavedInvestigations: boolean,
     displayDeleteModal: boolean,
     displayAccountManagement: boolean,
-    displayDashboard: boolean
+    displayDashboard: boolean,
+    displayThisInvestigation: boolean,
+    displayThisArticle: boolean,
+    backToArticles: boolean,
+    backToResearch: boolean
 }
 
 const initialState: NavigateProfile = {
@@ -15,7 +19,11 @@ const initialState: NavigateProfile = {
     displaySavedInvestigations: false,
     displayDeleteModal: false,
     displayAccountManagement: false,
-    displayDashboard: true
+    displayDashboard: true,
+    displayThisInvestigation: false,
+    displayThisArticle: false,
+    backToArticles: false,
+    backToResearch: false
 }
 
 
@@ -29,13 +37,20 @@ const ProfileNavigationSlice = createSlice({
             state.displayAccountManagement = false;
             state.displayDashboard = false;
             state.displaySavedInvestigations = false;
-
+            state.displayThisInvestigation = false;
+            state.displayThisArticle = false;
+            state.backToResearch = false;
+            state.backToArticles = true;
         },
         presentResearch: (state) => {
             state.displaySavedInvestigations = true;
             state.displayAccountManagement = false;
             state.displaySavedArticles = false;
             state.displayDashboard = false;
+            state.displayThisInvestigation = false;
+            state.displayThisArticle = false;
+            state.backToResearch = true;
+            state.backToArticles = false;
         },
         presentDeleteModal: (state, action) => {
             state.displayDeleteModal = action.payload;
@@ -46,17 +61,41 @@ const ProfileNavigationSlice = createSlice({
             state.displayDashboard = false;
             state.displaySavedArticles = false;
             state.displaySavedInvestigations = false;
+            state.displayThisInvestigation = false;
+            state.displayThisArticle = false;
+            state.backToResearch = false;
+            state.backToArticles = false;
         },
         presentDashboard: (state) => {
             state.displayDashboard = true;
             state.displaySavedInvestigations = false;
             state.displaySavedArticles = false;
             state.displayAccountManagement = false;
+            state.displayThisInvestigation = false;
+            state.displayThisArticle = false;
+            state.backToResearch = false;
+            state.backToArticles = false;
+        },
+        presentThisInvestigation: (state) => {
+            state.displayThisInvestigation = true;
+            state.displayAccountManagement = false;
+            state.displaySavedInvestigations = false;
+            state.displaySavedArticles = false;
+            state.displaySavedInvestigations = false;
+            state.displayThisArticle = false;
+        },
+        presentThisArticle: (state) => {
+            state.displayThisArticle = true;
+            state.displayThisInvestigation = false;
+            state.displayAccountManagement = false;
+            state.displaySavedInvestigations = false;
+            state.displaySavedArticles = false;
+            state.displaySavedInvestigations = false;
         }
     }
 });
 
 
-export const { presentArticles, presentResearch, presentDeleteModal, presentManagement, presentDashboard } = ProfileNavigationSlice.actions;
+export const { presentArticles, presentResearch, presentDeleteModal, presentManagement, presentDashboard, presentThisInvestigation, presentThisArticle } = ProfileNavigationSlice.actions;
 
 export default ProfileNavigationSlice.reducer;

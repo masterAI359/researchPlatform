@@ -61,10 +61,10 @@ export default function StatsSection() {
                         <StatBreakdown percentChanged={stats.percentChanged} validated={stats.validated} neutral={stats.neutral} needMore={stats.neededMore} />
                     </div>
                     <div className="relative mt-16 h-80 lg:mt-8">
-                        <img
+                        {/* <img
                             className="absolute left-0 top-0 w-[57rem] max-w-none shadow-thick opacity-50 border border-white/10 rounded-3xl"
                             src="/images/assets/darkcode.svg"
-                            alt="img" />
+                            alt="img" /> */}
                     </div>
                 </div>
             </div>

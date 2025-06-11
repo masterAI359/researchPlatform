@@ -1,19 +1,18 @@
 import { RootState } from "@/ReduxToolKit/store"
 import { AnimatePresence } from "framer-motion"
 import { useSelector, useDispatch } from "react-redux"
-import BackToSavedArticles from "../../../Buttons/NavigatingButtons/BackToSavedArticles"
-import ReturnToReview from "../../ProfileNavigation/ReturnToReview"
+import BackToSavedArticles from "../Buttons/NavigatingButtons/BackToSavedArticles"
 import Article from "@/components/React/Articles/SuccessFull/Article"
 import ErrorBoundary from "@/components/React/ErrorBoundaries/ErrorBoundary"
 import LostData from "@/components/React/ErrorMessages/LostData"
 import { useEffect } from "react"
 import { readSavedArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
 
-export default function ReadSavedArticle() {
+export default function ArticleReview() {
     const savedArticle = useSelector((state: RootState) => state.userdata.ArticleToReview)
-    const articlesContext = useSelector((state: RootState) => state.profileNav.displaySavedArticles)
-    const researchContext = useSelector((state: RootState) => state.profileNav.displaySavedInvestigations)
+    const articlesContext = useSelector((state: RootState) => state.profileNav.backToArticles)
     const dispatch = useDispatch()
+
 
     const displayData = {
         summary: savedArticle.summary,
@@ -41,9 +40,9 @@ export default function ReadSavedArticle() {
     return (
 
         <section
-            className="min-h-full  2xl:w-full md:px-8 scroll-smooth
-      inset mx-auto sm:mt-10 xl:mt-20 relative">
-            {articlesContext ? <BackToSavedArticles /> : <ReturnToReview />}
+            className="min-h-full xs:px-2 md:px-8 scroll-smooth w-full
+                        mx-auto mt-0 md:mt-6 relative animate-fade-in duration-200">
+            <BackToSavedArticles articlesContext={articlesContext} />
             <ErrorBoundary fallback={<LostData />}>
                 <main
                     className="xl:max-w-7xl xl:w-4/5 lg:w-3/4 md:w-4/5 sm:w-3/4 mt-16 sm:mt-12 w-80 h-full mx-auto 

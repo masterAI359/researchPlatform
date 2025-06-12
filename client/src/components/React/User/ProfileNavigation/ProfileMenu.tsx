@@ -11,7 +11,7 @@ export default function MobileProfileNav() {
 
 
   return (
-    <div className="fixed -bottom-0.5 block md:hidden z-50 w-full h-16 shadow-thick bg-gradient-to-tr from-ebony to-mirage">
+    <div className="fixed -bottom-0.5 block md:hidden z-50 w-full h-20 shadow-thick bg-gradient-to-tr from-ebony to-mirage">
       <div className="grid h-full max-w-lg grid-cols-4 mx-auto font-medium">
         <button
           onClick={() => {

@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk,  PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
 const options: OptionsTypes = {
     method: 'GET',
@@ -10,30 +10,29 @@ const options: OptionsTypes = {
 
 export const getWikiExtract = createAsyncThunk('investigate/getWikiExtract', async (
     term: string, thunkAPI
-    ):Promise<any> => {
+): Promise<any> => {
 
     const encodedQuery: string = encodeURIComponent(term);
     const url: string = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodedQuery}`;
 
     try {
-            const result = await fetch(url, options);
-            if(!result.ok) {
-                const status = result.status;
-                let message = 'An unexpected error occurred while retrieving information.';
-                if (status === 404) {
-                  message = 'No summary was found for the highlighted term. Be carefult to only highlight a short phrase or a short phrase, else we cannot retrieve any information';
-                } else if (status === 429) {
-                  message = 'Too many requests. Please try again shortly.';
-                } else if (status >= 500) {
-                  message = 'Wikipedia is currently unavailable. Please try again later.';
-                }
-                    throw new Error(message);
+        const result = await fetch(url, options);
+        if (!result.ok) {
+            const status = result.status;
+            let message = 'An unexpected error occurred while retrieving information.';
+            if (status === 404) {
+                message = 'No summary was found for the highlighted term. Be carefult to only highlight a short phrase or a short phrase, else we cannot retrieve any information';
+            } else if (status === 429) {
+                message = 'Too many requests. Please try again shortly.';
+            } else if (status >= 500) {
+                message = 'Wikipedia is currently unavailable. Please try again later.';
             }
-            const data = await result.json();
-            if(data) {
-                console.log(data)
-                return data
-            };
+            throw new Error(message);
+        }
+        const data = await result.json();
+        if (data) {
+            return data;
+        };
 
     } catch (err) {
         console.log(err);
@@ -82,8 +81,8 @@ export const WikipediaSlice = createSlice({
         selectingText: (state, action) => {
             state.gettingSelection = action.payload;
         },
-        getModalPosition: (state, action: PayloadAction<{x: number, y: number}>) => {
-         state.modalPosition = action.payload
+        getModalPosition: (state, action: PayloadAction<{ x: number, y: number }>) => {
+            state.modalPosition = action.payload
         },
         getSelectedText: (state, action) => {
             state.selectedText = action.payload

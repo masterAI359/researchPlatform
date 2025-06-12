@@ -37,6 +37,8 @@ export default function ArticleReview() {
         }
     }, [])
 
+    if (!savedArticle) return null;
+
     return (
 
         <section

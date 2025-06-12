@@ -85,12 +85,14 @@ const ArticleLink = memo(({ article, index }: ArticleProps) => {
         <motion.li
             onClick={() => { chooseArticle(article) }}
             key={article.url}
-            className={`group cursor-pointer box-border list-none xl:min-h-72 xl:max-h-72 xl:min-w-80 xl:max-w-80 lg:min-w-72 lg:max-w-72 lg:min-h-72 lg:max-h-72 h-44 w-40 relative rounded-xl md:rounded-3xl text-white 
+            className={`group cursor-pointer box-border list-none xl:min-h-72 xl:max-h-72 xl:min-w-80 xl:max-w-80
+                 lg:w-72 lg:h-72 md:h-60 md:w-60 h-44 w-40
+                  relative rounded-xl md:rounded-3xl text-white 
             md:opacity-85 md:hover:opacity-100 transition-all ease-in-out duration-200 overflow-y-hidden overflow-x-hidden
             
             ${isHilighted && !showGetArticlesModal ? "shadow-blue-bottom bg-ebony" : "shadow-material bg-mirage"}`}
         >
-            <div className='relative w-full m-0 p-0 lg:max-h-36 lg:min-h-36 min-h-20 max-h-20  overflow-hidden'>
+            <div className='relative w-full m-0 p-0 xl:max-h-36 xl:min-h-36 md:max-h-28 md:min-h-28 min-h-20 max-h-20  overflow-hidden'>
                 <div
                     style={{ backgroundImage: `url(${resizedImage})` }}
                     className='absolute inset-0 w-full h-full bg-cover bg-center opacity-40 rounded-t-xl md:rounded-t-3xl'
@@ -98,7 +100,7 @@ const ArticleLink = memo(({ article, index }: ArticleProps) => {
                 <div className='relative z-10 p-4'>
 
                     <div className="flex flex-col lg:gap-y-6">
-                        <h1 className='lg:text-lg xs:text-xs leading-6 text-white font-light tracking-tight font-serif'>
+                        <h1 className='xl:text-lg lg:text-base md:text-sm text-xs leading-6 text-white font-light tracking-tight font-serif'>
                             {name}
                         </h1>
                     </div>
@@ -114,16 +116,13 @@ const ArticleLink = memo(({ article, index }: ArticleProps) => {
                         />
                     </div>
 
-                    <div className='h-full text-sm xs:text-xs text-left lg:text-base font-serif text-white'>
+                    <div className='h-full text-xs text-left lg:text-sm xl:text-base font-serif text-white'>
                         {provider}
                     </div>
                 </div>
-                <div className={`h-full group mt-2 pt-2 ${isHilighted ? 'opacity-100' : ''}`}>
+                <div className={`h-full group mt-2 lg:mt-6 xl:mt-4 pt-2 ${isHilighted ? 'opacity-100' : ''}`}>
                     <blockquote className='relative px-4'>
-                        <p className='lg:text-base xs:text-xs transition-colors duration-100 font-serif font-light xs:hidden md:block'>
-                            {mobileDescription}
-                        </p>
-                        <p className='lg:text-base xs:text-xs transition-colors duration-100 font-serif font-light xs:block md:hidden'>
+                        <p className='lg:text-sm xs:text-xs text-left transition-colors duration-100 font-serif font-light'>
                             {mobileDescription}
                         </p>
                     </blockquote>

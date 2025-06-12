@@ -40,6 +40,7 @@ export const getUserAndSupabase = async (req: Request, res: Response) => {
 
 
 export const getCurrentUser = async (req: Request, res: Response) => {
+    console.log('fetching user credentials');
     const session = await getUserAndSupabase(req, res);
 
     if (!session) return;

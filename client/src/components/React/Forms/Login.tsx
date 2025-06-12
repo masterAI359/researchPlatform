@@ -1,4 +1,3 @@
-import { supabase } from "@/SupaBase/supaBaseClient"
 import { useEffect, useState } from "react"
 import { requiredInput, emailValidation } from "@/helpers/validation"
 import { Link } from "react-router-dom"
@@ -7,23 +6,17 @@ import LoggingIn from "./AuthNotifications/LoggingIn"
 import { AnimatePresence } from "framer-motion"
 import { googleAuth } from "@/helpers/OauthLogin"
 import Password from "./InputFields/Password"
-import SessionManager from "../AppRouting/SessionManager"
-import { useDispatch, useSelector } from "react-redux"
-import { RootState } from "@/ReduxToolKit/store"
 import { supabaseSignIn } from "@/helpers/FetchRequests"
 import { useAppdispatch } from "@/Hooks/appDispatch"
-import { AppDispatch } from "@/ReduxToolKit/store"
 import { fetchUserCredentials } from "@/ReduxToolKit/Reducers/Athentication/Authentication"
 
 export default function Login() {
-    const id = useSelector((state: RootState) => state.auth.user_id);
     const [userEmail, setUserEmail] = useState<string>(null)
     const [userPassword, setUserPassword] = useState<string>(null)
     const [validEmail, setValidEmail] = useState<boolean>(null)
     const [acceptedInput, setAcceptedInput] = useState<boolean>(null)
     const [loggingIn, setLoggingIn] = useState<boolean>(false)
     const [successfull, setSuccessful] = useState<boolean>(null)
-    const [errorMessage, setErrorMessage] = useState<string>(null)
     const navigate = useNavigate()
     const dispatch = useAppdispatch();
 
@@ -35,40 +28,28 @@ export default function Login() {
 
     const handleEmail = (e: any) => {
         setUserEmail(e.target.value)
-
     }
 
     const handlePassword = (e: any) => {
         setUserPassword(e.target.value)
-
     }
 
-
     const logInUser = async () => {
-
-
         const signin = await supabaseSignIn(userEmail, userPassword, setLoggingIn, setSuccessful, dispatch, fetchUserCredentials);
         if (signin) {
             setSuccessful(true);
             redirectUser();
-        }
-
-        if (signin === false) {
+        } else if (signin === false) {
             setSuccessful(false)
-        }
-    }
-
+        };
+    };
 
     const submitAuth = async (e: any) => {
-        e.preventDefault()
-
-        logInUser()
-
-    }
+        e.preventDefault();
+        logInUser();
+    };
 
     useEffect(() => {
-
-
         if (userEmail) {
             emailValidation(userEmail, setValidEmail)
         }
@@ -76,12 +57,10 @@ export default function Login() {
         if (userEmail && userPassword) {
             requiredInput(userEmail, userPassword, setAcceptedInput)
         }
-
-    }, [userEmail, userPassword, id])
+    }, [userEmail, userPassword, successfull]);
 
     return (
         <section className={`lg:p-8 overflow-hidden bg-black animate-fade-in`}>
-            {!id && <SessionManager />}
             <AnimatePresence>
                 {loggingIn && <LoggingIn successful={successfull} setLoggingIn={setLoggingIn} />}
             </AnimatePresence>
@@ -160,22 +139,11 @@ export default function Login() {
             </div>
         </section>
     )
-}
+};
 
 
 
-
-//     try {
-//         setLoggingIn(true)
-//         const { data, error } = await supabase.auth.signInWithPassword({
-//             email: userEmail,
-//             password: userPassword
-//         })
-//         if (error) {
-//             setSuccessful(false)
-//         } else if (data) {
-//             setSuccessful(true)
-//             redirectUser()
-//         }
-//     } catch (error) {
-//     }
+//import SessionManager from "../AppRouting/SessionManager"
+//import { useSelector } from "react-redux"
+//import { RootState } from "@/ReduxToolKit/store"
+//  const id = useSelector((state: RootState) => state.auth.user_id);

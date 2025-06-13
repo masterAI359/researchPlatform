@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/ReduxToolKit/store';
 import { getSourceIntegrity } from '@/helpers/Ratings';
 import ErrorBoundary from '../../ErrorBoundaries/ErrorBoundary';
-import { useEffect, useLayoutEffect } from 'react';
+import { useEffect } from 'react';
 import { getReportingRatings } from '@/ReduxToolKit/Reducers/UserContent.ts/ChartSlice';
 
 ChartJS.register(ArcElement, Tooltip, Legend);

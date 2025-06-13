@@ -43,7 +43,10 @@ export default function PieChart() {
     const dispatch = useDispatch();
 
     useLayoutEffect(() => {
-        if (ratingData.length > 0) return;
+
+        const testarr = ratingData.filter((num: number) => num > 0);
+
+        if (testarr.length > 0) return;
 
         const nums = getSourceIntegrity(userArticles);
         nums && dispatch(getReportingRatings(nums));
@@ -79,7 +82,5 @@ export default function PieChart() {
                 </ErrorBoundary>
             </motion.div>}
         </AnimatePresence>
-
-
     );
 };

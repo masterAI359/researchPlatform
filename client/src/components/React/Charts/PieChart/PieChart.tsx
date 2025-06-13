@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/ReduxToolKit/store';
 import { getSourceIntegrity } from '@/helpers/Ratings';
 import ErrorBoundary from '../../ErrorBoundaries/ErrorBoundary';
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { getReportingRatings } from '@/ReduxToolKit/Reducers/UserContent.ts/ChartSlice';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -41,17 +41,18 @@ export default function PieChart() {
     const userArticles = useSelector((state: RootState) => state.userdata.userArticles);
     const ratingData = useSelector((state: RootState) => state.chart.reportingIntegrity);
     const dispatch = useDispatch();
+    const populated = ratingData.length > 0;
 
-    useLayoutEffect(() => {
 
-        const testarr = ratingData.filter((num: number) => num > 0);
+    useEffect(() => {
 
-        if (testarr.length > 0) return;
+        if (!userArticles || userArticles.length === 0) return;
 
-        const nums = getSourceIntegrity(userArticles);
-        nums && dispatch(getReportingRatings(nums));
+        if (userArticles) getSourceIntegrity(userArticles, dispatch, getReportingRatings);
 
-    }, [ratingData]);
+    }, [userArticles]);
+
+
 
     const data = {
         labels: ratings,
@@ -68,7 +69,7 @@ export default function PieChart() {
 
     return (
         <AnimatePresence>
-            {ratingData.length > 0 && <motion.div
+            {userArticles && <motion.div
                 variants={variants}
                 initial='closed'
                 animate='open'

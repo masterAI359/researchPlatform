@@ -13,7 +13,7 @@ import { presentDashboard } from "@/ReduxToolKit/Reducers/UserContent.ts/Profile
 export default function Profile() {
     const signingOut = useSelector((state: RootState) => state.auth.signOut);
     const id = useSelector((state: RootState) => state.auth.user_id)
-    const dispatch = useDispatch<AppDispatch>()
+    const dispatch = useDispatch<AppDispatch>();
 
     useLayoutEffect(() => {
         if (id) {
@@ -28,9 +28,11 @@ export default function Profile() {
 
     useEffect(() => {
 
-        // return () => {
-        //     dispatch(presentDashboard());
-        // };
+
+
+        return () => {
+            dispatch(presentDashboard());
+        };
     }, []);
 
 

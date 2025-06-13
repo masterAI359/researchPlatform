@@ -110,9 +110,7 @@ export const calculatePercentages = (investigations: any) => {
 
 
 
-export const getSourceIntegrity = (userArticles: SavedArticle[]) => {
-
-    console.log('running');
+export const getSourceIntegrity = (userArticles: SavedArticle[], dispatch: any, getReportingRatings: any) => {
 
     interface IntegrityRatings {
         veryHigh: number;
@@ -138,6 +136,7 @@ export const getSourceIntegrity = (userArticles: SavedArticle[]) => {
 
 
     for (const article of userArticles) {
+
         switch (article.factual_reporting) {
             case 'Very High':
                 integrityRatings.veryHigh++;
@@ -153,6 +152,7 @@ export const getSourceIntegrity = (userArticles: SavedArticle[]) => {
                 break;
             case 'Low':
                 integrityRatings.low++;
+                break;
             case 'Very Low':
                 integrityRatings.veryLow++;
                 break;
@@ -165,8 +165,6 @@ export const getSourceIntegrity = (userArticles: SavedArticle[]) => {
         };
     };
 
-    console.log(integrityRatings);
-
+    dispatch(getReportingRatings(integrityRatings));
     return integrityRatings;
-
 };

@@ -4,14 +4,13 @@ import { getID, clearAuthSlice } from '@/ReduxToolKit/Reducers/Athentication/Aut
 import { RootState } from '@/ReduxToolKit/store'
 
 export default function InitSession() {
-    const id = useSelector((state: RootState) => state.auth.user_id);
+    const id = useSelector((state: RootState) => state.auth.user_id)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        window.dispatchEvent(new CustomEvent('reactMounted'));
+        window.dispatchEvent(new CustomEvent('reactMounted'))
 
         if (!id) {
-
             const restoreUser = async () => {
                 try {
                     const res = await fetch('/getCurrentUser', {
@@ -21,26 +20,29 @@ export default function InitSession() {
                             'Content-Type': 'application/json',
                         },
                     })
-                    if (!res.ok) {
-                        if (res.status === 401) throw new Error('No active session');
-                    } else {
-                        throw new Error(`Unexpected error: ${res.status}`);
-                    };
 
-                    const result = await res.json();
-                    const user = result?.user;
-                    const id = user?.id;
-                    dispatch(getID(id));
-                } catch (error) {
-                    console.warn('Session restore failed:', error.message ? error.message : error);
-                    dispatch(clearAuthSlice());
+                    if (!res.ok) {
+                        if (res.status === 401) throw new Error('No active session')
+                        throw new Error(`Unexpected error: ${res.status}`)
+                    }
+
+                    const result = await res.json()
+                    const user = result?.user
+                    const id = user?.id
+
+                    if (!id) throw new Error('User ID missing in response')
+                    dispatch(getID(id))
+
+                } catch (error: any) {
+                    console.warn('Session restore failed:', error?.message || error)
+                    dispatch(clearAuthSlice())
                 }
-            };
+            }
 
             restoreUser()
         }
 
-    }, []);
+    }, [id, dispatch])
 
     return null
-}
+};

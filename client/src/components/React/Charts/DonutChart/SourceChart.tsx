@@ -87,7 +87,7 @@ export default function SourceChart() {
   )
 }
 
-export function ChartWrapper() {
+export function BiasChart() {
 
   return (
     <motion.section

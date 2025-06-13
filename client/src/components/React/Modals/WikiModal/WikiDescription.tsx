@@ -19,6 +19,10 @@ export default function Description() {
 
     }, [readExtract]);
 
+
+    //TODO: finish optimizing useScrolltrap() so overscoll doesn't impact page scroll
+
+
     return (
         <motion.main className="2xl:min-h-36 relative min-w-full max-w-full h-auto flex flex-col gap-y-6 mb-6 items-center justify-between transition-all duration-400 ease-in-out ">
             <AnimatePresence mode="popLayout">

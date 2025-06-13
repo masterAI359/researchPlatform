@@ -20,6 +20,7 @@ export default function Article({ articleData }) {
     } = articleData;
 
 
+
     useEffect(() => {
 
         return () => {
@@ -38,7 +39,8 @@ export default function Article({ articleData }) {
             initial={{ opacity: 0 }}
             animate={{
                 opacity: 1, transition: {
-                    duration: 0.3, delay: 0.1
+                    type: 'tween',
+                    duration: 0.3
                 }
             }}
             exit={{
@@ -47,7 +49,7 @@ export default function Article({ articleData }) {
                     duration: 0.1
                 }
             }}
-            className={`relative top-0 left-0 right-0 flex flex-col grow
+            className={`relative top-0 left-0 right-0 flex flex-col grow px-4
             w-full min-h-screen scrollbar-hide bg-black transition-all duration-200 ease-in-out
             ${status === 'fulfilled' ? 'opacity-50 md:opacity-100' : 'opacity-100'}
             `}

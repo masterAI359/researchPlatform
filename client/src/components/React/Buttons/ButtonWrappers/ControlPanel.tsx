@@ -16,7 +16,7 @@ export default function ControlPanel({ }) {
          h-auto bg-black xl:bg-astro_black lg:rounded-full border-t md:border border-border_gray">
 
 
-            <div className="shrink-0 lg:rounded-l-full w-fit h-auto px-2 py-0.5 md:py-1.5  md:py-1.5 xl:px-2 2xl:px-2.5  md:hover:bg-border_gray transition-all ease-in-out lg:border-r border-border_gray flex justify-center">
+            <div className="shrink-0 lg:rounded-l-full w-fit h-auto px-2 py-0.5  md:py-1.5 xl:px-2 2xl:px-2.5  md:hover:bg-border_gray transition-all ease-in-out lg:border-r border-border_gray flex justify-center">
                 <ReturnToSearch />
             </div>
 
@@ -29,7 +29,7 @@ export default function ControlPanel({ }) {
             <div className="shrink-0 w-fit h-auto lg:rounded-r-full px-2.5 py-0.5 xl:px-2.5 md:hover:bg-border_gray transition-all ease-in-out flex justify-center lg:border-0 border-border_gray">
                 <TakeNotes />
             </div>
-            {showContent && <div className="flex lg:hidden grow shrink-0 justify-end w-fit h-auto py-1.5 xl:px-2 2xl:px-2.5 lg:hover:bg-border_gray transition-all ease-in-out flex justify-center lg:border-0 border-border_gray">
+            {showContent && <div className="flex justify-center lg:hidden grow shrink-0 w-fit h-auto py-1.5 xl:px-2 2xl:px-2.5 lg:hover:bg-border_gray transition-all ease-in-out lg:border-0 border-border_gray">
                 <StoryPaginate />
             </div>}
         </div>

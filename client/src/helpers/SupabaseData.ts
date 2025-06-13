@@ -73,7 +73,6 @@ export const saveArticle = async (
 
 export const getInvestigationSources = (sources: string[], savedArticles: any) => {
 
-    //might implement two pointer algorithm on this function for performance optimization
 
     function getSaved() {
         let savedSources = []

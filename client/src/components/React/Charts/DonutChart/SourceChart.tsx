@@ -1,7 +1,6 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import { motion } from "framer-motion";
-import { useRef } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import { numBiasSources } from "@/helpers/Ratings";
@@ -19,7 +18,6 @@ const variants = {
 
 export default function SourceChart() {
   const userArticles = useSelector((state: RootState) => state.userdata.userArticles);
-  const chartRef = useRef(null);
   const numLeftSources: number | null = numBiasSources(userArticles, "Left", "Left-Center");
   const numRightSources: number | null = numBiasSources(userArticles, "Right", "Right-Center");
   const numCenterSources: number | null = numBiasSources(userArticles, "LeastBiased");
@@ -29,13 +27,13 @@ export default function SourceChart() {
   const numScientificSources: number | null = numBiasSources(userArticles, "Pro-Science");
 
   const ratings: string[] = [
-    'Right Sources',
-    'Left Sources',
-    'Center Sources',
+    'Right wing',
+    'Left wing',
+    'Centrist',
     'Conspiracy Sources',
     'Questionable Sources',
     'Scientific Sources',
-    'Satire'
+    'Satirical'
   ];
 
   const sourceBiasCounts: number[] = [
@@ -87,7 +85,7 @@ export default function SourceChart() {
   )
 }
 
-export function ChartWrapper() {
+export function BiasChart() {
 
   return (
     <motion.section

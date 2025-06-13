@@ -6,8 +6,9 @@ import userInvestigationSlice from './Reducers/UserContent.ts/UserInvestigations
 import ProfileNavigationSlice from './Reducers/UserContent.ts/ProfileNavigationSlice'
 import SaveInvestigationSlice from './Reducers/UserContent.ts/SaveInvestigationSlice'
 import NewUserSlice from './Reducers/Athentication/NewUserSlice'
-import FeedBackSlice  from './Reducers/Feedback/FeedbackSlice'
+import FeedBackSlice from './Reducers/Feedback/FeedbackSlice'
 import BlueSkySlice from './Reducers/BlueSky/BlueSkySlice'
+import ChartSlice from './Reducers/UserContent.ts/ChartSlice';
 
 export const store = configureStore({
     reducer: {
@@ -19,11 +20,12 @@ export const store = configureStore({
         saveResearch: SaveInvestigationSlice,
         newUser: NewUserSlice,
         feedback: FeedBackSlice,
-        bluesky: BlueSkySlice
+        bluesky: BlueSkySlice,
+        chart: ChartSlice
     }
 
-})
+});
 
-export type RootState = ReturnType<typeof store.getState>
+export type RootState = ReturnType<typeof store.getState>;
 
-export type AppDispatch = typeof store.dispatch
+export type AppDispatch = typeof store.dispatch;

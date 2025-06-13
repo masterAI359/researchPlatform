@@ -41,8 +41,8 @@ export function GetTheseArticles() {
             initial="closed"
             animate="open"
             exit="closed"
-            className="fixed bottom-28 2xl:bottom-40 xl:bottom-24 z-40 2xl:left-72 xl:left-44 lg:left-32 md:left-24
-          flex flex-col items-center gap-6 rounded-3xl p-2 md:p-8 w-full md:w-4/5 lg:w-4/5 xl:w-4/5 2xl:w-2/3 h-auto
+            className="fixed bottom-28 2xl:bottom-20 xl:bottom-24 lg:bottom-32  z-40 2xl:left-72 xl:left-28 lg:left-32 md:left-10
+          flex flex-col items-center gap-6 rounded-3xl p-2 md:p-8 lg:p-4 w-full md:w-11/12 lg:w-4/5 xl:w-5/6 2xl:w-2/3 h-auto
         sm:gap-y-10 sm:p-10 bg-gradient-to-tr from-ebony to-mirage mt-2 
         shadow-inset text-center">
             <div className="mx-auto flex flex-col gap-y-2 lg:gap-y-12 w-full items-end h-full">
@@ -106,7 +106,7 @@ function ArticlesSelected() {
 
     return (
         <motion.div className="w-full h-full  mx-auto">
-            <div className="h-full flex flex-wrap justify-center gap-3 md:gap-4 lg:gap-8 items-center w-full lg:w-auto mx-auto">
+            <div className="h-full flex flex-wrap justify-center gap-3 md:gap-4 xl:gap-6 items-center w-full lg:w-auto mx-auto">
                 {selected.length > 0 && selected.map((article: ArticleType, index: number) => (
                     <ArticleLink article={article} key={article.url} index={index} />
                 ))}

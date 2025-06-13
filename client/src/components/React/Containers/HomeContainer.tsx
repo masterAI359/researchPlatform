@@ -18,10 +18,10 @@ export default function HomeContainer({ }) {
 
     useLayoutEffect(() => {
 
-        if(posts === null && blueSkyStatus === 'idle') {
-            dispatch(getFeed())
-        }
-        
+        //  if(posts === null && blueSkyStatus === 'idle') {
+        //      dispatch(getFeed())
+        //  }
+
         ScrollUp();
 
     }, [])
@@ -29,13 +29,13 @@ export default function HomeContainer({ }) {
     return (
         <section className={`flex h-auto flex-col w-full grow transition-opacity duration-200 delay-200 ease-in-out scroll-smooth thin-gray-scrollbar
          ${signingOut ? 'opacity-50 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
-                    {signingOut && <SignOutModal />}
+            {signingOut && <SignOutModal />}
 
-           {!id && <SessionManager/>}
+            {!id && <SessionManager />}
             <HeroImage />
             <Challenge />
-           {/* <ArticlesResult /> */}
-            <BlueSkyPosts context = {'home'}/>
+            {/* <ArticlesResult /> */}
+            <BlueSkyPosts context={'home'} />
         </section>
     )
 }

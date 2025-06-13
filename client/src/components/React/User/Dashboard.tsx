@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { ChartWrapper } from "../Charts/DonutChart/SourceChart";
+import { BiasChart } from "../Charts/DonutChart/SourceChart";
 import StatsSection from "../Charts/ResearchStats/StatsSection";
+import IntegrityChart from "../Charts/PieChart/IntegrityChart";
 
 const variants = {
     open: { opacity: 1 },
@@ -22,8 +23,10 @@ export default function Dashboard() {
         p-4 md:p-0
         "
         >
-            <ChartWrapper />
+            <BiasChart />
+            <IntegrityChart />
             <StatsSection />
+
         </motion.section>
     )
 }

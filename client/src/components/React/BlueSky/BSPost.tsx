@@ -30,10 +30,9 @@ export function BSPost({ post, setClicked, context }) {
   return (
     <motion.div
       key={post.record.text}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ type: 'tween', duration: 0.3, ease: 'easeInOut' }}
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1, transition: { type: 'tween', duration: 0.3, ease: 'easeInOut', delay: 0.15 } }}
+      exit={{ opacity: 0, scale: 0.5, transition: { type: 'tween', duration: 0.3, ease: 'easeInOut', delay: 0 } }}
       onClick={choosePost}
       className={`relative rounded-3xl shadow-inset  my-8 lg:hover:opacity-100 py-2 px-2  lg:p-6 ring-1 ring-white/5 cursor-pointer flex flex-col gap-y-2
         ${text === selected ? 'bg-white shadow-material border-2 border-black/20 lg:scale-105 z-40' : 'lg:opacity-90 bg-white/5'}

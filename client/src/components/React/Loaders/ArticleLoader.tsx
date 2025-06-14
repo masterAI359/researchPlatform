@@ -24,12 +24,7 @@ export default function ArticleLoader() {
             <header className='w-2/3 h-fit mx-auto justify-center 2xl:-translate-y-40 xl:-translate-y-72 lg:-translate-y-80'>
                 <h1
                     className='block max-w-3/4 h-fit font-light text-center text-sm tracking-tight md:text-3xl xl:text-4xl text-zinc-400 animate-pulse'
-                >Please wait just a few moments
-
-                </h1>
-                <h1
-                    className='block max-w-3/4 h-fit font-light text-center text-sm tracking-tight md:text-3xl xl:text-4xl text-zinc-400 animate-pulse'
-                >We're gathering the chosen articles
+                >We're Gathering the chosen articles
 
                 </h1>
             </header>

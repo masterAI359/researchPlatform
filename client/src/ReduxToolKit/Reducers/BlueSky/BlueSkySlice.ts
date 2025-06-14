@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { OptionsTypes } from "@/env";
 
 export const searchBlueSky = createAsyncThunk(
-    'investigate/getBlueSkyPosts', 
+    'investigate/getBlueSkyPosts',
     async (query: string, thunkAPI) => {
         const options: OptionsTypes = {
             method: 'GET',
@@ -14,16 +14,15 @@ export const searchBlueSky = createAsyncThunk(
 
         try {
             const response = await fetch(`/searchBlueSky?q=${query}`, options);
-            if(response.ok) {
+            if (response.ok) {
                 const results = response.json();
-                console.log(results)
                 return results;
             } else {
                 return thunkAPI.rejectWithValue('Connection refused');
             }
-           
+
         } catch (error) {
-            if(error) {
+            if (error) {
                 return thunkAPI.rejectWithValue(error)
             }
         }
@@ -33,7 +32,7 @@ export const searchBlueSky = createAsyncThunk(
 
 export const getFeed = createAsyncThunk(
     'investigate/getBlueSkyFeed',
-    async (_: void , thunkAPI) => {
+    async (_: void, thunkAPI) => {
         const options: OptionsTypes = {
             method: 'GET',
             headers: {
@@ -44,12 +43,12 @@ export const getFeed = createAsyncThunk(
 
         try {
             const req = await fetch('/getBlueSkyFeed', options);
-            if(req.ok) {
+            if (req.ok) {
                 const data = await req.json();
                 return data;
             }
         } catch (error) {
-            if(error) console.log(error)
+            if (error) console.log(error)
         }
     }
 )
@@ -58,11 +57,11 @@ export const getFeed = createAsyncThunk(
 interface BSTypes {
 
     status: string,
-    feedStatus: string 
+    feedStatus: string
     posts: any | null,
     errorMessage: string | null,
     selected: any
-    
+
 }
 
 const initialState: BSTypes = {
@@ -79,10 +78,10 @@ export const BlueSkySlice = createSlice({
     initialState: initialState,
     reducers: {
         selectPost: (state, action) => {
-             state.selected = action.payload
+            state.selected = action.payload
         },
         resetBlueSkyState: () => initialState
-       
+
     },
     extraReducers: (builder) => {
 

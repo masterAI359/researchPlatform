@@ -1,7 +1,7 @@
 import { searchBlueSky } from "@/ReduxToolKit/Reducers/BlueSky/BlueSkySlice";
 import { motion } from "framer-motion";
 import Loader from "../Loaders/Loader";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import { AppDispatch } from "@/ReduxToolKit/store";
@@ -43,6 +43,16 @@ export default function BlueSkyPosts({ context }) {
     }
   }
 
+
+  useEffect(() => {
+    if (posts) {
+      const storeThese = { bsPosts: posts };
+      localStorage.setItem('bsPosts', JSON.stringify(storeThese));
+    };
+
+  }, [status, posts]);
+
+
   return (
     <motion.div
       key="BlueSkyModal"
@@ -53,7 +63,7 @@ export default function BlueSkyPosts({ context }) {
       transition={{ type: "spring", stiffness: 600, damping: 25, duration: 0.05 }}
       className="lg:p-8 w-full relative"
     >
-      <div className='mt-12 md:mt-6 p-4 w-full py-6 mx-auto md:px-12 lg:px-0 xl:px-0  2xl:max-w-7xl'>
+      <div className='mt-12 md:mt-6 p-4 w-full py-6 mx-auto md:px-12 lg:px-0 xl:px-0  2xl:max-w-7xl h-full'>
         <div className="bg-gradientup mx-auto flex flex-col p-6 lg:p-0 shrink-0 grow rounded-4xl w-full h-auto md:max-w-xl lg:max-w-5xl 2xl:min-w-6xl 2xl:max-w-7xl relative overflow-hidden">
           {context === 'investigate' && <div onClick={() => dispatch(displayBlueSkySearch(false))} className="absolute top-1.5 right-1.5 z-50 max-h-8 max-w-8 p-1 cursor-pointer rounded-full hover:bg-white/20 transition-all duration-200 ease-in-out">
             <svg xmlns="http://www.w3.org/2000/svg" width={'100%'} height={'100%'} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"

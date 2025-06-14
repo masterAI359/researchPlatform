@@ -4,7 +4,7 @@ import { RootState } from "@/ReduxToolKit/store";
 import { selectPost } from "@/ReduxToolKit/Reducers/BlueSky/BlueSkySlice";
 import Popover from "../Tooltips/Popover";
 import UseThisPost from "./UseThisPost";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { getIdea } from "@/ReduxToolKit/Reducers/Investigate/UserPOV";
 
 export function BSPost({ post, setClicked, context }) {
@@ -28,9 +28,13 @@ export function BSPost({ post, setClicked, context }) {
   }
 
   return (
-    <div
-      onClick={choosePost}
+    <motion.div
       key={post.record.text}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ type: 'tween', duration: 0.3, ease: 'easeInOut' }}
+      onClick={choosePost}
       className={`relative rounded-3xl shadow-inset  my-8 lg:hover:opacity-100 py-2 px-2  lg:p-6 ring-1 ring-white/5 cursor-pointer flex flex-col gap-y-2
         ${text === selected ? 'bg-white shadow-material border-2 border-black/20 lg:scale-105 z-40' : 'lg:opacity-90 bg-white/5'}
         `}
@@ -73,6 +77,6 @@ export function BSPost({ post, setClicked, context }) {
         <svg className={`icon icon-tabler icons-tabler-outline icon-tabler-heart ${post.record.text === selected ? 'text-zinc-500' : 'text-zinc-300'}`} xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" ><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" /></svg>
         <p className={`text-sm ${post.record.text === selected ? 'text-black/70' : 'text-zinc-300'}`}>{post.likeCount} </p>
       </footer>
-    </div>
+    </motion.div>
   );
 }

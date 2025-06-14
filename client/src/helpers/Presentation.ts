@@ -88,7 +88,31 @@ export const formatDate = (datePublished: string) => {
     }
 
 
-}
+};
+
+
+export const splitPosts = (
+    stored: string,
+    setFirstHalf: React.Dispatch<React.SetStateAction<any[]>>,
+    setSecondHalf: React.Dispatch<React.SetStateAction<any[]>>
+) => {
+
+    try {
+
+        const fromLocal = JSON.parse(stored);
+        const storedPosts = fromLocal.bsPosts;
+        const postsUsed = storedPosts.slice(0, Math.min(16, storedPosts.length));
+        const mid = Math.floor(postsUsed.length / 2);
+
+        setFirstHalf(postsUsed.slice(0, mid));
+        setSecondHalf(postsUsed.slice(mid));
+
+    } catch (error) {
+        console.error(error);
+    };
+
+
+};
 
 
 

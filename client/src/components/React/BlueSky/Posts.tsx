@@ -6,6 +6,8 @@ import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary";
 import { RootState } from "@/ReduxToolKit/store";
 import BlueSkyLoader from "../Loaders/BlueSkyLoader";
 import Scroller from "./Scroller";
+import { splitPosts } from "@/helpers/Presentation";
+import { variants } from "@/motion/variants";
 
 export default function Posts({ posts, context }) {
   const status = useSelector((state: RootState) => state.bluesky.status);
@@ -14,7 +16,7 @@ export default function Posts({ posts, context }) {
   const [clicked, setClicked] = useState<boolean>(false);
   const selected = useSelector((state: RootState) => state.bluesky.selected);
   const dispatch = useDispatch();
-  const stored = localStorage.getItem('bsPosts');
+
 
   useEffect(() => {
     const handleNew = () => {
@@ -24,25 +26,20 @@ export default function Posts({ posts, context }) {
     };
     window.addEventListener('newSearch', handleNew);
 
-    if (stored) {
-      const fromLocal = JSON.parse(stored);
-      const storedPosts = fromLocal.bsPosts;
-      const postsUsed = storedPosts.slice(0, Math.min(16, storedPosts.length));
-      const mid = Math.floor(postsUsed.length / 2);
+    try {
+      const stored = localStorage.getItem('bsPosts');
 
-      setFirstHalf(postsUsed.slice(0, mid));
-      setSecondHalf(postsUsed.slice(mid));
+      if (stored) {
+        splitPosts(stored, setFirstHalf, setSecondHalf);
+      };
 
+    } catch (error) {
+      console.log(error);
     }
-
     return () => window.removeEventListener('newSearch', handleNew);
 
-  }, [status, stored, posts]);
+  }, [status, posts]);
 
-  const variants = {
-    open: { opacity: 1 },
-    closed: { opacity: 0 }
-  }
 
   return (
     <motion.div
@@ -59,6 +56,7 @@ export default function Posts({ posts, context }) {
         <AnimatePresence>
           {status === 'pending' && <BlueSkyLoader />}
         </AnimatePresence>
+
         {status !== 'pending' && <div className='relative mx-auto px-4 lg:px-16 overflow-y-hidden'>
           <div
             style={{

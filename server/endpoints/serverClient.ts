@@ -355,9 +355,66 @@ export const saveResearch = async (req: Request, res: Response) => {
     } catch (error) {
         console.error("Unexpected error saving research: ", error);
         return res.status(500).json({ message: "Internal Server Error", data: null });
-    }
+    };
+};
+
+
+type NewUser = {
+    message: string,
+    data: any
 }
 
+export const createNewUser = async (req: Request, res: Response): Promise<any> => {
+
+
+
+    const { email, password } = req.body;
+
+    try {
+
+        const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+        const isProduction = process.env.NODE_ENV === 'production';
+        const { data, error } = await supabase.auth.signUp({
+            email: email,
+            password: password
+        });
+
+        if (data.session) {
+            const { access_token, refresh_token } = data.session;
+
+            res.cookie('sb-access-token', access_token, {
+                httpOnly: true,
+                secure: isProduction,
+                sameSite: 'lax',
+                maxAge: 60 * 60 * 1000,
+            });
+
+            res.cookie('sb-refresh-token', refresh_token, {
+                httpOnly: true,
+                secure: isProduction,
+                sameSite: 'lax',
+                maxAge: 7 * 24 * 60 * 60 * 1000,
+            });
+        }
+
+        if (error) {
+            console.error({ 'Signup error encountered': error.message });
+            return res.status(400).json({ message: error.message, data: null });
+        };
+
+        const message: NewUser = { message: 'User created', data: data.user }
+
+        return res.status(200).send(message);
+
+    } catch (error) {
+        if (error) {
+            console.error(error);
+            const message: NewUser = { message: 'User created', data: null }
+
+            return res.status(400).json(message)
+        }
+    };
+};
 
 
 

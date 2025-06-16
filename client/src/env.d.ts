@@ -100,6 +100,11 @@ declare global {
     needMore: number | null
   }
 
+  interface PostsProps {
+    posts: any[] | null,
+    context: string
+  }
+
 }
 
-export { ArticleType, OptionsTypes, SelectedArticle, Perspectives, State, PremiseProps, Help, SavedArticle, Calculations };
+export { ArticleType, OptionsTypes, SelectedArticle, Perspectives, State, PremiseProps, Help, SavedArticle, Calculations, PostsProps };

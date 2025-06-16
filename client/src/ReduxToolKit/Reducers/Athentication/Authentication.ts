@@ -5,21 +5,17 @@ export const fetchUserCredentials = createAsyncThunk(
     'user/credentials',
     async (session: any, thunkAPI) => {
         try {
-
-
             if (session) {
-                return session
-            }
-
+                return session;
+            };
         } catch (error) {
             if (error) {
                 console.log(error.message)
                 return thunkAPI.rejectWithValue(error.message)
-            }
-        }
-
+            };
+        };
     }
-)
+);
 
 interface Authentication {
     activeSession: any,
@@ -94,7 +90,7 @@ export const AuthenticationSlice = createSlice({
                     state.user_id = action.payload.user?.id || null;
                     state.email = action.payload.user.email;
                     state.authenticated = true;
-                    state.activeSession = action.payload
+                    state.activeSession = action.payload;
                 } else {
                     state.user_id = null;
                     state.email = null;

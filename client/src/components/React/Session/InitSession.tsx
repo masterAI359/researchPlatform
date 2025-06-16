@@ -11,6 +11,8 @@ export default function InitSession() {
     useEffect(() => {
         window.dispatchEvent(new CustomEvent('reactMounted'))
 
+        dispatch(searchBlueSky("morning"));
+
         if (!id) {
             const restoreUser = async () => {
                 try {
@@ -43,7 +45,7 @@ export default function InitSession() {
             restoreUser()
         }
 
-        dispatch(searchBlueSky("morning"));
+
 
     }, [id, dispatch])
 

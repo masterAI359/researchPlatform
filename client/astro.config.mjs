@@ -60,6 +60,10 @@ export default defineConfig({
         '/getCurrentUser': {
           target: 'http://localhost:5001',
           changeOrigin: true
+        },
+        '/createNewUser': {
+          target: 'http://localhost:5001',
+          changeOrigin: true
         }
       } : undefined
     }

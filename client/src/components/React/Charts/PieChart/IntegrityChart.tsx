@@ -19,7 +19,7 @@ export default function IntegrityChart() {
             transition={{ type: 'tween', duration: 0.2 }}
             className="lg:p-8">
             <div className="mx-auto 2xl:max-w-7xl">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:gap-24 items-center">
+                <div className="flex flex-col-reverse md:flex-row lg:gap-24 items-center">
 
                     <PieChart />
                     <PieChartHeader />

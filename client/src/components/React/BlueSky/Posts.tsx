@@ -8,8 +8,9 @@ import BlueSkyLoader from "../Loaders/BlueSkyLoader";
 import Scroller from "./Scroller";
 import { splitPosts } from "@/helpers/Presentation";
 import { variants } from "@/motion/variants";
+import { PostsProps } from "@/env";
 
-export default function Posts({ posts, context }) {
+export default function Posts({ posts, context }: PostsProps) {
   const status = useSelector((state: RootState) => state.bluesky.status);
   const [firstHalf, setFirstHalf] = useState<any>(null);
   const [secondHalf, setSecondHalf] = useState<any>(null);

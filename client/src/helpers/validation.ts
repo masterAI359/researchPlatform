@@ -80,24 +80,16 @@ export const confirmPassword = (firstEntry?: string | null, secondEntry?: string
     } else {
         setter(false)
     }
-
-}
+};
 
 export const confirmFirstPassword = (firstEntry: string, setter: Function) => {
+    const splitPW = firstEntry.split('');
+    const longEnough = splitPW.length >= 8;
+    const noSpecialChars = checkSpecialChars(splitPW);
 
-
-    const splitPW = firstEntry.split('')
-
-    const longEnough = splitPW.length >= 8
-
-    const noSpecialChars = checkSpecialChars(splitPW)
-
-  
-
-    if(!noSpecialChars && longEnough) {
+    if (!noSpecialChars && longEnough) {
         setter(true)
     } else {
         setter(false)
-    }
-}
-
+    };
+};

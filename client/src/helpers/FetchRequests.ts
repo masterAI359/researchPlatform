@@ -80,7 +80,8 @@ export const supabaseSignIn = async (email: string, password: string, setLogginI
                 email: email,
                 password: password
             }),
-        });
+        }
+        );
 
         if (!response.ok) {
             setSuccessful(false)
@@ -112,7 +113,6 @@ export const supabaseSignIn = async (email: string, password: string, setLogginI
 export const fetchSignOut = async (setSuccess: (success: boolean) => void) => {
 
     try {
-        console.log('running');
         const response = await fetch('/signUserOut', {
             method: 'POST',
             credentials: 'include',
@@ -125,19 +125,16 @@ export const fetchSignOut = async (setSuccess: (success: boolean) => void) => {
             setSuccess(false)
             throw new Error('Could not reach endpoint for signout');
         }
-
         const result = await response.json();
-
         if (result) {
-            console.log(result.message);
             setSuccess(true);
-        }
+        };
 
     } catch (error) {
         setSuccess(false);
         console.error(error);
-    }
-}
+    };
+};
 
 
 export const sendEmailResetLink = async (email: string, setEmailSent: (emailSent: boolean) => void) => {
@@ -169,5 +166,56 @@ export const sendEmailResetLink = async (email: string, setEmailSent: (emailSent
         console.log(error)
         setEmailSent(false)
     }
+};
 
+
+export const newUser = async (
+    email: string,
+    password: string,
+    setCreatedUser: any,
+    setAcceptedInput: any,
+    setValidFirstPassword: any,
+    setErrorMessage: any,
+    setCanSubmit: any): Promise<any> => {
+
+    try {
+
+        const response = await fetch('/createNewUser', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            }),
+        }
+        );
+
+        if (!response.ok) {
+            console.log(response.statusText);
+            setErrorMessage(response.statusText);
+            setCreatedUser(false)
+            throw new Error(`Couldn't reach createNewUser Endpoint: ${response.statusText}`);
+        };
+
+        const session = await response.json();
+
+        if (session) {
+            console.log(session.data);
+            setCreatedUser(true);
+            setCanSubmit(null);
+            setAcceptedInput(null);
+            setValidFirstPassword(null);
+            setErrorMessage(null);
+            return { user: session.data };
+        };
+
+    } catch (error) {
+        if (error) {
+            console.error(error);
+            return null
+        }
+    }
 }

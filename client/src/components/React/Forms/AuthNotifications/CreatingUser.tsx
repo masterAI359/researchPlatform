@@ -1,11 +1,8 @@
 import { motion, AnimatePresence } from "framer-motion";
-import Loader from "../../Loaders/Loader";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import Success from "./Success";
 import Failed from "./Failed";
 import Pending from "./Pending";
-
 
 const variants = {
     show: {
@@ -19,19 +16,12 @@ const variants = {
 }
 
 export default function CreatingUser({ createdUser, setCreating, creating }) {
-    const [redirecting, setRedirecting] = useState<boolean>(false)
-    const navigate = useNavigate()
-
 
     useEffect(() => {
 
         const timer = setTimeout(() => {
             setCreating(false)
-            if (createdUser) {
-                navigate('/Profile')
-            }
-
-        }, 1000)
+        }, 2000);
 
 
         return () => clearTimeout(timer)
@@ -61,21 +51,10 @@ export default function CreatingUser({ createdUser, setCreating, creating }) {
                     {<AnimatePresence mode="wait">
                         {createdUser === null && <Pending />}
                         {createdUser === true && <Success />}
-                        {createdUser === false && <Failed/>}
+                        {createdUser === false && <Failed />}
                     </AnimatePresence>}
                 </div>
             </div>
         </motion.div>
     )
-}
-
-
-
-
-
-
-
-
-
-
-
+};

@@ -2,8 +2,8 @@ import { supabase } from "@/SupaBase/supaBaseClient"
 import { requiredInput } from "@/helpers/validation"
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import { RootState } from "@/ReduxToolKit/store"
-import { Link } from "react-router-dom"
+import { AppDispatch, RootState } from "@/ReduxToolKit/store"
+import { Link, useNavigate } from "react-router-dom"
 import CreatingUser from "./AuthNotifications/CreatingUser"
 import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
 import { confirmPassword, emailValidation } from "@/helpers/validation"
@@ -15,8 +15,11 @@ import NewPassword from "./InputFields/NewPassword"
 import ConfirmNewPassword from "./InputFields/ConfirmNewPassword"
 import OAuthLogins from "./InputFields/OauthLogins"
 import NewPasswordGuide from "./InputGuides/NewPasswordGuide"
+import { newUser } from "@/helpers/FetchRequests"
+import { fetchUserCredentials } from "@/ReduxToolKit/Reducers/Athentication/Authentication"
 
 export default function Signup() {
+    const id = useSelector((state: RootState) => state.auth.user_id);
     const [acceptedInput, setAcceptedInput] = useState<boolean>(null)
     const [first_pw_valid, setValidFirstPassword] = useState<boolean>(null)
     const [canSubmit, setCanSubmit] = useState<boolean>(null)
@@ -29,11 +32,8 @@ export default function Signup() {
     const firstPassword = useSelector((state: RootState) => state.newUser.firstPassword)
     const secondPassword = useSelector((state: RootState) => state.newUser.secondPassword)
     const enterValidEmail = useSelector((state: RootState) => state.newUser.enterValidEmail)
-    const dispatch = useDispatch()
-
-
-
-
+    const dispatch = useDispatch<AppDispatch>();
+    const navigate = useNavigate();
 
 
     const handlePassword = (e: any) => {
@@ -44,8 +44,6 @@ export default function Signup() {
     const handleSecondEntry = (e: any) => {
         const secondEntry = e.target.value
         dispatch(getSecondPassword(secondEntry))
-        console.log('dispatching')
-        console.log(secondPassword)
     }
 
 
@@ -53,39 +51,21 @@ export default function Signup() {
         requiredInput(newEmail, firstPassword, setValidFirstPassword)
     }
 
-
     const createUser = async () => {
         setCreating(true)
         if (canSubmit) {
             try {
-                const { data, error } = await supabase.auth.signUp({
-                    email: newEmail,
-                    password: secondPassword,
-                })
-                if (error) {
-                    setCreatedUser(false)
-                    if (error.message.toLocaleLowerCase().includes('already registered')) {
-                        setErrorMessage('You already have an account!')
-                    }
-                } else if (data) {
-                    setCreatedUser(true)
-                    setCanSubmit(null)
-                    setAcceptedInput(null)
-                    setValidFirstPassword(null)
-                    setErrorMessage(null)
-                }
-
+                const data = await newUser(newEmail, firstPassword, setCreatedUser, setCanSubmit, setAcceptedInput, setErrorMessage, setValidFirstPassword);
+                if (data) {
+                    dispatch(fetchUserCredentials(data));
+                };
             } catch (error) {
                 console.log(error)
-            } finally {
-                if (createdUser) {
-                }
             }
-
         } else {
             setAcceptedInput(false)
-        }
-    }
+        };
+    };
 
 
     const submitAccountCreation = (e: any) => {
@@ -102,6 +82,7 @@ export default function Signup() {
 
     useEffect(() => {
 
+
         if (emailValid === false) {
             dispatch(requestValidEmail('please enter a valid email address'))
         } else if (emailValid === true) {
@@ -114,8 +95,6 @@ export default function Signup() {
 
         if (firstPassword && secondPassword) {
             confirmPassword(firstPassword, secondPassword, setCanSubmit, setNeedSpecialChar)
-            console.log({ "Can Submit": canSubmit })
-            console.log(needSpecialChar)
         }
 
         if (canSubmit === false) {
@@ -125,7 +104,18 @@ export default function Signup() {
         }
 
 
-    }, [firstPassword, secondPassword, acceptedInput, canSubmit, dispatch, newEmail, confirmPassword])
+    }, [firstPassword, secondPassword, acceptedInput, canSubmit, dispatch, newEmail, confirmPassword]);
+
+
+    useEffect(() => {
+        if (!id) return;
+
+        const timer = setTimeout(() => {
+            navigate('/Profile')
+        }, 1000);
+
+        return () => clearTimeout(timer);
+    }, [id]);
 
     return (
 

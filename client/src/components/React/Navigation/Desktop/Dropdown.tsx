@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
@@ -8,7 +8,7 @@ export default function DropdownMenu({ isOpen, setIsOpen }) {
     const signOut = useSelector((state: RootState) => state.auth.signOut)
     const id = useSelector((state: RootState) => state.auth.user_id)
 
-    useEffect(() => { }, [id])
+    useEffect(() => { }, [id]);
 
     return (
         <div className="relative block">

@@ -4,7 +4,7 @@ import BlueSkyPosts from '../BlueSky/BlueSkyPosts';
 import { useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '@/ReduxToolKit/store';
-import { getFeed } from '@/ReduxToolKit/Reducers/BlueSky/BlueSkySlice';
+import { getStoredPosts, searchBlueSky } from '@/ReduxToolKit/Reducers/BlueSky/BlueSkySlice';
 import SessionManager from '../AppRouting/SessionManager';
 import { ScrollUp } from '../AppRouting/ScrollToTop';
 import SignOutModal from '../Forms/SignOutModal';
@@ -17,14 +17,18 @@ export default function HomeContainer({ }) {
     const dispatch = useDispatch<AppDispatch>()
 
     useLayoutEffect(() => {
+        const stored = localStorage.getItem('bsPosts');
 
-        //  if(posts === null && blueSkyStatus === 'idle') {
-        //      dispatch(getFeed())
-        //  }
+        if (stored && !posts) {
+            const parsed = JSON.parse(stored);
+            dispatch(getStoredPosts(parsed))
+        } else if (!stored && !posts) {
+            dispatch(searchBlueSky("morning"));
+        };
 
         ScrollUp();
 
-    }, [])
+    }, [posts, blueSkyStatus]);
 
     return (
         <section className={`flex h-auto flex-col w-full grow transition-opacity duration-200 delay-200 ease-in-out scroll-smooth thin-gray-scrollbar
@@ -34,7 +38,6 @@ export default function HomeContainer({ }) {
             {!id && <SessionManager />}
             <HeroImage />
             <Challenge />
-            {/* <ArticlesResult /> */}
             <BlueSkyPosts context={'home'} />
         </section>
     )

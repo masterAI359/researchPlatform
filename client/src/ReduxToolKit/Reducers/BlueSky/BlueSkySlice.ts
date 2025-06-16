@@ -80,6 +80,9 @@ export const BlueSkySlice = createSlice({
         selectPost: (state, action) => {
             state.selected = action.payload
         },
+        getStoredPosts: (state, action) => {
+            state.posts = action.payload.posts;
+        },
         resetBlueSkyState: () => initialState
 
     },
@@ -109,6 +112,6 @@ export const BlueSkySlice = createSlice({
     }
 });
 
-export const { resetBlueSkyState, selectPost } = BlueSkySlice.actions;
+export const { resetBlueSkyState, selectPost, getStoredPosts } = BlueSkySlice.actions;
 
 export default BlueSkySlice.reducer;

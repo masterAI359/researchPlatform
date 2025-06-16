@@ -1,7 +1,7 @@
 import { searchBlueSky } from "@/ReduxToolKit/Reducers/BlueSky/BlueSkySlice";
 import { motion } from "framer-motion";
 import Loader from "../Loaders/Loader";
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import { AppDispatch } from "@/ReduxToolKit/store";
@@ -44,7 +44,7 @@ export default function BlueSkyPosts({ context }) {
   }
 
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (posts) {
       const storeThese = { bsPosts: posts };
       localStorage.setItem('bsPosts', JSON.stringify(storeThese));

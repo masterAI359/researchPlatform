@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getID, clearAuthSlice } from '@/ReduxToolKit/Reducers/Athentication/Authentication'
 import { AppDispatch, RootState } from '@/ReduxToolKit/store'
-import { searchBlueSky } from '@/ReduxToolKit/Reducers/BlueSky/BlueSkySlice'
 
 export default function InitSession() {
     const id = useSelector((state: RootState) => state.auth.user_id)
@@ -10,8 +9,6 @@ export default function InitSession() {
 
     useEffect(() => {
         window.dispatchEvent(new CustomEvent('reactMounted'))
-
-        dispatch(searchBlueSky("morning"));
 
         if (!id) {
             const restoreUser = async () => {

@@ -58,7 +58,7 @@ export default function PieChart() {
         labels: ratings,
         datasets: [
             {
-                label: '# of Votes',
+                label: '# of sources',
                 data: ratingData,
                 backgroundColor: tableColors,
                 borderColor: tableColors,
@@ -75,7 +75,7 @@ export default function PieChart() {
                 animate='open'
                 exit='closed'
                 transition={{ type: 'tween', duration: 0.2 }}
-                className="w-auto h-96 lg:h-128 flex items-center justify-center"
+                className="w-auto h-96 xl:h-128 xl:p-2 flex items-center"
             >
                 <ErrorBoundary>
                     <Pie data={data} />

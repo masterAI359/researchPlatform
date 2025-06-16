@@ -78,7 +78,7 @@ export default function SourceChart() {
       animate='open'
       exit='closed'
       transition={{ type: 'tween', duration: 0.2 }}
-      className="w-auto h-96 lg:h-128 flex items-center justify-center"
+      className="w-auto h-96 lg:h-128 flex items-center md:justify-center"
     >
       <Doughnut className="cursor-pointer" data={data} />
     </motion.div>

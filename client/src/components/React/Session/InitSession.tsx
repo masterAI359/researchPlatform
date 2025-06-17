@@ -35,7 +35,7 @@ export default function InitSession() {
 
                 } catch (error: any) {
                     console.warn('Session restore failed:', error?.message || error)
-                    dispatch(clearAuthSlice())
+                    //   dispatch(clearAuthSlice())
                 }
             }
 

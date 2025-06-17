@@ -23,6 +23,7 @@ import { signUserOut } from '../endpoints/serverClient.js';
 import { resetUserPassword } from '../endpoints/serverClient.js';
 import { getCurrentUser } from '../endpoints/serverClient.js';
 import { createNewUser } from '../endpoints/serverClient.js';
+import { sendFeedback } from '../endpoints/serverClient.js';
 
 const corsOptions: object = {
 	origin: ['https://elenchusapp.io', 'http://localhost:5173'],
@@ -90,6 +91,7 @@ app.post('/signUserOut', signUserOut);
 app.post('/resetUserPassword', resetUserPassword);
 app.post('/getCurrentUser', getCurrentUser);
 app.post('/createNewUser', createNewUser);
+app.post('/sendFeedback', sendFeedback);
 
 app.get('*', (req: Request, res: Response) => {
 

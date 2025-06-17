@@ -417,6 +417,33 @@ export const createNewUser = async (req: Request, res: Response): Promise<any> =
 };
 
 
+export const sendFeedback = async (req: Request, res: Response) => {
+    const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+    const { email, message } = req.body;
+
+    try {
+
+        const { data, error } = await supabase
+            .from('user_feedback')
+            .insert({
+                email: email,
+                message: message
+            })
+            .select();
+
+        if (data) {
+            return res.send({ result: 'success sending feedback' });
+
+        } else if (error) {
+            return res.send({ result: error.message });
+        };
+
+
+    } catch (error) {
+        console.error(`Error sending feedback: ${error}`);
+        return res.status(400).json({ result: error });
+    };
+};
 
 
 

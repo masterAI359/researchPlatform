@@ -123,26 +123,36 @@ export const submitFeedback = async (authorEmail: string, message: string, setFe
 
     try {
 
-        const { data, error } = await supabase
-            .from('user_feedback')
-            .insert({
+        const response = await fetch('/sendFeedback', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
                 email: authorEmail,
                 message: message
-            })
-            .select();
+            }),
+        });
 
-        if (data) {
-            setFeedbackSubmitted(true)
+        if (!response.ok) {
+            setFeedbackSubmitted(false);
+            throw new Error(`Couldn't reach the endpoint for feedback: ${response.statusText}`);
+        };
 
-        }
+        const result = await response.json();
 
-        if (error) console.log(error.message)
+        if (result) {
+            setFeedbackSubmitted(true);
+        };
 
     } catch (error) {
         setFeedbackSubmitted(false)
         console.log(error)
-    }
-}
+    };
+};
+
+
 
 export const checkForActiveSession = async (): Promise<boolean> => {
     const { data: { session } } = await supabase.auth.getSession();

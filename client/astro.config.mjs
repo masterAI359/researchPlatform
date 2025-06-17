@@ -64,6 +64,10 @@ export default defineConfig({
         '/createNewUser': {
           target: 'http://localhost:5001',
           changeOrigin: true
+        },
+        '/sendFeedback': {
+          target: 'http://localhost:5001',
+          changeOrigin: true
         }
       } : undefined
     }

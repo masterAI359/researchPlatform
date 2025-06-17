@@ -1,6 +1,9 @@
 import HeroImage from '@/components/React/HomeComponents/HeroImage';
 import Challenge from '../HomeComponents/Challenge';
+import ChartingFeatures from '../HomeComponents/Features/ChartingFeatures';
+import WikiAndNotes from '../HomeComponents/Features/WikiAndNotes';
 import BlueSkyPosts from '../BlueSky/BlueSkyPosts';
+import ToolsForResearch from '../HomeComponents/Features/Keyboard';
 import { useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '@/ReduxToolKit/store';
@@ -8,6 +11,7 @@ import { getStoredPosts, searchBlueSky } from '@/ReduxToolKit/Reducers/BlueSky/B
 import SessionManager from '../AppRouting/SessionManager';
 import { ScrollUp } from '../AppRouting/ScrollToTop';
 import SignOutModal from '../Forms/SignOutModal';
+
 
 export default function HomeContainer({ }) {
     const id = useSelector((state: RootState) => state.auth.user_id);
@@ -38,7 +42,11 @@ export default function HomeContainer({ }) {
             {!id && <SessionManager />}
             <HeroImage />
             <Challenge />
+            <ChartingFeatures />
+            <ToolsForResearch />
+            <WikiAndNotes />
             <BlueSkyPosts context={'home'} />
+
         </section>
     )
 }

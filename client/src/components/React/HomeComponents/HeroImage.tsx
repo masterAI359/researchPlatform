@@ -8,9 +8,9 @@ export default function HeroImage() {
 	const id = useSelector((state: RootState) => state.auth.user_id)
 
 	return (
-		<section className='md:p-8 xs:p-4 animate-fade-in duration-700 ease-in'>
+		<section className='xl:p-0 md:p-8 p-4 animate-fade-in duration-700 ease-in'>
 			<div className='md:mx-auto 2xl:max-w-7xl xl:max-w-5xl lg:max-w-5xl py-16 lg:px-16 md:px-12 sm:px-8 xs:px-6 xl:px-40 xs:w-full items-center 
-			 2xl:py-32 xl:py-24 lg:py-20 bg-gradientdown rounded-4xl overflow-hidden relative'>
+			 xl:py-24 lg:py-20 bg-gradientdown rounded-4xl overflow-hidden relative'>
 				<img
 					className='sr-only lg:not-sr-only lg:absolute -mt-16 lg:left-80 opacity-70 top-20'
 					src='/images/assets/cubeTwo.png'>
@@ -33,7 +33,7 @@ export default function HeroImage() {
 							Elenchus is a research tool, specifically for examining the statements
 							you see or hear in our ever increasingly online world, where nearly everything seems to be up for debate.
 							<span className="hidden sm:block"> This app guides you through examining your perspective
-								on the idea or statement of your choosing, and uncovering
+								on the idea or statement observed, and uncovering
 								the evidence behind them.</span>
 						</p>
 						<div className='relative w-full sm:w-[75%]   mt-8'>

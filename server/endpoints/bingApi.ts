@@ -67,9 +67,16 @@ export const bingArticles = async (req: Request, res: Response) => {
 				logo: value.logo
 			};
 		});
+
+		const filtered = organizedData.filter(article =>
+			!article.url.includes('/video/') &&
+			!article.url.includes('/watch/') &&
+			!article.url.match(/\/(clip|segment|show|play|media)\//i)
+		);
+
 		const result = {
 			date: new Date().getDate(),
-			data: organizedData,
+			data: filtered,
 		};
 		res.send(result);
 	} catch (err) {

@@ -1,0 +1,582 @@
+{
+  "usableSessionsCount": 8,
+  "retiredSessionsCount": 2,
+  "sessions": [
+    {
+      "id": "session_Tq8lQVaIoQ",
+      "cookieJar": {
+        "version": "tough-cookie@5.1.2",
+        "storeType": "MemoryCookieStore",
+        "rejectPublicSuffixes": true,
+        "enableLooseMode": false,
+        "allowSpecialUseDomain": true,
+        "prefixSecurity": "silent",
+        "cookies": []
+      },
+      "userData": {},
+      "maxErrorScore": 3,
+      "errorScoreDecrement": 0.5,
+      "expiresAt": "2025-06-19T00:14:03.241Z",
+      "createdAt": "2025-06-18T23:24:03.241Z",
+      "usageCount": 0,
+      "maxUsageCount": 50,
+      "errorScore": 0
+    },
+    {
+      "id": "session_T7gJiDqoeQ",
+      "cookieJar": {
+        "version": "tough-cookie@5.1.2",
+        "storeType": "MemoryCookieStore",
+        "rejectPublicSuffixes": true,
+        "enableLooseMode": false,
+        "allowSpecialUseDomain": true,
+        "prefixSecurity": "silent",
+        "cookies": [
+          {
+            "key": "fly_device",
+            "value": "desktop",
+            "expires": "2025-06-18T23:29:03.843Z",
+            "domain": "cbsnews.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2025-06-18T23:24:03.962Z",
+            "lastAccessed": "2025-06-18T23:24:03.962Z"
+          },
+          {
+            "key": "fly_geo",
+            "value": "{\"countryCode\": \"US\", \"region\": \"IL\", \"dma\": \"675\", \"connection\": { \"type\": \"cable\"}}",
+            "expires": "2025-06-18T23:29:03.698Z",
+            "domain": "cbsnews.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2025-06-18T23:24:03.964Z",
+            "lastAccessed": "2025-06-18T23:24:03.964Z"
+          },
+          {
+            "key": "ng_geolocation",
+            "value": "US",
+            "expires": "2025-06-19T00:14:29.437Z",
+            "domain": "nbcnews.com",
+            "path": "/",
+            "secure": true,
+            "hostOnly": false,
+            "creation": "2025-06-18T23:24:29.438Z",
+            "lastAccessed": "2025-06-18T23:24:29.438Z"
+          },
+          {
+            "key": "BI_UI_previousPage",
+            "value": "direct",
+            "expires": "2025-06-18T23:54:21.000Z",
+            "domain": "nbcnews.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2025-06-18T23:24:29.438Z",
+            "lastAccessed": "2025-06-18T23:24:29.438Z"
+          },
+          {
+            "key": "BI_UI_referrer",
+            "value": "direct",
+            "expires": "2025-06-18T23:54:04.000Z",
+            "domain": "nbcnews.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2025-06-18T23:24:29.438Z",
+            "lastAccessed": "2025-06-18T23:24:29.438Z"
+          },
+          {
+            "key": "_dpm_ses.1b16",
+            "value": "*",
+            "expires": "2025-06-18T23:54:21.000Z",
+            "domain": "nbcnews.com",
+            "path": "/",
+            "secure": true,
+            "hostOnly": false,
+            "creation": "2025-06-18T23:24:29.438Z",
+            "lastAccessed": "2025-06-18T23:24:29.438Z"
+          },
+          {
+            "key": "_gcl_au",
+            "value": "1.1.1178518316.1750289045",
+            "expires": "2025-09-16T23:24:05.000Z",
+            "domain": "nbcnews.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2025-06-18T23:24:29.438Z",
+            "lastAccessed": "2025-06-18T23:24:29.438Z"
+          },
+          {
+            "key": "AMCVS_A8AB776A5245B4220A490D44%40AdobeOrg",
+            "value": "1",
+            "expires": "2025-06-19T00:14:29.437Z",
+            "domain": "nbcnews.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2025-06-18T23:24:29.438Z",
+            "lastAccessed": "2025-06-18T23:24:29.438Z"
+          },
+          {
+            "key": "_parsely_session",
+            "value": "{%22sid%22:1%2C%22surl%22:%22https://www.nbcnews.com/politics/trump-administration/live-blog/trump-administration-hegseth-israel-iran-tariffs-live-updates-rcna213156%22%2C%22sref%22:%22%22%2C%22sts%22:1750289045784%2C%22slts%22:0}",
+            "expires": "2025-06-18T23:54:21.000Z",
+            "domain": "nbcnews.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2025-06-18T23:24:29.438Z",
+            "lastAccessed": "2025-06-18T23:24:29.438Z"
+          },
+          {
+            "key": "_parsely_visitor",
+            "value": "{%22id%22:%22pid=bf770f66-a43c-4c58-b2c8-5da73a38d406%22%2C%22session_count%22:1%2C%22last_session_ts%22:1750289045784}",
+            "expires": "2026-07-19T09:24:21.000Z",
+            "domain": "nbcnews.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2025-06-18T23:24:29.438Z",
+            "lastAccessed": "2025-06-18T23:24:29.438Z"
+          },
+          {
+            "key": "fw_vcid2",
+            "value": "5ff77831-45d0-47c4-a751-1fc6c7cddbe9",
+            "expires": "2025-07-18T23:24:06.000Z",
+            "domain": "www.nbcnews.com",
+            "path": "/",
+            "hostOnly": true,
+            "creation": "2025-06-18T23:24:29.438Z",
+            "lastAccessed": "2025-06-18T23:24:29.438Z"
+          },
+          {
+            "key": "ak_bmsc",
+            "value": "9640C3F0D1112E7F89608FE2F8443490~000000000000000000000000000000~YAAQyhY+FwCWo16XAQAAml9bhRz1/O2m9tJe1nKPaJWUOcHA85bY0jSPcWmvSqZoxZfYh2W2jox+9WlfFfr3zbjl5v/JsaBnbhywmdLORb1aUlVN97tNkiPXMNYsqzCTBhV7pYe/HRNXfNmIPeTH9MZuOU/Dtppbg3eM+L/Gd3EwkpFJiXOBXVVYBGjXn5ZHt2sEAgiqM9TDQ8SrpgKsZ+WyggDEMhZOtidmqfIUnBibsEpRMRkRdVtpnBfChwmdsYcpmRyAQiGibestLjEQWCRSffL4fzlz/EBt9JqhU/5MzfTl3V/MTtm0q7JI0OKp+YEcVsjVLFK0OLzM2iVfysA9B7x2zWgYdWWtYbb1qhpeyroqded6mBQsrIdMafiDC3QiuDpd1f9qTdHZ6jruJKWXG2P+8TcDV4F4pYQZ7IibnBo55eorv0+UymS4++PiOWI78i77yAW44sfqr+R6faia6PPpZVZCRJC/nC0=",
+            "expires": "2025-06-19T01:24:04.143Z",
+            "domain": "nbcnews.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2025-06-18T23:24:29.438Z",
+            "lastAccessed": "2025-06-18T23:24:29.438Z"
+          },
+          {
+            "key": "s_ecid",
+            "value": "MCMID%7C59254223460834565272869799267637805389",
+            "expires": "2026-07-23T23:24:22.345Z",
+            "domain": "nbcnews.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2025-06-18T23:24:29.438Z",
+            "lastAccessed": "2025-06-18T23:24:29.438Z"
+          },
+          {
+            "key": "prevVal_pn",
+            "value": "nbcnews%3Aliveblog%3Atrump-administration-hegseth-israel-iran-tariffs-live-updates-rcna213156",
+            "expires": "2025-06-18T23:54:21.000Z",
+            "domain": "nbcnews.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2025-06-18T23:24:29.438Z",
+            "lastAccessed": "2025-06-18T23:24:29.438Z"
+          },
+          {
+            "key": "s_vnum",
+            "value": "1752881049381%26vn%3D1",
+            "expires": "2025-07-18T23:24:09.000Z",
+            "domain": "nbcnews.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2025-06-18T23:24:29.438Z",
+            "lastAccessed": "2025-06-18T23:24:29.438Z"
+          },
+          {
+            "key": "s_invisit",
+            "value": "true",
+            "expires": "2025-06-18T23:54:21.000Z",
+            "domain": "nbcnews.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2025-06-18T23:24:29.438Z",
+            "lastAccessed": "2025-06-18T23:24:29.438Z"
+          },
+          {
+            "key": "s_cc",
+            "value": "true",
+            "expires": "2025-06-19T00:14:29.437Z",
+            "domain": "nbcnews.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2025-06-18T23:24:29.438Z",
+            "lastAccessed": "2025-06-18T23:24:29.438Z"
+          },
+          {
+            "key": "AMCV_A8AB776A5245B4220A490D44%40AdobeOrg",
+            "value": "1585540135%7CMCIDTS%7C20258%7CMCMID%7C59254223460834565272869799267637805389%7CMCAAMLH-1750893845%7C7%7CMCAAMB-1750893845%7C6G1ynYcLPuiQxYZrsz_pkqfLG9yMXBpb2zX5dvJdYQJzPXImdj0y%7CMCOPTOUT-1750296249s%7CNONE%7CMCAID%7CNONE%7CvVersion%7C4.4.0",
+            "expires": "2026-07-23T23:24:09.385Z",
+            "domain": "nbcnews.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2025-06-18T23:24:29.438Z",
+            "lastAccessed": "2025-06-18T23:24:29.438Z"
+          },
+          {
+            "key": "adops_master_kvs",
+            "expires": "2025-08-17T23:24:23.000Z",
+            "domain": "www.nbcnews.com",
+            "path": "/",
+            "hostOnly": true,
+            "creation": "2025-06-18T23:24:29.438Z",
+            "lastAccessed": "2025-06-18T23:24:29.438Z"
+          },
+          {
+            "key": "aam_uuid",
+            "value": "59524159093542579402842894769908918614",
+            "expires": "2025-07-18T23:24:22.000Z",
+            "domain": "nbcnews.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2025-06-18T23:24:29.438Z",
+            "lastAccessed": "2025-06-18T23:24:29.438Z"
+          },
+          {
+            "key": "_lr_geo_location",
+            "value": "US",
+            "expires": "2025-06-19T23:24:14.939Z",
+            "domain": "www.nbcnews.com",
+            "path": "/",
+            "hostOnly": true,
+            "creation": "2025-06-18T23:24:29.439Z",
+            "lastAccessed": "2025-06-18T23:24:29.439Z"
+          },
+          {
+            "key": "_lr_geo_location_state",
+            "value": "IL",
+            "expires": "2025-06-19T23:24:14.940Z",
+            "domain": "www.nbcnews.com",
+            "path": "/",
+            "hostOnly": true,
+            "creation": "2025-06-18T23:24:29.439Z",
+            "lastAccessed": "2025-06-18T23:24:29.439Z"
+          },
+          {
+            "key": "OTGPPConsent",
+            "value": "DBABLA~BVQqAAAAAgA.QA",
+            "expires": "2026-06-18T23:24:15.000Z",
+            "domain": "nbcnews.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2025-06-18T23:24:29.439Z",
+            "lastAccessed": "2025-06-18T23:24:29.439Z"
+          },
+          {
+            "key": "usprivacy",
+            "value": "1YNN",
+            "expires": "2026-06-18T23:24:22.000Z",
+            "domain": "www.nbcnews.com",
+            "path": "/",
+            "hostOnly": true,
+            "creation": "2025-06-18T23:24:29.439Z",
+            "lastAccessed": "2025-06-18T23:24:29.439Z"
+          },
+          {
+            "key": "BI_UI_mpid",
+            "value": "4934271165806574901",
+            "expires": "2025-06-18T23:54:24.000Z",
+            "domain": "nbcnews.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2025-06-18T23:24:29.439Z",
+            "lastAccessed": "2025-06-18T23:24:29.439Z"
+          },
+          {
+            "key": "_svsid",
+            "value": "30af06521eb9bec9a5bcf5b834d8cd3f",
+            "expires": "2026-06-18T23:24:27.000Z",
+            "domain": "nbcnews.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2025-06-18T23:24:29.439Z",
+            "lastAccessed": "2025-06-18T23:24:29.439Z"
+          },
+          {
+            "key": "akaas_NBCNews",
+            "value": "1751153060~rv=94~id=77924eed7d9533de898978a0b8ee1230~rn=",
+            "expires": "2025-06-28T23:24:21.493Z",
+            "domain": "www.nbcnews.com",
+            "path": "/",
+            "secure": true,
+            "hostOnly": true,
+            "creation": "2025-06-18T23:24:29.440Z",
+            "lastAccessed": "2025-06-18T23:24:29.440Z"
+          },
+          {
+            "key": "_dd_s",
+            "value": "rum=0&expire=1750289961168",
+            "expires": "2025-06-18T23:39:21.000Z",
+            "domain": "www.nbcnews.com",
+            "path": "/",
+            "hostOnly": true,
+            "creation": "2025-06-18T23:24:29.440Z",
+            "lastAccessed": "2025-06-18T23:24:29.440Z"
+          },
+          {
+            "key": "_dpm_id.1b16",
+            "value": "446d6950-31d2-4de0-9279-b82f5fe76dd1.1750289045.1.1750289061.1750289045.8832c96c-a6f0-408a-9edd-f896845cd76d",
+            "expires": "2026-06-18T23:24:21.000Z",
+            "domain": "nbcnews.com",
+            "path": "/",
+            "secure": true,
+            "hostOnly": false,
+            "creation": "2025-06-18T23:24:29.440Z",
+            "lastAccessed": "2025-06-18T23:24:29.440Z"
+          },
+          {
+            "key": "bm_sv",
+            "value": "FCDC5ED9CFF38C2EA7FF3FB1DAA2A7F6~YAAQyhY+F0OXo16XAQAAvpNbhRyTWxipBQ4cHNBiAOl+fDUcs+pYtH92ZchZ0mAqlGlEBVi/7Lo8RG1nVR2GEdWuNrJGgu4gTor3hc6vuhy+FrNm7mW2RYFLQWhYp07TjF/OVv8VL0l8gjsCmBboyTNZXniRrZjgTHpBs1zzaYvVs9uYrdeM7hIbGOwfynVACPhG9VIujpxm5xd4xl4gTZVEJ7ALk/0odg1aD6AhRNReJxUJ7NpldSBU3bXVmS89iA==~1",
+            "expires": "2025-06-19T01:24:08.493Z",
+            "domain": "nbcnews.com",
+            "path": "/",
+            "secure": true,
+            "hostOnly": false,
+            "creation": "2025-06-18T23:24:29.440Z",
+            "lastAccessed": "2025-06-18T23:24:29.440Z"
+          },
+          {
+            "key": "sailthru_pageviews",
+            "value": "2",
+            "expires": "2025-06-18T23:54:21.000Z",
+            "domain": "www.nbcnews.com",
+            "path": "/",
+            "hostOnly": true,
+            "creation": "2025-06-18T23:24:29.440Z",
+            "lastAccessed": "2025-06-18T23:24:29.440Z"
+          },
+          {
+            "key": "OneTrustWPCCPAGoogleOptOut",
+            "value": "false",
+            "expires": "2026-06-18T23:24:22.000Z",
+            "domain": "www.nbcnews.com",
+            "path": "/",
+            "hostOnly": true,
+            "creation": "2025-06-18T23:24:29.440Z",
+            "lastAccessed": "2025-06-18T23:24:29.440Z"
+          },
+          {
+            "key": "OptanonConsent",
+            "value": "isGpcEnabled=0&datestamp=Wed+Jun+18+2025+18%3A24%3A22+GMT-0500+(Central+Daylight+Time)&version=202309.1.0&browserGpcFlag=0&isIABGlobal=false&hosts=&consentId=bca3dc59-b136-4aa7-be5b-ac16bc7bf45e&interactionCount=0&landingPath=https%3A%2F%2Fwww.nbcnews.com%2Fpolitics%2Ftrump-administration%2Flive-blog%2Ftrump-administration-hegseth-israel-iran-tariffs-live-updates-rcna213156&GPPCookiesCount=1&groups=15%3A1%2C12%3A1%2C9%3A1%2C11%3A1%2C13%3A1%2C4%3A1%2CSPD_BG%3A1%2CUSP%3A1%2COOF%3A1",
+            "expires": "2026-06-18T23:24:22.000Z",
+            "domain": "nbcnews.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2025-06-18T23:24:29.440Z",
+            "lastAccessed": "2025-06-18T23:24:29.440Z"
+          },
+          {
+            "key": "sailthru_content",
+            "value": "2d48fcfaf9fbbe08420b378b3bbbe9e7",
+            "expires": "2026-06-18T23:24:23.000Z",
+            "domain": "www.nbcnews.com",
+            "path": "/",
+            "hostOnly": true,
+            "creation": "2025-06-18T23:24:29.440Z",
+            "lastAccessed": "2025-06-18T23:24:29.440Z"
+          },
+          {
+            "key": "sailthru_visitor",
+            "value": "927977cc-b648-46f2-89e1-229464193a08",
+            "expires": "2026-06-18T23:24:23.000Z",
+            "domain": "www.nbcnews.com",
+            "path": "/",
+            "hostOnly": true,
+            "creation": "2025-06-18T23:24:29.440Z",
+            "lastAccessed": "2025-06-18T23:24:29.440Z"
+          },
+          {
+            "key": "mprtcl-v4_0631346C",
+            "value": "{'gs':{'ie':1|'dt':'65ea0b28a73c4c4abd08599774d30799'|'cgid':'ca9a70a2-fd79-4e22-c1d6-c3113da14109'|'das':'1f04dbcf-7f87-4877-2c78-ba6d9f04249d'|'csm':'WyI0OTM0MjcxMTY1ODA2NTc0OTAxIl0='|'sid':'197C2C17-5421-4E30-8CE9-14FED15A3D3E'|'les':1750289064335|'ssd':1750289052368}|'l':0|'4934271165806574901':{'fst':1750289055849}|'cu':'4934271165806574901'}",
+            "expires": "2026-06-18T23:24:24.000Z",
+            "domain": "nbcnews.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2025-06-18T23:24:29.440Z",
+            "lastAccessed": "2025-06-18T23:24:29.440Z"
+          },
+          {
+            "key": "_awl",
+            "value": "2.1750289065.5-e5af10e00deb8d720569a71e8afa3b34-6763652d75732d63656e7472616c31-0",
+            "expires": "2026-07-18T23:24:26.668Z",
+            "domain": "nbcnews.com",
+            "path": "/",
+            "secure": true,
+            "hostOnly": false,
+            "creation": "2025-06-18T23:24:29.440Z",
+            "lastAccessed": "2025-06-18T23:24:29.440Z"
+          }
+        ]
+      },
+      "userData": {},
+      "maxErrorScore": 3,
+      "errorScoreDecrement": 0.5,
+      "expiresAt": "2025-06-19T00:14:03.243Z",
+      "createdAt": "2025-06-18T23:24:03.243Z",
+      "usageCount": 9,
+      "maxUsageCount": 50,
+      "errorScore": 12.5
+    },
+    {
+      "id": "session_r7SOZ4UDKV",
+      "cookieJar": {
+        "version": "tough-cookie@5.1.2",
+        "storeType": "MemoryCookieStore",
+        "rejectPublicSuffixes": true,
+        "enableLooseMode": false,
+        "allowSpecialUseDomain": true,
+        "prefixSecurity": "silent",
+        "cookies": []
+      },
+      "userData": {},
+      "maxErrorScore": 3,
+      "errorScoreDecrement": 0.5,
+      "expiresAt": "2025-06-19T00:14:03.249Z",
+      "createdAt": "2025-06-18T23:24:03.249Z",
+      "usageCount": 0,
+      "maxUsageCount": 50,
+      "errorScore": 0
+    },
+    {
+      "id": "session_UDgGMBgDzm",
+      "cookieJar": {
+        "version": "tough-cookie@5.1.2",
+        "storeType": "MemoryCookieStore",
+        "rejectPublicSuffixes": true,
+        "enableLooseMode": false,
+        "allowSpecialUseDomain": true,
+        "prefixSecurity": "silent",
+        "cookies": []
+      },
+      "userData": {},
+      "maxErrorScore": 3,
+      "errorScoreDecrement": 0.5,
+      "expiresAt": "2025-06-19T00:14:04.205Z",
+      "createdAt": "2025-06-18T23:24:04.205Z",
+      "usageCount": 0,
+      "maxUsageCount": 50,
+      "errorScore": 0
+    },
+    {
+      "id": "session_sCTyqu3ubb",
+      "cookieJar": {
+        "version": "tough-cookie@5.1.2",
+        "storeType": "MemoryCookieStore",
+        "rejectPublicSuffixes": true,
+        "enableLooseMode": false,
+        "allowSpecialUseDomain": true,
+        "prefixSecurity": "silent",
+        "cookies": []
+      },
+      "userData": {},
+      "maxErrorScore": 3,
+      "errorScoreDecrement": 0.5,
+      "expiresAt": "2025-06-19T00:14:18.609Z",
+      "createdAt": "2025-06-18T23:24:18.609Z",
+      "usageCount": 0,
+      "maxUsageCount": 50,
+      "errorScore": 0
+    },
+    {
+      "id": "session_9ERHlfMenT",
+      "cookieJar": {
+        "version": "tough-cookie@5.1.2",
+        "storeType": "MemoryCookieStore",
+        "rejectPublicSuffixes": true,
+        "enableLooseMode": false,
+        "allowSpecialUseDomain": true,
+        "prefixSecurity": "silent",
+        "cookies": []
+      },
+      "userData": {},
+      "maxErrorScore": 3,
+      "errorScoreDecrement": 0.5,
+      "expiresAt": "2025-06-19T00:14:19.292Z",
+      "createdAt": "2025-06-18T23:24:19.292Z",
+      "usageCount": 0,
+      "maxUsageCount": 50,
+      "errorScore": 0
+    },
+    {
+      "id": "session_7nxS7HH4hb",
+      "cookieJar": {
+        "version": "tough-cookie@5.1.2",
+        "storeType": "MemoryCookieStore",
+        "rejectPublicSuffixes": true,
+        "enableLooseMode": false,
+        "allowSpecialUseDomain": true,
+        "prefixSecurity": "silent",
+        "cookies": []
+      },
+      "userData": {},
+      "maxErrorScore": 3,
+      "errorScoreDecrement": 0.5,
+      "expiresAt": "2025-06-19T00:14:19.293Z",
+      "createdAt": "2025-06-18T23:24:19.293Z",
+      "usageCount": 6,
+      "maxUsageCount": 50,
+      "errorScore": 10
+    },
+    {
+      "id": "session_CxcTxCNZUi",
+      "cookieJar": {
+        "version": "tough-cookie@5.1.2",
+        "storeType": "MemoryCookieStore",
+        "rejectPublicSuffixes": true,
+        "enableLooseMode": false,
+        "allowSpecialUseDomain": true,
+        "prefixSecurity": "silent",
+        "cookies": []
+      },
+      "userData": {},
+      "maxErrorScore": 3,
+      "errorScoreDecrement": 0.5,
+      "expiresAt": "2025-06-19T00:14:34.499Z",
+      "createdAt": "2025-06-18T23:24:34.499Z",
+      "usageCount": 0,
+      "maxUsageCount": 50,
+      "errorScore": 0
+    },
+    {
+      "id": "session_6sjraiGSKN",
+      "cookieJar": {
+        "version": "tough-cookie@5.1.2",
+        "storeType": "MemoryCookieStore",
+        "rejectPublicSuffixes": true,
+        "enableLooseMode": false,
+        "allowSpecialUseDomain": true,
+        "prefixSecurity": "silent",
+        "cookies": []
+      },
+      "userData": {},
+      "maxErrorScore": 3,
+      "errorScoreDecrement": 0.5,
+      "expiresAt": "2025-06-19T00:14:49.578Z",
+      "createdAt": "2025-06-18T23:24:49.578Z",
+      "usageCount": 0,
+      "maxUsageCount": 50,
+      "errorScore": 0
+    },
+    {
+      "id": "session_UASKVnEkuK",
+      "cookieJar": {
+        "version": "tough-cookie@5.1.2",
+        "storeType": "MemoryCookieStore",
+        "rejectPublicSuffixes": true,
+        "enableLooseMode": false,
+        "allowSpecialUseDomain": true,
+        "prefixSecurity": "silent",
+        "cookies": []
+      },
+      "userData": {},
+      "maxErrorScore": 3,
+      "errorScoreDecrement": 0.5,
+      "expiresAt": "2025-06-19T00:14:49.579Z",
+      "createdAt": "2025-06-18T23:24:49.579Z",
+      "usageCount": 2,
+      "maxUsageCount": 50,
+      "errorScore": 2
+    }
+  ]
+}

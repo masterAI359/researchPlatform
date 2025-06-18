@@ -14,10 +14,11 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
     }
 })
 
-interface BiasTypes {
+export interface BiasTypes {
     country: string | null,
     bias: string | null,
-    factual_reporting: string | null
+    factual_reporting: string | null,
+    name: string | null
 }
 
 
@@ -32,8 +33,8 @@ export const getMediaBiases = async (provider: string) => {
             .single();
 
         if (data) {
-            const { country, bias, factual_reporting }: BiasTypes = data;
-            return { country, bias, factual_reporting };
+            const { country, bias, factual_reporting, name }: BiasTypes = data;
+            return { country, bias, factual_reporting, name };
         }
 
         if (error) console.log(error.message);

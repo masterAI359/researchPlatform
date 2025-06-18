@@ -68,6 +68,10 @@ export default defineConfig({
         '/sendFeedback': {
           target: 'http://localhost:5001',
           changeOrigin: true
+        },
+        '/apifyScraper': {
+          target: 'http://localhost:5001',
+          changeOrigin: true
         }
       } : undefined
     }

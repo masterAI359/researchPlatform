@@ -1,0 +1,52 @@
+{
+  "requestsFinished": 2,
+  "requestsFailed": 1,
+  "requestsRetries": 2,
+  "requestsFailedPerMinute": 0,
+  "requestsFinishedPerMinute": 2,
+  "requestMinDurationMillis": 953,
+  "requestMaxDurationMillis": 11406,
+  "requestTotalFailedDurationMillis": 15192,
+  "requestTotalFinishedDurationMillis": 12359,
+  "crawlerStartedAt": "2025-06-18T23:24:02.959Z",
+  "crawlerFinishedAt": "2025-06-18T23:25:04.858Z",
+  "statsPersistedAt": "2025-06-18T23:25:04.858Z",
+  "crawlerRuntimeMillis": 62315,
+  "crawlerLastStartTimestamp": 1750289042543,
+  "requestRetryHistogram": [
+    1,
+    1,
+    null,
+    1
+  ],
+  "statsId": 0,
+  "requestAvgFailedDurationMillis": 15192,
+  "requestAvgFinishedDurationMillis": 6180,
+  "requestTotalDurationMillis": 27551,
+  "requestsTotal": 3,
+  "requestsWithStatusCode": {
+    "200": 2
+  },
+  "errors": {
+    "C:\\Users\\Trent\\BackupRepo\\elenchus\\server\\node_modules\\@crawlee\\core\\crawlers\\crawler_utils.js:13:11": {
+      "missing error code": {
+        "Error": {
+          "Navigation timed out after 15 seconds.": {
+            "count": 1
+          }
+        }
+      }
+    }
+  },
+  "retryErrors": {
+    "C:\\Users\\Trent\\BackupRepo\\elenchus\\server\\node_modules\\@crawlee\\core\\crawlers\\crawler_utils.js:13:11": {
+      "missing error code": {
+        "Error": {
+          "Navigation timed out after 15 seconds.": {
+            "count": 4
+          }
+        }
+      }
+    }
+  }
+}

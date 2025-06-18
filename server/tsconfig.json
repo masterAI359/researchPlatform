@@ -13,7 +13,8 @@
 		"skipLibCheck": true
 	},
 	"lib": [
-		"es2015"
+		"es2022",
+		"DOM"
 	],
 	"include": [
 		"src/",

@@ -11,7 +11,7 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"dev": "nodemon --watch src --ext ts --exec node --loader ts-node/esm src/app.ts",
-		"start": "nodemon dist/src/app.js",
+		"start": "node dist/src/app.js",
 		"prebuild": "tsc -p tsconfig.build.json && node dist/scripts/generateLogoMap.js",
 		"build": "npm install --include=dev && tsc -p tsconfig.build.json"
 	},

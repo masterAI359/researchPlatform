@@ -359,6 +359,40 @@ export const saveResearch = async (req: Request, res: Response) => {
 };
 
 
+export const changePassword = async (req: Request, res: Response) => {
+    const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+    const { email, newPassword } = req.body;
+    const { data, error } = await supabase.auth.admin.listUsers();
+    if (error) {
+        throw error.message;
+    };
+    const user = data.users.find((user) => user.email === email);
+
+    if (user) {
+
+        try {
+            const { data, error } = await supabase.auth.admin.updateUserById(user.id,
+                {
+                    password: newPassword
+                });
+
+            if (error) {
+                return res.send({ status: error.message, data: null });
+            };
+
+            if (data) {
+                console.log(data)
+                return res.send({ message: 'success', data: data });
+            };
+
+
+        } catch (error) {
+            console.error(error)
+        };
+    }
+};
+
+
 type NewUser = {
     message: string,
     data: any

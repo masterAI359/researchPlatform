@@ -9,6 +9,7 @@ import Password from "./InputFields/Password"
 import { supabaseSignIn } from "@/helpers/FetchRequests"
 import { useAppdispatch } from "@/Hooks/appDispatch"
 import { fetchUserCredentials } from "@/ReduxToolKit/Reducers/Athentication/Authentication"
+import Email from "./InputFields/Email"
 
 export default function Login() {
     const [userEmail, setUserEmail] = useState<string>(null)
@@ -75,20 +76,9 @@ export default function Login() {
 
                     <form autoComplete="off">
                         {successfull === false && <p className="text-zinc-400 font-light lg:text-2xl -translate-y-6">The email or password you entered is incorrect. Please try again.</p>}
+                        <Email setUserEmail={setUserEmail} validEmail={validEmail} />
                         <div className="space-y-6">
-                            <div className="col-span-full">
-                                <label htmlFor="email" className="block mb-3 text-sm font-medium text-white">
-                                    Email
-                                </label>
-                                <input onChange={(e) => handleEmail(e)} id="email" name="email" type="email" autoComplete="off" placeholder="email@example.com"
-                                    className={`block w-full px-3 py-3 border-2 rounded-xl appearance-none text-white placeholder-black/50 bg-white/5 
-                                 focus:bg-transparent focus:outline-none focus:ring-black text-base sm:text-sm placeholder-zinc-500 h-10
-                                transition-all duration-200 ease-in-out
-                                ${validEmail === false && 'border-red-500 focus:border-red-500'}
-                                ${validEmail === null && 'focus:border-white border-white/5'}
-                                ${validEmail === true && 'border-green-500 focus:border-green-500'}
-                                `} required />
-                            </div>
+
                             <Password handlePassword={handlePassword} acceptedInput={acceptedInput} />
                             <div className="col-span-full">
                                 <button onClick={(e) => { submitAuth(e) }} type="submit" className="text-sm py-2 px-4 border focus:ring-2 h-10 rounded-full border-zinc-100 
@@ -147,3 +137,17 @@ export default function Login() {
 //import { useSelector } from "react-redux"
 //import { RootState } from "@/ReduxToolKit/store"
 //  const id = useSelector((state: RootState) => state.auth.user_id);
+
+{/* <div className="col-span-full">
+                                <label htmlFor="email" className="block mb-3 text-sm font-medium text-white">
+                                    Email
+                                </label>
+                                <input onChange={(e) => handleEmail(e)} id="email" name="email" type="email" autoComplete="off" placeholder="email@example.com"
+                                    className={`block w-full px-3 py-3 border-2 rounded-xl appearance-none text-white placeholder-black/50 bg-white/5 
+                                 focus:bg-transparent focus:outline-none focus:ring-black text-base sm:text-sm placeholder-zinc-500 h-10
+                                transition-all duration-200 ease-in-out
+                                ${validEmail === false && 'border-red-500 focus:border-red-500'}
+                                ${validEmail === null && 'focus:border-white border-white/5'}
+                                ${validEmail === true && 'border-green-500 focus:border-green-500'}
+                                `} required />
+                            </div> */}

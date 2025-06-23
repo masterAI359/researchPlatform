@@ -153,6 +153,37 @@ export const submitFeedback = async (authorEmail: string, message: string, setFe
 };
 
 
+export const pwReset = async (email: string, newPassword: string): Promise<any> => {
+
+    type ResetData = {
+        message: string,
+        data: any
+    };
+
+    try {
+        const response = await fetch('/passwordReset', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: email,
+                newPassword: newPassword
+            }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`Unable to reach endpoint: ${response.statusText}`);
+        };
+
+        const results: ResetData = await response.json();
+        return results;
+
+    } catch (error) { console.error(error) };
+};
+
+
 
 export const checkForActiveSession = async (): Promise<boolean> => {
     const { data: { session } } = await supabase.auth.getSession();

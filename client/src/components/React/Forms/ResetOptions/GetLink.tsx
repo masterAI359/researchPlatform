@@ -1,7 +1,6 @@
-import { supabase } from "@/SupaBase/supaBaseClient"
 import { useEffect, useState } from "react"
 import { emailValidation } from "@/helpers/validation"
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence } from "framer-motion"
 import Emailing from "../AuthNotifications/Emailing"
 import { Link } from "react-router-dom"
 import { sendEmailResetLink } from "@/helpers/FetchRequests"
@@ -12,7 +11,6 @@ export default function GetLink({ }) {
     const [emailSent, setEmailSent] = useState<boolean>(null)
     const [pending, setPending] = useState<boolean>(null)
 
-
     const emailInput = (e: any) => {
         setEmailToReset(e.target.value)
     }
@@ -20,22 +18,16 @@ export default function GetLink({ }) {
     const handleResetLink = async (e: any, email: string) => {
         e.preventDefault()
         setPending(true)
-
         if (validEmail) {
+            window.localStorage.setItem('email_for_pw_reset', JSON.stringify({ email: emailToReset }));
             sendEmailResetLink(email, setEmailSent);
         };
-    }
-
-
+    };
 
     useEffect(() => {
 
-        if (emailToReset !== null) {
-
-            emailValidation(emailToReset, setValidEmail)
-        }
-
-    }, [emailToReset, validEmail])
+        if (emailToReset !== null) emailValidation(emailToReset, setValidEmail);
+    }, [emailToReset, validEmail]);
 
 
 

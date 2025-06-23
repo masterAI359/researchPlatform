@@ -69,6 +69,10 @@ export default defineConfig({
           target: 'http://localhost:5001',
           changeOrigin: true
         },
+        '/passwordReset': {
+          target: 'http://localhost:5001',
+          changeOrigin: true
+        },
         '/apifyScraper': {
           target: 'http://localhost:5001',
           changeOrigin: true

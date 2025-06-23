@@ -11,7 +11,6 @@ import ArticleLink from "../LinkComponents/ArticleLink"
 import { useEffect, useState } from "react"
 import { encodeArray } from "@/helpers/FetchRequests"
 import { getQuery } from "@/ReduxToolKit/Reducers/Investigate/UserPOV"
-import { getFromApify } from "@/helpers/FetchRequests"
 
 export function GetTheseArticles() {
     const investigateState = useSelector((state: RootState) => state.investigation)
@@ -30,7 +29,6 @@ export function GetTheseArticles() {
         dispatch(resetResults())
         dispatch(displaySearch(false))
         appDispatch(GetArticleContent(articlesToSummarize))
-        getFromApify(chosenArticles)
         dispatch(clearChosenArticles())
         dispatch(displayGetArticlesModal(false))
         dispatch(displayArticleContent(true))

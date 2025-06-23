@@ -67,7 +67,9 @@ declare global {
     source: string,
     date: string,
     logo: string,
-    title: string
+    title: string,
+    image: string,
+
   }
 
 

@@ -219,3 +219,33 @@ export const newUser = async (
         }
     }
 }
+
+
+export const getFromApify = async (chosen: SelectedArticle[]) => {
+
+    try {
+        const response = await fetch('/apifyScraper', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                articles: chosen,
+            }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`Coud not reach the endpoint /apifyScraper  ${response.statusText}`);
+
+        }
+
+        const results = await response.json();
+        if (results) {
+            console.log(results);
+            console.log(results[0].content)
+        }
+
+    } catch (error) {
+        console.log(error);
+    };
+};

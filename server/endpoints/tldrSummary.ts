@@ -15,7 +15,8 @@ interface QueryType {
     source: string,
     date: string,
     logo: string,
-    title: string
+    title: string,
+    image: string
 }
 
 const cleanURL = (url: string) => {
@@ -138,7 +139,7 @@ export const tldrSummary = async (req: Request, res: Response) => {
         res.json(resultsObject);
         failure = null
     } catch (error) {
-        console.error("Error in tldrSummary:", error);
+        // console.error("Error in tldrSummary:", error);
         res.status(500).send('Internal Server Error');
     }
 };

@@ -1,0 +1,9 @@
+{
+	"id": "JRxqe5DJQGYwwpC",
+	"json": "{\"id\":\"JRxqe5DJQGYwwpC\",\"url\":\"https://www.cbsnews.com/news/trump-attack-plans-iran-no-final-decision/\",\"loadedUrl\":\"https://www.cbsnews.com/news/trump-attack-plans-iran-no-final-decision/\",\"uniqueKey\":\"https://www.cbsnews.com/news/trump-attack-plans-iran-no-final-decision\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":0,\"errorMessages\":[],\"headers\":{},\"userData\":{\"title\":\"Trump approved attack plans for Iran — but hasn't made a final decision to strike\",\"image\":{\"img\":\"https://www.bing.com/th?id=OVFT.ZzWce8OdDB3okedVqD_mBy&pid=News\",\"width\":700,\"height\":367},\"logo\":\"/images/logos/cbsnews.svg\",\"source\":\"CBS News\",\"bias\":\"Left-Center\",\"__crawlee\":{\"state\":4}},\"handledAt\":\"2025-06-18T23:24:04.180Z\"}",
+	"method": "GET",
+	"orderNo": null,
+	"retryCount": 0,
+	"uniqueKey": "https://www.cbsnews.com/news/trump-attack-plans-iran-no-final-decision",
+	"url": "https://www.cbsnews.com/news/trump-attack-plans-iran-no-final-decision/"
+}

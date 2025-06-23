@@ -27,7 +27,8 @@ const ArticleLink = memo(({ article, index }: ArticleProps) => {
         source: article.provider,
         date: article.datePublished,
         logo: article.logo,
-        title: article.name
+        title: article.name,
+        image: image
     }
 
     const limitDescription = (string: string) => {

@@ -76,10 +76,9 @@ app.options('*', (req, res) => {
 	res.sendStatus(200);
 });
 
-
-
-
 app.get('/search/articles', bingArticles);
+//TODO: refactor to first selecting articles from the database that we've already scraped
+// fall back to tldrThis when those articles aren't present in the database 
 app.get('/summarize', tldrSummary);
 app.get('/deleteUser', deleteUser);
 app.get('/searchBlueSky', searchBlueSkyPosts);

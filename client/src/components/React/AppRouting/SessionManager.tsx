@@ -25,16 +25,16 @@ export default function SessionManager() {
     };
 
     const sess = restoreSession();
-    
+
 
     useEffect(() => {
 
-        if(sources) {
-         localStorage.setItem('cachedSources', JSON.stringify(sourcesToDispatch))
-         
+        if (sources) {
+            localStorage.setItem('cachedSources', JSON.stringify(sourcesToDispatch))
+
         }
 
-        if(!sources) {
+        if (!sources) {
             const cachedSources = (JSON.parse(localStorage.getItem('cachedSources')))
             dispatch(getSourcesToReview(cachedSources))
         }
@@ -48,7 +48,7 @@ export default function SessionManager() {
             } else if (event === 'SIGNED_OUT') {
 
             } else if (event === 'PASSWORD_RECOVERY') {
-              navigate('/updatePassword')
+                navigate('/reset-password')
             } else if (event === 'TOKEN_REFRESHED') {
                 restoreSession()
             } else if (event === 'USER_UPDATED') {

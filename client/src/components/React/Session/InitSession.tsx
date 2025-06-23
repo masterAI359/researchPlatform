@@ -1,11 +1,24 @@
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getID, clearAuthSlice } from '@/ReduxToolKit/Reducers/Athentication/Authentication'
-import { AppDispatch, RootState } from '@/ReduxToolKit/store'
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUserCredentials, getID } from '@/ReduxToolKit/Reducers/Athentication/Authentication';
+import { AppDispatch, RootState } from '@/ReduxToolKit/store';
+import { createClient } from '@supabase/supabase-js';
+import { useNavigate } from 'react-router-dom';
+
+const supaBaseUrl = import.meta.env.PUBLIC_SUPABASE_URL as string
+const supaBaseKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY as string
+
+export const supabase = createClient(supaBaseUrl, supaBaseKey, {
+    auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+    }
+});
+
 
 export default function InitSession() {
-    const id = useSelector((state: RootState) => state.auth.user_id)
-    const dispatch = useDispatch<AppDispatch>()
+    const id = useSelector((state: RootState) => state.auth.user_id);
+    const dispatch = useDispatch<AppDispatch>();
 
     useEffect(() => {
         window.dispatchEvent(new CustomEvent('reactMounted'))
@@ -41,8 +54,6 @@ export default function InitSession() {
 
             restoreUser()
         }
-
-
 
     }, [id, dispatch])
 

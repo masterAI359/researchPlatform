@@ -20,6 +20,9 @@ export default function ArticleContainer({ }) {
   const dispatch = useDispatch();
 
 
+  //TODO: refactor fetch for article content on the useEffect within this component, as opposed to relying solely on the button from a modal
+
+
   function recordingSourcesChosen() {
     const scrapedURLs = articles?.map((item: any) => { return item.article_url });
     const failedURLs = failedNotifications?.map((item: any) => { return item.article_url });

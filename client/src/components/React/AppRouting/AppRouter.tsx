@@ -22,7 +22,7 @@ export default function AppRouter() {
                     <Route path='/login' element={<Login />} />
                     <Route path='/profile' element={<Profile />} />
                     <Route path="/emailForReset" element={<EmailForReset />} />
-                    <Route path="/updatePassword" element={<UpdatePassword />} />
+                    <Route path="/reset-password" element={<UpdatePassword />} />
                 </Route>
             </Routes>
         </BrowserRouter>

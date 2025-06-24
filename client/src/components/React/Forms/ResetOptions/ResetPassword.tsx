@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useLayoutEffect } from "react"
 import { confirmPassword, confirmFirstPassword } from "@/helpers/validation"
 import ConfirmNewPassword from "../InputFields/ConfirmNewPassword"
 import NewPassword from "../InputFields/NewPassword"
@@ -23,6 +23,7 @@ export default function ResetPassword({ }) {
     const [resetting, setResetting] = useState<boolean>(null)
     const dispatch = useDispatch()
 
+
     const handlePassword = (e: any) => {
         const password = e.target.value
         dispatch(getFirstPassword(password))
@@ -43,6 +44,7 @@ export default function ResetPassword({ }) {
             if (data) {
                 setSuccessFullyChanged(true);
 
+
             } else {
                 setSuccessFullyChanged(false)
             };
@@ -52,16 +54,6 @@ export default function ResetPassword({ }) {
     };
 
     useEffect(() => {
-
-        if (!storedEmail) {
-            const stored = window.localStorage.getItem('email_for_pw_reset');
-
-            if (stored) {
-                const storedData = JSON.parse(stored);
-                const email = storedData.email;
-                setStoredEmail(email);
-            };
-        };
 
         if (firstPassword) {
             confirmFirstPassword(firstPassword, setValidFirstPassword)
@@ -75,6 +67,21 @@ export default function ResetPassword({ }) {
             dispatch(matchPasswords(''))
         }
     }, [firstPassword, secondPassword, validEntries, storedEmail]);
+
+
+    useLayoutEffect(() => {
+
+        const stored = window.localStorage.getItem('email_for_pw_reset');
+
+        if (stored) {
+            const parsed = JSON.parse(stored);
+            const emailStored = parsed.email;
+            setStoredEmail(emailStored);
+            window.localStorage.removeItem('email_for_pw_reset');
+        }
+
+    }, []);
+
 
     return (
         <div className="w-full max-w-md md:max-w-sm mx-auto">

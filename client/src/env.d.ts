@@ -107,6 +107,43 @@ declare global {
     context: string
   }
 
+
+
+
+  interface SupabaseUser {
+    id: string;
+    aud: string;
+    role: string;
+    email: string;
+    created_at: string;
+    confirmed_at: string | null;
+    last_sign_in_at: string | null;
+    app_metadata: {
+      provider: string;
+      providers: string[];
+    };
+    user_metadata: Record<string, any>;
+    identities: Array<{
+      id: string;
+      user_id: string;
+      identity_data: {
+        email: string;
+        sub: string;
+      };
+      provider: string;
+      last_sign_in_at: string | null;
+      created_at: string;
+      updated_at: string;
+    }>;
+    phone: string;
+    email_confirmed_at: string | null;
+    is_anonymous: boolean;
+  }
+
+  interface ResetPW {
+    message: string,
+    data: SupabaseUser | null
+  }
 }
 
-export { ArticleType, OptionsTypes, SelectedArticle, Perspectives, State, PremiseProps, Help, SavedArticle, Calculations, PostsProps };
+export { ArticleType, OptionsTypes, SelectedArticle, Perspectives, State, PremiseProps, Help, SavedArticle, Calculations, PostsProps, SupabaseUser, ResetPW };

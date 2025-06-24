@@ -7,8 +7,8 @@ const envPath = path.resolve(__dirname, '../.env');
 dotenv.config({ path: envPath })
 import { SUPABASE_KEY, SUPABASE_URL } from '../src/Config.js';
 import { Request, Response } from 'express'
-import { createClient } from '@supabase/supabase-js';
-
+import { createClient, User } from '@supabase/supabase-js';
+import { ChangePasswordError, ChangePasswordSuccess, SupabaseUser } from './interfaces.js';
 
 export const createSupabaseFromRequest = (req: Request) => {
     const accessToken = req.cookies['sb-access-token'];
@@ -359,7 +359,7 @@ export const saveResearch = async (req: Request, res: Response) => {
 };
 
 
-export const changePassword = async (req: Request, res: Response) => {
+export const changePassword = async (req: Request, res: Response<ChangePasswordSuccess | ChangePasswordError>): Promise<void> => {
     const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
     const { email, newPassword } = req.body;
     const { data, error } = await supabase.auth.admin.listUsers();
@@ -376,14 +376,16 @@ export const changePassword = async (req: Request, res: Response) => {
                     password: newPassword
                 });
 
-            if (error) {
-                return res.send({ status: error.message, data: null });
+            if (data) {
+                const updated = data?.user
+                res.send({ message: 'success', data: updated });
             };
 
-            if (data) {
-                console.log(data)
-                return res.send({ message: 'success', data: data });
+
+            if (error) {
+                res.send({ status: error.message, data: null });
             };
+
 
 
         } catch (error) {

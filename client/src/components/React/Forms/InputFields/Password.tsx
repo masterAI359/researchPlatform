@@ -1,8 +1,12 @@
 import { useState } from "react"
 
 
-export default function Password({ handlePassword, acceptedInput }) {
-    const [showPassword, setShowPassword] = useState<boolean>()
+export default function Password({ setUserPassword, acceptedInput }) {
+    const [showPassword, setShowPassword] = useState<boolean>();
+
+    const handlePassword = (e: any) => {
+        setUserPassword(e.target.value)
+    }
 
     return (
         <div className="col-span-full">

@@ -1,5 +1,5 @@
 import { supabase } from "@/SupaBase/supaBaseClient";
-import { SavedArticle } from "@/env";
+import { SavedArticle, SupabaseUser } from "@/env";
 
 
 
@@ -153,17 +153,11 @@ export const submitFeedback = async (authorEmail: string, message: string, setFe
 };
 
 
-export const pwReset = async (email: string, newPassword: string): Promise<any> => {
-
-    type ResetData = {
-        message: string,
-        data: any
-    };
+export const pwReset = async (email: string, newPassword: string): Promise<SupabaseUser | null> => {
 
     try {
         const response = await fetch('/passwordReset', {
             method: 'POST',
-            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -177,10 +171,14 @@ export const pwReset = async (email: string, newPassword: string): Promise<any> 
             throw new Error(`Unable to reach endpoint: ${response.statusText}`);
         };
 
-        const results: ResetData = await response.json();
-        return results;
+        const results: ResetPW = await response.json();
+        const user: SupabaseUser = results.data
+        return user;
 
-    } catch (error) { console.error(error) };
+    } catch (error) {
+        console.error(error);
+        return null;
+    };
 };
 
 

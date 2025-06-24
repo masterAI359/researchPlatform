@@ -4,6 +4,7 @@ import { AnimatePresence } from "framer-motion"
 import Emailing from "../AuthNotifications/Emailing"
 import { Link } from "react-router-dom"
 import { sendEmailResetLink } from "@/helpers/FetchRequests"
+import { store } from "@/ReduxToolKit/store"
 
 export default function GetLink({ }) {
     const [emailToReset, setEmailToReset] = useState<string>(null)
@@ -62,8 +63,8 @@ export default function GetLink({ }) {
                     </div>
                     <div>
                         <Link to={'/login'} >
-                            <p className="font-medium text-sm leading-tight text-white mx-auto">
-                                Already have a password? <a className="text-white underline hover:text-blue-400 ml-3" href="#">Log in instead</a>
+                            <p className="font-medium text-sm leading-tight text-white mx-auto lg:text-nowrap">
+                                Already have a password? <span className="text-white underline hover:text-blue-400 ml-3">Log in instead</span>
                             </p>
                         </Link>
                     </div>

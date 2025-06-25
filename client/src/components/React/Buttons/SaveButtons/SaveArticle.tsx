@@ -3,9 +3,8 @@ import NotifySavedArticle from "../../Notifications/NotifySaved"
 import { saveArticle, checkArticle } from "@/helpers/SupabaseData"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-import { useEffect, useLayoutEffect, useState } from "react"
+import { useLayoutEffect, useState } from "react"
 import RegisteredUsersOnly from "../../Notifications/RegisteredUsersOnly"
-import { removeSavedArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
 import { useAppdispatch } from "@/Hooks/appDispatch"
 
 export default function Bookmark({ dataToSave, showNotification, setShowNotification, open }) {

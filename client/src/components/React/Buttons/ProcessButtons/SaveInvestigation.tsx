@@ -13,8 +13,8 @@ export default function SaveInvestigation({ }) {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const [prevWork, setPrevWork] = useState<any>(null)
     const { pov, review } = investigateState
-    const { idea, premises, perspective, expertise, biases } = pov
-    const { endingPerspective, newConcepts, newPOV, merit, takeaway, movedOnIdea, extracts } = review
+    const { idea, premises, perspective, biases } = pov
+    const { endingPerspective, newConcepts, merit, takeaway, movedOnIdea, extracts } = review
     const dispatch = useDispatch<AppDispatch>()
 
     const investigateData = {
@@ -32,25 +32,19 @@ export default function SaveInvestigation({ }) {
         wikipedia_extracts: extracts
     }
 
-
-
     useEffect(() => {
 
-        const storedWork: any = localStorage.getItem('userWork')
+        const storedWork: any = localStorage.getItem('userWork');
 
-        if(storedWork) {
-            setPrevWork(storedWork)
-        }
+        if (storedWork) setPrevWork(storedWork);
 
-    }, [saved])
+    }, [saved]);
 
     const handleSave = () => {
         dispatch(saveUserInvestigation(investigateData))
         dispatch(fetchSavedInvestigations(id))
     }
 
-
-    
     return (
         <button
             onClick={handleSave}

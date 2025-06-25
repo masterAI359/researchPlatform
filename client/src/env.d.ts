@@ -144,6 +144,21 @@ declare global {
     message: string,
     data: SupabaseUser | null
   }
+
+  interface Investigation {
+    idea: string;
+    premises: string | null;
+    initial_perspective: string | null;
+    biases: string | null;
+    ending_perspective: string | null;
+    new_concepts: any;
+    changed_opinion: any;
+    takeaway: string | null;
+    had_merit: boolean | null;
+    user_id: string;
+    sources: string[];
+    wikipedia_extracts: any;
+  }
 }
 
-export { ArticleType, OptionsTypes, SelectedArticle, Perspectives, State, PremiseProps, Help, SavedArticle, Calculations, PostsProps, SupabaseUser, ResetPW };
+export { ArticleType, OptionsTypes, SelectedArticle, Perspectives, State, PremiseProps, Help, SavedArticle, Calculations, PostsProps, SupabaseUser, ResetPW, Investigation };

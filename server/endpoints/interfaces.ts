@@ -1,33 +1,8 @@
 import { User } from "@supabase/supabase-js";
 
-export interface SupabaseUser {
-    id: string;
-    aud: string;
-    role: string;
-    email: string;
-    created_at: string;
-    confirmed_at: string | null;
-    last_sign_in_at: string | null;
-    app_metadata: {
-        provider: string;
-        providers: string[];
-    };
-    user_metadata: Record<string, any>;
-    identities: Array<{
-        id: string;
-        user_id: string;
-        identity_data: {
-            email: string;
-            sub: string;
-        };
-        provider: string;
-        last_sign_in_at: string | null;
-        created_at: string;
-        updated_at: string;
-    }>;
-    phone: string;
-    email_confirmed_at: string | null;
-    is_anonymous: boolean;
+export interface ChangePasswordBody {
+    email: string,
+    newPassword: string
 };
 
 export interface ChangePasswordSuccess {
@@ -38,4 +13,86 @@ export interface ChangePasswordSuccess {
 export interface ChangePasswordError {
     status: string;
     data: null;
+};
+
+export interface SignUpRequestBody {
+    email: string,
+    password: string
+};
+
+export interface NewUser {
+    message: string,
+    data: User | null
+};
+
+export interface FeedbackBody {
+    email?: string | null,
+    message: string
+};
+
+export interface FeedbackResponse {
+    result: string
+};
+
+export interface Investigation {
+    idea: string;
+    premises: string | null;
+    initial_perspective: string | null;
+    biases: string | null;
+    ending_perspective: string | null;
+    new_concepts: any;
+    changed_opinion: any;
+    takeaway: string | null;
+    had_merit: boolean | null;
+    user_id: string;
+    sources: string[] | null;
+    wikipedia_extracts: any;
+};
+
+export type InvestigationBody = {
+    investigation: Investigation
+};
+
+export interface ArticleSaveBody {
+    articleExists: boolean
+};
+
+export interface ArticleSaveResponse {
+    saved: boolean,
+    data: any
+}
+
+export interface SavedArticle {
+    title: string,
+    provider: string,
+    authors: string[],
+    url: string,
+    image_url: string,
+    date: string,
+    fallbackDate: string | null,
+    summary: any,
+    text: string,
+    id: string,
+    factual_reporting?: string | null,
+    bias?: string | null,
+    country?: string | null
+};
+
+export interface ArticleBody {
+    articleExists: boolean,
+    dataToSave: SavedArticle
+};
+
+export interface GetLinkBody {
+    email: string
+};
+
+export interface GetLinkResponse {
+    message: string,
+    data: any
+};
+
+export interface LoginBody {
+    email: string,
+    password: string
 };

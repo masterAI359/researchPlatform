@@ -8,7 +8,7 @@ dotenv.config({ path: envPath })
 import { SUPABASE_KEY, SUPABASE_URL } from '../src/Config.js';
 import { Request, Response } from 'express'
 import { createClient, User } from '@supabase/supabase-js';
-import { ChangePasswordError, ChangePasswordSuccess, SupabaseUser } from './interfaces.js';
+import { ArticleBody, ArticleSaveBody, ArticleSaveResponse, ChangePasswordBody, ChangePasswordError, ChangePasswordSuccess, FeedbackBody, FeedbackResponse, GetLinkBody, GetLinkResponse, Investigation, InvestigationBody, LoginBody, NewUser, SavedArticle, SignUpRequestBody } from './interfaces.js';
 
 export const createSupabaseFromRequest = (req: Request) => {
     const accessToken = req.cookies['sb-access-token'];
@@ -26,7 +26,7 @@ export const createSupabaseFromRequest = (req: Request) => {
 };
 
 
-export const getUserAndSupabase = async (req: Request, res: Response) => {
+export const getUserAndSupabase = async (req: Request, res: Response): Promise<any> => {
     const supabase = createSupabaseFromRequest(req);
     const { data: { user }, error } = await supabase.auth.getUser();
 
@@ -34,7 +34,6 @@ export const getUserAndSupabase = async (req: Request, res: Response) => {
         res.status(401).json({ error: 'Unauthorized' });
         return null;
     }
-
     return { supabase, user };
 };
 
@@ -51,11 +50,9 @@ export const getCurrentUser = async (req: Request, res: Response) => {
 };
 
 
-
-export const supabaseLogin = async (req: Request, res: Response) => {
+export const supabaseLogin = async (req: Request, res: Response): Promise<void> => {
     const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
-
-    const { email, password } = req.body;
+    const { email, password } = req.body as LoginBody;
 
     try {
         const response = await supabase.auth.signInWithPassword({
@@ -80,18 +77,21 @@ export const supabaseLogin = async (req: Request, res: Response) => {
                 maxAge: 7 * 24 * 60 * 60 * 1000,
             });
             const data = response.data.session;
-            console.log(data)
-            res.send(data);
+            res.status(200).send(data);
+            return;
+        } else {
+            res.status(400).json({ db_error: 'unable to login in to supabase' });
+            return;
         };
-
     } catch (error) {
-        console.log(error);
-    }
-}
+        console.error(error);
+        res.status(500).json({ message: error });
+        return;
+    };
+};
 
 
-export const signUserOut = async (req: Request, res: Response) => {
-
+export const signUserOut = async (req: Request, res: Response): Promise<void> => {
     try {
         res.clearCookie('sb-access-token');
         res.clearCookie('sb-refresh-token');
@@ -99,18 +99,18 @@ export const signUserOut = async (req: Request, res: Response) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Failed to sign out' });
-    }
-
+    };
 };
 
 
-export const resetUserPassword = async (req: Request, res: Response) => {
+export const resetUserPassword = async (req: Request, res: Response): Promise<void> => {
     const supabase = createClient(SUPABASE_URL, SUPABASE_KEY)
-    const { email } = req.body;
+    const { email } = req.body as GetLinkBody;
 
     if (!email) {
-        return res.status(400).json({ error: 'Email is required.' });
-    }
+        res.status(400).json({ error: 'Email is required.' });
+        return;
+    };
 
     try {
         const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
@@ -118,27 +118,32 @@ export const resetUserPassword = async (req: Request, res: Response) => {
         });
 
         if (error) {
-            return res.status(500).json({ error: error.message });
+            const db_error: GetLinkResponse = { message: error.message, data: null }
+            res.status(400).json(db_error);
+            return;
         }
 
-        return res.status(200).json({ message: 'Reset email sent.', data: data });
+        const message: GetLinkResponse = { message: 'Reset email sent.', data: data }
+        res.status(200).json(message);
+        return;
+
     } catch (err) {
         console.error(err);
-        return res.status(500).json({ message: 'Unexpected server error.', data: null });
-    }
+        const error_message: string = err instanceof Error
+            ? `Unknown server error: ${err.message}`
+            : 'Unknown server error, check server logs for more info';
+        const server_error: GetLinkResponse = { message: error_message, data: null };
+        res.status(500).json(server_error);
+        return;
+    };
 };
 
 
 
-export const getUserArticles = async (req: Request, res: Response) => {
+export const getUserArticles = async (req: Request, res: Response): Promise<void> => {
     const session = await getUserAndSupabase(req, res);
-
     if (!session) return;
-
     const { supabase, user } = session;
-
-
-    console.log('🍪 Incoming cookies in getUserArticles:', req.cookies);
 
     try {
         const { data, error } = await supabase
@@ -146,62 +151,65 @@ export const getUserArticles = async (req: Request, res: Response) => {
             .select()
             .eq('user_id', user.id)
 
-        if (data) {
-            res.send(data)
-        };
-
         if (error) {
-            console.log(error.message);
-        };
-
+            console.error(error.message);
+            res.status(400).json({ error: error.message });
+            return;
+        } else {
+            res.status(200).send(data)
+        }
 
     } catch (error) {
-        console.log(error);
+        console.error(error);
+        const error_message = error instanceof Error
+            ? `Unknown server error: ${error.message}`
+            : 'Unknown server error, check server logs for more info';
+        res.status(500).json({ error: error_message });
+        return;
     };
 };
 
 
 
-export const getUserResearch = async (req: Request, res: Response) => {
-
+export const getUserResearch = async (req: Request, res: Response): Promise<void> => {
     const session = await getUserAndSupabase(req, res);
-
     if (!session) return;
-
     const { supabase, user } = session;
 
     try {
-
         const { data, error } = await supabase
             .from('investigations')
             .select()
             .eq('user_id', user.id)
 
-        if (data) {
-            res.send(data);
-        };
-
         if (error) {
-            console.log(error.message);
-        };
+            console.error(error.message);
+            res.status(400).json({ error: error.message });
+            return;
 
+        } else {
+            res.status(200).send(data);
+            return;
+
+        };
 
     } catch (error) {
-        console.log(error)
-    }
-}
+        console.error(error);
+        const error_message = error instanceof Error
+            ? `Unknown server error: ${error.message}`
+            : 'Unknown server error, check server logs for more info';
+        res.status(500).json({ error: error_message });
+        return;
+    };
+};
 
 
-const saveArticleForUser = async (req: Request, res: Response) => {
+const saveArticleForUser = async (req: Request, res: Response): Promise<string | null> => {
     const session = await getUserAndSupabase(req, res);
-
-    if (!session) return;
-
+    if (!session) return null;
     const { supabase, user } = session;
-
-    const { dataToSave } = req.body;
+    const { dataToSave } = req.body as ArticleBody;
     const { text, url, image_url, summary, title, authors, date, provider, fallbackDate, factual_reporting, bias, country } = dataToSave;
-
     try {
         const { data, error } = await supabase
             .from('articles')
@@ -228,35 +236,41 @@ const saveArticleForUser = async (req: Request, res: Response) => {
             )
             .select();
 
-
-        if (data) {
-            console.log(data)
-            const message = "Saved";
-            return message;
-        }
-
         if (error) {
             console.log(error.message);
+            const db_error: string = "couldn't save the provided article to the database";
+            return db_error;
+
+        } else if (data) {
+            console.log(data)
+            const message: string = "Saved";
+            return message;
         };
 
+        return null;
+
     } catch (error) {
-        console.log(error)
+        console.log(error);
+        const error_message = error instanceof Error
+            ? `Unknown server error: ${error.message}`
+            : 'Unknown server error, check server logs for more info';
+        return error_message;
     };
 };
 
 
-const deleteArticleForUser = async (req: Request, res: Response) => {
+const deleteArticleForUser = async (req: Request, res: Response): Promise<string | null> => {
 
-    const session = await getUserAndSupabase(req, res);
 
-    if (!session) return;
-
-    const { supabase, user } = session;
-
-    const { dataToSave } = req.body;
-    const { url } = dataToSave;
 
     try {
+
+        const session = await getUserAndSupabase(req, res);
+        if (!session) return null;
+        const { supabase, user } = session;
+        const { dataToSave } = req.body as ArticleBody;
+        const { url } = dataToSave as SavedArticle;
+
         const response = await supabase
             .from('articles')
             .delete()
@@ -264,29 +278,30 @@ const deleteArticleForUser = async (req: Request, res: Response) => {
             .eq('article_url', url)
             .select();
 
-
         if (response?.error) {
             console.error('Deleting error', response.error.message);
             return null;
-        };
-
-        if (response) {
-            const message = "Deleted";
+        } else if (response) {
+            const message: string = "Deleted";
             return message;
         };
 
+        return null;
+
     } catch (error) {
         console.log(error);
+        const err_message: string = error instanceof Error
+            ? `Unknown server error: ${error.message}`
+            : 'Unknown server error, check server logs for more info';
+
+        return err_message;
     };
+};
 
-}
 
+export const handleArticleSave = async (req: Request, res: Response): Promise<void> => {
 
-export const handleArticleSave = async (req: Request, res: Response) => {
-
-    console.log('hit article save handler!');
-
-    const { articleExists } = req.body;
+    const { articleExists, dataToSave } = req.body as ArticleBody;
 
     try {
         let result;
@@ -300,28 +315,36 @@ export const handleArticleSave = async (req: Request, res: Response) => {
         }
 
         if (result) {
-            const responseObject = { Succes: true, message: result };
-            console.log(responseObject);
+            const responseObject: ArticleSaveResponse = { saved: true, data: result };
             res.status(200).send(responseObject);
+            return;
         } else {
-            res.status(500).json({ error: `Database operation failed to execute.` });
+            res.status(400).json({ saved: false, data: `Database operation failed to execute.` });
+            return;
         }
-
     } catch (error) {
-        console.log(error)
+        console.log(error);
+
+        if (error instanceof Error) {
+            res.status(500).json({ saved: false, data: `Unknown server error ${error}` });
+            return;
+        } else {
+            res.status(500).json({ saved: false, data: 'Unknown server error, check server logs for more info' });
+            return;
+        };
     };
 };
 
 
 
-export const saveResearch = async (req: Request, res: Response) => {
+export const saveResearch = async (req: Request, res: Response): Promise<void> => {
     const session = await getUserAndSupabase(req, res);
 
     if (!session) return;
 
     const { supabase, user } = session;
 
-    const { investigation } = req.body;
+    const { investigation } = req.body as InvestigationBody;
 
     try {
         const { data, error } = await supabase
@@ -343,30 +366,38 @@ export const saveResearch = async (req: Request, res: Response) => {
             ])
             .select();
 
-        if (data) {
-            const response = { message: "Saved research data", data: data };
-            res.send(response);
-
-        } else if (error) {
+        if (error) {
             const response = { message: error.message, data: null };
-            res.send(response);
+            res.status(400).send(response);
+            return;
+        } else if (data) {
+            const response = { message: "Saved research data", data: data };
+            res.status(200).send(response);
+            return;
         };
 
     } catch (error) {
-        console.error("Unexpected error saving research: ", error);
-        return res.status(500).json({ message: "Internal Server Error", data: null });
+        if (error instanceof Error) {
+            console.error(`Unexpected error saving research: ${error}`);
+            res.status(500).json({ message: "Internal Server Error", data: null });
+            return;
+        } else {
+            console.error('Unexpected server error', error);
+            res.status(500).json({ message: "Internal Server Error", data: null });
+            return;
+        };
     };
 };
 
 
 export const changePassword = async (req: Request, res: Response<ChangePasswordSuccess | ChangePasswordError>): Promise<void> => {
     const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
-    const { email, newPassword } = req.body;
+    const { email, newPassword } = req.body as ChangePasswordBody;
     const { data, error } = await supabase.auth.admin.listUsers();
-    if (error) {
-        throw error.message;
-    };
-    const user = data.users.find((user) => user.email === email);
+
+    if (error) throw new Error(error.message);
+
+    const user: User | undefined = data.users.find((user) => user.email === email);
 
     if (user) {
 
@@ -378,33 +409,34 @@ export const changePassword = async (req: Request, res: Response<ChangePasswordS
 
             if (data) {
                 const updated = data?.user
-                res.send({ message: 'success', data: updated });
+                res.status(200).send({ message: 'success', data: updated });
+                return;
+            } else if (error) {
+                res.status(400).send({ status: error.message, data: null });
+                return;
             };
-
-
-            if (error) {
-                res.send({ status: error.message, data: null });
-            };
-
-
 
         } catch (error) {
-            console.error(error)
+            console.error(error);
+            if (error instanceof Error) {
+                res.status(400).json({ status: `Unknown server error ${error}`, data: null });
+                return;
+            } else {
+                res.status(400).json({ status: 'Unknown server error', data: null });
+                return;
+            };
         };
-    }
+    } else {
+        res.status(404).json({ status: 'No user record found in the database for elenchus', data: null });
+        return;
+    };
 };
 
 
-type NewUser = {
-    message: string,
-    data: any
-}
 
-export const createNewUser = async (req: Request, res: Response): Promise<any> => {
+export const createNewUser = async (req: Request, res: Response): Promise<void> => {
 
-
-
-    const { email, password } = req.body;
+    const { email, password } = req.body as SignUpRequestBody;
 
     try {
 
@@ -432,30 +464,38 @@ export const createNewUser = async (req: Request, res: Response): Promise<any> =
                 maxAge: 7 * 24 * 60 * 60 * 1000,
             });
         }
-
         if (error) {
             console.error({ 'Signup error encountered': error.message });
-            return res.status(400).json({ message: error.message, data: null });
+            const db_error: NewUser = { message: error.message, data: null }
+            res.status(400).json(db_error);
+            return;
+        } else {
+            const message: NewUser = { message: 'User created', data: data.user }
+            res.status(200).send(message);
+            return;
         };
-
-        const message: NewUser = { message: 'User created', data: data.user }
-
-        return res.status(200).send(message);
 
     } catch (error) {
         if (error) {
-            console.error(error);
-            const message: NewUser = { message: 'User created', data: null }
+            if (error instanceof Error) {
+                const err_message: NewUser = { message: `Unexpected server error: ${error.message}`, data: null };
+                res.status(500).json(err_message);
+                return;
+            } else {
+                console.error(error)
+                const err_message: NewUser = { message: `Unexpected server error`, data: null };
+                res.status(400).json(err_message);
+                return;
+            };
 
-            return res.status(400).json(message)
-        }
+        };
     };
 };
 
 
-export const sendFeedback = async (req: Request, res: Response) => {
+export const sendFeedback = async (req: Request, res: Response): Promise<void> => {
     const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
-    const { email, message } = req.body;
+    const { email, message } = req.body as FeedbackBody;
 
     try {
 
@@ -468,16 +508,26 @@ export const sendFeedback = async (req: Request, res: Response) => {
             .select();
 
         if (data) {
-            return res.send({ result: 'success sending feedback' });
+            const message: FeedbackResponse = { result: 'success sending feedback' };
+            res.status(200).send(message);
+            return;
 
         } else if (error) {
-            return res.send({ result: error.message });
+            const err_message: FeedbackResponse = { result: error.message };
+            res.status(400).send(err_message);
+            return;
         };
 
-
     } catch (error) {
-        console.error(`Error sending feedback: ${error}`);
-        return res.status(400).json({ result: error });
+        if (error instanceof Error) {
+            console.error(`Error sending feedback: ${error}`);
+            res.status(400).json({ result: `Unknown server error ${error}` });
+            return;
+        } else {
+            console.error(error);
+            res.status(400).json({ result: 'Unknown Server error' });
+            return;
+        };
     };
 };
 

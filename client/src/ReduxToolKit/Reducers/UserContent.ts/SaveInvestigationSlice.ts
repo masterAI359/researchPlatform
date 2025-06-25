@@ -18,9 +18,10 @@ const initialState: SaveInvestigation = {
 
 export const saveUserInvestigation = createAsyncThunk(
     'user/SaveInvestigation',
-    async (investigationData: any, thunkAPI) => {
+    async (investigationData: Investigation, thunkAPI) => {
 
         const investigation = investigationData;
+        typeof investigation
         const url: string = '/saveResearch';
 
         try {

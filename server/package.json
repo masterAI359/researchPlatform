@@ -22,7 +22,6 @@
 		"@atproto/api": "^0.15.5",
 		"@mozilla/readability": "^0.6.0",
 		"@supabase/supabase-js": "^2.49.3",
-		"apify": "^3.4.2",
 		"axios": "^1.6.8",
 		"azure-cognitiveservices-websearch": "^2.0.0",
 		"body-parser": "^1.20.2",

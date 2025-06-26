@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence } from "framer-motion"
 import FailedLoading from "../Articles/Failed/FailedLoading"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
@@ -9,19 +9,15 @@ import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
 import NoContent from "../Articles/Failed/NoContent"
 import Article from "../Articles/SuccessFull/Article"
 import ArticleLoader from "../Loaders/ArticleLoader"
-import { articleData } from "@/ReduxToolKit/Reducers/Investigate/Reading"
 
 export default function ArticleContainer({ }) {
   const investigateState = useSelector((state: RootState) => state.investigation);
   const { read } = investigateState;
-  const { displayArticleContent, showContent } = investigateState.display;
+  const sources = useSelector((state: RootState) => state.userWork.sourcesToReview);
+  const sourcesToDispatch = sources;
   const { articles, failedNotifications, currentStory, ContentStatus } = read;
   const firstRecordedSources = useRef<string>("");
   const dispatch = useDispatch();
-
-
-  //TODO: refactor fetch for article content on the useEffect within this component, as opposed to relying solely on the button from a modal
-
 
   function recordingSourcesChosen() {
     const scrapedURLs = articles?.map((item: any) => { return item.article_url });
@@ -37,12 +33,10 @@ export default function ArticleContainer({ }) {
 
   useEffect(() => {
 
-    if (articles) {
+    if (articles) recordingSourcesChosen();
+    if (sources) localStorage.setItem('cachedSources', JSON.stringify(sourcesToDispatch));
 
-      recordingSourcesChosen();
-    };
-
-  }, [articles, currentStory]);
+  }, [articles, sources]);
 
 
   return (

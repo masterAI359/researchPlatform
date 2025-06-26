@@ -1,9 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUserCredentials, getID } from '@/ReduxToolKit/Reducers/Athentication/Authentication';
+import { getID } from '@/ReduxToolKit/Reducers/Athentication/Authentication';
 import { AppDispatch, RootState } from '@/ReduxToolKit/store';
 import { createClient } from '@supabase/supabase-js';
-import { useNavigate } from 'react-router-dom';
 
 const supaBaseUrl = import.meta.env.PUBLIC_SUPABASE_URL as string
 const supaBaseKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY as string
@@ -48,7 +47,6 @@ export default function InitSession() {
 
                 } catch (error: any) {
                     console.warn('Session restore failed:', error?.message || error)
-                    //   dispatch(clearAuthSlice())
                 }
             }
 

@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { createPortal } from "react-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/ReduxToolKit/store";
+import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import Lottie from "lottie-react";
 import blueCheck from '../../../lotties/blueCheck.json'
@@ -9,16 +8,13 @@ import Loader from "../Loaders/Loader";
 import { presentDeleteModal } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
 import { useNavigate } from "react-router-dom";
 import { clearAuthSlice } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
-import { supabase } from "@/SupaBase/supaBaseClient";
-
-const variants = {
-    closed: { opacity: 0 },
-    open: { opacity: 1 }
-}
-
+import { confirmFirstPassword, emailValidation } from "@/helpers/validation";
+import { variants } from "@/motion/variants";
+import { deleteAccount } from "@/helpers/SupabaseData";
 
 export default function DeleteUserAccount({ }) {
-    const id = useSelector((state: RootState) => state.auth.user_id)
+    const [password, setPassword] = useState<string>(null)
+    const [email, setEmail] = useState<string>(null)
     const [deleting, setDeleting] = useState<boolean>(null)
     const [deleteSuccessful, setDeleteSuccessful] = useState<boolean>(null)
     const [showInput, setShowInput] = useState<boolean>(null)
@@ -45,52 +41,39 @@ export default function DeleteUserAccount({ }) {
 
 
 
-    const deleteAccount = async (id: string) => {
 
-        const encodedID = encodeURIComponent(id)
-
-        console.log('calling')
-
-        const options: OptionsTypes = {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'text/plain',
-            },
-        };
-
-        try {
-            console.log(deleting)
-            const deletion = await fetch(`/deleteUser?q=${encodedID}`, options)
-            if (!deletion.ok) {
-                throw new Error('Failed to connect to the database')
-            }
-
-            const response = await deletion.text()
-            if (response) {
-                setDeleteSuccessful(true)
-                console.log(response)
-            }
-
-        } catch (error) {
-            setDeleteSuccessful(false)
-            console.log(error)
-        } finally {
-        }
-    }
 
     useEffect(() => {
+        const handleDelete = async () => {
+            const valid = emailValidation(email);
+            const passes = confirmFirstPassword(password);
 
+            if (valid && passes) {
+                const data = await deleteAccount(email, password);
+
+                if (data) {
+                    setDeleteSuccessful(true)
+                } else {
+                    setDeleteSuccessful(false)
+                }
+            };
+        };
+
+        if (deleting) {
+            handleDelete();
+        }
+
+    }, [email, password, deleting]);
+
+
+    useEffect(() => {
 
         if (deleteSuccessful) {
             dispatch(clearAuthSlice())
             removeModal()
-
         }
-
     }, [deleteSuccessful])
 
-    console.log(deleteSuccessful)
 
 
     const modal = (
@@ -117,7 +100,13 @@ export default function DeleteUserAccount({ }) {
                         Invalid email or password
                     </h1></div>}
                 {deleting === null && !showInput && <DeleteAccountButtons setShowInput={setShowInput} />}
-                {showInput === true && <EnterUserCredentials setDeleting={setDeleting} deleteAccount={deleteAccount} id={id} setShowInput={setShowInput} setDeleteSuccessful={setDeleteSuccessful} />}
+                {showInput === true &&
+                    <EnterUserCredentials
+                        setEmail={setEmail}
+                        setPassword={setPassword}
+                        setDeleting={setDeleting}
+                        setShowInput={setShowInput}
+                    />}
                 {deleting === true && <PendingDeletion />}
                 {deleteSuccessful === true && <Deleted />}
 
@@ -134,9 +123,8 @@ export default function DeleteUserAccount({ }) {
 }
 
 
-function EnterUserCredentials({ deleteAccount, id, setShowInput, setDeleteSuccessful, setDeleting }) {
-    const [password, setPassword] = useState<string>(null)
-    const [email, setEmail] = useState<string>(null)
+function EnterUserCredentials({ setShowInput, setDeleting, setEmail, setPassword }) {
+
 
 
     const handleEmail = (e: any) => {
@@ -150,30 +138,12 @@ function EnterUserCredentials({ deleteAccount, id, setShowInput, setDeleteSucces
         setPassword(target)
     }
 
-    const handleDelete = async () => {
-        setDeleting(true)
+    const deleteClicked = () => {
+        setDeleting(true);
         setShowInput(false)
-        try {
-            const { data, error } = await supabase.auth.signInWithPassword({
-                email: email,
-                password: password,
-            });
+    };
 
-            if (data.session) {
-                deleteAccount(id)
-                console.log('deleting')
-            } else if (error) {
-                setDeleteSuccessful(false)
-                setShowInput(true)
-            }
 
-        } catch (error) {
-            console.log(error)
-        } finally {
-            setDeleting(false)
-        }
-
-    }
 
 
     return (
@@ -201,7 +171,7 @@ function EnterUserCredentials({ deleteAccount, id, setShowInput, setDeleteSucces
             </div>
 
             <div className="col-span-full">
-                <button onClick={handleDelete} type="button" className="text-sm py-2 px-4 border focus:ring-2 h-10 rounded-full border-zinc-100 
+                <button onClick={deleteClicked} type="button" className="text-sm py-2 px-4 border focus:ring-2 h-10 rounded-full border-zinc-100 
             bg-white hover:bg-black text-black duration-200 focus:ring-offset-2 focus:ring-white hover:text-white
              w-full inline-flex items-center justify-center ring-1 ring-transparent">
                     Delete Account

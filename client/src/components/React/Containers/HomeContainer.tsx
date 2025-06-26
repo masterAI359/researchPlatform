@@ -8,16 +8,13 @@ import { useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '@/ReduxToolKit/store';
 import { getStoredPosts, searchBlueSky } from '@/ReduxToolKit/Reducers/BlueSky/BlueSkySlice';
-import SessionManager from '../AppRouting/SessionManager';
 import { ScrollUp } from '../AppRouting/ScrollToTop';
 import SignOutModal from '../Forms/SignOutModal';
 
 
 export default function HomeContainer({ }) {
-    const id = useSelector((state: RootState) => state.auth.user_id);
     const signingOut = useSelector((state: RootState) => state.auth.signOut)
     const posts = useSelector((state: RootState) => state.bluesky.posts)
-    const blueSkyStatus = useSelector((state: RootState) => state.bluesky.status)
     const dispatch = useDispatch<AppDispatch>()
 
     useLayoutEffect(() => {
@@ -39,7 +36,6 @@ export default function HomeContainer({ }) {
          ${signingOut ? 'opacity-50 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
             {signingOut && <SignOutModal />}
 
-            {!id && <SessionManager />}
             <HeroImage />
             <Challenge />
             <ChartingFeatures />

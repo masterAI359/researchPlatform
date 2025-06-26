@@ -1,19 +1,23 @@
 import ResetPassword from "./ResetOptions/ResetPassword"
-import { supabase } from "@/SupaBase/supaBaseClient"
 import { useEffect } from "react"
+import { createClient } from '@supabase/supabase-js'
 
+const supabase = createClient(
+    import.meta.env.PUBLIC_SUPABASE_URL,
+    import.meta.env.PUBLIC_SUPABASE_ANON_KEY
+)
 
 export default function UpdatePassword() {
 
     useEffect(() => {
         const hash = window.location.hash;
         if (hash) {
-          const params = new URLSearchParams(hash.substring(1));
-          const access_token = params.get('access_token');
-          const refresh_token = params.get('refresh_token');
-          if (access_token && refresh_token) {
-             supabase.auth.setSession({ access_token, refresh_token });
-          }
+            const params = new URLSearchParams(hash.substring(1));
+            const access_token = params.get('access_token');
+            const refresh_token = params.get('refresh_token');
+            if (access_token && refresh_token) {
+                supabase.auth.setSession({ access_token, refresh_token });
+            }
         }
 
     }, [])

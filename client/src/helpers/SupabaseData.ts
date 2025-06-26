@@ -1,4 +1,3 @@
-import { supabase } from "@/SupaBase/supaBaseClient";
 import { SavedArticle, SupabaseUser } from "@/env";
 
 
@@ -99,24 +98,6 @@ export const getInvestigationSources = (sources: string[], savedArticles: any) =
 }
 
 
-export const deleteUser = async (id: string, setDeleting: Function, setDeletesuccessful: Function) => {
-
-    try {
-        setDeleting(true)
-        const { data, error } = await supabase.auth.admin.deleteUser(
-            id
-        )
-
-        if (data) {
-            setDeletesuccessful(true)
-            return data
-        } else if (error) {
-            setDeletesuccessful(false)
-            return error.message
-        }
-    } catch (error) {
-    }
-}
 
 
 export const submitFeedback = async (authorEmail: string, message: string, setFeedbackSubmitted: Function) => {
@@ -182,8 +163,34 @@ export const pwReset = async (email: string, newPassword: string): Promise<Supab
 };
 
 
+export const deleteAccount = async (email: string, password: string): Promise<boolean> => {
+    try {
+        const deletion = await fetch(`/deleteUser`, {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                Accept: 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        });
 
-export const checkForActiveSession = async (): Promise<boolean> => {
-    const { data: { session } } = await supabase.auth.getSession();
-    return session ? true : false;
+        if (!deletion.ok) {
+            throw new Error('Failed to connect to the database')
+        }
+
+        const response = await deletion.json()
+        if (response.message === 'User deleted successfully.') {
+            return true;
+        } else {
+            return false;
+        }
+
+    } catch (error) {
+        console.error(error);
+        return false;
+    };
 }
+

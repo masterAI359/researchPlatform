@@ -4,10 +4,8 @@ import { useDispatch } from "react-redux";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Pending from "./AuthNotifications/Pending";
-import Success from "./AuthNotifications/Success";
-import Failed from "./AuthNotifications/Failed";
 import { fetchSignOut } from "@/helpers/FetchRequests";
+import SigningOut from "./AuthNotifications/SigningOut";
 
 const variants = {
     closed: { opacity: 0 },
@@ -19,25 +17,23 @@ const variants = {
 export default function SignOutModal({ }) {
     const [signingOut, setSigningOut] = useState<boolean>(false)
     const [success, setSuccess] = useState<boolean>(null)
-    const navigate = useNavigate();
     const dispatch = useDispatch()
 
+    useEffect(() => {
 
-    function redirect() {
-        setTimeout(() => {
-            navigate('/');
-        }, 900);
-    };
+        const executeSignOut = async (): Promise<void> => {
+            const data = await fetchSignOut();
+            if (data.loggedOut === true) {
+                setSuccess(true);
+            } else {
+                setSuccess(false)
+            }
+        };
 
-    const signOutUser = () => {
-
-        setSigningOut(true)
-
-        fetchSignOut(setSuccess);
-
-    };
-
-    useEffect(() => { }, [signingOut, success]);
+        if (signingOut) {
+            executeSignOut();
+        };
+    }, [signingOut]);
 
 
     const modal = (
@@ -64,7 +60,7 @@ export default function SignOutModal({ }) {
 
                     <motion.button whileTap={{ scale: 0.95 }}
                         transition={{ type: 'tween', duration: 0.2 }}
-                        onClick={signOutUser} type="button"
+                        onClick={() => setSigningOut(true)} type="button"
                         className="text-sm py-2 w-full px-6 md:px-4 border md:focus:ring-2 rounded-full border-transparent 
                     bg-white md:hover:bg-white/10 text-black duration-200 md:focus:ring-offset-2 md:focus:ring-white 
                     md:hover:text-white inline-flex items-center justify-center ring-1 ring-transparent">
@@ -88,64 +84,6 @@ export default function SignOutModal({ }) {
         createPortal(modal, document.body)
     )
 
-}
-
-
-function SigningOut({ setSigningOut, signingOut, success }) {
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
-
-    const variants = {
-        show: {
-            y: 0,
-            opacity: 1
-        },
-        hide: {
-            y: -100,
-            opacity: 0
-        }
-    }
-
-    useEffect(() => {
-
-        const timer = setTimeout(() => {
-            setSigningOut(false)
-            dispatch(showSignOut(false))
-            navigate('/')
-            dispatch(clearAuthSlice())
-        }, 3000)
-
-        return () => clearTimeout(timer)
-
-    }, [signingOut, setSigningOut, success])
-
-    const SigningOut = (<motion.div
-        variants={variants}
-        initial='hide'
-        animate='show'
-        exit='hide'
-        transition={{ type: 'tween', duration: 0.2 }}
-        className="absolute top-12 right-16 lg:top-24 lg:right-36 h-10 w-60 p-2 bg-mirage rounded-xl px-2"
-    >
-        <div className="flex w-full h-full items-center justify-between">
-            <div className="w-auto h-fit">
-                <p className="text-white font-light">
-                    {success === null && 'Signing out'}
-                    {success === false && 'Signout failed'}
-                    {success === true && 'Signed out'}
-                </p>
-            </div>
-            <div className="w-auto h-fit relative">
-                <AnimatePresence mode="wait">
-                    {success === null && <Pending />}
-                    {success === true && <Success />}
-                    {success === false && <Failed />}
-                </AnimatePresence>
-            </div>
-        </div>
-    </motion.div>)
-
-    return (createPortal(SigningOut, document.body))
-}
+};
 
 

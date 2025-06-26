@@ -110,14 +110,14 @@ export const supabaseSignIn = async (
 
     } catch (error) {
 
-        console.log(error);
+        console.error(error);
         return false;
     };
 };
 
 
 
-export const fetchSignOut = async (setSuccess: (success: boolean) => void): Promise<void> => {
+export const fetchSignOut = async (): Promise<SignOutResponse> => {
 
     try {
         const response = await fetch('/signUserOut', {
@@ -129,17 +129,16 @@ export const fetchSignOut = async (setSuccess: (success: boolean) => void): Prom
         });
 
         if (!response.ok) {
-            setSuccess(false)
             throw new Error('Could not reach endpoint for signout');
         }
         const result = await response.json();
-        if (result) {
-            setSuccess(true);
-        };
+        const message = { loggedOut: true, data: result };
+        return message;
 
     } catch (error) {
-        setSuccess(false);
         console.error(error);
+        const error_message = { loggedOut: false, data: null };
+        return error_message;
     };
 };
 
@@ -166,13 +165,14 @@ export const sendEmailResetLink = async (email: string, setEmailSent: (emailSent
 
         if (result.message === 'Reset email sent.') {
             setEmailSent(true)
-        }
-
+            return;
+        };
 
     } catch (error) {
-        console.log(error)
-        setEmailSent(false)
-    }
+        console.error(error);
+        setEmailSent(false);
+        return;
+    };
 };
 
 

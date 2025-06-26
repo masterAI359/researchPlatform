@@ -159,6 +159,12 @@ declare global {
     sources: string[];
     wikipedia_extracts: any;
   }
+
+  interface SignOutResponse {
+    loggedOut: boolean,
+    data: any
+  }
 }
+
 
 export { ArticleType, OptionsTypes, SelectedArticle, Perspectives, State, PremiseProps, Help, SavedArticle, Calculations, PostsProps, SupabaseUser, ResetPW, Investigation };

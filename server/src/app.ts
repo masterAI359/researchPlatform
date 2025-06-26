@@ -76,7 +76,7 @@ app.options('*', (req, res) => {
 
 app.get('/search/articles', bingArticles);
 app.get('/summarize', tldrSummary);
-app.get('/deleteUser', deleteUser);
+app.post('/deleteUser', deleteUser);
 app.get('/searchBlueSky', searchBlueSkyPosts);
 app.get('/getBlueSkyFeed', getBlueSkyFeed);
 app.post('/supabaseLogIn', supabaseLogin);

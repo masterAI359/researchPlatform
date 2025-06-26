@@ -7,13 +7,14 @@ const envPath = path.resolve(__dirname, '../.env');
 dotenv.config({ path: envPath })
 import { SUPABASE_KEY, SUPABASE_URL } from '../src/Config.js';
 import { Request, Response } from 'express'
-import { createClient, User } from '@supabase/supabase-js';
-import { ArticleBody, ArticleSaveBody, ArticleSaveResponse, ChangePasswordBody, ChangePasswordError, ChangePasswordSuccess, FeedbackBody, FeedbackResponse, GetLinkBody, GetLinkResponse, Investigation, InvestigationBody, LoginBody, NewUser, SavedArticle, SignUpRequestBody } from './interfaces.js';
+import { createClient, SupabaseClient, User } from '@supabase/supabase-js';
+import { ArticleBody, ArticleSaveResponse, ChangePasswordBody, ChangePasswordError, ChangePasswordSuccess, CurrentUser, FeedbackBody, FeedbackResponse, GetLinkBody, GetLinkResponse, InvestigationBody, LoginBody, NewUser, SavedArticle, SignUpRequestBody, SupabaseSession } from './interfaces.js';
+import { Database } from './databaseInterfaces.js';
 
-export const createSupabaseFromRequest = (req: Request) => {
+export const createSupabaseFromRequest = (req: Request): SupabaseClient<Database> => {
     const accessToken = req.cookies['sb-access-token'];
 
-    return createClient(SUPABASE_URL, SUPABASE_KEY, {
+    return createClient<Database>(SUPABASE_URL!, SUPABASE_KEY!, {
         global: {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
@@ -26,7 +27,7 @@ export const createSupabaseFromRequest = (req: Request) => {
 };
 
 
-export const getUserAndSupabase = async (req: Request, res: Response): Promise<any> => {
+export const getUserAndSupabase = async (req: Request, res: Response): Promise<SupabaseSession | null> => {
     const supabase = createSupabaseFromRequest(req);
     const { data: { user }, error } = await supabase.auth.getUser();
 
@@ -38,15 +39,13 @@ export const getUserAndSupabase = async (req: Request, res: Response): Promise<a
 };
 
 
-export const getCurrentUser = async (req: Request, res: Response) => {
-    console.log('fetching user credentials');
+export const getCurrentUser = async (req: Request, res: Response<CurrentUser>): Promise<void> => {
+
     const session = await getUserAndSupabase(req, res);
-
     if (!session) return;
-
     const { user } = session;
-
-    return res.status(200).json({ user });
+    res.status(200).json({ user });
+    return;
 };
 
 

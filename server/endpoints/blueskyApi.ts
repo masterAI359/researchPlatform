@@ -6,7 +6,7 @@ import { unwrapObjects } from '../helpers/unwrapObjects.js';
 
 const agent = new AtpAgent({ service: 'https://bsky.social' })
 
-export const searchBlueSkyPosts = async (req: Request, res: ExpRes) => {
+export const searchBlueSkyPosts = async (req: Request, res: ExpRes): Promise<void> => {
   const query = req.query.q as string
 
   try {
@@ -28,20 +28,21 @@ export const searchBlueSkyPosts = async (req: Request, res: ExpRes) => {
 
     const cleansed = decodeItem(result.data)
 
-    return res.json(cleansed)
+    res.json(cleansed);
+    return;
 
   } catch (err: any) {
     console.error('Bluesky error:', err)
 
     const status = err.status || err.statusCode || 500
     const message = err.message || 'Unexpected error'
-    return res.status(status).send(message)
+    res.status(status).send(message)
+    return;
   }
 }
 
 
-
-export const getBlueSkyFeed = async (req: Request, res: ExpRes) => {
+export const getBlueSkyFeed = async (req: Request, res: ExpRes): Promise<void> => {
 
   try {
     console.log('try suggested feeds')
@@ -55,22 +56,21 @@ export const getBlueSkyFeed = async (req: Request, res: ExpRes) => {
     const gens = suggested.data.feeds
     const feedUri = gens.find(g => g.uri.includes('verified-news'))?.uri
     if (!feedUri) {
-      return res.status(404).send('Couldn’t find verified-news generator')
-    }
+      res.status(404).send('Couldn’t find verified-news generator');
+      return;
+    };
     const feed = await agent.api.app.bsky.feed.getFeed({
       feed: feedUri,
       limit: 20,
-    })
+    });
 
     const feedData = decodeItem(feed.data.feed);
     const unwrappedPosts = unwrapObjects(feedData);
-    //console.log({ "FeedData": unwrappedPosts }, { "Length": unwrappedPosts.length })
-    return res.json(unwrappedPosts);
+    res.json(unwrappedPosts);
 
   } catch (err: any) {
     console.error('BlueSky error:', err)
-    return res
-      .status(err.status || err.statusCode || 500)
-      .send(err.message || 'Unexpected Error')
-  }
-}
+    res.status(err.status || err.statusCode || 500).send(err.message || 'Unexpected Error');
+    return;
+  };
+};

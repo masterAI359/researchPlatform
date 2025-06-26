@@ -8,7 +8,7 @@ const options: OptionsTypes = {
     }
 }
 
-export async function fetchArticles(query: string) {
+export async function fetchArticles(query: string): Promise<any> {
 
     try {
         const response = await fetch(`/search/articles?q=${query}`,
@@ -17,7 +17,7 @@ export async function fetchArticles(query: string) {
         if (!response.ok) {
             throw new Error("There was a network response issue!")
         }
-        const jsonResponse = await response.json()
+        const jsonResponse = await response.json();
         if (jsonResponse) {
             return jsonResponse
         }
@@ -26,7 +26,7 @@ export async function fetchArticles(query: string) {
             return err
         }
     }
-}
+};
 
 
 export const encodeArray = (array: any) => {
@@ -55,17 +55,24 @@ export const getWikiDetails = async (
         if (data) {
             setExplanation(data);
         } else {
-            setExplanation("failed to connect to Wikipedia API :/")
+            setExplanation("failed to connect to Wikipedia API :/");
         }
 
     } catch (err) {
         console.log(err);
-    }
+    };
+};
 
-}
 
+export const supabaseSignIn = async (
+    email: string,
+    password: string,
+    setLogginIn: (loggingIn: boolean) => void,
+    setSuccessful: (successful: boolean) => void,
+    dispatch: any,
+    fetchUserCredentials: Function
 
-export const supabaseSignIn = async (email: string, password: string, setLogginIn: (loggingIn: boolean) => void, setSuccessful: (successful: boolean) => void, dispatch: any, fetchUserCredentials: Function) => {
+): Promise<boolean> => {
 
     try {
         setLogginIn(true);
@@ -85,7 +92,7 @@ export const supabaseSignIn = async (email: string, password: string, setLogginI
 
         if (!response.ok) {
             setSuccessful(false)
-            const errorText = await response.text(); // or .json() if you return JSON
+            const errorText = await response.text();
             console.error('Server responded with:', response.status, errorText);
             setSuccessful(false);
             throw new Error(`Server error: ${response.status}`);
@@ -110,7 +117,7 @@ export const supabaseSignIn = async (email: string, password: string, setLogginI
 
 
 
-export const fetchSignOut = async (setSuccess: (success: boolean) => void) => {
+export const fetchSignOut = async (setSuccess: (success: boolean) => void): Promise<void> => {
 
     try {
         const response = await fetch('/signUserOut', {
@@ -137,7 +144,7 @@ export const fetchSignOut = async (setSuccess: (success: boolean) => void) => {
 };
 
 
-export const sendEmailResetLink = async (email: string, setEmailSent: (emailSent: boolean) => void) => {
+export const sendEmailResetLink = async (email: string, setEmailSent: (emailSent: boolean) => void): Promise<void> => {
 
     try {
 

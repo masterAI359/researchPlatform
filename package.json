@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "concurrently": "^9.1.2",
+    "supabase": "^2.26.9",
     "ts-node": "^10.9.2"
   }
 }

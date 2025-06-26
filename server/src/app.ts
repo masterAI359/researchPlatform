@@ -9,7 +9,6 @@ import cors from 'cors';
 import mime from 'mime'
 import cookieParser from 'cookie-parser';
 const app = express();
-import { SelectedArticle } from '../endpoints/apifyScraper.js';
 import { bingArticles } from '../endpoints/bingApi.js';
 import { tldrSummary } from '../endpoints/tldrSummary.js';
 import { deleteUser } from '../endpoints/deleteUser.js';
@@ -25,7 +24,6 @@ import { resetUserPassword } from '../endpoints/serverClient.js';
 import { getCurrentUser } from '../endpoints/serverClient.js';
 import { createNewUser } from '../endpoints/serverClient.js';
 import { sendFeedback } from '../endpoints/serverClient.js';
-import { apifyScraper } from '../endpoints/apifyScraper.js';
 
 const corsOptions: object = {
 	origin: ['https://elenchusapp.io', 'http://localhost:5173'],
@@ -77,8 +75,6 @@ app.options('*', (req, res) => {
 });
 
 app.get('/search/articles', bingArticles);
-//TODO: refactor to first selecting articles from the database that we've already scraped
-// fall back to tldrThis when those articles aren't present in the database 
 app.get('/summarize', tldrSummary);
 app.get('/deleteUser', deleteUser);
 app.get('/searchBlueSky', searchBlueSkyPosts);
@@ -94,23 +90,6 @@ app.post('/getCurrentUser', getCurrentUser);
 app.post('/createNewUser', createNewUser);
 app.post('/sendFeedback', sendFeedback);
 
-app.post('/apifyScraper', async (req: Request, res: Response) => {
-
-	try {
-		const body = req.body as { articles: SelectedArticle[] };
-
-		if (!Array.isArray(body.articles) || body.articles.length === 0) {
-			return res.status(400).json({ error: 'Invalid or missing "articles" array' });
-		}
-		const results = await apifyScraper(body.articles);
-
-		return res.status(200).json(results);
-
-	} catch (error) {
-		console.error('[apifyScraper error]', error);
-		return res.status(500).json({ error: 'Failed to scrape articles' });
-	}
-});
 
 
 app.get('*', (req: Request, res: Response) => {

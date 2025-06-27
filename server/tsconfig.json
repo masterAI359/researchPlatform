@@ -4,8 +4,6 @@
 		"esModuleInterop": true,
 		"target": "ES2022",
 		"moduleResolution": "node10",
-		"noEmit": true,
-		"allowImportingTsExtensions": true,
 		"sourceMap": true,
 		"rootDir": "./",
 		"outDir": "./dist",

@@ -9,7 +9,7 @@ import Step4 from "../Steps/Step4";
 import Step5 from "../Steps/Step5";
 
 
-export default function WindowWrapper({ }) {
+export default function Steps({ }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState(null);
   const investigateState = useSelector((state: RootState) => state.investigation)

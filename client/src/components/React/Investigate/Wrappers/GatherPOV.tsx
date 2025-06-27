@@ -1,7 +1,7 @@
 import WindowContainer from "../../Containers/WindowContainer"
 import StepWizard from "../../StepWizard/StepWizard"
 
-export default function POVWrapper({ }) {
+export default function GatherPOV({ }) {
 
     return (
         <main

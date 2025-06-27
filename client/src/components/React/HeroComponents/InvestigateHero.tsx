@@ -1,4 +1,4 @@
-import POVWrapper from "../Investigate/Wrappers/POVWrapper";
+import GatherPOV from "../Investigate/Wrappers/GatherPOV";
 import StepControl from "../Buttons/StepButtons/StepControl";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
@@ -14,8 +14,7 @@ export default function InvestigateHero({ }) {
       bg-gradientdown relative shrink-0
       ${showBlueSkySearch ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'}
       `}>
-
-        <POVWrapper />
+        <GatherPOV />
         <StepControl />
       </div>
     </section>

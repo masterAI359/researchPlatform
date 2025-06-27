@@ -47,6 +47,7 @@ export async function mapTldrRequests(query: TldrRequest[], failed: FailedAttemp
             decodedData.article_authors = cleanseAuthorList(decodedData.article_authors);
             return decodedData;
         } catch (error) {
+            console.error("mapTldrReqests failed for", article.url, error);
             const failedAttempt: FailedAttempt = {
                 title: article.title,
                 summary: [{ denied: 'We were denied access to the article from', failedArticle: `${article.source} - ${article.title}` }],
@@ -58,7 +59,6 @@ export async function mapTldrRequests(query: TldrRequest[], failed: FailedAttemp
             failed.push(failedAttempt);
             return null;
         };
-
     });
 
     const results = await Promise.allSettled(dataMap);

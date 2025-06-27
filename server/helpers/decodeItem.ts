@@ -1,7 +1,7 @@
-import he from 'he'; //ran --save-dev @types/he... may need to change this to dependency instead of dev dependancy
+import he from 'he';
 import sanitizeHtml from 'sanitize-html';
+import { TldrRequest } from '../endpoints/interfaces';
 
-//TODO: refresh on iterative methods and reduce prototype
 
 export default function decodeItem(item: any) {
 
@@ -18,7 +18,6 @@ export default function decodeItem(item: any) {
 
         return Object.entries(item).reduce((acc: any, [key, value]) => {
             acc[key] = decodeItem(value);
-            // console.log(acc[key])
             return acc
         }, {})
 
@@ -34,5 +33,18 @@ export default function decodeItem(item: any) {
     }
 
     return item
-}
+};
+
+
+export const paramDecode = (item: string) => {
+    try {
+        const decodedQuery = decodeURIComponent(item.replace(/\+/g, " "));
+
+        return decodedQuery;
+
+    } catch (error) {
+        console.error("Malformed URI decoding failed:", error);
+        throw new Error("Malformed URI parameter");
+    }
+};
 

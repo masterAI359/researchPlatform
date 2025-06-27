@@ -2,80 +2,59 @@ const envUrl = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(envUrl)
 const envPath = path.resolve(__dirname, '../../.env');
 import { TLDR_KEY } from '../src/Config.js';
-import express, { query, Request, Response } from 'express'
+import { Request, Response } from 'express'
 import * as path from 'path'
 import { fileURLToPath } from 'url';
 import decodeItem from '../helpers/decodeItem.js'
 import cleanseAuthorList from '../helpers/authorCleanup.js';
 import { getMediaBiases } from './mediaBias.js';
+import { FailedAttempt, ScrapedArticle, TldrRequest } from './interfaces.js';
+import { cleanURL } from '../helpers/cleanUrl.js';
+import { paramDecode } from '../helpers/decodeItem.js';
+import { getPromiseValues } from '../helpers/getPromiseValues.js';
+import { delay } from '../helpers/throttle.js';
 
+export const tldrSummary = async (req: Request, res: Response): Promise<void> => {
 
-interface QueryType {
-    url: string,
-    source: string,
-    date: string,
-    logo: string,
-    title: string,
-    image: string
-}
-
-const cleanURL = (url: string) => {
-    try {
-        const u = new URL(url);
-        u.search = ""; // removes query params
-        return u.toString();
-    } catch {
-        return url;
-    }
-}
-
-
-
-export const tldrSummary = async (req: Request, res: Response) => {
-
-    let failure: any = [];
-
+    let failure: FailedAttempt[] = [];
     const received = req.query.q as string;
 
-    const paramDecode = (item: string) => {
+    if (!received) {
+        res.status(400).json({ error: "Missing query parameter 'q'" });
+        return;
+    };
 
-        try {
-            const decodedQuery = decodeURIComponent(item.replace(/\+/g, " "));
-            if (decodedQuery) {
-                return decodedQuery
-            }
-        } catch (error) { }
-
-        throw new Error(`Malformed URI error${res.status(500)}`)
-    }
-
-    const parsedQuery = JSON.parse(paramDecode(received))
-
-    const decodedQueryArray = parsedQuery
-
-
-    const query: QueryType[] = decodedQueryArray;
-
-    const url =
-        'https://tldrthis.p.rapidapi.com/v1/model/abstractive/summarize-url/';
-
-
-    function delay(t: number) {
-        return new Promise(resolve => setTimeout(resolve, t));
-    }
-
-    if (!Array.isArray(query) || query.length === 0) {
-        return res.status(400).send('Invalid query parameter. Please provide a list of URLs.');
-    }
+    let parsedQuery: unknown;
 
     try {
-        const dataMap = query.map(async (article, index) => {
+        parsedQuery = JSON.parse(paramDecode(received));
+    } catch (e) {
+        console.error("Invalid JSON query:", e);
+        res.status(400).json({ error: "Invalid JSON in query parameter" });
+        return
+    }
+
+    if (!Array.isArray(parsedQuery)) {
+        res.status(400).json({ error: "Query parameter must be an array of requests." });
+        return;
+    };
+
+    const decodedQueryArray = parsedQuery as TldrRequest[];
+    const query = decodedQueryArray;
+    const url = 'https://tldrthis.p.rapidapi.com/v1/model/abstractive/summarize-url/';
+    const api_host = 'tldrthis.p.rapidapi.com';
+
+    if (!Array.isArray(query) || query.length === 0) {
+        res.status(400).send('Invalid query parameter. Please provide a list of URLs.');
+        return;
+    };
+
+    try {
+        const dataMap = query.map(async (article, index): Promise<ScrapedArticle | null> => {
 
             const santizedSource = article.source.trim();
             const biasRatings = await getMediaBiases(santizedSource);
-
             const urlClean = cleanURL(article.url);
-
             await delay(index * 2000);
 
             try {
@@ -106,11 +85,11 @@ export const tldrSummary = async (req: Request, res: Response) => {
                 data.bias = biasRatings?.bias ?? null;
                 data.country = biasRatings?.country ?? null;
                 data.factual_reporting = biasRatings?.factual_reporting ?? null;
-                const decodedData = decodeItem(data);
-                decodedData.cleanedAuthors = cleanseAuthorList(decodedData.article_authors);
+                const decodedData: ScrapedArticle = decodeItem(data);
+                decodedData.article_authors = cleanseAuthorList(decodedData.article_authors);
                 return decodedData;
-            } catch (error: any) {
-                const failedAttempt = {
+            } catch (error) {
+                const failedAttempt: FailedAttempt = {
                     title: article.title,
                     summary: [{ denied: 'We were denied access to the article from', failedArticle: `${article.source} - ${article.title}` }],
                     logo: article.logo,
@@ -119,29 +98,20 @@ export const tldrSummary = async (req: Request, res: Response) => {
                     article_url: article.url,
                 }
                 failure.push(failedAttempt)
-
+                return null
             }
         });
 
         const results = await Promise.allSettled(dataMap);
-
-
-        const returnValues = results.map((result: any) => {
-
-            const resultData = result.value ? result.value : result.reason
-
-            return resultData
-        })
-
-        const success = returnValues.filter((result: any) => result !== undefined)
-
-        const resultsObject = { retrieved: success, rejected: failure }
-        res.json(resultsObject);
-        failure = null
+        const returnValues = getPromiseValues(results);
+        const resultsObject = { retrieved: returnValues, rejected: failure }
+        res.status(200).json(resultsObject);
+        return;
     } catch (error) {
-        // console.error("Error in tldrSummary:", error);
+        console.error(error);
         res.status(500).send('Internal Server Error');
-    }
+        return;
+    };
 };
 
 

@@ -20,8 +20,9 @@
 		"src/",
 		"helpers/",
 		"endpoints/",
+		"services/",
 		"scripts/generateLogoMap.ts",
-		"src/Config.ts"
+		"src/Config.ts",
 	],
 	"exclude": [
 		"node_modules"

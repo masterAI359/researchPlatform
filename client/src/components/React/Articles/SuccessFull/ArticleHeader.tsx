@@ -12,7 +12,8 @@ export default function ArticleHeader({ articleData, setFullStory, fullStory }) 
     const [open, setOpen] = useState<boolean>(false)
     const [showAllAuthors, setShowAllAuthors] = useState<boolean>(false)
 
-    const { article_image,
+    const {
+        article_image,
         logo,
         source,
         date,

@@ -160,6 +160,28 @@ declare global {
     wikipedia_extracts: any;
   }
 
+  interface ScrapedArticle {
+    article_abstract: string | null;
+    article_authors: string[];
+    article_html: string;
+    article_image: string;
+    article_pub_date: string;
+    article_text: string;
+    article_title: string;
+    article_url: string;
+    bias: string;
+    cleanedAuthors: string[][];
+    country: string;
+    date: string;
+    factual_reporting: string;
+    logo: string;
+    source: string;
+    summary: {
+      heading: string;
+      text: string;
+    }[];
+  }
+
   interface SignOutResponse {
     loggedOut: boolean,
     data: any
@@ -167,4 +189,4 @@ declare global {
 }
 
 
-export { ArticleType, OptionsTypes, SelectedArticle, Perspectives, State, PremiseProps, Help, SavedArticle, Calculations, PostsProps, SupabaseUser, ResetPW, Investigation };
+export { ArticleType, OptionsTypes, SelectedArticle, Perspectives, State, PremiseProps, Help, SavedArticle, Calculations, PostsProps, SupabaseUser, ResetPW, Investigation, ScrapedArticle };

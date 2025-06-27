@@ -3,6 +3,8 @@ import StepWizard from "../../StepWizard/StepWizard"
 
 export default function GatherPOV({ }) {
 
+    //TODO create new component to display the user's input while going through POV steps
+
     return (
         <main
             className="flex flex-col items-center lg:px-4 xl:px-0 w-full h-full">

@@ -1,0 +1,1 @@
+{"version":3,"file":"throttle.js","sourceRoot":"","sources":["../../helpers/throttle.ts"],"names":[],"mappings":"AAAA,MAAM,UAAU,KAAK,CAAC,CAAS;IAC3B,OAAO,IAAI,OAAO,CAAC,OAAO,CAAC,EAAE,CAAC,UAAU,CAAC,OAAO,EAAE,CAAC,CAAC,CAAC,CAAC;AAC1D,CAAC;AAAA,CAAC"}

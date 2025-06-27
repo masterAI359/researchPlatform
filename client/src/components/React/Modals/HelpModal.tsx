@@ -11,7 +11,7 @@ export default function HelpModal({ info, handleExpand, isOpen, setActiveTab, ac
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}
-            transition={{ type: 'tween', duration: 0.1 }}
+            transition={{ type: 'tween', duration: 0.2 }}
             className=" bg-gradient-to-tr from-ebony to-mirage opacity-100 h-auto
                          shadow-material rounded-xl 
                          z-50 absolute bottom-12 xl:pb-2 xl:bottom-24 sm:bottom-16 sm:w-[33rem] 
@@ -46,7 +46,7 @@ export default function HelpModal({ info, handleExpand, isOpen, setActiveTab, ac
                             }}
                             onClick={() => setActiveTab(info[index])}
                         >
-                            <h1 className={`font-light tracking-tight text-sm md:text-xl p-2 rounded-md text-white  ${info[index] === activeTab ? ' bg-black/30' : 'bg-white/5'}`}>{element.heading}</h1>
+                            <h1 className={`font-light tracking-tight transition-all duration-200 ease-in-out text-sm md:text-xl p-2 rounded-md text-white  ${info[index] === activeTab ? ' bg-black/30' : 'bg-white/5 hover:bg-black/20'}`}>{element.heading}</h1>
 
                         </motion.li>
                     ))}

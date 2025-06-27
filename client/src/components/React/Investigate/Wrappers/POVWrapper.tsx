@@ -1,14 +1,17 @@
 import WindowContainer from "../../Containers/WindowContainer"
-import MapContainer from "../../Map/MapContainer"
+import StepWizard from "../../StepWizard/StepWizard"
 
 export default function POVWrapper({ }) {
 
     return (
         <main
-            className="flex items-center justify-start lg:px-4 xl:px-0 w-full h-full">
+            className="flex flex-col items-center lg:px-4 xl:px-0 w-full h-full">
+            <div className="w-full h-auto flex justify-center items-center">
+                <StepWizard />
+
+            </div>
             <WindowContainer
             />
-            <MapContainer />
         </main>
     )
 }

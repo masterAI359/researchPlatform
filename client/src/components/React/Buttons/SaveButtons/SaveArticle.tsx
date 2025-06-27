@@ -5,7 +5,6 @@ import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { useLayoutEffect, useState } from "react"
 import RegisteredUsersOnly from "../../Notifications/RegisteredUsersOnly"
-import { useAppdispatch } from "@/Hooks/appDispatch"
 
 export default function Bookmark({ dataToSave, showNotification, setShowNotification, open }) {
     const id = useSelector((state: RootState) => state.auth.user_id)
@@ -14,7 +13,6 @@ export default function Bookmark({ dataToSave, showNotification, setShowNotifica
     const [registeredExclusiveFeature, setRegisteredExclusiveFeature] = useState<boolean>(false)
     const [runCheck, setRunCheck] = useState<boolean>(true)
     const { url } = dataToSave
-    const appDispatch = useAppdispatch();
 
     useLayoutEffect(() => {
 

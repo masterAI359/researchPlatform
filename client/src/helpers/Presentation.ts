@@ -115,4 +115,25 @@ export const splitPosts = (
 };
 
 
+export const limitString = (str: string): string => {
+
+    let arr: string[] = [];
+    let temp = str.split('');
+
+    let count: number = 0;
+
+    for (let i = 0; i < temp.length; i++) {
+
+        if (count >= 50) {
+            break
+        } else {
+            arr.push(temp[i]);
+            count++;
+        };
+    };
+
+    const shortened = arr.join('');
+    const results = shortened + '...';
+    return results;
+};
 

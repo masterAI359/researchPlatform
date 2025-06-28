@@ -12,7 +12,7 @@ export default function Node4({ }) {
     const dispatch = useDispatch()
 
     return (
-        <li className="flex flex-col md:w-full xs:w-full xs:h-20 lg:h-28 items-center">
+        <li className="flex flex-col w-full h-20 items-center">
             <div className="flex  items-center justify-center w-full h-full">
                 <motion.div
                     onClick={() => dispatch(incrementBy(3))}

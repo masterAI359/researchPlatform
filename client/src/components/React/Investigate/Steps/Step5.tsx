@@ -38,14 +38,12 @@ export default function Step5({ containerWidth }) {
                     </div>
                     <main className="w-full md:w-fit h-full flex flex-col justify-start md:justify-center gap-y-5 md:gap-y-2 xl:mt-16">
                         <div className="w-full h-full flex flex-col gap-y-4">
-                            <p className="text-xs xl:text-lg w-fit text-white font-light tracking-tight text-left">
+                            <p className="text-xs xl:text-lg w-fit text-white whitespace-normal font-light tracking-tight text-left text-wrap">
                                 The idea: <span className="text-zinc-400 font-light tracking-tight">
-                                    <em>
-                                        {idea}
-                                    </em>
+                                    {idea}
                                 </span>
                             </p>
-                            <p className="text-xs xl:text-lg w-fit text-white font-light tracking-tight text-wrap text-pretty">
+                            <p className="text-xs xl:text-lg w-fit text-white font-light tracking-tight text-wrap">
                                 Let's look for some evidence to support the idea you're evaluating
                             </p>
                         </div>

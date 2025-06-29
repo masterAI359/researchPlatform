@@ -10,7 +10,6 @@ export default function Node5({ }) {
     const currentStep = step
     const dispatch = useDispatch()
 
-    console.log(step);
 
     return (
         <li className="flex flex-col w-fit h-20 items-center">

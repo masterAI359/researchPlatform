@@ -15,8 +15,6 @@ export default function StepsEditor({ setterFunction, context }: TipTapProps) {
     }
 
 
-    console.log(context)
-
     const editor = useEditor({
         content: context && context.trim().length > 0 ? context : null,
         extensions: [
@@ -49,7 +47,7 @@ export default function StepsEditor({ setterFunction, context }: TipTapProps) {
     return (
         <div className="w-full max-w-168 h-full box-border mx-auto">
             <div className="control-group w-full flex  bg-white/10 rounded-md">
-                <div className="button-group px-3 w-full mx-auto text-white flex gap-x-6">
+                <div className="button-group px-3 w-full mx-auto text-white flex gap-x-3 lg:gap-x-6">
 
                     <button
                         onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}

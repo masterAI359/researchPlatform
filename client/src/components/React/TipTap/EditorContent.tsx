@@ -19,7 +19,7 @@ export default ({ context, setterFunction }: TipTapProps) => {
     console.log(context)
 
     const editor = useEditor({
-        content: context && context.trim().length > 0 ? context : null,
+        content: context ? context : null,
         extensions: [
             StarterKit.configure({
                 heading: {

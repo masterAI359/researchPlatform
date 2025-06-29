@@ -22,7 +22,7 @@ text-center mx-auto xs:h-full box-border flex xs:px-2 md:px-0 basis-full'>
            flex flex-row gap-x-4 sm:gap-x-8 xs:items-center  md:items-baseline">
               <div className="w-fit flex justify-items-start mb-2">
                 <h1 className="2xl:text-3xl text-base tracking-tight font-light text-white">
-                  {"(Optional)"} What would support this claim?
+                  {"(Optional)"} Underlying premises?
                 </h1>
               </div>
 

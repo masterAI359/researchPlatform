@@ -4,12 +4,15 @@ import { motion } from "framer-motion"
 import { useDispatch, useSelector } from "react-redux"
 import { displaySearch, displayMindMap } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
 import { RootState } from "@/ReduxToolKit/store"
+import { limitString } from "@/helpers/Presentation"
 
 export default function Step5({ containerWidth }) {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { pov } = investigateState
     const { idea } = pov
     const dispatch = useDispatch()
+
+    const shortened = limitString(idea)
 
     const beginSearch = () => {
         dispatch(displayMindMap(false))
@@ -40,7 +43,7 @@ export default function Step5({ containerWidth }) {
                         <div className="w-full h-full flex flex-col gap-y-4">
                             <p className="flex md:hidden text-xs xl:text-lg w-fit text-white whitespace-normal font-light tracking-tight text-left text-wrap">
                                 The idea: <span className="text-zinc-400 font-light tracking-tight">
-                                    {idea}
+                                    {shortened ? shortened : idea}
                                 </span>
                             </p>
                             <p className="text-xs xl:text-lg w-fit text-white font-light tracking-tight text-wrap">

@@ -10,8 +10,8 @@ export default function Perspective({ perspective, opinion, getPOV }) {
             key={opinion}
         >
             <div
-                className={`bg-white/10 xl:text-lg lg:text-[0.8rem] text-[0.6rem] sm:text-sm tracking-tight
-              rounded-4xl 2xl:w-60 xl:w-52 2xl:h-16 xl:h-14 lg:w-[12rem] md:w-[12rem] md:h-12 sm:w-40 sm:h-11 w-28 h-9
+                className={`bg-white/10 xl:text-lg lg:text-[0.8rem] text-xs sm:text-sm tracking-tight
+              rounded-4xl 2xl:w-60 xl:w-52 2xl:h-16 xl:h-14 lg:w-[12rem] md:w-[12rem] md:h-12 sm:w-40 sm:h-11 w-32 h-10
                cursor-pointer md:hover:bg-white/20 md:hover:text-white transition-all duration-200 ease-in-out
                 flex justify-between items-center lg:px-4 xs:px-2 grow-0 gap-3
                 ${perspective === null && 'text-white'}

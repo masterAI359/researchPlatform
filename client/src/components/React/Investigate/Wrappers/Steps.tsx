@@ -91,7 +91,7 @@ export default function Steps({ }) {
               opacity: 0,
               transition: { type: 'tween', duration: 0.2 }
             }}
-            className="min-w-full shrink-0"
+            className="min-w-full max-w-full shrink-0"
           >
             <Step4 containerWidth={containerWidth} />
           </motion.div>}

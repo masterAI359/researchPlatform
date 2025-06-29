@@ -32,7 +32,7 @@ export default function Step1({ containerWidth }: any) {
       useEffect(() => {
 
 
-            if (selected && idea !== '') return
+            if (selected && idea !== null) return
 
 
             window.addEventListener('nextStepClick', () => {
@@ -40,7 +40,7 @@ export default function Step1({ containerWidth }: any) {
             })
 
             let words: number = null
-            if (nextClicked) {
+            if (nextClicked && idea !== null) {
                   words = wordCount(idea);
             }
 
@@ -107,7 +107,7 @@ export default function Step1({ containerWidth }: any) {
                                                             : acceptInput === true
                                                                   ? <p className="font-light tracking-tight text-zinc-400 text-md">Proceed</p>
                                                                   : acceptInput === false
-                                                                        ? <p className="font-normal tracking-tight text-red-600 text-md">Input must be a minimum of 5 words</p>
+                                                                        ? <p className="font-normal tracking-tight text-nowrap text-red-600 text-xs lg:text-md">Input must be a minimum of 5 words</p>
                                                                         : null}
                                                 </div>
                                           </div>

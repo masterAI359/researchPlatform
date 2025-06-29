@@ -55,7 +55,7 @@ export default function Step2({ containerWidth }: any) {
           </header>
         </div>
 
-        <div className="w-full flex items-center h-full xl:py-6">
+        <div className="w-full flex items-center h-full py-8 xl:py-6">
 
           <div className="grid grid-cols-2 justify-between items-center w-full box-border">
             <div
@@ -74,7 +74,7 @@ export default function Step2({ containerWidth }: any) {
                 <h1 className="2xl:text-2xl xl:text-xl md:text-sm text-center text-xs font-light tracking tight text-slate-400 mb-2">Prior Knowledge</h1>
               </header>
               {expertiseArray.map((item) => (
-                <Expertise item={item} expertise={expertise} assignKnowledge={assignKnowledge} />
+                <Expertise key={item} item={item} expertise={expertise} assignKnowledge={assignKnowledge} />
               ))}
             </div>
           </div>

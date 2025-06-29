@@ -16,7 +16,7 @@ export interface UserPOVState {
 
 const initialState: UserPOVState = {
 
-    idea: '',
+    idea: null,
     perspective: null,
     expertise: null,
     biases: null,

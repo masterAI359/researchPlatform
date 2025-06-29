@@ -11,11 +11,11 @@ export default function StepWizard({ currentStep, setCurrentStep }: any) {
 
     return (
         <motion.div className="w-full h-fit flex lg:justify-center mx-auto
-        absolute 2xl:-top-2
+        absolute top-0
         ">
             <motion.ol
                 className="flex items-center my-auto justify-between
-         w-11/12 sm:w-2/3 lg:w-4/5 lg:mx-auto h-28 lg:h-20 mx-auto">
+         w-11/12 md:w-11/12 lg:w-4/5 lg:mx-auto h-28 lg:h-20 mx-auto">
                 <Node1 />
                 <Node2 />
                 <Node3 />

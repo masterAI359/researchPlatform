@@ -20,14 +20,14 @@ export default function Steps({ }) {
   return (
     <section
       ref={containerRef}
-      className="relative h-fit
-      mx-auto max-w-full sm:w-[27rem] md:w-11/12 lg:w-full xl:w-full mb-4 md:mb-0
+      className="relative h-[16.5rem] lg:h-88 xl:h-96 2xl:w-168 xl:w-[36rem] lg:w-[33rem] md:w-[29rem] md:h-80 sm:h-72 rounded-4xl bg-ebony/50 shadow-inset p-4 shrink-0
+      mx-auto max-w-full sm:w-[27rem] mb-4 md:mb-0
       transition-all duration-400 animate-fade-in delay-300 no-scrollbar box-border flex">
       <div
         style={{ maxHeight: "fit" }}
         className="flex items-center 2xl:items-baseline h-fit
         w-full sm:mx-auto sm:h-60 md:h-fit md:min-h-full lg:max-h-fit">
-        <AnimatePresence mode="popLayout">
+        <AnimatePresence mode="wait">
           {step === 0 && <motion.div
             layout
             key={"Step1"}
@@ -40,7 +40,7 @@ export default function Steps({ }) {
               opacity: 0,
               transition: { type: 'tween', duration: 0.2 }
             }}
-            className="min-w-full max-w-full shrink-0"
+            className="min-w-full min-h-full max-w-full shrink-0"
           >
             <Step1 containerWidth={containerWidth} />
           </motion.div>}
@@ -57,7 +57,7 @@ export default function Steps({ }) {
               opacity: 0,
               transition: { type: 'tween', duration: 0.2 }
             }}
-            className="min-w-full shrink-0"
+            className="min-w-full min-h-full shrink-0"
           >
             <Step2 containerWidth={containerWidth} />
           </motion.div>}

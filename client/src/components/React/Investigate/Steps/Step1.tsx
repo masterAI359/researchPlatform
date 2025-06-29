@@ -25,35 +25,35 @@ export default function Step1({ containerWidth }: any) {
             }
       }
 
-   
-        
+
+
 
 
       useEffect(() => {
 
 
-            if(selected && idea !== '') return
-           
+            if (selected && idea !== '') return
+
 
             window.addEventListener('nextStepClick', () => {
                   setNextClicked(true)
             })
 
             let words: number = null
-            if(nextClicked) {
+            if (nextClicked) {
                   words = wordCount(idea);
-            } 
+            }
 
-            if(selected && idea !== '') {
+            if (selected && idea !== '') {
                   dispatch(acceptedInput(true))
-            } else if(selected && idea === '') {
+            } else if (selected && idea === '') {
                   dispatch(acceptedInput(false))
             }
 
-            if(selected) {
+            if (selected) {
                   words = wordCount(idea)
             }
-           
+
 
             if (words < 5 && words !== null) {
                   dispatch(denyIncrement(true))
@@ -68,8 +68,8 @@ export default function Step1({ containerWidth }: any) {
 
       return (
             <div
-                  className='w-full shrink-0 snap-center snap-always
-                  text-center mx-auto xs:h-full box-border flex xs:px-2 basis-full'>
+                  className='w-full h-full lg:h-80 shrink-0 snap-center snap-always
+                  text-center mx-auto box-border flex xs:px-2 basis-full'>
                   <div className="w-full box-border">
                         <div className="flex-col items-center h-full w-full box-border">
                               <div className="w-full box-border border-b h-fit border-white/10 mb-4 flex flex-row gap-x-8 items-baseline">
@@ -85,11 +85,12 @@ export default function Step1({ containerWidth }: any) {
                                     </div>
                               </div>
                               <div className="flex justify-items-start gap-2 z-10 w-full">
-                                    <div className={`w-full max-w-full overflow-hidden grow-0 bg-white/10 h-44 sm:h-52 md:w-full lg:h-60 xl:h-80 pb-8 sm:pb-7 rounded-lg border border-solid box-border shadow-material_2
-                                    ${acceptInput === null ? 'border-transparent' : acceptInput === true ? 'border-blue-500' : 'border-red-800'}`}>
-                                          <StepsEditor context={chosenTake} setterFunction={getIdea}/>
+                                    <div className={`w-full max-w-full overflow-hidden grow-0 h-44 sm:h-52 md:w-full lg:h-60 xl:h-72 pb-8 sm:pb-7 
+                                     box-border
+                                    `}>
+                                          <StepsEditor context={chosenTake} setterFunction={getIdea} />
                                           <div
-                                                className={`flex flex-row-reverse items-center w-full h-fit`}>
+                                                className={`flex flex-row-reverse items-center w-full h-fit px-6`}>
                                                 <div className="justify-self-end h-fit w-auto rounded-full">
                                                       {acceptInput === null
                                                             ? ''

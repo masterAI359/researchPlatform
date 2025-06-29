@@ -27,7 +27,7 @@ export default function Step2({ containerWidth }: any) {
   return (
     <div style={{ flexShrink: 0, maxWidth: containerWidth }}
       className='xs:w-full snap-center snap-always
-    text-center mx-auto xs:h-full box-border flex xs:px-2 basis-full'>
+    text-center mx-auto h-full box-border flex xs:px-2 basis-full'>
       <div
         className="min-w-full lg:h-full content-center mx-auto box-border flex flex-col justify-center my-auto md:px-0">
         <div className="w-full h-auto border-b border-white/10 mb-4">
@@ -49,7 +49,7 @@ export default function Step2({ containerWidth }: any) {
               className="flex flex-col md:gap-y-4 xs:gap-y-1 items-center text-center my-auto"
             >
               <header className="w-full">
-                <h1 className="2xl:text-xl xl:text-lg md:text-sm md:text-left text-xs  font-light tracking tight text-slate-400 mb-2">I would describe my feelings towards the idea as ...</h1>
+                <h1 className="2xl:text-xl xl:text-lg lg:text-base md:text-sm md:text-left text-xs  font-light tracking tight text-slate-400 mb-2">I would describe my feelings towards the idea as ...</h1>
               </header>
               {opinions.map((opinion) => (
                 <div
@@ -57,12 +57,12 @@ export default function Step2({ containerWidth }: any) {
                   key={opinion}
                 >
                   <div
-                    className={`bg-white 2xl:text-base xl:text-base lg:text-[0.8rem] text-xs sm:text-sm tracking-tight
-                                rounded-lg w-72 h-11 2xl:min-w-128 2xl:max-w-128 2xl:h-16 xl:h-14 xl:min-w-96
+                    className={`bg-white/10 lg:text-base lg:text-[0.8rem] text-xs sm:text-sm tracking-tight
+                                rounded-4xl w-72 lg:w-96 lg:h-14 h-11 2xl:min-w-128 2xl:max-w-128 2xl:h-16 xl:h-14 xl:min-w-96
                                 cursor-pointer md:hover:bg-white/20 md:hover:text-white transition-all duration-200 ease-in-out
                                 flex justify-between items-center lg:px-4 xs:px-2 grow-0 gap-3
-                                ${biases === null && 'text-black'}
-                                ${biases && opinion === biases && 'text-black'}
+                                ${biases === null && 'text-white'}
+                                ${biases && opinion === biases && 'text-white'}
                                 ${biases && opinion !== biases && 'text-zinc-500'}
                                 `}
                     data-set={opinion}

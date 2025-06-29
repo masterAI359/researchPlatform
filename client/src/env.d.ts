@@ -186,7 +186,12 @@ declare global {
     loggedOut: boolean,
     data: any
   }
+
+  interface TipTapProps {
+    context: string | null,
+    setterFunction: any
+  }
 }
 
 
-export { ArticleType, OptionsTypes, SelectedArticle, Perspectives, State, PremiseProps, Help, SavedArticle, Calculations, PostsProps, SupabaseUser, ResetPW, Investigation, ScrapedArticle };
+export { ArticleType, OptionsTypes, SelectedArticle, Perspectives, State, PremiseProps, Help, SavedArticle, Calculations, PostsProps, SupabaseUser, ResetPW, Investigation, ScrapedArticle, TipTapProps };

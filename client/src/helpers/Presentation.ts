@@ -115,7 +115,7 @@ export const splitPosts = (
 };
 
 
-export const limitString = (str: string): string => {
+export const limitString = (str: string, limit?: number): string => {
 
     let arr: string[] = [];
     let temp = str.split('');
@@ -124,7 +124,7 @@ export const limitString = (str: string): string => {
 
     for (let i = 0; i < temp.length; i++) {
 
-        if (count >= 50) {
+        if (count >= (limit ? limit : 75)) {
             break
         } else {
             arr.push(temp[i]);

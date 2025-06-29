@@ -7,7 +7,7 @@ export default function GatherPOV({ }) {
 
     return (
         <main
-            className="flex flex-col grow-0 items-center lg:px-4 2xl:gap-y-6 xl:px-0 w-full h-full relative">
+            className="flex grow-0 lg:items-center xl:items-end justify-center lg:px-4 2xl:gap-y-6 w-full h-full relative">
             <StepWizard />
             <WindowContainer />
         </main>

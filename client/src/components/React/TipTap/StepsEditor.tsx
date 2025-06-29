@@ -1,15 +1,12 @@
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/ReduxToolKit/store";
-import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/ReduxToolKit/store";
+import Placeholder from "@tiptap/extension-placeholder";
+import { TipTapProps } from "@/env";
+import styles from './styles.module.css';
 
-//TODO: fix bug occurring when using the editor
-
-export default function StepsEditor({ setterFunction, context }) {
-    const investigateState = useSelector((state: RootState) => state.investigation);
-    const { step } = investigateState.stepper;
-    const selected = useSelector((state: RootState) => state.bluesky.selected)
+export default function StepsEditor({ setterFunction, context }: TipTapProps) {
     const dispatch = useDispatch<AppDispatch>();
 
     const handleContent = () => {
@@ -18,15 +15,20 @@ export default function StepsEditor({ setterFunction, context }) {
     }
 
 
+    console.log(context)
+
     const editor = useEditor({
-        content: `${context}
-          `,
+        content: context && context.trim().length > 0 ? context : null,
         extensions: [
             StarterKit.configure({
                 heading: {
                     levels: [1, 2]
                 }
-            })
+            }),
+            Placeholder.configure({
+                placeholder: 'Type here...',
+                emptyEditorClass: styles.empty_editor,
+            }),
         ],
 
     })
@@ -46,8 +48,8 @@ export default function StepsEditor({ setterFunction, context }) {
 
     return (
         <div className="w-full max-w-168 h-full box-border mx-auto">
-            <div className="control-group w-full flex  bg-white/10 rounded-t-lg">
-                <div className="button-group w-full mx-auto text-white flex gap-x-3">
+            <div className="control-group w-full flex  bg-white/10 rounded-md">
+                <div className="button-group px-3 w-full mx-auto text-white flex gap-x-6">
 
                     <button
                         onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
@@ -111,10 +113,10 @@ export default function StepsEditor({ setterFunction, context }) {
                 </div>
             </div>
 
-            <div onClick={handleContainerClick} className="h-full w-full box-border max-w-80 md:max-w-full">
+            <div onClick={handleContainerClick} className="h-full w-full box-border max-w-80 md:max-w-full overflow-hidden">
                 <EditorContent style={{ textAlign: 'left', verticalAlign: 'top', minHeight: '90%', height: '100%', color: '#ffffff', maxWidth: '100%' }} editor={editor}
-                    className="text-white whitespace-pre-wrap break-words text-sm sm:text-base md:text-lg focus:outline-none px-1 focus:border-none font-light font-serif tracking-tight cursor-text
-             font-serif w-full overflow-hidden h-full prose"
+                    className="text-white whitespace-pre-wrap break-words text-xs sm:text-sm xl:text-lg focus:outline-none px-2 focus:border-none font-light font-serif tracking-tight cursor-text
+             w-full overflow-y-scroll no-scrollbar h-full prose"
                 />
             </div>
 

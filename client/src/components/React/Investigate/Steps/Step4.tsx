@@ -12,7 +12,7 @@ export default function Step4({ containerWidth }: any) {
 
   return (
     <div style={{ flexShrink: 0, maxWidth: containerWidth }}
-      className='w-full 2xl:max-w-168
+      className='max-w-full w-full 2xl:max-w-168 2xl:h-80
 text-center mx-auto xs:h-full box-border flex xs:px-2 md:px-0 basis-full'>
       <div className="inline-block h-fit box-border mx-auto min-w-full max-w-full 2xl:h-full">
         <div className="flex flex-col items-center w-full 
@@ -20,8 +20,8 @@ text-center mx-auto xs:h-full box-border flex xs:px-2 md:px-0 basis-full'>
           <div className="text-center relative z-10 w-full">
             <div className="w-full box-border border-b h-fit border-white/10 lg:mb-4 mb-2
            flex flex-row gap-x-4 sm:gap-x-8 xs:items-center  md:items-baseline">
-              <div className="w-fit flex justify-items-start">
-                <h1 className="2xl:text-3xl md:text-2xl xs:text-md tracking-tight font-light text-white">
+              <div className="w-fit flex justify-items-start mb-2">
+                <h1 className="2xl:text-3xl text-base tracking-tight font-light text-white">
                   {"(Optional)"} What would support this claim?
                 </h1>
               </div>
@@ -31,8 +31,8 @@ text-center mx-auto xs:h-full box-border flex xs:px-2 md:px-0 basis-full'>
               </div>
 
             </div>
-            <div className="block w-full border-none h-44 sm:h-52 xl:h-80 2xl:max-w-168 text-md text-white bg-white/10 focus:ring-1 focus:ring-white shadow-material_2
-    rounded-lg resize-none text-wrap flex justify-items-start">
+            <div className="w-full border-none h-44 sm:h-52 xl:h-72 2xl:max-w-168 text-md text-white bg-transparent focus:ring-1 focus:ring-white
+     resize-none text-wrap flex justify-items-start">
               <StepsEditor context={premises} setterFunction={getPremises} />
             </div>
           </div>

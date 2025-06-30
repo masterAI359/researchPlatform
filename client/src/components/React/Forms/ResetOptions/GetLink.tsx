@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import { emailValidation } from "@/helpers/validation"
 import { AnimatePresence } from "framer-motion"
-import Emailing from "../AuthNotifications/Emailing"
 import { Link } from "react-router-dom"
 import { sendEmailResetLink } from "@/helpers/FetchRequests"
-import { store } from "@/ReduxToolKit/store"
+import { emailStatus } from "../AuthNotifications/AuthStatus"
+import AuthNotification from "../AuthNotifications/AuthNotification"
 
 export default function GetLink({ }) {
     const [emailToReset, setEmailToReset] = useState<string>(null)
@@ -35,7 +35,7 @@ export default function GetLink({ }) {
     return (
         <div className="w-full max-w-md md:max-w-sm mx-auto">
             <AnimatePresence>
-                {pending && <Emailing setPending={setPending} emailSent={emailSent} />}
+                {pending && <AuthNotification complete={emailSent} setterFunction={setPending} status={emailStatus} />}
             </AnimatePresence>
             <div className="flex flex-col">
                 <div className="border-b pb-12">

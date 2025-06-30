@@ -1,11 +1,12 @@
 import { createPortal } from "react-dom";
-import { showSignOut, clearAuthSlice } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
+import { clearAuthSlice, showSignOut } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
 import { useDispatch } from "react-redux";
 import { motion, AnimatePresence } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchSignOut } from "@/helpers/FetchRequests";
-import SigningOut from "./AuthNotifications/SigningOut";
+import AuthNotification from "./AuthNotifications/AuthNotification";
+import { signOutStatus } from "./AuthNotifications/AuthStatus";
+import { useNavigate } from "react-router-dom";
 
 const variants = {
     closed: { opacity: 0 },
@@ -15,19 +16,33 @@ const variants = {
 
 
 export default function SignOutModal({ }) {
-    const [signingOut, setSigningOut] = useState<boolean>(false)
-    const [success, setSuccess] = useState<boolean>(null)
-    const dispatch = useDispatch()
+    const [signingOut, setSigningOut] = useState<boolean>(false);
+    const [success, setSuccess] = useState<boolean | null>(null);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const redirect = () => {
+        dispatch(showSignOut(false));
+        dispatch(clearAuthSlice());
+        navigate('/');
+    };
 
     useEffect(() => {
 
         const executeSignOut = async (): Promise<void> => {
-            const data = await fetchSignOut();
-            if (data.loggedOut === true) {
-                setSuccess(true);
-            } else {
-                setSuccess(false)
-            }
+            try {
+
+                const data: SignOutResponse = await fetchSignOut();
+                if (data.loggedOut === true) {
+                    setSuccess(true);
+                } else {
+                    setSuccess(false)
+                }
+
+            } catch (error) {
+                console.error(error);
+            };
+
         };
 
         if (signingOut) {
@@ -47,7 +62,7 @@ export default function SignOutModal({ }) {
         sm:gap-y-10 sm:p-10 lg:col-span-2 lg:flex-row lg:items-center bg-ebony mt-2 
         shadow-inset text-center">
             <AnimatePresence>
-                {signingOut !== false && <SigningOut signingOut={signingOut} setSigningOut={setSigningOut} success={success} />}
+                {signingOut !== false && <AuthNotification complete={success} setterFunction={setSigningOut} status={signOutStatus} redirect={redirect} />}
             </AnimatePresence>
             <div className="lg:min-w-0 lg:flex-1 max-w-sm mx-auto">
                 <p className="text-white xl:text-4xl">Sign out</p>

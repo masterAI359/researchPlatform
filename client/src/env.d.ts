@@ -191,7 +191,20 @@ declare global {
     context: string | null,
     setterFunction: any
   }
+
+  interface AuthStatus {
+    pending: string,
+    successful: string,
+    failed: string
+  }
+
+  interface AuthNotificationProps {
+    complete: boolean | null,
+    setterFunction: any,
+    status: AuthStatus,
+    redirect?: Function
+  }
 }
 
 
-export { ArticleType, OptionsTypes, SelectedArticle, Perspectives, State, PremiseProps, Help, SavedArticle, Calculations, PostsProps, SupabaseUser, ResetPW, Investigation, ScrapedArticle, TipTapProps };
+export { ArticleType, OptionsTypes, SelectedArticle, Perspectives, State, PremiseProps, Help, SavedArticle, Calculations, PostsProps, SupabaseUser, ResetPW, Investigation, ScrapedArticle, TipTapProps, AuthStatus, AuthNotificationProps };

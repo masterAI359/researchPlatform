@@ -3,36 +3,31 @@ import { useEffect } from "react";
 import Success from "./Success";
 import Failed from "./Failed";
 import Pending from "./Pending";
+import { hideTop } from "@/motion/variants";
+import { createPortal } from "react-dom";
+import { AuthNotificationProps } from "@/env";
 
-const variants = {
-    show: {
-        y: 0,
-        opacity: 1
-    },
-    hide: {
-        y: -100,
-        opacity: 0
-    }
-}
 
-export default function CreatingUser({ createdUser, setCreating, creating }) {
+export default function AuthNotification({ complete, setterFunction, status, redirect }: AuthNotificationProps) {
 
     useEffect(() => {
 
         const timer = setTimeout(() => {
-            setCreating(false)
+            setterFunction(false);
+            if (redirect) {
+                redirect();
+            };
         }, 2000);
-
 
         return () => clearTimeout(timer)
 
-    }, [createdUser])
+    }, [complete])
 
 
-    return (
+    const notification = (
         <motion.div
             key='accountCreationNotification'
-            variants={variants}
+            variants={hideTop}
             initial='hide'
             animate='show'
             exit='hide'
@@ -42,19 +37,21 @@ export default function CreatingUser({ createdUser, setCreating, creating }) {
             <div key='title' className="flex w-full h-full items-center justify-between">
                 <div key='titleContainer' className="w-auto h-fit">
                     <p className="text-white font-light text-sm">
-                        {createdUser === null && 'Creating Account'}
-                        {createdUser === true && 'Account Created'}
-                        {createdUser === false && 'Account creation failed'}
+                        {complete === null && status.pending}
+                        {complete === true && status.successful}
+                        {complete === false && status.failed}
                     </p>
                 </div>
                 <div className="w-auto h-fit relative">
                     {<AnimatePresence mode="wait">
-                        {createdUser === null && <Pending />}
-                        {createdUser === true && <Success />}
-                        {createdUser === false && <Failed />}
+                        {complete === null && <Pending />}
+                        {complete === true && <Success />}
+                        {complete === false && <Failed />}
                     </AnimatePresence>}
                 </div>
             </div>
         </motion.div>
-    )
+    );
+
+    return createPortal(notification, document.body);
 };

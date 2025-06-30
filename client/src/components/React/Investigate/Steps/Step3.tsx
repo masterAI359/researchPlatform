@@ -47,7 +47,7 @@ export default function Step2({ containerWidth }: any) {
 
           <div className="flex w-fit items-center justify-center xs:gap-x-16 xl:gap-x-36 box-border">
             <div
-              className="flex flex-col md:gap-y-4 xs:gap-y-1 items-center justify-center border text-center my-auto"
+              className="flex flex-col md:gap-y-4 xs:gap-y-1 items-center justify-center text-center my-auto"
             >
               <header className="w-full">
                 <h1 className="2xl:text-xl xl:text-lg lg:text-base md:text-sm md:text-left text-xs  font-light tracking tight text-slate-400 mb-2">I would describe my feelings towards the idea as ...</h1>

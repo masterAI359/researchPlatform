@@ -5,7 +5,7 @@ import { RootState } from "@/ReduxToolKit/store"
 import DataTable from "./DataTable"
 import { useEffect } from "react"
 import { AnimatePresence } from "framer-motion"
-import SavingResearch from "../Forms/AuthNotifications/SavingResearch"
+import SavingResearch from "../Notifications/AuthNotifications/SavingResearch"
 import ViewMyInvestigations from "../Buttons/ProcessButtons/ViewMyInvestigations"
 import FeedBackForm from "../Forms/UserFeedback/FeedbackForm"
 

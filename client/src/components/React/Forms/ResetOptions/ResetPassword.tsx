@@ -9,8 +9,8 @@ import { RootState } from "@/ReduxToolKit/store"
 import { Link } from "react-router-dom"
 import { AnimatePresence } from "framer-motion"
 import { pwReset } from "@/helpers/SupabaseData"
-import AuthNotification from "../AuthNotifications/AuthNotification"
-import { passwordChangeStatus } from "../AuthNotifications/AuthStatus"
+import AuthNotification from "../../Notifications/AuthNotifications/AuthNotification"
+import { passwordChangeStatus } from "../../Notifications/AuthNotifications/AuthStatus"
 
 export default function ResetPassword({ }) {
     const [storedEmail, setStoredEmail] = useState<string>();

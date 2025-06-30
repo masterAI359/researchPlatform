@@ -1,4 +1,4 @@
-import GetLink from "./ResetOptions/GetLink";
+import GetLink from "../ResetOptions/GetLink";
 
 
 export default function EmailForReset() {

@@ -4,8 +4,8 @@ import { useDispatch } from "react-redux";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { fetchSignOut } from "@/helpers/FetchRequests";
-import AuthNotification from "./AuthNotifications/AuthNotification";
-import { signOutStatus } from "./AuthNotifications/AuthStatus";
+import AuthNotification from "../../Notifications/AuthNotifications/AuthNotification";
+import { signOutStatus } from "../../Notifications/AuthNotifications/AuthStatus";
 import { useNavigate } from "react-router-dom";
 
 const variants = {

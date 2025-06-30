@@ -1,4 +1,4 @@
-import ResetPassword from "./ResetOptions/ResetPassword"
+import ResetPassword from "../ResetOptions/ResetPassword"
 import { useEffect } from "react"
 import { createClient } from '@supabase/supabase-js'
 

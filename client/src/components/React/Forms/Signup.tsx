@@ -1,10 +1,8 @@
-import { supabase } from "@/SupaBase/supaBaseClient"
 import { requiredInput } from "@/helpers/validation"
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { AppDispatch, RootState } from "@/ReduxToolKit/store"
 import { Link, useNavigate } from "react-router-dom"
-import CreatingUser from "./AuthNotifications/CreatingUser"
 import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
 import { confirmPassword, emailValidation } from "@/helpers/validation"
 import { getFirstPassword, getSecondPassword, requestValidEmail, matchPasswords } from "@/ReduxToolKit/Reducers/Athentication/NewUserSlice"
@@ -17,6 +15,8 @@ import OAuthLogins from "./InputFields/OauthLogins"
 import NewPasswordGuide from "./InputGuides/NewPasswordGuide"
 import { newUser } from "@/helpers/FetchRequests"
 import { fetchUserCredentials } from "@/ReduxToolKit/Reducers/Athentication/Authentication"
+import { newAccStatus } from "./AuthNotifications/AuthStatus"
+import AuthNotification from "./AuthNotifications/AuthNotification"
 
 export default function Signup() {
     const id = useSelector((state: RootState) => state.auth.user_id);
@@ -122,7 +122,7 @@ export default function Signup() {
         <ErrorBoundary>
             <section className="lg:p-8 min-h-dvh overflow-hidden bg-black animate-fade-in relative">
                 <AnimatePresence>
-                    {creating && <CreatingUser creating={creating} setCreating={setCreating} createdUser={createdUser} />}
+                    {creating && <AuthNotification setterFunction={setCreating} complete={createdUser} status={newAccStatus} />}
                 </AnimatePresence>
                 <div className="mx-auto 2xl:max-w-7xl py-12 sm:py-24 lg:px-16 md:px-12 px-8 xl:px-36">
                     <div className="border-b pb-4 sm:pb-12">

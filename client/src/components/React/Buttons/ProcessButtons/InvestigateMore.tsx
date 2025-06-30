@@ -1,15 +1,13 @@
 import { RootState } from "@/ReduxToolKit/store"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { displayWorkModal } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
 import { PreviousWork } from "../../Modals/PreviousWork"
-import { useNavigate } from "react-router-dom"
 
 export default function InvestigateMore() {
     const [open, setOpen] = useState<boolean>(false)
     const id = useSelector((state: RootState) => state.auth.user_id)
     const saved = useSelector((state: RootState) => state.saveResearch.saved)
-    const investigateState = useSelector((state: RootState) => state.investigation)
     const dispatch = useDispatch()
 
 
@@ -17,11 +15,11 @@ export default function InvestigateMore() {
 
         if (saved && id) {
             dispatch({ type: 'clear' })
-        } else if(id && !saved) {
+        } else if (id && !saved) {
             displayWorkModal(true)
             setOpen(true)
         } else if (!id) {
-            dispatch({ type: 'clear'})
+            dispatch({ type: 'clear' })
         }
 
     }

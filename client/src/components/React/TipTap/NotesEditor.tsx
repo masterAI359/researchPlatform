@@ -109,8 +109,9 @@ export default function StepsEditor({ setterFunction, context }) {
 
             <div onClick={handleContainerClick} className="h-full w-full">
                 <EditorContent style={{ textAlign: 'left', verticalAlign: 'top', minHeight: '90%', height: '100%', color: '#ffffff' }} editor={editor}
-                    className="text-black xs:text-xs md:text-lg focus:outline-none px-1 focus:border-none font-thin font-serif tracking-tight cursor-text
-             font-serif min-w-full h-full prose"
+                    className="text-black xs:text-xs md:text-lg focus:outline-none px-1 
+                    focus:border-none font-thin font-serif tracking-tight cursor-text
+                    min-w-full h-full prose"
                 />
             </div>
 

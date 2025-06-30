@@ -186,7 +186,25 @@ declare global {
     loggedOut: boolean,
     data: any
   }
+
+  interface TipTapProps {
+    context: string | null,
+    setterFunction: any
+  }
+
+  interface AuthStatus {
+    pending: string,
+    successful: string,
+    failed: string
+  }
+
+  interface AuthNotificationProps {
+    complete: boolean | null,
+    setterFunction: any,
+    status: AuthStatus,
+    redirect?: Function
+  }
 }
 
 
-export { ArticleType, OptionsTypes, SelectedArticle, Perspectives, State, PremiseProps, Help, SavedArticle, Calculations, PostsProps, SupabaseUser, ResetPW, Investigation, ScrapedArticle };
+export { ArticleType, OptionsTypes, SelectedArticle, Perspectives, State, PremiseProps, Help, SavedArticle, Calculations, PostsProps, SupabaseUser, ResetPW, Investigation, ScrapedArticle, TipTapProps, AuthStatus, AuthNotificationProps };

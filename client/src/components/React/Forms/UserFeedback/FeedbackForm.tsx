@@ -6,7 +6,8 @@ import { getAuthorEmail, getFeedBackMessage, stopAskingForFeedBack, declineFeedB
 import React, { useEffect, useState } from "react"
 import { RootState } from "@/ReduxToolKit/store"
 import { submitFeedback } from "@/helpers/SupabaseData"
-import SubmittingFeedback from "../AuthNotifications/SubmittingFeedback"
+import AuthNotification from "../AuthNotifications/AuthNotification"
+import { feedbackStatus } from "../AuthNotifications/AuthStatus"
 
 export default function FeedBackForm() {
   const email = useSelector((state: RootState) => state.auth.email)
@@ -48,10 +49,16 @@ export default function FeedBackForm() {
 
   useEffect(() => {
 
-    if (submitted) {
-      submitFeedback(authorEmail, message, setFeedbacksubmitted)
-
+    const executeFeedback = async () => {
+      const data = await submitFeedback(authorEmail, message)
+      if (data) {
+        setFeedbacksubmitted(true)
+      } else {
+        setFeedbacksubmitted(false)
+      };
     }
+
+    if (submitted) executeFeedback();
 
     if (feedbackSubmitted) {
       dispatch(stopAskingForFeedBack(true))
@@ -84,7 +91,7 @@ export default function FeedBackForm() {
             <g fill="#ffffff" fillRule="nonzero" stroke="none" strokeWidth={1} strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit={10} strokeDasharray="" strokeDashoffset={0} fontFamily="none" fontWeight="none" fontSize="none" textAnchor="none" style={{ mixBlendMode: 'normal' }}><g transform="scale(16,16)"><path d="M2.75,2.04297l-0.70703,0.70703l0.35547,0.35156l4.89453,4.89844l-5.25,5.25l0.70703,0.70703l5.25,-5.25l4.89453,4.89844l0.35547,0.35156l0.70703,-0.70703l-0.35156,-0.35547l-4.89844,-4.89453l5.25,-5.25l-0.70703,-0.70703l-5.25,5.25l-4.89844,-4.89453z" /></g></g>
           </svg>
           <AnimatePresence>
-            {submitted && <SubmittingFeedback setSubmitted={setSubmitted} feedbackSubmitted={feedbackSubmitted} />}
+            {submitted && <AuthNotification complete={feedbackSubmitted} setterFunction={setSubmitted} status={feedbackStatus} />}
           </AnimatePresence>
         </div>
         <h2 className="title-font mb-1 text-lg lg:text-2xl font-light font-serif tracking-tight text-center text-white">Feedback</h2>

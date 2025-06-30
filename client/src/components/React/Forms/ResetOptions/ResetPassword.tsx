@@ -8,8 +8,9 @@ import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { Link } from "react-router-dom"
 import { AnimatePresence } from "framer-motion"
-import Resetting from "../AuthNotifications/ResettingPassword"
 import { pwReset } from "@/helpers/SupabaseData"
+import AuthNotification from "../AuthNotifications/AuthNotification"
+import { passwordChangeStatus } from "../AuthNotifications/AuthStatus"
 
 export default function ResetPassword({ }) {
     const [storedEmail, setStoredEmail] = useState<string>();
@@ -86,7 +87,7 @@ export default function ResetPassword({ }) {
     return (
         <div className="w-full max-w-md md:max-w-sm mx-auto">
             <AnimatePresence>
-                {resetting && <Resetting setResetting={setResetting} successfullyChanged={successfullyChanged} />}
+                {resetting && <AuthNotification complete={successfullyChanged} setterFunction={setResetting} status={passwordChangeStatus} />}
             </AnimatePresence>
             <div className="flex flex-col">
                 <div className="border-b pb-12">

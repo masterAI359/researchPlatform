@@ -12,9 +12,9 @@ export default function ({ }) {
 
     const selectStep = (dnd: boolean) => {
 
-        if(dnd === false && acceptInput === true) {
+        if (dnd === false && acceptInput === true) {
             dispatch(incrementBy(1));
-        } else if(dnd === null || dnd === true) {
+        } else if (dnd === null || dnd === true) {
             dispatch(denyIncrement(true));
             dispatch(acceptedInput(false));
             alert('First input field is required!')
@@ -22,7 +22,7 @@ export default function ({ }) {
     };
 
     return (
-        <li className="flex flex-col md:w-full xs:w-full xs:h-20 lg:h-28 items-center">
+        <li className="flex flex-col w-full h-20 items-center">
             <div className="flex  items-center justify-center w-full h-full relative">
                 <motion.div
                     onClick={() => selectStep(denied)}

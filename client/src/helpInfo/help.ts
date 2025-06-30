@@ -18,20 +18,20 @@ const Step1Help: Help[] = [
 
 const Step2Help: Help[] = [
     {
-         heading: 'What to do here?',
-         explanation: `Here you're going to select first what your personal perspective is on the idea you entered in the previous step. Just 
+        heading: 'What to do here?',
+        explanation: `Here you're going to select first what your personal perspective is on the idea you entered in the previous step. Just 
          Select whether you agree with it, disagree or even have no opinion on the matter(in which case you'll select 'Neutral'). Then select what 
          level of prior knowledge you have on the idea you entered in the previous step.
          `
 
     },
     {
-    heading: "Why is this important?",
-    explanation: `To have an honest inquiry, we must acknowledge what our personal beliefs are before we dig in.
+        heading: "Why is this important?",
+        explanation: `To have an honest inquiry, we must acknowledge what our personal beliefs are before we dig in.
     If we don't reflect on how we feel about a topic, or the parties involved, we're more likely to search only for 
     what would reinforce our existing belief. Our desire to reaffirm what we already believe can pull us towards a 
     conclusion before we can actually support it.`
-}]
+    }]
 
 
 const Step3Help: Help[] = [{
@@ -57,8 +57,8 @@ const Step4Help: Help[] = [{
 
 
 const Step5Help: Help[] = [{
-    heading: "What exaclty am i looking for?",
-    explanation: `While we're searching for evidence, intentionally seeking an answer for the premises (i.e. what must be true to support the idea you're tackling) is the 
+    heading: "What exaclty am I looking for?",
+    explanation: `While we're searching for evidence, intentionally seeking an answer for the premises — what must be true to support the idea —   is the 
     most direct persuit of the truth. What we as human beings tend to look for is what will make us feel good/what we ~want~ to be true. But we're not typically wired to be 
     perfectly rational truth seeking machines. `
 }]

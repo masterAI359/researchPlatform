@@ -53,3 +53,8 @@
   --astro-code-token-punctuation: #4c4d58;
   --astro-code-token-link: #ffffff;
 }
+
+.ProseMirror .is-empty::before {
+  @apply text-slate-300 float-left pointer-events-none h-0;
+  content: attr(data-placeholder);
+}

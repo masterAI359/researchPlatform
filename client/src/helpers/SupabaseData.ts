@@ -100,7 +100,7 @@ export const getInvestigationSources = (sources: string[], savedArticles: any) =
 
 
 
-export const submitFeedback = async (authorEmail: string, message: string, setFeedbackSubmitted: Function) => {
+export const submitFeedback = async (authorEmail: string, message: string): Promise<boolean> => {
 
     try {
 
@@ -117,19 +117,17 @@ export const submitFeedback = async (authorEmail: string, message: string, setFe
         });
 
         if (!response.ok) {
-            setFeedbackSubmitted(false);
             throw new Error(`Couldn't reach the endpoint for feedback: ${response.statusText}`);
         };
-
         const result = await response.json();
 
         if (result) {
-            setFeedbackSubmitted(true);
+            return true
         };
 
     } catch (error) {
-        setFeedbackSubmitted(false)
-        console.log(error)
+        console.error(error);
+        return false
     };
 };
 

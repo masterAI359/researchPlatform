@@ -20,12 +20,13 @@ export default function ReviewInvestigation() {
 
     useLayoutEffect(() => {
         const retrieved = getInvestigationSources(sources, savedArticles)
-            if (retrieved) {
-                dispatch(getSourcesToReview(retrieved))
-            }
+        if (retrieved) {
+            dispatch(getSourcesToReview(retrieved))
+        }
 
-        if(!sources && cachedSources) {
-            dispatch(getSourcesToReview(cachedSources))
+        if (!sources && cachedSources) {
+            dispatch(getSourcesToReview(cachedSources));
+            localStorage.removeItem('cachedSources');
         }
     }, [investigation])
 
@@ -37,14 +38,14 @@ export default function ReviewInvestigation() {
             <ScrolltoTop />
             <BackToSavedResearch />
             <div className="w-full h-full flex flex-col gap-y-24 items-center justify-center">
- <ErrorBoundary fallback={ <LostData /> }>
-             <DetailsTable />
-            <SourcesFromResearch  />
-            <Terms/>
-            </ErrorBoundary>
+                <ErrorBoundary fallback={<LostData />}>
+                    <DetailsTable />
+                    <SourcesFromResearch />
+                    <Terms />
+                </ErrorBoundary>
             </div>
-           
-           
+
+
         </section>
     )
 }

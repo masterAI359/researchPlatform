@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { requiredInput, emailValidation } from "@/helpers/validation"
 import { useNavigate } from "react-router-dom"
-import LoggingIn from "./AuthNotifications/LoggingIn"
 import { AnimatePresence } from "framer-motion"
 import Password from "./InputFields/Password"
 import { supabaseSignIn } from "@/helpers/FetchRequests"
@@ -10,6 +9,8 @@ import { fetchUserCredentials } from "@/ReduxToolKit/Reducers/Athentication/Auth
 import Email from "./InputFields/Email"
 import OAuthLogins from "./InputFields/OauthLogins"
 import AuthFooterLinks from "./InputFields/AuthFooterLinks"
+import { loginStatus } from "./AuthNotifications/AuthStatus"
+import AuthNotification from "./AuthNotifications/AuthNotification"
 
 export default function Login() {
     const [userEmail, setUserEmail] = useState<string>(null)
@@ -53,7 +54,7 @@ export default function Login() {
     return (
         <section className={`lg:p-8 overflow-hidden bg-black animate-fade-in`}>
             <AnimatePresence>
-                {loggingIn && <LoggingIn successful={successfull} setLoggingIn={setLoggingIn} />}
+                {loggingIn && <AuthNotification complete={successfull} setterFunction={setLoggingIn} status={loginStatus} />}
             </AnimatePresence>
             <div className="mx-auto 2xl:max-w-7xl py-24 lg:px-16 md:px-12 px-8 xl:px-36">
                 <div className="border-b pb-12">

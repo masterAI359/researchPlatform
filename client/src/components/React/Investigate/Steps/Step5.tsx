@@ -4,12 +4,15 @@ import { motion } from "framer-motion"
 import { useDispatch, useSelector } from "react-redux"
 import { displaySearch, displayMindMap } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
 import { RootState } from "@/ReduxToolKit/store"
+import { limitString } from "@/helpers/Presentation"
 
 export default function Step5({ containerWidth }) {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { pov } = investigateState
     const { idea } = pov
     const dispatch = useDispatch()
+
+    const shortened = limitString(idea)
 
     const beginSearch = () => {
         dispatch(displayMindMap(false))
@@ -26,7 +29,7 @@ export default function Step5({ containerWidth }) {
                         <header className="w-full h-auto flex flex-row gap-x-8 md:gap-x-8 items-center">
                             <div className="w-fit flex justify-items-start">
                                 <h1 className="2xl:text-3xl md:text-2xl text-md tracking-tight font-light text-zinc-300 pb-1 xs:text-left">
-                                    Now we search for evidence
+                                    Search for evidence
                                 </h1>
                             </div>
                             <div className="w-fit h-full pb-1">
@@ -38,14 +41,12 @@ export default function Step5({ containerWidth }) {
                     </div>
                     <main className="w-full md:w-fit h-full flex flex-col justify-start md:justify-center gap-y-5 md:gap-y-2 xl:mt-16">
                         <div className="w-full h-full flex flex-col gap-y-4">
-                            <p className="text-xs xl:text-lg w-fit text-white font-light tracking-tight text-left">
+                            <p className="flex md:hidden text-xs xl:text-lg w-fit text-white whitespace-normal font-light tracking-tight text-left text-wrap">
                                 The idea: <span className="text-zinc-400 font-light tracking-tight">
-                                    <em>
-                                        {idea}
-                                    </em>
+                                    {shortened ? shortened : idea}
                                 </span>
                             </p>
-                            <p className="text-xs xl:text-lg w-fit text-white font-light tracking-tight text-wrap text-pretty">
+                            <p className="text-xs xl:text-lg w-fit text-white font-light tracking-tight text-wrap">
                                 Let's look for some evidence to support the idea you're evaluating
                             </p>
                         </div>
@@ -54,12 +55,12 @@ export default function Step5({ containerWidth }) {
                                 onClick={beginSearch}
                                 whileTap={{ scale: 0.9 }}
                                 transition={{ type: 'tween', duration: 0.1 }}
-                                className="bg-white rounded-full group 2xl:-translate-x-1 mb-2 sm:mb-0
+                                className="bg-white/10 rounded-full group 2xl:-translate-x-1 mb-2 sm:mb-0
                              md:p-0 xl:mt-8 w-32 h-8 xl:w-44 xl:h-10 mx-auto flex items-center 
-                            text-center hover:bg-white/10 transition-all duration-200 ease-in-out shadow-material_2">
+                            text-center hover:bg-white/20 shadow-material_2">
                                 <div className="w-full h-full flex justify-between items-center">
                                     <div className="w-auto h-auto mx-auto">
-                                        <p className="text-black group-hover:text-white font-light text-sm text-center xl:text-lg w-fit">
+                                        <p className="text-white group-hover:text-white font-light text-sm text-center xl:text-lg w-fit">
                                             Get Started <span className="ml-2">&#8594;</span>
                                         </p>
                                     </div>

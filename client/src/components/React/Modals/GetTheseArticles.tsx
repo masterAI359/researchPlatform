@@ -1,4 +1,4 @@
-import { motion } from "framer-motion"
+import { motion, time } from "framer-motion"
 import { createPortal } from "react-dom"
 import { GetArticleContent } from "@/ReduxToolKit/Reducers/Investigate/Reading"
 import { useAppdispatch } from "@/Hooks/appDispatch"
@@ -10,27 +10,40 @@ import { clearChosenArticles } from "@/ReduxToolKit/Reducers/Investigate/ChosenA
 import ArticleLink from "../LinkComponents/ArticleLink"
 import { useEffect, useState } from "react"
 import { getQuery } from "@/ReduxToolKit/Reducers/Investigate/UserPOV"
+import { variants } from "@/motion/variants"
 
 export function GetTheseArticles() {
-    const investigateState = useSelector((state: RootState) => state.investigation)
-    const { chosenArticles } = investigateState.getArticle
-    const appDispatch = useAppdispatch()
-    const dispatch = useDispatch()
+    const investigateState = useSelector((state: RootState) => state.investigation);
+    const { chosenArticles } = investigateState.getArticle;
+    const [fetching, setFetching] = useState<boolean | null>(null);
+    const appDispatch = useAppdispatch();
+    const dispatch = useDispatch();
 
-    const variants = {
-        closed: { opacity: 0 },
-        open: { opacity: 1 }
-    }
-
-    const retrieveArticles = () => {
+    const retrieveArticles = (): void => {
         dispatch(getQuery(null))
         dispatch(resetResults())
-        dispatch(displaySearch(false))
         appDispatch(GetArticleContent(chosenArticles))
-        dispatch(clearChosenArticles())
-        dispatch(displayGetArticlesModal(false))
-        dispatch(displayArticleContent(true))
-    }
+    };
+
+    useEffect(() => {
+
+        if (!fetching) {
+            return
+        } else {
+            retrieveArticles();
+        };
+
+        const timer: NodeJS.Timeout = setTimeout(() => {
+            dispatch(displayGetArticlesModal(false))
+            dispatch(displaySearch(false))
+            dispatch(displayArticleContent(true))
+        }, 200);
+
+        return () => clearTimeout(timer);
+
+    }, [fetching]);
+
+
 
     const modal = (
         <motion.div
@@ -39,7 +52,8 @@ export function GetTheseArticles() {
             initial="closed"
             animate="open"
             exit="closed"
-            className="fixed bottom-28 2xl:bottom-20 xl:bottom-24 lg:bottom-32  z-40 2xl:left-72 xl:left-28 lg:left-32 md:left-10
+            transition={{ type: 'tween', duration: 0.2 }}
+            className="fixed bottom-28 2xl:bottom-36 xl:bottom-40 lg:bottom-32  z-40 2xl:left-72 xl:left-28 lg:left-32 md:left-10
           flex flex-col items-center gap-6 rounded-3xl p-2 md:p-8 lg:p-4 w-full md:w-11/12 lg:w-4/5 xl:w-5/6 2xl:w-2/3 h-auto
         sm:gap-y-10 sm:p-10 bg-gradient-to-tr from-ebony to-mirage mt-2 
         shadow-inset text-center">
@@ -51,7 +65,7 @@ export function GetTheseArticles() {
 
                 <ArticlesSelected />
                 <div className="flex gap-x-2 py-4 items-center justify-center h-full w-full">
-                    <button onClick={retrieveArticles} type="button"
+                    <button onClick={() => setFetching(true)} type="button"
                         className="text-base min-w-36 md:w-52 py-2 px-4 border focus:ring-2 rounded-full shadow-material 
                     border-transparent bg-white hover:bg-white/10 text-black duration-200 focus:ring-offset-2 
                     focus:ring-white hover:text-white inline-flex items-center justify-center ring-1 ring-transparent">
@@ -80,12 +94,12 @@ function ArticlesSelected() {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { chosenArticles } = investigateState.getArticle
     const { articleOptions } = investigateState.search
-    const { ContentStatus } = investigateState.read
     const [selected, setSelected] = useState([])
 
     useEffect(() => {
 
-        if (chosenArticles.length > 0) {
+
+        if ((chosenArticles.length > 0) && (articleOptions.length > 0)) {
             const filtered: ArticleType[] = articleOptions.filter(article1 =>
                 chosenArticles.some(article2 => article1.url === article2.url)
             ).slice(0, 3);
@@ -94,12 +108,10 @@ function ArticlesSelected() {
             ;
         }
 
-
-
         return () => {
             setSelected([])
         }
-    }, [articleOptions, chosenArticles]);
+    }, [chosenArticles]);
 
 
     return (

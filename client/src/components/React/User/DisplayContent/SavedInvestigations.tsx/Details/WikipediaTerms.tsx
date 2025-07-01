@@ -1,7 +1,5 @@
 import ErrMessage from "@/components/React/ErrorMessages/ErrMessage";
-import ExtractNotification from "@/components/React/Notifications/ExtractNotification";
 import { RootState } from "@/ReduxToolKit/store"
-import { canSplit } from "@tiptap/pm/transform";
 import { useState } from "react";
 import { useSelector } from "react-redux"
 
@@ -30,8 +28,8 @@ export function Terms() {
 
 
   return (
-    <section className="lg:p-8">
-      <div className="mx-auto 2xl:max-w-7xl py-12 lg:px-16 md:px-12 px-8 xl:px-36 items-center w-full">
+    <section className="w-full lg:w-2/3">
+      <div className="mx-auto py-12 md:px-12 px-8 items-center w-full">
         <div>
           <span className="text-blue-400">From Wikipedia</span>
           <h2 className="text-3xl tracking-tight mt-6 font-light lg:text-4xl text-white">
@@ -43,7 +41,7 @@ export function Terms() {
         </div>
 
         {wikipedia_extracts && <TermList wikipedia_extracts={wikipedia_extracts} excess={excess} />}
-        {!wikipedia_extracts && <ErrMessage message={errorMessage} />}
+        {wikipedia_extracts && wikipedia_extracts.length < 1 && <ErrMessage message={errorMessage} />}
       </div>
     </section>
   );
@@ -100,7 +98,7 @@ function TermList({ wikipedia_extracts, excess }: TermsTypes) {
 
     <div className="flex flex-col w-full gap-y-4 2xl:gap-y-12">
       <div className="grid grid-cols-1 lg:grid-cols-4 pb-6 border-b border-white/10">
-        <div className="hidden lg:inline-flex items-center inline-flex lg:col-start-4 lg:ml-auto lg:px-2 mb-4 order-last space-x-2">
+        <div className="lg:inline-flex items-center inline-flex lg:col-start-4 lg:ml-auto lg:px-2 mb-4 order-last space-x-2">
           <button onClick={handleBackClick} type="button" className={`bg-white/5 hover:bg-white/10 focus:bg-transparent 
               rounded-2xl inline-flex items-center text-center p-4 ring-1 ring-white/10 ${excess ? 'text-white' : 'text-zinc-600'}`}>
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

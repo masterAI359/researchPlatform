@@ -65,7 +65,7 @@ export default function PerspectiveSidebar() {
                     </li>
                     <li className={`w-full`}>
                         <div className="py-4">
-                            <p className="text-white text-left text-sm text-nowrap block">
+                            <p className="text-white text-left text-sm block">
                                 Premises: <span className={`transition-all duration-200 ease-in-out ${premises ? 'opacity-100' : 'opacity-0'} text-zinc-400`}>
                                     {premises ? premises : null}
                                 </span>

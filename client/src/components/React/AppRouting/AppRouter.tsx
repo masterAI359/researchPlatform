@@ -3,11 +3,11 @@ import HomeContainer from "../Containers/HomeContainer"
 import InvestigateContainer from "../Containers/InvestigateContainer"
 import Navigation from "../Navigation/Navigation"
 import AboutContainer from "../Containers/AboutContainer"
-import Signup from "../Forms/Signup"
-import Login from "../Forms/Login"
+import Signup from "../Forms/AuthForms/Signup"
+import Login from "../Forms/AuthForms/Login"
 import Profile from "../User/Profile"
-import EmailForReset from "../Forms/EmailForReset"
-import UpdatePassword from "../Forms/UpdatePassword"
+import EmailForReset from "../Forms/AuthForms/EmailForReset"
+import UpdatePassword from "../Forms/AuthForms/UpdatePassword"
 
 export default function AppRouter() {
 

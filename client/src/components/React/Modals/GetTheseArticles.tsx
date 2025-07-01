@@ -9,13 +9,11 @@ import { resetResults } from "@/ReduxToolKit/Reducers/Investigate/SearchResults"
 import { clearChosenArticles } from "@/ReduxToolKit/Reducers/Investigate/ChosenArticles"
 import ArticleLink from "../LinkComponents/ArticleLink"
 import { useEffect, useState } from "react"
-import { encodeArray } from "@/helpers/FetchRequests"
 import { getQuery } from "@/ReduxToolKit/Reducers/Investigate/UserPOV"
 
 export function GetTheseArticles() {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { chosenArticles } = investigateState.getArticle
-    const articlesToSummarize = encodeArray(chosenArticles)
     const appDispatch = useAppdispatch()
     const dispatch = useDispatch()
 
@@ -28,7 +26,7 @@ export function GetTheseArticles() {
         dispatch(getQuery(null))
         dispatch(resetResults())
         dispatch(displaySearch(false))
-        appDispatch(GetArticleContent(articlesToSummarize))
+        appDispatch(GetArticleContent(chosenArticles))
         dispatch(clearChosenArticles())
         dispatch(displayGetArticlesModal(false))
         dispatch(displayArticleContent(true))

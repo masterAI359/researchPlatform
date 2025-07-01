@@ -13,36 +13,20 @@ import { MappedTldrRequests } from '../types/types.js';
 export const tldrSummary = async (req: Request, res: Response): Promise<void> => {
 
     let failed: FailedAttempt[] = [];
-    const received = req.query.q as string;
+    const { articles } = req.body;
 
-    if (!received) {
-        res.status(400).json({ error: "Missing query parameter 'q'" });
+    if (!articles) {
+        res.status(400).json({ error: "No articles recieved to scrape" });
         return;
     };
 
-    let parsedQuery: unknown;
 
-    try {
-        parsedQuery = JSON.parse(paramDecode(received));
-    } catch (e) {
-        console.error("Invalid JSON query:", e);
-        res.status(400).json({ error: "Invalid JSON in query parameter" });
-        return
-    }
-
-    if (!Array.isArray(parsedQuery) || parsedQuery.length === 0) {
-        res.status(400).json({ error: "Query parameter must be an array of requests." });
-        return;
-    };
-
-    const decodedQueryArray = parsedQuery as TldrRequest[];
-    const query = decodedQueryArray;
     const url = 'https://tldrthis.p.rapidapi.com/v1/model/abstractive/summarize-url/';
     const api_host = 'tldrthis.p.rapidapi.com';
 
     try {
         const results: MappedTldrRequests = await mapTldrRequests(
-            query,
+            articles,
             failed,
             TLDR_KEY,
             url,

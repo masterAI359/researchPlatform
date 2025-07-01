@@ -2,15 +2,15 @@ import { useEffect, useState } from "react"
 import { requiredInput, emailValidation } from "@/helpers/validation"
 import { useNavigate } from "react-router-dom"
 import { AnimatePresence } from "framer-motion"
-import Password from "./InputFields/Password"
-import { supabaseSignIn } from "@/helpers/FetchRequests"
+import Password from "../InputFields/Password"
+import { supabaseSignIn } from "@/helpers/SupabaseData"
 import { useAppdispatch } from "@/Hooks/appDispatch"
 import { fetchUserCredentials } from "@/ReduxToolKit/Reducers/Athentication/Authentication"
-import Email from "./InputFields/Email"
-import OAuthLogins from "./InputFields/OauthLogins"
-import AuthFooterLinks from "./InputFields/AuthFooterLinks"
-import { loginStatus } from "./AuthNotifications/AuthStatus"
-import AuthNotification from "./AuthNotifications/AuthNotification"
+import Email from "../InputFields/Email"
+import OAuthLogins from "../InputFields/OauthLogins"
+import AuthFooterLinks from "../InputFields/AuthFooterLinks"
+import { loginStatus } from "../../Notifications/AuthNotifications/AuthStatus"
+import AuthNotification from "../../Notifications/AuthNotifications/AuthNotification"
 
 export default function Login() {
     const [userEmail, setUserEmail] = useState<string>(null)
@@ -23,38 +23,44 @@ export default function Login() {
     const dispatch = useAppdispatch();
 
     const redirectUser = () => {
-        setTimeout(() => {
-            navigate('/Profile')
-        }, 1500)
-    }
-
-    const logInUser = async () => {
-        const signin = await supabaseSignIn(userEmail, userPassword, setLoggingIn, setSuccessful, dispatch, fetchUserCredentials);
-        if (signin) {
-            setSuccessful(true);
-            redirectUser();
-        } else if (signin === false) {
-            setSuccessful(false)
-        };
+        navigate('/Profile')
     };
 
     const submitAuth = async (e: any) => {
         e.preventDefault();
-        logInUser();
+        setLoggingIn(true)
     };
 
     useEffect(() => {
-
         if (userEmail) emailValidation(userEmail, setValidEmail);
         if (userEmail && userPassword) requiredInput(userEmail, userPassword, setAcceptedInput);
+    }, [userEmail, userPassword]);
 
-    }, [userEmail, userPassword, successfull]);
+
+    useEffect(() => {
+
+        const executeSignin = async () => {
+            const signin = await supabaseSignIn(userEmail, userPassword);
+            if (signin.session) {
+                setSuccessful(true)
+                const session = signin.session;
+                dispatch(fetchUserCredentials(session));
+            } else {
+                setSuccessful(false)
+            }
+        };
+
+        if (loggingIn) {
+            executeSignin();
+        };
+
+    }, [loggingIn]);
 
 
     return (
         <section className={`lg:p-8 overflow-hidden bg-black animate-fade-in`}>
             <AnimatePresence>
-                {loggingIn && <AuthNotification complete={successfull} setterFunction={setLoggingIn} status={loginStatus} />}
+                {loggingIn && <AuthNotification complete={successfull} setterFunction={setLoggingIn} status={loginStatus} redirect={redirectUser} />}
             </AnimatePresence>
             <div className="mx-auto 2xl:max-w-7xl py-24 lg:px-16 md:px-12 px-8 xl:px-36">
                 <div className="border-b pb-12">

@@ -1,19 +1,19 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { acceptedInput } from './Steps'
-
-const options: OptionsTypes = {
-    method: 'GET',
-    headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-    }
-}
 
 export const GetArticleContent = createAsyncThunk('content/getArticleContent',
     async (articlesToSummarize: any, thunkAPi) => {
 
         try {
-            const tldrResponse = await fetch(`/summarize?q=${articlesToSummarize}`, options)
+            const tldrResponse = await fetch(`/summarize?q=${articlesToSummarize}`, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    articles: articlesToSummarize
+                }),
+            })
 
             if (!tldrResponse.ok) {
                 throw new Error('There was an issue with TLDR API')
@@ -119,6 +119,6 @@ export const {
     resetReadingSlice,
     closeNotification,
     limitPagination,
-restoreStatus } = ReadingSlice.actions
+    restoreStatus } = ReadingSlice.actions
 
 export default ReadingSlice.reducer

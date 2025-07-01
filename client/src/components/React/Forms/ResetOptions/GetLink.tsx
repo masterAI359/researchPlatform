@@ -2,9 +2,9 @@ import { useEffect, useState } from "react"
 import { emailValidation } from "@/helpers/validation"
 import { AnimatePresence } from "framer-motion"
 import { Link } from "react-router-dom"
-import { sendEmailResetLink } from "@/helpers/FetchRequests"
-import { emailStatus } from "../AuthNotifications/AuthStatus"
-import AuthNotification from "../AuthNotifications/AuthNotification"
+import { sendEmailResetLink } from "@/helpers/SupabaseData"
+import { emailStatus } from "../../Notifications/AuthNotifications/AuthStatus"
+import AuthNotification from "../../Notifications/AuthNotifications/AuthNotification"
 
 export default function GetLink({ }) {
     const [emailToReset, setEmailToReset] = useState<string>(null)

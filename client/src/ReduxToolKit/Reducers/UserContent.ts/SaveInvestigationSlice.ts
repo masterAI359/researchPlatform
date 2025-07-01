@@ -1,6 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { supabase } from "@/SupaBase/supaBaseClient";
-
 
 interface SaveInvestigation {
     status: string,

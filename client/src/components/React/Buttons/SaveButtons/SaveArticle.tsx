@@ -3,13 +3,14 @@ import NotifySavedArticle from "../../Notifications/NotifySaved"
 import { saveArticle, checkArticle } from "@/helpers/SupabaseData"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-import { useLayoutEffect, useState } from "react"
+import { useEffect, useLayoutEffect, useState } from "react"
 import RegisteredUsersOnly from "../../Notifications/RegisteredUsersOnly"
 
 export default function Bookmark({ dataToSave, showNotification, setShowNotification, open }) {
     const id = useSelector((state: RootState) => state.auth.user_id)
     const userArticles = useSelector((state: RootState) => state.userdata.userArticles);
     const [articleExists, setArticleExists] = useState<boolean>(false)
+    const [saving, setSaving] = useState<boolean | null>(null);
     const [registeredExclusiveFeature, setRegisteredExclusiveFeature] = useState<boolean>(false)
     const [runCheck, setRunCheck] = useState<boolean>(true)
     const { url } = dataToSave
@@ -22,10 +23,31 @@ export default function Bookmark({ dataToSave, showNotification, setShowNotifica
         }
     }, []);
 
+    useEffect(() => {
+
+        const executeSave = async () => {
+            const status = saveArticle(dataToSave, articleExists, id);
+            if (status === null) {
+                setRegisteredExclusiveFeature(true);
+            } else if (status) {
+                setShowNotification(true);
+                setArticleExists(true)
+            } else {
+                setShowNotification(true)
+            };
+        };
+
+        if (saving) {
+            executeSave();
+        };
+
+    }, [saving])
+
 
     const handleSaveClick = async () => {
-        setRunCheck(false)
-        saveArticle(dataToSave, setShowNotification, setArticleExists, articleExists, setRegisteredExclusiveFeature, id);
+        setRunCheck(false);
+        setSaving(true);
+
     };
 
 

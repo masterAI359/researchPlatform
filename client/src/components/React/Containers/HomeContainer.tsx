@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '@/ReduxToolKit/store';
 import { getStoredPosts, searchBlueSky } from '@/ReduxToolKit/Reducers/BlueSky/BlueSkySlice';
 import { ScrollUp } from '../AppRouting/ScrollToTop';
-import SignOutModal from '../Forms/SignOutModal';
+import SignOutModal from '../Forms/AuthForms/SignOutModal';
 
 
 export default function HomeContainer({ }) {

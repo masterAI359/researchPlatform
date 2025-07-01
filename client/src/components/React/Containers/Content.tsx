@@ -13,19 +13,7 @@ export default function Content() {
     const { showContent, showBackToSearchModal, showSearch,
         showGetArticlesModal, showSelectWarning, showSelectTooltip, showReadingTooltip } = display
     const { status } = search
-    const { ContentStatus } = read
-
-    useEffect(() => {
-
-        const seenToolTips = localStorage.getItem('hasSeenToolTips');
-        if (seenToolTips) {
-            const seen: boolean = JSON.parse(seenToolTips);
-            if (seen === false) {
-
-            }
-        }
-
-    }, [])
+    const { articles } = read
 
     return (
         <motion.div
@@ -44,7 +32,7 @@ export default function Content() {
 
                     {showSearch && status !== 'idle' ?
                         <motion.div
-                            key='presentLinks'
+                            key='links'
                             style={{ position: 'relative' }}
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -57,14 +45,13 @@ export default function Content() {
 
                         </motion.div> : null}
 
-                    {showContent &&
+                    {(showContent) &&
                         <motion.div
-                            key='presentArticles'
+                            key='articles'
                             style={{ position: 'relative' }}
                             initial={{ opacity: 0 }}
-                            animate={{ opacity: showReadingTooltip ? 0.5 : 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ type: 'tween', duration: 0.2 }}
+                            animate={{ opacity: showReadingTooltip ? 0.5 : 1, transition: { type: 'tween', duration: 0.2, delay: 0.3 } }}
+                            exit={{ opacity: 0, transition: { type: 'tween', duration: 0.2, delay: 0 } }}
                             className="min-h-screen 2xl:max-w-5xl xl:max-w-4xl mx-auto lg:pb-96"
                         >
                             <ArticleContainer />

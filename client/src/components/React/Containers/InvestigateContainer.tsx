@@ -11,6 +11,8 @@ import BlueSkyPosts from "../BlueSky/BlueSkyPosts";
 import { AppDispatch } from "@/ReduxToolKit/store";
 import InputOptions from "../Investigate/Steps/InputOptions";
 import { ScrollUp } from "../AppRouting/ScrollToTop";
+import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary";
+import ErrMessage from "../ErrorMessages/ErrMessage";
 
 export default function InvestigateContainer() {
   const dispatch = useDispatch<AppDispatch>()
@@ -65,20 +67,27 @@ export default function InvestigateContainer() {
          ${signingOut || gettingHelp ? 'opacity-80 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
 
       {showBlueSkySearch === null && <InputOptions />}
+      <ErrorBoundary fallback={<ErrMessage message={"Error from component: <HeroContainer/>"} />}>
+        {showBlueSkySearch === false && <HeroContainer
+          key={'HeroContainer'}
+        />}
+      </ErrorBoundary>
 
-      {showBlueSkySearch === false && <HeroContainer
-        key={'HeroContainer'}
-      />}
       {showBlueSkySearch && <BlueSkyPosts context={'investigate'} />}
       <div className="w-full h-full grow mx-auto xl:mt-6">
-        <Content
-        />
+        <ErrorBoundary fallback={<ErrMessage message={"Error from component: <Content/>"} />}>
+          <Content />
+        </ErrorBoundary>
+
       </div>
-      <AnimatePresence>
-        {articleOptions && articleOptions.length > 0 &&
-          <SelectArticles />
-        }
-      </AnimatePresence>
+      <ErrorBoundary fallback={<ErrMessage message={"Error from component: <SelectArticles/>"} />}>
+        <AnimatePresence>
+          {articleOptions && articleOptions.length > 0 &&
+            <SelectArticles />
+          }
+        </AnimatePresence>
+      </ErrorBoundary>
+
       <AnimatePresence >
         {showContent && <PanelContainer />}
       </AnimatePresence>

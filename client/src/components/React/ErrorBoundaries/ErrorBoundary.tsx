@@ -1,6 +1,5 @@
 import React, { Component, ErrorInfo } from 'react'
 import ErrorMessage from '../ErrorMessages/SearchFailed'
-import { error } from 'astro/dist/core/logger/core'
 
 interface Props {
     children: React.ReactNode,
@@ -24,11 +23,12 @@ class ErrorBoundary extends Component<Props, State> {
 
     render() {
         if (this.state.hasError) {
-            console.log("Error occured")
+            console.log("Error occurred in ErrorBoundary");
+            return this.props.fallback || <ErrorMessage />;
         }
         return this.props.children;
     }
-}
+};
 
 export default ErrorBoundary
 

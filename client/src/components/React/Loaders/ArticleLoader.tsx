@@ -3,22 +3,15 @@ import { motion } from "framer-motion"
 import vortex from '../../../lotties/vortex.json'
 import { createPortal } from "react-dom"
 
-const variants = {
-    show: { opacity: 1 },
-    hide: { opacity: 0 }
-}
-
 export default function ArticleLoader() {
 
 
     const loader = (
         <motion.div
             key='contentLoader'
-            variants={variants}
-            initial='hide'
-            animate='show'
-            exit='hide'
-            transition={{ type: 'tween', duration: 0.2 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { type: 'tween', duration: 0.2, delay: 0.2 } }}
+            exit={{ opacity: 0, transition: { type: 'tween', duration: 0.2, delay: 0 } }}
             className='w-full h-auto mx-auto flex flex-col-reverse items-start md:items-center fixed bg-black top-0 md:right-0 md:bottom-0 md:left-0'>
 
             <header className='w-2/3 h-fit mx-auto justify-center 2xl:-translate-y-40 xl:-translate-y-72 lg:-translate-y-80'>

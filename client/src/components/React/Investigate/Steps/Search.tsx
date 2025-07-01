@@ -67,7 +67,7 @@ export default function Search({ }) {
                   autoComplete="off"
                   type="text"
                   name="q"
-                  className="bg-transparent text-white w-full h-fit 
+                  className="bg-transparent text-white w-full
                border-none h-12 xs:p-3  md:p-2 rounded-full relative focus:ring-0
                transition-colors text-base md:text-lg flex items-center"
                   placeholder="search" />

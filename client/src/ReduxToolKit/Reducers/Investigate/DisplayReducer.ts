@@ -11,10 +11,12 @@ interface Display {
     showWorkModal: boolean,
     showSelectBar: boolean,
     showBackToSearchModal: boolean,
-    showGetArticlesModal: boolean
+    showGetArticlesModal: boolean,
+
     showSelectWarning: boolean,
     showSelectTooltip: boolean,
     showReadingTooltip: boolean,
+
     showFeedBackForm: boolean,
     showBlueSkySearch: boolean | null
 }
@@ -31,8 +33,8 @@ const initialState: Display = {
     showBackToSearchModal: false,
     showGetArticlesModal: false,
     showSelectWarning: false,
-    showSelectTooltip: true,
-    showReadingTooltip: true,
+    showSelectTooltip: false,
+    showReadingTooltip: false,
     showFeedBackForm: null,
     showBlueSkySearch: null
 }

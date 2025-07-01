@@ -39,7 +39,9 @@ export default function InvestigateContainer() {
 
 
   useEffect(() => {
-   
+
+
+
     if (containerRef.current && notesRef.current) {
 
       handleDragConstraints()
@@ -60,21 +62,21 @@ export default function InvestigateContainer() {
       ref={containerRef}
       className={`max-w-full sm:max-w-dvw md:w-full shrink-0 flex flex-col grow transition-opacity duration-200 ease-in-out h-full mx-auto justify-center
          items-center relative box-border min-h-svh
-         ${signingOut || gettingHelp  ? 'opacity-80 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
+         ${signingOut || gettingHelp ? 'opacity-80 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
 
-        {showBlueSkySearch === null && <InputOptions />}
-        
-    {showBlueSkySearch === false && <HeroContainer
+      {showBlueSkySearch === null && <InputOptions />}
+
+      {showBlueSkySearch === false && <HeroContainer
         key={'HeroContainer'}
       />}
-      {showBlueSkySearch && <BlueSkyPosts context ={'investigate'}/>}
+      {showBlueSkySearch && <BlueSkyPosts context={'investigate'} />}
       <div className="w-full h-full grow mx-auto xl:mt-6">
-          <Content
-          />
+        <Content
+        />
       </div>
       <AnimatePresence>
         {articleOptions && articleOptions.length > 0 &&
-          <SelectArticles/>
+          <SelectArticles />
         }
       </AnimatePresence>
       <AnimatePresence >

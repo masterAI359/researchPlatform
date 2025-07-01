@@ -110,7 +110,10 @@ declare global {
   }
 
 
-
+  interface Tooltips {
+    readingTooltip: boolean,
+    selectingTooltip: boolean
+  }
 
   interface SupabaseUser {
     id: string;
@@ -216,5 +219,5 @@ declare global {
 export {
   ArticleType, OptionsTypes, SelectedArticle, Perspectives, State, PremiseProps, Help, SavedArticle,
   Calculations, PostsProps, SupabaseUser, ResetPW, Investigation, ScrapedArticle, TipTapProps, AuthStatus, AuthNotificationProps,
-  LoginSession
+  LoginSession, Tooltips
 };

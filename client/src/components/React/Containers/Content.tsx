@@ -17,12 +17,20 @@ export default function Content() {
 
     useEffect(() => {
 
-    }, [ContentStatus, status, showReadingTooltip, showSelectTooltip])
+        const seenToolTips = localStorage.getItem('hasSeenToolTips');
+        if (seenToolTips) {
+            const seen: boolean = JSON.parse(seenToolTips);
+            if (seen === false) {
+
+            }
+        }
+
+    }, [])
 
     return (
         <motion.div
             initial={{ opacity: 1 }}
-            animate={{ opacity: showBackToSearchModal || showGetArticlesModal || showSelectWarning || showSelectTooltip ? 0.4 : 1 }}
+            animate={{ opacity: showBackToSearchModal || showGetArticlesModal || showSelectWarning || showSelectTooltip ? 0.3 : 1 }}
             exit={{ opacity: 0 }}
             transition={{ type: 'tween', duration: 0.2 }}
             className={`${showBackToSearchModal || showGetArticlesModal || showSelectWarning || showSelectTooltip ? 'pointer-events-none' : 'pointer-events-auto'}

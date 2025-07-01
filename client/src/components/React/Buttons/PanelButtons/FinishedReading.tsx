@@ -3,22 +3,32 @@ import { initiateFinalProcess } from "@/ReduxToolKit/Reducers/Investigate/Review
 import { displayArticleContent, displayReadingTooltip, displayWrapUp } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
 import GuideDoneReading from "../../Tooltips/GuideDoneReading";
 import { RootState } from "@/ReduxToolKit/store";
-import { useLayoutEffect } from "react";
+import { useEffect } from "react";
+import { useTooltipFlags } from "@/Hooks/useTooltipFlags";
 
 
 export function FinishedReading({ }) {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { showReadingTooltip } = investigateState.display
-    const { summaries } = investigateState.read
+    const { summaries } = investigateState.read;
+    const { getFlags, setFlag } = useTooltipFlags();
     const dispatch = useDispatch()
 
-    useLayoutEffect(() => {
+    useEffect(() => {
 
         if (summaries && summaries.length < 1) {
             dispatch(displayReadingTooltip(false))
-        }
+            return;
+        };
 
-    }, [])
+        const flags = getFlags();
+
+        if (flags.readingTooltip === false) {
+            dispatch(displayReadingTooltip(true));
+            setFlag('readingTooltip', true);
+        };
+
+    }, [getFlags, setFlag, dispatch]);
 
     return (
         <button

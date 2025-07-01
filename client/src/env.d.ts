@@ -213,11 +213,20 @@ declare global {
   interface LoginSession {
     session: Session | null
   }
+
+
+  interface SidebarItemData {
+    title: string,
+    data: string | null,
+    titleTwo?: string,
+    dataTwo?: string | null
+  }
+
 }
 
 
 export {
   ArticleType, OptionsTypes, SelectedArticle, Perspectives, State, PremiseProps, Help, SavedArticle,
   Calculations, PostsProps, SupabaseUser, ResetPW, Investigation, ScrapedArticle, TipTapProps, AuthStatus, AuthNotificationProps,
-  LoginSession, Tooltips
+  LoginSession, Tooltips, SidebarItemData
 };

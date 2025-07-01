@@ -81,7 +81,7 @@ export default function ArticleContainer({ }) {
             <AnimatePresence mode="wait">
               {showArticles && Array.isArray(articles) && (articles[currentStory]) &&
                 <Article
-                  key={currentStory}
+                  key={articles[currentStory].article_url}
                   articleData={articles[currentStory]}
                 />
               }

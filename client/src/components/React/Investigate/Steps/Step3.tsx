@@ -53,7 +53,7 @@ export default function Step2({ containerWidth }: any) {
                 <h1 className="2xl:text-xl xl:text-lg lg:text-base md:text-sm md:text-left text-xs  font-light tracking tight text-slate-400 mb-2">I would describe my feelings towards the idea as ...</h1>
               </header>
               {opinions.map((opinion) => (
-                <Biases opinion={opinion} biases={biases} getPOV={getPOV} />
+                <Biases key={opinion} opinion={opinion} biases={biases} getPOV={getPOV} />
               ))}
             </div>
           </div>

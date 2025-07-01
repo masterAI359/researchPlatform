@@ -20,7 +20,12 @@ export default function InitSession() {
     const dispatch = useDispatch<AppDispatch>();
 
     useEffect(() => {
-        window.dispatchEvent(new CustomEvent('reactMounted'))
+        window.dispatchEvent(new CustomEvent('reactMounted'));
+
+        localStorage.setItem('tooltipFlags', JSON.stringify({
+            readingTooltip: false,
+            selectingTooltip: false
+        }));
 
         if (!id) {
             const restoreUser = async () => {
@@ -53,7 +58,7 @@ export default function InitSession() {
             restoreUser()
         }
 
-    }, [id, dispatch])
+    }, []);
 
-    return null
+    return null;
 };

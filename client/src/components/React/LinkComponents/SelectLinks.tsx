@@ -1,11 +1,12 @@
 import { motion } from "framer-motion"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-import { displayGetArticlesModal, displaySelectionWarning } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
+import { displayGetArticlesModal, displaySelectionWarning, displaySelectTooltip } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
 import { AppDispatch } from "@/ReduxToolKit/store"
 import SelectionRequired from "../Notifications/SelectionRequired"
 import { useEffect, useState } from "react"
 import GuideSelectingArticles from "../Tooltips/GuideSelectingArticles"
+import { useTooltipFlags } from "@/Hooks/useTooltipFlags"
 
 
 export default function SelectLinks() {
@@ -14,26 +15,12 @@ export default function SelectLinks() {
   const { getArticle } = investigateState
   const { showSelectWarning, showGetArticlesModal } = investigateState.display
   const { chosenArticles } = getArticle
-  const [showSelect, setShowSelect] = useState<boolean>(false)
-
+  const { getFlags, setFlag } = useTooltipFlags();
   const dispatch = useDispatch<AppDispatch>()
 
   const selectedTotal = chosenArticles.length
   const selectedArticles = `${selectedTotal}/3`
 
-  const timer = () => {
-    setTimeout(() => {
-
-      setShowSelect(prev => !prev)
-    }, 500)
-  }
-
-  function hideSelect() {
-
-    if (chosenArticles.length > 0) {
-      timer()
-    }
-  }
 
   const handleSummaries = () => {
 
@@ -42,15 +29,19 @@ export default function SelectLinks() {
     } else {
       dispatch(displaySelectionWarning(true))
     }
+  };
 
-    hideSelect()
-
-  }
 
   useEffect(() => {
 
-  }, [showSelectWarning, showSelectTooltip])
+    const flags = getFlags();
 
+    if (flags.selectingTooltip === false) {
+      dispatch(displaySelectTooltip(true));
+      setFlag('selectingTooltip', true);
+    };
+
+  }, [getFlags, setFlag, dispatch]);
 
 
   return (

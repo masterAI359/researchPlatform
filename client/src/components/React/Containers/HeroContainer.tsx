@@ -7,7 +7,6 @@ import ScrolltoTop from "../AppRouting/ScrollToTop"
 import { AnimatePresence, motion } from "framer-motion"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-import ReadingHero from "../HeroComponents/ReadingHero"
 import { useEffect } from "react"
 
 
@@ -15,15 +14,9 @@ import { useEffect } from "react"
 export default function HeroContainer({
 }) {
     const investigateState = useSelector((state: RootState) => state.investigation)
-    const { read, display } = investigateState
-    const { ContentStatus } = read
-    const { showMindMap, showSearch, showContent, showWrapUp, showCompletion, showResults, showWorkModal } = display
+    const { display } = investigateState
+    const { showMindMap, showSearch, showWrapUp, showCompletion, showResults, showWorkModal } = display
 
-
-    useEffect(() => {
-
-
-    }, [showContent, ContentStatus, showSearch])
 
     return (
         <section className={`w-full h-full shrink-0 mx-auto transition-opacity duration-200 ease-in-out ${showWorkModal ? 'opacity-50' : 'opacity-100'}`}>
@@ -55,22 +48,9 @@ export default function HeroContainer({
                     >
                         <SearchHero
                         />
-
                         <ScrolltoTop />
 
                     </motion.div>) : null}
-
-                {showContent && ContentStatus !== 'idle' && ContentStatus !== 'pending' ?
-                    <motion.div
-                        key='Reading'
-                        initial={{ opacity: 0}}
-                        animate={{ opacity: 1, transition: { type: 'tween', duration: 0.3 }}}
-                        exit={{ opacity: 0, transition: { type: 'tween', duration: 0.3} }}
-                    >
-                   { /*    <ReadingHero /> */}
-                        <ScrolltoTop />
-                    </motion.div>
-                    : null}
 
                 {showWrapUp && <motion.div
                     key='WrapUp'

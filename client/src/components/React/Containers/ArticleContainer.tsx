@@ -2,21 +2,25 @@ import { AnimatePresence } from "framer-motion"
 import FailedLoading from "../Articles/Failed/FailedLoading"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useDispatch } from "react-redux"
 import { recordSources } from "@/ReduxToolKit/Reducers/UserContent.ts/SaveInvestigationSlice"
 import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
 import NoContent from "../Articles/Failed/NoContent"
 import Article from "../Articles/SuccessFull/Article"
 import ArticleLoader from "../Loaders/ArticleLoader"
+import ErrMessage from "../ErrorMessages/ErrMessage"
 
 export default function ArticleContainer({ }) {
   const investigateState = useSelector((state: RootState) => state.investigation);
-  const { read } = investigateState;
+  const { read, display } = investigateState;
+  const { showContent } = display;
   const sources = useSelector((state: RootState) => state.userWork.sourcesToReview);
   const sourcesToDispatch = sources;
   const { articles, failedNotifications, currentStory, ContentStatus } = read;
   const firstRecordedSources = useRef<string>("");
+  const [showLoader, setShowLoader] = useState<boolean>(false);
+  const [showArticles, setShowArticles] = useState<boolean>(false);
   const dispatch = useDispatch();
 
   function recordingSourcesChosen() {
@@ -33,14 +37,35 @@ export default function ArticleContainer({ }) {
 
   useEffect(() => {
 
+
     if (articles) recordingSourcesChosen();
     if (sources) localStorage.setItem('cachedSources', JSON.stringify(sourcesToDispatch));
 
   }, [articles, sources]);
 
+  useEffect(() => {
+
+    if (ContentStatus === 'pending') {
+      setShowLoader(true)
+    } else {
+      setShowLoader(false)
+    }
+
+    if (!Array.isArray(articles)) {
+      setShowArticles(false)
+    }
+
+    if ((articles !== null) && (ContentStatus !== 'pending')) {
+      setShowArticles(true)
+    } else {
+      setShowArticles(false)
+    }
+
+  }, [ContentStatus, articles])
+
 
   return (
-    <ErrorBoundary>
+    <ErrorBoundary fallback={<ErrMessage message={"Woops, something broke :/"} />}>
       <div
         className="min-h-screen h-full 2xl:max-w-7xl xl:max-w-5xl lg:max-w-3xl md:max-w-3xl xs:px-2 md:px-8 scroll-smooth
       inset mx-auto border-white/10 xs:mt-10 xl:mt-12 relative">
@@ -50,11 +75,11 @@ export default function ArticleContainer({ }) {
           <div
             className="w-full min-h-screen mx-auto relative grow shrink-0">
             <AnimatePresence>
-              {ContentStatus === 'pending' && <ArticleLoader key='contentLoader' />}
+              {showLoader && <ArticleLoader key='contentLoader' />}
             </AnimatePresence>
 
             <AnimatePresence mode="wait">
-              {articles && articles[currentStory] &&
+              {showArticles && Array.isArray(articles) && (articles[currentStory]) &&
                 <Article
                   key={currentStory}
                   articleData={articles[currentStory]}

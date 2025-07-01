@@ -314,7 +314,7 @@ export const handleArticleSave = async (req: Request, res: Response): Promise<vo
         }
 
         if (result) {
-            const responseObject: ArticleSaveResponse = { saved: true, data: result };
+            const responseObject: ArticleSaveResponse = { saved: true, message: result };
             res.status(200).send(responseObject);
             return;
         } else {

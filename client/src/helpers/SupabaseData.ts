@@ -2,6 +2,166 @@ import { SavedArticle, SupabaseUser } from "@/env";
 
 
 
+
+export const supabaseSignIn = async (
+    email: string,
+    password: string,
+): Promise<LoginSession> => {
+
+    try {
+
+        const response = await fetch('/supabaseLogIn', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            }),
+        }
+        );
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error('Server responded with:', response.status, errorText);
+            throw new Error(`Server error: ${response.status}`);
+        }
+        const sessionData = await response.json();
+        if (sessionData) {
+            const data = { message: 'success', session: sessionData }
+            return data;
+        };
+
+        if (!sessionData) {
+            const errorData = { message: 'failed', session: null };
+            return errorData;
+        };
+
+    } catch (error) {
+
+        console.error(error);
+        const error_message = { message: error, session: null };
+        return error_message;
+    };
+};
+
+
+export const fetchSignOut = async (): Promise<SignOutResponse> => {
+
+    try {
+        const response = await fetch('/signUserOut', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Could not reach endpoint for signout');
+        }
+        const result = await response.json();
+        const message = { loggedOut: true, data: result };
+        return message;
+
+    } catch (error) {
+        console.error(error);
+        const error_message = { loggedOut: false, data: null };
+        return error_message;
+    };
+};
+
+
+
+export const sendEmailResetLink = async (email: string, setEmailSent: (emailSent: boolean) => void): Promise<void> => {
+
+    try {
+
+        const response = await fetch('/resetUserPassword', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: email,
+            }),
+        });
+        if (!response.ok) {
+            setEmailSent(false);
+            throw new Error('could not connect to password reset endpoint');
+        };
+
+        const result = await response.json();
+
+        if (result.message === 'Reset email sent.') {
+            setEmailSent(true)
+            return;
+        };
+
+    } catch (error) {
+        console.error(error);
+        setEmailSent(false);
+        return;
+    };
+};
+
+
+
+export const newUser = async (
+    email: string,
+    password: string,
+    setCreatedUser: any,
+    setAcceptedInput: any,
+    setValidFirstPassword: any,
+    setErrorMessage: any,
+    setCanSubmit: any): Promise<any> => {
+
+    try {
+
+        const response = await fetch('/createNewUser', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            }),
+        }
+        );
+
+        if (!response.ok) {
+            console.log(response.statusText);
+            setErrorMessage(response.statusText);
+            setCreatedUser(false)
+            throw new Error(`Couldn't reach createNewUser Endpoint: ${response.statusText}`);
+        };
+
+        const session = await response.json();
+
+        if (session) {
+            console.log(session.data);
+            setCreatedUser(true);
+            setCanSubmit(null);
+            setAcceptedInput(null);
+            setValidFirstPassword(null);
+            setErrorMessage(null);
+            return { user: session.data };
+        };
+
+    } catch (error) {
+        if (error) {
+            console.error(error);
+            return null
+        }
+    }
+}
+
+
+
 export const checkArticle = async (
     setArticleExists: (articleExists: boolean) => void,
     article_url: string,
@@ -20,17 +180,13 @@ export const checkArticle = async (
 
 export const saveArticle = async (
     dataToSave: SavedArticle,
-    setShowNotification: (showNotification: boolean) => void,
-    setArticleExists: (articleExists: boolean) => void,
     articleExists: boolean,
-    setRegisteredExclusiveFeature: (registeredExlusiveFeature: boolean) => void,
     id: string | number,
-): Promise<string> => {
+): Promise<string | null> => {
 
     if (!id) {
-        setRegisteredExclusiveFeature(true)
-        return
-    }
+        return null;
+    };
 
     try {
 
@@ -47,26 +203,25 @@ export const saveArticle = async (
         })
 
         if (!response.ok) {
+            console.error(response.statusText);
             throw new Error('could not fetch endpoint');
         };
 
         const result = await response.json();
 
         if (result) {
-            console.log(result.message)
-            if (result.message === "Saved") {
-                setArticleExists(true)
-                setShowNotification(true)
-            } else if (result.message === "Deleted") {
-                setArticleExists(false)
-                setShowNotification(true)
-            }
-            return result.message;
-        }
+            if (result.saved === true) {
+                return result.message;
+
+            } else {
+                return result.message;
+            };
+        };
     } catch (error) {
-        console.log(error)
-    }
-}
+        console.error(error);
+        return `Unexpected server error ${error}`;
+    };
+};
 
 
 

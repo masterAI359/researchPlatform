@@ -66,19 +66,15 @@ const ArticleLink = memo(({ article, index }: ArticleProps) => {
 
     const chooseArticle = (article: ArticleType) => {
 
-
-        const exists = chosenArticles.some((chosen => chosen.url === article.url))
+        const exists = chosenArticles.some(((chosen: ArticleType) => chosen.url === article.url));
 
         if (!exists && chosenArticles.length <= 2) {
-            dispatch(choose(forSummaryData))
+            dispatch(choose(forSummaryData));
 
         } else if (exists) {
             const locatedAt = chosenArticles.findIndex((chosen => chosen.url === article.url))
             dispatch(discard(locatedAt))
         }
-
-
-
     };
 
 

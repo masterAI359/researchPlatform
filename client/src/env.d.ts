@@ -1,6 +1,8 @@
 /// <reference path="../.astro/types.d.ts" />
 /// <reference types="astro/client" />
 
+import { Session } from "@supabase/supabase-js";
+
 
 
 declare global {
@@ -204,7 +206,15 @@ declare global {
     status: AuthStatus,
     redirect?: Function
   }
+
+  interface LoginSession {
+    session: Session | null
+  }
 }
 
 
-export { ArticleType, OptionsTypes, SelectedArticle, Perspectives, State, PremiseProps, Help, SavedArticle, Calculations, PostsProps, SupabaseUser, ResetPW, Investigation, ScrapedArticle, TipTapProps, AuthStatus, AuthNotificationProps };
+export {
+  ArticleType, OptionsTypes, SelectedArticle, Perspectives, State, PremiseProps, Help, SavedArticle,
+  Calculations, PostsProps, SupabaseUser, ResetPW, Investigation, ScrapedArticle, TipTapProps, AuthStatus, AuthNotificationProps,
+  LoginSession
+};

@@ -75,7 +75,7 @@ app.options('*', (req, res) => {
 });
 
 app.get('/search/articles', bingArticles);
-app.get('/summarize', tldrSummary);
+app.post('/summarize', tldrSummary);
 app.post('/deleteUser', deleteUser);
 app.get('/searchBlueSky', searchBlueSkyPosts);
 app.get('/getBlueSkyFeed', getBlueSkyFeed);

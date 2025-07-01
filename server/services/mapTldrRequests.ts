@@ -6,9 +6,9 @@ import { cleanURL } from '../helpers/cleanUrl.js';
 import { delay } from '../helpers/throttle.js';
 import { getPromiseValues } from '../helpers/getPromiseValues.js';
 
-export async function mapTldrRequests(query: TldrRequest[], failed: FailedAttempt[], TLDR_KEY: string, url: string, api_host: string): Promise<MappedTldrRequests> {
+export async function mapTldrRequests(articles: TldrRequest[], failed: FailedAttempt[], TLDR_KEY: string, url: string, api_host: string): Promise<MappedTldrRequests> {
 
-    const dataMap = query.map(async (article, index): Promise<ScrapedArticle | null> => {
+    const dataMap = articles.map(async (article, index): Promise<ScrapedArticle | null> => {
 
         const santizedSource = article.source.trim();
         const biasRatings = await getMediaBiases(santizedSource);

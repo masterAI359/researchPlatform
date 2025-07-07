@@ -61,9 +61,13 @@ export default function Bookmark({ dataToSave, showNotification, setShowNotifica
             dispatch(fetchSavedArticles());
         };
 
-        if (saving) {
+        if (saving && userArticles) {
             executeSave();
-        };
+        } else if (saving && !userArticles) {
+            setNotification('Register or Login to save articles!');
+            setShowNotification(true);
+            setSaving(false)
+        }
 
     }, [saving])
 

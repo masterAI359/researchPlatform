@@ -19,7 +19,6 @@ export async function fetchArticles(query: string): Promise<any> {
         }
         const jsonResponse = await response.json();
         if (jsonResponse) {
-            console.log(jsonResponse)
             return { ok: true, data: jsonResponse };
         }
     } catch (err) {

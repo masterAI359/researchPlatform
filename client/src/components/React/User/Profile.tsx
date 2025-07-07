@@ -17,7 +17,7 @@ export default function Profile() {
 
     useLayoutEffect(() => {
         if (id) {
-            dispatch(fetchSavedArticles(id))
+            dispatch(fetchSavedArticles())
             dispatch(fetchSavedInvestigations(id))
         }
 

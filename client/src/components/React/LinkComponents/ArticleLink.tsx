@@ -1,16 +1,12 @@
-import { ArticleType, SelectedArticle } from "@/env"
+import { ArticleType } from "@/env"
 import { useSelector, useDispatch } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { choose, discard, } from "@/ReduxToolKit/Reducers/Investigate/ChosenArticles"
 import { motion } from "framer-motion"
 import { memo } from "react"
+import { limitDescription } from "@/helpers/Presentation"
 
-interface ArticleProps {
-    article: ArticleType,
-    index: number
-}
-
-const ArticleLink = memo(({ article, index }: ArticleProps) => {
+const ArticleLink = memo(({ article, index }: LinkProps) => {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { getArticle, display } = investigateState
     const { showGetArticlesModal } = display
@@ -19,8 +15,6 @@ const ArticleLink = memo(({ article, index }: ArticleProps) => {
 
     const { url, name, provider, image, description, datePublished, logo } = article;
     const isHilighted = chosenArticles.some(item => item.url === article.url)
-
-
 
     const forSummaryData = {
         url: article.url,
@@ -31,34 +25,6 @@ const ArticleLink = memo(({ article, index }: ArticleProps) => {
         image: image
     }
 
-    const limitDescription = (string: string) => {
-
-        if (string.length >= 111) {
-            let newArr = string.split('')
-
-            let count = 0
-
-            let stringArr = []
-
-            for (let i = 0; i < newArr.length; i++) {
-
-                count++
-                stringArr.push(newArr[i])
-
-                if (count >= 95) {
-                    break
-                }
-            }
-
-            const newString = stringArr.join('')
-
-            const presentation = newString + '...'
-
-            return presentation
-        } else {
-            return string
-        }
-    }
 
     const mobileDescription = limitDescription(description)
     const fallbackImage = '/images/logos/fallback.jpg'
@@ -77,9 +43,9 @@ const ArticleLink = memo(({ article, index }: ArticleProps) => {
         }
     };
 
-
     return (
         <motion.li
+
             onClick={() => { chooseArticle(article) }}
             key={article.url}
             className={`group cursor-pointer box-border list-none xl:min-h-72 xl:max-h-72 xl:min-w-80 xl:max-w-80
@@ -89,6 +55,7 @@ const ArticleLink = memo(({ article, index }: ArticleProps) => {
             
             ${isHilighted && !showGetArticlesModal ? "shadow-blue-bottom bg-ebony" : "shadow-material bg-mirage"}`}
         >
+
             <div className='relative w-full m-0 p-0 xl:max-h-36 xl:min-h-36 md:max-h-28 md:min-h-28 min-h-20 max-h-20  overflow-hidden'>
                 <div
                     style={{ backgroundImage: `url(${resizedImage})` }}

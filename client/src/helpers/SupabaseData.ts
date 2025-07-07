@@ -24,8 +24,6 @@ export const supabaseSignIn = async (
         );
 
         if (!response.ok) {
-            const errorText = await response.text();
-            console.error('Server responded with:', response.status, errorText);
             throw new Error(`Server error: ${response.status}`);
         }
         const sessionData = await response.json();
@@ -41,8 +39,9 @@ export const supabaseSignIn = async (
 
     } catch (error) {
 
-        console.error(error);
+        //   console.error(error);
         const error_message = { message: error, session: null };
+        console.error(error_message)
         return error_message;
     };
 };
@@ -162,31 +161,20 @@ export const newUser = async (
 
 
 
-export const checkArticle = async (
-    setArticleExists: (articleExists: boolean) => void,
+export const checkArticle = (
     article_url: string,
-    userArticles: SavedArticle[],
-
-): Promise<void> => {
-    const exists = userArticles.some((article: any) => article_url === article.article_url);
-
-    if (exists) {
-        setArticleExists(true);
-    } else {
-        setArticleExists(false);
-    };
-}
+    urls: Set<string>
+): boolean => {
+    const exists = urls.has(article_url);
+    return exists;
+};
 
 
 export const saveArticle = async (
     dataToSave: SavedArticle,
     articleExists: boolean,
-    id: string | number,
 ): Promise<string | null> => {
 
-    if (!id) {
-        return null;
-    };
 
     try {
 
@@ -207,19 +195,16 @@ export const saveArticle = async (
             throw new Error('could not fetch endpoint');
         };
 
-        const result = await response.json();
+        const result: SaveArticleResponse = await response.json();
 
         if (result) {
-            if (result.saved === true) {
-                return result.message;
-
-            } else {
-                return result.message;
-            };
-        };
+            return result.message;
+        } else {
+            return null;
+        }
     } catch (error) {
         console.error(error);
-        return `Unexpected server error ${error}`;
+        return null;
     };
 };
 

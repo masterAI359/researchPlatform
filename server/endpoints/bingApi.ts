@@ -14,12 +14,10 @@ const logoMapData = new Map(Object.entries(logoMap))
 
 export const bingArticles = async (req: Request, res: Response) => {
 	const search = req.query.q as string;
-	//const apiKey = 'ce2d91d82a8749c3a4f0eb2a64d9c77a';
 	const endpoint = `https://api.bing.microsoft.com/v7.0/news/search?q=${encodeURIComponent(
 		search
 	)}+-site:msn.com&mkt=en-us&count=30&category=Articles&safeSearch=Moderate&module=Images&responseFilter=News&textFormat-videos=HTML`;
 
-	console.log(search)
 
 	try {
 		const response = await fetch(endpoint, {
@@ -79,9 +77,11 @@ export const bingArticles = async (req: Request, res: Response) => {
 			data: filtered,
 		};
 		res.send(result);
+		return;
 	} catch (err) {
 		console.error("error:", JSON.stringify(err, null, 2));
 		res.status(500).send('error fetching search result');
+		return;
 	}
 };
 

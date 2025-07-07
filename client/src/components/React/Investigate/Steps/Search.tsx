@@ -4,17 +4,14 @@ import { getQuery } from "@/ReduxToolKit/Reducers/Investigate/UserPOV";
 import { AppDispatch, RootState } from "@/ReduxToolKit/store";
 import { useEffect } from "react";
 import { RetrieveArticles, resetArticles } from "@/ReduxToolKit/Reducers/Investigate/SearchResults";
-import { GetArticleContent } from "@/ReduxToolKit/Reducers/Investigate/Reading";
 import { displaySearch } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
 
 export default function Search({ }) {
   const investigateState = useSelector((state: RootState) => state.investigation)
-  const { pov, getArticle, read, search } = investigateState
+  const { pov, read, search } = investigateState
   const { query, searching } = pov
   const { status } = search
-  const { chosenArticles } = getArticle
   const { getContent } = read
-  const articlesToSummarize = encodeURIComponent(JSON.stringify(chosenArticles))
   const dispatch = useDispatch<AppDispatch>()
 
   const getSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +29,6 @@ export default function Search({ }) {
   useEffect(() => {
 
     if (getContent) {
-      dispatch(GetArticleContent(articlesToSummarize))
       dispatch(displaySearch(false))
     }
 

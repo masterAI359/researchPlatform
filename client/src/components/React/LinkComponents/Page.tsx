@@ -1,8 +1,13 @@
 import { motion } from "framer-motion"
 import ArticleLink from "./ArticleLink"
+import LinkPlaceholder from "../Loaders/LinkPlaceholder";
+import { useSelector } from "react-redux";
+import { RootState } from "@/ReduxToolKit/store";
 
 export default function Page({ pageContent, index }) {
-
+    const investigateState = useSelector((state: RootState) => state.investigation);
+    const { search } = investigateState;
+    const { status } = search;
 
 
     const variants = {
@@ -18,6 +23,8 @@ export default function Page({ pageContent, index }) {
         }
     };
 
+
+
     return (
         <motion.ol
             key={index}
@@ -26,16 +33,14 @@ export default function Page({ pageContent, index }) {
             initial='hide'
             animate='show'
             exit='hide'
-            className="relative inset-0 max-w-4xl xl:max-w-6xl 2xl:w-full mx-auto justify-items-center
+            className="absolute inset-0 max-w-4xl xl:max-w-6xl 2xl:w-full mx-auto justify-items-center
                     grid grid-cols-2 xl:grid-cols-3 2xl:gap-y-10 2xl:gap-x-0 xs:gap-3 min-h-full">
-            {pageContent.map((article: ArticleType, index: number) => {
-                return (
-                    <ArticleLink
-                        index={index}
-                        key={article.url + index}
-                        article={article}
-                    />)
-            })
+
+            {status === 'pending'
+                ? Array(6).fill(0).map((_, i) => <LinkPlaceholder key={i} />)
+                : pageContent.map((article, index) => (
+                    <ArticleLink key={article.url + index} article={article} index={index} />
+                ))
             }
         </motion.ol>
     )

@@ -18,7 +18,8 @@ export default function LinkLoader() {
   }
 
   const loaders = Array.from({ length: 10 }, (_, index) => (
-    <div key={`loader${index}`} className="p-3 md:p-4 xl:min-h-72 xl:max-h-72 xl:min-w-80 xl:max-w-80 lg:min-w-72 lg:max-w-72 lg:min-h-72 lg:max-h-72 h-44 w-44 relative rounded-xl md:rounded-3xl bg-rich_black overflow-hidden shadow hover:shadow-md rounded-3xl">
+    <div key={`loader${index}`} className="p-3 md:p-4 xl:min-h-72 xl:max-h-72 xl:min-w-80 xl:max-w-80 lg:min-w-72 lg:max-w-72 lg:min-h-72 lg:max-h-72 h-44 w-44 relative
+     md:rounded-3xl bg-rich_black overflow-hidden shadow hover:shadow-md rounded-3xl">
       <div className="animate-pulse flex flex-col">
         <div className="rounded h-12 md:h-36  bg-inner_loader_black" />
         <div className="flex items-center mt-5">

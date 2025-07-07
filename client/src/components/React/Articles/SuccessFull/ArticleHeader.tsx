@@ -11,6 +11,7 @@ export default function ArticleHeader({ articleData, setFullStory, fullStory }) 
     const id = useSelector((state: RootState) => state.auth.user_id)
     const [open, setOpen] = useState<boolean>(false)
     const [showAllAuthors, setShowAllAuthors] = useState<boolean>(false)
+    const [imageLoaded, setImageLoaded] = useState<boolean>(false);
 
     const {
         article_image,
@@ -28,8 +29,6 @@ export default function ArticleHeader({ articleData, setFullStory, fullStory }) 
         country
     } = articleData
 
-    const dateFormatted = date ? formatDate(date) : formatDate(article_pub_date)
-
 
     const dataToSave: SavedArticle = {
         title: article_title,
@@ -45,9 +44,17 @@ export default function ArticleHeader({ articleData, setFullStory, fullStory }) 
         factual_reporting: factual_reporting,
         bias: bias,
         country: country
-    }
+    };
+
+
+    const handleImageLoad = () => {
+        setImageLoaded(prev => !prev);
+    };
+
     const fallbackImage = '/images/logos/fallback.jpg'
     const storyImage = article_image || fallbackImage
+    const dateFormatted = date ? formatDate(date) : formatDate(article_pub_date);
+
 
     return (
         <header className="border-b border-white/10"
@@ -58,10 +65,16 @@ export default function ArticleHeader({ articleData, setFullStory, fullStory }) 
                     <div
                         className="flex flex-col lg:flex-row justify-start items-center lg:gap-x-4 w-full lg:w-4/5">
                         <div className="w-full h-auto">
+
+                            {!imageLoaded &&
+                                <div className="aspect-[16/9] rounded-2xl lg:rounded-3xl object-cover sm:aspect-[2/1] lg:aspect-[3/2] bg-[#26272B] animate-pulse" />
+                            }
+
                             <img
                                 className="aspect-[16/9] rounded-2xl lg:rounded-3xl bg-zinc-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
                                 width="400"
                                 src={article_image}
+                                onLoad={handleImageLoad}
                             />
                         </div>
 

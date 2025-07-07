@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { supabase } from "@/SupaBase/supaBaseClient";
 
 
 interface UserContent {
@@ -21,25 +20,26 @@ const initialState: UserContent = {
 
 export const fetchSavedArticles = createAsyncThunk(
     'user/articles',
-    async (id: string, thunkAPI) => {
+    async (thunkAPI) => {
         try {
-            const data = await fetch('/getUserArticles', {
+            const response = await fetch('/getUserArticles', {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
-                    id: id,
-
-                }),
             })
 
-            const articles = await data.json();
-            if (articles) return articles;
+            if (!response.ok) {
+                throw new Error(`Failed to fetch articles: ${response.statusText}`);
+            }
+
+            const results = await response.json();
+            return results
+
 
         } catch (error) {
-            return thunkAPI.rejectWithValue(error);
+            console.error(error);
         };
 
     }
@@ -71,7 +71,9 @@ const UserContentSlice = createSlice({
             })
             .addCase(fetchSavedArticles.fulfilled, (state, action) => {
                 state.status = 'succeeded';
-                state.userArticles = action.payload
+                if (state.userArticles) {
+                    state.userArticles = action.payload
+                }
             })
             .addCase(fetchSavedArticles.rejected, (state, action) => {
                 state.status = 'failed';

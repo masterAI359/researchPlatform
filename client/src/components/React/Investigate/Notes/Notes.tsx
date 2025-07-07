@@ -32,7 +32,7 @@ export default function Notes({ notePosition, setNotePosition, constraints, note
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             className="bg-mirage z-50 2xl:w-[29rem] 2xl:h-96 xs:h-60 xs:w-72
-            shadow shadow-thick rounded-lg inset cursor-pointer
+            shadow-thick rounded-lg inset cursor-pointer
             flex flex-col overflow-hidden">
             <div className="h-full w-full box-border flex flex-col justify-start">
                 <div className="w-full max-h-fit flex justify-end rounded-t-lg">

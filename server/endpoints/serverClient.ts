@@ -10,6 +10,8 @@ import { Request, Response } from 'express'
 import { createClient, SupabaseClient, User } from '@supabase/supabase-js';
 import { ArticleBody, ArticleSaveResponse, ChangePasswordBody, ChangePasswordError, ChangePasswordSuccess, CurrentUser, FeedbackBody, FeedbackResponse, GetLinkBody, GetLinkResponse, InvestigationBody, LoginBody, NewUser, SavedArticle, SignUpRequestBody, SupabaseSession } from './interfaces.js';
 import { Database } from './databaseInterfaces.js';
+import { saveArticleForUser } from '../services/saveArticle.js';
+import { deleteArticleForUser } from '../services/deleteArticle.js';
 
 export const createSupabaseFromRequest = (req: Request): SupabaseClient<Database> => {
     const accessToken = req.cookies['sb-access-token'];
@@ -152,8 +154,7 @@ export const getUserArticles = async (req: Request, res: Response): Promise<void
 
         if (error) {
             console.error(error.message);
-            res.status(400).json({ error: error.message });
-            return;
+            throw new Error(`Unexpected error encountered: ${error.message}`);
         } else {
             res.status(200).send(data)
         }
@@ -203,132 +204,43 @@ export const getUserResearch = async (req: Request, res: Response): Promise<void
 };
 
 
-const saveArticleForUser = async (req: Request, res: Response): Promise<string | null> => {
-    const session = await getUserAndSupabase(req, res);
-    if (!session) return null;
-    const { supabase, user } = session;
-    const { dataToSave } = req.body as ArticleBody;
-    const { text, url, image_url, summary, title, authors, date, provider, fallbackDate, factual_reporting, bias, country } = dataToSave;
-    try {
-        const { data, error } = await supabase
-            .from('articles')
-            .upsert(
-                [
-                    {
-                        title: title,
-                        image_url: image_url,
-                        provider: provider,
-                        full_text: text,
-                        authors: authors,
-                        date_published: date || fallbackDate,
-                        article_url: url,
-                        summary: summary,
-                        user_id: user.id,
-                        bias: bias,
-                        factual_reporting: factual_reporting,
-                        country: country,
-                    },
-                ],
-                {
-                    onConflict: 'user_id,article_url',
-                }
-            )
-            .select();
-
-        if (error) {
-            console.log(error.message);
-            const db_error: string = "couldn't save the provided article to the database";
-            return db_error;
-
-        } else if (data) {
-            console.log(data)
-            const message: string = "Saved";
-            return message;
-        };
-
-        return null;
-
-    } catch (error) {
-        console.log(error);
-        const error_message = error instanceof Error
-            ? `Unknown server error: ${error.message}`
-            : 'Unknown server error, check server logs for more info';
-        return error_message;
-    };
-};
-
-
-const deleteArticleForUser = async (req: Request, res: Response): Promise<string | null> => {
-
-
-
-    try {
-
-        const session = await getUserAndSupabase(req, res);
-        if (!session) return null;
-        const { supabase, user } = session;
-        const { dataToSave } = req.body as ArticleBody;
-        const { url } = dataToSave as SavedArticle;
-
-        const response = await supabase
-            .from('articles')
-            .delete()
-            .eq('user_id', user.id)
-            .eq('article_url', url)
-            .select();
-
-        if (response?.error) {
-            console.error('Deleting error', response.error.message);
-            return null;
-        } else if (response) {
-            const message: string = "Deleted";
-            return message;
-        };
-
-        return null;
-
-    } catch (error) {
-        console.log(error);
-        const err_message: string = error instanceof Error
-            ? `Unknown server error: ${error.message}`
-            : 'Unknown server error, check server logs for more info';
-
-        return err_message;
-    };
-};
-
-
 export const handleArticleSave = async (req: Request, res: Response): Promise<void> => {
 
     const { articleExists, dataToSave } = req.body as ArticleBody;
+    const session = await getUserAndSupabase(req, res);
+    if (!session) return;
+    const { supabase, user } = session;
+    const id: string = user?.id;
+    const { url } = dataToSave as SavedArticle;
 
     try {
-        let result;
+        let result: string | null;
 
-        if (articleExists) {
+        if (articleExists === true) {
             console.log('deleting')
-            result = await deleteArticleForUser(req, res);
+            result = await deleteArticleForUser(supabase, id, url);
         } else {
             console.log('saving')
-            result = await saveArticleForUser(req, res);
+            result = await saveArticleForUser(supabase, id, dataToSave);
         }
 
         if (result) {
-            const responseObject: ArticleSaveResponse = { saved: true, message: result };
+            console.log(result);
+            const responseObject: ArticleSaveResponse = { success: true, message: result };
             res.status(200).send(responseObject);
             return;
         } else {
-            res.status(400).json({ saved: false, data: `Database operation failed to execute.` });
+            res.status(400).json({ success: false, message: `Database operation failed to execute.` });
             return;
         }
     } catch (error) {
         console.log(error);
 
         if (error instanceof Error) {
-            res.status(500).json({ saved: false, data: `Unknown server error ${error}` });
+            res.status(500).json({ success: false, message: `Unknown server error ${error}` });
             return;
         } else {
-            res.status(500).json({ saved: false, data: 'Unknown server error, check server logs for more info' });
+            res.status(500).json({ success: false, message: 'Unknown server error, check server logs for more info' });
             return;
         };
     };

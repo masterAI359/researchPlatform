@@ -35,9 +35,9 @@ export default function LinkGrid() {
 
     useEffect(() => {
 
-        if (articleOptions !== null && articleOptions.length < 1) {
-            console.log(articleOptions)
-        }
+        //   if (articleOptions !== null && articleOptions.length < 1) {
+        //       console.log(articleOptions)
+        //   }
 
         if (status === 'fulfilled' && articleOptions) {
             const formedPages = formPages(articleOptions)
@@ -58,18 +58,17 @@ export default function LinkGrid() {
             className="h-full w-full min-h-screen"
         >
             <div className={`h-full w-full mx-auto relative`}>
-                <ErrorBoundary fallback={ <SearchFailed />}>
+                <ErrorBoundary fallback={<SearchFailed />}>
                     <AnimatePresence>
 
-                        {status === 'pending' && <LinkLoader />}
-                        {status === 'fulfilled' && articleOptions !== null && articleOptions.length > 0 && <LinkPagination identifier={'TopPager'} />}
-                        {status === 'fulfilled' && articleOptions &&
+                        {status === 'fulfilled' && articleOptions !== null && <LinkPagination identifier={'TopPager'} />}
+                        {status !== 'idle' &&
                             <motion.div layout key='pagesContainer' className="relative min-h-screen inset-0 my-6">
                                 <Pages />
                             </motion.div>}
                         {(status === 'fulfilled' && !articleOptions) || (articleOptions && articleOptions.length < 1) && <SearchFailed />}
 
-                        {status === 'fulfilled' && articleOptions !== null && articleOptions.length !== 0 && <LinkPagination identifier={'BottomPager'} key={'pagerTwo'} />}
+                        {status === 'fulfilled' && articleOptions !== null && <LinkPagination identifier={'BottomPager'} key={'pagerTwo'} />}
 
 
                     </AnimatePresence>
@@ -84,5 +83,6 @@ export default function LinkGrid() {
 }
 
 
+{/* status === 'pending' && <LinkLoader /> */ }
 
 

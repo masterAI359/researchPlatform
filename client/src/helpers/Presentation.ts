@@ -115,6 +115,36 @@ export const splitPosts = (
 };
 
 
+export const limitDescription = (string: string) => {
+
+    if (string.length >= 111) {
+        let newArr = string.split('')
+
+        let count = 0
+
+        let stringArr = []
+
+        for (let i = 0; i < newArr.length; i++) {
+
+            count++
+            stringArr.push(newArr[i])
+
+            if (count >= 95) {
+                break
+            }
+        }
+
+        const newString = stringArr.join('')
+
+        const presentation = newString + '...'
+
+        return presentation
+    } else {
+        return string
+    }
+}
+
+
 export const limitString = (str: string, limit?: number): string => {
 
     let arr: string[] = [];

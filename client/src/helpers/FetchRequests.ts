@@ -5,7 +5,7 @@ const options: OptionsTypes = {
     headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-    }
+    },
 }
 
 export async function fetchArticles(query: string): Promise<any> {
@@ -19,13 +19,15 @@ export async function fetchArticles(query: string): Promise<any> {
         }
         const jsonResponse = await response.json();
         if (jsonResponse) {
-            return jsonResponse
+            console.log(jsonResponse)
+            return { ok: true, data: jsonResponse };
         }
     } catch (err) {
         if (err) {
-            return err
-        }
-    }
+            console.error(err);
+            return { ok: false, data: null };
+        };
+    };
 };
 
 export const getWikiDetails = async (

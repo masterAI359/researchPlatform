@@ -2,7 +2,7 @@ import { motion } from "framer-motion"
 import { useEffect } from "react"
 
 
-export default function NotifySavedArticle({ articleExists, setShowNotification }) {
+export default function NotifySavedArticle({ setShowNotification, notification }) {
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -10,7 +10,7 @@ export default function NotifySavedArticle({ articleExists, setShowNotification 
         }, 2000)
 
         return () => clearTimeout(timer)
-    }, [articleExists, setShowNotification])
+    }, []);
 
     const variants = {
         closed: {
@@ -37,8 +37,7 @@ export default function NotifySavedArticle({ articleExists, setShowNotification 
         >
             <div className="w-full h-auto p-2">
                 <h1 className="text-black text-nowrap text-sm w-full font-light tracking-tight">
-                    {articleExists ? 'article saved!'
-                        : 'unsaved'}
+                    {notification}
                 </h1>
             </div>
 

@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { BiasChart } from "../Charts/DonutChart/SourceChart";
 import StatsSection from "../Charts/ResearchStats/StatsSection";
 import IntegrityChart from "../Charts/PieChart/IntegrityChart";
+import ScrolltoTop from "../AppRouting/ScrollToTop";
 
 const variants = {
     open: { opacity: 1 },
@@ -23,6 +24,7 @@ export default function Dashboard() {
         p-4 md:p-0
         "
         >
+            <ScrolltoTop />
             <BiasChart />
             <IntegrityChart />
             <StatsSection />

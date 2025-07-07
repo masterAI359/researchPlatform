@@ -211,6 +211,7 @@ declare global {
   }
 
   interface LoginSession {
+    message: string,
     session: Session | null
   }
 
@@ -222,11 +223,21 @@ declare global {
     dataTwo?: string | null
   }
 
+  interface LinkProps {
+    article: ArticleType,
+    index: number
+  }
+
+  interface SaveArticleResponse {
+    success: boolean,
+    message: string
+  }
+
 }
 
 
 export {
   ArticleType, OptionsTypes, SelectedArticle, Perspectives, State, PremiseProps, Help, SavedArticle,
   Calculations, PostsProps, SupabaseUser, ResetPW, Investigation, ScrapedArticle, TipTapProps, AuthStatus, AuthNotificationProps,
-  LoginSession, Tooltips, SidebarItemData
+  LoginSession, Tooltips, SidebarItemData, LinkProps, SaveArticleResponse
 };

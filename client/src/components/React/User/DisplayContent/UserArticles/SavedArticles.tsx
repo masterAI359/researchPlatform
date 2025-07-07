@@ -5,11 +5,15 @@ import { motion } from "framer-motion"
 import ArticleSaved from "./ArticleSaved"
 import ErrorBoundary from "../../../ErrorBoundaries/ErrorBoundary"
 import ScrolltoTop from "../../../AppRouting/ScrollToTop"
+import LazyLoad from "react-lazyload"
+import ArticleSavedPlaceholder from "@/components/React/Loaders/SavedArticlePlaceholder"
 
 export default function SavedArticles({ }) {
     const { userArticles, error, status } = useSelector((state: RootState) => state.userdata)
+    console.log(userArticles.length)
 
     useEffect(() => {
+
 
     }, [userArticles, error, status])
 
@@ -52,7 +56,9 @@ export default function SavedArticles({ }) {
 
                     <article className="w-full  2xl:w-11/12 xl:w-4/5 md:w-3/4 flex flex-col h-auto items-end px-4 md:px-0">
                         {userArticles.map((article: any, index: number) => (
-                            <ArticleSaved key={index} article={article} index={index} />
+                            <LazyLoad key={index} offset={200}>
+                                <ArticleSaved key={index} article={article} index={index} />
+                            </LazyLoad>
                         ))}
                     </article>
 

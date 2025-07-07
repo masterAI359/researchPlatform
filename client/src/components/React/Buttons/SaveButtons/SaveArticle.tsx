@@ -1,40 +1,64 @@
 import { AnimatePresence } from "framer-motion"
 import NotifySavedArticle from "../../Notifications/NotifySaved"
 import { saveArticle, checkArticle } from "@/helpers/SupabaseData"
-import { useSelector } from "react-redux"
-import { RootState } from "@/ReduxToolKit/store"
-import { useEffect, useLayoutEffect, useState } from "react"
-import RegisteredUsersOnly from "../../Notifications/RegisteredUsersOnly"
+import { useDispatch, useSelector } from "react-redux"
+import { AppDispatch, RootState } from "@/ReduxToolKit/store"
+import { useEffect, useMemo, useState } from "react"
+import { fetchSavedArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
 
 export default function Bookmark({ dataToSave, showNotification, setShowNotification, open }) {
-    const id = useSelector((state: RootState) => state.auth.user_id)
     const userArticles = useSelector((state: RootState) => state.userdata.userArticles);
     const [articleExists, setArticleExists] = useState<boolean>(false)
     const [saving, setSaving] = useState<boolean | null>(null);
+    const [notification, setNotification] = useState<string | null>(null);
     const [registeredExclusiveFeature, setRegisteredExclusiveFeature] = useState<boolean>(false)
-    const [runCheck, setRunCheck] = useState<boolean>(true)
-    const { url } = dataToSave
+    const { url } = dataToSave;
+    const dispatch = useDispatch<AppDispatch>();
 
-    useLayoutEffect(() => {
+    const urls = useMemo((): Set<string> => {
+        if (userArticles) {
+            return new Set(userArticles.map((article: ScrapedArticle) => article.article_url));
+        }
+    }, [userArticles]);
 
-        if (runCheck) {
-            checkArticle(setArticleExists, url, userArticles);
+    useEffect(() => {
+        const check = () => {
+            const exists = checkArticle(url, urls);
+            setArticleExists(exists);
+        };
+
+        if (userArticles) {
+            check();
 
         }
-    }, []);
+
+
+    }, [dispatch]);
 
     useEffect(() => {
 
         const executeSave = async () => {
-            const status = saveArticle(dataToSave, articleExists, id);
+            const status = await saveArticle(dataToSave, articleExists);
             if (status === null) {
-                setRegisteredExclusiveFeature(true);
-            } else if (status) {
+                setNotification('Register or Login to save articles!');
                 setShowNotification(true);
-                setArticleExists(true)
+                setSaving(false)
+            } else if (status === 'Saved') {
+                setNotification('article saved!')
+                setShowNotification(true);
+                setArticleExists(true);
+                setSaving(false)
+            } else if (status === 'Deleted') {
+                setNotification('removed')
+                setShowNotification(true);
+                setArticleExists(false);
+                setSaving(false)
+
             } else {
-                setShowNotification(true)
+                setNotification('operation failed');
+                setSaving(false)
             };
+            dispatch(fetchSavedArticles());
         };
 
         if (saving) {
@@ -44,15 +68,11 @@ export default function Bookmark({ dataToSave, showNotification, setShowNotifica
     }, [saving])
 
 
-    const handleSaveClick = async () => {
-        setRunCheck(false);
-        setSaving(true);
 
-    };
 
 
     return (
-        <div onClick={handleSaveClick}
+        <div onClick={() => setSaving(true)}
             className={`${open ? 'pointer-events-none' : 'pointer-events-auto'} w-full h-full self-start flex items-center justify-start group relative cursor-pointer`}>
             {!showNotification && !registeredExclusiveFeature ? <div className="rounded-md xl:h-fit md:w-24 flex xs:hidden md:block 
                 mx-auto group-hover:bg-white bg-white opacity-0 absolute md:right-9
@@ -63,7 +83,6 @@ export default function Bookmark({ dataToSave, showNotification, setShowNotifica
                     {articleExists ? 'unsave' : 'save article'}
                 </h1>
 
-                {/* Right-side notch */}
                 <div
                     className="absolute top-1/2 -right-2 transform -translate-y-1/2"
                     style={{
@@ -78,10 +97,8 @@ export default function Bookmark({ dataToSave, showNotification, setShowNotifica
                 : null}
             <AnimatePresence>
                 {showNotification &&
-                    <NotifySavedArticle articleExists={articleExists} setShowNotification={setShowNotification} />
+                    <NotifySavedArticle setShowNotification={setShowNotification} notification={notification} />
                 }
-
-                {registeredExclusiveFeature && <RegisteredUsersOnly setRegisteredExclusiveFeature={setRegisteredExclusiveFeature} registeredExclusiveFeature={registeredExclusiveFeature} />}
 
             </AnimatePresence>
             <svg className={`${articleExists ? 'text-white' : 'text-white/30 hover:text-white/60'}

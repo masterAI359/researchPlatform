@@ -6,8 +6,20 @@ export const RetrieveArticles = createAsyncThunk(
     'investigate/fetchArticles',
     async (query: string, thunkAPI) => {
 
-        const response = await fetchArticles(query)
-        return response.data
+        try {
+            const response = await fetchArticles(query)
+
+            if (!response) {
+                throw new Error(`Unable to query endpoint for article links: ${response.statusText}`);
+            }
+            console.log(response.data)
+            return response.data;
+
+        } catch (error) {
+            console.error(error);
+        };
+
+
     }
 )
 
@@ -60,7 +72,7 @@ export const SearchResultsSlice = createSlice({
         }),
             builder.addCase(RetrieveArticles.fulfilled, (state, action) => {
                 state.status = 'fulfilled'
-                state.articleOptions = action.payload
+                state.articleOptions = action.payload.data
             }),
             builder.addCase(RetrieveArticles.rejected, (state, action) => {
                 state.status = 'rejected';

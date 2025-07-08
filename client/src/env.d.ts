@@ -2,7 +2,7 @@
 /// <reference types="astro/client" />
 
 import { Session } from "@supabase/supabase-js";
-
+import { Extracts } from "./ReduxToolKit/Reducers/Investigate/Review";
 
 
 declare global {
@@ -81,6 +81,28 @@ declare global {
 
   }
 
+  type Bias = | "Left"
+    | "Left-Center"
+    | "Center"
+    | "Right-Center"
+    | "Right"
+    | "Conspiracy-Pseudoscience"
+    | "Questionable"
+    | "LeastBiased"
+    | "Satire"
+    | "Pro-Science"
+    | null;
+
+  interface BiasCounts {
+    Left: number | null,
+    Right: number | null,
+    Center: number | null,
+    Conspiracy: number | null,
+    Questionable: number | null,
+    Satire: number | null,
+    Scientific: number | null,
+  }
+
   interface SavedArticle {
     title: string,
     provider: string,
@@ -93,7 +115,7 @@ declare global {
     text: string,
     id: string,
     factual_reporting?: string | null,
-    bias?: string | null,
+    bias?: Bias,
     country?: string | null
   }
 
@@ -207,7 +229,7 @@ declare global {
     complete: boolean | null,
     setterFunction: any,
     status: AuthStatus,
-    redirect?: Function
+    redirect?: Function,
   }
 
   interface LoginSession {
@@ -233,11 +255,16 @@ declare global {
     message: string
   }
 
+  interface WikiTerm {
+    article_url?: string,
+    data?: Extracts
+  }
+
 }
 
 
 export {
   ArticleType, OptionsTypes, SelectedArticle, Perspectives, State, PremiseProps, Help, SavedArticle,
   Calculations, PostsProps, SupabaseUser, ResetPW, Investigation, ScrapedArticle, TipTapProps, AuthStatus, AuthNotificationProps,
-  LoginSession, Tooltips, SidebarItemData, LinkProps, SaveArticleResponse
+  LoginSession, Tooltips, SidebarItemData, LinkProps, SaveArticleResponse, WikiTerm, Bias, BiasCounts
 };

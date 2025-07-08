@@ -42,7 +42,7 @@ export default function StepsEditor({ setterFunction, context }) {
 
     return (
         <div className="w-full h-full box-border mx-auto">
-            <div className="control-group w-full flex px-1 bg-white">
+            <div className="control-group w-full flex px-1 bg-ebony/50">
                 <div className="button-group w-full mx-auto text-white flex gap-x-3 py-1">
 
                     <button
@@ -109,7 +109,7 @@ export default function StepsEditor({ setterFunction, context }) {
 
             <div onClick={handleContainerClick} className="h-full w-full">
                 <EditorContent style={{ textAlign: 'left', verticalAlign: 'top', minHeight: '90%', height: '100%', color: '#ffffff' }} editor={editor}
-                    className="text-black xs:text-xs md:text-lg focus:outline-none px-1 
+                    className="text-black xs:text-xs md:text-lg focus:outline-none px-4 
                     focus:border-none font-thin font-serif tracking-tight cursor-text
                     min-w-full h-full prose"
                 />

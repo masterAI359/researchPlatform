@@ -1,25 +1,28 @@
-import { Calculations } from "@/env";
-import { combineSlices } from "@reduxjs/toolkit";
-import { unknown } from "astro:schema";
+import { Calculations, SavedArticle, Bias } from "@/env";
 
 
-export const numBiasSources = (articles: SavedArticle[], leaningOne: string, leaningTwo?: string) => {
+export const numBiasSources = (articles: SavedArticle[], leaningOne: Bias, leaningTwo?: Bias): number | null => {
 
     let count: number = 0;
 
-    for (let i = 0; i < articles.length; i++) {
+    if (Array.isArray(articles)) {
 
-        let bias: string | null = articles[i].bias;
+        for (let i = 0; i < articles.length; i++) {
 
-        if (bias === leaningOne) {
-            count++
-        } else if (leaningTwo && bias === leaningTwo) {
-            count++
-        } else {
-            continue
+            let bias: string | null = articles[i].bias;
+
+            if (bias === leaningOne) {
+                count++
+            } else if (leaningTwo && bias === leaningTwo) {
+                count++
+            } else {
+                continue
+            };
         };
-    }
-    return count;
+        return count;
+    } else {
+        return null;
+    };
 };
 
 

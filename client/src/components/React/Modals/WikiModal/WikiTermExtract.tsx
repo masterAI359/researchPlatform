@@ -5,26 +5,12 @@ import { AppDispatch, RootState } from "@/ReduxToolKit/store";
 import { useEffect, useState } from "react";
 import WikiExtractLoader from "../../Loaders/WikiExtractLoader";
 import ExtractNotification from "../../Notifications/ExtractNotification";
-import { Extracts } from "@/ReduxToolKit/Reducers/Investigate/Review";
 import { clearWikiSlice } from "@/ReduxToolKit/Reducers/Investigate/WikipediaSlice";
 import Description from "./WikiDescription";
 import TermFooter from "./TermFooter";
+import { variants } from "@/motion/variants";
+import { WikiTerm } from "@/env";
 
-const variants = {
-
-    open: {
-        opacity: 1
-    },
-    closed: {
-        opacity: 0
-    }
-}
-
-
-interface WikiTerm {
-    article_url?: string,
-    data?: Extracts
-}
 
 export default function WikiTermExtract({ article_url, data }: WikiTerm) {
     const investigateState = useSelector((state: RootState) => state.investigation);
@@ -34,7 +20,10 @@ export default function WikiTermExtract({ article_url, data }: WikiTerm) {
     const [showNotification, setShowNotification] = useState<boolean>(null);
     const saved: boolean | null = extract ? extracts.some((item: any) => item.title === title) : null
 
-    useEffect(() => { }, [status, extract, saved, showNotification, errormessage]);
+    useEffect(() => {
+
+        return () => { dispatch(clearWikiSlice()) }
+    }, []);
 
     const termExtracted = (
         <motion.div

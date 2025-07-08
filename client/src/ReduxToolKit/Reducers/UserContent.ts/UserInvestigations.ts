@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 type ID = string | number;
 
-export const fetchSavedInvestigations = createAsyncThunk('user/investigations', async (id: ID, thunkAPI) => {
+export const fetchSavedInvestigations = createAsyncThunk('user/investigations', async (thunkAPI) => {
 
     try {
         const response = await fetch('/getUserResearch', {
@@ -11,9 +11,7 @@ export const fetchSavedInvestigations = createAsyncThunk('user/investigations', 
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-                id: id,
-            }),
+
         });
 
         const investigations = await response.json();
@@ -21,7 +19,8 @@ export const fetchSavedInvestigations = createAsyncThunk('user/investigations', 
 
     } catch (error) {
         if (error) {
-            return thunkAPI.rejectWithValue(error);
+            console.error(error)
+            return
         };
     }
 });

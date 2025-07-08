@@ -2,11 +2,11 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import { AnimatePresence } from "framer-motion";
 import Dashboard from "./Dashboard";
-import SavedArticles from "./DisplayContent/UserArticles/SavedArticles";
-import SavedResearchLayout from "./DisplayContent/SavedInvestigations.tsx/SavedResearchLayout";
-import DesktopAccMngmt from "./ProfileNavigation/AccountManagement/DesktopAccMngmt";
-import ResearchReview from "./ResearchReview";
-import ArticleReview from "./ArticleReview";
+import SavedArticles from "../DisplayContent/UserArticles/SavedArticles";
+import SavedResearchLayout from "../DisplayContent/SavedInvestigations.tsx/SavedResearchLayout";
+import DesktopAccMngmt from "../ProfileNavigation/AccountManagement/DesktopAccMngmt";
+import ResearchReview from "../ProfilePages/ResearchReview";
+import ArticleReview from "../DisplayContent/UserArticles/ArticleReview";
 
 export default function Display() {
     const displaySavedInvestigations = useSelector((state: RootState) => state.profileNav.displaySavedInvestigations)
@@ -20,12 +20,12 @@ export default function Display() {
     return (
         <main className="w-full flex relative h-auto md:px-6 lg:px-0">
             <AnimatePresence mode="wait">
-                {displayDashboard && <Dashboard />}
-                {displaySavedArticles && <SavedArticles />}
-                {displaySavedInvestigations && <SavedResearchLayout />}
-                {displayAccountManagement && <DesktopAccMngmt />}
-                {displayThisInvestigation && <ResearchReview />}
-                {displayThisArticle && <ArticleReview />}
+                {displayDashboard && <Dashboard key='dashboard' />}
+                {displaySavedArticles && <SavedArticles key='articles' />}
+                {displaySavedInvestigations && <SavedResearchLayout key='investigations' />}
+                {displayAccountManagement && <DesktopAccMngmt key='settings' />}
+                {displayThisInvestigation && <ResearchReview key='research_review' />}
+                {displayThisArticle && <ArticleReview key='article_review' />}
             </AnimatePresence>
         </main>
     )

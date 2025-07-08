@@ -6,22 +6,46 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import { numBiasSources } from "@/helpers/Ratings";
 import { ChartData } from "chart.js";
-import ChartHeader from "./ChartHeader";
 import DonutSkeleton from "../../Placeholders/DonutSkeleton";
 import ErrorBoundary from "../../ErrorBoundaries/ErrorBoundary";
 import ErrMessage from "../../ErrorMessages/ErrMessage";
+import { useMemo } from "react";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 
 export default function SourceChart() {
   const userArticles = useSelector((state: RootState) => state.userdata.userArticles);
-  const numLeftSources: number | null = numBiasSources(userArticles, "Left", "Left-Center");
-  const numRightSources: number | null = numBiasSources(userArticles, "Right", "Right-Center");
-  const numCenterSources: number | null = numBiasSources(userArticles, "LeastBiased");
-  const numConspiracySources: number | null = numBiasSources(userArticles, "Conspiracy-Pseuodscience");
-  const numQuestionableSources: number | null = numBiasSources(userArticles, 'Questionable');
-  const numSatireSources: number | null = numBiasSources(userArticles, "Satire");
-  const numScientificSources: number | null = numBiasSources(userArticles, "Pro-Science");
+
+  const biasCounts = useMemo((): BiasCounts => {
+
+    if (Array.isArray(userArticles) && userArticles.length > 0) {
+
+      const counts: BiasCounts = {
+        Left: numBiasSources(userArticles, "Left", "Left-Center"),
+        Right: numBiasSources(userArticles, "Right", "Right-Center"),
+        Center: numBiasSources(userArticles, "LeastBiased"),
+        Conspiracy: numBiasSources(userArticles, "Conspiracy-Pseudoscience"),
+        Questionable: numBiasSources(userArticles, 'Questionable'),
+        Satire: numBiasSources(userArticles, "Satire"),
+        Scientific: numBiasSources(userArticles, "Pro-Science")
+      };
+
+      return counts;
+
+    } else {
+      const fallback: BiasCounts = {
+        Left: 0,
+        Right: 0,
+        Center: 0,
+        Conspiracy: 0,
+        Questionable: 0,
+        Satire: 0,
+        Scientific: 0,
+      };
+
+      return fallback;
+    }
+  }, [userArticles]);
 
   const ratings: string[] = [
     'Right wing',
@@ -34,13 +58,15 @@ export default function SourceChart() {
   ];
 
   const sourceBiasCounts: number[] = [
-    numRightSources,
-    numLeftSources,
-    numCenterSources,
-    numConspiracySources,
-    numQuestionableSources,
-    numSatireSources,
-    numScientificSources
+
+    biasCounts.Right,
+    biasCounts.Left,
+    biasCounts.Center,
+    biasCounts.Conspiracy,
+    biasCounts.Questionable,
+    biasCounts.Satire,
+    biasCounts.Scientific
+
   ];
 
   const tableColors: string[] = [
@@ -86,26 +112,5 @@ export default function SourceChart() {
 
     </motion.div>
   )
-}
+};
 
-export function BiasChart() {
-
-
-  return (
-    <motion.section
-      variants={variants}
-      initial='closed'
-      animate='open'
-      exit='closed'
-      transition={{ type: 'tween', duration: 0.2 }}
-      className="lg:p-8">
-      <div className="mx-auto 2xl:max-w-7xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:gap-24 items-center">
-          <ChartHeader />
-          <SourceChart />
-        </div>
-      </div>
-    </motion.section>
-
-  )
-}

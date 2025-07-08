@@ -3,7 +3,7 @@ import { clearAuthSlice, showSignOut } from "@/ReduxToolKit/Reducers/Athenticati
 import { useDispatch } from "react-redux";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import { fetchSignOut } from "@/helpers/SupabaseData";
+import { fetchSignOut } from "@/services/SupabaseData";
 import AuthNotification from "../../Notifications/AuthNotifications/AuthNotification";
 import { signOutStatus } from "../../Notifications/AuthNotifications/AuthStatus";
 import { useNavigate } from "react-router-dom";

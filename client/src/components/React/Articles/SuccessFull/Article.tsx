@@ -1,35 +1,21 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import ScrolltoTop from '../../AppRouting/ScrollToTop';
 import ArticleHeader from './ArticleHeader';
 import ArticleContent from './ArticleContent';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '@/ReduxToolKit/store';
-import { clearWikiSlice } from '@/ReduxToolKit/Reducers/Investigate/WikipediaSlice';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/ReduxToolKit/store';
 
 
 export default function Article({ articleData }) {
     const investigateState = useSelector((state: RootState) => state.investigation);
-    const dispatch = useDispatch<AppDispatch>();
-    const { gettingSelection, status } = investigateState.wiki;
+    const { status } = investigateState.wiki;
     const [fullStory, setFullStory] = useState<boolean>(true);
     const {
         summary,
         article_url,
         article_text,
     } = articleData;
-
-
-
-    useEffect(() => {
-
-        return () => {
-            dispatch(clearWikiSlice());
-        }
-
-    }, [])
-
-
 
 
     return (

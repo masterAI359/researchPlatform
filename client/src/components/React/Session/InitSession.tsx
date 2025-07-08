@@ -2,18 +2,6 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getID } from '@/ReduxToolKit/Reducers/Athentication/Authentication';
 import { AppDispatch, RootState } from '@/ReduxToolKit/store';
-import { createClient } from '@supabase/supabase-js';
-
-const supaBaseUrl = import.meta.env.PUBLIC_SUPABASE_URL as string
-const supaBaseKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY as string
-
-export const supabase = createClient(supaBaseUrl, supaBaseKey, {
-    auth: {
-        persistSession: true,
-        autoRefreshToken: true,
-    }
-});
-
 
 export default function InitSession() {
     const id = useSelector((state: RootState) => state.auth.user_id);

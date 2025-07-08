@@ -1,6 +1,6 @@
 import { AnimatePresence } from "framer-motion"
 import NotifySavedArticle from "../../Notifications/NotifySaved"
-import { saveArticle, checkArticle } from "@/helpers/SupabaseData"
+import { saveArticle, checkArticle } from "@/services/SupabaseData"
 import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch, RootState } from "@/ReduxToolKit/store"
 import { useEffect, useMemo, useState } from "react"

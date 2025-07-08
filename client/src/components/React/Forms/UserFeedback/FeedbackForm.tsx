@@ -5,7 +5,7 @@ import { displayFeedBackForm } from "@/ReduxToolKit/Reducers/Investigate/Display
 import { getAuthorEmail, getFeedBackMessage, stopAskingForFeedBack, declineFeedBack } from "@/ReduxToolKit/Reducers/Feedback/FeedbackSlice"
 import React, { useEffect, useState } from "react"
 import { RootState } from "@/ReduxToolKit/store"
-import { submitFeedback } from "@/helpers/SupabaseData"
+import { submitFeedback } from "@/services/SupabaseData"
 import AuthNotification from "../../Notifications/AuthNotifications/AuthNotification"
 import { feedbackStatus } from "../../Notifications/AuthNotifications/AuthStatus"
 

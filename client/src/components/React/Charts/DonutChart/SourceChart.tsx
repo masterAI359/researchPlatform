@@ -1,19 +1,16 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { variants } from "@/motion/variants";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import { numBiasSources } from "@/helpers/Ratings";
 import { ChartData } from "chart.js";
 import ChartHeader from "./ChartHeader";
+import DonutSkeleton from "../../Placeholders/DonutSkeleton";
+import ErrorBoundary from "../../ErrorBoundaries/ErrorBoundary";
+import ErrMessage from "../../ErrorMessages/ErrMessage";
 ChartJS.register(ArcElement, Tooltip, Legend);
-
-const variants = {
-  open: { opacity: 1 },
-  closed: { opacity: 0 }
-};
-
-
 
 
 export default function SourceChart() {
@@ -80,12 +77,19 @@ export default function SourceChart() {
       transition={{ type: 'tween', duration: 0.2 }}
       className="w-auto h-96 lg:h-128 flex items-center md:justify-center"
     >
-      <Doughnut className="cursor-pointer" data={data} />
+      <ErrorBoundary fallback={<ErrMessage message="Error at <SourceChart/> component :/" />}>
+        <AnimatePresence mode="wait">
+          {Array.isArray(userArticles) && (userArticles.length > 0) && <Doughnut key='biasChart' className="cursor-pointer" data={data} />}
+          {Array.isArray(userArticles) && (userArticles.length < 1) && <DonutSkeleton key='biasSkeleton' />}
+        </AnimatePresence>
+      </ErrorBoundary>
+
     </motion.div>
   )
 }
 
 export function BiasChart() {
+
 
   return (
     <motion.section

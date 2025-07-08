@@ -58,7 +58,7 @@ export default function StatsSection() {
                         <p className="mt-6 text-sm text-white">
                             Over all of your investigations:
                         </p>
-                        <StatBreakdown percentChanged={stats.percentChanged} validated={stats.validated} neutral={stats.neutral} needMore={stats.neededMore} />
+                        {investigations && <StatBreakdown percentChanged={stats.percentChanged} validated={stats.validated} neutral={stats.neutral} needMore={stats.neededMore} />}
                     </div>
                     <div className="relative mt-16 h-80 lg:mt-8">
                         {/* <img

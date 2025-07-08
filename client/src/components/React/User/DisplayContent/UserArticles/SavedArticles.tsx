@@ -10,7 +10,6 @@ import ArticleSavedPlaceholder from "@/components/React/Loaders/SavedArticlePlac
 
 export default function SavedArticles({ }) {
     const { userArticles, error, status } = useSelector((state: RootState) => state.userdata)
-    console.log(userArticles.length)
 
     useEffect(() => {
 

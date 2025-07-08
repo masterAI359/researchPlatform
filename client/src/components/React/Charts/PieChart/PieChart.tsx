@@ -7,6 +7,7 @@ import { getSourceIntegrity } from '@/helpers/Ratings';
 import ErrorBoundary from '../../ErrorBoundaries/ErrorBoundary';
 import { useEffect } from 'react';
 import { getReportingRatings } from '@/ReduxToolKit/Reducers/UserContent.ts/ChartSlice';
+import PieSkeleton from '../../Placeholders/PieSkeleton';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -75,10 +76,12 @@ export default function PieChart() {
                 animate='open'
                 exit='closed'
                 transition={{ type: 'tween', duration: 0.2 }}
-                className="w-auto h-96 xl:h-128 xl:p-2 flex items-center"
+                className="w-auto h-96 xl:h-128 xl:p-2 flex items-center justify-center"
             >
                 <ErrorBoundary>
-                    <Pie data={data} />
+                    {Array.isArray(userArticles) && (userArticles.length === 0) && <PieSkeleton key='pieSkeleton' />}
+                    {Array.isArray(userArticles) && (userArticles.length > 0) && <Pie key='pieChart' data={data} />}
+                    {/* <Pie data={data} /> */}
 
                 </ErrorBoundary>
             </motion.div>}

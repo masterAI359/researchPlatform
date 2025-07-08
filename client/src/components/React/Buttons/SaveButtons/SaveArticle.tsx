@@ -39,11 +39,7 @@ export default function Bookmark({ dataToSave, showNotification, setShowNotifica
 
         const executeSave = async () => {
             const status = await saveArticle(dataToSave, articleExists);
-            if (status === null) {
-                setNotification('Register or Login to save articles!');
-                setShowNotification(true);
-                setSaving(false)
-            } else if (status === 'Saved') {
+            if (status === 'Saved') {
                 setNotification('article saved!')
                 setShowNotification(true);
                 setArticleExists(true);

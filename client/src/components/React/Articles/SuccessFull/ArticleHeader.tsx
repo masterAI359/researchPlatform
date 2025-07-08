@@ -47,13 +47,13 @@ export default function ArticleHeader({ articleData, setFullStory, fullStory }) 
     };
 
 
-    const handleImageLoad = () => {
-        setImageLoaded(prev => !prev);
-    };
+
 
     const fallbackImage = '/images/logos/fallback.jpg'
     const storyImage = article_image || fallbackImage
     const dateFormatted = date ? formatDate(date) : formatDate(article_pub_date);
+
+    const aspectClass = "w-[400px] aspect-[16/9] rounded-2xl lg:rounded-3xl sm:aspect-[2/1] lg:aspect-[3/2] w-full object-cover";
 
 
     return (
@@ -66,15 +66,11 @@ export default function ArticleHeader({ articleData, setFullStory, fullStory }) 
                         className="flex flex-col lg:flex-row justify-start items-center lg:gap-x-4 w-full lg:w-4/5">
                         <div className="w-full h-auto">
 
-                            {!imageLoaded &&
-                                <div className="aspect-[16/9] rounded-2xl lg:rounded-3xl object-cover sm:aspect-[2/1] lg:aspect-[3/2] bg-[#26272B] animate-pulse" />
-                            }
-
                             <img
-                                className="aspect-[16/9] rounded-2xl lg:rounded-3xl bg-zinc-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+                                loading="lazy"
+                                className={`${aspectClass} bg-mirage`}
                                 width="400"
                                 src={article_image}
-                                onLoad={handleImageLoad}
                             />
                         </div>
 

@@ -4,31 +4,22 @@ import { createPortal } from "react-dom"
 import { useDispatch } from "react-redux"
 import { getHelp } from "@/ReduxToolKit/Reducers/Investigate/HelpModal"
 import HelpModal from "../../Modals/HelpModal"
-
+import HelpTooltip from "../../Tooltips/HelpTooltip"
 
 export default function HelpButton({ info }) {
     const [activeTab, setActiveTab] = useState(info[0])
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const dispatch = useDispatch()
 
-
-
     const handleExpand = () => {
         dispatch(getHelp(true))
         setIsOpen(isOpen => !isOpen);
-
-    }
-
+    };
 
     return (
         <motion.div
             className="w-full flex flex-row items-center gap-2 group relative z-10">
-            <div className="rounded-md xl:h-fit xl:w-16 flex mx-auto z-30 hidden absolute md:left-6 lg:left-6 lg:bottom-4
-                border bg-black border-astro_gray md:group-hover:block transition-opacity duration-200 ease-in-out">
-
-                <h1 className="text-white xl:text-xs text-center font-light tracking-tight justify-self-start text-center w-full">Click for help
-                </h1>
-            </div>
+            <HelpTooltip />
             <motion.div
                 onClick={() => {
                     setIsOpen(isOpen => !isOpen)

@@ -3,7 +3,7 @@
 
 import { Session } from "@supabase/supabase-js";
 import { Extracts } from "./ReduxToolKit/Reducers/Investigate/Review";
-
+import { ReactEventHandler } from "react";
 
 declare global {
   interface ImportMetaEnv {
@@ -260,11 +260,17 @@ declare global {
     data?: Extracts
   }
 
+  interface LoadedArticle {
+    handleArticleSelection: VoidFunction,
+    handleImageLoad: ReactEventHandler<HTMLImageElement>,
+    article: any
+  }
+
 }
 
 
 export {
   ArticleType, OptionsTypes, SelectedArticle, Perspectives, State, PremiseProps, Help, SavedArticle,
   Calculations, PostsProps, SupabaseUser, ResetPW, Investigation, ScrapedArticle, TipTapProps, AuthStatus, AuthNotificationProps,
-  LoginSession, Tooltips, SidebarItemData, LinkProps, SaveArticleResponse, WikiTerm, Bias, BiasCounts
+  LoginSession, Tooltips, SidebarItemData, LinkProps, SaveArticleResponse, WikiTerm, Bias, BiasCounts, LoadedArticle
 };

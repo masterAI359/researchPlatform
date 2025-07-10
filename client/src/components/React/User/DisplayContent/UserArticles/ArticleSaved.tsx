@@ -2,63 +2,52 @@ import { readSavedArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/UserCon
 import { useDispatch } from "react-redux"
 import { presentThisArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice"
 import { useState } from "react"
+import TitleSkeleton from "@/components/React/Loaders/TitleSkeleton"
+import ImageSkeleton from "./ImageSkeleton"
+import Title from "./Title"
+import ErrorBoundary from "@/components/React/ErrorBoundaries/ErrorBoundary"
+import ErrMessage from "@/components/React/ErrorMessages/ErrMessage"
 
-
-export default function ArticleSaved({ article, index, }) {
+export default function ArticleSaved({ article }) {
   const dispatch = useDispatch()
   const [loaded, setLoaded] = useState<boolean>(false);
 
-  const handleImageLoad = () => {
-    setLoaded(prev => !prev)
+  const handleArticleSelection = (): void => {
+    dispatch(readSavedArticle(article));
+    setTimeout(() => { dispatch(presentThisArticle()) }, 150);
   };
 
-
-  const handleArticleSelection = () => {
-    dispatch(readSavedArticle(article));
-    setTimeout(() => {
-      dispatch(presentThisArticle());
-    }, 150)
-  }
+  //TODO: absolutely position skeleton, relatively position (with opacity-0 when loaded is false) content
 
   return (
     <li key={article.article_url} className="cursor-pointer">
-      <a
-        className="grid grid-cols-1 gap-12 lg:gap-24 md:grid-cols-2 items-center"
-        href="#"
-        title={article.title}>
-        <div className="group" onClick={handleArticleSelection}>
-          <h3
+      <ErrorBoundary fallback={<ErrMessage message="failed to load article :/" />}>
+        <a
+          className="grid grid-cols-1 gap-12 lg:gap-24 md:grid-cols-2 items-center relative"
+          href="#"
+          title={article.title}>
+          {loaded === false
+            ? <TitleSkeleton />
+            :
+            <Title article={article} handleArticleSelection={handleArticleSelection} loaded={loaded} />
+          }
 
-            className="text-3xl mt-6 tracking-tight font-light lg:text-4xl text-white/80 md:group-hover:text-white transition-all duration-200 ease-in-out">
-            {article.title}
-          </h3>
-          <p className="text-zinc-400 text-xs mt-6">
-            {article.authors ? article.authors[0] : 'Authors not available'} - <span> <time className="text-zinc-400 md:group-hover:text-blue-400 transition-all ease-in-out duration-200" dateTime={article.pubDate}>{article.date_published}</time></span>
-          </p>
-          <p className="text-zinc-400 text-xs mt-6">
-            Published by - <span className="text-zinc-400 md:group-hover:text-blue-400 transition-all ease-in-out duration-200">{article.provider} </span>
-          </p>
-        </div>
+          <img
+            onLoad={() => setLoaded(true)}
+            className={`aspect-[16/9] w-4/5 rounded-3xl bg-zinc-100 
+            object-cover sm:aspect-[2/1] lg:aspect-[3/2] 
+            transition-opacity duration-200 ease-in-out
+            ${loaded ? 'opacity-100' : 'opacity-0'}`}
+            width="560"
+            height="380"
+            src={article.image_url}
+          />
+          {loaded === false && <ImageSkeleton />}
+        </a>
 
-        {!loaded &&
-          <div className="aspect-[16/9] w-4/5 rounded-3xl object-cover sm:aspect-[2/1] lg:aspect-[3/2] bg-[#26272B] animate-pulse" />
+      </ErrorBoundary>
 
-        }
-        <img
-          className="aspect-[16/9] w-4/5 rounded-3xl bg-zinc-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
-          width="560"
-          height="380"
-          src={article.image_url}
-          onLoad={handleImageLoad}
-        />
-      </a>
+
     </li>
   )
-}
-
-
-
-
-
-
-
+};

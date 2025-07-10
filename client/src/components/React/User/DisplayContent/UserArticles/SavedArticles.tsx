@@ -1,39 +1,14 @@
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-import { useEffect } from "react"
 import { motion } from "framer-motion"
+import { delays } from "@/motion/variants"
 import ArticleSaved from "./ArticleSaved"
 import ErrorBoundary from "../../../ErrorBoundaries/ErrorBoundary"
 import ScrolltoTop from "../../../AppRouting/ScrollToTop"
 import LazyLoad from "react-lazyload"
-import ArticleSavedPlaceholder from "@/components/React/Loaders/SavedArticlePlaceholder"
 
 export default function SavedArticles({ }) {
-    const { userArticles, error, status } = useSelector((state: RootState) => state.userdata)
-
-    useEffect(() => {
-
-
-    }, [userArticles, error, status])
-
-    const variants = {
-        open: {
-            opacity: 1,
-            transition: {
-                duration: 0.2,
-                type: 'tween',
-                delay: 0.3
-            }
-        },
-        closed: {
-            opacity: 0,
-            transition: {
-                duration: 0.2,
-                type: 'tween'
-            }
-        }
-    }
-
+    const userArticles = useSelector((state: RootState) => state.userdata.userArticles);
 
 
     return (
@@ -46,19 +21,20 @@ export default function SavedArticles({ }) {
 
                 <motion.section
                     key='savedArticles'
-                    variants={variants}
+                    variants={delays}
                     initial='closed'
                     animate='open'
                     exit='closed'
                     className="w-full 2xl:px-2 gap-3 h-full mt-24 flex justify-end">
 
+                    <article className="w-full  2xl:w-11/12 xl:w-4/5 md:w-3/4 flex flex-col gap-y-8 h-auto items-end px-4 md:px-0">
+                        {
 
-                    <article className="w-full  2xl:w-11/12 xl:w-4/5 md:w-3/4 flex flex-col h-auto items-end px-4 md:px-0">
-                        {userArticles.map((article: any, index: number) => (
-                            <LazyLoad key={index} offset={200}>
-                                <ArticleSaved key={index} article={article} index={index} />
-                            </LazyLoad>
-                        ))}
+                            userArticles.map((article: any, index: number) => (
+                                <LazyLoad key={index} offset={200}>
+                                    <ArticleSaved key={index} article={article} />
+                                </LazyLoad>
+                            ))}
                     </article>
 
                 </motion.section>

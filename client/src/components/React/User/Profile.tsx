@@ -26,7 +26,7 @@ export default function Profile() {
             className={
                 `w-full h-full grid relative grid-cols-1 scroll-smooth 
             animate-fade-in transition-all duration-300 
-            ease-in-out md:grid-cols-[auto,1fr] 2xl:py-12
+            ease-in-out md:grid-cols-[auto,1fr] py-8
             ${signingOut
                     ? 'opacity-50 pointer-events-none'
                     : 'opacity-100 pointer-events-auto'

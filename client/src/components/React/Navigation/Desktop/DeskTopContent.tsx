@@ -8,7 +8,7 @@ export default function DeskTopContent() {
 
 
     return (
-        <div className={`fixed top-0 w-full inset-x-0 z-30 md:block xs:hidden sm:hidden transition-all duration-200 ease-in-out delay-200
+        <div className={`fixed top-0 w-full inset-x-0 z-40 md:block xs:hidden sm:hidden transition-all duration-200 ease-in-out delay-200
         ${signingOut ? 'opacity-50 pointer-events-none' : 'opacity-100 pointer-events-auto'}
         `}>
             <div className="md:w-dvw mx-auto">

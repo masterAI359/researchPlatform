@@ -23,7 +23,7 @@ export default function Login() {
     const dispatch = useAppdispatch();
 
     const redirectUser = () => {
-        navigate('/Profile')
+        navigate('/');
     };
 
     const submitAuth = async (e: any) => {

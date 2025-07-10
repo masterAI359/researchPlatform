@@ -8,16 +8,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/ReduxToolKit/store";
 import { fetchSavedInvestigations } from "@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations";
 import { fetchSavedArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer";
+import ChartFallback from "../../Charts/ChartFallbacks/ChartFallback";
+import { variants } from "@/motion/variants";
+import StatsFallback from "../../Charts/ChartFallbacks/StatsFallback";
 
-const variants = {
-    open: { opacity: 1 },
-    closed: { opacity: 0 }
-};
+
 
 export default function Dashboard() {
     const investigations = useSelector((state: RootState) => state.userWork.userResearch);
     const userArticles = useSelector((state: RootState) => state.userdata.userArticles);
     const dispatch = useDispatch<AppDispatch>();
+    const integrityMessage = `
+    No articles saved —
+    bookmark some stories to see your reporting 
+    quality snapshot.`;
+    const biasMessage = "No articles saved — bookmark some stories to see a breakdown of the biases in your information sources."
+    const actionFallback = "Look into a topic";
+    const directionLink = "/investigate";
+
 
     useEffect(() => {
 
@@ -29,7 +37,21 @@ export default function Dashboard() {
             dispatch(fetchSavedArticles());
         };
 
-    }, [investigations])
+    }, []);
+
+    const charts = (
+        <>
+            <BiasChart />
+            <IntegrityChart />
+        </>
+    );
+
+    const fallbacks = (
+        <div className="flex flex-col gap-y-24 py-16">
+            <ChartFallback message={biasMessage} actionText={actionFallback} direction={directionLink} />
+            <ChartFallback message={integrityMessage} actionText={actionFallback} direction={directionLink} />
+        </div>
+    );
 
     return (
         <motion.section
@@ -45,10 +67,14 @@ export default function Dashboard() {
         "
         >
             <ScrolltoTop />
-            <BiasChart />
-            <IntegrityChart />
-            <StatsSection />
+            {Array.isArray(userArticles) && (userArticles.length > 0)
+                ? charts
+                : fallbacks}
 
+            {Array.isArray(investigations) && (investigations.length > 0)
+                ? <StatsSection />
+                : <StatsFallback />
+            }
         </motion.section>
     )
-}
+};

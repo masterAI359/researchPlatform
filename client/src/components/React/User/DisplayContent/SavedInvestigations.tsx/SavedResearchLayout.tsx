@@ -3,13 +3,14 @@ import { useSelector } from "react-redux"
 import PriorInvestigation from "./InvestigationSaved"
 import { motion, AnimatePresence } from "framer-motion"
 import ScrolltoTop from "@/components/React/AppRouting/ScrollToTop"
+import InvestigationsFallback from "@/components/React/Placeholders/InvestigationsFallback"
 
 
 
 export default function SavedResearchLayout() {
-    const savedInvestigations = useSelector((state: RootState) => state.userWork.userResearch)
-    const newArr = [...savedInvestigations] //read-only property prevents direct reversal
-    const timeline = newArr.reverse()
+    const savedInvestigations = useSelector((state: RootState) => state.userWork.userResearch);
+    const newArr = Array.isArray(savedInvestigations) ? [...savedInvestigations] : [];
+    const timeline = newArr.reverse();
 
 
     const variants = {
@@ -40,15 +41,14 @@ export default function SavedResearchLayout() {
             exit='closed'
             className="w-full">
             <ScrolltoTop />
-            <div className="px-8 py-12 w-full">
-                <div className="relative text-left lg:left-60 lg:pb-16">
-                    <span className="text-blue-400"> Investigations </span>
-                    <h2 className="text-base mt-6 tracking-tight font-light lg:text-4xl text-white text-center lg:text-left">
+            <div className="p-0 sm:p-4 md:p-16 h-fit w-full">
+                <div className="relative text-left">
+                    <h2 className="text-lg sm:2xl md:text-3xl lg:text-4xl mt-6 tracking-tight font-light  text-white text-center lg:text-left">
                         A timeline of your<span className="block text-zinc-400">research and conclusions.</span>
                     </h2>
                 </div>
                 <AnimatePresence>
-                    {timeline && <motion.div
+                    {Array.isArray(timeline) && (timeline.length > 0) ? <motion.div
                         variants={variants}
                         initial='closed'
                         animate='open'
@@ -58,7 +58,9 @@ export default function SavedResearchLayout() {
                         {timeline.map((investigation: any, index: number) => (
                             <PriorInvestigation key={index} investigation={investigation} />
                         ))}
-                    </motion.div>}
+                    </motion.div>
+                        : <InvestigationsFallback />
+                    }
                 </AnimatePresence>
 
             </div>

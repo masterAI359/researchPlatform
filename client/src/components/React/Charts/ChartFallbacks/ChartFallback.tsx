@@ -5,13 +5,13 @@ export default function ChartFallback({
     message,
     actionText,
     direction,
+    children
 }: ChartFallbackProps) {
 
     return (
 
         <div className="flex flex-col items-center justify-center h-full py-12 px-6 bg-zinc-900 rounded-2xl">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"
-                className="icon icon-tabler icons-tabler-outline icon-tabler-x w-10 h-10 text-zinc-600 mb-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
+            {children}
             <p className="text-zinc-400 text-center mb-6 max-w-xs">{message}</p>
             <Link
                 to={direction}

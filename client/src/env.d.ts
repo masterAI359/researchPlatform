@@ -3,7 +3,7 @@
 
 import { Session } from "@supabase/supabase-js";
 import { Extracts } from "./ReduxToolKit/Reducers/Investigate/Review";
-import { ReactEventHandler } from "react";
+import { ReactEventHandler, ReactNode } from "react";
 
 declare global {
   interface ImportMetaEnv {
@@ -270,6 +270,7 @@ declare global {
     message: string
     actionText?: string
     direction?: string
+    children?: ReactNode
   }
 
 }

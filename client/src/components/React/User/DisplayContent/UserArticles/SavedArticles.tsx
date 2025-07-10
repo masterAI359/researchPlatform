@@ -24,7 +24,7 @@ export default function SavedArticles({ }) {
                     exit='closed'
                     className="w-full 2xl:px-2 gap-3 h-full mt-24 flex justify-end">
 
-                    <article className="w-full lg:w-11/12 md:w-full flex flex-col gap-y-8 h-auto items-end px-4 md:px-0">
+                    <article className="w-full md:w-full flex flex-col gap-y-8 h-auto items-end px-4 md:px-0">
                         {(Array.isArray(userArticles)) && (userArticles.length > 0)
                             ? userArticles.map((article: any, index: number) => (
                                 <LazyLoad key={index} offset={200}>

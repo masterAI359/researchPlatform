@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export default function StatsFallback() {
     return (
-        <div className="flex flex-col items-center justify-center h-full p-8 bg-gradient-to-t from-blue-500 to-blue-900 rounded-3xl text-center space-y-4">
+        <div className="flex flex-col items-center justify-center h-full p-8 bg-zinc-900 rounded-3xl text-center space-y-4">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-12 h-12 text-zinc-500"
@@ -28,7 +28,7 @@ export default function StatsFallback() {
 
             <Link
                 to="/investigate"
-                className="inline-block px-5 py-2 bg-white text-blue-700 rounded-full font-medium hover:bg-zinc-100 transition"
+                className="inline-block px-5 py-2 bg-white text-black hover:text-white rounded-full font-medium hover:bg-zinc-600 transition-all duration-300 ease-in-out"
             >
                 Start Investigating
             </Link>

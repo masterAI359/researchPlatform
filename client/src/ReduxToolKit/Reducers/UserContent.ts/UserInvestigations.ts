@@ -49,6 +49,9 @@ const userInvestigationsSlice = createSlice({
     initialState: initialState,
     reducers: {
         clearUserInvestigations: () => initialState,
+        populateResearch: (state, action) => {
+            state.userResearch = action.payload;
+        },
         getUserResearch: (state, action) => {
             state.userResearch = action.payload
         },
@@ -77,6 +80,6 @@ const userInvestigationsSlice = createSlice({
 })
 
 
-export const { clearUserInvestigations, getUserResearch, reviewThisResearch, getSourcesToReview } = userInvestigationsSlice.actions
+export const { clearUserInvestigations, getUserResearch, reviewThisResearch, getSourcesToReview, populateResearch } = userInvestigationsSlice.actions
 
 export default userInvestigationsSlice.reducer

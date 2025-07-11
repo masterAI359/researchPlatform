@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { populate } from "dotenv";
 
 
 interface UserContent {
@@ -52,6 +53,9 @@ const UserContentSlice = createSlice({
     initialState: initialState,
     reducers: {
         clearUser: () => { return initialState },
+        populateArticles: (state, action) => {
+            state.userArticles = action.payload;
+        },
         supabaseContext: (state, action) => {
             state.contextForSupabase = action.payload
         },
@@ -82,6 +86,6 @@ const UserContentSlice = createSlice({
     }
 })
 
-export const { clearUser, supabaseContext, readSavedArticle, removeSavedArticle } = UserContentSlice.actions
+export const { clearUser, supabaseContext, readSavedArticle, removeSavedArticle, populateArticles } = UserContentSlice.actions
 
 export default UserContentSlice.reducer

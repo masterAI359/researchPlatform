@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getID } from '@/ReduxToolKit/Reducers/Athentication/Authentication';
 import { AppDispatch, RootState } from '@/ReduxToolKit/store';
+import { fetchSavedArticles } from '@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer';
+import { fetchSavedInvestigations } from '@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations';
 
 export default function InitSession() {
     const id = useSelector((state: RootState) => state.auth.user_id);
@@ -37,6 +39,8 @@ export default function InitSession() {
 
                     if (!id) throw new Error('User ID missing in response')
                     dispatch(getID(id))
+                    dispatch(fetchSavedArticles())
+                    dispatch(fetchSavedInvestigations())
 
                 } catch (error: any) {
                     console.warn('Session restore failed:', error?.message || error)

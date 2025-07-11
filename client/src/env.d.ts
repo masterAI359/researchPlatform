@@ -232,10 +232,6 @@ declare global {
     redirect?: Function,
   }
 
-  interface LoginSession {
-    message: string,
-    session: Session | null
-  }
 
 
   interface SidebarItemData {
@@ -273,11 +269,35 @@ declare global {
     children?: ReactNode
   }
 
+  interface SupabaseLoginResponse {
+    sess: Session;
+    userContent: UserContent;
+  }
+
+  interface UserContent {
+    userArticles: SavedArticle[] | null;
+    userResearch: Investigation[] | null;
+  }
+
+  interface LoginResponse {
+    message: string,
+    session: SupabaseLoginResponse | null
+  }
+
+  interface LoginFormProps {
+    successfull: boolean | null,
+    acceptedInput: boolean | null,
+    setUserPassword: (userPassword: string) => void,
+    setUserEmail: (userEmail: string) => void,
+    validEmail: boolean | null,
+    submitAuth: (e: React.MouseEvent<HTMLButtonElement>) => Promise<void>
+  }
 }
 
 
 export {
   ArticleType, OptionsTypes, SelectedArticle, Perspectives, State, PremiseProps, Help, SavedArticle,
   Calculations, PostsProps, SupabaseUser, ResetPW, Investigation, ScrapedArticle, TipTapProps, AuthStatus, AuthNotificationProps,
-  LoginSession, Tooltips, SidebarItemData, LinkProps, SaveArticleResponse, WikiTerm, Bias, BiasCounts, LoadedArticle, ChartFallbackProps
+  Tooltips, SidebarItemData, LinkProps, SaveArticleResponse, WikiTerm, Bias, BiasCounts, LoadedArticle, ChartFallbackProps,
+  UserContent, LoginResponse, LoginFormProps
 };

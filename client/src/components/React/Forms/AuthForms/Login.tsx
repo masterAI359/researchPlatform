@@ -2,15 +2,15 @@ import { useEffect, useState } from "react"
 import { requiredInput, emailValidation } from "@/helpers/validation"
 import { useNavigate } from "react-router-dom"
 import { AnimatePresence } from "framer-motion"
-import Password from "../InputFields/Password"
 import { supabaseSignIn } from "@/services/SupabaseData"
 import { useAppdispatch } from "@/Hooks/appDispatch"
 import { fetchUserCredentials } from "@/ReduxToolKit/Reducers/Athentication/Authentication"
-import Email from "../InputFields/Email"
 import OAuthLogins from "../InputFields/OauthLogins"
-import AuthFooterLinks from "../InputFields/AuthFooterLinks"
 import { loginStatus } from "../../Notifications/AuthNotifications/AuthStatus"
 import AuthNotification from "../../Notifications/AuthNotifications/AuthNotification"
+import { populateArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
+import { populateResearch } from "@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations"
+import LoginForm from "./LoginForm"
 
 export default function Login() {
     const [userEmail, setUserEmail] = useState<string>(null)
@@ -22,11 +22,11 @@ export default function Login() {
     const navigate = useNavigate()
     const dispatch = useAppdispatch();
 
-    const redirectUser = () => {
+    const redirectUser = (): void => {
         navigate('/');
     };
 
-    const submitAuth = async (e: any) => {
+    const submitAuth = async (e: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
         e.preventDefault();
         setLoggingIn(true)
     };
@@ -42,17 +42,17 @@ export default function Login() {
         const executeSignin = async () => {
             const signin = await supabaseSignIn(userEmail, userPassword);
             if (signin.message === 'success' && signin.session) {
-                setSuccessful(true)
-                const session = signin.session;
-                dispatch(fetchUserCredentials(session));
+                const { sess, userContent } = signin.session;
+                dispatch(fetchUserCredentials(sess));
+                dispatch(populateArticles(userContent.userArticles));
+                dispatch(populateResearch(userContent.userResearch));
+                setSuccessful(true);
             } else {
                 setSuccessful(false)
             }
         };
 
-        if (loggingIn) {
-            executeSignin();
-        };
+        if (loggingIn) executeSignin();
 
     }, [loggingIn]);
 
@@ -71,22 +71,7 @@ export default function Login() {
                 </div>
                 <div className="w-full gap-24 mx-auto grid grid-cols-1 mt-12 lg:grid-cols-2 items-center">
 
-                    <form autoComplete="off">
-                        {successfull === false && <p className="text-zinc-400 font-light lg:text-2xl -translate-y-6">The email or password you entered is incorrect. Please try again.</p>}
-                        <Email setUserEmail={setUserEmail} validEmail={validEmail} />
-                        <div className="space-y-6">
-
-                            <Password setUserPassword={setUserPassword} acceptedInput={acceptedInput} />
-                            <div className="col-span-full">
-                                <button onClick={(e) => { submitAuth(e) }} type="submit" className="text-sm py-2 px-4 border focus:ring-2 h-10 rounded-full border-zinc-100 
-                                bg-white hover:bg-black text-black duration-200 focus:ring-offset-2 focus:ring-white hover:text-white
-                                 w-full inline-flex items-center justify-center ring-1 ring-transparent">
-                                    Submit
-                                </button>
-                            </div>
-                            <AuthFooterLinks />
-                        </div>
-                    </form>
+                    <LoginForm submitAuth={submitAuth} successfull={successfull} setUserEmail={setUserEmail} setUserPassword={setUserPassword} validEmail={validEmail} acceptedInput={acceptedInput} />
                     <OAuthLogins />
                 </div>
             </div>

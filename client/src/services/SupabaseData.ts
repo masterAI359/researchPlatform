@@ -6,7 +6,7 @@ import { SavedArticle, SupabaseUser } from "@/env";
 export const supabaseSignIn = async (
     email: string,
     password: string,
-): Promise<LoginSession> => {
+): Promise<LoginResponse> => {
 
     try {
 
@@ -28,19 +28,22 @@ export const supabaseSignIn = async (
         }
         const sessionData = await response.json();
         if (sessionData) {
-            const data = { message: 'success', session: sessionData }
+            const data: LoginResponse = { message: 'success', session: sessionData }
             return data;
         };
 
         if (!sessionData) {
-            const errorData = { message: 'failed', session: null };
+            const errorData: LoginResponse = { message: 'failed', session: null };
             return errorData;
         };
 
     } catch (error) {
 
         //   console.error(error);
-        const error_message = { message: error, session: null };
+        const error_message: LoginResponse = {
+            message: error instanceof Error ? error.message : 'Unknown error',
+            session: null
+        };
         console.error(error_message)
         return error_message;
     };

@@ -1,42 +1,16 @@
 import { motion } from "framer-motion";
-import BiasChart from "../../Charts/DonutChart/BiasChart";
 import StatsSection from "../../Charts/ResearchStats/StatsSection";
-import IntegrityChart from "../../Charts/PieChart/IntegrityChart";
 import ScrolltoTop from "../../AppRouting/ScrollToTop";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/ReduxToolKit/store";
-import { fetchSavedInvestigations } from "@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations";
-import { fetchSavedArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer";
+import { useSelector } from "react-redux";
+import { RootState } from "@/ReduxToolKit/store";
 import { variants } from "@/motion/variants";
+import ChartJsWrapper from "../DisplayContent/UserCharts/ChartJsWrapper";
 import StatsFallback from "../../Charts/ChartFallbacks/StatsFallback";
 import FallbackWrapper from "../../Containers/FbWrapper";
 
 export default function Dashboard() {
     const investigations = useSelector((state: RootState) => state.userWork.userResearch);
     const userArticles = useSelector((state: RootState) => state.userdata.userArticles);
-    const dispatch = useDispatch<AppDispatch>();
-
-
-    useEffect(() => {
-
-        if (Array.isArray(investigations) && investigations.length === 0) {
-            dispatch(fetchSavedInvestigations())
-        }
-
-        if (Array.isArray(userArticles) && userArticles.length === 0) {
-            dispatch(fetchSavedArticles());
-        };
-
-    }, []);
-
-    const charts = (
-        <>
-            <BiasChart />
-            <IntegrityChart />
-        </>
-    );
-
 
     return (
         <motion.section
@@ -53,7 +27,7 @@ export default function Dashboard() {
         >
             <ScrolltoTop />
             {Array.isArray(userArticles) && (userArticles.length > 0)
-                ? charts
+                ? <ChartJsWrapper />
                 : <FallbackWrapper />}
 
             {Array.isArray(investigations) && (investigations.length > 0)

@@ -8,10 +8,16 @@ dotenv.config({ path: envPath })
 import { SUPABASE_KEY, SUPABASE_URL } from '../src/Config.js';
 import { Request, Response } from 'express'
 import { createClient, SupabaseClient, User } from '@supabase/supabase-js';
-import { ArticleBody, ArticleSaveResponse, ChangePasswordBody, ChangePasswordError, ChangePasswordSuccess, CurrentUser, FeedbackBody, FeedbackResponse, GetLinkBody, GetLinkResponse, InvestigationBody, LoginBody, NewUser, SavedArticle, SignUpRequestBody, SupabaseSession } from './interfaces.js';
+import {
+    ArticleBody, ArticleSaveResponse, ChangePasswordBody, ChangePasswordError,
+    ChangePasswordSuccess, CurrentUser, FeedbackBody, FeedbackResponse, GetLinkBody, GetLinkResponse,
+    InvestigationBody, LoginBody, NewUser, SavedArticle, SignUpRequestBody, SupabaseSession
+} from './interfaces.js';
+import { SupabaseLoginResponse } from '../types/types.js'
 import { Database } from './databaseInterfaces.js';
 import { saveArticleForUser } from '../services/saveArticle.js';
 import { deleteArticleForUser } from '../services/deleteArticle.js';
+import { getUserContent } from '../services/getUserContent.js';
 
 export const createSupabaseFromRequest = (req: Request): SupabaseClient<Database> => {
     const accessToken = req.cookies['sb-access-token'];
@@ -51,6 +57,9 @@ export const getCurrentUser = async (req: Request, res: Response<CurrentUser>): 
 };
 
 
+//TODO: fetch all of the user's data from the 'articles' and 'investigations' tables 
+//PURPOSE: streamline login and data population on the user dashboard, currently too fractured to have a truly seamless UX
+
 export const supabaseLogin = async (req: Request, res: Response): Promise<void> => {
     const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
     const { email, password } = req.body as LoginBody;
@@ -77,8 +86,11 @@ export const supabaseLogin = async (req: Request, res: Response): Promise<void> 
                 sameSite: 'lax',
                 maxAge: 7 * 24 * 60 * 60 * 1000,
             });
-            const data = response.data.session;
-            res.status(200).send(data);
+            const sessionData = response.data.session;
+            const { id } = sessionData.user;
+            const content = await getUserContent(supabase, id);
+            const userData: SupabaseLoginResponse = { sess: sessionData, userContent: content };
+            res.status(200).send(userData);
             return;
         } else {
             res.status(400).json({ db_error: 'unable to login in to supabase' });

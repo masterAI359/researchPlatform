@@ -1,4 +1,4 @@
-import { SupabaseClient, User } from "@supabase/supabase-js";
+import { SupabaseClient, User, Session } from "@supabase/supabase-js";
 
 export interface ChangePasswordBody {
     email: string,
@@ -158,3 +158,18 @@ export interface MappedTldrRequests {
     retrieved: ScrapedArticle[] | null,
     rejected: FailedAttempt[];
 };
+
+export interface UserContentResponse {
+    message: string,
+    data: SavedArticle[] | null
+};
+
+export interface UserContent {
+    userArticles: SavedArticle[] | null;
+    userResearch: Investigation[] | null;
+}
+
+export interface SupabaseLoginResponse {
+    sess: Session;
+    userContent: UserContent;
+}

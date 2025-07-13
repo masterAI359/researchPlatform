@@ -4,6 +4,7 @@
 import { Session } from "@supabase/supabase-js";
 import { Extracts } from "./ReduxToolKit/Reducers/Investigate/Review";
 import { ReactEventHandler, ReactNode } from "react";
+import { ActionCreatorWithoutPayload } from "@reduxjs/toolkit";
 
 declare global {
   interface ImportMetaEnv {
@@ -292,6 +293,13 @@ declare global {
     validEmail: boolean | null,
     submitAuth: (e: React.MouseEvent<HTMLButtonElement>) => Promise<void>
   }
+
+  interface DashboardOption {
+    name: string,
+    actionCreator: ActionCreatorWithoutPayload,
+    activeCondition?: boolean,
+    children: ReactNode
+  }
 }
 
 
@@ -299,5 +307,5 @@ export {
   ArticleType, OptionsTypes, SelectedArticle, Perspectives, State, PremiseProps, Help, SavedArticle,
   Calculations, PostsProps, SupabaseUser, ResetPW, Investigation, ScrapedArticle, TipTapProps, AuthStatus, AuthNotificationProps,
   Tooltips, SidebarItemData, LinkProps, SaveArticleResponse, WikiTerm, Bias, BiasCounts, LoadedArticle, ChartFallbackProps,
-  UserContent, LoginResponse, LoginFormProps
+  UserContent, LoginResponse, LoginFormProps, DashboardOption
 };

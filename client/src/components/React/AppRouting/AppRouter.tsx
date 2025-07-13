@@ -5,7 +5,7 @@ import Navigation from "../Navigation/Navigation"
 import AboutContainer from "../Containers/AboutContainer"
 import Signup from "../Forms/AuthForms/Signup"
 import Login from "../Forms/AuthForms/Login"
-import Profile from "../User/Profile"
+import Profile from "../Dashboard/Profile"
 import EmailForReset from "../Forms/AuthForms/EmailForReset"
 import UpdatePassword from "../Forms/AuthForms/UpdatePassword"
 

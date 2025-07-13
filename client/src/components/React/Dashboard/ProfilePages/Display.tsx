@@ -4,7 +4,7 @@ import { AnimatePresence } from "framer-motion";
 import Dashboard from "./Dashboard";
 import SavedArticles from "../DisplayContent/UserArticles/SavedArticles";
 import SavedResearchLayout from "../DisplayContent/SavedInvestigations.tsx/SavedResearchLayout";
-import DesktopAccMngmt from "../ProfileNavigation/AccountManagement/DesktopAccMngmt";
+import AccManagement from "../ProfileNavigation/AccountManagement/AccManagement";
 import ResearchReview from "../ProfilePages/ResearchReview";
 import ArticleReview from "../DisplayContent/UserArticles/ArticleReview";
 
@@ -23,11 +23,10 @@ export default function Display() {
                 {displayDashboard && <Dashboard key='dashboard' />}
                 {displaySavedArticles && <SavedArticles key='articles' />}
                 {displaySavedInvestigations && <SavedResearchLayout key='investigations' />}
-                {displayAccountManagement && <DesktopAccMngmt key='settings' />}
+                {displayAccountManagement && <AccManagement key='settings' />}
                 {displayThisInvestigation && <ResearchReview key='research_review' />}
                 {displayThisArticle && <ArticleReview key='article_review' />}
             </AnimatePresence>
         </main>
-    )
-
-}
+    );
+};

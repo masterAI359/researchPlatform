@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { delays } from "@/motion/variants"
 import ArticleSaved from "./ArticleSaved"
 import ErrorBoundary from "../../../ErrorBoundaries/ErrorBoundary"
-import ScrolltoTop from "../../../AppRouting/ScrollToTop"
+import ScrolltoTop from "../../../../../helpers/ScrollToTop"
 import LazyLoad from "react-lazyload"
 import NoSavedArticles from "./NoSavedArticles"
 

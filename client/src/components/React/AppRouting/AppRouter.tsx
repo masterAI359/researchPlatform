@@ -1,13 +1,14 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom"
+import { lazy, Suspense } from "react"
 import HomeContainer from "../Containers/HomeContainer"
-import InvestigateContainer from "../Containers/InvestigateContainer"
 import Navigation from "../Navigation/Navigation"
-import AboutContainer from "../Containers/AboutContainer"
-import Signup from "../Forms/AuthForms/Signup"
-import Login from "../Forms/AuthForms/Login"
-import Profile from "../Dashboard/Profile"
-import EmailForReset from "../Forms/AuthForms/EmailForReset"
-import UpdatePassword from "../Forms/AuthForms/UpdatePassword"
+const Dashboard = lazy(() => import('../Dashboard/Dashboard'));
+const InvestigateContainer = lazy(() => import('../Containers/InvestigateContainer'));
+const AboutContainer = lazy(() => import('../Containers/AboutContainer'));
+const Signup = lazy(() => import('../Forms/AuthForms/Signup'));
+const Login = lazy(() => import('../Forms/AuthForms/Login'));
+const UpdatePassword = lazy(() => import('../Forms/AuthForms/UpdatePassword'));
+const EmailForReset = lazy(() => import('../Forms/AuthForms/EmailForReset'));
 
 export default function AppRouter() {
 
@@ -20,7 +21,7 @@ export default function AppRouter() {
                     <Route path='/about' element={<AboutContainer />} />
                     <Route path='/signup' element={<Signup />} />
                     <Route path='/login' element={<Login />} />
-                    <Route path='/profile' element={<Profile />} />
+                    <Route path='/profile' element={<Dashboard />} />
                     <Route path="/emailForReset" element={<EmailForReset />} />
                     <Route path="/reset-password" element={<UpdatePassword />} />
                 </Route>
@@ -36,7 +37,9 @@ function Structure() {
     return (
         <>
             <Navigation />
-            <Outlet />
+            <Suspense>
+                <Outlet />
+            </Suspense>
         </>
     )
 }

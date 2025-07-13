@@ -16,12 +16,7 @@ function ScrolltoTop() {
     return null
 }
 
-
-
-
-
 export default ScrolltoTop
-
 
 
 export const ScrollUp = (): void => {

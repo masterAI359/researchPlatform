@@ -4,7 +4,7 @@ import LinkGrid from "../LinkComponents/LinkGrid"
 import ModalContainer from "./ModalContainer"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-import ScrolltoTop from "../AppRouting/ScrollToTop"
+import ScrolltoTop from "../../../helpers/ScrollToTop"
 import ArticleContainer from "./ArticleContainer"
 
 export default function Content() {

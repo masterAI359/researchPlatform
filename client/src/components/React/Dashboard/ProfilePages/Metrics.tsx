@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import StatsSection from "../../Charts/ResearchStats/StatsSection";
-import ScrolltoTop from "../../AppRouting/ScrollToTop";
+import ScrolltoTop from "../../../../helpers/ScrollToTop";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import { variants } from "@/motion/variants";
@@ -8,7 +8,7 @@ import ChartJsWrapper from "../DisplayContent/UserCharts/ChartJsWrapper";
 import StatsFallback from "../../Charts/ChartFallbacks/StatsFallback";
 import FallbackWrapper from "../../Containers/FbWrapper";
 
-export default function Dashboard() {
+export default function Metrics() {
     const investigations = useSelector((state: RootState) => state.userWork.userResearch);
     const userArticles = useSelector((state: RootState) => state.userdata.userArticles);
 
@@ -35,5 +35,5 @@ export default function Dashboard() {
                 : <StatsFallback />
             }
         </motion.section>
-    )
+    );
 };

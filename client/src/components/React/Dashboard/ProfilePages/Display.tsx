@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import { AnimatePresence } from "framer-motion";
-import Dashboard from "./Dashboard";
+import Metrics from "./Metrics";
 import SavedArticles from "../DisplayContent/UserArticles/SavedArticles";
 import SavedResearchLayout from "../DisplayContent/SavedInvestigations.tsx/SavedResearchLayout";
 import AccManagement from "../ProfileNavigation/AccountManagement/AccManagement";
@@ -20,7 +20,7 @@ export default function Display() {
     return (
         <main className="w-full flex relative h-auto md:px-6 lg:px-0">
             <AnimatePresence mode="wait">
-                {displayDashboard && <Dashboard key='dashboard' />}
+                {displayDashboard && <Metrics key='dashboard' />}
                 {displaySavedArticles && <SavedArticles key='articles' />}
                 {displaySavedInvestigations && <SavedResearchLayout key='investigations' />}
                 {displayAccountManagement && <AccManagement key='settings' />}

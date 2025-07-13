@@ -10,7 +10,7 @@ import PanelContainer from "./PanelContainer";
 import BlueSkyPosts from "../BlueSky/BlueSkyPosts";
 import { AppDispatch } from "@/ReduxToolKit/store";
 import InputOptions from "../Investigate/Steps/InputOptions";
-import { ScrollUp } from "../AppRouting/ScrollToTop";
+import { ScrollUp } from "../../../helpers/ScrollToTop";
 import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary";
 import ErrMessage from "../ErrorMessages/ErrMessage";
 

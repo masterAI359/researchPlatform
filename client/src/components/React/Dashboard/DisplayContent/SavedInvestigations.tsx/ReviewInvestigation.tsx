@@ -8,7 +8,7 @@ import { getSourcesToReview } from "@/ReduxToolKit/Reducers/UserContent.ts/UserI
 import BackToSavedResearch from "./BackToSavedResearch"
 import ErrorBoundary from "@/components/React/ErrorBoundaries/ErrorBoundary"
 import LostData from "@/components/React/ErrorMessages/LostData"
-import ScrolltoTop from "@/components/React/AppRouting/ScrollToTop"
+import ScrolltoTop from "@/helpers/ScrollToTop"
 import { Terms } from "./Details/WikipediaTerms"
 
 export default function ReviewInvestigation() {

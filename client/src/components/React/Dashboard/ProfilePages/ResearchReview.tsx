@@ -9,7 +9,7 @@ import { Terms } from "../DisplayContent/SavedInvestigations.tsx/Details/Wikiped
 import BackToSavedResearch from "../DisplayContent/SavedInvestigations.tsx/BackToSavedResearch"
 import ErrorBoundary from "@/components/React/ErrorBoundaries/ErrorBoundary"
 import LostData from "@/components/React/ErrorMessages/LostData"
-import ScrolltoTop from "@/components/React/AppRouting/ScrollToTop"
+import ScrolltoTop from "@/helpers/ScrollToTop"
 
 export default function ResearchReview() {
     const investigation = useSelector((state: RootState) => state.userWork.investigationToReview)

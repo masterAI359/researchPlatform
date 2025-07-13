@@ -3,12 +3,12 @@ import { AppDispatch } from "@/ReduxToolKit/store";
 import { RootState } from "@/ReduxToolKit/store";
 import { useEffect } from "react";
 import ProfileMenu from "./ProfileNavigation/ProfileMenu";
-import { ScrollUp } from "../AppRouting/ScrollToTop";
+import { ScrollUp } from "../../../helpers/ScrollToTop";
 import Display from "./ProfilePages/Display";
 import { presentDashboard } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
 import SideBar from "./ProfileNavigation/SideBar/Sidebar";
 
-export default function Profile() {
+export default function Dashboard() {
     const signingOut = useSelector((state: RootState) => state.auth.signOut);
     const dispatch = useDispatch<AppDispatch>();
 

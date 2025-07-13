@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import AboutHeader from "../About/AboutHeader"
 import Stack from "../About/Stack"
-import { ScrollUp } from "../AppRouting/ScrollToTop"
+import { ScrollUp } from "../../../helpers/ScrollToTop"
 
 
 export default function AboutContainer() {

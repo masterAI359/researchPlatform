@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { lazy, Suspense } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { RootState } from "@/ReduxToolKit/store";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,12 +8,13 @@ import Notes from "../Investigate/Notes/Notes";
 import SelectArticles from "../LinkComponents/SelectLinks";
 import Content from "./Content";
 import PanelContainer from "./PanelContainer";
-import BlueSkyPosts from "../BlueSky/BlueSkyPosts";
 import { AppDispatch } from "@/ReduxToolKit/store";
 import InputOptions from "../Investigate/Steps/InputOptions";
 import { ScrollUp } from "../../../helpers/ScrollToTop";
 import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary";
 import ErrMessage from "../ErrorMessages/ErrMessage";
+import BlueSkyLoader from "../Loaders/BlueSkyLoader";
+const BlueSkyPosts = lazy(() => import('../BlueSky/BlueSkyPosts'));
 
 export default function InvestigateContainer() {
   const dispatch = useDispatch<AppDispatch>()
@@ -42,8 +44,6 @@ export default function InvestigateContainer() {
 
   useEffect(() => {
 
-
-
     if (containerRef.current && notesRef.current) {
 
       handleDragConstraints()
@@ -57,7 +57,7 @@ export default function InvestigateContainer() {
     return () => {
       dispatch({ type: 'clear' })
     }
-  }, [])
+  }, []);
 
   return (
     <section
@@ -67,13 +67,19 @@ export default function InvestigateContainer() {
          ${signingOut || gettingHelp ? 'opacity-80 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
 
       {showBlueSkySearch === null && <InputOptions />}
+
       <ErrorBoundary fallback={<ErrMessage message={"Error from component: <HeroContainer/>"} />}>
         {showBlueSkySearch === false && <HeroContainer
           key={'HeroContainer'}
         />}
       </ErrorBoundary>
 
-      {showBlueSkySearch && <BlueSkyPosts context={'investigate'} />}
+      {showBlueSkySearch &&
+        <Suspense fallback={<BlueSkyLoader />}>
+          <BlueSkyPosts context={'investigate'} />
+        </Suspense>
+      }
+
       <div className="w-full h-full grow mx-auto xl:mt-6">
         <ErrorBoundary fallback={<ErrMessage message={"Error from component: <Content/>"} />}>
           <Content />
@@ -91,6 +97,7 @@ export default function InvestigateContainer() {
       <AnimatePresence >
         {showContent && <PanelContainer />}
       </AnimatePresence>
+
       <AnimatePresence>
         {takingNotes &&
           <Notes

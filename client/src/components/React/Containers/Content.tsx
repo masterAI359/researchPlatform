@@ -1,4 +1,3 @@
-import { useEffect, } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import LinkGrid from "../LinkComponents/LinkGrid"
 import ModalContainer from "./ModalContainer"
@@ -9,11 +8,10 @@ import ArticleContainer from "./ArticleContainer"
 
 export default function Content() {
     const investigateState = useSelector((state: RootState) => state.investigation)
-    const { search, read, display } = investigateState
+    const { search, display } = investigateState
     const { showContent, showBackToSearchModal, showSearch,
         showGetArticlesModal, showSelectWarning, showSelectTooltip, showReadingTooltip } = display
     const { status } = search
-    const { articles } = read
 
     return (
         <motion.div
@@ -22,7 +20,7 @@ export default function Content() {
             exit={{ opacity: 0 }}
             transition={{ type: 'tween', duration: 0.2 }}
             className={`${showBackToSearchModal || showGetArticlesModal || showSelectWarning || showSelectTooltip ? 'pointer-events-none' : 'pointer-events-auto'}
-                relative shrink-0 w-full h-full min-h-screen mx-auto xs:px-2`}>
+                relative shrink-0 w-full h-full min-h-screen mx-auto xs:px-2 mt-6`}>
 
             <ModalContainer />
 

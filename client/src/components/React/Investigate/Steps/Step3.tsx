@@ -2,8 +2,10 @@ import { getBiases } from "@/ReduxToolKit/Reducers/Investigate/UserPOV"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import Biases from "./StepComponents/Biases"
+import { motion } from "framer-motion"
+import { variants } from "@/motion/variants"
 
-export default function Step2({ containerWidth }: any) {
+export default function Step2() {
   const investigateState = useSelector((state: RootState) => state.investigation)
   const { pov } = investigateState
   const { biases } = pov
@@ -22,7 +24,12 @@ export default function Step2({ containerWidth }: any) {
   ]
 
   return (
-    <div
+    <motion.div
+      variants={variants}
+      initial='closed'
+      animate='open'
+      exit='closed'
+      transition={{ type: 'tween', duration: 0.2 }}
       className='max-w-full absolute inset-0
     flex flex-col justify-center items-center xs:px-2 basis-full'>
 
@@ -41,7 +48,7 @@ export default function Step2({ containerWidth }: any) {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

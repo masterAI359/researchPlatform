@@ -10,8 +10,8 @@ export default function StepHeader({ title, subheader, info }) {
 
     return (
         <div
-            className='w-full h-20 basis-4 relative
-        text-center mx-auto box-border flex xs:px-2'>
+            className='w-full h-20 basis-3 sm:basis-4 relative
+        text-center mx-auto box-border flex'>
             <div
                 className="w-full box-border border-b h-fit border-white/10 mb-2 
             flex flex-row justify-between items-center">

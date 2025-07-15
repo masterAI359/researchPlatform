@@ -21,7 +21,7 @@ export default function Steps({ }) {
       delay-300 no-scrollbar box-border overflow-y-hidden">
       <div
         className="flex flex-col items-start justify-start relative
-        w-full h-full ">
+        w-full h-full p-2">
 
         <StepHeader info={stepsHelp[step]} title={stepContent[step].title} subheader={stepContent[step].subheader} />
 

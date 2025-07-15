@@ -1,10 +1,9 @@
-import HelpButton from "../../Buttons/HelpButtons/Question"
-import { Step5Help } from "@/helpInfo/help"
 import { motion } from "framer-motion"
 import { useDispatch, useSelector } from "react-redux"
 import { displaySearch, displayMindMap } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
 import { RootState } from "@/ReduxToolKit/store"
 import { limitString } from "@/helpers/Presentation"
+import { variants } from "@/motion/variants"
 
 export default function Step5() {
     const investigateState = useSelector((state: RootState) => state.investigation)
@@ -20,28 +19,23 @@ export default function Step5() {
     }
 
     return (
-        <div
-            className='w-full h-full max-w-full shrink-0
-            flex items-center justify-start text-center basis-full'>
-            <div className="block w-full max-w-full mx-auto px-2  md:h-full no-scrollbar">
-                <div className="w-full h-full mx-auto flex flex-col items-start py-4 box-border">
-                    <div className="w-full h-auto border-b border-white/10 mb-4">
-                        <header className="w-full h-auto flex flex-row gap-x-8 md:gap-x-8 items-center">
-                            <div className="w-fit flex justify-items-start">
-                                <h1 className="2xl:text-3xl md:text-2xl text-md tracking-tight font-light text-zinc-300 pb-1 xs:text-left">
-                                    Search for evidence
-                                </h1>
-                            </div>
-                            <div className="w-fit h-full pb-1">
-                                <HelpButton
-                                    info={Step5Help}
-                                />
-                            </div>
-                        </header>
-                    </div>
-                    <main className="w-full md:w-fit h-full flex flex-col justify-start md:justify-center gap-y-5 md:gap-y-2 xl:mt-16">
+        <motion.div
+            variants={variants}
+            initial='closed'
+            animate='open'
+            exit='closed'
+            transition={{ type: 'tween', duration: 0.2 }}
+            className='absolute inset-0
+            flex items-center justify-start basis-full'>
+            <div className="block w-full max-w-full mx-auto h-full no-scrollbar">
+                <div className="w-full h-full mx-auto flex flex-col items-start justify-start sm:justify-center box-border">
+
+                    <main className="w-full md:w-fit h-auto min-h-32 2xl:min-h-40 flex flex-col 
+                    justify-start items-start md:justify-center
+                    gap-y-5 md:gap-y-2 2xl:gap-y-12">
                         <div className="w-full h-full flex flex-col gap-y-4">
-                            <p className="flex md:hidden text-xs xl:text-lg w-fit text-white whitespace-normal font-light tracking-tight text-left text-wrap">
+                            <p className="flex md:hidden text-xs xl:text-lg w-fit text-white whitespace-normal 
+                            font-light tracking-tight text-left text-wrap">
                                 The idea: <span className="text-zinc-400 font-light tracking-tight">
                                     {shortened ? shortened : idea}
                                 </span>
@@ -50,13 +44,13 @@ export default function Step5() {
                                 Let's look for some evidence to support the idea you're evaluating
                             </p>
                         </div>
-                        <div className="w-fit h-fit 2xl:mt-0 mt-2 mx-auto md:mx-0">
+                        <div className="w-fit h-auto">
                             <motion.button
                                 onClick={beginSearch}
                                 whileTap={{ scale: 0.9 }}
                                 transition={{ type: 'tween', duration: 0.1 }}
                                 className="bg-white/10 rounded-full group 2xl:-translate-x-1 mb-2 sm:mb-0
-                             md:p-0 xl:mt-8 w-32 h-8 xl:w-44 xl:h-10 mx-auto flex items-center 
+                            w-32 h-8 xl:w-44 xl:h-10 mx-auto flex items-center 
                             text-center hover:bg-white/20 shadow-material_2">
                                 <div className="w-full h-full flex justify-between items-center">
                                     <div className="w-auto h-auto mx-auto">
@@ -71,6 +65,6 @@ export default function Step5() {
                     </main>
                 </div>
             </div>
-        </div>
-    )
-}
+        </motion.div>
+    );
+};

@@ -4,6 +4,8 @@ import StepsEditor from "../../TipTap/StepsEditor";
 import { RootState } from "@/ReduxToolKit/store";
 import { useSelector } from "react-redux";
 import { getPremises } from "@/ReduxToolKit/Reducers/Investigate/UserPOV";
+import { motion } from "framer-motion"
+import { variants } from "@/motion/variants"
 
 export default function Step4({ containerWidth }: any) {
   const investigateState = useSelector((state: RootState) => state.investigation)
@@ -11,7 +13,12 @@ export default function Step4({ containerWidth }: any) {
   const { premises } = pov
 
   return (
-    <div style={{ flexShrink: 0, maxWidth: containerWidth }}
+    <motion.div
+      variants={variants}
+      initial='closed'
+      animate='open'
+      exit='closed'
+      transition={{ type: 'tween', duration: 0.2 }}
       className='absolute inset-0'>
       <div className="inline-block h-fit box-border mx-auto min-w-full max-w-full 2xl:h-full">
         <div className="flex flex-col items-center w-full 
@@ -25,7 +32,7 @@ export default function Step4({ containerWidth }: any) {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

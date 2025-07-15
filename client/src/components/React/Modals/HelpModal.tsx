@@ -2,11 +2,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Help } from "@/env";
 import { getHelp } from "@/ReduxToolKit/Reducers/Investigate/HelpModal";
 import { useDispatch } from "react-redux";
+import { createPortal } from "react-dom";
 
 export default function HelpModal({ info, handleExpand, isOpen, setActiveTab, activeTab }) {
     const dispatch = useDispatch()
 
-    return (
+    const modal = (
         <motion.div
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -69,7 +70,7 @@ export default function HelpModal({ info, handleExpand, isOpen, setActiveTab, ac
                     </motion.div>
                 </AnimatePresence>
             </main>
-
         </motion.div>
-    )
-}
+    );
+    return createPortal(modal, document.body);
+};

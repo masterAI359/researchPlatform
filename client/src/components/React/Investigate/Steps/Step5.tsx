@@ -6,7 +6,7 @@ import { displaySearch, displayMindMap } from "@/ReduxToolKit/Reducers/Investiga
 import { RootState } from "@/ReduxToolKit/store"
 import { limitString } from "@/helpers/Presentation"
 
-export default function Step5({ containerWidth }) {
+export default function Step5() {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { pov } = investigateState
     const { idea } = pov
@@ -20,8 +20,8 @@ export default function Step5({ containerWidth }) {
     }
 
     return (
-        <div style={{ flexShrink: 0, maxWidth: containerWidth }}
-            className='w-full h-full
+        <div
+            className='w-full h-full max-w-full shrink-0
             flex items-center justify-start text-center basis-full'>
             <div className="block w-full max-w-full mx-auto px-2  md:h-full no-scrollbar">
                 <div className="w-full h-full mx-auto flex flex-col items-start py-4 box-border">

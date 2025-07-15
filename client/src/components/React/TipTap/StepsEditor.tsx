@@ -44,7 +44,8 @@ export default function StepsEditor({ setterFunction, context }: TipTapProps) {
     }
 
     return (
-        <div className="w-full max-w-168 h-full box-border mx-auto">
+        <div className="w-full max-w-168 h-full
+         box-border mx-auto">
             <EditorControls editor={editor} />
             <div onClick={handleContainerClick} className="h-full w-full box-border max-w-80 md:max-w-full overflow-hidden">
                 <EditorContent style={{ textAlign: 'left', verticalAlign: 'top', minHeight: '90%', height: '100%', color: '#ffffff', maxWidth: '100%' }} editor={editor}

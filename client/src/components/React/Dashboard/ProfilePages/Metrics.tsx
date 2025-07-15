@@ -1,16 +1,16 @@
 import { motion } from "framer-motion";
+import { lazy, Suspense } from "react";
 import StatsSection from "../../Charts/ResearchStats/StatsSection";
 import ScrolltoTop from "../../../../helpers/ScrollToTop";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import { variants } from "@/motion/variants";
 import ChartJsWrapper from "../DisplayContent/UserCharts/ChartJsWrapper";
-import StatsFallback from "../../Charts/ChartFallbacks/StatsFallback";
-import FallbackWrapper from "../../Containers/FbWrapper";
+import StatsSkeleton from "../../Loaders/StatsSkeleton";
 
 export default function Metrics() {
     const investigations = useSelector((state: RootState) => state.userWork.userResearch);
-    const userArticles = useSelector((state: RootState) => state.userdata.userArticles);
+    const hasInvestigations = Array.isArray(investigations) && (investigations.length > 0);
 
     return (
         <motion.section
@@ -26,14 +26,14 @@ export default function Metrics() {
         "
         >
             <ScrolltoTop />
-            {Array.isArray(userArticles) && (userArticles.length > 0)
-                ? <ChartJsWrapper />
-                : <FallbackWrapper />}
+            <ChartJsWrapper />
 
-            {Array.isArray(investigations) && (investigations.length > 0)
-                ? <StatsSection />
-                : <StatsFallback />
+            {hasInvestigations &&
+                <Suspense fallback={<StatsSkeleton />}>
+                    <StatsSection />
+                </Suspense>
             }
+
         </motion.section>
     );
 };

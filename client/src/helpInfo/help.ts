@@ -73,6 +73,8 @@ const ResearchHelp: Help[] = [{
     explanation: "Select whether you felt the Idea or premises you investigated were supported by the evidence you could find"
 }]
 
+export const stepsHelp = [Step1Help, Step2Help, Step3Help, Step4Help, Step5Help];
+
 
 
 export { Step1Help, Step2Help, Step3Help, Step4Help, Step5Help, SummaryHelp, ResearchHelp };

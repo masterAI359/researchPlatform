@@ -5,6 +5,8 @@ import SelectArticles from "../LinkComponents/SelectLinks";
 import { AppDispatch } from "@/ReduxToolKit/store";
 import { ScrollUp } from "../../../helpers/ScrollToTop";
 import InvestigationWorkSpace from "../Features/InvestigationWorkSpace";
+import HelpModal from "../Modals/HelpModal";
+import { AnimatePresence } from "framer-motion";
 
 export default function InvestigateContainer() {
   const dispatch = useDispatch<AppDispatch>()

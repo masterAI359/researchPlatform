@@ -22,7 +22,7 @@ export default function SignOutModal({ }) {
     const dispatch = useDispatch();
 
     const redirect = () => {
-        dispatch(showSignOut(false));
+        dispatch(showSignOut());
         dispatch(clearAuthSlice());
         navigate('/');
     };
@@ -83,7 +83,7 @@ export default function SignOutModal({ }) {
                     </motion.button>
                     <motion.button whileTap={{ scale: 0.95 }}
                         transition={{ type: 'tween', duration: 0.2 }}
-                        onClick={() => dispatch(showSignOut(false))} type="button"
+                        onClick={() => dispatch(showSignOut())} type="button"
                         className="text-sm py-2 w-full px-6 md:px-4 border md:focus:ring-2 rounded-full border-transparent 
                     bg-white md:hover:bg-white/10 text-black duration-200 md:focus:ring-offset-2 md:focus:ring-white 
                     md:hover:text-white inline-flex items-center justify-center ring-1 ring-transparent">

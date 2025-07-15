@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import { numBiasSources } from "@/helpers/Ratings";
 import { ChartData } from "chart.js";
-import DonutSkeleton from "../../Placeholders/DonutSkeleton";
 import ErrorBoundary from "../../ErrorBoundaries/ErrorBoundary";
 import ErrMessage from "../../ErrorMessages/ErrMessage";
 import { useMemo } from "react";
@@ -106,7 +105,6 @@ export default function SourceChart() {
       <ErrorBoundary fallback={<ErrMessage message="Error at <SourceChart/> component :/" />}>
         <AnimatePresence mode="wait">
           {Array.isArray(userArticles) && (userArticles.length > 0) && <Doughnut key='biasChart' className="cursor-pointer" data={data} />}
-          {Array.isArray(userArticles) && (userArticles.length < 1) && <DonutSkeleton key='biasSkeleton' />}
         </AnimatePresence>
       </ErrorBoundary>
 

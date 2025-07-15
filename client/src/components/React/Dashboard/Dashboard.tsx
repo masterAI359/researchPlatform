@@ -1,14 +1,22 @@
 import { useSelector, useDispatch } from "react-redux";
+import { useIsMobile } from "@/Hooks/useIsMobile";
+import { lazy, Suspense } from "react";
 import { AppDispatch } from "@/ReduxToolKit/store";
 import { RootState } from "@/ReduxToolKit/store";
 import { useEffect } from "react";
-import ProfileMenu from "./ProfileNavigation/ProfileMenu";
 import { ScrollUp } from "../../../helpers/ScrollToTop";
 import Display from "./ProfilePages/Display";
 import { presentDashboard } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
-import SideBar from "./ProfileNavigation/SideBar/Sidebar";
+import FooterBarLoader from "../Loaders/FooterBarLoader";
+import SidebarLoader from "../Loaders/SidebarLoader";
+import { AnimatePresence } from "framer-motion";
+import SignOutModal from "../Forms/AuthForms/SignOutModal";
+const MobileProfileNav = lazy(() => import('./ProfileNavigation/ProfileMenu'));
+const SideBar = lazy(() => import('./ProfileNavigation/SideBar/Sidebar'));
+
 
 export default function Dashboard() {
+    const isMobile = useIsMobile();
     const signingOut = useSelector((state: RootState) => state.auth.signOut);
     const dispatch = useDispatch<AppDispatch>();
 
@@ -32,8 +40,23 @@ export default function Dashboard() {
                     : 'opacity-100 pointer-events-auto'
                 } 
             `}>
-            <SideBar />
-            <ProfileMenu />
+
+            <AnimatePresence>
+                {signingOut && <SignOutModal />}
+            </AnimatePresence>
+
+            {!isMobile &&
+                <Suspense fallback={<SidebarLoader />}>
+                    <SideBar />
+                </Suspense>
+            }
+
+            {isMobile &&
+                <Suspense fallback={<FooterBarLoader />}>
+                    <MobileProfileNav />
+                </Suspense>
+            }
+
             <Display />
         </article>
     )

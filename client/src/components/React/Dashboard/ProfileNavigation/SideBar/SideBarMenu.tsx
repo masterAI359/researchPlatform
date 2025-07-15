@@ -3,7 +3,7 @@ import { presentArticles, presentResearch } from "@/ReduxToolKit/Reducers/UserCo
 import { showSignOut } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
 import { AnimatePresence } from "framer-motion";
 import DeleteUserAccount from "@/components/React/Modals/DeleteUser";
-import { RootState } from "@/ReduxToolKit/store";
+import { AppDispatch, RootState } from "@/ReduxToolKit/store";
 import { presentManagement, presentDashboard } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
 import DashboardOption from "./DashboardOption";
 import BookmarkIcon from "@/components/React/IconComponents/BookmarkIcon";
@@ -16,6 +16,8 @@ export default function SideBarMenu({ }) {
     const showDeleteModal = useSelector((state: RootState) => state.profileNav.displayDeleteModal)
     const profileNavigationState = useSelector((state: RootState) => state.profileNav)
     const { displaySavedArticles, displayDashboard, displayAccountManagement, displaySavedInvestigations } = profileNavigationState
+    const dispatch = useDispatch<AppDispatch>();
+
 
     return (
 

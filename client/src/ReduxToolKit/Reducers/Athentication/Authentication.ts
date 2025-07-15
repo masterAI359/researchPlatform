@@ -43,9 +43,6 @@ const initialState: Authentication = {
 };
 
 
-
-
-
 export const AuthenticationSlice = createSlice({
 
     name: 'authentication',
@@ -64,8 +61,8 @@ export const AuthenticationSlice = createSlice({
         getEmail: (state, action) => {
             state.email = action.payload
         },
-        showSignOut: (state, action) => {
-            state.signOut = action.payload
+        showSignOut: (state) => {
+            state.signOut = !state.signOut
         },
         redirectFromLogin: (state, action) => {
             state.signedIn = action.payload

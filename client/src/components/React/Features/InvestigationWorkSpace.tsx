@@ -7,7 +7,8 @@ const InputOptions = lazy(() => import('../Investigate/Steps/InputOptions'));
 const BlueSkyPosts = lazy(() => import('../BlueSky/BlueSkyPosts'));
 const HeroContainer = lazy(() => import('../Containers/HeroContainer'));
 const Content = lazy(() => import('../Containers/Content'));
-const Notes = lazy(() => import('../Investigate/Notes/Notes'));
+import Notes from '../Investigate/Notes/Notes';
+import PanelContainer from '../Containers/PanelContainer';
 
 export default function InvestigationWorkSpace() {
     const investigateState = useSelector((state: RootState) => state.investigation);
@@ -36,7 +37,6 @@ export default function InvestigationWorkSpace() {
     useEffect(() => {
 
         if (containerRef.current && notesRef.current) handleDragConstraints();
-
     }, []);
 
 
@@ -70,8 +70,11 @@ export default function InvestigationWorkSpace() {
                 <Content />
             </Suspense>
 
+            <PanelContainer />
+
             <AnimatePresence>
                 {takingNotes &&
+
                     <Notes
                         key={'notepad'}
                         notesRef={notesRef}

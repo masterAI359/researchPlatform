@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { RootState } from "@/ReduxToolKit/store";
 import { useDispatch, useSelector } from "react-redux";
 import SelectArticles from "../LinkComponents/SelectLinks";
-import PanelContainer from "./PanelContainer";
 import { AppDispatch } from "@/ReduxToolKit/store";
 import { ScrollUp } from "../../../helpers/ScrollToTop";
 import InvestigationWorkSpace from "../Features/InvestigationWorkSpace";
@@ -35,12 +34,11 @@ export default function InvestigateContainer() {
           : 'opacity-100 pointer-events-auto'}`
       }
     >
-
+      {/* Core workspace for search and article content */}
       <InvestigationWorkSpace />
 
+      {/* Footer bar with selected article logic */}
       <SelectArticles />
-
-      <PanelContainer />
 
     </main>
   );

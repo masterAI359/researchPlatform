@@ -19,8 +19,16 @@ export default function PanelContainer() {
                     transition={{ type: 'tween', duration: 0.2 }}
                     className="w-full h-auto relative mx-auto"
                 >
-                    {showContent && ContentStatus === 'fulfilled' && <ControlPanel />}
-                    {ContentStatus === 'fulfilled' && showContent && articles !== null ? <StoryPaginate /> : null}
+                    {showContent &&
+                        ContentStatus === 'fulfilled' &&
+                        <ControlPanel />
+                    }
+                    {ContentStatus === 'fulfilled' &&
+                        showContent &&
+                        Array.isArray(articles) &&
+                        (articles.length > 1) &&
+                        <StoryPaginate />
+                    }
                 </motion.div>}
         </AnimatePresence>
     );

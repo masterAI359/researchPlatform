@@ -3,7 +3,7 @@ import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import ComponentLoader from '../Loaders/ComponentLoader';
 import { AnimatePresence } from 'framer-motion';
-const InputOptions = lazy(() => import('../Investigate/Steps/InputOptions'));
+import InputOptions from '../Investigate/Steps/InputOptions';
 const BlueSkyPosts = lazy(() => import('../BlueSky/BlueSkyPosts'));
 const HeroContainer = lazy(() => import('../Containers/HeroContainer'));
 const Content = lazy(() => import('../Containers/Content'));
@@ -48,9 +48,7 @@ export default function InvestigationWorkSpace() {
         >
 
             {showBlueSkySearch === null &&
-                <Suspense fallback={<ComponentLoader />}>
-                    <InputOptions />
-                </Suspense>
+                <InputOptions />
             }
 
             {showBlueSkySearch === false &&

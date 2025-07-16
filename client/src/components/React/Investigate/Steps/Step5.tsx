@@ -16,7 +16,7 @@ export default function Step5() {
     const beginSearch = () => {
         dispatch(displayMindMap(false))
         dispatch(displaySearch(true))
-    }
+    };
 
     return (
         <motion.div

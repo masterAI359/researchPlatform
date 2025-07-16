@@ -41,7 +41,7 @@ export default function SavedResearchLayout() {
             exit='closed'
             className="w-full">
             <ScrolltoTop />
-            <div className="p-0 sm:p-4 md:p-16 h-fit w-full">
+            <div className="p-6 sm:p-4 md:p-16 h-fit w-full">
                 <div className="relative text-left">
                     <h2 className="text-lg sm:2xl md:text-3xl lg:text-4xl mt-6 tracking-tight font-light  text-white text-center lg:text-left">
                         A timeline of your<span className="block text-zinc-400">research and conclusions.</span>

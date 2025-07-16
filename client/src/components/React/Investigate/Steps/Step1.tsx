@@ -28,7 +28,6 @@ export default function Step1() {
 
       useEffect(() => {
 
-
             if (selected && idea !== null) return
 
             window.addEventListener('nextStepClick', () => {

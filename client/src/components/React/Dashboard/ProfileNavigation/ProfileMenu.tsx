@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux"
 import { presentArticles, presentResearch, presentManagement, presentDashboard } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
 import { RootState } from "@/ReduxToolKit/store";
+import { createPortal } from "react-dom";
 
 export default function MobileProfileNav() {
   const showArticles = useSelector((state: RootState) => state.profileNav.displaySavedArticles)
@@ -9,16 +10,16 @@ export default function MobileProfileNav() {
   const showDashboard = useSelector((state: RootState) => state.profileNav.displayDashboard);
   const dispatch = useDispatch();
 
-  const text = 'bg-gradient-to-tr from-ebony to-mirage'
 
-  return (
-    <div className="fixed -bottom-0.5 block md:hidden z-50 w-full h-20 shadow-thick bg-zinc-900">
-      <div className="grid h-full max-w-lg grid-cols-4 mx-auto font-medium">
+  const mobileDashboardNav = (
+    <div className="fixed bottom-0 z-50 w-full max-w-full h-20 shadow-thick bg-zinc-900 
+    flex justify-center items-center px-4">
+      <div className="w-full h-auto mx-auto flex items-center justify-between">
         <button
           onClick={() => {
             dispatch(presentDashboard())
           }}
-          type="button" className="inline-flex flex-col items-center justify-center px-5   group">
+          type="button" className="inline-flex flex-col items-center justify-center group">
           <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"
             className={`${showDashboard ? 'text-blue-500' : 'text-zinc-400'} transition-all duration-200 ease-in-out icon icon-tabler icons-tabler-outline icon-tabler-layout-board`}><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 9h8" /><path d="M12 15h8" /><path d="M12 4v16" /></svg>
 
@@ -30,7 +31,7 @@ export default function MobileProfileNav() {
           onClick={() => {
             dispatch(presentResearch())
           }}
-          type="button" className="inline-flex flex-col items-center justify-center px-5   group">
+          type="button" className="inline-flex flex-col items-center justify-center group">
           <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"
             className={`icon icon-tabler icons-tabler-outline icon-tabler-device-ipad-search
         ${showInvestigations ? 'text-blue-500' : 'text-zinc-400'}
@@ -42,7 +43,7 @@ export default function MobileProfileNav() {
           onClick={() => {
             dispatch(presentArticles())
           }}
-          type="button" className="inline-flex flex-col items-center justify-center px-5  group">
+          type="button" className="inline-flex flex-col items-center justify-center group">
           <svg className={`w-5 h-5 mb-2 text-xs transition-all duration-200 ease-in-out
         ${showArticles ? 'text-blue-500' : 'text-zinc-400'}
         `} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -55,7 +56,7 @@ export default function MobileProfileNav() {
           onClick={() => {
             dispatch(presentManagement())
           }}
-          type="button" className="inline-flex flex-col items-center justify-center px-5  group">
+          type="button" className="inline-flex flex-col items-center justify-center group">
           <svg className={`w-5 h-5 mb-2 text-xs transition-all duration-200 ease-in-out
         ${showManagement ? 'text-blue-500' : 'text-zinc-400'}
         `} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -64,9 +65,12 @@ export default function MobileProfileNav() {
           <span className={`text-xs text-zinc-400`}>Settings</span>
         </button>
       </div>
+
     </div>
-  )
-}
+  );
+
+  return createPortal(mobileDashboardNav, document.body);
+};
 
 
 

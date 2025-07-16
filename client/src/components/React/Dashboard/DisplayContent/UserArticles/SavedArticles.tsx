@@ -3,44 +3,37 @@ import { RootState } from "@/ReduxToolKit/store"
 import { AnimatePresence, motion } from "framer-motion"
 import { delays } from "@/motion/variants"
 import ArticleSaved from "./ArticleSaved"
-import ErrorBoundary from "../../../ErrorBoundaries/ErrorBoundary"
 import ScrolltoTop from "../../../../../helpers/ScrollToTop"
-import LazyLoad from "react-lazyload"
 import NoSavedArticles from "./NoSavedArticles"
-import ArticleSkeleton from "./ArticleSkeleton"
 
 export default function SavedArticles({ }) {
     const userArticles = useSelector((state: RootState) => state.userdata.userArticles);
     const hasArticles: boolean = Array.isArray(userArticles) && (userArticles.length > 0);
 
     return (
-        <ErrorBoundary>
+        <div className="w-full h-fit lg:px-10 xl:px-12 2xl:px-16">
             <ScrolltoTop />
-            <div className="w-full h-full mx-auto animate-fade-in duration-300 delay-200 ease-in relative">
-                <AnimatePresence>
-                    {hasArticles &&
-                        <motion.section
-                            key='savedArticles'
-                            variants={delays}
-                            initial='closed'
-                            animate='open'
-                            exit='closed'
-                            className="w-full 2xl:px-2 gap-3 h-full mt-24 flex justify-end">
+            <AnimatePresence>
+                {hasArticles &&
+                    <motion.div
+                        key='savedArticles'
+                        variants={delays}
+                        initial='closed'
+                        animate='open'
+                        exit='closed'
+                        className="w-full 2xl:px-2 gap-3 h-fit md:mt-24 flex justify-end">
 
-                            <article className="w-full md:w-full flex flex-col gap-y-8 h-auto items-end px-4 md:px-0">
-                                {userArticles.map((article: any, index: number) => (
-                                    <LazyLoad key={index} offset={200} placeholder={<ArticleSkeleton />}>
-                                        <ArticleSaved key={index} article={article} />
-                                    </LazyLoad>
-                                ))
-                                }
-                            </article>
-                        </motion.section>
-                    }
-                    {!hasArticles && <NoSavedArticles />}
+                        <article className="w-full md:w-full flex flex-col h-fit gap-y-8 2xl:gap-y-12 items-end px-4 md:px-0">
+                            {userArticles.map((article: any, index: number) => (
+                                <ArticleSaved key={index} article={article} />
+                            ))
+                            }
+                        </article>
+                    </motion.div>
+                }
+                {!hasArticles && <NoSavedArticles />}
 
-                </AnimatePresence>
-            </div>
-        </ErrorBoundary>
+            </AnimatePresence>
+        </div>
     );
 };

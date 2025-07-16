@@ -18,7 +18,7 @@ export default function ArticleSaved({ article }) {
 
 
   return (
-    <li key={article.article_url} className="cursor-pointer relative h-auto w-full">
+    <li key={article.article_url} className="cursor-pointer relative h-auto w-full max-w-full">
       <ErrorBoundary fallback={<ErrMessage message="failed to load article :/" />}>
         <a
           className={`
@@ -30,6 +30,7 @@ export default function ArticleSaved({ article }) {
              `}
           href="#"
           title={article.title}>
+
           <Title article={article} handleArticleSelection={handleArticleSelection} loaded={loaded} />
           <img
             onLoad={() => setLoaded(true)}
@@ -39,6 +40,7 @@ export default function ArticleSaved({ article }) {
             `}
             src={article.image_url}
           />
+
         </a>
         {loaded === false && <ArticleSkeleton />}
 

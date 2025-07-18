@@ -3,6 +3,12 @@ export const variants = {
     closed: { opacity: 0 }
 }
 
+export const headerTransitions = {
+    initial: { opacity: 0 },
+    open: { opacity: 1, transition: { duration: 0.2, delay: 0.2, type: 'tween' } },
+    closed: { opacity: 0, transition: { duration: 0.2, delay: 0, type: 'tween' } }
+};
+
 
 export const hideTop = {
     show: {

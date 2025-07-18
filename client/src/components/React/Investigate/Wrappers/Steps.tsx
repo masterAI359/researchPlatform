@@ -20,8 +20,8 @@ export default function Steps({ }) {
       transition-all duration-400 animate-fade-in 
       delay-300 no-scrollbar box-border overflow-y-hidden">
       <div
-        className="flex flex-col items-start justify-start relative
-        w-full h-full p-2">
+        className="flex flex-col items-start 
+        justify-start relative w-full h-full p-2">
 
         <StepHeader info={stepsHelp[step]} title={stepContent[step].title} subheader={stepContent[step].subheader} />
 

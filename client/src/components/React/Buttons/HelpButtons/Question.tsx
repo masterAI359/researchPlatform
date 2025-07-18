@@ -7,15 +7,15 @@ import HelpModal from "../../Modals/HelpModal"
 import HelpTooltip from "../../Tooltips/HelpTooltip"
 
 export default function HelpButton({ info }) {
-    const [activeTab, setActiveTab] = useState(info[0])
+    const [activeTab, setActiveTab] = useState<Help>(info[0])
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const dispatch = useDispatch()
 
     const handleExpand = () => {
-        console.log('running help function')
         dispatch(getHelp(true))
         setIsOpen(isOpen => !isOpen);
     };
+
 
     return (
         <div

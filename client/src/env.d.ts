@@ -300,6 +300,14 @@ declare global {
     activeCondition?: boolean,
     children: ReactNode
   }
+
+  interface HelpModal {
+    info: Help[],
+    handleExpand: Function,
+    isOpen: boolean,
+    activeTab: Help,
+    setActiveTab: (activeTab: Help) => void,
+  }
 }
 
 
@@ -307,5 +315,5 @@ export {
   ArticleType, OptionsTypes, SelectedArticle, Perspectives, State, PremiseProps, Help, SavedArticle,
   Calculations, PostsProps, SupabaseUser, ResetPW, Investigation, ScrapedArticle, TipTapProps, AuthStatus, AuthNotificationProps,
   Tooltips, SidebarItemData, LinkProps, SaveArticleResponse, WikiTerm, Bias, BiasCounts, LoadedArticle, ChartFallbackProps,
-  UserContent, LoginResponse, LoginFormProps, DashboardOption
+  UserContent, LoginResponse, LoginFormProps, DashboardOption, HelpModal
 };

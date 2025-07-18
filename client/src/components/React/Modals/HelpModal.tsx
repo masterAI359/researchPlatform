@@ -1,11 +1,27 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Help } from "@/env";
 import { getHelp } from "@/ReduxToolKit/Reducers/Investigate/HelpModal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createPortal } from "react-dom";
+import { useEffect } from "react";
+import { RootState } from "@/ReduxToolKit/store";
 
-export default function HelpModal({ info, handleExpand, isOpen, setActiveTab, activeTab }) {
-    const dispatch = useDispatch()
+export default function HelpModal({ info, handleExpand, isOpen, setActiveTab, activeTab }: HelpModal) {
+    const investigateState = useSelector((state: RootState) => state.investigation);
+    const { stepper } = investigateState;
+    const { step } = stepper;
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+
+        if (Array.isArray(info) && (info.length > 0)) {
+
+            setActiveTab(info[0]);
+        };
+
+
+    }, [step]);
+
 
     const modal = (
         <motion.div
@@ -58,14 +74,13 @@ export default function HelpModal({ info, handleExpand, isOpen, setActiveTab, ac
                 <AnimatePresence mode="popLayout">
                     <motion.div
                         layout
-                        key={activeTab ? activeTab : "empty"}
+                        key={activeTab.heading ? activeTab.heading : "empty"}
                         initial={{ y: 100, opacity: 0 }}
                         animate={{ y: 0, opacity: 1, transition: { delay: 0.5, duration: 0.2 } }}
-                        exit={{ y: -100, opacity: 0, transition: { duration: 0.2 } }}
+                        exit={{ y: 100, opacity: 0, transition: { duration: 0.2 } }}
                     >
                         <p className="text-white font-light text-sm md:text-lg p-4 absolute-bottom-2 left-2">
                             {activeTab ? activeTab.explanation : null}
-
                         </p>
                     </motion.div>
                 </AnimatePresence>

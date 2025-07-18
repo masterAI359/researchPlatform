@@ -11,6 +11,7 @@ import AuthNotification from "../../Notifications/AuthNotifications/AuthNotifica
 import { populateArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
 import { populateResearch } from "@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations"
 import LoginForm from "./LoginForm"
+import ScrolltoTop from "@/helpers/ScrollToTop";
 
 export default function Login() {
     const [userEmail, setUserEmail] = useState<string>(null)
@@ -59,6 +60,7 @@ export default function Login() {
 
     return (
         <section className={`lg:p-8 overflow-hidden bg-black animate-fade-in`}>
+            <ScrolltoTop />
             <AnimatePresence>
                 {loggingIn && <AuthNotification complete={successfull} setterFunction={setLoggingIn} status={loginStatus} redirect={redirectUser} />}
             </AnimatePresence>

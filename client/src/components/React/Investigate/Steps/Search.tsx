@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getQuery } from "@/ReduxToolKit/Reducers/Investigate/UserPOV";
 import { AppDispatch, RootState } from "@/ReduxToolKit/store";
 import { useEffect } from "react";
-import { RetrieveArticles, resetArticles } from "@/ReduxToolKit/Reducers/Investigate/SearchResults";
+import { RetrieveArticles, resetArticles, incrementPageBy } from "@/ReduxToolKit/Reducers/Investigate/SearchResults";
 import { displaySearch } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
 
 export default function Search({ }) {
@@ -21,6 +21,7 @@ export default function Search({ }) {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    dispatch(incrementPageBy(0))
     dispatch(resetArticles())
     dispatch(RetrieveArticles(query))
 

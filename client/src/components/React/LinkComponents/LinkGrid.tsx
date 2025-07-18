@@ -35,10 +35,6 @@ export default function LinkGrid() {
 
     useEffect(() => {
 
-        //   if (articleOptions !== null && articleOptions.length < 1) {
-        //       console.log(articleOptions)
-        //   }
-
         if (status === 'fulfilled' && articleOptions) {
             const formedPages = formPages(articleOptions)
             dispatch(getPages(formedPages))

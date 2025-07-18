@@ -1,5 +1,5 @@
-import { motion } from "framer-motion"
-import ArticleLink from "./ArticleLink"
+import { motion } from "framer-motion";
+import ArticleLink from "./ArticleLink";
 import LinkPlaceholder from "../Loaders/LinkPlaceholder";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
@@ -24,7 +24,6 @@ export default function Page({ pageContent, index }) {
     };
 
 
-
     return (
         <motion.ol
             key={index}
@@ -36,9 +35,12 @@ export default function Page({ pageContent, index }) {
             className="absolute inset-0 max-w-4xl xl:max-w-6xl 2xl:w-full mx-auto justify-items-center
                     grid grid-cols-2 xl:grid-cols-3 2xl:gap-y-10 2xl:gap-x-0 xs:gap-3 min-h-full">
 
-            {status === 'pending'
-                ? Array(6).fill(0).map((_, i) => <LinkPlaceholder key={i} />)
-                : pageContent.map((article, index) => (
+            {status === 'pending' &&
+                Array(6).fill(0).map((_, i) => <LinkPlaceholder key={i} />)
+            }
+
+            {status === 'fulfilled' && (Array.isArray(pageContent)) && (pageContent.length > 0) &&
+                pageContent.map((article, index) => (
                     <ArticleLink key={article.url + index} article={article} index={index} />
                 ))
             }

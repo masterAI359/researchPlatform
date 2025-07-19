@@ -11,7 +11,6 @@ export default function ArticleHeader({ articleData, setFullStory, fullStory }) 
     const id = useSelector((state: RootState) => state.auth.user_id)
     const [open, setOpen] = useState<boolean>(false)
     const [showAllAuthors, setShowAllAuthors] = useState<boolean>(false)
-    const [imageLoaded, setImageLoaded] = useState<boolean>(false);
 
     const {
         article_image,

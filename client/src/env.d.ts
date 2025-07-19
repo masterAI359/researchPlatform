@@ -308,6 +308,19 @@ declare global {
     activeTab: Help,
     setActiveTab: (activeTab: Help) => void,
   }
+
+  type NotificationState = {
+    articleExists: boolean,
+    message: string | null,
+    anonUser: boolean,
+  }
+
+  interface NotifySaved {
+    setNotification: React.Dispatch<React.SetStateAction<NotificationState>>,
+    showNotification: boolean,
+    setShowNotification: (showNotification: boolean) => void,
+    message: string | null
+  }
 }
 
 
@@ -315,5 +328,5 @@ export {
   ArticleType, OptionsTypes, SelectedArticle, Perspectives, State, PremiseProps, Help, SavedArticle,
   Calculations, PostsProps, SupabaseUser, ResetPW, Investigation, ScrapedArticle, TipTapProps, AuthStatus, AuthNotificationProps,
   Tooltips, SidebarItemData, LinkProps, SaveArticleResponse, WikiTerm, Bias, BiasCounts, LoadedArticle, ChartFallbackProps,
-  UserContent, LoginResponse, LoginFormProps, DashboardOption, HelpModal
+  UserContent, LoginResponse, LoginFormProps, DashboardOption, HelpModal, NotificationState, NotifySaved
 };

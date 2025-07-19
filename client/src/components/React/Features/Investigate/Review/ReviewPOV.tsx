@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-import { delay, motion } from "framer-motion"
 
 export default function ReviewPOV() {
     const investigateState = useSelector((state: RootState) => state.investigation)
@@ -12,7 +11,7 @@ export default function ReviewPOV() {
          lg:bg-gradient-to-tr from-ebony to-mirage border border-white/5
         rounded-3xl gap-y-3 xl:gap-y-4 2xl:gap-y-16 items-center content-center">
             <header className="xs:w-full 2xl:min-w-96 mx-auto ">
-                <h1 className="text-lg text-left text-center mx-auto w-full lg:text-2xl 
+                <h1 className="text-lg text-center mx-auto w-full lg:text-2xl 
                 lg:mb-2 2xl:text-4xl text-white font-light tracking-tight">
                     Where you began
                 </h1>

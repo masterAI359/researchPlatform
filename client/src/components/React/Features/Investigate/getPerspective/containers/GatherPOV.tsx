@@ -1,4 +1,4 @@
-import WindowContainer from "../../Containers/WindowContainer"
+import WindowContainer from "../../../../Containers/WindowContainer"
 import StepWizard from "../../StepWizard/StepWizard"
 
 export default function GatherPOV({ }) {

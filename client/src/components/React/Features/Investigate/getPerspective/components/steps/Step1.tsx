@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react"
-import StepsEditor from "../../TipTap/StepsEditor"
+import StepsEditor from "../../../../../TipTap/StepsEditor"
 import { getIdea } from "@/ReduxToolKit/Reducers/Investigate/UserPOV"
 import { acceptedInput, denyIncrement } from "@/ReduxToolKit/Reducers/Investigate/Steps"
 import { useSelector, useDispatch } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { motion } from "framer-motion"
 import { variants } from "@/motion/variants"
-import Requirements from "./StepComponents/Requirements"
+import Requirements from "../inputs/Requirements"
 
 export default function Step1() {
       const investigateState = useSelector((state: RootState) => state.investigation)

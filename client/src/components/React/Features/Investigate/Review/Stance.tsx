@@ -1,5 +1,5 @@
-import StepsEditor from "../../TipTap/StepsEditor"
-import EndInvestigateButton from "../../Buttons/ProcessButtons/FinishInvestigation"
+import StepsEditor from "../../../TipTap/StepsEditor"
+import EndInvestigateButton from "../../../Buttons/ProcessButtons/FinishInvestigation"
 import { getTakeAways } from "@/ReduxToolKit/Reducers/Investigate/Review"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"

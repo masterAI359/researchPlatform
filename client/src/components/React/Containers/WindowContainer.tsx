@@ -1,5 +1,5 @@
-import PerspectiveSidebar from "../Investigate/Wrappers/PerspectiveSideBar";
-import Steps from "../Investigate/Wrappers/Steps";
+import PerspectiveSidebar from "../Features/Investigate/getPerspective/containers/PerspectiveSideBar";
+import Steps from "../Features/Investigate/getPerspective/containers/Steps";
 
 export default function WindowContainer() {
 

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { finalPerspective } from "@/ReduxToolKit/Reducers/Investigate/Review"
 import Lottie from "lottie-react"
-import blueCheck from '../../../../lotties/blueCheck.json'
+import blueCheck from '../../../../../lotties/blueCheck.json'
 import { RootState } from "@/ReduxToolKit/store"
 
 const opinions: string[] = [
@@ -36,7 +36,7 @@ export default function Retrospect() {
                 flex justify-between items-center xs:px-2 grow-0 gap-3 mx-auto group"
                     >
                         {opinion}
-                        <div className="lg:min-h-10 lg:min-w-10 lg:max-h-10 lg:min-w-10 lg:p-0.5 
+                        <div className="lg:min-h-10 lg:max-h-10 lg:min-w-10 lg:p-0.5 
                   xs:max-w-7 xs:max-h-7 xs:min-w-7 xs:min-h-7 absolute xs:right-1 z-0 flex items-center justify-center">
                             {endingPerspective === opinion ? <Lottie className="box-content absolute xs:right-0 xl:translate-x-1.5"
                                 animationData={blueCheck} loop={false} autoPlay={false} style={{ height: "100%", width: "100%", position: "relative" }} />

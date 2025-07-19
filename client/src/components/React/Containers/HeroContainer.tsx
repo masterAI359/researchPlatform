@@ -1,15 +1,12 @@
 import InvestigateHero from "../HeroComponents/InvestigateHero"
 import SearchHero from "../HeroComponents/SearchHero"
-import ReviewWrapper from "../Investigate/Wrappers/ReviewWrapper"
-import FinalResults from "../Results/FinalResults"
+import ReviewWrapper from "../Features/Investigate/getPerspective/containers/ReviewWrapper"
 import CompletionHero from "../HeroComponents/CompletionHero"
+import FinalResults from "../Features/Investigate/Results/FinalResults"
 import ScrolltoTop from "../../../helpers/ScrollToTop"
 import { AnimatePresence, motion } from "framer-motion"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-import { useEffect } from "react"
-
-
 
 export default function HeroContainer({
 }) {

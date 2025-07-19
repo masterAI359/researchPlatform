@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import type { RootState } from '@/ReduxToolKit/store'
-import StepHeader from "../Steps/StepHeader";
+import StepHeader from "./components/steps/StepHeader";
 import { stepContent } from "@/stepperContent/headers";
 import { stepsHelp } from "@/helpInfo/help";
 import Stepper from "../Steps/Stepper";

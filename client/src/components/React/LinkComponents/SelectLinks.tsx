@@ -4,7 +4,7 @@ import { RootState } from "@/ReduxToolKit/store"
 import { displayGetArticlesModal, displaySelectionWarning, displaySelectTooltip } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
 import { AppDispatch } from "@/ReduxToolKit/store"
 import SelectionRequired from "../Notifications/SelectionRequired"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import GuideSelectingArticles from "../Tooltips/GuideSelectingArticles"
 import { useTooltipFlags } from "@/Hooks/useTooltipFlags"
 

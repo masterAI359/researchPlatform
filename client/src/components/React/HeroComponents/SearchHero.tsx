@@ -1,4 +1,4 @@
-import Search from "../Investigate/Steps/Search"
+import Search from "../Features/Investigate/getPerspective/components/searching/Search"
 
 export default function SearchHero({
 

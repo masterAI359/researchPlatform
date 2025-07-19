@@ -1,6 +1,6 @@
 import { RootState } from "@/ReduxToolKit/store"
 import { useSelector } from "react-redux"
-import SidebarItem from "../Steps/StepComponents/SidebarItem";
+import SidebarItem from "../components/inputs/SidebarItem";
 import { SidebarItemData } from "@/env";
 
 export default function PerspectiveSidebar() {

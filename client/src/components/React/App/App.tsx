@@ -1,6 +1,6 @@
 import { store } from '../../../ReduxToolKit/store'
 import { Provider } from 'react-redux'
-import AppRouter from '../AppRouting/Router/AppRouter'
+import AppRouter from '../routing/router/AppRouter'
 import { useEffect } from 'react'
 import InitSession from '../Session/InitSession'
 //import '../../../styles/global.css'

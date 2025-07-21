@@ -4,7 +4,7 @@ import { createPortal } from "react-dom";
 import { AppDispatch, RootState } from "@/ReduxToolKit/store";
 import { useEffect, useState } from "react";
 import WikiExtractLoader from "../../Loaders/WikiExtractLoader";
-import ExtractNotification from "../../Notifications/ExtractNotification";
+import ExtractNotification from "./notifications/ExtractNotification";
 import { clearWikiSlice } from "@/ReduxToolKit/Reducers/Investigate/WikipediaSlice";
 import Description from "./WikiDescription";
 import TermFooter from "./TermFooter";

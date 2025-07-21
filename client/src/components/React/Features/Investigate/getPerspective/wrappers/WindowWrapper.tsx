@@ -1,7 +1,7 @@
-import PerspectiveSidebar from "../Features/investigate/getPerspective/containers/PerspectiveSideBar";
-import Steps from "../Features/investigate/getPerspective/containers/Steps";
+import PerspectiveSidebar from "../containers/PerspectiveSideBar";
+import Steps from "../containers/Steps";
 
-export default function WindowContainer() {
+export default function WindowWrapper() {
 
     return (
         <main className="w-full h-full relative flex justify-center items-center">

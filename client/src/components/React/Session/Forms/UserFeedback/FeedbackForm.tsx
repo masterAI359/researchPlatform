@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react"
 import { RootState } from "@/ReduxToolKit/store"
 import { submitFeedback } from "@/services/SupabaseData"
 import AuthNotification from "@/components/React/Notifications/AuthNotifications/AuthNotification"
-import { feedbackStatus } from "@/components/React/Notifications/AuthNotifications/AuthStatus"
+import { feedbackStatus } from "@/components/React/Session/notifications/AuthStatus"
 
 export default function FeedBackForm() {
   const email = useSelector((state: RootState) => state.auth.email)

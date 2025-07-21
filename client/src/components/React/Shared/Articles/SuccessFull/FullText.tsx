@@ -2,8 +2,8 @@ import { AppDispatch, RootState } from "@/ReduxToolKit/store"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { clearWikiSlice, getModalPosition, getSelectedText, selectingText } from "@/ReduxToolKit/Reducers/Investigate/WikipediaSlice";
-import TextPopover from "../../../Tooltips/TextPopover";
-import { ExtractThis } from "../../../Tooltips/TextPopover";
+import TextPopover from "../popovers/TextPopover";
+import { ExtractThis } from "../popovers/TextPopover";
 import { AnimatePresence } from "framer-motion";
 import WikiTermExtract from "../../../Features/wikiExtract/WikiTermExtract";
 
@@ -67,4 +67,4 @@ export default function FullText({ article_text, article_url }) {
             </p>
         </div>
     )
-}
+};

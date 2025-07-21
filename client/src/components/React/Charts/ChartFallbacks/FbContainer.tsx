@@ -1,7 +1,7 @@
-import { ScaleIcon, SheildIcon } from "../Charts/ChartFallbacks/FallbackIcons";
-import ChartFallback from "../Charts/ChartFallbacks/ChartFallback";
+import { ScaleIcon, SheildIcon } from "./FallbackIcons";
+import ChartFallback from "./ChartFallback";
 
-export default function FallbackWrapper() {
+export default function ChartFallbackContainer() {
     const integrityMessage = `
     No articles saved —
     bookmark some stories to see your reporting 

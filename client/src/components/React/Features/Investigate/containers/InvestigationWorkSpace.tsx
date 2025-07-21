@@ -5,8 +5,8 @@ import ComponentLoader from '../../../Loaders/ComponentLoader';
 import { AnimatePresence } from 'framer-motion';
 import InputOptions from '../getPerspective/components/paths/InputOptions';
 const BlueSkyPosts = lazy(() => import('../../blueSky/BlueSkyPosts'));
-const HeroContainer = lazy(() => import('../../../Containers/HeroContainer'));
-const Content = lazy(() => import('../../../Containers/Content'));
+const HeroContainer = lazy(() => import('./HeroContainer'));
+const Content = lazy(() => import('./Content'));
 import Notes from '../notes/Notes';
 import PanelContainer from './PanelContainer';
 

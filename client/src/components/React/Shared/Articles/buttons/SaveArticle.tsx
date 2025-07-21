@@ -1,9 +1,9 @@
-import NotifySavedArticle from "../../../Notifications/NotifySaved";
+import NotifySavedArticle from "../notifications/NotifySaved";
 import { checkArticle } from "@/services/SupabaseData"
 import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch, RootState } from "@/ReduxToolKit/store"
 import { useEffect, useMemo } from "react"
-import SaveArticleTooltip from "../../../Tooltips/SaveArticleTooltip";
+import SaveArticleTooltip from "../tooltips/SaveArticleTooltip";
 import { useSaveArticle } from "@/Hooks/useSaveArticle"
 import { AnimatePresence } from "framer-motion"
 

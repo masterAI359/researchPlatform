@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { useDispatch, useSelector } from "react-redux"
 import { displayGetArticlesModal, displaySelectionWarning, displaySelectTooltip } from "../../../../../../ReduxToolKit/Reducers/Investigate/DisplayReducer";
 import { AppDispatch, RootState } from "../../../../../../ReduxToolKit/store";
-import SelectionRequired from "../../../../Notifications/SelectionRequired";
+import SelectionRequired from "./notifications/SelectionRequired";
 import { useEffect } from "react"
 import GuideSelectingArticles from "../../tooltips/GuideSelectingArticles";
 import { useTooltipFlags } from "../../../../../../Hooks/useTooltipFlags";

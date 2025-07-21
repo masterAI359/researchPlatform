@@ -31,8 +31,8 @@ export default function SavingResearch({ }) {
 
         const timer = setTimeout(() => {
             dispatch(removeNotification('idle'))
-            if(declinedFeedback !== true && seenFeedBackForm !== true) {
-            dispatch(displayFeedBackForm(true))
+            if (declinedFeedback !== true && seenFeedBackForm !== true) {
+                dispatch(displayFeedBackForm(true))
             }
             dispatch(stopAskingForFeedBack(true))
         }, 2000)

@@ -15,7 +15,7 @@ import OAuthLogins from "../InputFields/OauthLogins"
 import NewPasswordGuide from "../InputGuides/NewPasswordGuide"
 import { newUser } from "@/services/SupabaseData"
 import { fetchUserCredentials } from "@/ReduxToolKit/Reducers/Athentication/Authentication"
-import { newAccStatus } from "@/components/React/Notifications/AuthNotifications/AuthStatus"
+import { newAccStatus } from "@/components/React/Session/notifications/AuthStatus"
 import AuthNotification from "@/components/React/Notifications/AuthNotifications/AuthNotification"
 export default function Signup() {
     const id = useSelector((state: RootState) => state.auth.user_id);

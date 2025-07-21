@@ -1,10 +1,10 @@
 import { motion, AnimatePresence } from "framer-motion"
-import LinkGrid from "../Features/investigate/evidence/sourceLinks/containers/LinkGrid"
+import LinkGrid from "../evidence/sourceLinks/containers/LinkGrid"
 import ModalContainer from "./ModalContainer"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-import ScrolltoTop from "../../../helpers/ScrollToTop"
-import ArticleContainer from "../Shared/Articles/containers/ArticleContainer"
+import ScrolltoTop from "../../../../../helpers/ScrollToTop"
+import ArticleContainer from "../../../Shared/Articles/containers/ArticleContainer"
 
 export default function Content() {
     const investigateState = useSelector((state: RootState) => state.investigation)

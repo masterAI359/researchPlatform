@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import ScrolltoTop from '../../../../helpers/ScrollToTop';
+import ScrolltoTop from '../../../../../helpers/ScrollToTop';
 import ArticleHeader from './ArticleHeader';
 import ArticleContent from './ArticleContent';
 import { useSelector } from 'react-redux';

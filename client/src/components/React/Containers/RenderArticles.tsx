@@ -2,9 +2,9 @@ import { lazy, Suspense } from "react";
 import { AnimatePresence } from "framer-motion";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
-const Article = lazy(() => import('../Articles/SuccessFull/Article'));
+const Article = lazy(() => import('../Shared/Articles/SuccessFull/Article'));
 import ArticleLoader from "../Loaders/ArticleLoader";
-import NoContent from "../Articles/Failed/NoContent";
+import NoContent from "../Shared/Articles/Failed/NoContent";
 import ArticleSkeleton from "../Loaders/ArticleSkeleton";
 
 export default function RenderArticles() {

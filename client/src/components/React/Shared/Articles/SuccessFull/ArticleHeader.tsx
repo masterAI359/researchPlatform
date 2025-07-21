@@ -1,5 +1,5 @@
-import MoreButton from "../../Buttons/HelpButtons/MoreButton";
-import SaveArticle from "../../Buttons/SaveButtons/SaveArticle";
+import MoreButton from "../../../Buttons/HelpButtons/MoreButton";
+import SaveArticle from "../../../Buttons/SaveButtons/SaveArticle";
 import { SavedArticle } from "@/env";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";

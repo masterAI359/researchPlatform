@@ -56,7 +56,7 @@ export default function FailedNotification({ notification }) {
             initial={{ opacity: 0, y: 50, scale: 0.3 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, scale: 0.5, transition: { type: 'tween', duration: 0.15 } }}
-            className="relative w-80 md:max-w-80 lg:max-w-96 lg:w-96 md:w-96 h-44 sm:h-32 z-50 xl:max-w-[29rem] h-auto bg-gradient-to-tr from-ebony to-mirage shadow-material rounded-2xl xl:pb-12 lg:py-2 flex content-start"
+            className="relative w-80 md:max-w-80 lg:max-w-96 lg:w-96 md:w-96 sm:h-32 z-50 xl:max-w-[29rem] h-auto bg-gradient-to-tr from-ebony to-mirage shadow-material rounded-2xl xl:pb-12 lg:py-2 flex content-start"
         >
             {/* Main content */}
             <div className="xl:w-5/6 box-border flex gap-x-2 pl-2 pb-6 pt-2 pr-16 sm:pr-0 sm:pl-0 sm:pt-0 sm:pb-0 

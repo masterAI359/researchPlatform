@@ -1,12 +1,12 @@
-import FailedLoading from '../Failed/FailedLoading';
+import FailedLoading from "../Failed/FailedLoading"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { useEffect, useRef } from "react"
 import { useDispatch } from "react-redux"
 import { recordSources } from "@/ReduxToolKit/Reducers/UserContent.ts/SaveInvestigationSlice"
-import ErrorBoundary from "../../Shared/ErrorBoundaries/ErrorBoundary"
-import ErrMessage from "../../ErrorMessages/ErrMessage"
-import RenderArticles from "../../Containers/RenderArticles"
+import ErrorBoundary from "../../ErrorBoundaries/ErrorBoundary"
+import ErrMessage from "../../../ErrorMessages/ErrMessage"
+import RenderArticles from "../../../Containers/RenderArticles"
 import { getSourcesToRecord, canUpdateSources } from "@/services/RecordSources"
 
 export default function ArticleContainer({ }) {

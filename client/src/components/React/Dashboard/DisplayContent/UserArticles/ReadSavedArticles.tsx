@@ -3,7 +3,7 @@ import { AnimatePresence } from "framer-motion"
 import { useSelector, useDispatch } from "react-redux"
 import BackToSavedArticles from "../../../Buttons/NavigatingButtons/BackToSavedArticles"
 import ReturnToReview from "../../ProfileNavigation/ReturnToReview"
-import Article from "@/components/React/Articles/SuccessFull/Article"
+import Article from "@/components/React/Shared/Articles/SuccessFull/Article"
 import ErrorBoundary from "@/components/React/Shared/ErrorBoundaries/ErrorBoundary"
 import LostData from "@/components/React/ErrorMessages/LostData"
 import { useEffect } from "react"
@@ -43,7 +43,7 @@ export default function ReadSavedArticle() {
         <section
             className="min-h-full  2xl:w-full md:px-8 scroll-smooth
       inset mx-auto sm:mt-10 xl:mt-20 relative">
-            {articlesContext ? <BackToSavedArticles /> : <ReturnToReview />}
+            {articlesContext ? <BackToSavedArticles articlesContext={articlesContext} /> : <ReturnToReview />}
             <ErrorBoundary fallback={<LostData />}>
                 <main
                     className="xl:max-w-7xl xl:w-4/5 lg:w-3/4 md:w-4/5 sm:w-3/4 mt-16 sm:mt-12 w-80 h-full mx-auto 

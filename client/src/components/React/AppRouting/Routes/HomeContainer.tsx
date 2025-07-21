@@ -1,9 +1,9 @@
-import HeroImage from '@/components/React/HomeComponents/HeroImage';
-import Challenge from '../../HomeComponents/Challenge';
-import ChartingFeatures from '../../HomeComponents/Features/ChartingFeatures';
-import WikiAndNotes from '../../HomeComponents/Features/WikiAndNotes';
-import BlueSkyPosts from '../../Features/blueSky/containers/BlueSkyPosts';
-import ToolsForResearch from '../../HomeComponents/Features/Keyboard';
+import HeroImage from '@/components/React/Features/LandingPage/components/HeroImage';
+import Challenge from '../../Features/LandingPage/components/Challenge';
+import ChartingFeatures from '../../Features/LandingPage/components/ChartingFeatures';
+import WikiAndNotes from '../../Features/LandingPage/components/WikiAndNotes';
+import BlueSkyPosts from '../../Features/BlueSky/containers/BlueSkyPosts';
+import ToolsForResearch from '../../Features/LandingPage/components/Keyboard';
 import { useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '@/ReduxToolKit/store';

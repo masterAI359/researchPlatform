@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
-import LearnMore from "./buttons/LearnMore";
-import GetStarted from "./buttons/GetStarted";
+import LearnMore from "../buttons/LearnMore";
+import GetStarted from "../buttons/GetStarted";
 
 
 export default function HeroImage() {

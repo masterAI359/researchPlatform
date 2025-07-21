@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import StepWizard from "../../stepWizard/StepWizard";
 import ComponentLoader from "@/components/React/Loaders/ComponentLoader";
-const WindowWrapper = lazy(() => import('../wrappers/WindowWrapper'));
+const WindowWrapper = lazy(() => import('./WindowWrapper'));
 
 export default function GatherPOV({ }) {
     const investigateState = useSelector((state: RootState) => state.investigation);

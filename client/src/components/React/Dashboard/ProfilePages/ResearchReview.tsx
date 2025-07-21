@@ -7,7 +7,7 @@ import { getSourcesToReview } from "@/ReduxToolKit/Reducers/UserContent.ts/UserI
 import DetailsTable from "..//DisplayContent/SavedInvestigations.tsx/Details/DetailsTable"
 import { Terms } from "../DisplayContent/SavedInvestigations.tsx/Details/WikipediaTerms"
 import BackToSavedResearch from "../DisplayContent/SavedInvestigations.tsx/BackToSavedResearch"
-import ErrorBoundary from "@/components/React/ErrorBoundaries/ErrorBoundary"
+import ErrorBoundary from "@/components/React/Shared/ErrorBoundaries/ErrorBoundary"
 import LostData from "@/components/React/ErrorMessages/LostData"
 import ScrolltoTop from "@/helpers/ScrollToTop"
 

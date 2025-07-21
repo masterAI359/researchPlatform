@@ -2,7 +2,7 @@ import { RootState } from "@/ReduxToolKit/store";
 import { useSelector } from "react-redux";
 import ProcessMap from "./ProcessMap";
 import { useEffect } from "react";
-import ErrorBoundary from "@/components/React/ErrorBoundaries/ErrorBoundary";
+import ErrorBoundary from "@/components/React/Shared/ErrorBoundaries/ErrorBoundary";
 import LostData from "@/components/React/ErrorMessages/LostData";
 
 interface InvestigationData {
@@ -44,7 +44,7 @@ export default function DetailsTable() {
             icon: "tracking",
             title: "Biases",
             description: `${biases ? biases : 'N/A'}`,
-        
+
         },
         {
             id: "automatedReporting",
@@ -91,8 +91,8 @@ export default function DetailsTable() {
                                 >from beginning to end</span>
                             </h2>
                         </div>
-                        <ErrorBoundary fallback={ <LostData />}>
-                       <ProcessMap investigationDetails={investigationDetails} />
+                        <ErrorBoundary fallback={<LostData />}>
+                            <ProcessMap investigationDetails={investigationDetails} />
                         </ErrorBoundary>
                     </div>
                 </div>

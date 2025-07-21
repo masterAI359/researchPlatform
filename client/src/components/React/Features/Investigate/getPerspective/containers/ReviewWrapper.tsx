@@ -1,7 +1,7 @@
 import { useState } from "react"
 import ReviewPagination from "../../../../Buttons/Pagination/ReviewPagination"
-import ReviewPOV from "../../Review/ReviewPOV"
-import ReviewQuestions from "../../Review/ReviewQuestions"
+import ReviewPOV from "../../review/ReviewPOV"
+import ReviewQuestions from "../../review/ReviewQuestions"
 
 export default function FinishLine() {
     const [step, setStep] = useState<number>(1)

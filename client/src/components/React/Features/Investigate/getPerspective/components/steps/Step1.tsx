@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import StepsEditor from "../../../../../TipTap/StepsEditor"
+import StepsEditor from "../../../../../Shared/TipTap/StepsEditor"
 import { getIdea } from "@/ReduxToolKit/Reducers/Investigate/UserPOV"
 import { acceptedInput, denyIncrement } from "@/ReduxToolKit/Reducers/Investigate/Steps"
 import { useSelector, useDispatch } from "react-redux"

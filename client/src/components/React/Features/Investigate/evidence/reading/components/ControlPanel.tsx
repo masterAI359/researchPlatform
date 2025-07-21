@@ -1,10 +1,10 @@
-import TakeNotes from "../PanelButtons/TakeNotes"
-import { FinishedReading } from "../PanelButtons/FinishedReading"
-import ReturnToSearch from "../PanelButtons/ReturnToSearch"
-import StoryPaginate from "../Pagination/StoryPaginate"
-import { useSelector } from "react-redux"
-import { RootState } from "@/ReduxToolKit/store"
-import GetInfo from "../PanelButtons/GetInfo"
+import TakeNotes from "../buttons/TakeNotes";
+import { FinishedReading } from "../buttons/FinishedReading";
+import ReturnToSearch from "../buttons/ReturnToSearch";
+import StoryPaginate from "../buttons/StoryPaginate";
+import { useSelector } from "react-redux";
+import { RootState } from "@/ReduxToolKit/store";
+import GetInfo from "../buttons/GetInfo";
 
 export default function ControlPanel({ }) {
     const investigateState = useSelector((state: RootState) => state.investigation)

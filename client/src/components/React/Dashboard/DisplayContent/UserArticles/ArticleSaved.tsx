@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 import { presentThisArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice"
 import { useState } from "react"
 import Title from "./Title"
-import ErrorBoundary from "@/components/React/ErrorBoundaries/ErrorBoundary"
+import ErrorBoundary from "@/components/React/Shared/ErrorBoundaries/ErrorBoundary"
 import ErrMessage from "@/components/React/ErrorMessages/ErrMessage"
 import ArticleSkeleton from "./ArticleSkeleton"
 

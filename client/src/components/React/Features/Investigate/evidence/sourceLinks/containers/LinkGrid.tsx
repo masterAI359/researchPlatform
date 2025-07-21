@@ -4,11 +4,11 @@ import { RootState } from "@/ReduxToolKit/store"
 import { useEffect } from "react"
 import { getPages } from "@/ReduxToolKit/Reducers/Investigate/SearchResults"
 import { formPages } from "@/helpers/Presentation"
-import LinkPagination from "../Buttons/Pagination/LinkPagination"
+import LinkPagination from "../buttons/LinkPagination";
 import Pages from "./Pages"
-import LinkLoader from "../Loaders/LinkLoader"
-import SearchFailed from "../ErrorMessages/SearchFailed"
-import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
+import LinkLoader from "../loaders/LinkLoader"
+import SearchFailed from "../errors/SearchFailed";
+import ErrorBoundary from "../../../../../Shared/ErrorBoundaries/ErrorBoundary";
 
 
 const container = {
@@ -76,9 +76,4 @@ export default function LinkGrid() {
 
 
     )
-}
-
-
-{/* status === 'pending' && <LinkLoader /> */ }
-
-
+};

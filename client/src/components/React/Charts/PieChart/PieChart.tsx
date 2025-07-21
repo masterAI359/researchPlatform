@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/ReduxToolKit/store';
 import { getSourceIntegrity } from '@/helpers/Ratings';
-import ErrorBoundary from '../../ErrorBoundaries/ErrorBoundary';
+import ErrorBoundary from '../../Shared/ErrorBoundaries/ErrorBoundary';
 import { useEffect } from 'react';
 import { getReportingRatings } from '@/ReduxToolKit/Reducers/UserContent.ts/ChartSlice';
 

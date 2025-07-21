@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion"
 import { useSelector } from "react-redux"
-import Page from "./Page"
+import Page from "../components/Page"
 import { RootState } from "@/ReduxToolKit/store"
 
 

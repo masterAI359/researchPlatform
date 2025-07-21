@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { displayGetArticlesModal, displaySelectionWarning, displaySelectTooltip } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
 import { AppDispatch } from "@/ReduxToolKit/store"
-import SelectionRequired from "../Notifications/SelectionRequired"
+import SelectionRequired from "../../../../../Notifications/SelectionRequired";
 import { useEffect } from "react"
-import GuideSelectingArticles from "../Tooltips/GuideSelectingArticles"
+import GuideSelectingArticles from "../../../tooltips/GuideSelectingArticles";
 import { useTooltipFlags } from "@/Hooks/useTooltipFlags"
 
 
@@ -98,5 +98,4 @@ export default function SelectLinks() {
     </AnimatePresence>
 
   )
-}
-
+};

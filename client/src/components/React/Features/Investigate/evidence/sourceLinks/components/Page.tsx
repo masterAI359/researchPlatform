@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import ArticleLink from "./ArticleLink";
-import LinkPlaceholder from "../Loaders/LinkPlaceholder";
+import LinkPlaceholder from "../loaders/LinkPlaceholder";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 

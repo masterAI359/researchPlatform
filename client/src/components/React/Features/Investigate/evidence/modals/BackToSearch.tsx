@@ -7,7 +7,7 @@ import { resetReadingSlice } from "@/ReduxToolKit/Reducers/Investigate/Reading"
 import { resetResults } from "@/ReduxToolKit/Reducers/Investigate/SearchResults"
 import { useEffect, useState } from "react";
 import { variants } from "@/motion/variants"
-import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary"
+import ErrorBoundary from "../Shared/ErrorBoundaries/ErrorBoundary"
 
 export function BackToSearch({ }) {
     const [returning, setReturning] = useState<boolean>(false);

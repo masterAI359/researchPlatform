@@ -1,5 +1,5 @@
 import React, { Component, ErrorInfo } from 'react'
-import ErrorMessage from '../ErrorMessages/SearchFailed'
+import ErrorMessage from '../../Features/investigate/evidence/sourceLinks/errors/SearchFailed'
 
 interface Props {
     children: React.ReactNode,

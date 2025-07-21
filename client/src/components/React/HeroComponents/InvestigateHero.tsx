@@ -1,4 +1,4 @@
-import GatherPOV from "../Features/Investigate/getPerspective/containers/GatherPOV";
+import GatherPOV from "../Features/investigate/getPerspective/containers/GatherPOV";
 import StepControl from "../Buttons/StepButtons/StepControl";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";

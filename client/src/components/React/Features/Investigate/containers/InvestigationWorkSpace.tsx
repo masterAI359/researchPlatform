@@ -1,14 +1,14 @@
 import { RootState } from '@/ReduxToolKit/store';
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import ComponentLoader from '../../Loaders/ComponentLoader';
+import ComponentLoader from '../../../Loaders/ComponentLoader';
 import { AnimatePresence } from 'framer-motion';
-import InputOptions from './getPerspective/components/paths/InputOptions';
-const BlueSkyPosts = lazy(() => import('../../BlueSky/BlueSkyPosts'));
-const HeroContainer = lazy(() => import('../../Containers/HeroContainer'));
-const Content = lazy(() => import('../../Containers/Content'));
-import Notes from './Notes/Notes';
-import PanelContainer from '../../Containers/PanelContainer';
+import InputOptions from '../getPerspective/components/paths/InputOptions';
+const BlueSkyPosts = lazy(() => import('../../blueSky/BlueSkyPosts'));
+const HeroContainer = lazy(() => import('../../../Containers/HeroContainer'));
+const Content = lazy(() => import('../../../Containers/Content'));
+import Notes from '../notes/Notes';
+import PanelContainer from './PanelContainer';
 
 export default function InvestigationWorkSpace() {
     const investigateState = useSelector((state: RootState) => state.investigation);

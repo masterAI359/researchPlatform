@@ -1,9 +1,8 @@
 import WindowContainer from "../../../../Containers/WindowContainer"
-import StepWizard from "../../StepWizard/StepWizard"
+import StepWizard from "../../stepWizard/StepWizard";
 
 export default function GatherPOV({ }) {
 
-    //TODO create new component to display the user's input while going through POV steps
 
     return (
         <main

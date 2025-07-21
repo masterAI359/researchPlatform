@@ -1,4 +1,4 @@
-import StepsEditor from "../../../../../TipTap/StepsEditor";
+import StepsEditor from "../../../../../Shared/TipTap/StepsEditor";
 import { RootState } from "@/ReduxToolKit/store";
 import { useSelector } from "react-redux";
 import { getPremises } from "@/ReduxToolKit/Reducers/Investigate/UserPOV";

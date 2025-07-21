@@ -1,4 +1,4 @@
-import Loader from "../../../../../Loaders/Loader";
+import Loader from "../../../../Loaders/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { getQuery } from "@/ReduxToolKit/Reducers/Investigate/UserPOV";
 import { AppDispatch, RootState } from "@/ReduxToolKit/store";

@@ -2,7 +2,7 @@ import { AnimatePresence } from "framer-motion"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { BackToSearch } from "../Modals/BackToSearch"
-import { GetTheseArticles } from "../Modals/GetTheseArticles"
+import { GetTheseArticles } from "../Features/investigate/evidence/modals/GetTheseArticles"
 
 export default function ModalContainer() {
     const investigateState = useSelector((state: RootState) => state.investigation)

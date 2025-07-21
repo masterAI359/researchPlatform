@@ -6,11 +6,17 @@ import { RootState } from "@/ReduxToolKit/store";
 import { variants } from "@/motion/variants";
 import ChartJsWrapper from "../UserCharts/ChartJsWrapper";
 import StatsSkeleton from "@/components/React/Charts/skeletons/StatsSkeleton";
+import NoChartData from "../UserArticles/fallbacks/NoChartData";
+import InvestigationsFallback from "../SavedInvestigations/fallbacks/InvestigationsFallback";
+import MetricsFallback from "../wrappers/MetricsFallback";
 const StatsSection = lazy(() => import('../../../Charts/ResearchStats/StatsSection'));
 
 export default function Metrics() {
     const investigations = useSelector((state: RootState) => state.userWork.userResearch);
     const hasInvestigations = Array.isArray(investigations) && (investigations.length > 0);
+    const userArticles = useSelector((state: RootState) => state.userdata.userArticles);
+    const hasArticles = Array.isArray(userArticles) && (userArticles.length > 0);
+    const noSavedData = (hasArticles === false) && (hasInvestigations === false);
 
     return (
         <motion.section
@@ -26,13 +32,21 @@ export default function Metrics() {
         "
         >
             <ScrolltoTop />
-            <ChartJsWrapper />
+
+            {noSavedData && <MetricsFallback />}
+
+            {hasArticles &&
+                <ChartJsWrapper />
+            }
 
             {hasInvestigations &&
                 <Suspense fallback={<StatsSkeleton />}>
                     <StatsSection />
                 </Suspense>
             }
+
+
+
 
         </motion.section>
     );

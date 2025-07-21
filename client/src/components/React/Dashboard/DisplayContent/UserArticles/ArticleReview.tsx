@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import BackToSavedArticles from "../../ProfileNavigation/buttons/BackToSavedArticles"
 import Article from "@/components/React/Shared/Articles/SuccessFull/Article"
 import ErrorBoundary from "@/components/React/Shared/ErrorBoundaries/ErrorBoundary"
-import LostData from "@/components/React/ErrorMessages/LostData"
+import LostData from "@/components/React/Shared/ErrorBoundaries/messages/LostData"
 import { useEffect } from "react"
 import { readSavedArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
 

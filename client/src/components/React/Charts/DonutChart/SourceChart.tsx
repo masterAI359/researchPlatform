@@ -7,7 +7,7 @@ import { RootState } from "@/ReduxToolKit/store";
 import { numBiasSources } from "@/helpers/Ratings";
 import { ChartData } from "chart.js";
 import ErrorBoundary from "../../Shared/ErrorBoundaries/ErrorBoundary";
-import ErrMessage from "../../ErrorMessages/ErrMessage";
+import ErrMessage from "../../Shared/ErrorBoundaries/messages/ErrMessage";
 import { useMemo } from "react";
 ChartJS.register(ArcElement, Tooltip, Legend);
 

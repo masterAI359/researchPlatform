@@ -1,4 +1,4 @@
-import ErrMessage from "@/components/React/ErrorMessages/ErrMessage";
+import ErrMessage from "@/components/React/Shared/ErrorBoundaries/messages/ErrMessage";
 import { RootState } from "@/ReduxToolKit/store"
 import { useState } from "react";
 import { useSelector } from "react-redux"

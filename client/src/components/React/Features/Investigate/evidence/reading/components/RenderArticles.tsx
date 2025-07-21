@@ -2,10 +2,10 @@ import { lazy, Suspense } from "react";
 import { AnimatePresence } from "framer-motion";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
-const Article = lazy(() => import('../Shared/Articles/SuccessFull/Article'));
-import ArticleLoader from "../Loaders/ArticleLoader";
-import NoContent from "../Shared/Articles/Failed/NoContent";
-import ArticleSkeleton from "../Loaders/ArticleSkeleton";
+const Article = lazy(() => import('../../../../../Shared/Articles/SuccessFull/Article'));
+import ArticleLoader from "@/components/React/Loaders/ArticleLoader";
+import NoContent from "@/components/React/Shared/Articles/Failed/NoContent";
+import ArticleSkeleton from "@/components/React/Dashboard/DisplayContent/UserArticles/ArticleSkeleton";
 
 export default function RenderArticles() {
     const investigateState = useSelector((state: RootState) => state.investigation);

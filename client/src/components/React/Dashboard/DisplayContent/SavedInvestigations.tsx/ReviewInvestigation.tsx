@@ -7,7 +7,7 @@ import { getInvestigationSources } from "@/services/SupabaseData"
 import { getSourcesToReview } from "@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations"
 import BackToSavedResearch from "./BackToSavedResearch"
 import ErrorBoundary from "@/components/React/Shared/ErrorBoundaries/ErrorBoundary"
-import LostData from "@/components/React/ErrorMessages/LostData"
+import LostData from "@/components/React/Shared/ErrorBoundaries/messages/LostData"
 import ScrolltoTop from "@/helpers/ScrollToTop"
 import { Terms } from "./Details/WikipediaTerms"
 

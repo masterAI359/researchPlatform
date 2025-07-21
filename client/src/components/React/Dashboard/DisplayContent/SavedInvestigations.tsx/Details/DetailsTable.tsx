@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import ProcessMap from "./ProcessMap";
 import { useEffect } from "react";
 import ErrorBoundary from "@/components/React/Shared/ErrorBoundaries/ErrorBoundary";
-import LostData from "@/components/React/ErrorMessages/LostData";
+import LostData from "@/components/React/Shared/ErrorBoundaries/messages/LostData";
 
 interface InvestigationData {
     id: string,

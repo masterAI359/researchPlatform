@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import ComponentLoader from '../../../Loaders/ComponentLoader';
 import { AnimatePresence } from 'framer-motion';
 import InputOptions from '../getPerspective/components/paths/InputOptions';
-const BlueSkyPosts = lazy(() => import('../../blueSky/BlueSkyPosts'));
+const BlueSkyPosts = lazy(() => import('../../blueSky/containers/BlueSkyPosts'));
 const HeroContainer = lazy(() => import('./HeroContainer'));
 const Content = lazy(() => import('./Content'));
 import Notes from '../notes/Notes';

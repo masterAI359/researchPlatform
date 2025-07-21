@@ -1,4 +1,4 @@
-import Completed from "../Features/investigate/results/Completed"
+import Completed from "../results/Completed"
 
 
 export default function CompletionHero() {

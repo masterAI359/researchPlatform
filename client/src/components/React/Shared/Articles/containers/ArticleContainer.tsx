@@ -5,8 +5,8 @@ import { useEffect, useRef } from "react"
 import { useDispatch } from "react-redux"
 import { recordSources } from "@/ReduxToolKit/Reducers/UserContent.ts/SaveInvestigationSlice"
 import ErrorBoundary from "../../ErrorBoundaries/ErrorBoundary"
-import ErrMessage from "../../../ErrorMessages/ErrMessage"
-import RenderArticles from "../../../Containers/RenderArticles"
+import ErrMessage from "../../ErrorBoundaries/messages/ErrMessage"
+import RenderArticles from "@/components/React/Features/investigate/evidence/reading/components/RenderArticles"
 import { getSourcesToRecord, canUpdateSources } from "@/services/RecordSources"
 
 export default function ArticleContainer({ }) {

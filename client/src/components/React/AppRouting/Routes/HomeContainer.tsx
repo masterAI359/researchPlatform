@@ -2,7 +2,7 @@ import HeroImage from '@/components/React/HomeComponents/HeroImage';
 import Challenge from '../../HomeComponents/Challenge';
 import ChartingFeatures from '../../HomeComponents/Features/ChartingFeatures';
 import WikiAndNotes from '../../HomeComponents/Features/WikiAndNotes';
-import BlueSkyPosts from '../../Features/blueSky/BlueSkyPosts';
+import BlueSkyPosts from '../../Features/blueSky/containers/BlueSkyPosts';
 import ToolsForResearch from '../../HomeComponents/Features/Keyboard';
 import { useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';

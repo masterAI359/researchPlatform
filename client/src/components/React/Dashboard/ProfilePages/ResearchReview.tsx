@@ -8,7 +8,7 @@ import DetailsTable from "../DisplayContent/SavedInvestigations.tsx/Details/Deta
 import { Terms } from "../DisplayContent/SavedInvestigations.tsx/Details/WikipediaTerms"
 import BackToSavedResearch from "../DisplayContent/SavedInvestigations.tsx/BackToSavedResearch"
 import ErrorBoundary from "@/components/React/Shared/ErrorBoundaries/ErrorBoundary"
-import LostData from "@/components/React/ErrorMessages/LostData"
+import LostData from "@/components/React/Shared/ErrorBoundaries/messages/LostData"
 import ScrolltoTop from "@/helpers/ScrollToTop"
 
 export default function ResearchReview() {

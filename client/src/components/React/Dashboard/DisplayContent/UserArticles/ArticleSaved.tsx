@@ -4,7 +4,7 @@ import { presentThisArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/Profi
 import { useState } from "react"
 import Title from "./Title"
 import ErrorBoundary from "@/components/React/Shared/ErrorBoundaries/ErrorBoundary"
-import ErrMessage from "@/components/React/ErrorMessages/ErrMessage"
+import ErrMessage from "@/components/React/Shared/ErrorBoundaries/messages/ErrMessage"
 import ArticleSkeleton from "./ArticleSkeleton"
 
 export default function ArticleSaved({ article }) {

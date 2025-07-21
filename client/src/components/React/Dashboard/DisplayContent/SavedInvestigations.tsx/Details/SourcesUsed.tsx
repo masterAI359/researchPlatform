@@ -1,7 +1,7 @@
 import { RootState } from "@/ReduxToolKit/store"
 import { useDispatch, useSelector } from "react-redux"
 import { readSavedArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
-import ErrMessage from "@/components/React/ErrorMessages/ErrMessage"
+import ErrMessage from "@/components/React/Shared/ErrorBoundaries/messages/ErrMessage"
 import { presentThisArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice"
 
 export function SourcesFromResearch() {

@@ -1,4 +1,4 @@
-import Search from "../Features/investigate/evidence/searching/Search"
+import Search from "../evidence/searching/Search"
 
 export default function SearchHero({
 

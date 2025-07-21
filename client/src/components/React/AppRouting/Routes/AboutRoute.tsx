@@ -1,8 +1,8 @@
 import { useEffect } from "react"
-import AboutHeader from "../About/AboutHeader"
-import Stack from "../About/Stack"
-import WhyElenchus from "../About/WhyElenchus"
-import { ScrollUp } from "../../../helpers/ScrollToTop"
+import AboutHeader from "../../About/AboutHeader"
+import Stack from "../../About/Stack"
+import WhyElenchus from "../../About/WhyElenchus"
+import { ScrollUp } from "../../../../helpers/ScrollToTop"
 
 
 export default function AboutContainer() {

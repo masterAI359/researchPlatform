@@ -1,5 +1,5 @@
-import GatherPOV from "../Features/investigate/getPerspective/containers/GatherPOV";
-import StepControl from "../Buttons/StepButtons/StepControl";
+import GatherPOV from "./GatherPOV";
+import StepControl from "../components/buttons/StepControl";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 export default function InvestigateHero({ }) {
@@ -19,4 +19,4 @@ export default function InvestigateHero({ }) {
       </div>
     </section>
   )
-}
+};

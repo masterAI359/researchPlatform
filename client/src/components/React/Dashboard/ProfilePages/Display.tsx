@@ -6,7 +6,7 @@ import Metrics from "./Metrics";
 const SavedArticles = lazy(() => import('../DisplayContent/UserArticles/SavedArticles'));
 const SavedResearchLayout = lazy(() => import('../DisplayContent/SavedInvestigations.tsx/SavedResearchLayout'));
 import AccManagement from "../ProfileNavigation/AccountManagement/AccManagement";
-import ResearchReview from "../ProfilePages/ResearchReview";
+import ResearchReview from "./ResearchReview";
 import ArticleReview from "../DisplayContent/UserArticles/ArticleReview";
 import ComponentLoader from "../../Loaders/ComponentLoader";
 

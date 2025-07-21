@@ -4,15 +4,15 @@ import { lazy, Suspense } from "react";
 import { AppDispatch } from "@/ReduxToolKit/store";
 import { RootState } from "@/ReduxToolKit/store";
 import { useEffect } from "react";
-import { ScrollUp } from "../../../helpers/ScrollToTop";
-import Display from "./ProfilePages/Display";
+import { ScrollUp } from "../../../../helpers/ScrollToTop";
+import Display from "../../Dashboard/ProfilePages/Display";
 import { presentDashboard } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
-import FooterBarLoader from "../Loaders/FooterBarLoader";
-import SidebarLoader from "../Loaders/SidebarLoader";
+import FooterBarLoader from "../../Loaders/FooterBarLoader";
+import SidebarLoader from "../../Loaders/SidebarLoader";
 import { AnimatePresence } from "framer-motion";
-import SignOutModal from "../Session/Forms/AuthForms/SignOutModal";
-const MobileProfileNav = lazy(() => import('./ProfileNavigation/ProfileMenu'));
-const SideBar = lazy(() => import('./ProfileNavigation/SideBar/Sidebar'));
+import SignOutModal from "../../Session/Forms/AuthForms/SignOutModal";
+const MobileProfileNav = lazy(() => import('../../Dashboard/ProfileNavigation/ProfileMenu'));
+const SideBar = lazy(() => import('../../Dashboard/ProfileNavigation/SideBar/Sidebar'));
 
 
 export default function Dashboard() {

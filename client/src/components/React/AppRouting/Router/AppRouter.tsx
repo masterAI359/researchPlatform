@@ -1,15 +1,15 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom"
 import { lazy, Suspense } from "react"
-import HomeContainer from "../Containers/HomeContainer";
-import Navigation from "../Shared/Navigation/Navigation";
-import RouteLoader from "../Loaders/RouteLoader";
-const Dashboard = lazy(() => import('../Dashboard/Dashboard'));
-const InvestigateContainer = lazy(() => import('../Containers/InvestigateContainer'));
-const AboutContainer = lazy(() => import('../Containers/AboutContainer'));
-const Signup = lazy(() => import('../Session/Forms/AuthForms/Signup'));
-const Login = lazy(() => import('../Session/Forms/AuthForms/Login'));
-const UpdatePassword = lazy(() => import('../Session/Forms/AuthForms/UpdatePassword'));
-const EmailForReset = lazy(() => import('../Session/Forms/AuthForms/EmailForReset'));
+import HomeContainer from "../Routes/HomeContainer";
+import Navigation from "../../Shared/Navigation/Navigation";
+import RouteLoader from "../../Loaders/RouteLoader";
+const Dashboard = lazy(() => import('../Routes/Dashboard'));
+const InvestigateContainer = lazy(() => import('../Routes/InvestigateRoute'));
+const AboutContainer = lazy(() => import('../Routes/AboutRoute'));
+const Signup = lazy(() => import('../../Session/Forms/AuthForms/Signup'));
+const Login = lazy(() => import('../../Session/Forms/AuthForms/Login'));
+const UpdatePassword = lazy(() => import('../../Session/Forms/AuthForms/UpdatePassword'));
+const EmailForReset = lazy(() => import('../../Session/Forms/AuthForms/EmailForReset'));
 
 export default function AppRouter() {
 

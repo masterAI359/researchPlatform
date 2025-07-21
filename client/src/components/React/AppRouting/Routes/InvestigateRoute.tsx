@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { RootState } from "@/ReduxToolKit/store";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/ReduxToolKit/store";
-import { ScrollUp } from "../../../helpers/ScrollToTop";
-import InvestigationWorkSpace from "../Features/investigate/containers/InvestigationWorkSpace";
-import SelectArticles from '../Features/investigate/evidence/sourceLinks/components/SelectLinks';
+import { ScrollUp } from "../../../../helpers/ScrollToTop";
+import InvestigationWorkSpace from "../../Features/investigate/containers/InvestigationWorkSpace";
+import SelectArticles from '../../Features/investigate/evidence/sourceLinks/components/SelectLinks';
 
 export default function InvestigateContainer() {
   const dispatch = useDispatch<AppDispatch>()

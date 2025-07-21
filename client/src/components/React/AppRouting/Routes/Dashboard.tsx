@@ -11,7 +11,7 @@ import FooterBarLoader from "../../Dashboard/ProfileNavigation/skeletons/FooterB
 import SidebarLoader from "../../Dashboard/ProfileNavigation/skeletons/SidebarSkeleton";
 import { AnimatePresence } from "framer-motion";
 import SignOutModal from "../../Session/Forms/AuthForms/SignOutModal";
-const MobileProfileNav = lazy(() => import('../../Dashboard/ProfileNavigation/ProfileMenu'));
+const MobileProfileNav = lazy(() => import('../../Dashboard/ProfileNavigation/mobile/ProfileMenu'));
 const SideBar = lazy(() => import('../../Dashboard/ProfileNavigation/SideBar/Sidebar'));
 
 

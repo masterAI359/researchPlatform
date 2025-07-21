@@ -1,11 +1,11 @@
 import { searchBlueSky } from "@/ReduxToolKit/Reducers/BlueSky/BlueSkySlice";
 import { motion } from "framer-motion";
-import Loader from "../Loaders/Loader";
+import Loader from "../../Loaders/Loader";
 import { useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import { AppDispatch } from "@/ReduxToolKit/store";
-import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary";
+import ErrorBoundary from "../../Shared/ErrorBoundaries/ErrorBoundary";
 import { displayBlueSkySearch } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
 import Posts from "./Posts";
 

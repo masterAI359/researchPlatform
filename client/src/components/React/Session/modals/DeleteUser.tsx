@@ -3,8 +3,8 @@ import { createPortal } from "react-dom";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import Lottie from "lottie-react";
-import blueCheck from '../../../lotties/blueCheck.json'
-import Loader from "../Loaders/Loader";
+import blueCheck from '../../../../lotties/blueCheck.json'
+import Loader from "../../Loaders/Loader";
 import { presentDeleteModal } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
 import { useNavigate } from "react-router-dom";
 import { clearAuthSlice } from "@/ReduxToolKit/Reducers/Athentication/Authentication";

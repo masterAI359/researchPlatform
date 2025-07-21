@@ -2,7 +2,7 @@ import { limitName } from "@/helpers/Presentation";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import { selectPost } from "@/ReduxToolKit/Reducers/BlueSky/BlueSkySlice";
-import Popover from "../Tooltips/Popover";
+import Popover from "../../Tooltips/Popover";
 import UseThisPost from "./UseThisPost";
 import { AnimatePresence, motion } from "framer-motion";
 import { getIdea } from "@/ReduxToolKit/Reducers/Investigate/UserPOV";

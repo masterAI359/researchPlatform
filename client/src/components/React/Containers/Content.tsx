@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion"
-import LinkGrid from "../LinkComponents/LinkGrid"
+import LinkGrid from "../Features/investigate/evidence/sourceLinks/containers/LinkGrid"
 import ModalContainer from "./ModalContainer"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"

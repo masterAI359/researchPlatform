@@ -1,13 +1,13 @@
-import SaveInvestigation from "../Buttons/ProcessButtons/SaveInvestigation"
-import InvestigateMore from "../Buttons/ProcessButtons/InvestigateMore"
+import SaveInvestigation from "./buttons/SaveInvestigation"
+import InvestigateMore from "./buttons/InvestigateMore"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import DataTable from "./DataTable"
 import { useEffect } from "react"
 import { AnimatePresence } from "framer-motion"
-import SavingResearch from "../Notifications/AuthNotifications/SavingResearch"
-import ViewMyInvestigations from "../Buttons/ProcessButtons/ViewMyInvestigations"
-import FeedBackForm from "../Forms/UserFeedback/FeedbackForm"
+import SavingResearch from "@/components/React/Notifications/AuthNotifications/SavingResearch"
+import ViewMyInvestigations from "./buttons/ViewMyInvestigations"
+import FeedBackForm from "@/components/React/Session/Forms/UserFeedback/FeedbackForm"
 
 
 export default function FinalResults() {

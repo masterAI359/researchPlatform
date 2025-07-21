@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { initiateFinalProcess } from "@/ReduxToolKit/Reducers/Investigate/Review";
 import { displayArticleContent, displayReadingTooltip, displayWrapUp } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
-import GuideDoneReading from "../../Features/investigate/tooltips/GuideDoneReading";
+import GuideDoneReading from "../../../tooltips/GuideDoneReading";
 import { RootState } from "@/ReduxToolKit/store";
 import { useEffect } from "react";
 import { useTooltipFlags } from "@/Hooks/useTooltipFlags";

@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
 import type { RootState } from '@/ReduxToolKit/store'
-import StepHeader from "./components/steps/StepHeader";
+import StepHeader from "../components/steps/StepHeader";
 import { stepContent } from "@/stepperContent/headers";
 import { stepsHelp } from "@/helpInfo/help";
-import Stepper from "../Steps/Stepper";
+import Stepper from "../components/steps/Stepper";
 
 export default function Steps({ }) {
   const investigateState = useSelector((state: RootState) => state.investigation)

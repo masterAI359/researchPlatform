@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { AppDispatch, RootState } from "@/ReduxToolKit/store"
 import { Link, useNavigate } from "react-router-dom"
-import ErrorBoundary from "../../Shared/ErrorBoundaries/ErrorBoundary"
+import ErrorBoundary from "@/components/React/Shared/ErrorBoundaries/ErrorBoundary"
 import { confirmPassword, emailValidation } from "@/helpers/validation"
 import { getFirstPassword, getSecondPassword, requestValidEmail, matchPasswords } from "@/ReduxToolKit/Reducers/Athentication/NewUserSlice"
 import { useDispatch } from "react-redux"
@@ -15,9 +15,8 @@ import OAuthLogins from "../InputFields/OauthLogins"
 import NewPasswordGuide from "../InputGuides/NewPasswordGuide"
 import { newUser } from "@/services/SupabaseData"
 import { fetchUserCredentials } from "@/ReduxToolKit/Reducers/Athentication/Authentication"
-import { newAccStatus } from "../../Notifications/AuthNotifications/AuthStatus"
-import AuthNotification from "../../Notifications/AuthNotifications/AuthNotification"
-
+import { newAccStatus } from "@/components/React/Notifications/AuthNotifications/AuthStatus"
+import AuthNotification from "@/components/React/Notifications/AuthNotifications/AuthNotification"
 export default function Signup() {
     const id = useSelector((state: RootState) => state.auth.user_id);
     const [acceptedInput, setAcceptedInput] = useState<boolean>(null)

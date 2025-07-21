@@ -1,7 +1,7 @@
 import { AnimatePresence } from "framer-motion"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
-import { BackToSearch } from "../Modals/BackToSearch"
+import { BackToSearch } from "../Features/investigate/evidence/modals/BackToSearch"
 import { GetTheseArticles } from "../Features/investigate/evidence/modals/GetTheseArticles"
 
 export default function ModalContainer() {

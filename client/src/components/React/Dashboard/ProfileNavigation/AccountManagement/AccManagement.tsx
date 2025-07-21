@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion"
-import DeleteUserAccount from "../../../Modals/DeleteUser"
+import DeleteUserAccount from "@/components/React/Session/modals/DeleteUser"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import AccountActions from "./AccountActions"

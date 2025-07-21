@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { presentArticles, presentResearch } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
 import { showSignOut } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
 import { AnimatePresence } from "framer-motion";
-import DeleteUserAccount from "@/components/React/Modals/DeleteUser";
+import DeleteUserAccount from "@/components/React/Session/modals/DeleteUser";
 import { AppDispatch, RootState } from "@/ReduxToolKit/store";
 import { presentManagement, presentDashboard } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
 import DashboardOption from "./DashboardOption";

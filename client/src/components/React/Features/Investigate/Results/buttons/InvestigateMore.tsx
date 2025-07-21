@@ -2,7 +2,7 @@ import { RootState } from "@/ReduxToolKit/store"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { displayWorkModal } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
-import { PreviousWork } from "../../Modals/PreviousWork"
+import { PreviousWork } from "../modals/PreviousWork"
 
 export default function InvestigateMore() {
     const [open, setOpen] = useState<boolean>(false)

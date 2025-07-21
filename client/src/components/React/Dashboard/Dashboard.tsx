@@ -10,7 +10,7 @@ import { presentDashboard } from "@/ReduxToolKit/Reducers/UserContent.ts/Profile
 import FooterBarLoader from "../Loaders/FooterBarLoader";
 import SidebarLoader from "../Loaders/SidebarLoader";
 import { AnimatePresence } from "framer-motion";
-import SignOutModal from "../Forms/AuthForms/SignOutModal";
+import SignOutModal from "../Session/Forms/AuthForms/SignOutModal";
 const MobileProfileNav = lazy(() => import('./ProfileNavigation/ProfileMenu'));
 const SideBar = lazy(() => import('./ProfileNavigation/SideBar/Sidebar'));
 

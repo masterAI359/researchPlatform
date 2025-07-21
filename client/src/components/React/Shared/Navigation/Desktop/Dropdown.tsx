@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
-import SignOutModal from "../../Forms/AuthForms/SignOutModal";
+import SignOutModal from "../../../Session/Forms/AuthForms/SignOutModal";
 
 export default function DropdownMenu({ }) {
     const signOut = useSelector((state: RootState) => state.auth.signOut)

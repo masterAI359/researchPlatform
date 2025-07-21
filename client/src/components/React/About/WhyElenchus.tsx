@@ -1,4 +1,4 @@
-import CheckCircle from "../IconComponents/CheckCircle";
+import CheckCircle from "../Shared/IconComponents/CheckCircle";
 
 const items = [
     {

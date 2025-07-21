@@ -6,11 +6,11 @@ import DeleteUserAccount from "@/components/React/Session/modals/DeleteUser";
 import { AppDispatch, RootState } from "@/ReduxToolKit/store";
 import { presentManagement, presentDashboard } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
 import DashboardOption from "./DashboardOption";
-import BookmarkIcon from "@/components/React/IconComponents/BookmarkIcon";
-import DashboardIcon from "@/components/React/IconComponents/DashboardIcon";
-import SettingsIcon from "@/components/React/IconComponents/SettingsIcon";
-import SignoutIcon from "@/components/React/IconComponents/SignoutIcon";
-import InvestigationsIcon from "@/components/React/IconComponents/InvestigateIcon";
+import BookmarkIcon from "@/components/React/Shared/IconComponents/BookmarkIcon";
+import DashboardIcon from "@/components/React/Shared/IconComponents/DashboardIcon";
+import SettingsIcon from "@/components/React/Shared/IconComponents/SettingsIcon";
+import SignoutIcon from "@/components/React/Shared/IconComponents/SignoutIcon";
+import InvestigationsIcon from "@/components/React/Shared/IconComponents/InvestigateIcon";
 
 export default function SideBarMenu({ }) {
     const showDeleteModal = useSelector((state: RootState) => state.profileNav.displayDeleteModal)

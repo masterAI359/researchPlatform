@@ -3,8 +3,8 @@ import { useState } from "react"
 import { createPortal } from "react-dom"
 import { useDispatch } from "react-redux"
 import { getHelp } from "@/ReduxToolKit/Reducers/Investigate/HelpModal"
-import HelpModal from "../../Modals/HelpModal"
-import HelpTooltip from "../../Tooltips/HelpTooltip"
+import HelpModal from "../modals/HelpModal"
+import HelpTooltip from "../../../Tooltips/HelpTooltip"
 
 export default function HelpButton({ info }) {
     const [activeTab, setActiveTab] = useState<Help>(info[0])

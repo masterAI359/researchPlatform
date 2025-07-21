@@ -4,7 +4,7 @@ import { getMerit, changedStance, moved } from "@/ReduxToolKit/Reducers/Investig
 import { RootState } from "@/ReduxToolKit/store";
 import Retrospect from "./Retrospect";
 import Stance from "./Stance";
-import ChecksButton from "../../../Buttons/SelectionButtons/ChecksButton";
+import ChecksButton from "./buttons/ChecksButton";
 
 
 

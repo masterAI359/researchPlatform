@@ -1,5 +1,5 @@
 import { useState } from "react"
-import ReviewPagination from "../../../../Buttons/Pagination/ReviewPagination"
+import ReviewPagination from "../../review/buttons/ReviewPagination"
 import ReviewPOV from "../../review/ReviewPOV"
 import ReviewQuestions from "../../review/ReviewQuestions"
 

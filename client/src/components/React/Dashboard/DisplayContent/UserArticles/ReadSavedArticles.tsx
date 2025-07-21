@@ -1,7 +1,7 @@
 import { RootState } from "@/ReduxToolKit/store"
 import { AnimatePresence } from "framer-motion"
 import { useSelector, useDispatch } from "react-redux"
-import BackToSavedArticles from "../../../Buttons/NavigatingButtons/BackToSavedArticles"
+import BackToSavedArticles from "../../ProfileNavigation/buttons/BackToSavedArticles"
 import ReturnToReview from "../../ProfileNavigation/ReturnToReview"
 import Article from "@/components/React/Shared/Articles/SuccessFull/Article"
 import ErrorBoundary from "@/components/React/Shared/ErrorBoundaries/ErrorBoundary"

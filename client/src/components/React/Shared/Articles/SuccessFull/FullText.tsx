@@ -5,7 +5,7 @@ import { clearWikiSlice, getModalPosition, getSelectedText, selectingText } from
 import TextPopover from "../../../Tooltips/TextPopover";
 import { ExtractThis } from "../../../Tooltips/TextPopover";
 import { AnimatePresence } from "framer-motion";
-import WikiTermExtract from "../../../Modals/WikiModal/WikiTermExtract";
+import WikiTermExtract from "../../../Features/wikiExtract/WikiTermExtract";
 
 interface WikiTypes {
     gettingSelection: boolean,

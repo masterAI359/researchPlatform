@@ -1,5 +1,5 @@
 import { SummaryHelp } from "@/helpInfo/help"
-import HelpButton from "../Buttons/HelpButtons/Question"
+import HelpButton from "../Shared/Help/buttons/Question"
 
 export default function ReadingHero({ }) {
 

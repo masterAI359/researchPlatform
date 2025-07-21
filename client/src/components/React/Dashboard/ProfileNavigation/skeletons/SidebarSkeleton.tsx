@@ -1,4 +1,4 @@
-export default function SidebarLoader() {
+export default function SidebarSkeleton() {
     return (
         <aside
             id="sidebar-loader"

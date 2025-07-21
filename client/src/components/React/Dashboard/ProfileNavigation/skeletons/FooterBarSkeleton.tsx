@@ -1,6 +1,6 @@
 
 
-export default function FooterBarLoader() {
+export default function FooterBarSkeleton() {
 
     return (
         <div className="bg-[#26272B] animate-pulse fixed -bottom-0.5 h-10 w-full">

@@ -5,7 +5,7 @@ import { useState } from "react"
 import Title from "./Title"
 import ErrorBoundary from "@/components/React/Shared/ErrorBoundaries/ErrorBoundary"
 import ErrMessage from "@/components/React/Shared/ErrorBoundaries/messages/ErrMessage"
-import ArticleSkeleton from "./ArticleSkeleton"
+import ArticleSkeleton from "./skeletons/SavedArticleSkeleton"
 
 export default function ArticleSaved({ article }) {
   const dispatch = useDispatch()

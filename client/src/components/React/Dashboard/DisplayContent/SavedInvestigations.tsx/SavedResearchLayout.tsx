@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 import PriorInvestigation from "./InvestigationSaved"
 import { motion, AnimatePresence } from "framer-motion"
 import ScrolltoTop from "@/helpers/ScrollToTop"
-import InvestigationsFallback from "@/components/React/Placeholders/InvestigationsFallback"
+import InvestigationsFallback from "@/components/React/Dashboard/DisplayContent/SavedInvestigations.tsx/fallbacks/InvestigationsFallback"
 
 
 

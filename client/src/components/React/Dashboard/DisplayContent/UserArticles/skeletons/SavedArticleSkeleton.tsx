@@ -1,7 +1,7 @@
-import TitleSkeleton from "@/components/React/Loaders/TitleSkeleton"
+import TitleSkeleton from "@/components/React/Dashboard/DisplayContent/UserArticles/skeletons/TitleSkeleton"
 import ImageSkeleton from "./ImageSkeleton"
 
-export default function ArticleSkeleton() {
+export default function SavedArticleSkeleton() {
 
     return (
         <div
@@ -14,4 +14,4 @@ export default function ArticleSkeleton() {
             <ImageSkeleton />
         </div>
     )
-}
+};

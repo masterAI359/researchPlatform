@@ -33,7 +33,7 @@ export default function ArticleSaved({ article }) {
 
           <Title article={article} handleArticleSelection={handleArticleSelection} loaded={loaded} />
           <img
-            onLoad={() => setLoaded(false)}
+            onLoad={() => setLoaded(true)}
             className={`
              w-full sm:w-5/6 lg:w-4/5 xl:w-4/5 rounded-3xl bg-zinc-100 
             object-cover aspect-[3/2] 

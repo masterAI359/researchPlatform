@@ -52,7 +52,7 @@ export default function ArticleReview() {
                  transition-all duration-1000 animate-fade-in mb-12
                  xl:px-24
                  ">
-                    {savedArticle &&
+                    {displayData &&
                         <Suspense fallback={<ArticleSkeleton />}>
                             <Article articleData={displayData} />
                         </Suspense>

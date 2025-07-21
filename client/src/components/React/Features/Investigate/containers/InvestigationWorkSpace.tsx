@@ -5,7 +5,7 @@ import ComponentLoader from '../../../Loaders/ComponentLoader';
 import { AnimatePresence } from 'framer-motion';
 import InputOptions from '../getPerspective/components/paths/InputOptions';
 const BlueSkyPosts = lazy(() => import('../../blueSky/containers/BlueSkyPosts'));
-const HeroContainer = lazy(() => import('./HeroContainer'));
+import HeroContainer from './HeroContainer';
 const Content = lazy(() => import('./Content'));
 import Notes from '../notes/Notes';
 import PanelContainer from './PanelContainer';
@@ -52,10 +52,8 @@ export default function InvestigationWorkSpace() {
             }
 
             {showBlueSkySearch === false &&
-                <Suspense fallback={<ComponentLoader />}>
-                    <HeroContainer
-                        key={'HeroContainer'} />
-                </Suspense>
+                <HeroContainer
+                    key={'HeroContainer'} />
             }
 
             {showBlueSkySearch &&

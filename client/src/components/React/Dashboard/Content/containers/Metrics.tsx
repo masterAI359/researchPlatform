@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 import { lazy, Suspense } from "react";
-import ScrolltoTop from "../../../../helpers/ScrollToTop";
+import ScrolltoTop from "@/helpers/ScrollToTop";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import { variants } from "@/motion/variants";
-import ChartJsWrapper from "../Content/UserCharts/ChartJsWrapper";
-import StatsSkeleton from "../../Charts/skeletons/StatsSkeleton";
-const StatsSection = lazy(() => import('../../Charts/ResearchStats/StatsSection'));
+import ChartJsWrapper from "../UserCharts/ChartJsWrapper";
+import StatsSkeleton from "@/components/React/Charts/skeletons/StatsSkeleton";
+const StatsSection = lazy(() => import('../../../Charts/ResearchStats/StatsSection'));
 
 export default function Metrics() {
     const investigations = useSelector((state: RootState) => state.userWork.userResearch);

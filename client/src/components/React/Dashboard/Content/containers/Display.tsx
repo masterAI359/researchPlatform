@@ -3,12 +3,12 @@ import { RootState } from "@/ReduxToolKit/store";
 import { AnimatePresence } from "framer-motion";
 import { lazy, Suspense } from "react";
 import Metrics from "./Metrics";
-const SavedArticles = lazy(() => import('../Content/UserArticles/containers/SavedArticles'));
-const SavedResearchLayout = lazy(() => import('../Content/SavedInvestigations/containers/SavedResearchLayout'));
-import AccManagement from "../ProfileNavigation/AccountManagement/AccManagement";
-import ResearchReview from "./ResearchReview";
-import ArticleReview from "../Content/UserArticles/containers/ArticleReview";
-import ComponentLoader from "../../Loaders/ComponentLoader";
+const SavedArticles = lazy(() => import('../UserArticles/containers/SavedArticles'));
+const SavedResearchLayout = lazy(() => import('../SavedInvestigations/containers/SavedResearchLayout'));
+import AccManagement from "../../ProfileNavigation/AccountManagement/AccManagement";
+import ResearchReview from "../SavedInvestigations/containers/ResearchReview";
+import ArticleReview from "../UserArticles/containers/ArticleReview";
+import ComponentLoader from "../../../Loaders/ComponentLoader";
 
 export default function Display() {
     const displaySavedInvestigations = useSelector((state: RootState) => state.profileNav.displaySavedInvestigations)

@@ -5,7 +5,7 @@ import { AppDispatch } from "@/ReduxToolKit/store";
 import { RootState } from "@/ReduxToolKit/store";
 import { useEffect } from "react";
 import { ScrollUp } from "../../../../helpers/ScrollToTop";
-import Display from "../../Dashboard/ProfilePages/Display";
+import Display from "../../Dashboard/Content/containers/Display";
 import { presentDashboard } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
 import FooterBarLoader from "../../Dashboard/ProfileNavigation/skeletons/FooterBarSkeleton";
 import SidebarLoader from "../../Dashboard/ProfileNavigation/skeletons/SidebarSkeleton";

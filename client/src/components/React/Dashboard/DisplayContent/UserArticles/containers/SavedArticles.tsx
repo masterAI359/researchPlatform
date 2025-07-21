@@ -2,9 +2,10 @@ import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { AnimatePresence, motion } from "framer-motion"
 import { delays } from "@/motion/variants"
-import ArticleSaved from "./ArticleSaved"
-import ScrolltoTop from "../../../../../helpers/ScrollToTop"
-import NoSavedArticles from "./NoSavedArticles"
+import ArticleSaved from "../components/ArticleSaved";
+import ScrolltoTop from "../../../../../../helpers/ScrollToTop"
+import NoSavedArticles from "../fallbacks/NoSavedArticles"
+
 
 export default function SavedArticles({ }) {
     const userArticles = useSelector((state: RootState) => state.userdata.userArticles);

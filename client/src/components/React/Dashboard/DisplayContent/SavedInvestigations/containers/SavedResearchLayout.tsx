@@ -1,9 +1,9 @@
 import { RootState } from "@/ReduxToolKit/store"
 import { useSelector } from "react-redux"
-import PriorInvestigation from "./InvestigationSaved"
+import PriorInvestigation from "../components/InvestigationSaved"
 import { motion, AnimatePresence } from "framer-motion"
 import ScrolltoTop from "@/helpers/ScrollToTop"
-import InvestigationsFallback from "@/components/React/Dashboard/DisplayContent/SavedInvestigations.tsx/fallbacks/InvestigationsFallback"
+import InvestigationsFallback from "../fallbacks/InvestigationsFallback"
 
 
 

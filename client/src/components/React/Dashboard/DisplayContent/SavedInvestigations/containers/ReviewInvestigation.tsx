@@ -1,15 +1,15 @@
 import { useSelector, useDispatch } from "react-redux"
-import DetailsTable from "./Details/DetailsTable"
-import { SourcesFromResearch } from "./Details/SourcesUsed"
+import DetailsTable from "../Details/DetailsTable"
+import { SourcesFromResearch } from "../Details/SourcesUsed"
 import { RootState } from "@/ReduxToolKit/store"
 import { useLayoutEffect } from "react"
 import { getInvestigationSources } from "@/services/SupabaseData"
 import { getSourcesToReview } from "@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations"
-import BackToSavedResearch from "./BackToSavedResearch"
+import BackToSavedResearch from "../buttons/BackToSavedResearch"
 import ErrorBoundary from "@/components/React/Shared/ErrorBoundaries/ErrorBoundary"
 import LostData from "@/components/React/Shared/ErrorBoundaries/messages/LostData"
 import ScrolltoTop from "@/helpers/ScrollToTop"
-import { Terms } from "./Details/WikipediaTerms"
+import { Terms } from "../Details/WikipediaTerms"
 
 export default function ReviewInvestigation() {
     const investigation = useSelector((state: RootState) => state.userWork.investigationToReview)

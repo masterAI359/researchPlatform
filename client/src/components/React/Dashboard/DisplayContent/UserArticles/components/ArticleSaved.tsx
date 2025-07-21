@@ -5,7 +5,7 @@ import { useState } from "react"
 import Title from "./Title"
 import ErrorBoundary from "@/components/React/Shared/ErrorBoundaries/ErrorBoundary"
 import ErrMessage from "@/components/React/Shared/ErrorBoundaries/messages/ErrMessage"
-import ArticleSkeleton from "./skeletons/SavedArticleSkeleton"
+import ArticleSkeleton from "../skeletons/SavedArticleSkeleton";
 
 export default function ArticleSaved({ article }) {
   const dispatch = useDispatch()
@@ -33,7 +33,7 @@ export default function ArticleSaved({ article }) {
 
           <Title article={article} handleArticleSelection={handleArticleSelection} loaded={loaded} />
           <img
-            onLoad={() => setLoaded(true)}
+            onLoad={() => setLoaded(false)}
             className={`
              w-full sm:w-5/6 lg:w-4/5 xl:w-4/5 rounded-3xl bg-zinc-100 
             object-cover aspect-[3/2] 

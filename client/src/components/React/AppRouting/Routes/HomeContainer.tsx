@@ -1,15 +1,15 @@
-import HeroImage from '@/components/React/Features/LandingPage/components/HeroImage';
-import Challenge from '../../Features/LandingPage/components/Challenge';
-import ChartingFeatures from '../../Features/LandingPage/components/ChartingFeatures';
-import WikiAndNotes from '../../Features/LandingPage/components/WikiAndNotes';
-import BlueSkyPosts from '../../Features/BlueSky/containers/BlueSkyPosts';
-import ToolsForResearch from '../../Features/LandingPage/components/Keyboard';
+import HeroImage from '@/components/React/Features/LandingPage/Components/HeroImage';
+import Challenge from '../../Features/LandingPage/Components/Challenge';
+import ChartingFeatures from '../../Features/LandingPage/Components/ChartingFeatures';
+import WikiAndNotes from '../../Features/LandingPage/Components/WikiAndNotes';
+import BlueSkyPosts from '../../Features/BlueSky/Containers/BlueSkyPosts';
+import ToolsForResearch from '../../Features/LandingPage/Components/Keyboard';
 import { useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '@/ReduxToolKit/store';
 import { getStoredPosts, searchBlueSky } from '@/ReduxToolKit/Reducers/BlueSky/BlueSkySlice';
 import { ScrollUp } from '@/helpers/ScrollToTop';
-import SignOutModal from '../../Session/Forms/AuthForms/SignOutModal';
+import SignOutModal from '../../Session/forms/AuthForms/SignOutModal';
 
 export default function HomeContainer({ }) {
     const signingOut = useSelector((state: RootState) => state.auth.signOut)

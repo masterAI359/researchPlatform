@@ -7,7 +7,7 @@ import { RootState } from "@/ReduxToolKit/store";
 import { AppDispatch } from "@/ReduxToolKit/store";
 import ErrorBoundary from "../../../Shared/ErrorBoundaries/ErrorBoundary";
 import { displayBlueSkySearch } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
-import Posts from "../components/Posts";
+import Posts from "../Components/Posts";
 
 const variants = {
   hidden: {

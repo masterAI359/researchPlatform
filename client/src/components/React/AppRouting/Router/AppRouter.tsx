@@ -6,10 +6,10 @@ import RouteLoader from "../../Loaders/RouteLoader";
 const Dashboard = lazy(() => import('../Routes/Dashboard'));
 const InvestigateContainer = lazy(() => import('../Routes/InvestigateRoute'));
 const AboutContainer = lazy(() => import('../Routes/AboutRoute'));
-const Signup = lazy(() => import('../../Session/Forms/AuthForms/Signup'));
-const Login = lazy(() => import('../../Session/Forms/AuthForms/Login'));
-const UpdatePassword = lazy(() => import('../../Session/Forms/AuthForms/UpdatePassword'));
-const EmailForReset = lazy(() => import('../../Session/Forms/AuthForms/EmailForReset'));
+const Signup = lazy(() => import('../../Session/forms/AuthForms/Signup'));
+const Login = lazy(() => import('../../Session/forms/AuthForms/Login'));
+const UpdatePassword = lazy(() => import('../../Session/forms/AuthForms/UpdatePassword'));
+const EmailForReset = lazy(() => import('../../Session/forms/AuthForms/EmailForReset'));
 
 export default function AppRouter() {
 

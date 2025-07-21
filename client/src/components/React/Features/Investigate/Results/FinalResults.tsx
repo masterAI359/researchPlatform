@@ -7,7 +7,7 @@ import { useEffect } from "react"
 import { AnimatePresence } from "framer-motion"
 import SavingResearch from "@/components/React/Session/notifications/SavingResearch"
 import ViewMyInvestigations from "./buttons/ViewMyInvestigations"
-import FeedBackForm from "@/components/React/Session/Forms/UserFeedback/FeedbackForm"
+import FeedBackForm from "@/components/React/Session/forms/UserFeedback/FeedbackForm"
 
 
 export default function FinalResults() {

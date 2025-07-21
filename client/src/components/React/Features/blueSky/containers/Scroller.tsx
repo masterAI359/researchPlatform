@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { BSPost } from "../components/BSPost";
+import { BSPost } from "../Components/BSPost";
 
 
 export default function Scroller({ posts, context, setClicked }) {

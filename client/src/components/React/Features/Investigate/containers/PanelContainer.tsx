@@ -1,8 +1,8 @@
-import ControlPanel from "../evidence/reading/components/ControlPanel";
+import ControlPanel from "../Evidence/reading/components/ControlPanel";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
-import StoryPaginate from "../evidence/reading/buttons/StoryPaginate";
+import StoryPaginate from "../Evidence/reading/buttons/StoryPaginate";
 
 export default function PanelContainer() {
     const investigateState = useSelector((state: RootState) => state.investigation)

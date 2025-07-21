@@ -3,11 +3,11 @@ import { RootState } from "@/ReduxToolKit/store";
 import { AnimatePresence } from "framer-motion";
 import { lazy, Suspense } from "react";
 import Metrics from "./Metrics";
-const SavedArticles = lazy(() => import('../DisplayContent/UserArticles/containers/SavedArticles'));
-const SavedResearchLayout = lazy(() => import('../DisplayContent/SavedInvestigations/containers/SavedResearchLayout'));
+const SavedArticles = lazy(() => import('../Content/UserArticles/containers/SavedArticles'));
+const SavedResearchLayout = lazy(() => import('../Content/SavedInvestigations/containers/SavedResearchLayout'));
 import AccManagement from "../ProfileNavigation/AccountManagement/AccManagement";
 import ResearchReview from "./ResearchReview";
-import ArticleReview from "../DisplayContent/UserArticles/containers/ArticleReview";
+import ArticleReview from "../Content/UserArticles/containers/ArticleReview";
 import ComponentLoader from "../../Loaders/ComponentLoader";
 
 export default function Display() {

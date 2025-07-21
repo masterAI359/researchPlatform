@@ -4,7 +4,7 @@ import ScrolltoTop from "../../../../helpers/ScrollToTop";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import { variants } from "@/motion/variants";
-import ChartJsWrapper from "../DisplayContent/UserCharts/ChartJsWrapper";
+import ChartJsWrapper from "../Content/UserCharts/ChartJsWrapper";
 import StatsSkeleton from "../../Charts/skeletons/StatsSkeleton";
 const StatsSection = lazy(() => import('../../Charts/ResearchStats/StatsSection'));
 

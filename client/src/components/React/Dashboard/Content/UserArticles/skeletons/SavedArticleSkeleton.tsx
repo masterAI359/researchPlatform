@@ -1,4 +1,4 @@
-import TitleSkeleton from "@/components/React/Dashboard/DisplayContent/UserArticles/skeletons/TitleSkeleton"
+import TitleSkeleton from "@/components/React/Dashboard/Content/UserArticles/skeletons/TitleSkeleton"
 import ImageSkeleton from "./ImageSkeleton"
 
 export default function SavedArticleSkeleton() {

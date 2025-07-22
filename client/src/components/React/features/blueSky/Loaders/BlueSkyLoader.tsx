@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 import Lottie from "lottie-react"
-import horizontalVortex from '../../../lotties/horizontalVortex.json';
+import horizontalVortex from '../../../../../lotties/horizontalVortex.json';
 
 export default function BlueSkyLoader() {
 

@@ -4,7 +4,7 @@ import { resetBlueSkyState } from "@/ReduxToolKit/Reducers/BlueSky/BlueSkySlice"
 import { AnimatePresence, motion } from "framer-motion";
 import ErrorBoundary from "@/components/React/Shared/ErrorBoundaries/ErrorBoundary";
 import { RootState } from "@/ReduxToolKit/store";
-import BlueSkyLoader from "@/components/React/Loaders/BlueSkyLoader";
+import BlueSkyLoader from "../Loaders/BlueSkyLoader";
 import Scroller from "../Containers/Scroller";
 import { splitPosts } from "@/helpers/Presentation";
 import { variants } from "@/motion/variants";

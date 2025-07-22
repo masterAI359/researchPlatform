@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-export function StatItem({ label, target }) {
+export default function StatItem({ label, target }) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLDivElement | null>(null);
   const hasStarted = useRef(false);

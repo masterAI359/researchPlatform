@@ -1,4 +1,4 @@
-import { StatItem } from "./Stats";
+import StatItem from "./StatItem"
 
 interface Stats {
     percentChanged: number | null,

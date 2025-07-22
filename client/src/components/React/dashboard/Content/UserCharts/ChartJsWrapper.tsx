@@ -1,10 +1,10 @@
 import { lazy, Suspense } from "react";
-import PieSkeleton from "@/components/React/Charts/skeletons/PieSkeleton";
-import DonutSkeleton from "@/components/React/Charts/skeletons/DonutSkeleton";
+import PieSkeleton from "@/components/React/charts/skeletons/PieSkeleton";
+import DonutSkeleton from "@/components/React/charts/skeletons/DonutSkeleton";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
-const BiasChart = lazy(() => import('@/components/React/Charts/DonutChart/BiasChart'))
-const IntegrityChart = lazy(() => import('@/components/React/Charts/PieChart/IntegrityChart'))
+const BiasChart = lazy(() => import('@/components/React/charts/DonutChart/BiasChart'))
+const IntegrityChart = lazy(() => import('@/components/React/charts/PieChart/IntegrityChart'))
 
 
 export default function ChartJsWrapper() {

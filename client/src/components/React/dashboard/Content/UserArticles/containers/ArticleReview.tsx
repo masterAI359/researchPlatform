@@ -8,6 +8,8 @@ import LostData from "@/components/React/Shared/ErrorBoundaries/messages/LostDat
 import { useEffect } from "react"
 import { readSavedArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
 import ArticleSkeleton from "@/components/React/Shared/Articles/skeletons/ArticleSkeleton";
+import { AnimatePresence, motion } from "framer-motion";
+import { variants } from "@/motion/variants";
 
 export default function ArticleReview() {
     const savedArticle = useSelector((state: RootState) => state.userdata.ArticleToReview)
@@ -42,7 +44,12 @@ export default function ArticleReview() {
 
     return (
 
-        <section
+        <motion.section
+            variants={variants}
+            initial='closed'
+            animate='open'
+            exit='closed'
+            transition={{ type: 'tween', duration: 0.4, delay: 0.7 }}
             className="min-h-full xs:px-2 md:px-8 scroll-smooth w-full
                         mx-auto mt-0 md:mt-6 relative animate-fade-in duration-200">
             <BackToSavedArticles articlesContext={articlesContext} />
@@ -60,6 +67,6 @@ export default function ArticleReview() {
                     <Article articleData={displayData} />
                 </main>
             </ErrorBoundary>
-        </section>
+        </motion.section>
     )
 }

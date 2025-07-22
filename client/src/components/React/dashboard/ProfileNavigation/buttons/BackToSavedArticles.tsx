@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux"
 import { presentArticles, presentThisInvestigation } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
+import { createPortal } from "react-dom";
 
 interface Contexts {
     articlesContext: boolean,
@@ -19,8 +20,8 @@ export default function BackToSavedArticles({ articlesContext }: Contexts) {
     };
 
 
-    return (
-        <button onClick={() => { backToSaved(articlesContext) }} className="absolute z-50 md:z-1 top-3 left-0 md:left-0 lg:left-1.5 xl:left-2 2xl:left-2 md:top-96 sm:left-12 xs:w-14 xs:h-8
+    const button = (
+        <button onClick={() => { backToSaved(articlesContext) }} className="absolute z-50 md:z-1 top-2 left-0 md:left-52 2xl:left-60 md:top-96 sm:left-12 xs:w-14 xs:h-8
         lg:w-16 lg:h-auto p-2 transition-all mx-auto flex
         duration-200 ease-in-out hover:bg-white/10 items-center group
         rounded-4xl">
@@ -34,5 +35,7 @@ export default function BackToSavedArticles({ articlesContext }: Contexts) {
                 ←
             </span>
         </button>
-    )
-}
+    );
+
+    return createPortal(button, document.body);
+};

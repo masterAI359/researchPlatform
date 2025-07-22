@@ -3,9 +3,9 @@ import { AnimatePresence } from "framer-motion";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 const Article = lazy(() => import('../../../../../Shared/Articles/SuccessFull/Article'));
-import ArticleLoader from "@/components/React/Loaders/ArticleLoader";
+import ArticleLoader from "@/components/React/Shared/Articles/loaders/ArticleLoader";
 import NoContent from "@/components/React/Shared/Articles/Failed/NoContent";
-import ArticleSkeleton from "@/components/React/Dashboard/Content/UserArticles/skeletons/SavedArticleSkeleton";
+import ArticleSkeleton from "@/components/React/dashboard/Content/UserArticles/skeletons/SavedArticleSkeleton";
 
 export default function RenderArticles() {
     const investigateState = useSelector((state: RootState) => state.investigation);

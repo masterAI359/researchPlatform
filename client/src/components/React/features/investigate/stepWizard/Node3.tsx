@@ -48,7 +48,7 @@ export default function ({ }) {
                 animate={{ scale: 1, opacity: currentStep == 2 ? 1 : 0 }}
                 transition={{ duration: 0.7 }}
             >
-                Biases
+                3. Biases
             </motion.div>
 
         </li>

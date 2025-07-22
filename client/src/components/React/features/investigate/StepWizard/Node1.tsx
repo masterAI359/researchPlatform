@@ -46,7 +46,7 @@ export default function Node1({ }) {
                 animate={{ scale: 1, opacity: currentStep > 0 ? 0 : 1 }}
                 transition={{ duration: 0.7 }}
             >
-                Argument
+                1. Idea
             </motion.div>
 
         </li>

@@ -237,6 +237,7 @@ declare global {
 
   interface SidebarItemData {
     title: string,
+    step: number,
     data: string | null,
     titleTwo?: string,
     dataTwo?: string | null

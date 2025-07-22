@@ -12,7 +12,7 @@ export default function SidebarItem({ item }: { item: SidebarItemData }) {
             <div className="flex flex-col gap-y-2">
                 <div>
                     <p className="text-white text-left text-sm">
-                        {item.title}: <span className="text-zinc-400">
+                        <span className="mr-2">{item.step}.</span>  {item.title}: <span className="text-zinc-400">
                             {item.data ? formatted : null}
                         </span>
                     </p>

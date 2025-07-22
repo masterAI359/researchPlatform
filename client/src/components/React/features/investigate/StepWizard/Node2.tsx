@@ -55,7 +55,7 @@ export default function ({ }) {
                 animate={{ scale: 1, opacity: currentStep == 1 ? 1 : 0 }}
                 transition={{ duration: 0.7 }}
             >
-                POV
+                2. POV
             </motion.div>
 
         </li>

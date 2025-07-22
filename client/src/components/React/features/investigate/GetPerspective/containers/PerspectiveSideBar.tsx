@@ -9,10 +9,10 @@ export default function PerspectiveSidebar() {
     const { idea, perspective, expertise, biases, premises } = pov;
 
     const items: SidebarItemData[] = [
-        { title: 'Idea', data: idea },
-        { title: 'Perspective', data: perspective, titleTwo: 'Prior Knowledge', dataTwo: expertise },
-        { title: 'Biases', data: biases },
-        { title: 'Premises', data: premises }
+        { title: 'Idea', data: idea, step: 1 },
+        { title: 'Perspective', data: perspective, step: 2, titleTwo: 'Prior Knowledge', dataTwo: expertise },
+        { title: 'Biases', data: biases, step: 3 },
+        { title: 'Premises', data: premises, step: 4 }
     ];
 
     return (

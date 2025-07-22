@@ -1,5 +1,5 @@
 import React, { Component, ErrorInfo } from 'react'
-import ErrorMessage from '../../Features/Investigate/Evidence/sourceLinks/errors/SearchFailed'
+import SearchFailed from '../../features/investigate/Evidence/sourceLinks/errors/SearchFailed'
 
 interface Props {
     children: React.ReactNode,
@@ -24,7 +24,7 @@ class ErrorBoundary extends Component<Props, State> {
     render() {
         if (this.state.hasError) {
             console.log("Error occurred in ErrorBoundary");
-            return this.props.fallback || <ErrorMessage />;
+            return this.props.fallback || <SearchFailed />;
         }
         return this.props.children;
     }

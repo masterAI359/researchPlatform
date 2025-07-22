@@ -2,7 +2,7 @@ import { lazy, Suspense } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import StepWizard from "../../stepWizard/StepWizard";
-import ComponentLoader from "@/components/React/Loaders/ComponentLoader";
+import ComponentLoader from "@/components/React/Shared/Loaders/ComponentLoader";
 const WindowWrapper = lazy(() => import('./WindowWrapper'));
 
 export default function GatherPOV({ }) {

@@ -1,4 +1,4 @@
-import loadingComponent from '../../../lotties/loadingComponent.json';
+import loadingComponent from '@/lotties/loadingComponent.json';
 import Lottie from 'lottie-react';
 
 export default function ComponentLoader() {

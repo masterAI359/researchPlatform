@@ -1,6 +1,6 @@
 import { useRef } from "react"
 import Lottie from "lottie-react"
-import blueCheck from '../../../../../../lotties/blueCheck.json';
+import blueCheck from '@/lotties/blueCheck.json';
 import { useDispatch } from "react-redux"
 
 

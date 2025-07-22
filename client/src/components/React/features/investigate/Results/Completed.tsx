@@ -1,5 +1,5 @@
 import Lottie from "lottie-react"
-import blueCheck from '../../../../../lotties/blueCheck.json'
+import blueCheck from '@/lotties/blueCheck.json'
 import { useEffect } from "react"
 import { displayCompletion, displayResults } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
 import { useDispatch, useSelector } from "react-redux"

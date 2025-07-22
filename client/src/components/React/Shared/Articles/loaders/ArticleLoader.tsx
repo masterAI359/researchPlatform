@@ -1,6 +1,6 @@
 import Lottie from "lottie-react"
 import { motion } from "framer-motion"
-import vortex from '../../../lotties/vortex.json'
+import vortex from '@/lotties/vortex.json'
 import { createPortal } from "react-dom"
 
 export default function ArticleLoader() {

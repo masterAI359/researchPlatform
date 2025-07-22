@@ -11,7 +11,7 @@ export default function SavedArticles({ }) {
     const userArticles = useSelector((state: RootState) => state.userdata.userArticles);
     const hasArticles: boolean = Array.isArray(userArticles) && (userArticles.length > 0);
 
-    //const cachedFn = useCallback(fn, dependencies)
+    //implement react virtuoso for virtualized rendering
 
     return (
         <div className="w-full h-fit lg:px-10 xl:px-12 2xl:px-16">

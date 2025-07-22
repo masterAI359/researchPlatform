@@ -1,8 +1,16 @@
+import { motion } from "framer-motion";
+import { variants } from "@/motion/variants";
 
 
 export default function StatsSkeleton() {
     return (
-        <section className="lg:p-8">
+        <motion.section
+            variants={variants}
+            initial='closed'
+            animate='open'
+            exit='closed'
+            transition={{ type: 'tween', duration: 0.3, ease: 'easeInOut' }}
+            className="lg:p-8">
             <div className="mx-auto w-full 2xl:max-w-7xl">
                 <div className="2xl:max-w-7xl relative isolate overflow-hidden bg-gradientup ring-1 ring-white/10 rounded-4xl px-6 pt-16 sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
                     <div className="mx-auto max-w-2xl text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left space-y-4 animate-pulse">
@@ -26,6 +34,6 @@ export default function StatsSkeleton() {
                     </div>
                 </div>
             </div>
-        </section>
+        </motion.section>
     );
 }

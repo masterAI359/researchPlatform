@@ -1,50 +1,22 @@
-import { useSelector } from "react-redux";
 import StatBreakdown from "./StatBreakdown";
-import { RootState } from "@/ReduxToolKit/store";
-import { useEffect, useState, useLayoutEffect } from "react";
-import { calculatePercentages } from "@/helpers/Ratings";
-import { Calculations } from "@/env";
+import { motion } from "framer-motion";
+import { variants } from "@/motion/variants";
 
-export default function StatsSection() {
-    const investigations = useSelector((state: RootState) => state.userWork.userResearch);
-    const [stats, setStats] = useState({
-        percentChanged: null,
-        validated: null,
-        neutral: null,
-        neededMore: null
-    });
-
-
-
-    function getStats(calculated: Calculations) {
-        setStats({
-            percentChanged: calculated.change,
-            validated: calculated.valid,
-            neutral: calculated.neutral,
-            neededMore: calculated.needMore
-        });
-    }
-
-
-    useLayoutEffect(() => {
-        if (!investigations || investigations.length === 0) return;
-
-        if (investigations) {
-            const calculated = calculatePercentages(investigations);
-
-            if (calculated) {
-                getStats(calculated);
-            };
-        }
-
-
-    }, [investigations]);
-
+export default function StatsSection({ stats }) {
 
 
     return (
-        <section className="lg:p-8">
-            <div className="mx-auto w-full 2xl:max-w-7xl">
+        <motion.section
+            id="investigation-stats"
+            key='stats-chart'
+            variants={variants}
+            initial='closed'
+            animate='open'
+            exit='closed'
+            transition={{ type: 'tween', duration: 0.3, ease: 'easeInOut' }}
+            className="lg:p-8">
+            <div
+                className="mx-auto w-full 2xl:max-w-7xl">
                 <div className="2xl:max-w-7xl  relative isolate overflow-hidden  bg-gradientup ring-1 ring-white/10 rounded-4xl px-6 pt-16 sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
                     <div className="mx-auto max-w-2xl text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
                         <span className="text-white">Investigation Statistics</span>
@@ -58,7 +30,7 @@ export default function StatsSection() {
                         <p className="mt-6 text-sm text-white">
                             Over all of your investigations:
                         </p>
-                        {investigations && <StatBreakdown percentChanged={stats.percentChanged} validated={stats.validated} neutral={stats.neutral} needMore={stats.neededMore} />}
+                        <StatBreakdown percentChanged={stats.percentChanged} validated={stats.validated} neutral={stats.neutral} needMore={stats.neededMore} />
                     </div>
                     <div className="relative mt-16 h-80 lg:mt-8">
                         {/* <img
@@ -68,6 +40,6 @@ export default function StatsSection() {
                     </div>
                 </div>
             </div>
-        </section>
+        </motion.section>
     );
 }

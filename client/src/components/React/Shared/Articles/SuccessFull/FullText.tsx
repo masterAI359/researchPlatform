@@ -1,7 +1,7 @@
 import { AppDispatch, RootState } from "@/ReduxToolKit/store"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { clearWikiSlice, getModalPosition, getSelectedText, selectingText } from "@/ReduxToolKit/Reducers/Investigate/WikipediaSlice";
+import { getModalPosition, getSelectedText, selectingText } from "@/ReduxToolKit/Reducers/Investigate/WikipediaSlice";
 import TextPopover from "../popovers/TextPopover";
 import { ExtractThis } from "../popovers/TextPopover";
 import { AnimatePresence } from "framer-motion";

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createPortal } from "react-dom";
 import { AppDispatch, RootState } from "@/ReduxToolKit/store";
 import { useEffect, useState } from "react";
-import WikiExtractLoader from "../../../Loaders/WikiExtractLoader";
+import WikiExtractLoader from "../loaders/WikiExtractLoader";
 import ExtractNotification from "../notifications/ExtractNotification";
 import { clearWikiSlice } from "@/ReduxToolKit/Reducers/Investigate/WikipediaSlice";
 import Description from "./WikiDescription";

@@ -1,6 +1,6 @@
 import { searchBlueSky } from "@/ReduxToolKit/Reducers/BlueSky/BlueSkySlice";
 import { motion } from "framer-motion";
-import Loader from "../../../Loaders/Loader";
+import Loader from "../../../Shared/Loaders/Loader";
 import { useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";

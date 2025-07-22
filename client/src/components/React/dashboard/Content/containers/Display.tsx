@@ -8,7 +8,7 @@ const SavedResearchLayout = lazy(() => import('../SavedInvestigations/containers
 import AccManagement from "../../ProfileNavigation/AccountManagement/AccManagement";
 import ResearchReview from "../SavedInvestigations/containers/ResearchReview";
 import ArticleReview from "../UserArticles/containers/ArticleReview";
-import ComponentLoader from "../../../Loaders/ComponentLoader";
+import ComponentLoader from "../../../Shared/Loaders/ComponentLoader";
 
 export default function Display() {
     const displaySavedInvestigations = useSelector((state: RootState) => state.profileNav.displaySavedInvestigations)

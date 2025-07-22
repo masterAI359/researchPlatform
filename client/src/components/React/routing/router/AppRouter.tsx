@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom"
 import { lazy, Suspense } from "react"
 import HomeContainer from "../routes/HomeContainer";
 import Navigation from "../../Shared/Navigation/Navigation";
-import RouteLoader from "../../Loaders/RouteLoader";
+import RouteLoader from "../../Shared/Loaders/RouteLoader";
 const Dashboard = lazy(() => import('../routes/Dashboard'));
 const InvestigateContainer = lazy(() => import('../routes/InvestigateRoute'));
 const AboutContainer = lazy(() => import('../routes/AboutRoute'));

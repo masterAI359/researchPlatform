@@ -6,9 +6,9 @@ export default function SavedArticleSkeleton() {
     return (
         <div
             className="flex flex-col md:flex-row gap-y-12 
-            2xl:h-88 h-auto xl:px-12 lg:px-3 md:px-4 px-0
-            md:gap-y-0 md:gap-x-16 lg:gap-x-24
-            justify-between w-full items-center absolute bottom-0"
+            2xl:h-96 h-auto
+            md:gap-y-0
+            justify-between w-full max-w-full items-center relative my-8"
         >
             <TitleSkeleton />
             <ImageSkeleton />

@@ -1,11 +1,11 @@
 
 
 
-export default function Title({ loaded, handleArticleSelection, article }) {
+export default function Title({ handleArticleSelection, article }) {
 
     return (
-        <div className={`group transition-opacity w-full sm:w-4/5 md:w-full duration-200 ease-in-out 
-        ${loaded ? 'opacity-100' : 'opacity-0'}`}
+        <div className={`group transition-opacity w-full sm:w-4/5 md:w-full duration-200 ease-in-out`}
+
             onClick={handleArticleSelection}>
             <h3
 

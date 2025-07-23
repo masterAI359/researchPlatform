@@ -3,7 +3,6 @@ import { Provider } from 'react-redux'
 import AppRouter from '../routing/router/AppRouter'
 import { useEffect } from 'react'
 import InitSession from '../Session/InitSession'
-//import '../../../styles/global.css'
 
 export default function App() {
 

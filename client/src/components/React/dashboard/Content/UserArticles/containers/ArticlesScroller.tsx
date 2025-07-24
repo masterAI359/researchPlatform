@@ -7,18 +7,20 @@ import { useVirtuoso } from "@/Hooks/useVirtuoso";
 
 export default function ArticlesScroller() {
     const userArticles: SavedArticle[] | null = useSelector((state: RootState) => state.userdata.userArticles);
-    const { visible, fullyLoaded, loadMore } = useVirtuoso(userArticles)
+    const { visible, fullyLoaded, loadMore } = useVirtuoso(userArticles);
+
+    console.log(fullyLoaded)
 
     return (
         <div
-            className="relative w-full h-screen xl:h-[2000px] overflow-x-hidden px-4"
+            className="relative w-full h-svh overflow-x-hidden px-4"
         >
             <Virtuoso
                 style={{ height: '100%', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'start', justifyContent: 'end' }}
                 className="no-scrollbar"
                 data={visible}
                 endReached={loadMore}
-                increaseViewportBy={100}
+                increaseViewportBy={50}
                 context={{ fullyLoaded }}
                 components={{ Footer: SkeletonMap }}
                 itemContent={(index, article) => {

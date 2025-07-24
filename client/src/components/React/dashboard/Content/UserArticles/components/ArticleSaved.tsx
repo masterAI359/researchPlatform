@@ -15,12 +15,13 @@ export default function ArticleSaved({ article }) {
 
 
   return (
-    <div key={article.article_url} className="cursor-pointer relative h-88 xl:h-96 my-16 w-full max-w-full">
+    <div key={article.article_url} className="cursor-pointer relative h-96 sm:h-52 sm:p-6 md:p-0 md:h-60 xl:h-88 my-16 w-full max-w-full">
       <ErrorBoundary fallback={<ErrMessage message="failed to load article :/" />}>
         <a
           className={`
-            grid grid-cols-1 gap-12 lg:gap-24
-            md:grid-cols-2 items-center relative
+            flex flex-col-reverse justify-center
+            sm:grid gap-6 lg:gap-24
+            sm:grid-cols-2 items-center relative
             transition-opacity duration-200 ease-in-out
             md:justify-items-end justify-items-center
             

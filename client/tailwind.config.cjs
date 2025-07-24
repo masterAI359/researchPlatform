@@ -28,7 +28,9 @@ module.exports = {
         '76': '310px',
         '88': '22rem',
         '168': '656px',
+        '112': '28rem',
         '128': '32rem',
+        '144': '36rem',
       },
       width: {
 
@@ -224,12 +226,12 @@ module.exports = {
     require("tailwind-scrollbar-hide"),
     require('@tailwindcss/typography'),
     require('tailwind-scrollbar')({ nocompatible: true, preferredStrategy: 'pseudoelements' }),
-    function({ addBase }) {
+    function ({ addBase }) {
       addBase({
         ".ProseMirror": {
-          whiteSpace:   "pre-wrap",
+          whiteSpace: "pre-wrap",
           overflowWrap: "anywhere",
-          wordBreak:    "break-all",
+          wordBreak: "break-all",
         },
       });
     },

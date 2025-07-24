@@ -1,14 +1,15 @@
-import { useEffect, useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 
 export function useVirtuoso(items: any[]) {
 
-    const [rendered, setRendered] = useState<number>(6);
+    const [rendered, setRendered] = useState<number>(8);
     const [fullyLoaded, setFullyLoaded] = useState<boolean>(false);
     const visible: SavedArticle[] = items.slice(0, rendered);
 
 
     const loadMore = useCallback(() => {
-        if ((rendered >= items.length)) return;
+
+        if ((rendered >= items.length) || (fullyLoaded === true)) return;
 
         const diff = items.length - rendered;
         const next = Math.min(6, diff);
@@ -19,18 +20,8 @@ export function useVirtuoso(items: any[]) {
                 setFullyLoaded(true);
             }
             setRendered(rendered => rendered + next);
-        }, 1000);
-    }, [setRendered, setFullyLoaded, rendered, items.length]);
-
-
-    useEffect(() => {
-        if (fullyLoaded) return;
-
-        const timeout = loadMore();
-
-        return () => clearTimeout(timeout)
-
-    }, [loadMore, fullyLoaded]);
+        }, 400);
+    }, [setRendered, setFullyLoaded, rendered, fullyLoaded]);
 
 
     return { fullyLoaded, visible, loadMore };

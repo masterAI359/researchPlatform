@@ -9,7 +9,6 @@ export default function ArticlesScroller() {
     const userArticles: SavedArticle[] | null = useSelector((state: RootState) => state.userdata.userArticles);
     const { visible, fullyLoaded, loadMore } = useVirtuoso(userArticles);
 
-    console.log(fullyLoaded)
 
     return (
         <div

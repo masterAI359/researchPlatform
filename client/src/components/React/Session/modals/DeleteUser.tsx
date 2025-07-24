@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { createPortal } from "react-dom";
 import { useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Lottie from "lottie-react";
 import blueCheck from '@/lotties/blueCheck.json'
 import Loader from "../../Shared/Loaders/Loader";
@@ -21,29 +21,21 @@ export default function DeleteUserAccount({ }) {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-
-    const redirect = () => {
-
-        setTimeout(() => {
-
-            navigate('/')
-        }, 200);
-
-    }
-
     const removeModal = () => {
-        setTimeout(() => {
 
-            dispatch(presentDeleteModal(false))
-            redirect()
-        }, 1500);
-    }
+        const timer = setTimeout(() => {
+            dispatch(presentDeleteModal(false));
+            navigate('/')
+        }, 500);
 
-
+        return () => clearTimeout(timer)
+    };
 
 
 
     useEffect(() => {
+
+
         const handleDelete = async () => {
             const valid = emailValidation(email);
             const passes = confirmFirstPassword(password);

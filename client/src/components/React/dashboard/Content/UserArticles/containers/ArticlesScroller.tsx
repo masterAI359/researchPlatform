@@ -1,14 +1,22 @@
 import { Virtuoso } from "react-virtuoso";
-import { useSelector } from "react-redux";
-import { RootState } from "@/ReduxToolKit/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/ReduxToolKit/store";
 import ArticleSaved from "../components/ArticleSaved";
 import { SkeletonMap } from "../skeletons/SkeletonMap";
 import { useVirtuoso } from "@/Hooks/useVirtuoso";
+import { presentThisArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice"
+import { readSavedArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
+import { useCallback } from "react";
 
 export default function ArticlesScroller() {
     const userArticles: SavedArticle[] | null = useSelector((state: RootState) => state.userdata.userArticles);
     const { visible, fullyLoaded, loadMore } = useVirtuoso(userArticles);
+    const dispatch = useDispatch<AppDispatch>();
 
+    const handleArticleSelection = useCallback((article: SavedArticle) => {
+        dispatch(readSavedArticle(article));
+        dispatch(presentThisArticle());
+    }, [dispatch]);
 
     return (
         <div
@@ -24,7 +32,11 @@ export default function ArticlesScroller() {
                 components={{ Footer: SkeletonMap }}
                 itemContent={(index, article) => {
 
-                    return <ArticleSaved key={index} article={article} />
+                    return <ArticleSaved
+                        key={index}
+                        article={article}
+                        handleArticleSelection={handleArticleSelection}
+                    />
                 }}
 
             />

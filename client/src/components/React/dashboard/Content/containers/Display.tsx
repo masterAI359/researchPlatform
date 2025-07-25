@@ -26,7 +26,7 @@ export default function Display() {
     return (
         <main className="w-full relative h-auto min-h-screen px-4 md:px-6 lg:px-0">
             {displayThisArticle && <BackToSavedArticles />}
-
+            {displayThisArticle && <ArticleReview key='article-review' />}
             {displayDashboard && <Metrics key='dashboard' />}
             {displaySavedArticles &&
                 <Suspense fallback={<ComponentLoader />}>
@@ -41,7 +41,7 @@ export default function Display() {
             <AnimatePresence mode="wait">
                 {displayAccountManagement && <AccManagement key='settings' />}
                 {displayThisInvestigation && <ResearchReview key='research-review' />}
-                {displayThisArticle && <ArticleReview key='article-review' />}
+
             </AnimatePresence>
 
         </main>

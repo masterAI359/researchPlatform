@@ -1,7 +1,6 @@
-import { AppDispatch, RootState } from "@/ReduxToolKit/store"
-import { lazy, Suspense, useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import BackToSavedArticles from "../../../ProfileNavigation/buttons/BackToSavedArticles"
+import { RootState } from "@/ReduxToolKit/store"
+import { lazy, Suspense } from "react"
+import { useSelector } from "react-redux"
 const Article = lazy(() => import('../../../../Shared/Articles/SuccessFull/Article'))
 import ErrorBoundary from "@/components/React/Shared/ErrorBoundaries/ErrorBoundary"
 import LostData from "@/components/React/Shared/ErrorBoundaries/messages/LostData"
@@ -11,7 +10,6 @@ import { variants } from "@/motion/variants";
 
 export default function ArticleReview() {
     const savedArticle = useSelector((state: RootState) => state.userdata.ArticleToReview)
-    const dispatch = useDispatch<AppDispatch>();
     const displayData = {
         summary: savedArticle.summary,
         article_image: savedArticle.image_url,

@@ -28,7 +28,7 @@ export default function ArticlesScroller() {
         >
             <Virtuoso
                 style={{ height: '100%', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'start', justifyContent: 'end' }}
-                className="no-scrollbar"
+                className="no-scrollbar 2xl:gap-y-12"
                 data={visible}
                 endReached={loadMore}
                 increaseViewportBy={50}

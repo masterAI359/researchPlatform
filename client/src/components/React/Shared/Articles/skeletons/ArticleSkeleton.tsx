@@ -11,7 +11,7 @@ export default function ArticleSkeleton() {
             animate='open'
             exit='closed'
             transition={{ type: 'tween', duration: 0.2 }}
-            className="animate-pulse space-y-4 w-full max-w-4xl mx-auto px-4">
+            className="animate-pulse space-y-4 h-auto w-full max-w-4xl mx-auto px-4">
             {/* Image */}
             <div className="h-52 w-full rounded-xl bg-neutral-800" />
 

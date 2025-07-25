@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
 import FullText from "./FullText"
 
-export default function ArticleContent({ article_text, summary, fullStory, article_url }: any) {
+export default function ArticleContent({ article_text, fullStory, article_url }: any) {
 
     return (
         <motion.div className={`${fullStory ? `md:mx-1 my-1` : null} cursor-text`}>

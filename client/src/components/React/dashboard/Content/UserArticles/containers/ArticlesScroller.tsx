@@ -4,19 +4,23 @@ import { AppDispatch, RootState } from "@/ReduxToolKit/store";
 import ArticleSaved from "../components/ArticleSaved";
 import { SkeletonMap } from "../skeletons/SkeletonMap";
 import { useVirtuoso } from "@/Hooks/useVirtuoso";
-import { presentThisArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice"
 import { readSavedArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
 import { useCallback } from "react";
+import { presentThisArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
 
 export default function ArticlesScroller() {
     const userArticles: SavedArticle[] | null = useSelector((state: RootState) => state.userdata.userArticles);
     const { visible, fullyLoaded, loadMore } = useVirtuoso(userArticles);
     const dispatch = useDispatch<AppDispatch>();
 
-    const handleArticleSelection = useCallback((article: SavedArticle) => {
-        dispatch(readSavedArticle(article));
-        dispatch(presentThisArticle());
-    }, [dispatch]);
+    console.log('scroller rendering');
+
+    const handleArticleSelection = useCallback((article: SavedArticle) =>
+        () => {
+
+            dispatch(readSavedArticle(article));
+            dispatch(presentThisArticle());
+        }, [dispatch]);
 
     return (
         <div
@@ -33,7 +37,7 @@ export default function ArticlesScroller() {
                 itemContent={(index, article) => {
 
                     return <ArticleSaved
-                        key={index}
+                        key={article.id}
                         article={article}
                         handleArticleSelection={handleArticleSelection}
                     />

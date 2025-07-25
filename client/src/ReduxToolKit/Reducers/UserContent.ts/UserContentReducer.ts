@@ -6,7 +6,6 @@ interface UserContent {
     status: string,
     userArticles: any,
     error: any,
-
     contextForSupabase: string | null,
     ArticleToReview: any
 }

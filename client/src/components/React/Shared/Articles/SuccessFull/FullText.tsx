@@ -46,6 +46,8 @@ export default function FullText({ article_text, article_url }) {
     }, [status, selectedText, gettingSelection])
 
 
+    const full_text = article_text;
+
     return (
         <div
             onMouseDown={(e) => handleHighlightStart(e)}
@@ -63,7 +65,7 @@ export default function FullText({ article_text, article_url }) {
                 {status !== 'idle' && <WikiTermExtract article_url={article_url} />}
             </AnimatePresence>
             <p className="font-light xl:text-xl tracking-tight text-white">
-                {article_text}
+                {full_text}
             </p>
         </div>
     )

@@ -1,12 +1,13 @@
+import React from "react";
 
 
+function Title({ handleArticleSelection, article }) {
 
-export default function Title({ handleArticleSelection, article }) {
 
     return (
         <div className={`group transition-opacity w-full sm:w-4/5 md:w-full duration-200 ease-in-out`}
 
-            onClick={handleArticleSelection}>
+            onClick={handleArticleSelection(article)}>
             <h3
 
                 className="text-sm w-11/12 md:w-full mt-6 tracking-tight font-light lg:text-lg xl:text-4xl
@@ -25,3 +26,6 @@ export default function Title({ handleArticleSelection, article }) {
         </div>
     )
 };
+
+
+export default React.memo(Title);

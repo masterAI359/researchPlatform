@@ -1,14 +1,14 @@
 import { useDispatch } from "react-redux"
-import { presentArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
+import { presentThisInvestigation } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
 import { AppDispatch } from "@/ReduxToolKit/store";
 
 
-export default function BackToSavedArticles() {
+export default function BackFromSourceReview() {
     const dispatch = useDispatch<AppDispatch>();
 
 
     return (
-        <button onClick={() => { dispatch(presentArticles()) }} className="absolute z-50 md:z-1 top-2 left-0 md:left-52 2xl:left-6 md:top-96 sm:left-12 xs:w-14 xs:h-8
+        <button onClick={() => { dispatch(presentThisInvestigation()) }} className="absolute z-50 md:z-1 top-2 left-0 md:left-52 2xl:left-6 md:top-96 sm:left-12 xs:w-14 xs:h-8
         lg:w-16 lg:h-auto p-2 transition-all mx-auto flex
         duration-200 ease-in-out hover:bg-white/10 items-center group
         rounded-4xl">

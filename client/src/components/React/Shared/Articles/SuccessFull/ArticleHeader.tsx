@@ -33,7 +33,7 @@ export default function ArticleHeader({ articleData, setFullStory, fullStory }) 
         title: article_title,
         provider: source,
         image_url: article_image,
-        text: article_text,
+        full_text: article_text,
         authors: article_authors,
         date: date ? date : article_pub_date,
         url: article_url,

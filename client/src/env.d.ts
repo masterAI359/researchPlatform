@@ -113,11 +113,19 @@ declare global {
     date: string,
     fallbackDate: string | null,
     summary: any,
-    text: string,
+    full_text: string,
     id: string,
     factual_reporting?: string | null,
     bias?: Bias,
     country?: string | null
+  }
+
+  interface SaveArticleButton {
+    dataToSave: any,
+    showNotification: boolean,
+    setShowNotification: (showNotification: boolean) => void,
+    open: boolean,
+    reviewing?: boolean
   }
 
   interface Calculations {
@@ -329,5 +337,5 @@ export {
   ArticleType, OptionsTypes, SelectedArticle, Perspectives, State, PremiseProps, Help, SavedArticle,
   Calculations, PostsProps, SupabaseUser, ResetPW, Investigation, ScrapedArticle, TipTapProps, AuthStatus, AuthNotificationProps,
   Tooltips, SidebarItemData, LinkProps, SaveArticleResponse, WikiTerm, Bias, BiasCounts, LoadedArticle, ChartFallbackProps,
-  UserContent, LoginResponse, LoginFormProps, DashboardOption, HelpModal, NotificationState, NotifySaved
+  UserContent, LoginResponse, LoginFormProps, DashboardOption, HelpModal, NotificationState, NotifySaved, SaveArticleButton
 };

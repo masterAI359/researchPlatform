@@ -25,14 +25,8 @@ export function SourcesFromResearch() {
 }
 
 
-function ArticleFromResearch({
-  source
-}) {
-
+function ArticleFromResearch({ source }) {
   const dispatch = useDispatch();
-
-
-
 
   const handleArticleSelection = () => {
     dispatch(readSavedArticle(source));

@@ -5,7 +5,7 @@ export default function ReturnToReview() {
 
     const backToReview = () => {
         navigate('/ReviewInvestigation')
-    }
+    };
 
     return (
         <button onClick={backToReview} className="absolute top-3 -left-3 sm:fixed sm:top-1/2 sm:left-6 xs:w-14 xs:h-8

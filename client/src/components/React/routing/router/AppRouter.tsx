@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom"
 import { lazy, Suspense } from "react"
 import HomeContainer from "../routes/HomeContainer";
+import AboutContainer from "../routes/AboutRoute";
 import Navigation from "../../Shared/Navigation/Navigation";
 import RouteLoader from "../../Shared/Loaders/RouteLoader";
 const Dashboard = lazy(() => import('../routes/Dashboard'));
 const InvestigateContainer = lazy(() => import('../routes/InvestigateRoute'));
-const AboutContainer = lazy(() => import('../routes/AboutRoute'));
 const Signup = lazy(() => import('../../Session/forms/AuthForms/Signup'));
 const Login = lazy(() => import('../../Session/forms/AuthForms/Login'));
 const UpdatePassword = lazy(() => import('../../Session/forms/AuthForms/UpdatePassword'));

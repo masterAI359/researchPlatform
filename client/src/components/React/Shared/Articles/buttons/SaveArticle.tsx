@@ -7,8 +7,9 @@ import SaveArticleTooltip from "../tooltips/SaveArticleTooltip";
 import { useSaveArticle } from "@/Hooks/useSaveArticle"
 import { AnimatePresence } from "framer-motion"
 
-export default function Bookmark({ dataToSave, showNotification, setShowNotification, open }) {
+export default function Bookmark({ dataToSave, showNotification, setShowNotification, open }: SaveArticleButton) {
     const userArticles = useSelector((state: RootState) => state.userdata.userArticles);
+    const selectedArticle = useSelector((state: RootState) => state.userdata.ArticleToReview);
     const { notification, setNotification, handleSaveArticle } = useSaveArticle(dataToSave, setShowNotification);
     const { url } = dataToSave;
     const dispatch = useDispatch<AppDispatch>();
@@ -35,7 +36,7 @@ export default function Bookmark({ dataToSave, showNotification, setShowNotifica
             check();
         };
 
-    }, [dispatch]);
+    }, [dispatch, selectedArticle]);
 
 
 

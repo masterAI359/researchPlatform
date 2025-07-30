@@ -13,7 +13,6 @@ export default function ArticlesScroller() {
     const { visible, fullyLoaded, loadMore } = useVirtuoso(userArticles);
     const dispatch = useDispatch<AppDispatch>();
 
-    console.log('scroller rendering');
 
     const handleArticleSelection = useCallback((article: SavedArticle) =>
         () => {

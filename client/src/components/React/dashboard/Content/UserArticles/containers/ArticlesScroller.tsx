@@ -4,9 +4,10 @@ import { AppDispatch, RootState } from "@/ReduxToolKit/store";
 import ArticleSaved from "../components/ArticleSaved";
 import { SkeletonMap } from "../skeletons/SkeletonMap";
 import { useVirtuoso } from "@/Hooks/useVirtuoso";
-import { readSavedArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
+import { fetchSavedArticles, readSavedArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
 import { useCallback } from "react";
 import { presentThisArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
+import { saveArticle } from "@/services/SupabaseData";
 
 export default function ArticlesScroller() {
     const userArticles: SavedArticle[] | null = useSelector((state: RootState) => state.userdata.userArticles);
@@ -20,6 +21,15 @@ export default function ArticlesScroller() {
             dispatch(readSavedArticle(article));
             dispatch(presentThisArticle());
         }, [dispatch]);
+
+    const deleteHandler = useCallback(async (article: SavedArticle): Promise<void> => {
+        const articleExists: boolean = true;
+        const results = await saveArticle(article, articleExists);
+        if (results === 'Deleted') {
+            console.log('fetching up to date articles saved')
+            dispatch(fetchSavedArticles());
+        }
+    }, []);
 
     return (
         <div
@@ -39,6 +49,7 @@ export default function ArticlesScroller() {
                         key={article.id}
                         article={article}
                         handleArticleSelection={handleArticleSelection}
+                        deleteHandler={deleteHandler}
                     />
                 }}
 

@@ -41,6 +41,7 @@ export default function RenderArticles() {
                             <Article
                                 key={articles[currentStory].article_url}
                                 articleData={articles[currentStory]}
+                                investigating={true}
                             />
                         </Suspense>}
                 </AnimatePresence>

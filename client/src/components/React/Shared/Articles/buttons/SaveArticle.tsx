@@ -7,11 +7,11 @@ import SaveArticleTooltip from "../tooltips/SaveArticleTooltip";
 import { useSaveArticle } from "@/Hooks/useSaveArticle"
 import { AnimatePresence } from "framer-motion"
 
-export default function Bookmark({ dataToSave, showNotification, setShowNotification, open }: SaveArticleButton) {
+export default function Bookmark({ article, showNotification, setShowNotification, open }: SaveArticleButton) {
     const userArticles = useSelector((state: RootState) => state.userdata.userArticles);
     const selectedArticle = useSelector((state: RootState) => state.userdata.ArticleToReview);
-    const { notification, setNotification, handleSaveArticle } = useSaveArticle(dataToSave, setShowNotification);
-    const { url } = dataToSave;
+    const { notification, setNotification, handleSaveArticle } = useSaveArticle(article, setShowNotification);
+    const { article_url } = article;
     const dispatch = useDispatch<AppDispatch>();
     const showTooltip: boolean = !showNotification && !notification.anonUser;
 
@@ -25,7 +25,7 @@ export default function Bookmark({ dataToSave, showNotification, setShowNotifica
 
     useEffect(() => {
         const check = () => {
-            const exists = checkArticle(url, urls);
+            const exists = checkArticle(article_url, urls);
             setNotification((prev) => ({
                 ...prev,
                 articleExists: exists

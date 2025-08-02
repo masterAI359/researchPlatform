@@ -1,17 +1,12 @@
 import { AppDispatch, RootState } from "@/ReduxToolKit/store"
-import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getModalPosition, getSelectedText, selectingText } from "@/ReduxToolKit/Reducers/Investigate/WikipediaSlice";
 import TextPopover from "../popovers/TextPopover";
 import { ExtractThis } from "../popovers/TextPopover";
 import { AnimatePresence } from "framer-motion";
+import { WikiTypes } from "@/env";
 import WikiTermExtract from "../../../features/WikiExtract/components/WikiTermExtract";
 
-interface WikiTypes {
-    gettingSelection: boolean,
-    selectedText: string | null,
-    status: string
-}
 
 export default function FullText({ article_text, article_url }) {
     const investigateState = useSelector((state: RootState) => state.investigation);
@@ -42,11 +37,6 @@ export default function FullText({ article_text, article_url }) {
         }
     }
 
-    useEffect(() => {
-    }, [status, selectedText, gettingSelection])
-
-
-    const full_text = article_text;
 
     return (
         <div
@@ -65,7 +55,7 @@ export default function FullText({ article_text, article_url }) {
                 {status !== 'idle' && <WikiTermExtract article_url={article_url} />}
             </AnimatePresence>
             <p className="font-light xl:text-xl tracking-tight text-white">
-                {full_text}
+                {article_text}
             </p>
         </div>
     )

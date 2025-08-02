@@ -48,7 +48,7 @@ export default function ArticleReview() {
                  ">
                     {displayData &&
                         <Suspense fallback={<ArticleSkeleton />}>
-                            <Article articleData={displayData} />
+                            <Article articleData={displayData} investigating={false} />
                         </Suspense>
                     }
                 </main>

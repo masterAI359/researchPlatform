@@ -5,12 +5,13 @@ import ArticleHeader from './ArticleHeader';
 import ArticleContent from './ArticleContent';
 
 
-export default function Article({ articleData }) {
+export default function Article({ articleData, investigating }) {
     const [fullStory, setFullStory] = useState<boolean>(true);
     const {
         article_url,
         article_text,
     } = articleData;
+
 
     return (
         <motion.div
@@ -40,6 +41,7 @@ export default function Article({ articleData }) {
                 articleData={articleData}
                 setFullStory={setFullStory}
                 fullStory={fullStory}
+                investigating={investigating}
             />
             <ArticleContent
                 article_url={article_url}

@@ -1,7 +1,8 @@
 import { formatDate } from "@/helpers/Presentation";
 
-export default function FrontMatter({ aspectClass, article }) {
+export default function FrontMatter({ article }) {
 
+    const aspectClass = "w-[400px] aspect-[16/9] rounded-2xl lg:rounded-3xl sm:aspect-[2/1] lg:aspect-[3/2] w-full object-cover";
     const dateFormatted = article.date ? formatDate(article.date) : formatDate(article.date_published);
 
     console.log(dateFormatted)

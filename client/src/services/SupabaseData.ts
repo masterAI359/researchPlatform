@@ -175,7 +175,7 @@ export const checkArticle = (
 
 export const saveArticle = async (
     dataToSave: SavedArticle,
-    articleExists: boolean,
+    articleExists?: boolean,
 ): Promise<string | null> => {
 
 

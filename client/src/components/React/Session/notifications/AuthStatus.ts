@@ -42,3 +42,9 @@ export const feedbackStatus: AuthStatus = {
     failed: "Failed to submit",
 };
 
+export const deleteArticleStatus: AuthStatus = {
+    pending: "Removing article",
+    successful: 'Article removed',
+    failed: 'Failed to remove article'
+};
+

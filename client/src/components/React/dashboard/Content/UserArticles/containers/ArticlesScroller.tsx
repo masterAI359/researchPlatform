@@ -4,37 +4,67 @@ import { AppDispatch, RootState } from "@/ReduxToolKit/store";
 import ArticleSaved from "../components/ArticleSaved";
 import { SkeletonMap } from "../skeletons/SkeletonMap";
 import { useVirtuoso } from "@/Hooks/useVirtuoso";
-import { fetchSavedArticles, readSavedArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
-import { useCallback } from "react";
+import { fetchSavedArticles, readSavedArticle, refreshArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
+import { useCallback, useEffect, useState } from "react";
 import { presentThisArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
 import { saveArticle } from "@/services/SupabaseData";
+import { AnimatePresence } from "framer-motion";
+import AuthNotification from "@/components/React/Session/notifications/AuthNotification";
+import { deleteArticleStatus } from "@/components/React/Session/notifications/AuthStatus";
 
 export default function ArticlesScroller() {
     const userArticles: SavedArticle[] | null = useSelector((state: RootState) => state.userdata.userArticles);
     const { visible, fullyLoaded, loadMore } = useVirtuoso(userArticles);
+    const [deleting, setDeleting] = useState<boolean>(false);
+    const [deleted, setDeleted] = useState<boolean | null>(null);
+    const [articleToDelete, setArticleToDelete] = useState<string | number | null>(null)
     const dispatch = useDispatch<AppDispatch>();
 
+    const cleanup = () => {
+        setDeleted(null);
+    };
 
-    const handleArticleSelection = useCallback((article: SavedArticle) =>
-        () => {
-
-            dispatch(readSavedArticle(article));
-            dispatch(presentThisArticle());
-        }, [dispatch]);
+    const handleArticleSelection = useCallback((article: SavedArticle) => () => {
+        dispatch(readSavedArticle(article));
+        dispatch(presentThisArticle());
+    }, [dispatch]);
 
     const deleteHandler = useCallback(async (article: SavedArticle): Promise<void> => {
+        setDeleting(true);
         const articleExists: boolean = true;
         const results = await saveArticle(article, articleExists);
         if (results === 'Deleted') {
-            console.log('fetching up to date articles saved')
-            dispatch(fetchSavedArticles());
-        }
+            setDeleted(true);
+            setArticleToDelete(article.id);
+        } else {
+            setDeleted(false);
+        };
     }, []);
+
+    useEffect(() => {
+        if (deleted === null) return;
+
+        const timer = setTimeout(() => {
+            if ((deleted === true) && (articleToDelete)) {
+                dispatch(refreshArticles(articleToDelete));
+                setArticleToDelete(null);
+            };
+        }, 1500);
+
+        return () => {
+            clearTimeout(timer);
+        };
+
+    }, [deleted, articleToDelete, dispatch]);
+
 
     return (
         <div
             className="relative w-full h-svh overflow-x-hidden px-4"
         >
+            <AnimatePresence>
+                {deleting && <AuthNotification complete={deleted} status={deleteArticleStatus} setterFunction={setDeleting} redirect={cleanup} />}
+            </AnimatePresence>
             <Virtuoso
                 style={{ height: '100%', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'start', justifyContent: 'end' }}
                 className="no-scrollbar 2xl:gap-y-12"

@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux"
+import { shallowEqual, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { AnimatePresence, motion } from "framer-motion"
 import { delays } from "@/motion/variants"
@@ -7,7 +7,8 @@ import NoSavedArticles from "../fallbacks/NoSavedArticles"
 import ArticlesScroller from "./ArticlesScroller";
 
 export default function SavedArticles({ }) {
-    const userArticles = useSelector((state: RootState) => state.userdata.userArticles);
+    const { userArticles,
+    } = useSelector((state: RootState) => state.userdata, shallowEqual);
     const hasArticles: boolean = Array.isArray(userArticles) && (userArticles.length > 0);
 
 

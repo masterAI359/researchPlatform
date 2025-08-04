@@ -1,6 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { populate } from "dotenv";
-
 
 interface UserContent {
     status: string,
@@ -23,6 +21,7 @@ const initialState: UserContent = {
 export const fetchSavedArticles = createAsyncThunk(
     'user/articles',
     async (thunkAPI) => {
+        console.log('running');
         try {
             const response = await fetch('/getUserArticles', {
                 method: 'POST',
@@ -37,6 +36,7 @@ export const fetchSavedArticles = createAsyncThunk(
             }
 
             const results = await response.json();
+            console.log(results);
             return results
 
 

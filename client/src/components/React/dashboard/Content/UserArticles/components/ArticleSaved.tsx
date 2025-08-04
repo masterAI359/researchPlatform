@@ -1,14 +1,9 @@
 import Title from "./Title"
 import ArticleThumbnail from "./ArticleThumbnail";
 import React from "react"
+import { ArticleSavedComponent } from "@/env";
 
-interface ArticleSaved {
-  article: SavedArticle;
-  handleArticleSelection: (article: SavedArticle) => () => void;
-  deleteHandler: (article: SavedArticle) => Promise<void>;
-}
-
-function ArticleSaved({ article, handleArticleSelection, deleteHandler }: ArticleSaved) {
+function ArticleSaved({ article, handleArticleSelection, deleteHandler }: ArticleSavedComponent) {
 
   return (
     <div

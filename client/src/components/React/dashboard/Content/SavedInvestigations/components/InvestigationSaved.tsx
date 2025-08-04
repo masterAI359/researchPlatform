@@ -1,12 +1,10 @@
 import Thumbnail from "./Thumbnail"
-//import { useNavigate } from "react-router-dom"
 import { reviewThisResearch } from "@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations"
 import { useDispatch } from "react-redux"
 import { presentThisInvestigation } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice"
 
 export default function PriorInvestigation({ investigation }) {
     const dispatch = useDispatch()
-    //  const navigate = useNavigate()
 
 
     function reviewResearch() {
@@ -14,13 +12,10 @@ export default function PriorInvestigation({ investigation }) {
         setTimeout(() => {
             dispatch(presentThisInvestigation());
         }, 150);
-    }
-
-
-
+    };
 
     return (
-        <div className="md:flex w-full  h-auto">
+        <div className="md:flex w-full h-auto">
             <h2 id="2023-03-16-heading" className="pl-7 md:w-2/3 md:pl-0 text-sm font-light tracking-tight md:pr-6 text-white md:text-right">
                 <span className='text-zinc-400'>From:</span> {investigation.created_at.split('').splice(0, 10).join('')}
             </h2>

@@ -222,18 +222,18 @@ export const handleArticleSave = async (req: Request, res: Response): Promise<vo
     const session = await getUserAndSupabase(req, res);
     if (!session) return;
     const { supabase, user } = session;
-    const id: string = user?.id;
-    const { url } = dataToSave as SavedArticle;
+    const user_id: string = user?.id;
+    const { id } = dataToSave as SavedArticle;
 
     try {
         let result: string | null;
 
         if (articleExists === true) {
             console.log('deleting')
-            result = await deleteArticleForUser(supabase, id, url);
+            result = await deleteArticleForUser(supabase, user_id, id);
         } else {
             console.log('saving')
-            result = await saveArticleForUser(supabase, id, dataToSave);
+            result = await saveArticleForUser(supabase, user_id, dataToSave);
         }
 
         if (result) {

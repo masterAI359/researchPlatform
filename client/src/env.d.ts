@@ -337,6 +337,12 @@ declare global {
     status: string
   }
 
+  interface ArticleSavedComponent {
+    article: SavedArticle;
+    handleArticleSelection: (article: SavedArticle) => () => void;
+    deleteHandler: (article: SavedArticle) => Promise<void>;
+  }
+
 }
 
 
@@ -345,5 +351,5 @@ export {
   Calculations, PostsProps, SupabaseUser, ResetPW, Investigation, ScrapedArticle, TipTapProps, AuthStatus, AuthNotificationProps,
   Tooltips, SidebarItemData, LinkProps, SaveArticleResponse, WikiTerm, Bias, BiasCounts, LoadedArticle, ChartFallbackProps,
   UserContent, LoginResponse, LoginFormProps, DashboardOption, HelpModal, NotificationState, NotifySaved, SaveArticleButton,
-  WikiTypes
+  WikiTypes, ArticleSavedComponent
 };

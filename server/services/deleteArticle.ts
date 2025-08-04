@@ -2,8 +2,8 @@ import { SupabaseClient } from "@supabase/supabase-js";
 
 export const deleteArticleForUser = async (
     supabase: SupabaseClient,
-    id: string,
-    url: string
+    user_id: string,
+    id: string
 ): Promise<string | null> => {
 
     try {
@@ -12,8 +12,8 @@ export const deleteArticleForUser = async (
         const response = await supabase
             .from('articles')
             .delete()
-            .eq('user_id', id)
-            .eq('article_url', url)
+            .eq('user_id', user_id)
+            .eq('id', id)
             .select();
 
         if (response?.error) {
@@ -21,6 +21,7 @@ export const deleteArticleForUser = async (
             return null;
         } else if (response) {
             const message: string = "Deleted";
+            console.log(response);
             return message;
         };
 

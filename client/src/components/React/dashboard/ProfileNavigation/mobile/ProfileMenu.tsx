@@ -25,7 +25,7 @@ export default function MobileProfileNav() {
 
 
           <span className={`text-xs text-zinc-400
-        `}>Dashboard</span>
+        `}>Metrics</span>
         </button>
         <button
           onClick={() => {

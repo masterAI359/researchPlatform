@@ -343,6 +343,11 @@ declare global {
     deleteHandler: (article: SavedArticle) => Promise<void>;
   }
 
+
+  interface Icon {
+    active: boolean | null
+  }
+
 }
 
 
@@ -351,5 +356,5 @@ export {
   Calculations, PostsProps, SupabaseUser, ResetPW, Investigation, ScrapedArticle, TipTapProps, AuthStatus, AuthNotificationProps,
   Tooltips, SidebarItemData, LinkProps, SaveArticleResponse, WikiTerm, Bias, BiasCounts, LoadedArticle, ChartFallbackProps,
   UserContent, LoginResponse, LoginFormProps, DashboardOption, HelpModal, NotificationState, NotifySaved, SaveArticleButton,
-  WikiTypes, ArticleSavedComponent
+  WikiTypes, ArticleSavedComponent, Icon
 };

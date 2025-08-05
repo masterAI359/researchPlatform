@@ -17,6 +17,8 @@ export default function ChartJsWrapper() {
                     <BiasChart />
                 </Suspense>}
 
+
+
             {Array.isArray(userArticles) && (userArticles.length > 0) &&
                 <Suspense fallback={<PieSkeleton />}>
                     <IntegrityChart />

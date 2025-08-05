@@ -1,6 +1,6 @@
 import DashboardOption from "./DashboardOption";
 import BookmarkIcon from "@/components/React/Shared/IconComponents/BookmarkIcon";
-import DashboardIcon from "@/components/React/Shared/IconComponents/DashboardIcon";
+import MetricsIcon from "@/components/React/Shared/IconComponents/MetricsIcon";
 import InvestigationsIcon from "@/components/React/Shared/IconComponents/InvestigateIcon";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
@@ -8,21 +8,21 @@ import { presentDashboard, presentResearch, presentArticles } from "@/ReduxToolK
 
 export default function DisplayOptions() {
     const profileNavigationState = useSelector((state: RootState) => state.profileNav)
-    const { displaySavedArticles, displayDashboard, displayAccountManagement, displaySavedInvestigations } = profileNavigationState
+    const { displaySavedArticles, displayDashboard, displaySavedInvestigations } = profileNavigationState
 
     return (
         <ul className="space-y-2 font-medium">
 
-            <DashboardOption name="Dashboard" activeCondition={displayDashboard} actionCreator={presentDashboard}>
-                <DashboardIcon />
+            <DashboardOption name="Metrics" activeCondition={displayDashboard} actionCreator={presentDashboard}>
+                <MetricsIcon active={displayDashboard} />
             </DashboardOption>
 
             <DashboardOption name="Investigations" activeCondition={displaySavedInvestigations} actionCreator={presentResearch}>
-                <InvestigationsIcon />
+                <InvestigationsIcon active={displaySavedInvestigations} />
             </DashboardOption>
 
             <DashboardOption name="Saved Articles" activeCondition={displaySavedArticles} actionCreator={presentArticles}>
-                <BookmarkIcon />
+                <BookmarkIcon active={displaySavedArticles} />
             </DashboardOption>
         </ul>
     );

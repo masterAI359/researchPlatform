@@ -32,8 +32,9 @@ export default function Page({ pageContent, index }) {
             initial='hide'
             animate='show'
             exit='hide'
-            className="absolute inset-0 max-w-4xl xl:max-w-6xl 2xl:w-full mx-auto justify-items-center
-                    grid grid-cols-2 xl:grid-cols-3 2xl:gap-y-10 2xl:gap-x-0 xs:gap-3 min-h-full">
+            className="relative top-0 
+            max-w-4xl xl:max-w-6xl 2xl:w-full mx-auto justify-items-center
+            grid grid-cols-2 sm:grid-cols-3 grid-flow-row 2xl:gap-y-10 2xl:gap-x-0 gap-2">
 
             {status === 'pending' &&
                 Array(6).fill(0).map((_, i) => <LinkPlaceholder key={i} />)
@@ -45,7 +46,5 @@ export default function Page({ pageContent, index }) {
                 ))
             }
         </motion.ol>
-    )
-}
-
-
+    );
+};

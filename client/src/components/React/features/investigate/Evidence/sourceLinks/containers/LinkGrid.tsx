@@ -6,7 +6,6 @@ import { getPages } from "@/ReduxToolKit/Reducers/Investigate/SearchResults"
 import { formPages } from "@/helpers/Presentation"
 import LinkPagination from "../buttons/LinkPagination";
 import Pages from "./Pages"
-import LinkLoader from "../loaders/LinkLoader"
 import SearchFailed from "../errors/SearchFailed";
 import ErrorBoundary from "../../../../../Shared/ErrorBoundaries/ErrorBoundary";
 
@@ -51,7 +50,7 @@ export default function LinkGrid() {
             animate="show"
             exit="hidden"
             transition={{ type: 'tween', duration: 0.2 }}
-            className="h-full w-full min-h-screen"
+            className="h-full w-full min-h-screen grow"
         >
             <div className={`h-full w-full mx-auto relative`}>
                 <ErrorBoundary fallback={<SearchFailed />}>
@@ -59,7 +58,7 @@ export default function LinkGrid() {
 
                         {status === 'fulfilled' && articleOptions !== null && <LinkPagination identifier={'TopPager'} />}
                         {status !== 'idle' &&
-                            <motion.div layout key='pagesContainer' className="relative min-h-screen inset-0 my-6">
+                            <motion.div layout key='pagesContainer' className="relative min-h-screen w-full inset-0 my-6">
                                 <Pages />
                             </motion.div>}
                         {(status === 'fulfilled' && !articleOptions) || (articleOptions && articleOptions.length < 1) && <SearchFailed />}

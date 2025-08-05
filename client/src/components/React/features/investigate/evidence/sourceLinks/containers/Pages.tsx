@@ -29,7 +29,7 @@ export default function Pages() {
             animate='show'
             exit='hide'
             transition={{ type: 'tween', duration: 0.2 }}
-            className="relative"
+            className="relative w-full"
         >
             {pages?.map((pageContent: any, index: number) => (
                 <AnimatePresence key={index} mode="wait">

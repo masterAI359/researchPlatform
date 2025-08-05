@@ -25,7 +25,7 @@ export default function Content() {
             <ModalContainer />
 
             <div
-                className="relative 2xl:max-w-7xl min-h-full flex flex-col justify-center box-border mx-auto">
+                className="relative 2xl:max-w-7xl w-full min-h-full flex flex-col justify-center box-border mx-auto">
                 <AnimatePresence mode="wait">
 
                     {showSearch && status !== 'idle' ?

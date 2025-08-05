@@ -7,18 +7,9 @@ import { RootState } from "@/ReduxToolKit/store";
 import { AppDispatch } from "@/ReduxToolKit/store";
 import ErrorBoundary from "../../../Shared/ErrorBoundaries/ErrorBoundary";
 import { displayBlueSkySearch } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
+import { variants } from "@/motion/variants";
 import Posts from "../Components/Posts";
 
-const variants = {
-  hidden: {
-    opacity: 0,
-    scale: 0.9
-  },
-  open: {
-    opacity: 1,
-    scale: 1
-  }
-}
 
 export default function BlueSkyPosts({ context }) {
   const posts = useSelector((state: RootState) => state.bluesky.posts);
@@ -60,7 +51,7 @@ export default function BlueSkyPosts({ context }) {
       initial='hidden'
       animate='open'
       exit='hidden'
-      transition={{ type: "spring", stiffness: 600, damping: 25, duration: 0.05 }}
+      transition={{ type: "tween", duration: 0.3, ease: 'easeInOut', delay: 0.2 }}
       className="lg:p-8 w-full relative"
     >
       <div className='mt-12 md:mt-6 p-4 w-full py-6 mx-auto md:px-12 lg:px-0 xl:px-6  2xl:max-w-7xl h-full'>

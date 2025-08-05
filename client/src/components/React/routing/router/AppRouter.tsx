@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom"
 import { lazy, Suspense } from "react"
-import HomeContainer from "../routes/HomeContainer";
+import Home from "../routes/Home";
 import AboutContainer from "../routes/AboutRoute";
 import Navigation from "../../Shared/Navigation/Navigation";
 import RouteLoader from "../../Shared/Loaders/RouteLoader";
@@ -18,7 +18,7 @@ export default function AppRouter() {
             <Routes>
                 <Route path='/' element={<Structure />}>
 
-                    <Route index element={<HomeContainer />} />
+                    <Route index element={<Home />} />
                     <Route path='/about' element={<AboutContainer />} />
                     <Route path="/emailForReset" element={<EmailForReset />} />
 

@@ -46,12 +46,8 @@ export default function LinkPagination({ identifier }) {
 
     const increment = () => {
 
-
-
-        if (currentPage <= 1 && identifier === 'BottomPager') {
+        if ((currentPage + 1 < pages.length) && (pages.length > 1)) {
             setScrollUp(true)
-            dispatch(incrementPage())
-        } else if (currentPage <= 1) {
             dispatch(incrementPage())
         }
     }
@@ -100,7 +96,9 @@ export default function LinkPagination({ identifier }) {
                 </button>)}
 
 
-                <button onClick={() => increment()} className="rounded-r-3xl text-white rounded-l-none border border-white/10 py-2 px-3 text-center text-sm transition-all
+                <button onClick={() => increment()}
+                    className="rounded-r-3xl text-white rounded-l-none
+                 border border-white/10 py-2 px-3 text-center text-sm transition-all
                  shadow-sm hover:shadow-lg hover:text-white hover:bg-white group
                  ">
                     <svg className={`text-white group-hover:text-black w-4 h-4`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="100%" height="100%">

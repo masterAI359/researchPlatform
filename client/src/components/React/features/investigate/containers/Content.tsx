@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion"
-import LinkGrid from "../Evidence/sourceLinks/containers/LinkGrid"
+import SearchResults from "../Evidence/sourceLinks/containers/SearchResults"
 import ModalContainer from "./ModalContainer"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
@@ -38,8 +38,7 @@ export default function Content() {
                             transition={{ type: 'tween', duration: 0.5 }}
                             className="w-full min-h-screen lg:pb-96"
                         >
-                            <LinkGrid
-                            />
+                            <SearchResults />
 
                         </motion.div> : null}
 

@@ -25,7 +25,7 @@ const container = {
 }
 
 
-export default function LinkGrid() {
+export default function SearchResults() {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { search } = investigateState
     const { articleOptions, status, pages } = search

@@ -10,7 +10,6 @@ import { RootState, AppDispatch } from '@/ReduxToolKit/store';
 import { getStoredPosts, searchBlueSky } from '@/ReduxToolKit/Reducers/BlueSky/BlueSkySlice';
 import { ScrollUp } from '@/helpers/ScrollToTop';
 import SignOutModal from '../../Session/forms/AuthForms/SignOutModal';
-import BlueSkyLoader from '../../features/blueSky/Loaders/BlueSkyLoader';
 import BlueSkySkeleton from '../../features/blueSky/skeletons/BlueSkySkeleton';
 const BlueSkyPosts = lazy(() => import('@/components/React/features/blueSky/Containers/BlueSkyPosts'));
 

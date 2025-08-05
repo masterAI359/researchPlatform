@@ -7,7 +7,7 @@ function ArticleSaved({ article, handleArticleSelection, deleteHandler }: Articl
 
   return (
     <div
-      className="cursor-pointer bg-white/5 md:bg-transparent md:hover:bg-white/5 relative 
+      className="animate-fade-in cursor-pointer bg-white/5 md:bg-transparent md:hover:bg-white/5 relative 
     rounded-3xl transition-all duration-200 ease-in-out overflow-hidden
     h-76 sm:h-36 md:h-40 lg:h-[12.8rem] 2xl:h-60 my-16 w-full sm:w-4/5 md:w-11/12 2xl:w-3/4 mx-auto">
       <a

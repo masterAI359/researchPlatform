@@ -24,11 +24,7 @@ export default function SavedResearchLayout() {
             className="w-full">
             <ScrolltoTop />
             <div className="p-6 sm:p-4 md:p-12 h-fit w-full">
-                <div className="relative text-left">
-                    <h2 className="text-lg sm:2xl md:text-lg lg:text-2xl xl:text-4xl mt-6 tracking-tight font-light  text-white text-center lg:text-left">
-                        A timeline of your<span className="block text-zinc-400">research and conclusions.</span>
-                    </h2>
-                </div>
+
                 <AnimatePresence>
                     {Array.isArray(timeline) && (timeline.length > 0) ? <motion.div
                         variants={investigationsVariants}

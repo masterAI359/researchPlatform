@@ -17,7 +17,7 @@ export function useVirtuoso(items: any[]) {
         return setTimeout(() => {
 
             if (next !== 6) {
-                setFullyLoaded(true);
+                // setFullyLoaded(true);
             }
             setRendered(rendered => rendered + next);
         }, 400);

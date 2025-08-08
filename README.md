@@ -16,7 +16,12 @@ without leaving the app.
 
 - Bias & Integrity Tracking Dashboard - generates charts that visualize 
 trends in: 1. Political bias of sources you reference, 2. Journalistic integrity ratings over time, 
-and 3. How your perspecitves have been effected by your investigations over time
+and 3. How your perspecitves have been effected by your investigations over time.
+
+- Topic Discovery via Bluesky Feed - Displays a curated feed of recent Bluesky posts, 
+allowing users to discover trending or thought-provoking topics. Users can search 
+for specific themes being discussed and launch investigations directly 
+from these posts — no need to start from scratch.
 
 - Virtualized infinite scrolling on large lists of data for performance at scale
 

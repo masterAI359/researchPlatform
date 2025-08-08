@@ -20,7 +20,3 @@ export const SUPABASE_KEY = getEnvVar('SUPABASE_SERVICE_KEY');
 export const BLUESKY_PASSWORD = getEnvVar('BLUESKY_PASSWORD');
 export const BLUESKY_EMAIL = getEnvVar('BLUESKY_EMAIL');
 export const PORT = process.env.PORT || '5001';
-
-
-
-

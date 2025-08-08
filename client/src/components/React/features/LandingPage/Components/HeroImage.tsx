@@ -5,7 +5,7 @@ import GetStarted from "../Buttons/GetStarted";
 
 
 export default function HeroImage() {
-	const id = useSelector((state: RootState) => state.auth.user_id)
+	const activeSession = useSelector((state: RootState) => state.auth.activeSession)
 
 	return (
 		<section className='xl:p-0 md:p-8 p-4 animate-fade-in duration-700 ease-in'>
@@ -38,7 +38,7 @@ export default function HeroImage() {
 						</p>
 						<div className='relative w-full sm:w-[75%]   mt-8'>
 							<div className="flex gap-x-6 items-center w-full">
-								{!id && <GetStarted />}
+								{!activeSession && <GetStarted />}
 								<LearnMore />
 							</div>
 						</div>

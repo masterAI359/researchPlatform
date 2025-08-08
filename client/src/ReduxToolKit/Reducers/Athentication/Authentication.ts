@@ -18,27 +18,17 @@ export const fetchUserCredentials = createAsyncThunk(
 );
 
 interface Authentication {
-    activeSession: any,
-    authenticated: boolean | null,
-    username: string | null,
-    password: string | null,
-    email: string | null,
+    activeSession: boolean,
     signOut: boolean | null,
     signedIn: boolean | null,
-    user_id: string | null,
     status: string
 }
 
 
 const initialState: Authentication = {
-    activeSession: null,
-    authenticated: null,
-    username: null,
-    password: null,
-    email: null,
+    activeSession: false,
     signOut: false,
     signedIn: false,
-    user_id: null,
     status: 'idle'
 };
 
@@ -48,27 +38,11 @@ export const AuthenticationSlice = createSlice({
     name: 'authentication',
     initialState: initialState,
     reducers: {
-        isAuthenticated: (state, action) => {
-
-            state.authenticated = action.payload
-        },
-        getUserName: (state, action) => {
-            state.username = action.payload
-        },
-        getUserPassword: (state, action) => {
-            state.password = action.payload
-        },
-        getEmail: (state, action) => {
-            state.email = action.payload
-        },
         showSignOut: (state) => {
             state.signOut = !state.signOut
         },
         redirectFromLogin: (state, action) => {
             state.signedIn = action.payload
-        },
-        getID: (state, action) => {
-            state.user_id = action.payload
         },
         getCurrentSession: (state, action) => {
             state.activeSession = action.payload
@@ -84,15 +58,9 @@ export const AuthenticationSlice = createSlice({
             .addCase(fetchUserCredentials.fulfilled, (state, action) => {
                 if (action.payload && action.payload.user) {
                     state.status = 'fulfilled';
-                    state.user_id = action.payload.user?.id || null;
-                    state.email = action.payload.user.email;
-                    state.authenticated = true;
-                    state.activeSession = action.payload;
+                    state.activeSession = true;
                 } else {
-                    state.user_id = null;
-                    state.email = null;
-                    state.email = null;
-                    state.authenticated = false
+                    state.activeSession = false
                 }
 
             })
@@ -102,6 +70,6 @@ export const AuthenticationSlice = createSlice({
     }
 });
 
-export const { isAuthenticated, getUserName, getUserPassword, getEmail, showSignOut, redirectFromLogin, getID, clearAuthSlice, getCurrentSession } = AuthenticationSlice.actions;
+export const { showSignOut, redirectFromLogin, clearAuthSlice, getCurrentSession } = AuthenticationSlice.actions;
 
 export default AuthenticationSlice.reducer;

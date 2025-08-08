@@ -107,14 +107,14 @@ declare global {
   interface SavedArticle {
     title: string,
     provider: string,
-    authors: string[],
+    authors: string[] | string,
     url: string,
     image_url: string,
     date: string,
     fallbackDate: string | null,
     summary: any,
     text: string,
-    id: string,
+    id: string | number,
     factual_reporting?: string | null,
     bias?: Bias,
     country?: string | null
@@ -216,6 +216,22 @@ declare global {
       heading: string;
       text: string;
     }[];
+  }
+
+  interface ArticleToSave {
+    article_title: string;
+    source: string;
+    article_image: string;
+    article_text: string;
+    article_authors: string[] | string;
+    date_published?: string | null;
+    article_pub_date: string;
+    article_url: string;
+    summary: string;
+    id: string | number;
+    factual_reporting?: string | null;
+    bias?: Bias;
+    country?: string | null;
   }
 
   interface SignOutResponse {
@@ -348,6 +364,8 @@ declare global {
     active: boolean | null
   }
 
+
+
 }
 
 
@@ -356,5 +374,5 @@ export {
   Calculations, PostsProps, SupabaseUser, ResetPW, Investigation, ScrapedArticle, TipTapProps, AuthStatus, AuthNotificationProps,
   Tooltips, SidebarItemData, LinkProps, SaveArticleResponse, WikiTerm, Bias, BiasCounts, LoadedArticle, ChartFallbackProps,
   UserContent, LoginResponse, LoginFormProps, DashboardOption, HelpModal, NotificationState, NotifySaved, SaveArticleButton,
-  WikiTypes, ArticleSavedComponent, Icon
+  WikiTypes, ArticleSavedComponent, Icon, ArticleToSave
 };

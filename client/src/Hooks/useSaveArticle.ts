@@ -3,9 +3,9 @@ import { saveArticle } from "@/services/SupabaseData";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/ReduxToolKit/store";
 import { fetchSavedArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer";
-import { NotificationState } from "@/env";
+import { NotificationState, ArticleToSave } from "@/env";
 
-export function useSaveArticle(article, setShowNotification) {
+export function useSaveArticle(article: ArticleToSave, setShowNotification) {
     const userArticles = useSelector((state: RootState) => state.userdata.userArticles);
     const [notification, setNotification] = useState<NotificationState>({
         articleExists: false,

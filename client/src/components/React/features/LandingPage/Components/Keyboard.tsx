@@ -1,4 +1,8 @@
-const ToolsForResearch: React.FC = () => {
+interface AnimateTools {
+    playAnimation: boolean
+}
+
+export default function ToolsForResearch({ playAnimation }: AnimateTools) {
     return (
         <section className="lg:p-8">
             <div className="mx-auto 2xl:max-w-7xl py-24 lg:px-16 md:px-12 px-8 xl:px-36 items-center lg:py-24 relative w-full">
@@ -6,23 +10,7 @@ const ToolsForResearch: React.FC = () => {
                     <div className="2xl:max-7xl border-zinc-800 rounded-2xl lg:rounded-3xl overflow-hidden">
                         <div className="mx-auto">
                             <div className="overflow-x-hidden relative">
-                                <div className="animate-marquee whitespace-nowrap gap-4 flex">
-                                    {[
-                                        "/images/assets/lightKeyboard.svg",
-                                        "/images/assets/darkKeyboard.svg",
-                                        "/images/assets/lightKeyboard.svg",
-                                        "/images/assets/darkKeyboard.svg",
-                                        "/images/assets/lightKeyboard.svg",
-                                        "/images/assets/darkKeyboard.svg",
-                                    ].map((src, index) => (
-                                        <img
-                                            key={index}
-                                            src={src}
-                                            alt="Keyboard thumbnail"
-                                            className="lg:w-[30rem] lg:flex-none opacity-50"
-                                        />
-                                    ))}
-                                </div>
+                                <KeyboardScroller playAnimation={playAnimation} />
                             </div>
                         </div>
                     </div>
@@ -43,4 +31,32 @@ const ToolsForResearch: React.FC = () => {
 };
 
 
-export default ToolsForResearch;
+
+function KeyboardScroller({ playAnimation }) {
+
+    return (
+        <div className={`
+        ${playAnimation
+            && 'animate-marquee [will-change:transform] [contain-intrinsic-size:180rem_12rem]'} 
+        opacity-50 whitespace-nowrap gap-4 flex
+        `}
+        >
+            {[
+                "/images/assets/lightKeyboard.svg",
+                "/images/assets/darkKeyboard.svg",
+                "/images/assets/lightKeyboard.svg",
+                "/images/assets/darkKeyboard.svg",
+                "/images/assets/lightKeyboard.svg",
+                "/images/assets/darkKeyboard.svg",
+            ].map((src, index) => (
+                <img
+                    key={index}
+                    src={src}
+                    alt="Keyboard thumbnail"
+                    className="lg:w-[30rem] lg:flex-none"
+                />
+            ))}
+        </div>
+    )
+}
+

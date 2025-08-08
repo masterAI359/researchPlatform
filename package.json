@@ -17,6 +17,7 @@
     "dev:client": "cd client && npm run dev"
   },
   "dependencies": {
+    "@tabler/icons-react": "^3.34.1",
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.21",
     "@types/he": "^1.2.1",

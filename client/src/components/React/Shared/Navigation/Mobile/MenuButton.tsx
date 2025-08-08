@@ -9,7 +9,7 @@ const middlePathVariants = {
 export default function MenuButton({ toggle, isOpen }) {
 
     return (
-        <button className={`fixed right-1 top-1 h-7 w-fit z-50`}
+        <button className={`fixed left-1 top-1 h-7 w-fit z-50`}
             onClick={toggle}>
             <motion.svg className="z-50 text-white opacity-80"
                 width="23px"

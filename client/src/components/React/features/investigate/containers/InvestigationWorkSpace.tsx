@@ -9,6 +9,7 @@ import HeroContainer from './HeroContainer';
 const Content = lazy(() => import('./Content'));
 import Notes from '../notes/Notes';
 import PanelContainer from './PanelContainer';
+import BlueSkySkeleton from '../../blueSky/skeletons/BlueSkySkeleton';
 
 export default function InvestigationWorkSpace() {
     const investigateState = useSelector((state: RootState) => state.investigation);
@@ -57,7 +58,7 @@ export default function InvestigationWorkSpace() {
             }
 
             {showBlueSkySearch &&
-                <Suspense fallback={<ComponentLoader />}>
+                <Suspense fallback={<BlueSkySkeleton />}>
                     <BlueSkyPosts context={'investigate'} />
                 </Suspense>
             }

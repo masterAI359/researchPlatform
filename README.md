@@ -11,6 +11,9 @@ metadata - all inside a performant, interactive interface optimized for large-sc
 for key people, events, or topics mentioned in articles, providing instant background context 
 without leaving the app.
 
+![Wikipedia lookup popover](client/public/images/assets/Wikipedia_extracting.png)
+![alt text](client/public/images/assets/Extract_pulled.png)
+
 - Bias & Integrity Tracking Dashboard - generates charts that visualize 
 trends in: 1. Political bias of sources you reference, 2. Journalistic integrity ratings over time, 
 and 3. How your perspecitves have been effected by your investigations over time

@@ -1,8 +1,27 @@
 # Elenchus
 
-Elenchus is a research tool focused on evaluating public statements. Inspired by Socrates’ method of elenchus,
-the application leads users through structured prompts to uncover assumptions and biases before retrieving and summarizing relevant news articles.
-It empowers you to critically assess claims and then search for evidence—all within a streamlined, interactive interface.
+Elenchus is a focused research platform that applies the Socratic method to modern media.  
+It guides users through structured questioning to challenge assumptions and biases,  
+then retrieves and summarizes relevant news articles with bias ratings and 
+metadata - all inside a performant, interactive interface optimized for large-scale content.
+
+## Since launch, Elenchus has evolved into a **production-grade full-stack application** featuring:
+
+- Wikipedia Context Extraction - when relevant, automatically pulls concise Wikipedia summaries 
+for key people, events, or topics mentioned in articles, providing instant background context 
+without leaving the app.
+
+- Bias & Integrity Tracking Dashboard - generates charts that visualize 
+trends in: 1. Political bias of sources you reference, 2. Journalistic integrity ratings over time, 
+and 3. How your perspecitves have been effected by your investigations over time
+
+- Virtualized infinite scrolling on large lists of data for performance at scale
+
+- Concurrent API request handling with fault tolerance
+
+- Integrated media bias and reliability ratings via MBFC API
+
+- Server-side Supabase operations for secure, efficient data handling
 
 ## Table of Contents
 

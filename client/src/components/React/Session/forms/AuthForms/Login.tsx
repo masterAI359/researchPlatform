@@ -8,7 +8,8 @@ import LoginOperations from "../containers/LoginOperations";
 import { useCheckCredentials } from "@/Hooks/useCheckCredentials";
 import { useSignIn } from "@/Hooks/useSignIn";
 
-export default function Login() {
+
+export default function Login(): JSX.Element {
     const [userEmail, setUserEmail] = useState<string | null>(null);
     const [userPassword, setUserPassword] = useState<string | null>(null);
     const { loggingIn, setLoggingIn, successful } = useSignIn(userEmail, userPassword);

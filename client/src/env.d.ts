@@ -3,7 +3,7 @@
 
 import { Session } from "@supabase/supabase-js";
 import { Extracts } from "./ReduxToolKit/Reducers/Investigate/Review";
-import { ReactEventHandler, ReactNode } from "react";
+import React, { ReactEventHandler, ReactNode } from "react";
 import { ActionCreatorWithoutPayload } from "@reduxjs/toolkit";
 
 declare global {
@@ -364,6 +364,11 @@ declare global {
     active: boolean | null
   }
 
+  interface SignInHook {
+    loggingIn: boolean | null,
+    setLoggingIn: React.Dispatch<React.SetStateAction<boolean>>,
+    successful: boolean | null
+  }
 
 
 }
@@ -374,5 +379,5 @@ export {
   Calculations, PostsProps, SupabaseUser, ResetPW, Investigation, ScrapedArticle, TipTapProps, AuthStatus, AuthNotificationProps,
   Tooltips, SidebarItemData, LinkProps, SaveArticleResponse, WikiTerm, Bias, BiasCounts, LoadedArticle, ChartFallbackProps,
   UserContent, LoginResponse, LoginFormProps, DashboardOption, HelpModal, NotificationState, NotifySaved, SaveArticleButton,
-  WikiTypes, ArticleSavedComponent, Icon, ArticleToSave
+  WikiTypes, ArticleSavedComponent, Icon, ArticleToSave, SignInHook
 };

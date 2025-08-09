@@ -8,7 +8,7 @@ import { fetchUserCredentials } from "@/ReduxToolKit/Reducers/Athentication/Auth
 
 export const useSignIn = (
     userEmail: string | null,
-    userPassword: string | null) => {
+    userPassword: string | null): SignInHook => {
 
     const [loggingIn, setLoggingIn] = useState<boolean>(false);
     const [successful, setSuccessful] = useState<boolean>(null);

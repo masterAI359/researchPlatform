@@ -2,10 +2,10 @@ import { Link } from "react-router-dom"
 import DropdownMenu from "./Dropdown"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
+import React from "react"
 
-export default function DeskTopContent() {
+function DeskTopMenu() {
     const signingOut = useSelector((state: RootState) => state.auth.signOut)
-
 
     return (
         <div className={`fixed top-0 w-full inset-x-0 z-40 md:block xs:hidden sm:hidden transition-all duration-200 ease-in-out delay-200
@@ -99,4 +99,7 @@ c-73.1,86.1-213,87.5-312.5,3.1s-121-222.7-47.9-308.8S314.3-7.8,413.8,76.6z" />
         </div>
     )
 
-}
+};
+
+
+export default React.memo(DeskTopMenu);

@@ -6,7 +6,7 @@ function Title({ handleArticleSelection, article }) {
     const limitedTitle = limitString(article.title, 60);
 
     return (
-        <div className={`group transition-opacity w-full h-full px-3 lg:px-4 2xl:p-4 duration-200 ease-in-out`}
+        <div className={`group transition-opacity w-full h-full px-3  xl:p-4 duration-200 ease-in-out`}
 
             onClick={handleArticleSelection(article)}>
             <h3

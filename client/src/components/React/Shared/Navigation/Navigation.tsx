@@ -1,15 +1,18 @@
 import MobileMenu from "./Mobile/MobileMenu"
-import DeskTopContent from "./Desktop/DeskTopContent"
+import DeskTopMenu from "./Desktop/DeskTopMenu"
 import useMediaQuery from "@/Hooks/useMediaQuery"
+import React from "react";
 
-export default function Navigation() {
+function Navigation() {
 	const isDesktop = useMediaQuery("(min-width: 768px)");
 
 	return (
 		<>
-			{isDesktop && <DeskTopContent />}
+			{isDesktop && <DeskTopMenu />}
 			{!isDesktop && <MobileMenu />}
 		</>
 	)
+};
 
-}
+
+export default React.memo(Navigation);

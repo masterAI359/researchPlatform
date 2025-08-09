@@ -42,14 +42,13 @@ export default function LinkPagination({ identifier }) {
         } else if (currentPage > 0) {
             dispatch(decrementPage())
         }
-    }
+    };
 
     const increment = () => {
 
-        if ((currentPage + 1 < pages.length) && (pages.length > 1)) {
-            setScrollUp(true)
-            dispatch(incrementPage())
-        }
+        setScrollUp(true)
+        const value = (currentPage + 1) % pages.length
+        dispatch(incrementPageBy(value))
     }
 
     const handleNumberedClick = (index: number) => {

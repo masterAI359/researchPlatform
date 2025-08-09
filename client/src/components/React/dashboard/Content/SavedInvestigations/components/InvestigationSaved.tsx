@@ -1,7 +1,8 @@
 import Thumbnail from "./Thumbnail"
 import { reviewThisResearch } from "@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations"
 import { useDispatch } from "react-redux"
-import { presentThisInvestigation } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice"
+import { presentThisInvestigation } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
+import { limitString } from "@/helpers/Presentation";
 
 export default function PriorInvestigation({ investigation }) {
     const dispatch = useDispatch()
@@ -14,8 +15,10 @@ export default function PriorInvestigation({ investigation }) {
         }, 150);
     };
 
+    const topic = limitString(investigation.idea, 120).trim();
+
     return (
-        <div className="md:flex w-full h-auto animate-fade-in duration-200 ease-in">
+        <div className="md:flex w-full h-auto duration-200 ease-in">
             <h2 id="2023-03-16-heading" className="pl-7 md:w-2/3 md:pl-0 text-sm font-light tracking-tight md:pr-6 text-white md:text-right">
                 <span className='text-zinc-400'>From:</span> {investigation.created_at.split('').splice(0, 10).join('')}
             </h2>
@@ -29,7 +32,7 @@ export default function PriorInvestigation({ investigation }) {
                         <Thumbnail investigation={investigation} />
                         <h3 className="text-white font-light tracking-tight text-md mt-8">Topic</h3>
                         <p className="text-zinc-400 mt-2 text-md text-balance">
-                            {investigation.idea}
+                            {topic}
                         </p>
                         <div className="mt-4 w-fit">
                             <button onClick={() => reviewResearch()} className="text-sm py-2 px-6 border focus:ring-2 rounded-full border-transparent bg-white hover:bg-white/10

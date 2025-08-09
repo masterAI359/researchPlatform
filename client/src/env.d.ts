@@ -311,7 +311,7 @@ declare global {
   }
 
   interface LoginFormProps {
-    successfull: boolean | null,
+    successful: boolean | null,
     acceptedInput: boolean | null,
     setUserPassword: (userPassword: string) => void,
     setUserEmail: (userEmail: string) => void,

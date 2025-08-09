@@ -11,7 +11,7 @@ export const useSignIn = (
     userPassword: string | null) => {
 
     const [loggingIn, setLoggingIn] = useState<boolean>(false);
-    const [successfull, setSuccessful] = useState<boolean>(null);
+    const [successful, setSuccessful] = useState<boolean>(null);
     const dispatch = useDispatch<AppDispatch>();
 
 
@@ -37,6 +37,6 @@ export const useSignIn = (
     }, [loggingIn]);
 
 
-    return { loggingIn, setLoggingIn, successfull }
+    return { loggingIn, setLoggingIn, successful }
 
 };

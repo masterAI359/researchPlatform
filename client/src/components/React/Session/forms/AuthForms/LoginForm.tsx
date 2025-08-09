@@ -2,11 +2,11 @@ import Email from "../InputFields/Email";
 import Password from "../InputFields/Password";
 import AuthFooterLinks from "../InputFields/AuthFooterLinks";
 
-export default function LoginForm({ successfull, acceptedInput, setUserPassword, setUserEmail, validEmail, submitAuth }: LoginFormProps) {
+export default function LoginForm({ successful, acceptedInput, setUserPassword, setUserEmail, validEmail, submitAuth }: LoginFormProps) {
 
     return (
         <form autoComplete="off">
-            {successfull === false && <p className="text-zinc-400 font-light lg:text-2xl -translate-y-6">
+            {successful === false && <p className="text-zinc-400 font-light lg:text-2xl -translate-y-6">
                 The email or password you entered is incorrect. Please try again.
             </p>
             }

@@ -1,22 +1,22 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { AnimatePresence } from "framer-motion"
-import { loginStatus } from "@/components/React/Session/notifications/AuthStatus"
-import AuthNotification from "../../notifications/AuthNotification"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+import { loginStatus } from "@/components/React/Session/notifications/AuthStatus";
+import AuthNotification from "../../notifications/AuthNotification";
 import ScrolltoTop from "@/helpers/ScrollToTop";
-import LoginOperations from "../containers/LoginOperations"
-import { useCheckCredentials } from "@/Hooks/useCheckCredentials"
-import { useSignIn } from "@/Hooks/useSignIn"
+import LoginOperations from "../containers/LoginOperations";
+import { useCheckCredentials } from "@/Hooks/useCheckCredentials";
+import { useSignIn } from "@/Hooks/useSignIn";
 
 export default function Login() {
     const [userEmail, setUserEmail] = useState<string | null>(null);
     const [userPassword, setUserPassword] = useState<string | null>(null);
-    const { loggingIn, setLoggingIn, successfull } = useSignIn(userEmail, userPassword);
+    const { loggingIn, setLoggingIn, successful } = useSignIn(userEmail, userPassword);
     const { acceptedInput, validEmail } = useCheckCredentials(userEmail, userPassword);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const redirectUser = (): void => {
-        if (successfull) {
+        if (successful) {
             navigate('/');
         };
     };
@@ -36,7 +36,7 @@ export default function Login() {
             <AnimatePresence>
                 {loggingIn &&
                     <AuthNotification
-                        complete={successfull}
+                        complete={successful}
                         setterFunction={setLoggingIn}
                         status={loginStatus}
                         redirect={redirectUser}
@@ -52,7 +52,7 @@ export default function Login() {
                 </div>
                 <LoginOperations
                     submitAuth={submitAuth}
-                    successfull={successfull}
+                    successful={successful}
                     setUserEmail={setUserEmail}
                     setUserPassword={setUserPassword}
                     validEmail={validEmail}

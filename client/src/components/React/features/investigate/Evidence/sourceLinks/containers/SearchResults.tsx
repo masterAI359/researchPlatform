@@ -8,21 +8,7 @@ import LinkPagination from "../buttons/LinkPagination";
 import Pages from "./Pages"
 import SearchFailed from "../errors/SearchFailed";
 import ErrorBoundary from "../../../../../Shared/ErrorBoundaries/ErrorBoundary";
-
-
-const container = {
-
-    hidden: { opacity: 0 },
-    show: {
-        opacity: 1,
-        transition: {
-            duration: 2,
-            ease: 'easeInOut',
-            delayChildren: 0.3,
-            staggerDirection: 1
-        }
-    }
-}
+import { searchResultsVariants } from "@/motion/variants"
 
 
 export default function SearchResults() {
@@ -45,31 +31,38 @@ export default function SearchResults() {
     return (
         <motion.div
             key='linkGridContainer'
-            variants={container}
-            initial="hidden"
-            animate="show"
-            exit="hidden"
+            variants={searchResultsVariants}
+            initial="closed"
+            animate="open"
+            exit="closed"
             transition={{ type: 'tween', duration: 0.2 }}
             className="h-full w-full min-h-screen grow"
         >
-            <div className={`h-full w-full mx-auto relative`}>
-                <ErrorBoundary fallback={<SearchFailed />}>
-                    <AnimatePresence>
-
-                        {status === 'fulfilled' && articleOptions !== null && <LinkPagination identifier={'TopPager'} />}
+            <div
+                className="h-full w-full mx-auto relative"
+            >
+                <ErrorBoundary
+                    fallback={<SearchFailed />}
+                >
+                    <AnimatePresence
+                    >
                         {status !== 'idle' &&
-                            <motion.div layout key='pagesContainer' className="relative min-h-screen w-full inset-0 my-6">
+                            <LinkPagination identifier={'TopPager'} />
+                        }
+                        {status !== 'idle' &&
+                            <motion.div
+                                key='pagesContainer'
+                                className="relative min-h-screen w-full inset-0 my-6"
+                            >
                                 <Pages />
-                            </motion.div>}
-                        {(status === 'fulfilled' && !articleOptions) || (articleOptions && articleOptions.length < 1) && <SearchFailed />}
-
-                        {status === 'fulfilled' && articleOptions !== null && <LinkPagination identifier={'BottomPager'} key={'pagerTwo'} />}
-
-
+                            </motion.div>
+                        }
+                        {(status === 'fulfilled' && !articleOptions) ||
+                            (articleOptions && articleOptions.length < 1) &&
+                            <SearchFailed key="no-results" />
+                        }
                     </AnimatePresence>
                 </ErrorBoundary>
-
-
             </div>
         </motion.div>
 

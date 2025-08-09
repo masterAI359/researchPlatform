@@ -71,3 +71,22 @@ export const investigationsVariants = {
         }
     }
 }
+
+
+export const searchResultsVariants = {
+    open: {
+        opacity: 1,
+        transition: {
+            duration: 0.2,
+            type: 'tween',
+            delay: 0.3
+        }
+    },
+    closed: {
+        opacity: 0,
+        transition: {
+            duration: 0.2,
+            type: 'tween'
+        }
+    }
+}

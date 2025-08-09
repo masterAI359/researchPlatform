@@ -11,7 +11,9 @@ export default function GatherPOV({ }) {
 
     return (
         <main
-            className="flex grow-0 lg:items-center xl:items-end justify-center lg:px-4 2xl:gap-y-6 w-full h-full relative">
+            className="flex grow-0 animate-fade-in duration-300 ease-in delay-500 
+            lg:items-center xl:items-end justify-center lg:px-4 2xl:gap-y-6 w-full h-full relative"
+        >
             <StepWizard />
 
             {showBlueSkySearch === false &&

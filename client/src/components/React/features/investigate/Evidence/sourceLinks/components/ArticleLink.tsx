@@ -2,7 +2,6 @@ import { ArticleType } from "@/env"
 import { useSelector, useDispatch } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { choose, discard, } from "@/ReduxToolKit/Reducers/Investigate/ChosenArticles"
-import { motion } from "framer-motion"
 import { memo } from "react"
 import { limitDescription } from "@/helpers/Presentation"
 
@@ -44,7 +43,7 @@ const ArticleLink = memo(({ article, index }: LinkProps) => {
     };
 
     return (
-        <motion.li
+        <li
 
             onClick={() => { chooseArticle(article) }}
             key={article.url}
@@ -92,7 +91,7 @@ const ArticleLink = memo(({ article, index }: LinkProps) => {
                     </blockquote>
                 </div>
             </div>
-        </motion.li>
+        </li>
     );
 });
 

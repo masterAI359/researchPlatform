@@ -10,7 +10,8 @@ export default function StepWizard({ currentStep, setCurrentStep }: any) {
 
 
     return (
-        <motion.div className="w-full h-fit flex lg:justify-center mx-auto
+
+        <motion.div className="animate-fade-in delay-500 duration-200 ease-in-out w-full h-fit flex lg:justify-center mx-auto
         absolute top-0
         ">
             <motion.ol

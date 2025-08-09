@@ -18,7 +18,6 @@ export default function AnimationWrapper() {
         const observer = new IntersectionObserver(([entry]) => {
 
             if (entry.isIntersecting) {
-                console.log('loading in <BlueSkyPosts/>')
                 setShowBlueSky(prev => !prev);
                 observer.disconnect();
             }
@@ -39,7 +38,6 @@ export default function AnimationWrapper() {
         const animationObserver = new IntersectionObserver(([entry]) => {
 
             if (entry.isIntersecting) {
-                console.log('animating keyboard scroll');
                 setPlayAnimation(prev => !prev);
                 animationObserver.disconnect();
             }

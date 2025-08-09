@@ -78,12 +78,12 @@ export default function SelectLinks() {
             <button className="group">
               <div
                 onClick={handleSummaries}
-                className="flex items-center justify-center border border-white/20 bg-black 
+                className="flex items-center justify-center border border-white/20 bg-white
                   flex-nowrap rounded-3xl transition-all ease-in-out duration-200 text-black px-5 py-2 w-full h-auto
-              group-hover:bg-white group-hover:text-white
+              group-hover:bg-black group-hover:text-white
               top-2.5 text-base">
                 <div className="w-full">
-                  <p className="text-white text-xs md:text-lg group-hover:text-black 
+                  <p className="text-black text-xs md:text-lg group-hover:text-white 
                     text-nowrap transition-all duration-200 ease-in-out">
                     Retrieve these articles &rarr;
                   </p>

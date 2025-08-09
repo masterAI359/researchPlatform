@@ -1,11 +1,9 @@
 import { motion } from "framer-motion"
-import { incrementPage, decrementPage, incrementPageBy } from "@/ReduxToolKit/Reducers/Investigate/SearchResults"
+import { decrementPage, incrementPageBy } from "@/ReduxToolKit/Reducers/Investigate/SearchResults"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { useEffect, useState } from "react"
 import { variants } from "@/motion/variants"
-
-
 
 
 export default function LinkPagination({ identifier }) {
@@ -70,7 +68,7 @@ export default function LinkPagination({ identifier }) {
             animate='open'
             exit='closed'
             transition={{ type: 'tween', duration: 0.2, ease: 'easeInOut' }}
-            className={`${identifier === 'BottomPager' && 'hidden xl:flex'} relatvie w-full h-fit flex justify-center md:gap-x-6 mx-auto items-center`}>
+            className={`${identifier === 'BottomPager' && 'hidden xl:flex'} relatvie pb-9 w-full h-fit flex justify-center md:gap-x-6 mx-auto items-center`}>
             <div className="row flex">
                 <button onClick={() => decrement()}
                     className="rounded-l-3xl border border-r-0 border-white/10

@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { useSelector } from "react-redux"
 import Page from "../components/Page"
 import { RootState } from "@/ReduxToolKit/store"
-
+import LinkSkeletons from "../skeletons/LinkSkeletons"
 
 const variants = {
     show: {
@@ -19,7 +19,8 @@ const variants = {
 export default function Pages() {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { search } = investigateState
-    const { currentPage, pages } = search
+    const { currentPage, pages, status } = search;
+
 
     return (
         <motion.div
@@ -29,17 +30,23 @@ export default function Pages() {
             animate='show'
             exit='hide'
             transition={{ type: 'tween', duration: 0.2 }}
-            className="relative w-full"
+            className="relative h-full w-full"
         >
-            {pages?.map((pageContent: any, index: number) => (
-                <AnimatePresence key={index} mode="wait">
-                    {currentPage === index && <Page index={index} pageContent={pageContent} />}
-                </AnimatePresence>
-            ))
+            <AnimatePresence>
+                {status === 'pending' && <LinkSkeletons />}
+            </AnimatePresence>
 
-            }
+            <AnimatePresence>
+
+                {(Array.isArray(pages)) &&
+                    (status === 'fulfilled') &&
+                    (pages[currentPage]) &&
+                    <Page
+                        key={`page${currentPage}`}
+                        pageContent={pages[currentPage]}
+                    />
+                }
+            </AnimatePresence>
         </motion.div>
-
-
     )
 }

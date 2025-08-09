@@ -39,7 +39,7 @@ export default function GuideSelectingArticles({ }) {
             animate="open"
             exit="closed"
             transition={{ type: 'tween', duration: 0.2 }}
-            className="animate-bounce absolute z-30 xl:right-12 bottom-16 right-2 bg-white rounded-lg
+            className="animate-bounce duration-300 absolute z-30 xl:right-12 bottom-16 right-2 bg-white rounded-lg
          h-auto w-auto flex flex-col items-center
         border border-astro_gray shadow-thick after:content-[''] after:absolute after:bottom-[-10px] after:left-1/2 
             after:transform after:-translate-x-1/2 after:border-t-[10px] after:border-l-[10px] after:border-r-[10px] after:border-b-0 

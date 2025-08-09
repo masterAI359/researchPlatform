@@ -5,8 +5,8 @@ export default function LinkPlaceholder() {
     return (
         <motion.li
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1, transition: { type: 'tween', duration: 0.2, delay: 0 } }}
-            exit={{ opacity: 0, transition: { type: 'tween', duration: 0.2, delay: 0.2 } }}
+            animate={{ opacity: 1, transition: { type: 'tween', duration: 0.2 } }}
+            exit={{ opacity: 0, transition: { type: 'tween', duration: 0.2 } }}
             className={`group cursor-pointer box-border list-none xl:min-h-72 xl:max-h-72 xl:min-w-80 xl:max-w-80
         lg:w-72 lg:h-72 md:h-60 md:w-60 h-44 w-40
         relative rounded-xl md:rounded-3xl text-white

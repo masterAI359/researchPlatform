@@ -1,10 +1,10 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import ArticleLink from "./ArticleLink";
 import LinkPlaceholder from "../loaders/LinkPlaceholder";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 
-export default function Page({ pageContent, index }) {
+export default function Page({ pageContent }) {
     const investigateState = useSelector((state: RootState) => state.investigation);
     const { search } = investigateState;
     const { status } = search;
@@ -13,12 +13,10 @@ export default function Page({ pageContent, index }) {
     const variants = {
         show: {
             opacity: 1,
-            scale: 1,
             transition: { type: 'tween', duration: 0.2, ease: 'easeInOut', delay: 0.2 }
         },
         hide: {
             opacity: 0,
-            scale: 0.98,
             transition: { type: 'tween', duration: 0.2, ease: 'easeInOut' }
         }
     };
@@ -26,8 +24,6 @@ export default function Page({ pageContent, index }) {
 
     return (
         <motion.ol
-            key={index}
-            layout
             variants={variants}
             initial='hide'
             animate='show'
@@ -35,10 +31,6 @@ export default function Page({ pageContent, index }) {
             className="relative top-0 
             max-w-4xl xl:max-w-6xl 2xl:w-full mx-auto justify-items-center
             grid grid-cols-2 sm:grid-cols-3 grid-flow-row 2xl:gap-y-10 2xl:gap-x-0 gap-2">
-
-            {status === 'pending' &&
-                Array(6).fill(0).map((_, i) => <LinkPlaceholder key={i} />)
-            }
 
             {status === 'fulfilled' && (Array.isArray(pageContent)) && (pageContent.length > 0) &&
                 pageContent.map((article, index) => (

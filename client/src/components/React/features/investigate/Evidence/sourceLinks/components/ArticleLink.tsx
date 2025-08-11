@@ -57,7 +57,7 @@ const ArticleLink = memo(({ article, index }: LinkProps) => {
 
             <div className='relative w-full m-0 p-0 xl:max-h-36 xl:min-h-36 md:max-h-28 md:min-h-28 min-h-20 max-h-20  overflow-hidden'>
                 <div
-                    style={{ backgroundImage: `url(${resizedImage})` }}
+                    style={{ backgroundImage: `url(${article.image.img})` }}
                     className='absolute inset-0 w-full h-full bg-cover bg-center opacity-40 rounded-t-xl md:rounded-t-3xl'
                 ></div>
                 <div className='relative z-10 p-4'>

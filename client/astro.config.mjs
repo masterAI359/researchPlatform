@@ -73,7 +73,7 @@ export default defineConfig({
           target: 'http://localhost:5001',
           changeOrigin: true
         },
-        '/apifyScraper': {
+        '/newsArticles': {
           target: 'http://localhost:5001',
           changeOrigin: true
         }

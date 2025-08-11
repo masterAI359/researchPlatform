@@ -12,10 +12,15 @@ export const RetrieveArticles = createAsyncThunk(
             if (!response) {
                 throw new Error(`Unable to query endpoint for article links: ${response.statusText}`);
             }
-            return response.data;
-
+            if (response.data) {
+                return response.data;
+            } else {
+                return
+            }
         } catch (error) {
             console.error(error);
+
+            return thunkAPI.rejectWithValue(error);
         };
 
 

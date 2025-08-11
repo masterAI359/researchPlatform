@@ -24,6 +24,7 @@ import { resetUserPassword } from '../endpoints/serverClient.js';
 import { getCurrentUser } from '../endpoints/serverClient.js';
 import { createNewUser } from '../endpoints/serverClient.js';
 import { sendFeedback } from '../endpoints/serverClient.js';
+import { newsApi } from '../endpoints/newsApi.js';
 
 const corsOptions: object = {
 	origin: ['https://elenchusapp.io', 'http://localhost:5173'],
@@ -34,7 +35,7 @@ const corsOptions: object = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
-app.use(cookieParser()); //*************** COOKIE PARSER HERE  */
+app.use(cookieParser());
 
 app.use(function (req, res, next) {
 	res.header('Access-Control-Allow-Origin', req.headers.origin || '');
@@ -74,7 +75,8 @@ app.options('*', (req, res) => {
 	res.sendStatus(200);
 });
 
-app.get('/search/articles', bingArticles);
+
+app.get('/newsArticles', newsApi);
 app.post('/summarize', tldrSummary);
 app.post('/deleteUser', deleteUser);
 app.get('/searchBlueSky', searchBlueSkyPosts);

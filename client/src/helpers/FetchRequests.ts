@@ -9,13 +9,13 @@ const options: OptionsTypes = {
 }
 
 export async function fetchArticles(query: string): Promise<any> {
+    const searchingFor = encodeURIComponent(query);
 
     try {
-        const response = await fetch(`/search/articles?q=${query}`,
-            options
+        const response = await fetch(`/newsArticles?q=${searchingFor}`, options
         )
         if (!response.ok) {
-            throw new Error("There was a network response issue!")
+            throw new Error(`There was a network response issue! - ${response.status} - ${response.statusText}`)
         }
         const jsonResponse = await response.json();
         if (jsonResponse) {

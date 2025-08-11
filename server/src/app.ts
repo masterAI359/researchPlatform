@@ -61,7 +61,6 @@ app.use(
 );
 
 
-
 app.options('*', (req, res) => {
 	res.header('Access-Control-Allow-Origin', 'https://elenchusapp.io');
 	res.header(

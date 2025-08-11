@@ -14,7 +14,7 @@ import BlueSkySkeleton from '../../blueSky/skeletons/BlueSkySkeleton';
 export default function InvestigationWorkSpace() {
     const investigateState = useSelector((state: RootState) => state.investigation);
     const { display, notes } = investigateState;
-    const { showBlueSkySearch } = display;
+    const { showBlueSkySearch, showMindMap } = display;
     const { takingNotes } = notes;
     const notesRef = useRef(null);
     const containerRef = useRef(null);
@@ -63,10 +63,13 @@ export default function InvestigationWorkSpace() {
                 </Suspense>
             }
 
-            <Suspense fallback={<ComponentLoader />}>
-                <Content />
-            </Suspense>
-
+            {!showMindMap &&
+                <Suspense
+                    fallback={<ComponentLoader />}
+                >
+                    <Content />
+                </Suspense>
+            }
             <PanelContainer />
 
             <AnimatePresence>

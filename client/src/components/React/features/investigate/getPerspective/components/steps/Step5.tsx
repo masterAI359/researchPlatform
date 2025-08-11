@@ -4,12 +4,16 @@ import { displaySearch, displayMindMap } from "@/ReduxToolKit/Reducers/Investiga
 import { RootState } from "@/ReduxToolKit/store"
 import { limitString } from "@/helpers/Presentation"
 import { variants } from "@/motion/variants"
+import { useIsMobile } from "@/Hooks/useIsMobile"
 
 export default function Step5() {
     const investigateState = useSelector((state: RootState) => state.investigation)
+    const isMobile = useIsMobile();
     const { pov } = investigateState
     const { idea } = pov
     const dispatch = useDispatch()
+
+    console.log(isMobile)
 
     const shortened = limitString(idea)
 
@@ -28,22 +32,17 @@ export default function Step5() {
             className='absolute inset-0
             flex items-center justify-start basis-full'>
             <div className="block w-full max-w-full mx-auto h-full no-scrollbar">
-                <div className="w-full h-full mx-auto flex flex-col items-start justify-start sm:justify-center box-border">
+                <div className="w-full h-full mx-auto flex flex-col items-start justify-start box-border">
 
-                    <main className="w-full md:w-fit h-auto min-h-32 2xl:min-h-40 flex flex-col 
+                    <main className="w-full md:w-fit h-auto 
+                    min-h-32 2xl:min-h-40 flex flex-col 
                     justify-start items-start md:justify-center
-                    gap-y-5 md:gap-y-2 2xl:gap-y-12">
-                        <div className="w-full h-full flex flex-col gap-y-4">
-                            <p className="flex md:hidden text-xs xl:text-lg w-fit text-white whitespace-normal 
-                            font-light tracking-tight text-left text-wrap">
-                                The idea: <span className="text-zinc-400 font-light tracking-tight">
-                                    {shortened ? shortened : idea}
-                                </span>
-                            </p>
-                            <p className="text-xs xl:text-lg w-fit text-white font-light tracking-tight text-wrap">
-                                Let's look for some evidence to support the idea you're evaluating
-                            </p>
-                        </div>
+                    gap-y-5 sm:gap-y-12 my-auto"
+                    >
+                        <PromptForSearch
+                            idea={idea}
+                        />
+
                         <div className="w-fit h-auto">
                             <motion.button
                                 onClick={beginSearch}
@@ -67,4 +66,25 @@ export default function Step5() {
             </div>
         </motion.div>
     );
+};
+
+
+function PromptForSearch({ idea }) {
+    const isMobile = useIsMobile();
+
+    const shortened = limitString(idea)
+
+    return (
+        <div className="w-full h-full flex flex-col gap-y-4">
+            {isMobile && <p className="flex text-xs xl:text-lg w-fit text-white whitespace-normal 
+                            font-light tracking-tight text-left text-wrap">
+                The idea: <span className="text-zinc-400 font-light tracking-tight">
+                    {shortened ? shortened : idea}
+                </span>
+            </p>}
+            <p className="text-xs sm:text-sm lg:text-base xl:text-lg w-fit text-white font-light tracking-tight text-wrap">
+                Let's look for some evidence to support the idea you're evaluating
+            </p>
+        </div>
+    )
 };

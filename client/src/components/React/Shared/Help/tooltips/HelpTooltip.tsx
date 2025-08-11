@@ -3,7 +3,7 @@ export default function HelpTooltip() {
     return (
         <div
             className="absolute rounded-md h-fit xl:w-16 md:w-14 mx-auto z-30 opacity-0
-            md:left-0 md:bottom-7 xl:bottom-8 xl:left-1 2xl:bottom-8 2xl:left-0
+            md:right-0 md:bottom-7 xl:bottom-9 xl:-right-10 2xl:bottom-9 2xl:-right-11
             bg-white md:group-hover:opacity-100
             transition-opacity duration-200 ease-in-out text-black text-center"
         >

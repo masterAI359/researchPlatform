@@ -13,14 +13,14 @@ export default function Steps({ }) {
 
   return (
     <section
-      className="h-60 mt-6 sm:h-80 md:h-88 lg:h-96
-      2xl:w-168 xl:w-[36rem] lg:w-[33rem] md:w-[29rem] 
+      className="h-60 sm:h-72 md:h-80 lg:h-88 2xl:h-96
+      2xl:w-168 xl:w-[36rem] lg:w-[35rem] md:w-[29rem] 
       rounded-4xl bg-ebony/50 shadow-inset p-4 shrink-0 mx-auto 
       w-full max-w-full sm:w-[27rem] mb-4 md:mb-0
       transition-all duration-400 animate-fade-in 
-      delay-300 no-scrollbar box-border overflow-y-hidden">
+      delay-300 no-scrollbar box-border">
       <div
-        className="flex flex-col items-start 
+        className="flex flex-col items-start
         justify-start relative w-full h-full p-2">
 
         <StepHeader info={stepsHelp[step]} title={stepContent[step].title} subheader={stepContent[step].subheader} />

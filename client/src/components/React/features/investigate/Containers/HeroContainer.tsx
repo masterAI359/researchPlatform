@@ -16,7 +16,9 @@ export default function HeroContainer({
 
 
     return (
-        <section className={`w-full h-full shrink-0 mx-auto transition-opacity duration-200 ease-in-out ${showWorkModal ? 'opacity-50' : 'opacity-100'}`}>
+        <section className={`w-full h-full shrink-0 mx-auto transition-opacity duration-200 ease-in-out 
+        flex items-center
+        ${showWorkModal ? 'opacity-50' : 'opacity-100'}`}>
             <AnimatePresence mode="wait">
 
                 {showMindMap && (<motion.div
@@ -28,7 +30,7 @@ export default function HeroContainer({
                         type: 'tween',
                         duration: 0.2
                     }}
-                    className={`grid grid-cols-1 w-full h-auto mx-auto items-center`}>
+                    className={`w-full h-fit mx-auto`}>
                     <InvestigateHero
                     />
                     <ScrolltoTop />

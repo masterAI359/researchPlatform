@@ -38,10 +38,10 @@ export default function StepHeader({ title, subheader, info }: StepHeader) {
 
     return (
         <div
-            className='w-full h-20 basis-3 sm:basis-4 relative
+            className='w-full h-12 lg:h-20 shrink-0 basis-3 sm:basis-4 relative
             text-center mx-auto box-border flex'>
             <div
-                className="w-full box-border border-b h-fit border-white/10 mb-2 
+                className="w-full box-border border-b h-7 md:h-8 lg:h-9 border-white/10 mb-2 
             flex flex-row justify-between items-center">
                 <AnimatePresence mode="wait">
                     {!propsChanging &&

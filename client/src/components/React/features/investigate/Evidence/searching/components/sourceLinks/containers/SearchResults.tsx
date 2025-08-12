@@ -7,7 +7,7 @@ import { formPages } from "@/helpers/Presentation"
 import LinkPagination from "../buttons/LinkPagination";
 import Pages from "./Pages"
 import SearchFailed from "../errors/SearchFailed";
-import ErrorBoundary from "../../../../../Shared/ErrorBoundaries/ErrorBoundary";
+import ErrorBoundary from "@/components/React/Shared/ErrorBoundaries/ErrorBoundary"
 import { searchResultsVariants } from "@/motion/variants"
 
 

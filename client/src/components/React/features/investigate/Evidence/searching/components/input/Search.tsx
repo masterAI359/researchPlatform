@@ -1,4 +1,3 @@
-import Loader from "../../../../Shared/Loaders/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { getQuery } from "@/ReduxToolKit/Reducers/Investigate/UserPOV";
 import { AppDispatch, RootState } from "@/ReduxToolKit/store";
@@ -7,6 +6,7 @@ import { RetrieveArticles, resetArticles, incrementPageBy } from "@/ReduxToolKit
 import { displaySearch } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
 import ErrorBoundary from "@/components/React/Shared/ErrorBoundaries/ErrorBoundary";
 import ErrMessage from "@/components/React/Shared/ErrorBoundaries/messages/ErrMessage";
+import SearchBar from "./SearchBar";
 
 export default function Search({ }) {
   const investigateState = useSelector((state: RootState) => state.investigation)
@@ -14,7 +14,8 @@ export default function Search({ }) {
   const { query, searching } = pov
   const { status } = search
   const { getContent } = read
-  const dispatch = useDispatch<AppDispatch>()
+  const dispatch = useDispatch<AppDispatch>();
+  const empty: boolean = (query === null) || (query === '');
 
   const getSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 
@@ -29,12 +30,13 @@ export default function Search({ }) {
   }
 
   useEffect(() => {
+    if (query === null) return;
 
     if (getContent) {
       dispatch(displaySearch(false))
     }
 
-  }, [searching, getContent])
+  }, [searching, getContent, query])
 
   return (
     <div className="block box-border min-w-full max-w-full mx-auto xs:px-0 md:px-2 2xl:h-full no-scrollbar">
@@ -57,40 +59,9 @@ export default function Search({ }) {
             >
               <div
                 className="relative mt-4 lg:mb-4 xs:p-1 mx-auto flex justify-center items-center">
-                <form
-                  className="bg-white/10 text-white w-full h-fit 
-               border-none md:h-10 md:p-0 2xl:px-1 rounded-full relative
-               transition-colors xs:text-sm md:text-lg flex items-center prose"
-                  onSubmit={(e) => handleSubmit(e)}
-                >
-                  <input
-                    onChange={(e) => getSearchInput(e)}
-                    autoComplete="off"
-                    type="text"
-                    name="q"
-                    className="bg-transparent text-white w-full
-               border-none h-12 xs:p-3  md:p-2 rounded-full relative focus:ring-0
-               transition-colors text-base md:text-lg flex items-center"
-                    placeholder="search" />
-                  <button type="submit"
-                    className="relative"
-                  >
-                    {
-                      status === 'pending' ? <Loader />
-                        : <svg
-                          className="text-white h-4 w-4 relative
-                       bottom-0 right-2 fill-current"
-                          xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
-                          version="1.1" x="0px" y="0px" viewBox="0 0 56.966 56.966"
-                          xmlSpace="preserve">
-                          <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23
-           s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92
-           c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17
-           s-17-7.626-17-17S14.61,6,23.984,6z">
-                          </path>
-                        </svg>}
-                  </button>
-                </form>
+
+                <SearchBar empty={empty} getSearchInput={getSearchInput} handleSubmit={handleSubmit} />
+
               </div>
             </ErrorBoundary>
 
@@ -98,9 +69,7 @@ export default function Search({ }) {
         </div>
       </div>
     </div>
-
-
-
-
   )
-}
+};
+
+

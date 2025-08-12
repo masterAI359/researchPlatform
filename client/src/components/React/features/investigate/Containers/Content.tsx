@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion"
-import SearchResults from "../Evidence/sourceLinks/containers/SearchResults"
+import SearchResults from "../Evidence/searching/components/sourceLinks/containers/SearchResults"
 import ModalContainer from "./ModalContainer"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"

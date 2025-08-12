@@ -45,7 +45,8 @@ export default function InvestigationWorkSpace() {
         <section
             ref={containerRef}
             id='workspace'
-            className='w-full h-auto flex flex-col grow justify-start items-center'
+            className='w-full h-auto flex flex-col grow 
+            justify-start items-center'
         >
 
             {showBlueSkySearch === null &&

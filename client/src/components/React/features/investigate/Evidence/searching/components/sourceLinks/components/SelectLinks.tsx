@@ -1,11 +1,12 @@
 import { AnimatePresence, motion } from "framer-motion"
 import { useDispatch, useSelector } from "react-redux"
-import { displayGetArticlesModal, displaySelectionWarning, displaySelectTooltip } from "../../../../../../ReduxToolKit/Reducers/Investigate/DisplayReducer";
-import { AppDispatch, RootState } from "../../../../../../ReduxToolKit/store";
-import SelectionRequired from "./notifications/SelectionRequired";
+import { RootState } from "@/ReduxToolKit/store"
+import { displayGetArticlesModal, displaySelectionWarning, displaySelectTooltip } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
+import { AppDispatch } from "@/ReduxToolKit/store"
+import SelectionRequired from "../../notifications/SelectionRequired"
 import { useEffect } from "react"
-import GuideSelectingArticles from "../../tooltips/GuideSelectingArticles";
-import { useTooltipFlags } from "../../../../../../Hooks/useTooltipFlags";
+import GuideSelectingArticles from "@/components/React/features/investigate/tooltips/GuideSelectingArticles"
+import { useTooltipFlags } from "@/Hooks/useTooltipFlags"
 
 
 export default function SelectLinks() {
@@ -77,12 +78,12 @@ export default function SelectLinks() {
             <button className="group">
               <div
                 onClick={handleSummaries}
-                className="flex items-center justify-center border border-white/20 bg-black 
+                className="flex items-center justify-center border border-white/20 bg-white
                   flex-nowrap rounded-3xl transition-all ease-in-out duration-200 text-black px-5 py-2 w-full h-auto
-              group-hover:bg-white group-hover:text-white
+              group-hover:bg-black group-hover:text-white
               top-2.5 text-base">
                 <div className="w-full">
-                  <p className="text-white text-xs md:text-lg group-hover:text-black 
+                  <p className="text-black text-xs md:text-lg group-hover:text-white 
                     text-nowrap transition-all duration-200 ease-in-out">
                     Retrieve these articles &rarr;
                   </p>
@@ -97,5 +98,4 @@ export default function SelectLinks() {
     </AnimatePresence>
 
   )
-}
-
+};

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/ReduxToolKit/store";
 import { ScrollUp } from "../../../../helpers/ScrollToTop";
 import InvestigationWorkSpace from "../../features/investigate/Containers/InvestigationWorkSpace";
-import SelectArticles from '../../features/investigate/Evidence/sourceLinks/components/SelectLinks';
+import SelectLinks from "../../features/investigate/Evidence/searching/components/sourceLinks/components/SelectLinks";
 
 export default function InvestigateContainer() {
   const dispatch = useDispatch<AppDispatch>()
@@ -38,7 +38,7 @@ export default function InvestigateContainer() {
       <InvestigationWorkSpace />
 
       {/* Footer bar with selected article logic */}
-      <SelectArticles />
+      <SelectLinks />
 
     </main>
   );

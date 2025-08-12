@@ -1,4 +1,4 @@
-import Search from "../Evidence/searching/Search"
+import Search from "../Evidence/searching/components/input/Search"
 
 export default function SearchHero({
 

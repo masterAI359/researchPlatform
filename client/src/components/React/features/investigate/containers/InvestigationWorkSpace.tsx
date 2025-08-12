@@ -58,7 +58,7 @@ export default function InvestigationWorkSpace() {
             }
 
             {showBlueSkySearch &&
-                <Suspense fallback={<BlueSkySkeleton />}>
+                <Suspense fallback={<BlueSkySkeleton context={'investigate'} />}>
                     <BlueSkyPosts context={'investigate'} />
                 </Suspense>
             }

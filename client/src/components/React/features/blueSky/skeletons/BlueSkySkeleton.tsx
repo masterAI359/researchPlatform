@@ -1,6 +1,11 @@
-export default function BlueSkySkeleton() {
+export default function BlueSkySkeleton({ context }) {
     return (
-        <div className="w-full flex items-center justify-center">
+        <div className={`${context === 'investigate' &&
+            'mt-12 md:mt-16'
+            }
+        animate-fade-in duration-300 ease-in-out
+        w-full relative flex items-center justify-center`
+        }>
             <div className="2xl:max-w-7xl 2xl:w-2/3 lg:w-3/4 w-4/5 rounded-4xl h-full relative
             px-2 sm:px-4 md:px-6 lg:px-12 pb-8 pt-6 bg-white/20 animate-pulse"
             >

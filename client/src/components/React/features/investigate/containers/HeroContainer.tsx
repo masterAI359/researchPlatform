@@ -44,6 +44,7 @@ export default function HeroContainer({
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ type: 'tween', duration: 0.2 }}
+                        className={`w-full h-fit mx-auto`}
                     >
                         <SearchHero
                         />
@@ -57,6 +58,7 @@ export default function HeroContainer({
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ type: 'tween', duration: 0.5, ease: 'easeInOut' }}
+                    className={`w-full h-fit mx-auto`}
                 >
                     <ReviewWrapper />
                     <ScrolltoTop />
@@ -74,7 +76,7 @@ export default function HeroContainer({
                             delay: 0.22,
                             ease: [0.4, 0, 0.2, 1],
                         }}
-
+                        className={`w-full h-fit mx-auto`}
                     >
                         <CompletionHero />
                         <ScrolltoTop />

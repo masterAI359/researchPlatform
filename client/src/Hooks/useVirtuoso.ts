@@ -1,29 +1,54 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 
-export function useVirtuoso(items: any[]) {
+type LoadMore = () => void;
 
+interface VirtuosoHook<T> {
+    fullyLoaded: boolean,
+    visible: T[],
+    loadMore: LoadMore
+};
+
+
+export function useVirtuoso<T>(items: T[], batchLength?: number): VirtuosoHook<T> {
     const [rendered, setRendered] = useState<number>(8);
     const [fullyLoaded, setFullyLoaded] = useState<boolean>(false);
-    const visible: SavedArticle[] = items.slice(0, rendered);
+
+    const timeRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const pendingTimeoutRef = useRef<boolean>(false);
+
+    const visible = items.slice(0, rendered);
+    const nextBatchLength: number = batchLength ?? 6;
+
+    const loadMore: LoadMore = useCallback(() => {
+        if (pendingTimeoutRef.current) return;
+        if (fullyLoaded) return;
+        if (rendered >= items.length) return;
+
+        pendingTimeoutRef.current = true;
+
+        const remainingItems: number = items.length - rendered;
+        const next: number = Math.min(nextBatchLength, remainingItems);
 
 
-    const loadMore = useCallback(() => {
+        timeRef.current = setTimeout((): void => {
+            setRendered((rendered) => {
+                const nextRender = rendered + next;
+                if (nextRender >= items.length) setFullyLoaded(true);
+                return nextRender
+            })
 
-        if ((rendered >= items.length) || (fullyLoaded === true)) return;
+            pendingTimeoutRef.current = false;
+            timeRef.current = null;
 
-        const diff = items.length - rendered;
-        const next = Math.min(6, diff);
-
-        return setTimeout(() => {
-
-            if (next !== 6) {
-                setFullyLoaded(true);
-            }
-            setRendered(rendered => rendered + next);
         }, 400);
-    }, [setRendered, setFullyLoaded, rendered, fullyLoaded]);
+    }, [items.length, nextBatchLength, rendered, fullyLoaded]);
 
+    useEffect(() => {
+        return () => {
+            if (timeRef.current) clearTimeout(timeRef.current);
+            pendingTimeoutRef.current = false;
+        };
+    }, []);
 
     return { fullyLoaded, visible, loadMore };
-
 };

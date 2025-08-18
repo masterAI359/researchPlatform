@@ -5,7 +5,7 @@ import React from "react"
 function ImageSkeleton() {
     return <div className="relative aspect-[16/9] object-cover sm:aspect-[2/1] 
     lg:aspect-[3/2] bg-[#26272B] animate-pulse rounded-t-3xl sm:rounded-l-none sm:rounded-r-3xl sm:rounded-tl-none
-    w-full h-full md:max-w-60 lg:max-w-full
+    w-full h-full md:max-w-60 lg:max-w-72 xl:max-w-112
      ">
     </div>
 };

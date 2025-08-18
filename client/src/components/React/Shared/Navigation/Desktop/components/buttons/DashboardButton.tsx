@@ -1,13 +1,11 @@
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
-import SignOutModal from "../../../Session/forms/AuthForms/SignOutModal";
-
-export default function DropdownMenu({ }) {
+import SignOutModal from "@/components/React/Session/forms/AuthForms/SignOutModal";
+export default function DashboardButton(): JSX.Element {
     const signOut = useSelector((state: RootState) => state.auth.signOut);
     const activeSession = useSelector((state: RootState) => state.auth.activeSession);
-
+    const location = useLocation();
 
     return (
         <div className="relative block">
@@ -18,9 +16,15 @@ export default function DropdownMenu({ }) {
                                  bg-white/5 hover:bg-black hover:border-white/10 transition-all duration-200 ease-in-out w-auto cursor-pointer group">
 
                     <p
-                        className="text-white text-center font-light text-sm 
+                        className={`
+                            ${location.pathname === '/Profile'
+                                ? 'text-blue-300'
+                                : 'text-white'}
+                            text-white text-center font-light text-sm 
                             group-hover:text-blue-400 transition-all duration-200 
-                            ease-in-out whitespace-nowrap">
+                            ease-in-out whitespace-nowrap
+                            `}
+                    >
                         {activeSession ? 'Dashboard' : 'Log in'}
                     </p>
                 </button>

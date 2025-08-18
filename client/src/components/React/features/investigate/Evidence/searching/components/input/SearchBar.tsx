@@ -4,9 +4,10 @@ export default function SearchBar({ getSearchInput, handleSubmit, empty }) {
 
     return (
         <form
-            className="bg-white/10 text-white w-full h-fit 
-               border-none md:h-10 md:p-0 2xl:px-1 rounded-full relative
-               transition-colors xs:text-sm md:text-lg flex items-center prose"
+            className="bg-white/10 hover:bg-white/15
+            transition-all duration-200 ease-in-out text-white w-full h-fit 
+            border-none md:h-10 md:p-0 2xl:px-1 rounded-full relative
+            xs:text-sm md:text-lg flex items-center prose"
             onSubmit={(e) => handleSubmit(e)}
         >
             <input
@@ -21,5 +22,4 @@ export default function SearchBar({ getSearchInput, handleSubmit, empty }) {
             <SearchButton empty={empty} />
         </form>
     );
-}
-;
+};

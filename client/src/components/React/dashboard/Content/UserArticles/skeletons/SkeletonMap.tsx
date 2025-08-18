@@ -3,9 +3,9 @@ import SavedArticleSkeleton from "../skeletons/SavedArticleSkeleton";
 interface SkeletonMap {
     context: {
         fullyLoaded: boolean,
-        scrolling?: boolean
+        scrolling?: boolean,
     }
-}
+};
 
 export function SkeletonMap({ context }: SkeletonMap) {
 

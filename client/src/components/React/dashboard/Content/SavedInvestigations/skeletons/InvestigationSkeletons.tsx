@@ -1,6 +1,10 @@
-function InvestigationSkeleton() {
+
+export function InvestigationSkeleton() {
+
+
     return (
-        <div className="md:flex w-full justify-center h-auto animate-pulse relative">
+        <div className={`
+        md:flex w-full justify-center h-auto animate-pulse relative`}>
             {/* Timestamp Skeleton */}
             <div className="relative pl-7 md:w-2/3 md:pl-0 text-sm font-light tracking-tight md:pr-6 text-white md:text-right">
                 <div className="h-4 w-32 absolute  bottom-1.5 sm:-bottom-1.5 right-32 sm:right-8 bg-neutral-700 rounded" />

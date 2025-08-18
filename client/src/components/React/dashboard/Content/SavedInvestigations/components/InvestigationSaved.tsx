@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux"
 import { presentThisInvestigation } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
 import { limitString } from "@/helpers/Presentation";
 
-export default function PriorInvestigation({ investigation }) {
+export default function PriorInvestigation({ investigation, inSeek }) {
     const dispatch = useDispatch()
 
 
@@ -18,7 +18,8 @@ export default function PriorInvestigation({ investigation }) {
     const topic = limitString(investigation.idea, 120).trim();
 
     return (
-        <div className="md:flex w-full max-w-full h-auto duration-200 ease-in">
+        <div className={`
+        md:flex w-full max-w-full h-auto`}>
             <h2 id="2023-03-16-heading" className="pl-7 md:w-2/3 md:pl-0 text-sm font-light tracking-tight md:pr-6 text-white md:text-right">
                 <span className='text-zinc-400'>From:</span> {investigation.created_at.split('').splice(0, 10).join('')}
             </h2>

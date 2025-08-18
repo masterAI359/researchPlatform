@@ -15,6 +15,7 @@ import Title from "../components/Title";
 import ArticleThumbnail from "../components/ArticleThumbnail";
 import ImageSkeleton from "../skeletons/ImageSkeleton";
 import { articleScrollerStyles } from "../scrollerStyles/articleScrollStyles";
+import SavedArticleSkeleton from "../skeletons/SavedArticleSkeleton";
 
 
 export default function ArticlesScroller() {
@@ -77,9 +78,11 @@ export default function ArticlesScroller() {
                 endReached={loadMore}
                 increaseViewportBy={50}
                 isScrolling={setScrolling}
-                context={{ fullyLoaded, scrolling }} />
+                context={{ fullyLoaded, scrolling }}
+            />
         </div>
     );
 };
 
 
+//<ArticleThumbnail article={article} deleteHandler={deleteHandler} />

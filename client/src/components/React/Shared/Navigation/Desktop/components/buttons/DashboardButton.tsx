@@ -6,6 +6,7 @@ export default function DashboardButton(): JSX.Element {
     const signOut = useSelector((state: RootState) => state.auth.signOut);
     const activeSession = useSelector((state: RootState) => state.auth.activeSession);
     const location = useLocation();
+    const active: boolean = (location.pathname === '/Profile') || (location.pathname === '/Login');
 
     return (
         <div className="relative block">
@@ -17,10 +18,10 @@ export default function DashboardButton(): JSX.Element {
 
                     <p
                         className={`
-                            ${location.pathname === '/Profile'
+                            ${active
                                 ? 'text-blue-300'
                                 : 'text-white'}
-                            text-white text-center font-light text-sm 
+                            text-center font-light text-sm 
                             group-hover:text-blue-400 transition-all duration-200 
                             ease-in-out whitespace-nowrap
                             `}

@@ -1,17 +1,24 @@
-import { shallowEqual, useSelector } from "react-redux"
-import { RootState } from "@/ReduxToolKit/store"
+import { shallowEqual, useSelector, useDispatch } from "react-redux"
+import { AppDispatch, RootState } from "@/ReduxToolKit/store"
 import { AnimatePresence, motion } from "framer-motion"
 import { delays } from "@/motion/variants"
 import ScrolltoTop from "@/helpers/ScrollToTop"
 import NoSavedArticles from "../fallbacks/NoSavedArticles"
 import ArticlesScroller from "./ArticlesScroller";
+import { useEffect } from "react"
+import { fetchSavedArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
 
 export default function SavedArticles({ }) {
     const { userArticles,
     } = useSelector((state: RootState) => state.userdata, shallowEqual);
     const hasArticles: boolean = Array.isArray(userArticles) && (userArticles.length > 0);
+    const dispatch = useDispatch<AppDispatch>();
 
-
+    useEffect(() => {
+        return () => {
+            dispatch(fetchSavedArticles());
+        };
+    }, []);
 
     return (
         <div className="w-full h-fit lg:px-10 xl:px-12 2xl:px-16">

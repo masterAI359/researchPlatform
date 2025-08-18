@@ -1,7 +1,7 @@
 import React from "react";
 import { limitString } from "@/helpers/Presentation";
 
-function Title({ handleArticleSelection, article }) {
+function Title({ handleArticleSelection, article }): JSX.Element {
 
     const limitedTitle = limitString(article.title, 60);
 

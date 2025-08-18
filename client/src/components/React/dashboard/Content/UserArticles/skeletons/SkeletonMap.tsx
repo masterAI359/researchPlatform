@@ -2,7 +2,8 @@ import SavedArticleSkeleton from "../skeletons/SavedArticleSkeleton";
 
 interface SkeletonMap {
     context: {
-        fullyLoaded: boolean
+        fullyLoaded: boolean,
+        scrolling?: boolean
     }
 }
 

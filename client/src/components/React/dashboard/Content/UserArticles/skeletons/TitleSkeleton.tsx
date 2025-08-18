@@ -1,8 +1,6 @@
+import React from "react";
 
-
-
-
-export default function TitleSkeleton() {
+function TitleSkeleton() {
     return (
 
         <div
@@ -24,3 +22,5 @@ export default function TitleSkeleton() {
 
     );
 };
+
+export default React.memo(TitleSkeleton);

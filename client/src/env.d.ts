@@ -354,9 +354,7 @@ declare global {
   }
 
   interface ArticleSavedComponent {
-    article: SavedArticle;
-    handleArticleSelection: (article: SavedArticle) => () => void;
-    deleteHandler: (article: SavedArticle) => Promise<void>;
+    children: ReactNode[]
   }
 
 

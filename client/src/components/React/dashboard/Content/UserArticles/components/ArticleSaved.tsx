@@ -1,13 +1,12 @@
-import Title from "./Title"
-import ArticleThumbnail from "./ArticleThumbnail";
 import React from "react"
 import { ArticleSavedComponent } from "@/env";
+import { JSX } from "react";
 
-function ArticleSaved({ children }: ArticleSavedComponent) {
+function ArticleSaved({ children }: ArticleSavedComponent): JSX.Element {
 
   return (
     <div
-      className="cursor-pointer bg-white/5 md:bg-transparent 
+      className="cursor-pointer bg-white/5 md:bg-transparent
       md:hover:bg-white/5 relative rounded-3xl transition-all 
       duration-200 ease-in-out overflow-hidden h-76 sm:h-40 
       lg:h-[12.8rem] 2xl:h-60 my-16 w-full md:w-11/12 

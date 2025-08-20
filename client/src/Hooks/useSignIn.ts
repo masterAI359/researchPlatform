@@ -16,6 +16,7 @@ export const useSignIn = (
 
 
     useEffect(() => {
+        if (successful) return;
 
         const executeSignin = async () => {
             const signin = await supabaseSignIn(userEmail, userPassword);
@@ -34,7 +35,7 @@ export const useSignIn = (
             executeSignin()
         }
 
-    }, [loggingIn]);
+    }, [loggingIn, successful]);
 
 
     return { loggingIn, setLoggingIn, successful }

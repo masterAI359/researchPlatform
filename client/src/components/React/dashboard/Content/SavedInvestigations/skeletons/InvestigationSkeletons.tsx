@@ -35,7 +35,6 @@ export function InvestigationSkeleton() {
                 </div>
             </div>
         </div>
-
     );
 };
 
@@ -51,7 +50,7 @@ export default function InvestigationSkeletons({ context }) {
                 flex-col items-end justify-center"
         >
             {!fullyLoaded &&
-                Array.from({ length: 4 }, (_, i) => (<InvestigationSkeleton key={i} />))
+                Array.from({ length: 1 }, (_, i) => (<InvestigationSkeleton key={i} />))
             }
         </div>
     );

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { supabaseSignIn } from "@/services/SupabaseData";
+import { supabaseSignIn } from "@/services/supabase/SupabaseData";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/ReduxToolKit/store";
 import { populateArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"

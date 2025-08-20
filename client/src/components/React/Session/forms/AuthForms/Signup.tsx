@@ -13,7 +13,7 @@ import NewPassword from "../InputFields/NewPassword"
 import ConfirmNewPassword from "../InputFields/ConfirmNewPassword"
 import OAuthLogins from "../InputFields/OauthLogins"
 import NewPasswordGuide from "../InputGuides/NewPasswordGuide"
-import { newUser } from "@/services/SupabaseData"
+import { newUser } from "@/services/supabase/SupabaseData"
 import { fetchUserCredentials } from "@/ReduxToolKit/Reducers/Athentication/Authentication"
 import { newAccStatus } from "@/components/React/Session/notifications/AuthStatus"
 import AuthNotification from "../../notifications/AuthNotification";

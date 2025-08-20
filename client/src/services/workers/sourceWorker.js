@@ -1,16 +1,6 @@
-import { getSourceIntegrity } from "@/helpers/Ratings";
+//web workers script to call on render of dashboard
 
-
-self.onmessage = (e) => {
-
-    const souces = e.data;
-    const integrityRatings = getSourceIntegrity(souces);
-    self.postMessage(integrityRatings);
-};
-
-
-
-const getSourceIntegrity = (userArticles, dispatch, getReportingRatings) => {
+function getSourceIntegrity(userArticles, dispatch, getReportingRatings) {
 
     let integrityRatings = {
         veryHigh: 0,
@@ -56,3 +46,17 @@ const getSourceIntegrity = (userArticles, dispatch, getReportingRatings) => {
     dispatch(getReportingRatings(integrityRatings));
     return integrityRatings;
 };
+
+
+
+
+
+self.onmessage = (e) => {
+
+    const souces = e.data;
+    const integrityRatings = getSourceIntegrity(souces);
+    self.postMessage(integrityRatings);
+};
+
+
+

@@ -1,5 +1,5 @@
 import NotifySavedArticle from "../notifications/NotifySaved";
-import { checkArticle } from "@/services/SupabaseData"
+import { checkArticle } from "@/services/supabase/SupabaseData"
 import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch, RootState } from "@/ReduxToolKit/store"
 import { useEffect, useMemo } from "react"

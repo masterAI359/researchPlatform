@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { clearAuthSlice } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
 import { confirmFirstPassword, emailValidation } from "@/helpers/validation";
 import { variants } from "@/motion/variants";
-import { deleteAccount } from "@/services/SupabaseData";
+import { deleteAccount } from "@/services/supabase/SupabaseData";
 
 export default function DeleteUserAccount({ }) {
     const [password, setPassword] = useState<string>(null)

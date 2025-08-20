@@ -8,7 +8,7 @@ import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { Link } from "react-router-dom"
 import { AnimatePresence } from "framer-motion"
-import { pwReset } from "@/services/SupabaseData"
+import { pwReset } from "@/services/supabase/SupabaseData"
 import AuthNotification from "../../notifications/AuthNotification"
 import { passwordChangeStatus } from "../../notifications/AuthStatus"
 

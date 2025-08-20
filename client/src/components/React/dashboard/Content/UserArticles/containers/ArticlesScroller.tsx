@@ -7,7 +7,7 @@ import { useVirtuoso } from "@/Hooks/useVirtuoso";
 import { readSavedArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
 import { useCallback, useState } from "react";
 import { presentThisArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
-import { saveArticle } from "@/services/SupabaseData";
+import { saveArticle } from "@/services/supabase/SupabaseData";
 import { AnimatePresence } from "framer-motion";
 import AuthNotification from "@/components/React/Session/notifications/AuthNotification";
 import { deleteArticleStatus } from "@/components/React/Session/notifications/AuthStatus";
@@ -48,8 +48,6 @@ export default function ArticlesScroller() {
             };
         }, []);
 
-    //TODO: maintain hook load on endReached
-
     return (
         <div
             className="relative w-full h-svh overflow-x-hidden px-4"
@@ -83,6 +81,3 @@ export default function ArticlesScroller() {
         </div>
     );
 };
-
-
-//<ArticleThumbnail article={article} deleteHandler={deleteHandler} />

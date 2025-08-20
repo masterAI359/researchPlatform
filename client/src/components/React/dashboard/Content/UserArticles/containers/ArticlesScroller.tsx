@@ -15,7 +15,6 @@ import Title from "../components/Title";
 import ArticleThumbnail from "../components/ArticleThumbnail";
 import ImageSkeleton from "../skeletons/ImageSkeleton";
 import { articleScrollerStyles } from "../scrollerStyles/articleScrollStyles";
-import SavedArticleSkeleton from "../skeletons/SavedArticleSkeleton";
 
 
 export default function ArticlesScroller() {
@@ -49,10 +48,11 @@ export default function ArticlesScroller() {
             };
         }, []);
 
+    //TODO: maintain hook load on endReached
 
     return (
         <div
-            className="relative w-full h-svh overflow-x-hidden px-4"
+            className="relative w-full border h-svh overflow-x-hidden px-4"
         >
             <AnimatePresence>
                 {deleting &&

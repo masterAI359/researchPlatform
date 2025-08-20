@@ -40,7 +40,7 @@ export function useVirtuoso<T>(items: T[], batchLength?: number): VirtuosoHook<T
             pendingTimeoutRef.current = false;
             timeRef.current = null;
 
-        }, 400);
+        }, 300);
     }, [items.length, nextBatchLength, rendered, fullyLoaded]);
 
     useEffect(() => {

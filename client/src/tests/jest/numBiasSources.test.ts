@@ -12,7 +12,6 @@ describe('numBiasSources()', () => {
 
     test("counts Non-Existant bias sources correctly", () => {
 
-        expect(numBiasSources(mockArticles, "NonExistant")).toBe(0);
+        expect(numBiasSources(mockArticles, null)).toBe(0);
     });
 });
-

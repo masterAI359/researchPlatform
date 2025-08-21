@@ -18,6 +18,7 @@ const ArticleLink = memo(({ article, index }: LinkProps) => {
     const isHilighted = chosenArticles.some(item => item.url === article.url)
     const fallbackImage = '/images/logos/fallback.jpg';
     const thumbnail = article.image.img ?? fallbackImage;
+    const mute: boolean = chosenArticles.length === 3;
 
     const dataForServer = {
         url: article.url,
@@ -47,10 +48,13 @@ const ArticleLink = memo(({ article, index }: LinkProps) => {
 
             onClick={() => { chooseArticle(article) }}
             key={article.url}
-            className={`group cursor-pointer box-border list-none xl:min-h-72 xl:max-h-72 xl:min-w-80 xl:max-w-80
-                 lg:w-72 lg:h-72 md:h-60 md:w-60 sm:w-52 sm:h-52 h-44 w-40
-                  relative rounded-xl md:rounded-3xl text-white 
-            md:opacity-85 md:hover:opacity-100 transition-all ease-in-out duration-200 overflow-y-hidden overflow-x-hidden
+            className={`group cursor-pointer box-border list-none 
+            xl:min-h-72 xl:max-h-72 xl:min-w-80 xl:max-w-80
+            lg:w-72 lg:h-72 md:h-60 md:w-60 sm:w-52 sm:h-52 h-44 w-40
+            relative rounded-xl md:rounded-3xl text-white 
+            ${mute && !isHilighted ? 'opacity-30' : 'md:opacity-85 md:hover:opacity-100'}
+             transition-all ease-in-out 
+            duration-200 overflow-y-hidden overflow-x-hidden
             
             ${isHilighted && !showGetArticlesModal ? "shadow-blue-bottom bg-ebony" : "shadow-material bg-gradient-to-tr from-ebony to-mirage"}`}
         >

@@ -1,17 +1,9 @@
 import PieChartHeader from "./PieChartHeader";
 import { motion } from "framer-motion";
 import PieChart from "./PieChart";
-import { useSelector } from "react-redux";
-import { RootState } from "@/ReduxToolKit/store";
-
-const variants = {
-    open: { opacity: 1 },
-    closed: { opacity: 0 }
-};
-
+import { variants } from "@/motion/variants";
 
 export default function IntegrityChart() {
-    const userArticles = useSelector((state: RootState) => state.userdata.userArticles);
 
     return (
         <motion.section
@@ -25,7 +17,7 @@ export default function IntegrityChart() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:gap-12 md:justify-center items-center">
 
                     <PieChartHeader />
-                    {userArticles && <PieChart />}
+                    <PieChart />
 
                 </div>
             </div>

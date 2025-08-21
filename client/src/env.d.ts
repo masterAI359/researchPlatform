@@ -368,6 +368,30 @@ declare global {
     successful: boolean | null
   }
 
+  interface IntegrityRatings {
+    veryHigh: number;
+    high: number;
+    mostlyFactual: number;
+    mixed: number;
+    low: number;
+    veryLow: number;
+    conspiracy: number;
+    unknown: number;
+  }
+
+  interface WebWorkerResponse {
+    type: string;
+    chartData: IntegrityRatings | number[] | null;
+  }
+
+  type ChartType = 'IntegritySS' | 'BiasSS';
+
+  interface WebWorkerRequest {
+    input: any,
+    type: ChartType,
+    signature?: string
+  }
+
 
 }
 
@@ -377,5 +401,5 @@ export {
   Calculations, PostsProps, SupabaseUser, ResetPW, Investigation, ScrapedArticle, TipTapProps, AuthStatus, AuthNotificationProps,
   Tooltips, SidebarItemData, LinkProps, SaveArticleResponse, WikiTerm, Bias, BiasCounts, LoadedArticle, ChartFallbackProps,
   UserContent, LoginResponse, LoginFormProps, DashboardOption, HelpModal, NotificationState, NotifySaved, SaveArticleButton,
-  WikiTypes, ArticleSavedComponent, Icon, ArticleToSave, SignInHook
+  WikiTypes, ArticleSavedComponent, Icon, ArticleToSave, SignInHook, WebWorkerResponse, WebWorkerRequest, ChartType
 };

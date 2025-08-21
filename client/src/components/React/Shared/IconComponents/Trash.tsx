@@ -1,11 +1,11 @@
 import React from "react";
 
 interface Trash {
-    deleteHandler: (article: SavedArticle) => Promise<void>,
+    deleteHandler?: (article: SavedArticle) => Promise<void>,
     article: SavedArticle
 };
 
-function Trash({ deleteHandler, article }) {
+function Trash({ article, deleteHandler }: Trash) {
 
     return (
         <div className="absolute top-3 right-3 z-10 group">

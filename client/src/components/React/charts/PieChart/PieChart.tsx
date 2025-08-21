@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/ReduxToolKit/store';
 import { getSourceIntegrity } from '@/helpers/Ratings';
 import ErrorBoundary from '../../Shared/ErrorBoundaries/ErrorBoundary';
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { getReportingRatings } from '@/ReduxToolKit/Reducers/UserContent.ts/ChartSlice';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -38,20 +38,7 @@ const tableColors: string[] = [
 ];
 
 export default function PieChart() {
-    const userArticles = useSelector((state: RootState) => state.userdata.userArticles);
     const ratingData = useSelector((state: RootState) => state.chart.reportingIntegrity);
-    const dispatch = useDispatch();
-    const hasArticles = Array.isArray(userArticles) && (userArticles.length > 0);
-
-    useEffect(() => {
-
-        if (!userArticles || userArticles.length === 0) return;
-
-        if (userArticles) getSourceIntegrity(userArticles, dispatch, getReportingRatings);
-
-    }, [userArticles]);
-
-
 
     const data = {
         labels: ratings,
@@ -68,7 +55,7 @@ export default function PieChart() {
 
     return (
         <AnimatePresence>
-            {hasArticles && <motion.div
+            {ratingData && <motion.div
                 variants={variants}
                 initial='closed'
                 animate='open'

@@ -18,7 +18,7 @@ export default function Steps({ }) {
       rounded-4xl bg-ebony/50 shadow-inset p-4 shrink-0 mx-auto 
       w-full max-w-full sm:w-[27rem] mb-4 md:mb-0
       transition-all duration-400 animate-fade-in 
-      delay-300 no-scrollbar box-border">
+      delay-300 no-scrollbar box-border min-w-80">
       <div
         className="flex flex-col items-start
         justify-start relative w-full h-full p-2">

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { emailValidation } from "@/helpers/validation"
 import { AnimatePresence } from "framer-motion"
 import { Link } from "react-router-dom"
-import { sendEmailResetLink } from "@/services/SupabaseData"
+import { sendEmailResetLink } from "@/services/supabase/SupabaseData"
 import { emailStatus } from "../../notifications/AuthStatus"
 import AuthNotification from "../../notifications/AuthNotification";
 

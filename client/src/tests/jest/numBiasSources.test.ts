@@ -1,5 +1,5 @@
-import { numBiasSources } from "../helpers/Ratings";
-import { mockArticles } from "./mockArticles";
+import { numBiasSources } from "../../helpers/Ratings";
+import { mockArticles } from "../mockData/mockArticles";
 
 describe('numBiasSources()', () => {
     test("counts Left and Left-Center biased sources correctly", () => {

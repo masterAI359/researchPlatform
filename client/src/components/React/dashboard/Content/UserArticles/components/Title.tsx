@@ -1,14 +1,20 @@
 import React from "react";
 import { limitString } from "@/helpers/Presentation";
 
-function Title({ handleArticleSelection, article }): JSX.Element {
+interface TitleTypes {
+    handleArticleSelection?: any,
+    article: any
+}
+
+
+function Title({ article, handleArticleSelection }: TitleTypes): React.ReactNode {
 
     const limitedTitle = limitString(article.title, 60);
 
     return (
         <div className={`group transition-opacity w-full h-full px-3 xl:p-4 duration-200 ease-in-out`}
-
-            onClick={handleArticleSelection(article)}>
+            onClick={handleArticleSelection(article)}
+        >
             <h3
 
                 className="text-sm sm:text-sm w-11/12 sm:w-full mt-3 lg:mt-4 tracking-tight font-light lg:text-lg xl:text-xl 2xl:text-2xl

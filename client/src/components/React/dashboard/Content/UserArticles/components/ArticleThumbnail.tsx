@@ -1,7 +1,7 @@
 import Trash from "@/components/React/Shared/IconComponents/Trash";
 import React from "react"
 
-function ArticleThumbnail({ article, deleteHandler }): JSX.Element {
+function ArticleThumbnail({ article, deleteHandler }): React.ReactNode {
 
     return (
         <div className="h-full w-full

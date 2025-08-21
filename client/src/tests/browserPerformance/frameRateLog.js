@@ -1,10 +1,10 @@
 //Log this function to the console to get performance metrics in the browser on <Virtuoso/> components(infinite scroll)
 //no TS applied as this runs in  the browser
 (() => {
-    const duration = 10_000;
+    const duration = 5_000;
     const deltas = [];
-    let start; //holds timestamp for the first frame(set on line 18/first line of 'raf' function)
-    let last; //holds previous frame's timestamp to compute the difference (t - last)
+    let start;
+    let last;
     let longTasks = 0;
 
     const obs = new PerformanceObserver(list => {

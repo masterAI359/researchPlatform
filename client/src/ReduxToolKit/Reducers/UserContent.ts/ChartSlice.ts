@@ -1,15 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface Chart {
 
     biasRatings: number[],
-    reportingIntegrity: number[],
+    reportingIntegrity: number[]
 };
 
 const initialState: Chart = {
     biasRatings: [],
     reportingIntegrity: []
-}
+};
 
 
 export const ChartSlice = createSlice({
@@ -17,31 +17,11 @@ export const ChartSlice = createSlice({
     initialState: initialState,
     reducers: {
 
-        getReportingRatings: (state, action) => {
-
-            const data = action.payload;
-            state.reportingIntegrity = [
-                data.veryHigh,
-                data.high,
-                data.mostlyFactual,
-                data.mixed,
-                data.low,
-                data.veryLow,
-                data.conspiracy,
-                data.unknown
-            ];
+        getReportingRatings: (state: Chart, action: PayloadAction<number[]>) => {
+            state.reportingIntegrity = action.payload;
         },
-        getBiasSnapshot: (state, action) => {
-            const biasCounts = action.payload;
-            state.biasRatings = [
-                biasCounts.Right,
-                biasCounts.Left,
-                biasCounts.Center,
-                biasCounts.Conspiracy,
-                biasCounts.Questionable,
-                biasCounts.Satire,
-                biasCounts.Scientific
-            ];
+        getBiasSnapshot: (state: Chart, action: PayloadAction<number[]>) => {
+            state.biasRatings = action.payload;
         }
     }
 });

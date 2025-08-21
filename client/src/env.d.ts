@@ -92,6 +92,7 @@ declare global {
     | "LeastBiased"
     | "Satire"
     | "Pro-Science"
+    | "Unknown"
     | null;
 
   interface BiasCounts {
@@ -391,6 +392,8 @@ declare global {
     type: ChartType,
     signature?: string
   }
+
+
 
 
 }

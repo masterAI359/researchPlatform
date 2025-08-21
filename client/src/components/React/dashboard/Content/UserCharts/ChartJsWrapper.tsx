@@ -1,47 +1,51 @@
-import { lazy, Suspense, useRef } from "react";
+import { lazy, Suspense, useRef, useEffect } from "react";
 import PieSkeleton from "@/components/React/charts/skeletons/PieSkeleton";
 import DonutSkeleton from "@/components/React/charts/skeletons/DonutSkeleton";
-import { shallowEqual, useSelector, useDispatch } from "react-redux";
-import { AppDispatch, RootState } from "@/ReduxToolKit/store";
+import { useSelector, useDispatch } from "react-redux";
+import { AppDispatch } from "@/ReduxToolKit/store";
+import { RootState } from "@/ReduxToolKit/store";
+import { getBiasSnapshot, getReportingRatings } from "@/ReduxToolKit/Reducers/UserContent.ts/ChartSlice";
 const BiasChart = lazy(() => import('@/components/React/charts/DonutChart/BiasChart'))
 const IntegrityChart = lazy(() => import('@/components/React/charts/PieChart/IntegrityChart'))
-import { useEffect } from "react";
-import { getBiasSnapshot, getReportingRatings } from "@/ReduxToolKit/Reducers/UserContent.ts/ChartSlice";
 
 export default function ChartJsWrapper() {
     const userArticles = useSelector((state: RootState) => state.userdata.userArticles);
     const biasRatings = useSelector((state: RootState) => state.chart.biasRatings);
     const ratingData = useSelector((state: RootState) => state.chart.reportingIntegrity);
-    const processedIntegrity = useRef<boolean | null>(null);
-    const processedBiases = useRef<boolean | null>(null);
     const dispatch = useDispatch<AppDispatch>();
 
-
     useEffect(() => {
-        if (!userArticles || userArticles.length === 0) return;
-        if (processedIntegrity.current === true) return;
-
+        if (!Array.isArray(userArticles) || (userArticles.length === 0)) return;
+        if (Array.isArray(ratingData) && (ratingData.length > 0)) return;
         const worker = new Worker(
-            new URL('../../../../../services/workers/sourceWorker.js', import.meta.url),
+            new URL('../../../../../services/workers/integrityWorker.js', import.meta.url),
             { type: 'module' }
         );
 
-        worker.onmessage = (e: MessageEvent<WebWorkerResponse>) => {
-            dispatch(getReportingRatings(e.data.chartData));
-            processedIntegrity.current = true;
+        let raf: any = 0;
+
+        worker.onmessage = (e: MessageEvent) => {
+            const payload: number[] = e.data;
+            cancelAnimationFrame(raf);
+
+            raf = requestAnimationFrame(() => {
+                dispatch(getReportingRatings(payload));
+            });
         };
 
         worker.postMessage(userArticles);
 
+        console.log(ratingData);
+
+
         return () => {
             worker.terminate();
         }
-    }, [userArticles]);
+    }, [userArticles, ratingData]);
 
 
     useEffect(() => {
         if (!userArticles || userArticles.length === 0) return;
-        if (processedBiases.current === true) return;
         const biasWorker = new Worker(
             new URL('../../../../../services/workers/biasSnapshot.js', import.meta.url),
             { type: 'module' }
@@ -49,22 +53,17 @@ export default function ChartJsWrapper() {
 
         let raf: any = 0;
 
-        biasWorker.onmessage = (e: MessageEvent<WebWorkerResponse>) => {
-            const payload: IntegrityRatings | number[] | null = e.data.chartData;
+        biasWorker.onmessage = (e: MessageEvent) => {
+            const payload: number[] = e.data.chartData;
             cancelAnimationFrame(raf);
 
             raf = requestAnimationFrame(() => {
                 dispatch(getBiasSnapshot(payload));
-                processedBiases.current = true;
             });
         };
 
-        const message: WebWorkerRequest = {
-            input: userArticles,
-            type: "BiasSS"
-        };
 
-        biasWorker.postMessage(message);
+        biasWorker.postMessage(userArticles);
 
         return () => {
             biasWorker.terminate();
@@ -78,7 +77,6 @@ export default function ChartJsWrapper() {
                 <Suspense fallback={<DonutSkeleton />}>
                     <BiasChart />
                 </Suspense>}
-
 
             {Array.isArray(ratingData) && (ratingData.length > 0) &&
                 <Suspense fallback={<PieSkeleton />}>

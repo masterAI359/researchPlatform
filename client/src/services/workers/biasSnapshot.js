@@ -26,19 +26,21 @@ const numBiasSources = (articles, leaningOne, leaningTwo) => {
 
 
 self.onmessage = (e) => {
-    const instruction = e.data.type;
-    const userArticles = e.data.input;
-
+    const userArticles = e.data;
 
     const counts = {
-        Left: numBiasSources(userArticles, "Left", "Left-Center"),
+
         Right: numBiasSources(userArticles, "Right", "Right-Center"),
+        Left: numBiasSources(userArticles, "Left", "Left-Center"),
         Center: numBiasSources(userArticles, "LeastBiased"),
         Conspiracy: numBiasSources(userArticles, "Conspiracy-Pseudoscience"),
         Questionable: numBiasSources(userArticles, 'Questionable'),
         Satire: numBiasSources(userArticles, "Satire"),
-        Scientific: numBiasSources(userArticles, "Pro-Science")
+        Scientific: numBiasSources(userArticles, "Pro-Science"),
+        Unknown: numBiasSources(userArticles, null)
     };
 
-    self.postMessage({ chartData: counts });
+    const ratings = Object.values(counts);
+
+    self.postMessage({ chartData: ratings });
 };

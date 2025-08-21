@@ -7,7 +7,7 @@ import { getSourceIntegrity } from '@/helpers/Ratings';
 import ErrorBoundary from '../../Shared/ErrorBoundaries/ErrorBoundary';
 import { useEffect, useRef, useState } from 'react';
 import { getReportingRatings } from '@/ReduxToolKit/Reducers/UserContent.ts/ChartSlice';
-
+import { ChartData } from 'chart.js';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const variants = {
@@ -40,7 +40,7 @@ const tableColors: string[] = [
 export default function PieChart() {
     const ratingData = useSelector((state: RootState) => state.chart.reportingIntegrity);
 
-    const data = {
+    const data: ChartData<'pie', number[], string> = {
         labels: ratings,
         datasets: [
             {
@@ -54,20 +54,17 @@ export default function PieChart() {
     };
 
     return (
-        <AnimatePresence>
-            {ratingData && <motion.div
-                variants={variants}
-                initial='closed'
-                animate='open'
-                exit='closed'
-                transition={{ type: 'tween', duration: 0.2 }}
-                className="w-auto h-96 xl:h-128 xl:p-2 flex items-center justify-center"
-            >
-                <ErrorBoundary>
-                    <Pie key='pieChart' data={data} />
-                </ErrorBoundary>
-            </motion.div>
-            }
-        </AnimatePresence>
+        <motion.div
+            variants={variants}
+            initial='closed'
+            animate='open'
+            exit='closed'
+            transition={{ type: 'tween', duration: 0.2 }}
+            className="w-auto h-96 xl:h-128 xl:p-2 flex items-center justify-center"
+        >
+            <ErrorBoundary>
+                <Pie key='pieChart' data={data} />
+            </ErrorBoundary>
+        </motion.div>
     );
 };

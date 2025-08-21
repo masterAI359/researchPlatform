@@ -6,8 +6,11 @@ const ratings: string[] = [
   'Conspiracy Sources',
   'Questionable Sources',
   'Scientific Sources',
-  'Satirical'
+  'Satirical',
+  'N/A'
 ];
+
+
 
 const tableColors: string[] = [
   '#27292d',
@@ -17,6 +20,7 @@ const tableColors: string[] = [
   '#71717a',
   '#2e8b57',
   '#8695f9',
+  '#FFFFFF'
 ];
 
 export { ratings, tableColors };

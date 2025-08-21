@@ -43,15 +43,18 @@ function getSourceIntegrity(userArticles) {
         };
     };
 
-    return integrityRatings;
+
+    const arr = Object.values(integrityRatings)
+
+    return arr;
 };
 
 
 self.onmessage = (e) => {
 
-    const souces = e.data;
-    const integrityRatings = getSourceIntegrity(souces);
-    self.postMessage({ chartData: integrityRatings });
+    const sources = e.data;
+    const integrityRatings = getSourceIntegrity(sources);
+    self.postMessage(integrityRatings);
 };
 
 

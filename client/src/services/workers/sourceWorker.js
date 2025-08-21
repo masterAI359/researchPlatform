@@ -1,6 +1,6 @@
 //web workers script to call on render of dashboard
 
-function getSourceIntegrity(userArticles, dispatch, getReportingRatings) {
+function getSourceIntegrity(userArticles) {
 
     let integrityRatings = {
         veryHigh: 0,
@@ -43,19 +43,15 @@ function getSourceIntegrity(userArticles, dispatch, getReportingRatings) {
         };
     };
 
-    dispatch(getReportingRatings(integrityRatings));
     return integrityRatings;
 };
-
-
-
 
 
 self.onmessage = (e) => {
 
     const souces = e.data;
     const integrityRatings = getSourceIntegrity(souces);
-    self.postMessage(integrityRatings);
+    self.postMessage({ chartData: integrityRatings });
 };
 
 

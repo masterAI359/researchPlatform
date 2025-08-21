@@ -30,11 +30,23 @@ export const ChartSlice = createSlice({
                 data.conspiracy,
                 data.unknown
             ];
+        },
+        getBiasSnapshot: (state, action) => {
+            const biasCounts = action.payload;
+            state.biasRatings = [
+                biasCounts.Right,
+                biasCounts.Left,
+                biasCounts.Center,
+                biasCounts.Conspiracy,
+                biasCounts.Questionable,
+                biasCounts.Satire,
+                biasCounts.Scientific
+            ];
         }
     }
 });
 
 
-export const { getReportingRatings } = ChartSlice.actions;
+export const { getReportingRatings, getBiasSnapshot } = ChartSlice.actions;
 
 export default ChartSlice.reducer;

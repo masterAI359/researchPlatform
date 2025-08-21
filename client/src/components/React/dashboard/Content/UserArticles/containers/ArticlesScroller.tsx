@@ -64,10 +64,10 @@ export default function ArticlesScroller() {
 
             <Virtuoso
                 components={{ Footer: SkeletonMap }}
-                itemContent={(_, article, { scrolling }) => {
+                itemContent={(index, article, { scrolling }) => {
                     return <ArticleSaved key={article.id}>
                         <Title article={article} handleArticleSelection={handleArticleSelection} />
-                        {scrolling ? <ImageSkeleton /> : <ArticleThumbnail article={article} deleteHandler={deleteHandler} />}
+                        {scrolling ? <ImageSkeleton /> : <ArticleThumbnail priority={index < 4} article={article} deleteHandler={deleteHandler} />}
                     </ArticleSaved>
                 }}
                 style={articleScrollerStyles}

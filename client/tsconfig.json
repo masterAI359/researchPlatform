@@ -31,7 +31,7 @@
   "include": [
     "src/**/*",
     "astro.config.mjs",
-    "public/scripts/AppLoader.js"
+    "public/scripts/AppLoader.js",
   ],
   "exclude": [
     "node_modules",

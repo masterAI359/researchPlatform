@@ -24,11 +24,11 @@ function Title({ article, handleArticleSelection }: TitleTypes): React.ReactNode
 
             <p className="text-zinc-400 text-xs sm:text-[0.65rem] md:text-xs mt-3 lg:mt-6 w-full text-left">
                 {article.authors ? article.authors[0] : 'Authors not available'} - <span>
-                    <time className="text-blue-400 md:text-zinc-400 md:group-hover:text-blue-400 transition-all ease-in-out duration-200" dateTime={article.pubDate}>{article.date_published}</time>
+                    <time className="text-blue-500 md:text-zinc-400 md:group-hover:text-blue-400 transition-all ease-in-out duration-200" dateTime={article.pubDate}>{article.date_published}</time>
                 </span>
             </p>
             <p className="text-zinc-400 text-xs sm:text-[0.65rem] md:text-xs mt-2 lg:mt-4 w-full text-left">
-                Published by - <span className="text-blue-400 md:text-zinc-400 md:group-hover:text-blue-400 transition-all ease-in-out duration-200">{article.provider} </span>
+                Published by - <span className="text-blue-500 md:text-zinc-400 md:group-hover:text-blue-400 transition-all ease-in-out duration-200">{article.provider} </span>
             </p>
         </div>
     )

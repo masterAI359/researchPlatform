@@ -35,9 +35,6 @@ export default function ChartJsWrapper() {
 
         worker.postMessage(userArticles);
 
-        console.log(ratingData);
-
-
         return () => {
             worker.terminate();
         }

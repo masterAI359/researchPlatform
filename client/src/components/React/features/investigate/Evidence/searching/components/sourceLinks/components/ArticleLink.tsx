@@ -52,7 +52,7 @@ const ArticleLink = memo(({ article, index }: LinkProps) => {
             xl:min-h-72 xl:max-h-72 xl:min-w-80 xl:max-w-80
             lg:w-72 lg:h-72 md:h-60 md:w-60 sm:w-52 sm:h-52 h-44 w-40
             relative rounded-xl md:rounded-3xl text-white 
-            ${mute && !isHilighted ? 'opacity-30' : 'md:opacity-85 md:hover:opacity-100'}
+            ${mute && !isHilighted ? 'opacity-30 pointer-events-none' : 'pointer-events-auto md:opacity-85 md:hover:opacity-100'}
              transition-all ease-in-out 
             duration-200 overflow-y-hidden overflow-x-hidden
             

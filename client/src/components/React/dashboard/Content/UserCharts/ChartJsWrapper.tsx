@@ -28,7 +28,6 @@ export default function ChartJsWrapper() {
 
         worker.onmessage = (e: MessageEvent<WebWorkerResponse>) => {
             dispatch(getReportingRatings(e.data.chartData));
-            console.log('worker result:', e.data);
             processedIntegrity.current = true;
         };
 
@@ -56,7 +55,6 @@ export default function ChartJsWrapper() {
 
             raf = requestAnimationFrame(() => {
                 dispatch(getBiasSnapshot(payload));
-                console.log({ BiasSnapshot: payload });
                 processedBiases.current = true;
             });
         };

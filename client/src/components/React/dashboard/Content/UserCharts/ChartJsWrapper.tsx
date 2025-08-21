@@ -10,7 +10,8 @@ import { getBiasSnapshot, getReportingRatings } from "@/ReduxToolKit/Reducers/Us
 
 export default function ChartJsWrapper() {
     const userArticles = useSelector((state: RootState) => state.userdata.userArticles);
-    const { ratingData, biasRatings } = useSelector((state: RootState) => state.chart, shallowEqual);
+    const biasRatings = useSelector((state: RootState) => state.chart.biasRatings);
+    const ratingData = useSelector((state: RootState) => state.chart.reportingIntegrity);
     const processedIntegrity = useRef<boolean | null>(null);
     const processedBiases = useRef<boolean | null>(null);
     const dispatch = useDispatch<AppDispatch>();

@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 import { variants } from "@/motion/variants";
 
 export default function ArticleReview() {
-    const savedArticle = useSelector((state: RootState) => state.userdata.ArticleToReview)
+    const savedArticle = useSelector((state: RootState) => state.userdata.ArticleToReview);
     const displayData = {
         summary: savedArticle.summary,
         article_image: savedArticle.image_url,
@@ -37,7 +37,7 @@ export default function ArticleReview() {
             exit='closed'
             transition={{ type: 'tween', duration: 0.4, delay: 0.7 }}
             className="min-h-full md:px-8 scroll-smooth w-full
-                        mx-auto mt-0 md:mt-6 relative animate-fade-in duration-200">
+                        mx-auto mt-0 md:mt-6 relative">
 
             <ErrorBoundary fallback={<LostData />}
             >

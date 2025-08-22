@@ -9,7 +9,4 @@ export const articleScrollerStyles: CSSProperties = {
     justifyContent: 'end',
     overscrollBehavior: 'contain',
     overflowX: 'hidden',
-    border: 1,
-    borderColor: '#FFFFFF',
-    borderStyle: 'dashed'
 };

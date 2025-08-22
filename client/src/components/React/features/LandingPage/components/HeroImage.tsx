@@ -8,7 +8,7 @@ export default function HeroImage() {
 	const activeSession = useSelector((state: RootState) => state.auth.activeSession)
 
 	return (
-		<section className='xl:p-0 md:p-8 p-4 animate-fade-in duration-700 ease-in'>
+		<section className='xl:p-0 md:p-8 p-4 animate-fade-in'>
 			<div className='md:mx-auto 2xl:max-w-7xl xl:max-w-5xl lg:max-w-5xl py-16 lg:px-16 md:px-12 sm:px-8 xs:px-6 xl:px-40 xs:w-full items-center 
 			 xl:py-24 lg:py-20 bg-gradientdown rounded-4xl overflow-hidden relative'>
 				<img

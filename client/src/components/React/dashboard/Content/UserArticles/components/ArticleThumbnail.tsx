@@ -31,7 +31,7 @@ function ArticleThumbnail({ article, deleteHandler, priority }: SavedThumbnail):
     };
 
     return (
-        <div className="h-full w-full
+        <div className="h-full w-full animate-fade-in
         rounded-t-3xl sm:rounded-r-3xl sm:rounded-t-none
         object-cover relative overflow-hidden">
             <Thumbnail imgProps={imgProps} />

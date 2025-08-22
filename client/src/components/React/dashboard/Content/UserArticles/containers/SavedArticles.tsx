@@ -31,7 +31,7 @@ export default function SavedArticles({ }) {
                         initial='closed'
                         animate='open'
                         exit='closed'
-                        className="w-full 2xl:px-2 gap-3 h-auto md:mt-12 xl:mt-4 flex justify-end">
+                        className="w-full 2xl:px-2 gap-3 h-full md:mt-12 xl:mt-4 flex justify-end">
 
                         <ArticlesScroller />
                     </motion.div>

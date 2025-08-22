@@ -15,11 +15,12 @@ import Title from "../components/Title";
 import ArticleThumbnail from "../components/ArticleThumbnail";
 import ImageSkeleton from "../skeletons/ImageSkeleton";
 import { articleScrollerStyles } from "../scrollerStyles/articleScrollStyles";
-
+import { useSkeletons } from "@/Hooks/useSkeletons";
 
 export default function ArticlesScroller() {
     const userArticles: SavedArticle[] | null = useSelector((state: RootState) => state.userdata.userArticles);
     const { visible, fullyLoaded, loadMore } = useVirtuoso(userArticles, 12);
+    const { fastScroll, clockScrollSpeed } = useSkeletons(200)
     const [deleting, setDeleting] = useState<boolean>(false);
     const [deleted, setDeleted] = useState<boolean | null>(null);
     const [scrolling, setScrolling] = useState<boolean>(false);
@@ -50,7 +51,7 @@ export default function ArticlesScroller() {
 
     return (
         <div
-            className="relative w-dvw md:w-full h-svh overflow-x-hidden px-4"
+            className="relative w-dvw md:w-full h-svh overflow-x-hidden px-2"
         >
             <AnimatePresence>
                 {deleting &&
@@ -64,10 +65,10 @@ export default function ArticlesScroller() {
 
             <Virtuoso
                 components={{ Footer: SkeletonMap }}
-                itemContent={(index, article, { scrolling }) => {
+                itemContent={(index, article) => {
                     return <ArticleSaved key={article.id}>
                         <Title article={article} handleArticleSelection={handleArticleSelection} />
-                        {scrolling ? <ImageSkeleton /> : <ArticleThumbnail priority={index < 4} article={article} deleteHandler={deleteHandler} />}
+                        <ArticleThumbnail fastScroll={fastScroll} article={article} deleteHandler={deleteHandler} />
                     </ArticleSaved>
                 }}
                 style={articleScrollerStyles}
@@ -75,9 +76,16 @@ export default function ArticlesScroller() {
                 data={visible}
                 endReached={loadMore}
                 increaseViewportBy={50}
-                isScrolling={setScrolling}
-                context={{ fullyLoaded, scrolling }}
+                isScrolling={clockScrollSpeed}
+                context={{ fullyLoaded }}
+
             />
         </div>
     );
 };
+
+
+//scrollSeekConfiguration={{
+//                   enter: (v: number) => Math.abs(v) > 600,
+//                   exit: (v: number) => Math.abs(v) < 50
+//               }}

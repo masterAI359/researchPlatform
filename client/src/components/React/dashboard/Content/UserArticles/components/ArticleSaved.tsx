@@ -14,7 +14,7 @@ function ArticleSaved({ children }: ArticleSavedComponent): JSX.Element {
       2xl:w-3/4 mx-auto"
     >
       <div
-        className="bg-white/10 md:bg-white/5
+        className="bg-white/5 md:bg-white/5
         md:hover:bg-white/10
         flex flex-col-reverse justify-center
             sm:grid max-h-full rounded-3xl

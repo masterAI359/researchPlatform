@@ -19,7 +19,7 @@ const variants = {
 
 
 export default function MobileNavigation({ isOpen, toggle }) {
-    const activeSession = useSelector((state: RootState) => state.auth.user_id);
+    const activeSession = useSelector((state: RootState) => state.auth.activeSession);
     const dispatch = useDispatch()
     const navigate = useNavigate()
 

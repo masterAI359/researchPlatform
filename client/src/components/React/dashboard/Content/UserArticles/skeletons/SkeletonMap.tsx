@@ -18,7 +18,7 @@ export function SkeletonMap({ context }: SkeletonMap) {
              mx-auto flex-col items-end justify-center"
         >
             {!fullyLoaded &&
-                Array.from({ length: 2 }, (_, i) => (<SavedArticleSkeleton key={i} />))
+                Array.from({ length: 6 }, (_, i) => (<SavedArticleSkeleton key={i} />))
             }
         </div>
     );

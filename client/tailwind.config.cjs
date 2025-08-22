@@ -98,6 +98,7 @@ module.exports = {
         scroller: "scroller 30s linear infinite",
         scroller2: "scroller2 20s linear infinite",
         "fade-in": "fade-in 0.5s linear forwards",
+        "shimmer": "shimmer 2s infinite linear",
       },
       keyframes: {
         pulsedot: {
@@ -116,6 +117,10 @@ module.exports = {
             backgroundColor: '#b3d4fc',
             boxShadow: '0 0 0 0 rgba(178, 212, 252, 0.7)',
           },
+        },
+        shimmer: {
+          '0%': { 'background-position': '-200% 0' },
+          '100%': { 'background-position': '200% 0' },
         },
         wiggle: {
           '0%, 100%': { transform: 'rotate(-3deg)' },

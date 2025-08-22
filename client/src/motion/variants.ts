@@ -1,3 +1,5 @@
+import { delay } from "framer-motion";
+
 export const variants = {
     open: { opacity: 1 },
     closed: { opacity: 0 }
@@ -86,7 +88,10 @@ export const searchResultsVariants = {
         opacity: 0,
         transition: {
             duration: 0.2,
-            type: 'tween'
+            type: 'tween',
+            delay: 0
         }
     }
 }
+
+

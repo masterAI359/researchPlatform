@@ -46,7 +46,6 @@ export default function Step5() {
                         <div className="w-fit h-auto">
                             <motion.button
                                 onClick={beginSearch}
-                                whileTap={{ scale: 0.9 }}
                                 transition={{ type: 'tween', duration: 0.1 }}
                                 className="bg-white/10 rounded-full group 2xl:-translate-x-1 mb-2 sm:mb-0
                             w-32 h-8 xl:w-44 xl:h-10 mx-auto flex items-center 

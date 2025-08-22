@@ -7,7 +7,7 @@ type SwapSkeletons = {
 
 export function useSkeletons(delay: number): SwapSkeletons {
     const [fastScroll, setFastScroll] = useState<boolean>(false);
-    const timeRef = useRef<number | null>(null);
+    const timeRef = useRef<number | null>(null); //typing this with number or null in tandem with the window API, as that returns a number for the expected clearTimeout ID type 
 
     const clearTimer = () => {
         if (timeRef.current) {

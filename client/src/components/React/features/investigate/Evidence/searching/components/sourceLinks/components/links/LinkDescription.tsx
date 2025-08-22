@@ -17,13 +17,13 @@ export default function LinkDescription({ isPriority, isHilighted, provider, log
                     />
                 </div>
 
-                <div className='h-full text-xs text-left lg:text-sm xl:text-base font-serif text-white'>
+                <div className='h-full text-lg sm:text-xs text-left lg:text-sm xl:text-base font-serif text-white'>
                     {provider}
                 </div>
             </div>
             <div className={`h-full group mt-2 lg:mt-6 xl:mt-4 pt-2 ${isHilighted ? 'opacity-100' : ''}`}>
                 <blockquote className='relative px-4'>
-                    <p className='lg:text-sm xs:text-xs text-left transition-colors duration-100 font-serif font-light'>
+                    <p className='lg:text-sm text-lg sm:text-xs text-left transition-colors duration-100 font-serif font-light'>
                         {formattedDescription}
                     </p>
                 </blockquote>

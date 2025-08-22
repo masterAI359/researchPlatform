@@ -39,22 +39,21 @@ export default function SearchResults() {
             className="h-full w-full min-h-screen grow"
         >
             <div
-                className="h-full w-full mx-auto relative"
+                className="h-full w-full flex flex-col justify-start items-center mx-auto relative"
             >
                 <ErrorBoundary
                     fallback={<SearchFailed />}
                 >
+                    <LinkPagination key={'linkPagination'} />
                     <AnimatePresence
                     >
-                        {status !== 'idle' &&
-                            <LinkPagination identifier={'TopPager'} />
-                        }
+
                         {status !== 'idle' &&
                             <motion.div
                                 key='pagesContainer'
                                 className="relative min-h-screen w-full inset-0 my-6"
                             >
-                                <Pages />
+                                <Pages key={'pages'} />
                             </motion.div>
                         }
                         {(status === 'fulfilled' && !articleOptions) ||

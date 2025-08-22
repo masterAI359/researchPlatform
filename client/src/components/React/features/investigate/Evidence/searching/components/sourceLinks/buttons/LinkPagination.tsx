@@ -1,14 +1,11 @@
-import { motion } from "framer-motion"
 import { decrementPage, incrementPageBy } from "@/ReduxToolKit/Reducers/Investigate/SearchResults"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import { useEffect, useState } from "react"
-import { variants } from "@/motion/variants"
 
 
-export default function LinkPagination({ identifier }) {
+export default function LinkPagination(): React.ReactNode {
     const investigateState = useSelector((state: RootState) => state.investigation)
-    const [pagesLength, setPagesLength] = useState<number | null>(null)
     const [scrollUp, setScrollUp] = useState<boolean>(false)
     const { search } = investigateState
     const { currentPage, pages } = search
@@ -16,9 +13,7 @@ export default function LinkPagination({ identifier }) {
 
     useEffect(() => {
 
-        if (pages) {
-            setPagesLength(pages.length)
-        }
+
 
         if (scrollUp) {
             window.scroll({
@@ -34,7 +29,7 @@ export default function LinkPagination({ identifier }) {
 
     const decrement = () => {
 
-        if (currentPage > 0 && identifier === "BottomPager") {
+        if (currentPage > 0) {
             setScrollUp(true)
             dispatch(decrementPage())
         } else if (currentPage > 0) {
@@ -50,26 +45,15 @@ export default function LinkPagination({ identifier }) {
     }
 
     const handleNumberedClick = (index: number) => {
-
-        if (identifier === 'BottomPager') {
-            setScrollUp(true)
-            dispatch(incrementPageBy(index))
-        } else {
-            dispatch(incrementPageBy(index))
-        }
-    }
+        setScrollUp(true)
+        dispatch(incrementPageBy(index))
+    };
 
 
     return (
-        <motion.div
-            key={identifier}
-            variants={variants}
-            initial='closed'
-            animate='open'
-            exit='closed'
-            transition={{ type: 'tween', duration: 0.2, ease: 'easeInOut' }}
-            className={`${identifier === 'BottomPager' && 'hidden xl:flex'} relatvie pb-9 w-full h-fit flex justify-center md:gap-x-6 mx-auto items-center`}>
-            <div className="row flex">
+        <div
+            className={`relatvie pb-9 w-full h-fit flex justify-center md:gap-x-6 mx-auto items-center`}>
+            <div className={`${Array.isArray(pages) && (pages.length) > 1 ? 'opacity-100' : 'opacity-0'} transition-opacity duration-200 ease-in-out row flex`}>
                 <button onClick={() => decrement()}
                     className="rounded-l-3xl border border-r-0 border-white/10
                  py-2 px-3 text-center text-sm transition-all shadow-sm 
@@ -78,7 +62,7 @@ export default function LinkPagination({ identifier }) {
                         <path d="M 33.960938 2.9804688 A 2.0002 2.0002 0 0 0 32.585938 3.5859375 L 13.585938 22.585938 A 2.0002 2.0002 0 0 0 13.585938 25.414062 L 32.585938 44.414062 A 2.0002 2.0002 0 1 0 35.414062 41.585938 L 17.828125 24 L 35.414062 6.4140625 A 2.0002 2.0002 0 0 0 33.960938 2.9804688 z" fill="currentColor" />
                     </svg>
                 </button>
-                {pagesLength > 1 && pages ? pages.map((page: any, index: number) => (
+                {Array.isArray(pages) && (pages.length) > 1 ? pages.map((page: any, index: number) => (
                     <button key={index} onClick={() => handleNumberedClick(index)}
                         className={`${currentPage === index ? 'bg-white/10' : 'bg-black'} 
                 text-white rounded-md rounded-r-none rounded-l-none border border-r-0 border-white/10 py-2 px-3
@@ -104,9 +88,7 @@ export default function LinkPagination({ identifier }) {
 
                 </button>
             </div>
-
-
-        </motion.div>
+        </div>
 
     )
 }

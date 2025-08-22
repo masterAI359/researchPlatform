@@ -13,17 +13,15 @@ import AuthNotification from "@/components/React/Session/notifications/AuthNotif
 import { deleteArticleStatus } from "@/components/React/Session/notifications/AuthStatus";
 import Title from "../components/Title";
 import ArticleThumbnail from "../components/ArticleThumbnail";
-import ImageSkeleton from "../skeletons/ImageSkeleton";
 import { articleScrollerStyles } from "../scrollerStyles/articleScrollStyles";
 import { useSkeletons } from "@/Hooks/useSkeletons";
 
 export default function ArticlesScroller() {
     const userArticles: SavedArticle[] | null = useSelector((state: RootState) => state.userdata.userArticles);
     const { visible, fullyLoaded, loadMore } = useVirtuoso(userArticles, 12);
-    const { fastScroll, clockScrollSpeed } = useSkeletons(200)
+    const { fastScroll, clockScrollSpeed } = useSkeletons(180);
     const [deleting, setDeleting] = useState<boolean>(false);
     const [deleted, setDeleted] = useState<boolean | null>(null);
-    const [scrolling, setScrolling] = useState<boolean>(false);
     const dispatch = useDispatch<AppDispatch>();
 
     const cleanup = () => {
@@ -83,9 +81,3 @@ export default function ArticlesScroller() {
         </div>
     );
 };
-
-
-//scrollSeekConfiguration={{
-//                   enter: (v: number) => Math.abs(v) > 600,
-//                   exit: (v: number) => Math.abs(v) < 50
-//               }}

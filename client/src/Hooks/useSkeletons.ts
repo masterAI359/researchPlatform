@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 type SwapSkeletons = {
     fastScroll: boolean,
@@ -8,6 +8,13 @@ type SwapSkeletons = {
 export function useSkeletons(delay: number): SwapSkeletons {
     const [fastScroll, setFastScroll] = useState<boolean>(false);
     const timeRef = useRef<number | null>(null);
+
+    const clearTimer = () => {
+        if (timeRef.current) {
+            clearTimeout(timeRef.current);
+        };
+    };
+
 
     const clockScrollSpeed = useCallback((scrolling: boolean) => {
 
@@ -26,6 +33,13 @@ export function useSkeletons(delay: number): SwapSkeletons {
             }, delay);
         }
     }, [delay]);
+
+
+    useEffect(() => {
+
+        return clearTimer;
+    }, []);
+
 
     return { fastScroll, clockScrollSpeed };
 };

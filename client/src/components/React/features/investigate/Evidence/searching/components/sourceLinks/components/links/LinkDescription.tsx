@@ -5,7 +5,7 @@ export default function LinkDescription({ isPriority, isHilighted, provider, log
     const formattedDescription = limitString(description);
 
     return (
-        <div className="relative w-full mx-auto h-auto box-border pt-2">
+        <div className="relative w-full mx-auto flex flex-col gap-8 sm:gap-3 md:gap-5 lg:gap-8 h-auto box-border pt-2">
             <div className="flex gap-4 items-center relative px-4">
                 <div>
                     <img
@@ -21,9 +21,9 @@ export default function LinkDescription({ isPriority, isHilighted, provider, log
                     {provider}
                 </div>
             </div>
-            <div className={`h-full group mt-2 lg:mt-6 xl:mt-4 pt-2 ${isHilighted ? 'opacity-100' : ''}`}>
+            <div className={`h-full ${isHilighted ? 'opacity-100' : ''}`}>
                 <blockquote className='relative px-4'>
-                    <p className='lg:text-sm text-lg sm:text-xs text-left transition-colors duration-100 font-serif font-light'>
+                    <p className='lg:text-sm text-base sm:text-xs text-left transition-colors duration-100 font-serif font-light'>
                         {formattedDescription}
                     </p>
                 </blockquote>

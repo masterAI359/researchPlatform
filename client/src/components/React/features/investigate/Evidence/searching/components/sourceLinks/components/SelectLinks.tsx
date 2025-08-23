@@ -43,8 +43,8 @@ export default function SelectLinks() {
           exit={{ opacity: 0, y: 20 }}
           transition={{ type: "spring", bounce: 0.45, duration: 0.25 }}
           className={`${showGetArticlesModal ? 'pointer-events-none' : 'pointer-events-auto'}
-           bg-ebony fixed bottom-0 right-0 left-0 border-t border-white/30
-        text-white font-light tracking-tight flex gap-x-8 2xl:gap-x-16 py-4 px-4 md:px-16 cursor-pointer
+           bg-ebony fixed bottom-0 right-0 left-0
+        text-white font-light tracking-tight flex 2xl:gap-x-16 py-4 gap-x-4 md:px-16 cursor-pointer
          mx-auto z-40 justify-center 2xl:justify-end content-center`
           }>
           {showSelectWarning &&
@@ -87,12 +87,12 @@ function RetrieveChosenArticles({ chosenArticles }) {
       <button className="group">
         <div
           onClick={handleSummaries}
-          className="flex items-center justify-center border border-white/20 bg-white
+          className="flex items-center justify-center bg-white
                   flex-nowrap rounded-3xl transition-all ease-in-out duration-200 text-black px-5 py-2 w-full h-auto
-              group-hover:bg-black group-hover:text-white
+              group-hover:bg-mirage group-hover:text-white
               top-2.5 text-base">
           <div className="w-full">
-            <p className="text-black text-xs md:text-lg group-hover:text-white 
+            <p className="text-black text-sm font-normal sm:text-base md:text-lg group-hover:text-white 
                     text-nowrap transition-all duration-200 ease-in-out">
               Retrieve these articles &rarr;
             </p>
@@ -115,7 +115,7 @@ function OptionsCeiling({ chosenArticles }) {
   return (
     <div className="h-full my-auto">
       <p
-        className="text-sm md:text-lg 2xl:text-xl"
+        className="text-base md:text-xl 2xl:text-2xl"
       >Choose articles
         <span
           className={`

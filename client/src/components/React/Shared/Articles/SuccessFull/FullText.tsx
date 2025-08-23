@@ -1,20 +1,19 @@
 import { AppDispatch, RootState } from "@/ReduxToolKit/store"
 import { useDispatch, useSelector } from "react-redux"
-import { getModalPosition, getSelectedText, selectingText } from "@/ReduxToolKit/Reducers/Investigate/WikipediaSlice";
+import { getModalPosition, getSelectedText, modalStages } from "@/ReduxToolKit/Reducers/Investigate/WikipediaSlice";
 import TextPopover from "../popovers/TextPopover";
 import { ExtractThis } from "../popovers/TextPopover";
 import { AnimatePresence } from "framer-motion";
-import { WikiTypes } from "@/env";
 import WikiTermExtract from "../../../features/WikiExtract/components/WikiTermExtract";
 
 
 export default function FullText({ article_text, article_url }) {
     const investigateState = useSelector((state: RootState) => state.investigation);
     const dispatch = useDispatch<AppDispatch>();
-    const { gettingSelection, selectedText, status }: WikiTypes = investigateState.wiki;
+    const { selectedText, status, wikiModalStages } = investigateState.wiki;
 
     const handleHighlightStart = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (!gettingSelection) {
+        if (!wikiModalStages.highlight) {
             return
         } else {
             const x: number = e.pageX;
@@ -26,13 +25,16 @@ export default function FullText({ article_text, article_url }) {
     }
 
     const handleHighlightEnd = () => {
-        if (gettingSelection) {
+        if (wikiModalStages.highlight) {
             const selection = window.getSelection();
 
             if (selection && selection.rangeCount > 0) {
                 const selectedTextString = selection.toString().trim();
                 dispatch(getSelectedText(selectedTextString));
-                dispatch(selectingText(false))
+                dispatch(modalStages({
+                    display: true,
+                    highlight: false
+                }))
             }
         }
     }
@@ -52,7 +54,7 @@ export default function FullText({ article_text, article_url }) {
                 </TextPopover>}
 
             <AnimatePresence>
-                {status !== 'idle' && <WikiTermExtract article_url={article_url} />}
+                {wikiModalStages.display && <WikiTermExtract article_url={article_url} />}
             </AnimatePresence>
             <p className="font-light xl:text-xl tracking-tight text-white">
                 {article_text}

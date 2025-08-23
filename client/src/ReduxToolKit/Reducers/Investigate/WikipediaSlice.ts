@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { act } from "react";
 
 const options: OptionsTypes = {
     method: 'GET',
@@ -45,21 +46,33 @@ interface modalXY {
     y: number
 }
 
+interface ModalStages {
+    display: boolean,
+    highlight: boolean
+}
+
 interface WikiTypes {
-    gettingSelection: boolean
+    wikiModalStages: ModalStages,
+    displayWikiModal: boolean,
+    gettingSelection: boolean,
     status: string,
     extract: string | null,
-    description: string | null
+    description: string | null,
     title: string | null,
     timestamp: string | null,
     desktopLink: string | null,
     mobileLink: string | null,
-    modalPosition: modalXY | null
+    modalPosition: modalXY | null,
     selectedText: string | null,
     errormessage: any
 }
 
 const initialState: WikiTypes = {
+    wikiModalStages: {
+        display: false,
+        highlight: false
+    },
+    displayWikiModal: false,
     gettingSelection: false,
     status: 'idle',
     extract: null,
@@ -87,6 +100,12 @@ export const WikipediaSlice = createSlice({
         getSelectedText: (state, action) => {
             state.selectedText = action.payload
         },
+        showWikiModal: (state) => {
+            state.displayWikiModal = !state.displayWikiModal;
+        },
+        modalStages: (state, action: PayloadAction<ModalStages>) => {
+            state.wikiModalStages = action.payload
+        },
         clearWikiSlice: () => initialState
     },
     extraReducers: (builder) => {
@@ -109,6 +128,6 @@ export const WikipediaSlice = createSlice({
 })
 
 
-export const { selectingText, getModalPosition, clearWikiSlice, getSelectedText } = WikipediaSlice.actions;
+export const { selectingText, getModalPosition, clearWikiSlice, getSelectedText, showWikiModal, modalStages } = WikipediaSlice.actions;
 
 export default WikipediaSlice.reducer;

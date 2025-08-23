@@ -24,7 +24,7 @@ export default function ResearchScroller() {
         >
             <Virtuoso
                 style={{
-                    height: '100%', width: '100%', display: 'flex',
+                    height: '100%', width: '100%', display: 'flex', overflowX: 'hidden', overscrollBehavior: 'contain',
                     flexDirection: 'column', alignItems: 'start', justifyContent: 'end'
                 }}
                 className="no-scrollbar 2xl:gap-y-12"

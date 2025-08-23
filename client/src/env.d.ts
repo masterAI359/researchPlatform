@@ -351,7 +351,8 @@ declare global {
   interface WikiTypes {
     gettingSelection: boolean,
     selectedText: string | null,
-    status: string
+    status: string,
+    displayWikiModal: boolean
   }
 
   interface ArticleSavedComponent {

@@ -76,8 +76,8 @@ const ArticleLink = memo(({ article, index }: LinkProps) => {
             key={article.url}
             className={`group cursor-pointer box-border list-none 
             xl:min-h-72 xl:max-h-72 xl:min-w-80 xl:max-w-80
-            lg:w-72 lg:h-72 md:h-60 md:w-60 sm:w-52 sm:h-52 h-80 w-80
-            relative rounded-xl md:rounded-3xl text-white 
+            lg:w-72 lg:h-72 md:h-60 md:w-60 sm:w-52 sm:h-52 h-72 w-76
+            relative rounded-3xl sm:rounded-xl md:rounded-3xl text-white 
             ${mute && !isHilighted ? 'opacity-30 pointer-events-none' : 'pointer-events-auto md:opacity-85 md:hover:opacity-100'}
              transition-all ease-in-out 
             duration-200 overflow-y-hidden overflow-x-hidden
@@ -86,7 +86,7 @@ const ArticleLink = memo(({ article, index }: LinkProps) => {
         >
 
             <div className='relative w-full overflow-hidden
-            xl:max-h-36 xl:min-h-36 md:min-h-28 md:min-w-28 sm:max-h-24 sm:min-h-24 min-h-40 max-h-40'>
+            xl:max-h-36 xl:min-h-36 md:min-h-28 md:min-w-28 sm:max-h-24 sm:min-h-24 min-h-32 max-h-32'>
                 <LinkThumbnail
                     imgProps={imgProps}
                 />

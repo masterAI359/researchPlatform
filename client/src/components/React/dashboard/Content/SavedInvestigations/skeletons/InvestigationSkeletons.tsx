@@ -4,10 +4,11 @@ export function InvestigationSkeleton() {
 
     return (
         <div className={`
-        md:flex w-full justify-center h-auto animate-pulse relative`}>
+        md:flex w-full justify-center h-auto relative`}>
             {/* Timestamp Skeleton */}
             <div className="relative pl-7 md:w-2/3 md:pl-0 text-sm font-light tracking-tight md:pr-6 text-white md:text-right">
-                <div className="h-4 w-32 absolute  bottom-1.5 sm:-bottom-1.5 right-32 sm:right-8 bg-neutral-700 rounded" />
+                <div className="h-4 w-32 absolute  bottom-1.5 sm:-bottom-1.5 right-32 sm:right-8 animate-shimmer bg-[length:200%_100%] 
+    bg-[linear-gradient(110deg,#1a1c23_8%,#2b2f3a_18%,#1a1c23_33%)]  rounded" />
             </div>
 
             {/* Right-hand content block */}
@@ -20,17 +21,22 @@ export function InvestigationSkeleton() {
                 <div className="items-center w-fit">
                     <div className="w-full flex flex-col gap-2">
                         {/* Thumbnail box */}
-                        <div className="w-[200px] h-[160px] rounded-2xl bg-neutral-800" />
+                        <div className="w-[200px] h-[160px] rounded-2xl animate-shimmer bg-[length:200%_100%] 
+    bg-[linear-gradient(110deg,#1a1c23_8%,#2b2f3a_18%,#1a1c23_33%)] " />
 
                         {/* Topic label */}
-                        <div className="w-16 h-4 bg-neutral-700 rounded mt-6" />
+                        <div className="w-16 h-4 animate-shimmer bg-[length:200%_100%] 
+    bg-[linear-gradient(110deg,#1a1c23_8%,#2b2f3a_18%,#1a1c23_33%)]  rounded mt-6" />
 
                         {/* Idea lines */}
-                        <div className="w-64 h-4 bg-neutral-700 rounded" />
-                        <div className="w-52 h-4 bg-neutral-700 rounded" />
+                        <div className="w-64 h-4 animate-shimmer bg-[length:200%_100%] 
+    bg-[linear-gradient(110deg,#1a1c23_8%,#2b2f3a_18%,#1a1c23_33%)]  rounded" />
+                        <div className="w-52 h-4 animate-shimmer bg-[length:200%_100%] 
+    bg-[linear-gradient(110deg,#1a1c23_8%,#2b2f3a_18%,#1a1c23_33%)]  rounded" />
 
                         {/* Button placeholder */}
-                        <div className="mt-4 w-24 h-9 rounded-full bg-neutral-700" />
+                        <div className="mt-4 w-24 h-9 rounded-full animate-shimmer bg-[length:200%_100%] 
+    bg-[linear-gradient(110deg,#1a1c23_8%,#2b2f3a_18%,#1a1c23_33%)] " />
                     </div>
                 </div>
             </div>

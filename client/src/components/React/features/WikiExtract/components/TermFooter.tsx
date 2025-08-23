@@ -5,7 +5,7 @@ import { getExtract } from "@/ReduxToolKit/Reducers/Investigate/Review";
 
 export default function TermFooter({ article_url, setShowNotification }) {
     const investigateState = useSelector((state: RootState) => state.investigation);
-    const { extract, title, timestamp } = investigateState.wiki;
+    const { extract, title, timestamp, status } = investigateState.wiki;
     const { extracts } = investigateState.review;
     const dispatch = useDispatch();
     const updatedTime: string | null = timestamp ? timestamp.split('').slice(0, 10) : null;
@@ -18,8 +18,11 @@ export default function TermFooter({ article_url, setShowNotification }) {
 
 
     return (
-        <motion.footer className="min-w-full h-fit flex shrink-0 items-center justify-between">
-            <div className="text-zinc-400 text-sm font-light tracking-tight">Last Updated: <span className="text-white">{updatedTime ? updatedTime : null}</span></div>
+        <motion.footer className={`${status !== 'idle' ? 'opacity-100' : 'opacity-0'} transition-opacity duration-200 ease-in
+        min-w-full h-16 flex shrink-0 items-center justify-between`}>
+            <div className={`text-zinc-400 text-sm font-light tracking-tight`}>Last Updated: <span className="text-white">
+                {updatedTime ? updatedTime : null}</span>
+            </div>
             <div className="h-6 w-6 cursor-pointer group relative">
                 <div className="rounded-md xl:h-fit md:w-24 flex xs:hidden md:block 
                 mx-auto group-hover:bg-white opacity-0 absolute md:-left-24 top-3

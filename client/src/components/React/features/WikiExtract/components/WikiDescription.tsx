@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
-import { useEffect, useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { useScrollTrap } from "@/Hooks/useOverScrollTrap";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -10,15 +10,6 @@ export default function Description() {
     const [readExtract, setReadExtract] = useState<boolean>(false);
     const scrollRef = useRef(null);
     useScrollTrap(scrollRef);
-
-    useEffect(() => {
-
-        if (readExtract && scrollRef.current) {
-            console.log(scrollRef.current);
-        }
-
-    }, [readExtract]);
-
 
     return (
         <motion.main className="2xl:min-h-36 relative min-w-full max-w-full h-auto flex flex-col gap-y-6 mb-6 items-center justify-between transition-all duration-400 ease-in-out ">

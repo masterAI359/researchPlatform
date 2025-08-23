@@ -51,7 +51,7 @@ export default function SearchResults() {
                         {status !== 'idle' &&
                             <motion.div
                                 key='pagesContainer'
-                                className="relative min-h-screen w-full inset-0 my-6"
+                                className="relative min-h-screen w-full inset-0"
                             >
                                 <Pages key={'pages'} />
                             </motion.div>

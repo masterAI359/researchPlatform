@@ -5,7 +5,7 @@ import ArticleSaved from "../components/ArticleSaved";
 import { SkeletonMap } from "../skeletons/SkeletonMap";
 import { useVirtuoso } from "@/Hooks/useVirtuoso";
 import { readSavedArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { presentThisArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
 import { saveArticle } from "@/services/supabase/SupabaseData";
 import { AnimatePresence } from "framer-motion";
@@ -18,7 +18,7 @@ import { useSkeletons } from "@/Hooks/useSkeletons";
 
 export default function ArticlesScroller() {
     const userArticles: SavedArticle[] | null = useSelector((state: RootState) => state.userdata.userArticles);
-    const { visible, fullyLoaded, loadMore } = useVirtuoso(userArticles, 12);
+    const { visible, fullyLoaded, loadMore } = useVirtuoso(userArticles);
     const { fastScroll, clockScrollSpeed } = useSkeletons(180);
     const [deleting, setDeleting] = useState<boolean>(false);
     const [deleted, setDeleted] = useState<boolean | null>(null);
@@ -63,8 +63,9 @@ export default function ArticlesScroller() {
 
             <Virtuoso
                 components={{ Footer: SkeletonMap }}
+                computeItemKey={(_, article) => article.id}
                 itemContent={(_, article) => {
-                    return <ArticleSaved key={article.id}>
+                    return <ArticleSaved>
                         <Title article={article} handleArticleSelection={handleArticleSelection} />
                         <ArticleThumbnail fastScroll={fastScroll} article={article} deleteHandler={deleteHandler} />
                     </ArticleSaved>
@@ -73,7 +74,7 @@ export default function ArticlesScroller() {
                 className="no-scrollbar 2xl:gap-y-12"
                 data={visible}
                 endReached={loadMore}
-                increaseViewportBy={150}
+                increaseViewportBy={250}
                 isScrolling={clockScrollSpeed}
                 context={{ fullyLoaded }}
 

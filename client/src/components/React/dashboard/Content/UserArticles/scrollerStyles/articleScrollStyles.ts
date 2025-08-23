@@ -1,12 +1,12 @@
 import { CSSProperties } from "react";
 
 export const articleScrollerStyles: CSSProperties = {
-    height: '85%',
+    height: '88%',
     width: '100%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'start',
     justifyContent: 'end',
-    overscrollBehavior: 'contain',
+    overscrollBehavior: 'none',
     overflowX: 'hidden',
 };

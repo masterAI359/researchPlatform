@@ -9,7 +9,7 @@ function ArticleSaved({ children }: ArticleSavedComponent): JSX.Element {
       className="cursor-pointer
       relative rounded-3xl
     overflow-hidden h-76 sm:h-40 
-      lg:h-[12.8rem] 2xl:h-60 my-16 w-full md:w-11/12 
+      lg:h-[12.8rem] 2xl:h-60 my-8 w-full md:w-11/12 
       2xl:w-3/4 mx-auto"
     >
       <div

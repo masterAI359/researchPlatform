@@ -3,11 +3,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import StoryPaginate from "../Evidence/reading/buttons/StoryPaginate";
+import { useIsMobile } from "@/Hooks/useIsMobile";
 
 export default function PanelContainer() {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { showContent } = investigateState.display
     const { ContentStatus, articles } = investigateState.read
+    const isMobile = useIsMobile();
 
     return (
         <AnimatePresence>
@@ -23,7 +25,7 @@ export default function PanelContainer() {
                         ContentStatus === 'fulfilled' &&
                         <ControlPanel />
                     }
-                    {ContentStatus === 'fulfilled' &&
+                    {(!isMobile) && (ContentStatus === 'fulfilled') &&
                         showContent &&
                         Array.isArray(articles) &&
                         (articles.length > 1) &&

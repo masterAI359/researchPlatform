@@ -9,12 +9,14 @@ import Pages from "./Pages"
 import SearchFailed from "../errors/SearchFailed";
 import ErrorBoundary from "@/components/React/Shared/ErrorBoundaries/ErrorBoundary"
 import { searchResultsVariants } from "@/motion/variants"
+import { useIsMobile } from "@/Hooks/useIsMobile"
 
 
 export default function SearchResults() {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { search } = investigateState
     const { articleOptions, status, pages } = search
+    const isMobile = useIsMobile();
     const dispatch = useDispatch()
 
 

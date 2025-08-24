@@ -7,6 +7,8 @@ import LostData from "@/components/React/Shared/ErrorBoundaries/messages/LostDat
 import ArticleSkeleton from "@/components/React/Shared/Articles/skeletons/ArticleSkeleton";
 import { motion } from "framer-motion";
 import { variants } from "@/motion/variants";
+import DetailView from "../../../ProfileNavigation/mobile/DetailView"
+import { presentArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice"
 
 export default function ArticleReview() {
     const savedArticle = useSelector((state: RootState) => state.userdata.ArticleToReview);
@@ -38,6 +40,7 @@ export default function ArticleReview() {
             transition={{ type: 'tween', duration: 0.4, delay: 0.7 }}
             className="min-h-full md:px-8 scroll-smooth w-full
                         mx-auto mt-0 md:mt-6 relative">
+            <DetailView backTo={presentArticles} />
 
             <ErrorBoundary fallback={<LostData />}
             >

@@ -1,5 +1,3 @@
-//Log this function to the console to get performance metrics in the browser on <Virtuoso/> components(infinite scroll)
-//no TS applied as this runs in  the browser
 (() => {
     const duration = 5_000;
     const deltas = [];
@@ -7,9 +5,7 @@
     let last;
     let longTasks = 0;
 
-    const obs = new PerformanceObserver(list => {
-        longTasks += list.getEntries().length
-    });
+    const obs = new PerformanceObserver(list => { longTasks += list.getEntries().length });
 
     obs.observe({
         entryTypes: ['longtask']
@@ -27,12 +23,12 @@
             requestAnimationFrame(reqFrames);
         } else {
             obs.disconnect();
-            const total = t - start
-            const frames = deltas.length
-            const avgFPS = frames * 1000 / total;
+            const totalMs = (t - start);
+            const frames = deltas.length;
+            const avgFPS = (frames / totalMs) * 1000;
             const sorted = [...deltas].sort((a, b) => a - b)
             const q = (p) => sorted[Math.floor((p / 100) * sorted.length)] || 0;
-            const budget = 1000 / 60;
+            const budget = 1000 / 120;
             const dropped = deltas.reduce((a, d) => a + Math.max(0, Math.round(d / budget) - 1), 0);
 
             console.log(
@@ -42,11 +38,10 @@
                     p95FrameMs: +q(95).toFixed(2),
                     maxFrameMs: +Math.max(...deltas).toFixed(2),
                     frames: frames,
-                    durationMs: Math.round(total),
+                    durationMs: Math.round(totalMs),
                     approxDroppedFrames: dropped, longTasks
                 }
             );
         }
     } requestAnimationFrame(reqFrames);
 })();
-//IIFE for running this in the browser

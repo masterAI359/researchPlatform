@@ -8,7 +8,6 @@ export function SourcesFromResearch() {
   const sources = useSelector((state: RootState) => state.userWork.sourcesToReview);
   const errorMessage = "No sources were saved during this inquiry"
 
-  console.log(sources);
 
   return (
     <ol role="list" className="grid gap-12 mt-24 max-w-5xl mx-auto lg:px-16 xl:px-0 md:px-12 px-8">
@@ -16,6 +15,7 @@ export function SourcesFromResearch() {
       {
         sources && sources.map((source) => (
           <ArticleFromResearch
+            key={source.id}
             source={source}
           />
         ))

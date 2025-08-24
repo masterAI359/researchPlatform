@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { useIsMobile } from "@/Hooks/useIsMobile";
 import { lazy, Suspense } from "react";
 import { AppDispatch } from "@/ReduxToolKit/store";
@@ -18,6 +18,7 @@ const SideBar = lazy(() => import('../../dashboard/ProfileNavigation/SideBar/Sid
 export default function Dashboard() {
     const isMobile = useIsMobile();
     const signingOut = useSelector((state: RootState) => state.auth.signOut);
+    const { displayThisArticle, displayThisInvestigation } = useSelector((state: RootState) => state.profileNav, shallowEqual);
     const dispatch = useDispatch<AppDispatch>();
 
     useEffect(() => {
@@ -34,7 +35,7 @@ export default function Dashboard() {
             className={
                 `w-full h-full grid relative grid-cols-1 scroll-smooth 
             animate-fade-in transition-all duration-300 
-            ease-in-out md:grid-cols-[auto,1fr] pt-8
+            ease-in-out md:grid-cols-[auto,1fr] md:pt-8
             ${signingOut
                     ? 'opacity-50 pointer-events-none'
                     : 'opacity-100 pointer-events-auto'
@@ -51,7 +52,7 @@ export default function Dashboard() {
                 </Suspense>
             }
 
-            {isMobile &&
+            {isMobile && !displayThisArticle && !displayThisInvestigation &&
                 <Suspense fallback={<FooterBarLoader />}>
                     <MobileProfileNav />
                 </Suspense>

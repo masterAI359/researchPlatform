@@ -54,21 +54,27 @@ export default function TextPopover({ children }) {
 
 export function ExtractThis() {
   const investigateState = useSelector((state: RootState) => state.investigation);
-  const { selectedText } = investigateState.wiki;
+  const { wikiModalStages } = investigateState.wiki;
   const dispatch = useDispatch<AppDispatch>();
 
   const retrieveWikiExtract = () => {
-    dispatch(getWikiExtract(selectedText));
+    dispatch(getWikiExtract(wikiModalStages.text));
     dispatch(modalStages({
       display: true,
-      highlight: false
-    }))
-  }
+      highlight: false,
+      confirmExtract: false,
+      text: null
+    }));
+  };
 
 
   const handleDeny = () => {
-    dispatch(clearWikiSlice());
-    dispatch(selectingText(false));
+    dispatch(modalStages({
+      display: true,
+      highlight: true,
+      confirmExtract: false,
+      text: null
+    }));
   };
 
   return (
@@ -80,7 +86,7 @@ export function ExtractThis() {
         <p className="mt-2">
           <span className="text-2xl font-lighter text-white" />
           <span className="text-base font-medium text-zinc-400">
-            {selectedText}
+            {wikiModalStages.text}
           </span>
         </p>
         <p className="mx-auto text-sm text-white" />

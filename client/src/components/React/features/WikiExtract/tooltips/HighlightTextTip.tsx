@@ -21,8 +21,8 @@ export default function HighlightTextTip() {
 
 
             <div className="flex items-center justify-center">
-                <p className="text-lg text-white text-wrap font-light">
-                    Select an unfamiliar term by highlighting the text in the article you want explained!
+                <p className="text-lg text-white text-wrap font-light p-4">
+                    To select a term you want explained, hold down left click while dragging over the term you want explained!
                 </p>
             </div>
 

@@ -7,11 +7,24 @@ import ScrolltoTop from "../../../../../helpers/ScrollToTop"
 import ArticleContainer from "../../../Shared/Articles/containers/ArticleContainer"
 
 export default function Content() {
-    const investigateState = useSelector((state: RootState) => state.investigation)
-    const { search, display } = investigateState
-    const { showContent, showBackToSearchModal, showSearch,
-        showGetArticlesModal, showSelectWarning, showSelectTooltip, showReadingTooltip } = display
-    const { status } = search
+    const investigateState = useSelector((state: RootState) => state.investigation);
+    const { wikiModalStages } = investigateState.wiki;
+    const {
+        search,
+        display
+    } = investigateState;
+    const {
+        showContent,
+        showBackToSearchModal,
+        showSearch,
+        showGetArticlesModal,
+        showSelectWarning,
+        showSelectTooltip,
+        showReadingTooltip
+    } = display;
+    const {
+        status
+    } = search;
 
     return (
         <motion.div
@@ -20,6 +33,7 @@ export default function Content() {
             exit={{ opacity: 0 }}
             transition={{ type: 'tween', duration: 0.2 }}
             className={`${showBackToSearchModal || showGetArticlesModal || showSelectWarning || showSelectTooltip ? 'pointer-events-none' : 'pointer-events-auto'}
+            ${wikiModalStages.highlight && 'cursor-text'}
                 relative shrink-0 w-full h-full min-h-screen mx-auto xs:px-2 mt-6`}>
 
             <ModalContainer />

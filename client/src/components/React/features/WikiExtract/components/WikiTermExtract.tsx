@@ -129,7 +129,9 @@ function WikiModalHeader() {
     const handleClose = () => {
         dispatch(modalStages({
             display: false,
-            highlight: false
+            highlight: false,
+            confirmExtract: false,
+            text: null
         }));
     };
 

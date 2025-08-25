@@ -44,12 +44,14 @@ export const getWikiExtract = createAsyncThunk('investigate/getWikiExtract', asy
 interface modalXY {
     x: number,
     y: number
-}
+};
 
-interface ModalStages {
+export interface ModalStages {
     display: boolean,
-    highlight: boolean
-}
+    highlight: boolean,
+    confirmExtract: boolean,
+    text: string | null,
+};
 
 interface WikiTypes {
     wikiModalStages: ModalStages,
@@ -65,12 +67,14 @@ interface WikiTypes {
     modalPosition: modalXY | null,
     selectedText: string | null,
     errormessage: any
-}
+};
 
 const initialState: WikiTypes = {
     wikiModalStages: {
         display: false,
-        highlight: false
+        highlight: false,
+        confirmExtract: false,
+        text: null
     },
     displayWikiModal: false,
     gettingSelection: false,
@@ -106,6 +110,7 @@ export const WikipediaSlice = createSlice({
         modalStages: (state, action: PayloadAction<ModalStages>) => {
             state.wikiModalStages = action.payload
         },
+
         clearWikiSlice: () => initialState
     },
     extraReducers: (builder) => {

@@ -11,7 +11,9 @@ export default function GetInfo() {
     const toggle = () => {
         dispatch(modalStages({
             display: true,
-            highlight: true
+            highlight: true,
+            confirmExtract: false,
+            text: null
         }));
     };
 

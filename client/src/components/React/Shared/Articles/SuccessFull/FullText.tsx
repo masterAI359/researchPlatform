@@ -1,6 +1,6 @@
 import { AppDispatch, RootState } from "@/ReduxToolKit/store"
 import { useDispatch, useSelector } from "react-redux"
-import { getModalPosition, getSelectedText, modalStages } from "@/ReduxToolKit/Reducers/Investigate/WikipediaSlice";
+import { getModalPosition, getSelectedText, ModalStages, modalStages } from "@/ReduxToolKit/Reducers/Investigate/WikipediaSlice";
 import TextPopover from "../popovers/TextPopover";
 import { ExtractThis } from "../popovers/TextPopover";
 import { AnimatePresence } from "framer-motion";
@@ -10,7 +10,8 @@ import WikiTermExtract from "../../../features/WikiExtract/components/WikiTermEx
 export default function FullText({ article_text, article_url }) {
     const investigateState = useSelector((state: RootState) => state.investigation);
     const dispatch = useDispatch<AppDispatch>();
-    const { selectedText, status, wikiModalStages } = investigateState.wiki;
+    const { wikiModalStages, status } = investigateState.wiki;
+
 
     const handleHighlightStart = (e: React.MouseEvent<HTMLDivElement>) => {
         if (!wikiModalStages.highlight) {
@@ -30,14 +31,15 @@ export default function FullText({ article_text, article_url }) {
 
             if (selection && selection.rangeCount > 0) {
                 const selectedTextString = selection.toString().trim();
-                dispatch(getSelectedText(selectedTextString));
                 dispatch(modalStages({
                     display: true,
-                    highlight: false
+                    highlight: false,
+                    confirmExtract: true,
+                    text: selectedTextString
                 }))
-            }
-        }
-    }
+            };
+        };
+    };
 
 
     return (
@@ -48,7 +50,8 @@ export default function FullText({ article_text, article_url }) {
                 leading-6 md:leading-6 whitespace-pre-wrap  pb-16 transition-all duration-1000 ease-in-out
                 selection:bg-blue-300 selection:text-black`}
         >
-            {selectedText && status === 'idle' &&
+            {wikiModalStages.text &&
+                wikiModalStages.confirmExtract &&
                 <TextPopover>
                     <ExtractThis />
                 </TextPopover>}

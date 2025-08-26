@@ -20,6 +20,7 @@ export default function Metrics() {
     const noSavedData: boolean = (hasArticles === false) && (hasInvestigations === false);
     const statsPopulated: boolean = Object.values(stats).some((el: number) => el !== null);
 
+    //TODO: create web worker for stats calculation - statsWorker.js scaffolded already
 
     useEffect(() => {
 

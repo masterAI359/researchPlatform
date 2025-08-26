@@ -16,7 +16,7 @@ export default function Login(): JSX.Element {
     const { acceptedInput, validEmail } = useCheckCredentials(userEmail, userPassword);
     const navigate = useNavigate();
 
-    const redirectUser = (): void => {
+    const redirectUser = (successful: boolean | null): void => {
         if (successful) {
             navigate('/');
         };

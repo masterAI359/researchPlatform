@@ -13,15 +13,18 @@ export default function AuthNotification({ complete, setterFunction, status, red
     useEffect(() => {
 
         const timer = setTimeout(() => {
-            setterFunction(prev => !prev);
-            if (redirect) {
-                redirect();
-            };
-        }, 2000);
+            if (complete !== null) {
+                setterFunction(prev => !prev);
+                if (redirect && (complete === true)) {
+                    redirect(complete);
+                };
+            }
 
-        return () => clearTimeout(timer)
+        }, 2500);
 
-    }, [complete])
+        return () => clearTimeout(timer);
+
+    }, [complete, setterFunction, redirect]);
 
 
     const notification = (

@@ -1,6 +1,5 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
-type ID = string | number;
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import type { StatBreakdownTypes } from "@/env";
 
 export const fetchSavedInvestigations = createAsyncThunk('user/investigations', async (thunkAPI) => {
 
@@ -31,7 +30,8 @@ interface SavedInvestigations {
     userResearch: any,
     associatedArticles: any,
     investigationToReview: any,
-    sourcesToReview: any
+    sourcesToReview: any,
+    stats: StatBreakdownTypes
 }
 
 
@@ -40,7 +40,13 @@ const initialState: SavedInvestigations = {
     userResearch: [],
     associatedArticles: [],
     investigationToReview: null,
-    sourcesToReview: null
+    sourcesToReview: null,
+    stats: {
+        percentChanged: null,
+        validated: null,
+        neutral: null,
+        neededMore: null
+    }
 }
 
 
@@ -60,6 +66,13 @@ const userInvestigationsSlice = createSlice({
         },
         getSourcesToReview: (state, action) => {
             state.sourcesToReview = action.payload
+        },
+        getStatsBreakdown: (state, action: PayloadAction<StatBreakdownTypes | null>) => {
+            const data = action.payload;
+            state.stats.percentChanged = data.percentChanged;
+            state.stats.validated = data.validated;
+            state.stats.neutral = data.neutral;
+            state.stats.neededMore = data.neededMore;
         }
     },
     extraReducers: (builder) => {
@@ -80,6 +93,6 @@ const userInvestigationsSlice = createSlice({
 })
 
 
-export const { clearUserInvestigations, getUserResearch, reviewThisResearch, getSourcesToReview, populateResearch } = userInvestigationsSlice.actions
+export const { clearUserInvestigations, getUserResearch, reviewThisResearch, getSourcesToReview, populateResearch, getStatsBreakdown } = userInvestigationsSlice.actions
 
 export default userInvestigationsSlice.reducer

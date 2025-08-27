@@ -1,32 +1,58 @@
 import { motion } from "framer-motion";
 import { lazy, Suspense } from "react";
 import ScrolltoTop from "@/helpers/ScrollToTop";
-import { useSelector } from "react-redux";
-import { RootState } from "@/ReduxToolKit/store";
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import { RootState, AppDispatch } from "@/ReduxToolKit/store";
 import { variants } from "@/motion/variants";
 import { useEffect } from "react";
+import { getStatsBreakdown } from "@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations";
+import type { StatBreakdownTypes } from "@/env";
 import ChartJsWrapper from "../UserCharts/ChartJsWrapper";
 import StatsSkeleton from "@/components/React/charts/skeletons/StatsSkeleton";
 import MetricsFallback from "../wrappers/MetricsFallback";
 const StatsSection = lazy(() => import('../../../charts/ResearchStats/StatsSection'));
-import { useCalculateStats } from "@/Hooks/useCalculateStats";
 
 export default function Metrics() {
-    const investigations = useSelector((state: RootState) => state.userWork.userResearch);
+    const { userResearch, stats } = useSelector((state: RootState) => state.userWork, shallowEqual);
     const userArticles = useSelector((state: RootState) => state.userdata.userArticles);
-    const { stats, getStats } = useCalculateStats();
-    const hasInvestigations: boolean = Array.isArray(investigations) && (investigations.length > 0);
+    const hasInvestigations: boolean = Array.isArray(userResearch) && (userResearch.length > 0);
     const hasArticles: boolean = Array.isArray(userArticles) && (userArticles.length > 0);
     const noSavedData: boolean = (hasArticles === false) && (hasInvestigations === false);
     const statsPopulated: boolean = Object.values(stats).some((el: number) => el !== null);
+    const dispatch = useDispatch<AppDispatch>();
 
-    //TODO: create web worker for stats calculation - statsWorker.js scaffolded already
 
     useEffect(() => {
+        if (!hasInvestigations || statsPopulated) return;
 
-        getStats();
+        const worker = new Worker(
+            new URL(
+                '../../../../../services/workers/statsWorker.js',
+                import.meta.url),
+            {
+                type: 'module'
+            },
+        );
 
-    }, [getStats]);
+        let raf: any = 0;
+
+        worker.onmessage = (e: MessageEvent) => {
+            const payload: StatBreakdownTypes = e.data.chartData;
+
+            cancelAnimationFrame(raf);
+
+            raf = requestAnimationFrame(() => {
+                dispatch(getStatsBreakdown(payload));
+            });
+        };
+
+        worker.postMessage(userResearch);
+
+        return () => {
+            worker.terminate();
+        };
+
+    }, [userResearch]);
 
     return (
         <motion.section

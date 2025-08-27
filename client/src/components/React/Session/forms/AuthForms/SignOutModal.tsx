@@ -15,7 +15,7 @@ const variants = {
 
 
 
-export default function SignOutModal({ }) {
+export default function SignOutModal(): JSX.Element {
     const [signingOut, setSigningOut] = useState<boolean>(false);
     const [success, setSuccess] = useState<boolean | null>(null);
     const navigate = useNavigate();

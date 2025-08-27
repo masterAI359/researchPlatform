@@ -1,13 +1,11 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
-import { AnimatePresence, motion } from 'framer-motion';
-import { useDispatch, useSelector } from 'react-redux';
+import { motion } from 'framer-motion';
+import { useSelector } from 'react-redux';
 import { RootState } from '@/ReduxToolKit/store';
-import { getSourceIntegrity } from '@/helpers/Ratings';
 import ErrorBoundary from '../../Shared/ErrorBoundaries/ErrorBoundary';
-import { useEffect, useRef, useState } from 'react';
-import { getReportingRatings } from '@/ReduxToolKit/Reducers/UserContent.ts/ChartSlice';
 import { ChartData } from 'chart.js';
+import React from 'react';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const variants = {
@@ -37,7 +35,7 @@ const tableColors: string[] = [
     '#ffffff'
 ];
 
-export default function PieChart() {
+function PieChart() {
     const ratingData = useSelector((state: RootState) => state.chart.reportingIntegrity);
 
     const data: ChartData<'pie', number[], string> = {
@@ -68,3 +66,5 @@ export default function PieChart() {
         </motion.div>
     );
 };
+
+export default React.memo(PieChart);

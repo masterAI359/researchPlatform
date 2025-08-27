@@ -1,10 +1,13 @@
 import SideBarMenu from "./SideBarMenu"
+import React from "react"
 
-
-export default function SideBar() {
+function SideBar() {
     return (
         <div className="hidden md:block h-full">
             <SideBarMenu />
         </div>
     )
 };
+
+
+export default React.memo(SideBar);

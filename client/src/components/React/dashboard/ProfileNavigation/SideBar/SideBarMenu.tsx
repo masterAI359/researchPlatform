@@ -4,8 +4,9 @@ import DeleteUserAccount from "@/components/React/Session/modals/DeleteUser";
 import { RootState } from "@/ReduxToolKit/store";
 import DisplayOptions from "./DisplayOptions";
 import SessionOptions from "./SessionOptions";
+import React from "react";
 
-export default function SideBarMenu({ }) {
+function SideBarMenu() {
     const showDeleteModal = useSelector((state: RootState) => state.profileNav.displayDeleteModal)
 
     return (
@@ -23,3 +24,5 @@ export default function SideBarMenu({ }) {
         </aside>
     );
 };
+
+export default React.memo(SideBarMenu);

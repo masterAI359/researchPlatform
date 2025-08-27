@@ -1,6 +1,7 @@
 import PurposeList from "./PurposeList";
+import React from "react";
 
-export default function ChartHeader() {
+function ChartHeader(): JSX.Element {
 
     return (
         <div>
@@ -14,4 +15,6 @@ export default function ChartHeader() {
             <PurposeList />
         </div>
     );
-}
+};
+
+export default React.memo(ChartHeader);

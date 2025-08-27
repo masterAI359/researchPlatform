@@ -1,26 +1,22 @@
 import PieChartHeader from "./PieChartHeader";
-import { motion } from "framer-motion";
 import PieChart from "./PieChart";
-import { variants } from "@/motion/variants";
+import React from "react";
 
-export default function IntegrityChart() {
+function IntegrityChart(): JSX.Element {
 
     return (
-        <motion.section
-            variants={variants}
-            initial='closed'
-            animate='open'
-            exit='closed'
-            transition={{ type: 'tween', duration: 0.2 }}
-            className="lg:p-8">
+        <section
+            className="lg:p-8 animate-fade-in transition-opacity">
             <div className="mx-auto 2xl:max-w-7xl">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:gap-12 md:justify-center items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-12 md:justify-center items-center">
 
                     <PieChartHeader />
                     <PieChart />
 
                 </div>
             </div>
-        </motion.section>
+        </section>
     );
 };
+
+export default React.memo(IntegrityChart)

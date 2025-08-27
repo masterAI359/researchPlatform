@@ -8,8 +8,6 @@ import { RootState } from "@/ReduxToolKit/store";
 export default function AccManagement() {
     const showDeleteModal = useSelector((state: RootState) => state.profileNav.displayDeleteModal);
 
-    console.log('rendering acc mngmt')
-
     return (
         <motion.section
             variants={variants}

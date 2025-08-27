@@ -15,10 +15,16 @@ const MobileProfileNav = lazy(() => import('../../dashboard/ProfileNavigation/mo
 const SideBar = lazy(() => import('../../dashboard/ProfileNavigation/SideBar/Sidebar'));
 
 
-export default function Dashboard() {
+export default function Dashboard(): JSX.Element {
     const isMobile = useIsMobile();
     const signingOut = useSelector((state: RootState) => state.auth.signOut);
-    const { displayThisArticle, displayThisInvestigation } = useSelector((state: RootState) => state.profileNav, shallowEqual);
+    const { displayThisArticle, displayThisInvestigation } = useSelector(
+        (s: RootState) => ({
+            displayThisArticle: s.profileNav.displayThisArticle,
+            displayThisInvestigation: s.profileNav.displayThisInvestigation,
+        }),
+        shallowEqual
+    );
     const dispatch = useDispatch<AppDispatch>();
 
     useEffect(() => {

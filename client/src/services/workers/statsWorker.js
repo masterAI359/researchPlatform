@@ -71,14 +71,23 @@ const calcNeedMore = (investigations) => {
 };
 
 
+
 const calculatePercentages = (investigations) => {
 
     const changePercent = calcPercentageChanged(investigations);
     const validatedPercent = calcValidated(investigations);
     const neutralPercent = calcNeutral(investigations);
     const needMorePercent = calcNeedMore(investigations);
-    const calculations = { change: changePercent, valid: validatedPercent, neutral: neutralPercent, needMore: needMorePercent };
+    const calculations = { percentChanged: changePercent, validated: validatedPercent, neutral: neutralPercent, neededMore: needMorePercent };
     return calculations;
 };
 
-//TODO: create worker in metrics.tsx file to offload these calculations from the main thread on first render
+
+self.onmessage = (e) => {
+
+    const investigations = e.data;
+
+    const stats = calculatePercentages(investigations);
+
+    self.postMessage({ chartData: stats });
+};

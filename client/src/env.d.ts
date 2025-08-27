@@ -394,7 +394,12 @@ declare global {
     signature?: string
   }
 
-
+  interface StatBreakdownTypes {
+    percentChanged: number | null,
+    validated: number | null,
+    neutral: number | null,
+    neededMore: number | null
+  }
 
 
 }
@@ -405,5 +410,5 @@ export {
   Calculations, PostsProps, SupabaseUser, ResetPW, Investigation, ScrapedArticle, TipTapProps, AuthStatus, AuthNotificationProps,
   Tooltips, SidebarItemData, LinkProps, SaveArticleResponse, WikiTerm, Bias, BiasCounts, LoadedArticle, ChartFallbackProps,
   UserContent, LoginResponse, LoginFormProps, DashboardOption, HelpModal, NotificationState, NotifySaved, SaveArticleButton,
-  WikiTypes, ArticleSavedComponent, Icon, ArticleToSave, SignInHook, WebWorkerResponse, WebWorkerRequest, ChartType
+  WikiTypes, ArticleSavedComponent, Icon, ArticleToSave, SignInHook, WebWorkerResponse, WebWorkerRequest, ChartType, StatBreakdownTypes
 };

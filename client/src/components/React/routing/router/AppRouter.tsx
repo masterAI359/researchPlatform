@@ -4,6 +4,7 @@ import Home from "../routes/Home";
 import AboutContainer from "../routes/AboutRoute";
 import Navigation from "../../Shared/Navigation/Navigation";
 import RouteLoader from "../../Shared/Loaders/RouteLoader";
+import DashboardLoader from "../../Shared/Loaders/DashboardLoader";
 const Dashboard = lazy(() => import('../routes/Dashboard'));
 const InvestigateContainer = lazy(() => import('../routes/InvestigateRoute'));
 const Signup = lazy(() => import('../../Session/forms/AuthForms/Signup'));
@@ -39,7 +40,7 @@ export default function AppRouter() {
                         </Suspense>} />
 
                     <Route path='/profile' element={
-                        <Suspense fallback={<RouteLoader />}>
+                        <Suspense fallback={<DashboardLoader />}>
                             <Dashboard />
                         </Suspense>} />
 

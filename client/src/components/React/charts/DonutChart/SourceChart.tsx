@@ -8,10 +8,10 @@ import { ChartData } from "chart.js";
 import ErrorBoundary from "../../Shared/ErrorBoundaries/ErrorBoundary";
 import ErrMessage from "../../Shared/ErrorBoundaries/messages/ErrMessage";
 import { ratings, tableColors } from "./keyData/donutKeys";
-
+import React from "react";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export default function SourceChart() {
+function SourceChart(): JSX.Element {
   const biasRatings = useSelector((state: RootState) => state.chart.biasRatings);
 
   const data: ChartData<'doughnut', number[], string> = {
@@ -50,3 +50,4 @@ export default function SourceChart() {
   );
 };
 
+export default React.memo(SourceChart);

@@ -2,16 +2,19 @@ import DashboardOption from "./DashboardOption";
 import BookmarkIcon from "@/components/React/Shared/IconComponents/BookmarkIcon";
 import MetricsIcon from "@/components/React/Shared/IconComponents/MetricsIcon";
 import InvestigationsIcon from "@/components/React/Shared/IconComponents/InvestigateIcon";
-import { useSelector } from "react-redux";
+import { shallowEqual, useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import { presentDashboard, presentResearch, presentArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
+import React from "react";
 
-export default function DisplayOptions() {
-    const profileNavigationState = useSelector((state: RootState) => state.profileNav)
-    const { displaySavedArticles, displayDashboard, displaySavedInvestigations } = profileNavigationState
+function DisplayOptions() {
+    const { displaySavedArticles, displayDashboard, displaySavedInvestigations } = useSelector((state: RootState) => state.profileNav, shallowEqual);
+
 
     return (
-        <ul className="space-y-2 font-medium">
+        <ul
+            id="dashboard-controls"
+            className="space-y-2 font-medium">
 
             <DashboardOption name="Metrics" activeCondition={displayDashboard} actionCreator={presentDashboard}>
                 <MetricsIcon active={displayDashboard} />
@@ -27,3 +30,5 @@ export default function DisplayOptions() {
         </ul>
     );
 };
+
+export default React.memo(DisplayOptions);

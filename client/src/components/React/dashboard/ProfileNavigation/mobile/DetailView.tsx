@@ -2,7 +2,7 @@ import { createPortal } from "react-dom";
 import { useDispatch } from "react-redux"
 import { AppDispatch } from "@/ReduxToolKit/store";
 
-export default function DetailView({ backTo }): React.ReactNode {
+export default function DetailView({ backTo }): JSX.Element {
     const dispatch = useDispatch<AppDispatch>();
 
 

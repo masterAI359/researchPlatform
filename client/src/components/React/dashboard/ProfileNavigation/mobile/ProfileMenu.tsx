@@ -2,8 +2,9 @@ import { useSelector, useDispatch } from "react-redux"
 import { presentArticles, presentResearch, presentManagement, presentDashboard } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
 import { RootState } from "@/ReduxToolKit/store";
 import { createPortal } from "react-dom";
+import React from "react";
 
-export default function MobileProfileNav() {
+function MobileProfileNav() {
   const showArticles = useSelector((state: RootState) => state.profileNav.displaySavedArticles)
   const showInvestigations = useSelector((state: RootState) => state.profileNav.displaySavedInvestigations);
   const showManagement = useSelector((state: RootState) => state.profileNav.displayAccountManagement);
@@ -73,4 +74,4 @@ export default function MobileProfileNav() {
 };
 
 
-
+export default React.memo(MobileProfileNav);

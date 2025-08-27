@@ -8,14 +8,9 @@ import { useIsMobile } from "@/Hooks/useIsMobile"
 
 export default function Step5() {
     const investigateState = useSelector((state: RootState) => state.investigation)
-    const isMobile = useIsMobile();
     const { pov } = investigateState
     const { idea } = pov
     const dispatch = useDispatch()
-
-    console.log(isMobile)
-
-    const shortened = limitString(idea)
 
     const beginSearch = () => {
         dispatch(displayMindMap(false))

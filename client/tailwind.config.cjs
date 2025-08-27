@@ -99,8 +99,12 @@ module.exports = {
         scroller2: "scroller2 20s linear infinite",
         "fade-in": "fade-in 0.5s linear forwards",
         "shimmer": "shimmer 2s infinite linear",
+        'stroke-shimmer': 'stroke-shimmer 1.25s linear infinite'
       },
       keyframes: {
+        'stroke-shimmer': {
+          to: { 'stroke-dashoffset': '-200' },
+        },
         pulsedot: {
           '0%': {
             transform: 'scale(0.8)',

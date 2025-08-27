@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export default function InvestigationsFallback() {
     return (
-        <div className="flex flex-col md:w-128 mt-24 mx-auto items-center justify-center h-full p-8 bg-gradientdown rounded-3xl text-center space-y-4">
+        <div className="flex flex-col md:w-128 mt-24 mx-auto items-center justify-center h-full p-8 bg-gradientdown rounded-3xl text-center space-y-4 animate-fade-in">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-12 h-12 text-zinc-500"

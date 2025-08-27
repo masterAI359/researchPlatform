@@ -19,7 +19,7 @@ export default function PriorInvestigation({ investigation, inSeek }) {
 
     return (
         <div className={`
-        md:flex w-full max-w-full h-auto`}>
+        md:flex w-full max-w-full h-auto xl:h-128  xl:w-[1060px]`}>
             <h2 id="2023-03-16-heading" className="pl-7 md:w-2/3 md:pl-0 text-sm font-light tracking-tight md:pr-6 text-white md:text-right">
                 <span className='text-zinc-400'>From:</span> {investigation.created_at.split('').splice(0, 10).join('')}
             </h2>
@@ -32,7 +32,7 @@ export default function PriorInvestigation({ investigation, inSeek }) {
                     <div className='w-full'>
                         <Thumbnail investigation={investigation} />
                         <TopicResearched topic={topic} />
-                        <div className="mt-4 w-fit">
+                        <div className="mt-4 h-9 w-32">
                             <button onClick={() => reviewResearch()} className="text-sm py-2 px-6 border focus:ring-2 rounded-full border-transparent bg-white hover:bg-white/10
                             text-black duration-200 focus:ring-offset-2 focus:ring-black hover:text-white inline-flex items-center justify-start ring-1 ring-transparent">
                                 Review <span className="ml-2">&#8594;</span>
@@ -49,12 +49,12 @@ export default function PriorInvestigation({ investigation, inSeek }) {
 function TopicResearched({ topic }) {
 
     return (
-        <>
-            <h3 className="text-white font-light tracking-tight text-md mt-8">Topic</h3>
+        <div className="xl:w-[512px] xl:h-[80px]">
+            <h3 className="text-white font-light tracking-tight text-md mt-8 ">Topic</h3>
             <p className="text-zinc-400 mt-2 text-md text-balance">
                 {topic}
             </p>
-        </>
+        </div>
 
     )
 }

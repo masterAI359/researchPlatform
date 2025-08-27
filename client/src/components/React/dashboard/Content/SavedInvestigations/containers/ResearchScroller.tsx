@@ -30,7 +30,7 @@ export default function ResearchScroller() {
                 className="no-scrollbar 2xl:gap-y-12"
                 data={visible}
                 endReached={loadMore}
-                increaseViewportBy={50}
+                increaseViewportBy={150}
                 context={{ fullyLoaded, inSeek }}
                 components={{ Footer: InvestigationSkeletons, ScrollSeekPlaceholder: InvestigationSkeleton }}
                 itemContent={(_, investigation, inSeek) => {

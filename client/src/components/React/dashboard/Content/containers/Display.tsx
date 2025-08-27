@@ -10,6 +10,8 @@ import ArticleReview from "../UserArticles/containers/ArticleReview";
 import ComponentLoader from "../../../Shared/Loaders/ComponentLoader";
 import AccManagement from "../../ProfileNavigation/AccountManagement/AccManagement";
 import BackToSavedArticles from "../../ProfileNavigation/buttons/BackToSavedArticles";
+import DisplayLoader from "@/components/React/Shared/Loaders/DisplayLoader";
+import AppWindowIcon from "@/components/React/Shared/IconComponents/AppWindowIcon";
 
 export default function Display() {
     const {
@@ -28,12 +30,12 @@ export default function Display() {
             {displayThisArticle && <ArticleReview key='article-review' />}
             {displayDashboard && <Metrics key='dashboard' />}
             {displaySavedArticles &&
-                <Suspense fallback={<ComponentLoader />}>
+                <Suspense fallback={<DisplayLoader><AppWindowIcon /></DisplayLoader>}>
                     <SavedArticles key='articles' />
                 </Suspense>
             }
             {displaySavedInvestigations &&
-                <Suspense fallback={<ComponentLoader />}>
+                <Suspense fallback={<DisplayLoader><AppWindowIcon /></DisplayLoader>}>
                     <SavedResearchLayout key='investigations' />
                 </Suspense>
             }

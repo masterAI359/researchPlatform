@@ -273,9 +273,15 @@ declare global {
     index: number
   }
 
+  interface SavedResponse {
+    message: string,
+    id: number | null
+
+  }
+
   interface SaveArticleResponse {
     success: boolean,
-    message: string
+    data: SavedResponse
   }
 
   interface WikiTerm {
@@ -339,6 +345,7 @@ declare global {
     articleExists: boolean,
     message: string | null,
     anonUser: boolean,
+    article_id: number | null
   }
 
   interface NotifySaved {

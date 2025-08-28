@@ -173,11 +173,13 @@ export const checkArticle = (
 };
 
 
+
 export const saveArticle = async (
     dataToSave: SavedArticle,
     articleExists?: boolean,
-): Promise<string | null> => {
+): Promise<SaveArticleResponse | null> => {
 
+    console.log(articleExists);
 
     try {
 
@@ -201,7 +203,7 @@ export const saveArticle = async (
         const result: SaveArticleResponse = await response.json();
 
         if (result) {
-            return result.message;
+            return result;
         } else {
             return null;
         }

@@ -1,10 +1,15 @@
 import { SupabaseClient } from "@supabase/supabase-js";
 
+interface DeleteResponse {
+    message: string,
+    id: null
+};
+
 export const deleteArticleForUser = async (
     supabase: SupabaseClient,
     user_id: string,
     id: string
-): Promise<string | null> => {
+): Promise<DeleteResponse | null> => {
 
     try {
 
@@ -22,7 +27,7 @@ export const deleteArticleForUser = async (
         } else if (response) {
             const message: string = "Deleted";
             console.log(response);
-            return message;
+            return { message: message, id: null };
         };
 
         return null;
@@ -33,6 +38,6 @@ export const deleteArticleForUser = async (
             ? `Unknown server error: ${error.message}`
             : 'Unknown server error, check server logs for more info';
 
-        return err_message;
+        return { message: err_message, id: null };
     };
 };

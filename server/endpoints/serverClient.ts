@@ -226,7 +226,7 @@ export const handleArticleSave = async (req: Request, res: Response): Promise<vo
     const { id } = dataToSave as SavedArticle;
 
     try {
-        let result: string | null;
+        let result: any;
 
         if (articleExists === true) {
             console.log('deleting')
@@ -238,7 +238,7 @@ export const handleArticleSave = async (req: Request, res: Response): Promise<vo
 
         if (result) {
             console.log(result);
-            const responseObject: ArticleSaveResponse = { success: true, message: result };
+            const responseObject: ArticleSaveResponse = { success: true, data: result };
             res.status(200).send(responseObject);
             return;
         } else {

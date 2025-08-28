@@ -26,10 +26,13 @@ export default function Bookmark({ article, showNotification, setShowNotificatio
     useEffect(() => {
         const check = () => {
             const exists = checkArticle(article_url, urls);
-            setNotification((prev) => ({
-                ...prev,
-                articleExists: exists
-            }));
+            if (notification.articleExists === null) {
+                setNotification((prev) => ({
+                    ...prev,
+                    articleExists: exists
+                }));
+            }
+
         };
 
         if (Array.isArray(userArticles) && (userArticles.length > 0)) {

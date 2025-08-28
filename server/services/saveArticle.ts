@@ -1,11 +1,16 @@
 import { SavedArticle } from "../endpoints/interfaces";
 import { SupabaseClient } from "@supabase/supabase-js";
 
+interface SavedResponse {
+    message: string,
+    id: number | null
+};
+
 export const saveArticleForUser = async (
     supabase: SupabaseClient,
     id: string,
     dataToSave: SavedArticle
-): Promise<string | null> => {
+): Promise<SavedResponse | null> => {
 
     const { text, url, image_url, summary, title, authors, date, provider, fallbackDate, factual_reporting, bias, country } = dataToSave;
     try {
@@ -37,12 +42,14 @@ export const saveArticleForUser = async (
         if (error) {
             console.log(error.message);
             const db_error: string = "couldn't save the provided article to the database";
-            return db_error;
+            return { message: db_error, id: null };
 
-        } else if (data) {
-            console.log(data)
+        } else if (data && (Array.isArray(data) && data.length > 0)) {
             const message: string = "Saved";
-            return message;
+            const article: any = data[0];
+            const article_id: number = article.id;
+            console.log(article_id);
+            return { message: message, id: article_id };
         };
 
         return null;
@@ -52,6 +59,6 @@ export const saveArticleForUser = async (
         const error_message = error instanceof Error
             ? `Unknown server error: ${error.message}`
             : 'Unknown server error, check server logs for more info';
-        return error_message;
+        return { message: error_message, id: null };
     };
 };

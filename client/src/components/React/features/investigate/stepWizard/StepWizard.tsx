@@ -11,12 +11,12 @@ export default function StepWizard({ currentStep, setCurrentStep }: any) {
 
     return (
 
-        <motion.div className="animate-fade-in delay-500 duration-200 ease-in-out w-full h-fit flex lg:justify-center mx-auto
+        <motion.div className="animate-fade-in delay-500 duration-200 ease-in-out w-full h-fit flex md:justify-center mx-auto
         absolute top-0
         ">
             <motion.ol
-                className="flex items-center my-auto justify-between
-         w-11/12 md:w-11/12 lg:w-4/5 lg:mx-auto h-28 lg:h-20 mx-auto">
+                className="flex items-center my-auto mx-auto
+         w-11/12 md:w-11/12 lg:w-full lg:px-8 h-24 lg:h-20">
                 <Node1 />
                 <Node2 />
                 <Node3 />

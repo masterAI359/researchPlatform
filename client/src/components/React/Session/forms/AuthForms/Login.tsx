@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { loginStatus } from "@/components/React/Session/notifications/AuthStatus";
@@ -16,11 +16,6 @@ export default function Login(): JSX.Element {
     const { acceptedInput, validEmail } = useCheckCredentials(userEmail, userPassword);
     const navigate = useNavigate();
 
-    const redirectUser = (successful: boolean | null): void => {
-        if (successful) {
-            navigate('/');
-        };
-    };
 
     const submitAuth = async (e: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
         e.preventDefault();
@@ -28,6 +23,21 @@ export default function Login(): JSX.Element {
             setLoggingIn(true)
         }
     };
+
+    useEffect(() => {
+
+        const timer = window.setTimeout(() => {
+            if (successful === true) {
+                navigate('/');
+            };
+        }, 1000);
+
+        return () => {
+            clearTimeout(timer);
+        };
+
+    }, [successful]);
+
 
     return (
         <section
@@ -40,7 +50,6 @@ export default function Login(): JSX.Element {
                         complete={successful}
                         setterFunction={setLoggingIn}
                         status={loginStatus}
-                        redirect={redirectUser}
                     />
                 }
             </AnimatePresence>
@@ -63,3 +72,12 @@ export default function Login(): JSX.Element {
         </section>
     )
 };
+
+
+
+//const redirectUser = (successful: boolean | null): void => {
+//    if (successful) {
+//        navigate('/');
+//    };
+//};
+

@@ -1,6 +1,8 @@
 
 export function InvestigationSkeleton() {
 
+    //TODO: finish matching dimensions exaclty to saved investigation components
+
 
     return (
         <div className={`md:flex justify-center

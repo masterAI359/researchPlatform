@@ -8,23 +8,20 @@ import { createPortal } from "react-dom";
 import { AuthNotificationProps } from "@/env";
 
 
-export default function AuthNotification({ complete, setterFunction, status, redirect }: AuthNotificationProps) {
+export default function AuthNotification({ complete, setterFunction, status }: AuthNotificationProps) {
 
     useEffect(() => {
 
         const timer = setTimeout(() => {
             if (complete !== null) {
                 setterFunction(prev => !prev);
-                if (redirect && (complete === true)) {
-                    redirect(complete);
-                };
-            }
+            };
 
-        }, 2500);
+        }, 2000);
 
         return () => clearTimeout(timer);
 
-    }, [complete, setterFunction, redirect]);
+    }, [complete, setterFunction]);
 
 
     const notification = (

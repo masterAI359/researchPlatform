@@ -5,14 +5,21 @@ import GetStarted from "../Buttons/GetStarted";
 
 
 export default function HeroImage() {
-	const activeSession = useSelector((state: RootState) => state.auth.activeSession)
+	const activeSession = useSelector((state: RootState) => state.auth.activeSession);
+
+	//TODO: Typescript fix on 'fetchPriority' attribute for <img/> tag
 
 	return (
-		<section className='xl:p-0 md:p-8 p-4 animate-fade-in'>
+		<section className='xl:p-0 md:p-8 p-4 animate-fade-in transition-opacity delay-500'>
 			<div className='md:mx-auto 2xl:max-w-7xl xl:max-w-5xl lg:max-w-5xl py-16 lg:px-16 md:px-12 sm:px-8 xs:px-6 xl:px-40 xs:w-full items-center 
 			 xl:py-24 lg:py-20 bg-gradientdown rounded-4xl overflow-hidden relative'>
 				<img
+					alt=""
+					aria-hidden="true"
 					className='sr-only lg:not-sr-only lg:absolute -mt-16 lg:left-80 opacity-70 top-20'
+					decoding="sync"
+					loading="eager"
+					fetchPriority="high"
 					src='/images/assets/cubeTwo.png'>
 				</img>
 

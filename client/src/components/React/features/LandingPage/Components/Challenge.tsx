@@ -4,7 +4,7 @@ export default function Challenge() {
 
     return (
         <section className="lg:p-8 xs:p-4 animate-fade-in ease-in duration-700">
-            <div className="px-8 py-12 lg:py-24 mx-auto md:px-12 lg:px-16 xl:px-36 lg:max-w-5xl 2xl:max-w-7xl">
+            <div className="px-8 py-12 lg:py-24 mx-auto md:px-12 lg:px-16 xl:px-36 lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl">
                 <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:gap-24 items-center">
                     <div>
                         <span className="text-blue-400"> Investigate</span>

@@ -12,7 +12,7 @@ export default function DashboardButton(): JSX.Element {
         <div className="relative block">
             <Link to={activeSession ? '/Profile' : '/Login'} >
                 <button
-                    className="flex flex-nowrap group items-center justify-between 2xl:w-auto
+                    className="flex flex-nowrap group items-center justify-between 2xl:w-28
                                  2xl:gap-x-2 py-1.5 px-4 rounded-md  bg-gradient-to-tr from-ebony to-mirage shadow-thick border border-white/5
                                  bg-white/5 hover:bg-black hover:border-white/10 transition-all duration-200 ease-in-out w-auto cursor-pointer group">
 
@@ -21,7 +21,7 @@ export default function DashboardButton(): JSX.Element {
                             ${active
                                 ? 'text-blue-300'
                                 : 'text-white'}
-                            text-center font-light text-sm 
+                            text-center font-light text-sm w-full
                             group-hover:text-blue-400 transition-all duration-200 
                             ease-in-out whitespace-nowrap
                             `}

@@ -2,7 +2,7 @@ import { createPortal } from "react-dom";
 import { clearAuthSlice, showSignOut } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
 import { useDispatch } from "react-redux";
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { fetchSignOut } from "@/services/supabase/SupabaseData";
 import AuthNotification from "../../notifications/AuthNotification";
 import { signOutStatus } from "@/components/React/Session/notifications/AuthStatus";
@@ -20,12 +20,18 @@ export default function SignOutModal(): JSX.Element {
     const [success, setSuccess] = useState<boolean | null>(null);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const timerRef = useRef(null);
 
-    const redirect = () => {
-        dispatch(showSignOut());
-        dispatch(clearAuthSlice());
-        navigate('/');
+    const goHome = () => {
+        timerRef.current = window.setTimeout(() => {
+            dispatch(showSignOut());
+            dispatch(clearAuthSlice());
+            navigate('/');
+            timerRef.current = null;
+        }, 1500);
     };
+
+
 
     useEffect(() => {
 
@@ -35,6 +41,7 @@ export default function SignOutModal(): JSX.Element {
                 const data: SignOutResponse = await fetchSignOut();
                 if (data.loggedOut === true) {
                     setSuccess(true);
+                    goHome();
                 } else {
                     setSuccess(false)
                 }
@@ -62,7 +69,7 @@ export default function SignOutModal(): JSX.Element {
         sm:gap-y-10 sm:p-10 lg:col-span-2 lg:flex-row lg:items-center bg-ebony mt-2 
         shadow-inset text-center">
             <AnimatePresence>
-                {signingOut !== false && <AuthNotification complete={success} setterFunction={setSigningOut} status={signOutStatus} redirect={redirect} />}
+                {signingOut !== false && <AuthNotification complete={success} setterFunction={setSigningOut} status={signOutStatus} />}
             </AnimatePresence>
             <div className="lg:min-w-0 lg:flex-1 max-w-sm mx-auto">
                 <p className="text-white xl:text-4xl">Sign out</p>

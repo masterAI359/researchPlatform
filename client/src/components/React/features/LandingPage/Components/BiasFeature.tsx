@@ -27,8 +27,8 @@ const sections: Section[] = [
 
 export default function BiasFeature() {
     return (
-        <section className="lg:p-8">
-            <div className="px-8 py-12 mx-auto md:px-12 lg:px-16 xl:px-36 2xl:max-w-7xl">
+        <section className="lg:p-8 w-full">
+            <div className="px-8 py-12 mx-auto md:px-12 lg:px-16 xl:px-36 2xl:max-w-7xl border">
                 <div className="lg:text-center max-w-2xl lg:mx-auto">
                     <span className="text-blue-400">Informed Analysis</span>
                     <h2 className="text-3xl tracking-tight mt-6 font-light lg:text-4xl text-white">

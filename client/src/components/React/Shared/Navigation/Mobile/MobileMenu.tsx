@@ -1,4 +1,4 @@
-import { motion, Transition, SVGMotionProps, useCycle } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { useEffect, useState } from "react"
 import { createPortal } from "react-dom";
 import MenuButton from "./MenuButton";
@@ -16,7 +16,6 @@ const sidebar = {
     closed: {
         clipPath: "circle(0px at 20px 20px)",
         transition: {
-            delay: 0.5,
             type: "spring",
             stiffness: 400,
             damping: 40,
@@ -27,21 +26,30 @@ const sidebar = {
 
 export default function MobileMenu() {
     const [isOpen, setIsOpen] = useState<boolean>(false)
-
-    useEffect(() => { }, [])
-
     const toggleMenu = () => {
         setIsOpen(isOpen => !isOpen)
     }
 
     const mobileContent = (
         <motion.nav
-            initial='closed'
+            initial={false}
             animate={isOpen ? 'open' : 'closed'}
-            className="flex md:hidden fixed justify-center w-full z-50"
-            custom='100%'
+            exit={'closed'}
+            className="flex fixed justify-center w-full z-50"
         >
-            <motion.div className="bg-black z-50 min-h-svh min-w-full top-0 left-0 bottom-0 fixed" variants={sidebar} />
+            <AnimatePresence initial={false} >
+                {isOpen && (
+                    <motion.div
+                        key="overlay"
+                        className="bg-black z-50 min-h-svh min-w-full top-0 left-0 bottom-0 fixed"
+                        initial='closed'
+                        animate='open'
+                        exit="closed"
+                        variants={sidebar} />
+                )
+                }
+            </AnimatePresence>
+
             <MenuButton
                 toggle={toggleMenu}
                 isOpen={isOpen}

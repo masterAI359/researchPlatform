@@ -72,12 +72,3 @@ export default function Login(): JSX.Element {
         </section>
     )
 };
-
-
-
-//const redirectUser = (successful: boolean | null): void => {
-//    if (successful) {
-//        navigate('/');
-//    };
-//};
-

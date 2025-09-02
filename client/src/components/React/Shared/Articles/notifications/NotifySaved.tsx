@@ -3,7 +3,7 @@ import { useEffect } from "react"
 import { NotificationState, NotifySaved } from "@/env";
 import { scaleUpDown } from "@/motion/variants";
 
-export default function NotifySavedArticle({ message, setNotification, setShowNotification, showNotification }: NotifySaved) {
+export default function NotifySavedArticle({ message, setNotification, setShowNotification }: NotifySaved) {
 
     useEffect(() => {
         const timer = setTimeout(() => {

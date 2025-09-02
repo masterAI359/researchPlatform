@@ -20,7 +20,7 @@ export function useSaveArticle(article: ArticleToSave, setShowNotification) {
         const saved = Array.isArray(userArticles)
             ? userArticles.find(a => a.article_url === article.article_url)
             : undefined;
-        return saved?.id ?? null; // DB primary key if present
+        return saved?.id ?? null;
     }, [userArticles, article.article_url]);
 
 

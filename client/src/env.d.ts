@@ -115,7 +115,7 @@ declare global {
     fallbackDate: string | null,
     summary: any,
     text: string,
-    id: string | number,
+    id: number,
     factual_reporting?: string | null,
     bias?: Bias,
     country?: string | null
@@ -350,7 +350,6 @@ declare global {
 
   interface NotifySaved {
     setNotification: React.Dispatch<React.SetStateAction<NotificationState>>,
-    showNotification: boolean,
     setShowNotification: (showNotification: boolean) => void,
     message: string | null
   }
@@ -408,6 +407,8 @@ declare global {
     neededMore: number | null
   }
 
+  type DeleteStatus = "deleted" | "saved" | "noop" | "error";
+
 
 }
 
@@ -417,5 +418,6 @@ export {
   Calculations, PostsProps, SupabaseUser, ResetPW, Investigation, ScrapedArticle, TipTapProps, AuthStatus, AuthNotificationProps,
   Tooltips, SidebarItemData, LinkProps, SaveArticleResponse, WikiTerm, Bias, BiasCounts, LoadedArticle, ChartFallbackProps,
   UserContent, LoginResponse, LoginFormProps, DashboardOption, HelpModal, NotificationState, NotifySaved, SaveArticleButton,
-  WikiTypes, ArticleSavedComponent, Icon, ArticleToSave, SignInHook, WebWorkerResponse, WebWorkerRequest, ChartType, StatBreakdownTypes
+  WikiTypes, ArticleSavedComponent, Icon, ArticleToSave, SignInHook, WebWorkerResponse, WebWorkerRequest, ChartType, StatBreakdownTypes,
+  DeleteStatus
 };

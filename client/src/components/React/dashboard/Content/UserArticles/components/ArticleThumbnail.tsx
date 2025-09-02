@@ -5,6 +5,7 @@ import ImageSkeleton from "../skeletons/ImageSkeleton";
 interface SavedThumbnail {
     article: SavedArticle,
     deleteHandler: (article: SavedArticle) => Promise<void>,
+    articleDeleted: boolean,
     fastScroll: boolean
 };
 
@@ -14,7 +15,7 @@ type ImgProps = React.ImgHTMLAttributes<HTMLImageElement> & {
     fetchpriority?: FetchPriority; // lowercase HTML attr
 };
 
-function ArticleThumbnail({ article, deleteHandler, fastScroll }: SavedThumbnail): React.ReactNode {
+function ArticleThumbnail({ article, deleteHandler, fastScroll, articleDeleted }: SavedThumbnail): React.ReactNode {
 
 
     const imgProps: ImgProps = {
@@ -38,7 +39,7 @@ function ArticleThumbnail({ article, deleteHandler, fastScroll }: SavedThumbnail
         object-cover relative overflow-hidden">
             {fastScroll && <ImageSkeleton />}
             {!fastScroll && <Thumbnail imgProps={imgProps} />}
-            <Trash deleteHandler={deleteHandler} article={article} />
+            <Trash deleteHandler={deleteHandler} article={article} articleDeleted={articleDeleted} />
         </div>
 
     )

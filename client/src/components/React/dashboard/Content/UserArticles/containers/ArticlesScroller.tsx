@@ -5,7 +5,7 @@ import ArticleSaved from "../components/ArticleSaved";
 import { SkeletonMap } from "../skeletons/SkeletonMap";
 import { useVirtuoso } from "@/Hooks/useVirtuoso";
 import { readSavedArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { presentThisArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
 import { saveArticle } from "@/services/supabase/SupabaseData";
 import { AnimatePresence } from "framer-motion";
@@ -21,8 +21,13 @@ export default function ArticlesScroller() {
     const { visible, fullyLoaded, loadMore } = useVirtuoso(userArticles);
     const { fastScroll, clockScrollSpeed } = useSkeletons(180);
     const [deleting, setDeleting] = useState<boolean>(false);
+    const [deletedIds, setDeletedIds] = useState<Set<number>>(new Set());
     const [deleted, setDeleted] = useState<boolean | null>(null);
     const dispatch = useDispatch<AppDispatch>();
+
+
+
+
 
     const cleanup = () => {
         setDeleted(null);
@@ -33,19 +38,37 @@ export default function ArticlesScroller() {
         dispatch(presentThisArticle());
     }, [dispatch]);
 
+
+    const markIds = (id: number, deleted: boolean) => {
+        setDeletedIds(prev => {
+            const next = new Set(prev);
+            deleted ? next.add(id) : next.delete(id);
+            return next;
+        });
+    };
+
+
+
     const deleteHandler = useCallback(
         async (article: SavedArticle): Promise<void> => {
+            if (deleting) return;
             setDeleting(true);
 
             try {
                 const results = await saveArticle(article, true);
-                results === "Deleted"
-                    ? setDeleted(true)
-                    : setDeleted(false);
+                if (results.data.message === "Deleted") {
+                    setDeleted(true);
+                    markIds(article.id, true)
+                } else if (results.data.message === "Saved") {
+                    setDeleted(false);
+                } else {
+                    setDeleted(false);
+                };
+
             } catch (err) {
                 console.error(err);
             };
-        }, []);
+        }, [deleting]);
 
     return (
         <div
@@ -67,14 +90,14 @@ export default function ArticlesScroller() {
                 itemContent={(_, article) => {
                     return <ArticleSaved>
                         <Title article={article} handleArticleSelection={handleArticleSelection} />
-                        <ArticleThumbnail fastScroll={fastScroll} article={article} deleteHandler={deleteHandler} />
+                        <ArticleThumbnail articleDeleted={deletedIds.has(article.id)} fastScroll={fastScroll} article={article} deleteHandler={deleteHandler} />
                     </ArticleSaved>
                 }}
                 style={articleScrollerStyles}
                 className="no-scrollbar 2xl:gap-y-12"
                 data={visible}
                 endReached={loadMore}
-                increaseViewportBy={250}
+                increaseViewportBy={200}
                 isScrolling={clockScrollSpeed}
                 context={{ fullyLoaded }}
 

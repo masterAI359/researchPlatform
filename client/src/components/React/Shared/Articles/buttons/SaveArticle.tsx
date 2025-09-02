@@ -57,7 +57,6 @@ export default function Bookmark({ article, showNotification, setShowNotificatio
             }
             <AnimatePresence>
                 {showNotification && <NotifySavedArticle
-                    showNotification={showNotification}
                     message={notification.message}
                     setNotification={setNotification}
                     setShowNotification={setShowNotification}

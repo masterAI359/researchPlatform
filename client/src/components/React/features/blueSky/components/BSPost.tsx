@@ -1,20 +1,28 @@
 import { limitName } from "@/helpers/Presentation";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/ReduxToolKit/store";
-import { selectPost } from "@/ReduxToolKit/Reducers/BlueSky/BlueSkySlice";
+import { AppDispatch, RootState } from "@/ReduxToolKit/store";
+import { getPopoverPosition, getPopoverPost, selectPost } from "@/ReduxToolKit/Reducers/BlueSky/BlueSkySlice";
 import Popover from "../Popovers/Popover";
 import UseThisPost from "../Popovers/UseThisPost";
 import { AnimatePresence, motion } from "framer-motion";
 import { getIdea } from "@/ReduxToolKit/Reducers/Investigate/UserPOV";
 
-export function BSPost({ post, setClicked, context }) {
-  const selected = useSelector((state: RootState) => state.bluesky.selected)
-  const dispatch = useDispatch();
-  const handle = limitName(post.author.handle);
-  const text = post.record.text;
+interface BSPostProps {
+  post: any,
+  setClicked?: React.Dispatch<React.SetStateAction<any>>,
+  context?: string
+}
 
-  const choosePost = () => {
+export function BSPost({ post, setClicked, context }: BSPostProps) {
+  const selected = useSelector((state: RootState) => state.bluesky.selected)
+  const dispatch = useDispatch<AppDispatch>();
+  const handle: string = limitName(post.author.handle);
+  const text: string = post.record.text;
+
+  const choosePost = (e: React.MouseEvent<HTMLDivElement>) => {
+    dispatch(getPopoverPost(post));
     setClicked(prev => !prev);
+
     if (selected !== null && selected === text) {
       dispatch(selectPost(null))
       setClicked(false)
@@ -35,15 +43,9 @@ export function BSPost({ post, setClicked, context }) {
       exit={{ opacity: 0, scale: 0.5, transition: { type: 'tween', duration: 0.3, ease: 'easeInOut', delay: 0 } }}
       onClick={choosePost}
       className={`relative rounded-3xl shadow-inset  my-8 lg:hover:opacity-100 py-2 px-2  lg:p-6 ring-1 ring-white/5 cursor-pointer flex flex-col gap-y-2
-        ${text === selected ? 'bg-white shadow-material border-2 border-black/20 lg:scale-105 z-40' : 'lg:opacity-90 bg-white/5'}
+        ${text === selected ? 'bg-white shadow-material border-2 border-black/20 lg:scale-105 z-40 pointer-events-none' : 'pointer-events-auto lg:opacity-90 bg-white/5'}
         `}
     >
-      <AnimatePresence>
-        {selected === post.record.text && <Popover>
-          <UseThisPost post={post} context={context} />
-        </Popover>}
-      </AnimatePresence>
-
       <figcaption className={`relative flex flex-row items-center gap-2 pb-6 border-b ${text === selected ? 'border-black/10' : 'border-white/10'}`}>
         <div className='overflow-hidden shrink-0'>
           <img

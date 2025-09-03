@@ -9,12 +9,15 @@ import Scroller from "../Containers/Scroller";
 import { splitPosts } from "@/helpers/Presentation";
 import { variants } from "@/motion/variants";
 import { PostsProps } from "@/env";
+import Popover from "../Popovers/Popover";
+import SelectedPost from "../Popovers/SelectedPost";
 
 export default function Posts({ posts, context }: PostsProps) {
   const status = useSelector((state: RootState) => state.bluesky.status);
   const [firstHalf, setFirstHalf] = useState<any>(null);
   const [secondHalf, setSecondHalf] = useState<any>(null);
   const [clicked, setClicked] = useState<boolean>(false);
+  const popoverPost = useSelector((state: RootState) => state.bluesky.popoverPost);
   const selected = useSelector((state: RootState) => state.bluesky.selected);
   const dispatch = useDispatch();
 
@@ -52,6 +55,9 @@ export default function Posts({ posts, context }: PostsProps) {
       transition={{ type: 'tween', duration: 0.3 }}
       className="h-full"
     >
+      <AnimatePresence>
+        {selected && popoverPost && <Popover />}
+      </AnimatePresence>
 
       <ErrorBoundary>
         <AnimatePresence>

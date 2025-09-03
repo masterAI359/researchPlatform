@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { OptionsTypes } from "@/env";
 
 export const searchBlueSky = createAsyncThunk(
@@ -53,6 +53,15 @@ export const getFeed = createAsyncThunk(
     }
 )
 
+type PopoverXY = {
+    x: number | null,
+    y: number | null
+}
+
+type Dimensions = {
+    w: number | null,
+    h: number | null
+};
 
 interface BSTypes {
 
@@ -60,17 +69,28 @@ interface BSTypes {
     feedStatus: string
     posts: any | null,
     errorMessage: string | null,
-    selected: any
-
-}
+    selected: any,
+    popoverPost: any | null,
+    popoverPosition: PopoverXY,
+    containerDimensions: Dimensions
+};
 
 const initialState: BSTypes = {
     status: 'idle',
     feedStatus: 'idle',
     posts: null,
     errorMessage: null,
-    selected: null
-}
+    selected: null,
+    popoverPost: null,
+    containerDimensions: {
+        w: null,
+        h: null
+    },
+    popoverPosition: {
+        x: null,
+        y: null
+    }
+};
 
 
 export const BlueSkySlice = createSlice({
@@ -82,6 +102,14 @@ export const BlueSkySlice = createSlice({
         },
         getStoredPosts: (state, action) => {
             state.posts = action.payload.posts;
+        },
+        getPopoverPosition: (state, action: PayloadAction<PopoverXY>) => {
+            const coordinates = action.payload;
+            state.popoverPosition.x = coordinates.x;
+            state.popoverPosition.y = coordinates.y;
+        },
+        getPopoverPost: (state, action) => {
+            state.popoverPost = action.payload;
         },
         resetBlueSkyState: () => initialState
 
@@ -112,6 +140,6 @@ export const BlueSkySlice = createSlice({
     }
 });
 
-export const { resetBlueSkyState, selectPost, getStoredPosts } = BlueSkySlice.actions;
+export const { resetBlueSkyState, selectPost, getStoredPosts, getPopoverPosition, getPopoverPost } = BlueSkySlice.actions;
 
 export default BlueSkySlice.reducer;

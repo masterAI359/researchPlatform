@@ -9,11 +9,14 @@ import { getStoredPosts, searchBlueSky } from '@/ReduxToolKit/Reducers/BlueSky/B
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { ScrollUp } from '@/helpers/ScrollToTop';
+import { useBodyLock } from '@/Hooks/useBodyLock';
 
 export default function Home({ }) {
     const signingOut = useSelector((state: RootState) => state.auth.signOut);
+    const popoverPost = useSelector((state: RootState) => state.bluesky.popoverPost);
     const posts = useSelector((state: RootState) => state.bluesky.posts);
     const dispatch = useDispatch<AppDispatch>();
+    useBodyLock();
 
     useEffect(() => {
         const stored = localStorage.getItem('bsPosts');
@@ -32,7 +35,8 @@ export default function Home({ }) {
 
     return (
         <section className={`flex h-auto flex-col w-full grow transition-opacity duration-200 delay-200 ease-in-out scroll-smooth thin-gray-scrollbar
-         ${signingOut ? 'opacity-50 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
+         ${signingOut || popoverPost ? 'opacity-50 pointer-events-none' : 'opacity-100 pointer-events-auto'}
+         `}>
             {signingOut &&
                 <SignOutModal />
             }

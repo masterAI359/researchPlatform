@@ -3,11 +3,14 @@ import { useState, useRef } from 'react';
 import ToolsForResearch from '../Components/Keyboard';
 import BlueSkySkeleton from '../../blueSky/skeletons/BlueSkySkeleton';
 import WikiAndNotes from '../Components/WikiAndNotes';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/ReduxToolKit/store';
 const BlueSkyPosts = lazy(() => import('@/components/React/features/blueSky/Containers/BlueSkyPosts'));
 
 export default function AnimationWrapper() {
     const [showBlueSky, setShowBlueSky] = useState<boolean>(false);
     const [playAnimation, setPlayAnimation] = useState<boolean>(false);
+    const popoverPost = useSelector((state: RootState) => state.bluesky.popoverPost);
     const sentinelRef = useRef(null);
     const animationTriggerRef = useRef(null);
 
@@ -52,7 +55,11 @@ export default function AnimationWrapper() {
     }, [playAnimation])
 
     return (
-        <section aria-label='animated components' className='w-full h-auto'>
+        <section
+            aria-label='animated components'
+            className={`w-full h-auto z-20
+        ${popoverPost ? 'overflow-y-hidden' : ''}
+        `}>
             <div
                 ref={animationTriggerRef}
                 className='h-1 w-full' />

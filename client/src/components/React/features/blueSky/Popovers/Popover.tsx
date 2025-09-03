@@ -19,10 +19,12 @@ export default function Popover() {
       initial="closed"
       animate="open"
       exit="closed"
-      className="z-50 fixed h-screen w-screen flex justify-center items-center"
+      className={`z-[900] fixed inset-0 flex justify-center items-center
+        ${popoverPost ? 'overflow-y-hidden' : ''}
+        `}
     >
       <div className="relative bg-black border border-border_gray
-       h-fit w-auto p-8 rounded-3xl shadow-material
+       h-fit w-auto p-8 rounded-3xl shadow-material z-[910]
       flex flex-col justify-center  items-center
       ">
         <SelectedPost

@@ -6,6 +6,7 @@ import { ScrollUp } from "../../../../helpers/ScrollToTop";
 import InvestigationWorkSpace from "../../features/investigate/Containers/InvestigationWorkSpace";
 import SelectLinks from "../../features/investigate/Evidence/searching/components/sourceLinks/components/SelectLinks";
 import { displaySelectTooltip } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
+import { useBodyLock } from "@/Hooks/useBodyLock";
 
 export default function InvestigateContainer() {
   const dispatch = useDispatch<AppDispatch>()
@@ -15,6 +16,7 @@ export default function InvestigateContainer() {
   const { showSelectTooltip, showSearch } = investigateState.display;
   const { status } = investigateState.search;
   const hasSearched = showSearch && (status === 'fulfilled');
+  useBodyLock();
 
   function removeToolTip(show: boolean, searched: boolean) {
     if (show && searched) {

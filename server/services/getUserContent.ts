@@ -1,9 +1,17 @@
 import { SupabaseClient } from "@supabase/supabase-js";
-import { Investigation, SavedArticle } from "../endpoints/interfaces";
-import { UserContent } from "../types/types";
+import { Investigation } from "../endpoints/interfaces";
+import { SavedArticleRes, UserContent, SavedArticle } from "../types/types";
 
 
-async function UserArticles(supabase: SupabaseClient, id: string): Promise<SavedArticle[] | null> {
+const mapped = (articles: SavedArticle[]): Map<string, SavedArticle> => {
+
+    const hash: Map<string, SavedArticle> = new Map(articles.map((article: SavedArticle) => [article.id, article]));
+
+    return hash;
+};
+
+
+async function UserArticles(supabase: SupabaseClient, id: string): Promise<SavedArticleRes | null> {
 
     try {
         const { data, error } = await supabase
@@ -15,7 +23,11 @@ async function UserArticles(supabase: SupabaseClient, id: string): Promise<Saved
             console.error(error.message);
             return null;
         } else {
-            return data;
+            const articleMap = mapped(data);
+            return {
+                articles: data,
+                articleMap: articleMap
+            };
         };
 
     } catch (error) {

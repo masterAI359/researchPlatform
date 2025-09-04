@@ -14,7 +14,7 @@ import BlueSkySkeleton from '../../blueSky/skeletons/BlueSkySkeleton';
 export default function InvestigationWorkSpace() {
     const investigateState = useSelector((state: RootState) => state.investigation);
     const { display, notes } = investigateState;
-    const { showBlueSkySearch, showMindMap } = display;
+    const { showBlueSkySearch, showMindMap, showGetArticlesModal } = display;
     const { takingNotes } = notes;
     const notesRef = useRef(null);
     const containerRef = useRef(null);
@@ -45,8 +45,10 @@ export default function InvestigationWorkSpace() {
         <section
             ref={containerRef}
             id='workspace'
-            className='w-full h-auto flex flex-col grow 
-            justify-start items-center'
+            className={`w-full h-auto flex flex-col grow 
+            justify-start items-center transition-opacity duration-200 
+            ${showGetArticlesModal ? 'delay-0 opacity-50 pointer-events-none' : 'delay-500 opacity-100 pointer-events-auto'}
+            `}
         >
 
             {showBlueSkySearch === null &&

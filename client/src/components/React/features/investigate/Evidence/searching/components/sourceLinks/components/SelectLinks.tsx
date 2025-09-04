@@ -37,13 +37,14 @@ export default function SelectLinks() {
     <AnimatePresence>
       {Array.isArray(articleOptions) &&
         (articleOptions.length > 0) &&
+        (!showGetArticlesModal) &&
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 20 }}
-          transition={{ type: "spring", bounce: 0.45, duration: 0.25 }}
+          exit={{ opacity: 0, y: 50 }}
+          transition={{ type: "tween", duration: 0.2, delay: 0.6 }}
           className={`${showGetArticlesModal ? 'pointer-events-none' : 'pointer-events-auto'}
-           bg-ebony fixed bottom-0 right-0 left-0
+           bg-ebony fixed bottom-0 right-0 left-0 border-t border-border_gray
         text-white font-light tracking-tight flex 2xl:gap-x-16 py-4 gap-x-4 md:px-16 cursor-pointer
          mx-auto z-40 justify-center 2xl:justify-end content-center`
           }>

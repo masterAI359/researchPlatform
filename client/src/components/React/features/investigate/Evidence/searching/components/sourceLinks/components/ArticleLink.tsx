@@ -18,7 +18,7 @@ type ImgProps = React.ImgHTMLAttributes<HTMLImageElement> & {
 };
 
 
-const ArticleLink = memo(({ article, index }: LinkProps) => {
+const ArticleLink = memo(({ article, index, removingModal }: LinkProps) => {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { getArticle, display } = investigateState
     const { showGetArticlesModal } = display
@@ -82,7 +82,7 @@ const ArticleLink = memo(({ article, index }: LinkProps) => {
              transition-all ease-in-out 
             duration-200 overflow-y-hidden overflow-x-hidden
             
-            ${isHilighted && !showGetArticlesModal ? "shadow-blue-bottom bg-ebony" : "shadow-material bg-gradient-to-tr from-ebony to-mirage"}`}
+            ${isHilighted && (!showGetArticlesModal) && (!removingModal) ? "shadow-blue-bottom bg-ebony" : "shadow-material bg-gradient-to-tr from-ebony to-mirage"}`}
         >
 
             <div className='relative w-full overflow-hidden

@@ -9,8 +9,8 @@ export default function ModalContainer() {
     const { display } = investigateState
     const { showBackToSearchModal, showGetArticlesModal } = display
 
-    return <AnimatePresence>
-        {showBackToSearchModal ? <BackToSearch /> : null}
-        {showGetArticlesModal && <GetTheseArticles />}
+    return <AnimatePresence mode="wait">
+        {showBackToSearchModal ? <BackToSearch key="goBack" /> : null}
+        {showGetArticlesModal && <GetTheseArticles key="getContent" />}
     </AnimatePresence>
 }

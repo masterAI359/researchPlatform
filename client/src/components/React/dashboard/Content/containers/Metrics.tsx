@@ -15,11 +15,14 @@ const StatsSection = lazy(() => import('../../../charts/ResearchStats/StatsSecti
 export default function Metrics() {
     const { userResearch, stats } = useSelector((state: RootState) => state.userWork, shallowEqual);
     const userArticles = useSelector((state: RootState) => state.userdata.userArticles);
+    const map = useSelector((state: RootState) => state.userdata.articleMap);
     const hasInvestigations: boolean = Array.isArray(userResearch) && (userResearch.length > 0);
     const hasArticles: boolean = Array.isArray(userArticles) && (userArticles.length > 0);
     const noSavedData: boolean = (hasArticles === false) && (hasInvestigations === false);
     const statsPopulated: boolean = Object.values(stats).some((el: number) => el !== null);
     const dispatch = useDispatch<AppDispatch>();
+
+    console.log(map);
 
 
     useEffect(() => {

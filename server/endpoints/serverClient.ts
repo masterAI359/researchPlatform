@@ -90,6 +90,7 @@ export const supabaseLogin = async (req: Request, res: Response): Promise<void> 
             const { id } = sessionData.user;
             const content = await getUserContent(supabase, id);
             const userData: SupabaseLoginResponse = { sess: sessionData, userContent: content };
+            console.log(userData.userContent.userArticles?.articleMap);
             res.status(200).send(userData);
             return;
         } else {

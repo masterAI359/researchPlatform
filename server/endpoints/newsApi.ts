@@ -64,9 +64,11 @@ export async function newsApi(req: Request, res: Response) {
             return (decodeItem(article));
         });
 
-        const sliceOfData = decoded.slice(0, 5);
-        console.log(sliceOfData);
-        return res.json({ date: null, data: decoded });
+        const lookup = new Map(decoded.map((item: any) => [item.url, item]));
+
+        console.log(lookup.size);
+
+        return res.json({ date: null, data: decoded, optionsLookup: lookup });
     } catch (err) {
         console.error('newsApiArticles error:', err);
         return res.status(500).json({ error: 'Failed to fetch articles' });

@@ -270,7 +270,9 @@ declare global {
 
   interface LinkProps {
     article: ArticleType,
-    index: number
+    index: number,
+    removingModal?: boolean
+
   }
 
   interface SavedResponse {
@@ -408,6 +410,13 @@ declare global {
   }
 
   type DeleteStatus = "deleted" | "saved" | "noop" | "error";
+
+  interface SavedArticleRes {
+    data: {
+      articles: SavedArticle[],
+      articleMap: Map<string, SavedArticle>
+    }
+  }
 
 
 }

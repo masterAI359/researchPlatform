@@ -62,10 +62,39 @@ export interface ArticleSaveResponse {
     data: any
 }
 
+//export interface SavedArticle {
+//    title: string,
+//    provider: string,
+//    authors: string[],
+//    url: string,
+//    image_url: string,
+//    date: string,
+//    fallbackDate: string | null,
+//    summary: any,
+//    text: string,
+//    id: string,
+//    factual_reporting?: string | null,
+//    bias?: string | null,
+//    country?: string | null
+//};
+
+type Bias = | "Left"
+    | "Left-Center"
+    | "Center"
+    | "Right-Center"
+    | "Right"
+    | "Conspiracy-Pseudoscience"
+    | "Questionable"
+    | "LeastBiased"
+    | "Satire"
+    | "Pro-Science"
+    | "Unknown"
+    | null;
+
 export interface SavedArticle {
     title: string,
     provider: string,
-    authors: string[],
+    authors: string[] | string,
     url: string,
     image_url: string,
     date: string,
@@ -74,9 +103,9 @@ export interface SavedArticle {
     text: string,
     id: string,
     factual_reporting?: string | null,
-    bias?: string | null,
+    bias?: Bias,
     country?: string | null
-};
+}
 
 export interface ArticleBody {
     articleExists: boolean,
@@ -165,11 +194,16 @@ export interface UserContentResponse {
 };
 
 export interface UserContent {
-    userArticles: SavedArticle[] | null;
+    userArticles: SavedArticleRes | null;
     userResearch: Investigation[] | null;
 }
 
 export interface SupabaseLoginResponse {
     sess: Session;
     userContent: UserContent;
+}
+
+export interface SavedArticleRes {
+    articles: SavedArticle[],
+    articleMap: Map<string, SavedArticle>
 }

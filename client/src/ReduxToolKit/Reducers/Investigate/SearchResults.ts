@@ -12,8 +12,9 @@ export const RetrieveArticles = createAsyncThunk(
             if (!response) {
                 throw new Error(`Unable to query endpoint for article links: ${response.statusText}`);
             }
-            if (response.data) {
-                return response.data;
+            if (response) {
+                console.log(response);
+                return response;
             } else {
                 return
             }
@@ -23,13 +24,13 @@ export const RetrieveArticles = createAsyncThunk(
             return thunkAPI.rejectWithValue(error);
         };
 
-
     }
-)
+);
 
 
 interface ArticleArrayType {
     articleOptions: Array<ArticleType> | null,
+    optionsMap: Map<string, ArticleType> | null,
     status: string,
     pages: any,
     currentPage: number | null
@@ -37,10 +38,12 @@ interface ArticleArrayType {
 
 const initialState: ArticleArrayType = {
     articleOptions: null,
+    optionsMap: null,
     status: 'idle',
     pages: null,
     currentPage: 0
-}
+};
+
 
 
 export const SearchResultsSlice = createSlice({
@@ -49,7 +52,9 @@ export const SearchResultsSlice = createSlice({
     initialState: initialState,
     reducers: {
         searchResults: (state, action) => {
-            state.articleOptions = action.payload
+            state.articleOptions = action.payload.data;
+            state.optionsMap = action.payload.optionsLookup;
+            console.log(state.optionsMap);
         },
         getPages: (state, action) => {
             state.pages = action.payload
@@ -65,7 +70,8 @@ export const SearchResultsSlice = createSlice({
         },
         resetResults: () => initialState,
         resetArticles: (state) => {
-            state.articleOptions = null
+            state.articleOptions = null;
+            state.optionsMap = null;
         }
 
     },

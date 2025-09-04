@@ -1,8 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { act } from "react";
 
 interface UserContent {
     status: string,
-    userArticles: any,
+    userArticles: SavedArticle[],
+    articleMap: Map<number, any> | null
     error: any,
     contextForSupabase: string | null,
     ArticleToReview: any,
@@ -12,6 +14,7 @@ interface UserContent {
 const initialState: UserContent = {
     status: 'idle',
     userArticles: [],
+    articleMap: null,
     error: null,
     contextForSupabase: null,
     ArticleToReview: null,
@@ -35,6 +38,7 @@ export const fetchSavedArticles = createAsyncThunk(
             }
 
             const results = await response.json();
+            console.log(results)
             return results
 
 
@@ -53,7 +57,8 @@ const UserContentSlice = createSlice({
     reducers: {
         clearUser: () => { return initialState },
         populateArticles: (state, action) => {
-            state.userArticles = action.payload;
+            state.userArticles = action.payload.articles;
+            state.articleMap = action.payload.articleMap;
         },
         supabaseContext: (state, action) => {
             state.contextForSupabase = action.payload
@@ -81,7 +86,8 @@ const UserContentSlice = createSlice({
             .addCase(fetchSavedArticles.fulfilled, (state, action) => {
                 state.status = 'succeeded';
                 if (state.userArticles) {
-                    state.userArticles = action.payload
+                    state.userArticles = action.payload.articles;
+                    state.articleMap = action.payload.articleMap;
                 }
             })
             .addCase(fetchSavedArticles.rejected, (state, action) => {

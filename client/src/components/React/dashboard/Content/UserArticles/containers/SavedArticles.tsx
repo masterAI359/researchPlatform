@@ -14,11 +14,7 @@ export default function SavedArticles({ }) {
     const hasArticles: boolean = Array.isArray(userArticles) && (userArticles.length > 0);
     const dispatch = useDispatch<AppDispatch>();
 
-    useEffect(() => {
-        return () => {
-            dispatch(fetchSavedArticles());
-        };
-    }, []);
+
 
     return (
         <div className="w-full h-fit lg:px-10 xl:px-12 2xl:px-16">

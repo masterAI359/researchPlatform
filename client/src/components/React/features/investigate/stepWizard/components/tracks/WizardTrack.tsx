@@ -12,7 +12,7 @@ export default function WizardTrack({ thisStep }: Track): JSX.Element {
     const { stepper } = investigateState;
     const { step } = stepper;
     const animateTrack: boolean = useMemo(() => {
-        const show: boolean = (thisStep === step) || (thisStep < step);
+        const show: boolean = (thisStep < step);
         return show;
     }, [step]);
 

@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useSelector, useDispatch } from "react-redux";
 import { incrementBy } from "@/ReduxToolKit/Reducers/Investigate/Steps";
 import { RootState } from "@/ReduxToolKit/store";
+import NodeCaption from "../labels/NodeCaption";
 
 export default function ({ }) {
     const investigateState = useSelector((state: RootState) => state.investigation)
@@ -9,12 +10,12 @@ export default function ({ }) {
     const { step } = stepper
     const currentStep = step
     const dispatch = useDispatch()
-
+    const nodeNumber = 2;
 
 
     return (
-        <li className="flex flex-col md:w-full xs:w-full h-20 items-center">
-            <div className="flex  items-center justify-center w-full h-full">
+        <li className="flex flex-col md:w-full xs:w-full h-16 items-center">
+            <div className="flex  items-center justify-center w-full h-fit">
                 <motion.div
                     onClick={() => dispatch(incrementBy(2))}
                     className="flex items-center justify-center rounded-full xs:max-w-7 xs:max-h-7
@@ -42,14 +43,7 @@ export default function ({ }) {
                 />
             </div>
 
-            <motion.div
-                className="text-[0.6rem] sm:text-sm
-            text-white self-start text-left w-fit xl:ml-1"
-                animate={{ scale: 1, opacity: currentStep == 2 ? 1 : 0 }}
-                transition={{ duration: 0.7 }}
-            >
-                3. Biases
-            </motion.div>
+            <NodeCaption thisStep={nodeNumber} caption="Biases" />
 
         </li>
     )

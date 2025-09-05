@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useSelector, useDispatch } from "react-redux";
 import { incrementBy, denyIncrement, acceptedInput } from "@/ReduxToolKit/Reducers/Investigate/Steps";
 import { RootState } from "@/ReduxToolKit/store";
+import NodeCaption from "../labels/NodeCaption";
 
 export default function ({ }) {
     const investigateState = useSelector((state: RootState) => state.investigation)
@@ -22,8 +23,8 @@ export default function ({ }) {
     };
 
     return (
-        <li className="flex flex-col w-full h-20 items-center">
-            <div className="flex  items-center justify-center w-full h-full relative">
+        <li className="flex flex-col w-full h-16 items-center">
+            <div className="flex  items-center justify-center w-full h-fit relative">
                 <motion.div
                     onClick={() => selectStep(denied)}
                     className="flex items-center justify-center rounded-full max-w-7 max-h-7
@@ -49,15 +50,7 @@ export default function ({ }) {
                     style={{ transformOrigin: 'left' }}
                 />
             </div>
-            <motion.div
-                className="left-0 text-[0.6rem] sm:text-sm text-left bg-transparent
-            text-white self-start w-fit xl:ml-2"
-                animate={{ scale: 1, opacity: currentStep == 1 ? 1 : 0 }}
-                transition={{ duration: 0.7 }}
-            >
-                2. POV
-            </motion.div>
-
+            <NodeCaption caption="POV" thisStep={1} />
         </li>
     )
 }

@@ -1,9 +1,9 @@
 import { motion } from "framer-motion"
-import Node1 from "./Node1"
-import Node2 from "./Node2"
-import Node3 from "./Node3"
-import Node4 from "./Node4"
-import Node5 from "./Node5"
+import Node1 from "../components/nodes/Node1"
+import Node2 from "../components/nodes/Node2"
+import Node3 from "../components/nodes/Node3"
+import Node4 from "../components/nodes/Node4"
+import Node5 from "../components/nodes/Node5"
 
 export default function StepWizard({ currentStep, setCurrentStep }: any) {
 

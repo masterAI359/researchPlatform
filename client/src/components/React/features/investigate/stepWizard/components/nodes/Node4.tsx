@@ -2,6 +2,7 @@ import { RootState } from "@/ReduxToolKit/store";
 import { motion } from "framer-motion";
 import { useSelector, useDispatch } from "react-redux";
 import { incrementBy } from "@/ReduxToolKit/Reducers/Investigate/Steps";
+import NodeCaption from "../labels/NodeCaption";
 
 
 export default function Node4({ }) {
@@ -9,11 +10,12 @@ export default function Node4({ }) {
     const { stepper } = investigateState
     const { step } = stepper
     const currentStep = step
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const nodeNumber = 3;
 
     return (
-        <li className="flex flex-col w-full h-20 items-center">
-            <div className="flex  items-center justify-center w-full h-full">
+        <li className="flex flex-col w-full h-16 items-center">
+            <div className="flex  items-center justify-center w-full h-fit">
                 <motion.div
                     onClick={() => dispatch(incrementBy(3))}
                     className="flex items-center justify-center rounded-full max-w-7 max-h-7
@@ -39,16 +41,7 @@ export default function Node4({ }) {
                     style={{ transformOrigin: 'left' }}
                 />
             </div>
-
-            <motion.div
-                className="text-[0.6rem] sm:text-sm text-left
-text-white self-start w-full "
-                animate={{ scale: 1, opacity: currentStep == 3 ? 1 : 0 }}
-                transition={{ duration: 0.7 }}
-            >
-                4. Premises
-            </motion.div>
-
+            <NodeCaption thisStep={nodeNumber} caption="Premises" />
         </li>
     )
 }

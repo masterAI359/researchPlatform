@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useSelector, useDispatch } from "react-redux";
 import { incrementBy } from "@/ReduxToolKit/Reducers/Investigate/Steps";
 import { RootState } from "@/ReduxToolKit/store";
+import NodeCaption from "../labels/NodeCaption";
 
 export default function Node5({ }) {
     const investigateState = useSelector((state: RootState) => state.investigation)
@@ -9,11 +10,11 @@ export default function Node5({ }) {
     const { step } = stepper
     const currentStep = step
     const dispatch = useDispatch()
-
+    const nodeNumber: number = 4;
 
     return (
-        <li className="flex flex-col w-fit h-20 items-start">
-            <div className="flex items-center h-full w-fit relative">
+        <li className="flex flex-col w-fit h-16 items-start">
+            <div className="flex items-center h-fit w-fit relative">
                 <motion.div
                     onClick={() => dispatch(incrementBy(4))}
                     className="flex items-center justify-center rounded-full max-w-7 max-h-7
@@ -34,16 +35,7 @@ export default function Node5({ }) {
 
                 </motion.div>
             </div>
-
-
-            <motion.div
-                className="md:text-sm xs:text-xs text-left text-white w-full"
-                animate={{ opacity: currentStep == 4 ? 1 : 0 }}
-                transition={{ duration: 0.7 }}
-            >
-                <div className="w-fit text-[0.6rem] sm:text-sm text-left text-nowrap">5. Search</div>
-            </motion.div>
-
+            <NodeCaption caption="Search" thisStep={nodeNumber} />
         </li>
     )
 }

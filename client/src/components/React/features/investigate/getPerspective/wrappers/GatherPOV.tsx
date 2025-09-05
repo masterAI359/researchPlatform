@@ -1,11 +1,11 @@
 import { lazy, Suspense } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
-import StepWizard from "../../stepWizard/StepWizard";
+import StepWizard from "../../stepWizard/containers/StepWizard";
 import ComponentLoader from "@/components/React/Shared/Loaders/ComponentLoader";
 const WindowWrapper = lazy(() => import('./WindowWrapper'));
 
-export default function GatherPOV({ }) {
+export default function GatherPOV(): JSX.Element {
     const investigateState = useSelector((state: RootState) => state.investigation);
     const { showBlueSkySearch } = investigateState.display;
 

@@ -11,6 +11,7 @@ export default function SearchBar({ getSearchInput, handleSubmit, empty }) {
             onSubmit={(e) => handleSubmit(e)}
         >
             <input
+                autoFocus
                 onChange={(e) => getSearchInput(e)}
                 autoComplete="off"
                 type="text"

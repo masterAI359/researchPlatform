@@ -1,21 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
-
-export const fetchUserCredentials = createAsyncThunk(
-    'user/credentials',
-    async (session: any, thunkAPI) => {
-        try {
-            if (session) {
-                return session;
-            };
-        } catch (error) {
-            if (error) {
-                console.log(error.message)
-                return thunkAPI.rejectWithValue(error.message)
-            };
-        };
-    }
-);
+import { createSlice } from "@reduxjs/toolkit";
 
 interface Authentication {
     activeSession: boolean,
@@ -47,29 +30,13 @@ export const AuthenticationSlice = createSlice({
         getCurrentSession: (state, action) => {
             state.activeSession = action.payload
         },
+        authenticate: (state, action) => {
+            state.activeSession = action.payload;
+        },
         clearAuthSlice: () => { return initialState }
     },
-    extraReducers: (builder) => {
-
-        builder
-            .addCase(fetchUserCredentials.pending, (state, action) => {
-                state.status = 'pending'
-            })
-            .addCase(fetchUserCredentials.fulfilled, (state, action) => {
-                if (action.payload && action.payload.user) {
-                    state.status = 'fulfilled';
-                    state.activeSession = true;
-                } else {
-                    state.activeSession = false
-                }
-
-            })
-            .addCase(fetchUserCredentials.rejected, (state, action) => {
-                state.status = 'rejected'
-            })
-    }
 });
 
-export const { showSignOut, redirectFromLogin, clearAuthSlice, getCurrentSession } = AuthenticationSlice.actions;
+export const { showSignOut, redirectFromLogin, clearAuthSlice, getCurrentSession, authenticate } = AuthenticationSlice.actions;
 
 export default AuthenticationSlice.reducer;

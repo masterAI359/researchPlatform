@@ -7,9 +7,7 @@ const SavedArticles = lazy(() => import('../UserArticles/containers/SavedArticle
 const SavedResearchLayout = lazy(() => import('../SavedInvestigations/containers/SavedResearchLayout'));
 import ResearchReview from "../SavedInvestigations/containers/ResearchReview";
 import ArticleReview from "../UserArticles/containers/ArticleReview";
-import ComponentLoader from "../../../Shared/Loaders/ComponentLoader";
 import AccManagement from "../../ProfileNavigation/AccountManagement/AccManagement";
-import BackToSavedArticles from "../../ProfileNavigation/buttons/BackToSavedArticles";
 import DisplayLoader from "@/components/React/Shared/Loaders/DisplayLoader";
 import AppWindowIcon from "@/components/React/Shared/IconComponents/AppWindowIcon";
 

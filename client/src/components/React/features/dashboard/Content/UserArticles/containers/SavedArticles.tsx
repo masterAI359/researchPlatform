@@ -5,8 +5,6 @@ import { delays } from "@/motion/variants"
 import ScrolltoTop from "@/helpers/ScrollToTop"
 import NoSavedArticles from "../fallbacks/NoSavedArticles"
 import ArticlesScroller from "./ArticlesScroller";
-import { useEffect } from "react"
-import { fetchSavedArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
 
 export default function SavedArticles({ }) {
     const { userArticles,

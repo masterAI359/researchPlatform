@@ -1,9 +1,42 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUserCredentials } from '@/ReduxToolKit/Reducers/Athentication/Authentication';
+import { authenticate } from '@/ReduxToolKit/Reducers/Athentication/Authentication';
 import { AppDispatch, RootState } from '@/ReduxToolKit/store';
-import { fetchSavedArticles } from '@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer';
-import { fetchSavedInvestigations } from '@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations';
+import { populateArticles } from '@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer';
+import { populateResearch } from '@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations';
+import { User } from '@supabase/supabase-js';
+
+interface CurrentUser {
+    user: User,
+    data: UserContent
+};
+
+interface SavedArticleRes {
+    articles: SavedArticle[],
+    articleMap: Map<string, SavedArticle>
+};
+
+interface Investigation {
+    idea: string;
+    premises: string | null;
+    initial_perspective: string | null;
+    biases: string | null;
+    ending_perspective: string | null;
+    new_concepts: any;
+    changed_opinion: any;
+    takeaway: string | null;
+    had_merit: boolean | null;
+    user_id: string;
+    sources: string[] | null;
+    wikipedia_extracts: any;
+};
+
+interface UserContent {
+    userArticles: SavedArticleRes | null;
+    userResearch: Investigation[] | null;
+};
+
+
 
 export default function InitSession() {
     const activeSession = useSelector((state: RootState) => state.auth.activeSession);
@@ -33,14 +66,16 @@ export default function InitSession() {
                         throw new Error(`Unexpected error: ${res.status}`)
                     }
 
-                    const result = await res.json()
-                    const user = result?.user
-                    const id = user?.id
+                    const result: CurrentUser = await res.json();
+                    const user: User = result.user;
+                    const data: UserContent = result.data;
+                    const { userArticles, userResearch } = data;
+                    if (user && data) {
+                        dispatch(authenticate(true));
+                        dispatch(populateArticles(userArticles));
+                        dispatch(populateResearch(userResearch));
+                    }
 
-                    if (!id) throw new Error('User ID missing in response')
-                    dispatch(fetchUserCredentials(result));
-                    dispatch(fetchSavedArticles());
-                    dispatch(fetchSavedInvestigations());
 
                 } catch (error: any) {
                     console.warn('Session restore failed:', error?.message || error)

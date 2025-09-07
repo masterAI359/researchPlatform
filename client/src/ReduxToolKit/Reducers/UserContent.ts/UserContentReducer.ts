@@ -38,9 +38,7 @@ export const fetchSavedArticles = createAsyncThunk(
             }
 
             const results = await response.json();
-            console.log(results)
-            return results
-
+            return results;
 
         } catch (error) {
             console.error(error);

@@ -1,7 +1,7 @@
 import { RootState } from "@/ReduxToolKit/store"
 import { lazy, Suspense } from "react"
 import { useSelector } from "react-redux"
-const Article = lazy(() => import('../../../../Shared/Articles/SuccessFull/Article'))
+const Article = lazy(() => import('../../../../../Shared/Articles/SuccessFull/Article'))
 import ErrorBoundary from "@/components/React/Shared/ErrorBoundaries/ErrorBoundary"
 import LostData from "@/components/React/Shared/ErrorBoundaries/messages/LostData"
 import ArticleSkeleton from "@/components/React/Shared/Articles/skeletons/ArticleSkeleton";

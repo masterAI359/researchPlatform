@@ -1,24 +1,30 @@
 import { lazy, Suspense, useRef, useEffect } from "react";
-import PieSkeleton from "@/components/React/charts/skeletons/PieSkeleton";
-import DonutSkeleton from "@/components/React/charts/skeletons/DonutSkeleton";
+import PieSkeleton from "@/components/React/features/charts/skeletons/PieSkeleton";
+import DonutSkeleton from "@/components/React/features/charts/skeletons/DonutSkeleton";
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch } from "@/ReduxToolKit/store";
 import { RootState } from "@/ReduxToolKit/store";
 import { getBiasSnapshot, getReportingRatings } from "@/ReduxToolKit/Reducers/UserContent.ts/ChartSlice";
-const BiasChart = lazy(() => import('@/components/React/charts/DonutChart/BiasChart'))
-const IntegrityChart = lazy(() => import('@/components/React/charts/PieChart/IntegrityChart'))
+const BiasChart = lazy(() => import('@/components/React/features/charts/DonutChart/BiasChart'))
+const IntegrityChart = lazy(() => import('@/components/React/features/charts/PieChart/IntegrityChart'));
 
 export default function ChartJsWrapper() {
     const userArticles = useSelector((state: RootState) => state.userdata.userArticles);
     const biasRatings = useSelector((state: RootState) => state.chart.biasRatings);
     const ratingData = useSelector((state: RootState) => state.chart.reportingIntegrity);
     const dispatch = useDispatch<AppDispatch>();
+    const integrityWebWorker: string = '../../../../../../services/workers/integrityWorker.js';
+    const biasWebWorker: string = '../../../../../../services/workers/biasSnapshot.js';
+
 
     useEffect(() => {
         if (!Array.isArray(userArticles) || (userArticles.length === 0)) return;
         if (Array.isArray(ratingData) && (ratingData.length > 0)) return;
         const worker = new Worker(
-            new URL('../../../../../services/workers/integrityWorker.js', import.meta.url),
+            new URL(
+                integrityWebWorker,
+                import.meta.url
+            ),
             { type: 'module' }
         );
 
@@ -43,8 +49,12 @@ export default function ChartJsWrapper() {
 
     useEffect(() => {
         if (!userArticles || userArticles.length === 0) return;
+        if (Array.isArray(biasRatings) && (biasRatings.length > 0)) return;
         const biasWorker = new Worker(
-            new URL('../../../../../services/workers/biasSnapshot.js', import.meta.url),
+            new URL(
+                biasWebWorker,
+                import.meta.url
+            ),
             { type: 'module' }
         );
 

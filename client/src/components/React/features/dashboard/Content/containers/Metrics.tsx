@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { getStatsBreakdown } from "@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations";
 import type { StatBreakdownTypes } from "@/env";
 import ChartJsWrapper from "../UserCharts/ChartJsWrapper";
-import StatsSkeleton from "@/components/React/charts/skeletons/StatsSkeleton";
+import StatsSkeleton from "@/components/React/features/charts/skeletons/StatsSkeleton";
 import MetricsFallback from "../wrappers/MetricsFallback";
 const StatsSection = lazy(() => import('../../../charts/ResearchStats/StatsSection'));
 
@@ -21,8 +21,7 @@ export default function Metrics() {
     const noSavedData: boolean = (hasArticles === false) && (hasInvestigations === false);
     const statsPopulated: boolean = Object.values(stats).some((el: number) => el !== null);
     const dispatch = useDispatch<AppDispatch>();
-
-    console.log(map);
+    const statsWorker: string = '../../../../../../services/workers/statsWorker.js';
 
 
     useEffect(() => {
@@ -30,7 +29,7 @@ export default function Metrics() {
 
         const worker = new Worker(
             new URL(
-                '../../../../../services/workers/statsWorker.js',
+                statsWorker,
                 import.meta.url),
             {
                 type: 'module'

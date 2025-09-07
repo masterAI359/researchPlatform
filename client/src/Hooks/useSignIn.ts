@@ -27,7 +27,7 @@ export const useSignIn = (
                 dispatch(populateResearch(userContent.userResearch));
                 setSuccessful(true);
             } else {
-                setSuccessful(false)
+                setSuccessful(false);
             }
         };
 

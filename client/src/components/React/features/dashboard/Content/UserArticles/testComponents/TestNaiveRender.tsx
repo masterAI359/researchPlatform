@@ -12,7 +12,7 @@ export default function TestNaiveRender({ userArticles }) {
             {Array.isArray(userArticles) && (userArticles.length > 0)
                 && userArticles.map((article: any) => (<ArticleSaved key={article.title}>
                     <Title article={article} />
-                    <ArticleThumbnail article={article} deleteHandler={null} />
+                    <ArticleThumbnail articleDeleted={false} fastScroll={false} article={article} deleteHandler={null} />
                 </ArticleSaved>))}
         </div>
     </div>

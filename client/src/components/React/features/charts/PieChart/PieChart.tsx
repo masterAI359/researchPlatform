@@ -3,7 +3,7 @@ import { Pie } from 'react-chartjs-2';
 import { motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/ReduxToolKit/store';
-import ErrorBoundary from '../../Shared/ErrorBoundaries/ErrorBoundary';
+import ErrorBoundary from '../../../Shared/ErrorBoundaries/ErrorBoundary';
 import { ChartData } from 'chart.js';
 import React from 'react';
 ChartJS.register(ArcElement, Tooltip, Legend);

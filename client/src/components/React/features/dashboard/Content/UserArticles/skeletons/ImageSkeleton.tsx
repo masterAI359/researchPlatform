@@ -1,7 +1,5 @@
 import React from "react"
 
-//sm:w-60 md:w-72 lg:w-80 xl:w-96
-
 function ImageSkeleton() {
     return <div className="relative aspect-[16/9] object-cover 
     sm:aspect-[2/1] lg:aspect-[3/2] bg-[#26272B] 

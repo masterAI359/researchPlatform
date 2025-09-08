@@ -13,7 +13,6 @@ export const RetrieveArticles = createAsyncThunk(
                 throw new Error(`Unable to query endpoint for article links: ${response.statusText}`);
             }
             if (response) {
-                console.log(response);
                 return response;
             } else {
                 return

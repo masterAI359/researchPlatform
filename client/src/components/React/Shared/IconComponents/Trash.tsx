@@ -1,5 +1,5 @@
 import React from "react";
-import TrashTooltip from "../../dashboard/Content/UserArticles/tooltips/TrashTooltip";
+import TrashTooltip from "../../features/dashboard/Content/UserArticles/tooltips/TrashTooltip";
 
 interface Trash {
     deleteHandler?: (article: SavedArticle) => Promise<void>,

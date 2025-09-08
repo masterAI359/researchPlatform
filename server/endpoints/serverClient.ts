@@ -13,7 +13,7 @@ import {
     ChangePasswordSuccess, CurrentUser, FeedbackBody, FeedbackResponse, GetLinkBody, GetLinkResponse,
     InvestigationBody, LoginBody, NewUser, SavedArticle, SignUpRequestBody, SupabaseSession
 } from './interfaces.js';
-import { SupabaseLoginResponse } from '../types/types.js'
+import { SupabaseLoginResponse, UserContent } from '../types/types.js'
 import { Database } from './databaseInterfaces.js';
 import { saveArticleForUser } from '../services/saveArticle.js';
 import { deleteArticleForUser } from '../services/deleteArticle.js';
@@ -48,17 +48,17 @@ export const getUserAndSupabase = async (req: Request, res: Response): Promise<S
 
 
 export const getCurrentUser = async (req: Request, res: Response<CurrentUser>): Promise<void> => {
-
+    const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
     const session = await getUserAndSupabase(req, res);
     if (!session) return;
     const { user } = session;
-    res.status(200).json({ user });
+    const { id } = user;
+    const content: UserContent = await getUserContent(supabase, id);
+    const userData = { sess: session, userContent: content };
+    res.status(200).json({ user: user, data: userData.userContent });
     return;
 };
 
-
-//TODO: fetch all of the user's data from the 'articles' and 'investigations' tables 
-//PURPOSE: streamline login and data population on the user dashboard, currently too fractured to have a truly seamless UX
 
 export const supabaseLogin = async (req: Request, res: Response): Promise<void> => {
     const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);

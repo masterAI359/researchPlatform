@@ -1,12 +1,19 @@
 import { Link, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { shallowEqual, useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
-import SignOutModal from "@/components/React/Session/forms/AuthForms/SignOutModal";
+import SignOutModal from "@/components/React/session/forms/AuthForms/SignOutModal";
+
+
 export default function DashboardButton(): JSX.Element {
-    const signOut = useSelector((state: RootState) => state.auth.signOut);
-    const activeSession = useSelector((state: RootState) => state.auth.activeSession);
+    const { signOut, activeSession } = useSelector((state: RootState) => state.auth,
+        shallowEqual);
     const location = useLocation();
-    const active: boolean = (location.pathname === '/Profile') || (location.pathname === '/Login');
+    const active: boolean = (
+        location.pathname === '/Profile'
+    )
+        || (
+            location.pathname === '/Login'
+        );
 
     return (
         <div className="relative block">

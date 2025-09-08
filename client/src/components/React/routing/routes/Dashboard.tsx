@@ -1,23 +1,25 @@
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { useIsMobile } from "@/Hooks/useIsMobile";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useLayoutEffect } from "react";
 import { AppDispatch } from "@/ReduxToolKit/store";
 import { RootState } from "@/ReduxToolKit/store";
 import { useEffect } from "react";
 import { ScrollUp } from "../../../../helpers/ScrollToTop";
-import Display from "../../dashboard/Content/containers/Display";
-import { presentDashboard } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
-import FooterBarLoader from "../../dashboard/ProfileNavigation/skeletons/FooterBarSkeleton";
-import SidebarLoader from "../../dashboard/ProfileNavigation/skeletons/SidebarSkeleton";
+import Display from "../../features/dashboard/Content/containers/Display";
+import { presentDashboard } from "@/ReduxToolKit/Reducers/UserContent/ProfileNavigationSlice";
+import FooterBarLoader from "../../features/dashboard/ProfileNavigation/skeletons/FooterBarSkeleton";
+import SidebarLoader from "../../features/dashboard/ProfileNavigation/skeletons/SidebarSkeleton";
 import { AnimatePresence } from "framer-motion";
-import SignOutModal from "../../Session/forms/AuthForms/SignOutModal";
-const MobileProfileNav = lazy(() => import('../../dashboard/ProfileNavigation/mobile/ProfileMenu'));
-const SideBar = lazy(() => import('../../dashboard/ProfileNavigation/SideBar/Sidebar'));
+import SignOutModal from "../../session/forms/AuthForms/SignOutModal";
+import { NavigateFunction, useNavigate } from "react-router-dom";
+const MobileProfileNav = lazy(() => import('../../features/dashboard/ProfileNavigation/mobile/ProfileMenu'));
+const SideBar = lazy(() => import('../../features/dashboard/ProfileNavigation/SideBar/Sidebar'));
 
 
 export default function Dashboard(): JSX.Element {
     const isMobile = useIsMobile();
-    const signingOut = useSelector((state: RootState) => state.auth.signOut);
+    const { signingOut, activeSession } = useSelector((state: RootState) => state.auth, shallowEqual);
+    const navigate: NavigateFunction = useNavigate();
     const { displayThisArticle, displayThisInvestigation } = useSelector(
         (s: RootState) => ({
             displayThisArticle: s.profileNav.displayThisArticle,
@@ -30,9 +32,13 @@ export default function Dashboard(): JSX.Element {
     useEffect(() => {
         ScrollUp();
 
-        return () => {
-            dispatch(presentDashboard());
+        if (!activeSession) {
+            navigate('/');
         };
+    }, []);
+
+    useLayoutEffect(() => {
+        dispatch(presentDashboard());
     }, []);
 
 

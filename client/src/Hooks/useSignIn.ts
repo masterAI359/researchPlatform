@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { supabaseSignIn } from "@/services/supabase/SupabaseData";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/ReduxToolKit/store";
-import { populateArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
-import { populateResearch } from "@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations"
-import { fetchUserCredentials } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
+import { populateArticles } from "@/ReduxToolKit/Reducers/UserContent/UserContentReducer"
+import { populateResearch } from "@/ReduxToolKit/Reducers/UserContent/UserInvestigations"
+import { authenticate } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
 
 export const useSignIn = (
     userEmail: string | null,
@@ -21,13 +21,13 @@ export const useSignIn = (
         const executeSignin = async () => {
             const signin = await supabaseSignIn(userEmail, userPassword);
             if (signin.message === 'success' && signin.session) {
-                const { sess, userContent } = signin.session;
-                dispatch(fetchUserCredentials(sess));
+                const { userContent } = signin.session;
+                dispatch(authenticate(true));
                 dispatch(populateArticles(userContent.userArticles));
                 dispatch(populateResearch(userContent.userResearch));
                 setSuccessful(true);
             } else {
-                setSuccessful(false)
+                setSuccessful(false);
             }
         };
 

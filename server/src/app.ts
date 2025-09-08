@@ -9,7 +9,6 @@ import cors from 'cors';
 import mime from 'mime'
 import cookieParser from 'cookie-parser';
 const app = express();
-import { bingArticles } from '../endpoints/bingApi.js';
 import { tldrSummary } from '../endpoints/tldrSummary.js';
 import { deleteUser } from '../endpoints/deleteUser.js';
 import { searchBlueSkyPosts } from '../endpoints/blueskyApi.js';

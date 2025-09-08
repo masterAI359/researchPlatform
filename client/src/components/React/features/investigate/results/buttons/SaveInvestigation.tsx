@@ -1,9 +1,9 @@
 import { RootState } from "@/ReduxToolKit/store"
 import { useSelector } from "react-redux"
-import { fetchSavedInvestigations } from "@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations"
+import { fetchSavedInvestigations } from "@/ReduxToolKit/Reducers/UserContent/UserInvestigations"
 import { useDispatch } from "react-redux"
 import { AppDispatch } from "@/ReduxToolKit/store"
-import { saveUserInvestigation } from "@/ReduxToolKit/Reducers/UserContent.ts/SaveInvestigationSlice"
+import { saveUserInvestigation } from "@/ReduxToolKit/Reducers/UserContent/SaveInvestigationSlice"
 import { useEffect, useState } from "react"
 
 export default function SaveInvestigation({ }) {

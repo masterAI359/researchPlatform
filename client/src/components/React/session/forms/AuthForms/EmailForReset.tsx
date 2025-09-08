@@ -1,4 +1,4 @@
-import GetLink from "../ResetOptions/GetLink";
+import GetLink from "@/components/React/session/forms/ResetOptions/GetLink";
 
 
 export default function EmailForReset() {

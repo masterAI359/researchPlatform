@@ -4,7 +4,7 @@ import { AnimatePresence } from "framer-motion";
 import { loginStatus } from "@/components/React/Session/notifications/AuthStatus";
 import AuthNotification from "../../notifications/AuthNotification";
 import ScrolltoTop from "@/helpers/ScrollToTop";
-import LoginOperations from "../containers/LoginOperations";
+import LoginOperations from "@/components/React/session/forms/containers/LoginOperations";
 import { useCheckCredentials } from "@/Hooks/useCheckCredentials";
 import { useSignIn } from "@/Hooks/useSignIn";
 

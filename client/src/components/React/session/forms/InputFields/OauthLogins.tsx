@@ -1,6 +1,5 @@
 import { googleAuth } from "@/helpers/OauthLogin"
 
-//staging branch establishment
 
 export default function OAuthLogins() {
 

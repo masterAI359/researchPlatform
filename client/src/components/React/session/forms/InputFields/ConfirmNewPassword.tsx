@@ -1,8 +1,7 @@
 import { RootState } from "@/ReduxToolKit/store"
 import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { confirmPassword } from "@/helpers/validation"
-import { getSecondPassword } from "@/ReduxToolKit/Reducers/Athentication/NewUserSlice"
 
 interface Confirm {
     acceptedInput?: boolean,

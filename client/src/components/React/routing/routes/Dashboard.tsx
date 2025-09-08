@@ -11,7 +11,7 @@ import FooterBarLoader from "../../features/dashboard/ProfileNavigation/skeleton
 import SidebarLoader from "../../features/dashboard/ProfileNavigation/skeletons/SidebarSkeleton";
 import { AnimatePresence } from "framer-motion";
 import SignOutModal from "../../Session/forms/AuthForms/SignOutModal";
-import { fetchSavedArticles } from "@/ReduxToolKit/Reducers/UserContent/UserContentReducer";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 const MobileProfileNav = lazy(() => import('../../features/dashboard/ProfileNavigation/mobile/ProfileMenu'));
 const SideBar = lazy(() => import('../../features/dashboard/ProfileNavigation/SideBar/Sidebar'));
 
@@ -19,7 +19,7 @@ const SideBar = lazy(() => import('../../features/dashboard/ProfileNavigation/Si
 export default function Dashboard(): JSX.Element {
     const isMobile = useIsMobile();
     const { signingOut, activeSession } = useSelector((state: RootState) => state.auth, shallowEqual);
-
+    const navigate: NavigateFunction = useNavigate();
     const { displayThisArticle, displayThisInvestigation } = useSelector(
         (s: RootState) => ({
             displayThisArticle: s.profileNav.displayThisArticle,
@@ -32,7 +32,9 @@ export default function Dashboard(): JSX.Element {
     useEffect(() => {
         ScrollUp();
 
-
+        if (!activeSession) {
+            navigate('/');
+        };
     }, []);
 
     useLayoutEffect(() => {

@@ -18,7 +18,7 @@ export function useSaveArticle(article: ArticleToSave, setShowNotification) {
 
     const dbId = useMemo(() => {
         const saved = Array.isArray(userArticles)
-            ? userArticles.find(a => a.article_url === article.article_url)
+            ? userArticles.find(a => a.url === article.article_url)
             : undefined;
         return saved?.id ?? null;
     }, [userArticles, article.article_url]);
@@ -69,7 +69,7 @@ export function useSaveArticle(article: ArticleToSave, setShowNotification) {
         }
 
         const articleAlreadySaved = userArticles.some(
-            (article) => article.article_url === dataToSave.url
+            (article) => article.url === dataToSave.url
         );
 
         const resp = await saveArticle(dataToSave, articleAlreadySaved);

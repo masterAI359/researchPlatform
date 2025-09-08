@@ -17,8 +17,8 @@ export default function Bookmark({ article, showNotification, setShowNotificatio
 
     const urls = useMemo((): Set<string> => {
         if (Array.isArray(userArticles) && (userArticles.length > 0)) {
-            return new Set(userArticles.map((article: ScrapedArticle) =>
-                article.article_url)
+            return new Set(userArticles.map((article: SavedArticle) =>
+                article.url)
             )
         };
     }, [userArticles]);

@@ -10,7 +10,9 @@ import type { StatBreakdownTypes } from "@/env";
 import ChartJsWrapper from "../UserCharts/ChartJsWrapper";
 import StatsSkeleton from "@/components/React/features/charts/skeletons/StatsSkeleton";
 import MetricsFallback from "../wrappers/MetricsFallback";
+import StatsWorker from '@/services/workers/statsWorker.js?worker';
 const StatsSection = lazy(() => import('../../../charts/ResearchStats/StatsSection'));
+
 
 export default function Metrics() {
     const { userResearch, stats } = useSelector((state: RootState) => state.userWork, shallowEqual);
@@ -21,21 +23,21 @@ export default function Metrics() {
     const noSavedData: boolean = (hasArticles === false) && (hasInvestigations === false);
     const statsPopulated: boolean = Object.values(stats).some((el: number) => el !== null);
     const dispatch = useDispatch<AppDispatch>();
-    const statsWorker: string = '../../../../../../services/workers/statsWorker.js';
 
 
     useEffect(() => {
         if (!hasInvestigations || statsPopulated) return;
 
-        const worker = new Worker(
-            new URL(
-                statsWorker,
-                import.meta.url),
-            {
-                type: 'module'
-            },
-        );
-
+        const worker = new StatsWorker();
+        //  const worker = new Worker(
+        //      new URL(
+        //          '../../../../../../services/workers/statsWorker.js',
+        //          import.meta.url),
+        //      {
+        //          type: 'module'
+        //      },
+        //  );
+        //
         let raf: any = 0;
 
         worker.onmessage = (e: MessageEvent) => {

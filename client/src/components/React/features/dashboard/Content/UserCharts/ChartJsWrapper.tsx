@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch } from "@/ReduxToolKit/store";
 import { RootState } from "@/ReduxToolKit/store";
 import { getBiasSnapshot, getReportingRatings } from "@/ReduxToolKit/Reducers/UserContent/ChartSlice";
+import BiasWebWorker from '@/services/workers/biasSnapshot.js?worker';
+import IntegrityWebWorker from '@/services/workers/integrityWorker.js?worker';
 const BiasChart = lazy(() => import('@/components/React/features/charts/DonutChart/BiasChart'))
 const IntegrityChart = lazy(() => import('@/components/React/features/charts/PieChart/IntegrityChart'));
 
@@ -13,20 +15,23 @@ export default function ChartJsWrapper() {
     const biasRatings = useSelector((state: RootState) => state.chart.biasRatings);
     const ratingData = useSelector((state: RootState) => state.chart.reportingIntegrity);
     const dispatch = useDispatch<AppDispatch>();
-    const integrityWebWorker: string = '../../../../../../services/workers/integrityWorker.js';
-    const biasWebWorker: string = '../../../../../../services/workers/biasSnapshot.js';
+    //  const integrityWebWorker: string = '../../../../../../services/workers/integrityWorker.js';
+    //  const biasWebWorker: string = '../../../../../../services/workers/biasSnapshot.js';
 
 
     useEffect(() => {
         if (!Array.isArray(userArticles) || (userArticles.length === 0)) return;
         if (Array.isArray(ratingData) && (ratingData.length > 0)) return;
-        const worker = new Worker(
-            new URL(
-                integrityWebWorker,
-                import.meta.url
-            ),
-            { type: 'module' }
-        );
+
+        const worker = new IntegrityWebWorker();
+
+        // const worker = new Worker(
+        //     new URL(
+        //         integrityWebWorker,
+        //         import.meta.url
+        //     ),
+        //     { type: 'module' }
+        // );
 
         let raf: any = 0;
 
@@ -50,13 +55,15 @@ export default function ChartJsWrapper() {
     useEffect(() => {
         if (!userArticles || userArticles.length === 0) return;
         if (Array.isArray(biasRatings) && (biasRatings.length > 0)) return;
-        const biasWorker = new Worker(
-            new URL(
-                biasWebWorker,
-                import.meta.url
-            ),
-            { type: 'module' }
-        );
+
+        const biasWorker = new BiasWebWorker();
+        // const biasWorker = new Worker(
+        //     new URL(
+        //         biasWebWorker,
+        //         import.meta.url
+        //     ),
+        //     { type: 'module' }
+        // );
 
         let raf: any = 0;
 

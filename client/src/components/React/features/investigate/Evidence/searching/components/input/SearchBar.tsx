@@ -1,6 +1,13 @@
+import React from "react";
 import SearchButton from "../buttons/SearchButton";
 
-export default function SearchBar({ getSearchInput, handleSubmit, empty }) {
+interface SearchBarProps {
+    empty: boolean,
+    getSearchInput: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void
+}
+
+export default function SearchBar({ getSearchInput, handleSubmit, empty }: SearchBarProps): JSX.Element {
 
     return (
         <form
@@ -19,7 +26,7 @@ export default function SearchBar({ getSearchInput, handleSubmit, empty }) {
                 className="bg-transparent text-white w-full
                border-none h-12 xs:p-3  md:p-2 rounded-full relative focus:ring-0
                transition-colors text-base md:text-lg flex items-center"
-                placeholder="search" />
+                placeholder="search for articles" />
             <SearchButton empty={empty} />
         </form>
     );

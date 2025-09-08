@@ -1,4 +1,4 @@
-import MobileMenu from "./Mobile/MobileMenu"
+import MobileMenu from "@/components/React/Shared/Navigation/Mobile/MobileMenu";
 import DeskTopMenu from "./Desktop/containers/DeskTopMenu"
 import useMediaQuery from "@/Hooks/useMediaQuery"
 import React from "react";

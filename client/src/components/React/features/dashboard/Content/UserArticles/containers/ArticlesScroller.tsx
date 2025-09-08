@@ -9,8 +9,8 @@ import { useCallback, useMemo, useState } from "react";
 import { presentThisArticle } from "@/ReduxToolKit/Reducers/UserContent/ProfileNavigationSlice";
 import { saveArticle } from "@/services/supabase/SupabaseData";
 import { AnimatePresence } from "framer-motion";
-import AuthNotification from "@/components/React/Session/notifications/AuthNotification";
-import { deleteArticleStatus } from "@/components/React/Session/notifications/AuthStatus";
+import AuthNotification from "@/components/React/session/notifications/AuthNotification";
+import { deleteArticleStatus } from "@/components/React/session/notifications/AuthStatus";
 import Title from "../components/Title";
 import ArticleThumbnail from "../components/ArticleThumbnail";
 import { articleScrollerStyles } from "../scrollerStyles/articleScrollStyles";
@@ -24,10 +24,6 @@ export default function ArticlesScroller() {
     const [deletedIds, setDeletedIds] = useState<Set<number>>(new Set());
     const [deleted, setDeleted] = useState<boolean | null>(null);
     const dispatch = useDispatch<AppDispatch>();
-
-
-
-
 
     const cleanup = () => {
         setDeleted(null);
@@ -46,7 +42,6 @@ export default function ArticlesScroller() {
             return next;
         });
     };
-
 
 
     const deleteHandler = useCallback(

@@ -10,46 +10,35 @@ import SearchBar from "./SearchBar";
 
 export default function Search({ }) {
   const investigateState = useSelector((state: RootState) => state.investigation)
-  const { pov, read, search } = investigateState
+  const { pov, read } = investigateState
   const { query, searching } = pov
-  const { status } = search
   const { getContent } = read
   const dispatch = useDispatch<AppDispatch>();
   const empty: boolean = (query === null) || (query === '');
 
-  const getSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const getSearchInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    dispatch(getQuery(e.target.value));
+  };
 
-    dispatch(getQuery(e.target.value))
-  }
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    dispatch(incrementPageBy(0))
-    dispatch(resetArticles())
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    dispatch(incrementPageBy(0));
+    dispatch(resetArticles());
     dispatch(RetrieveArticles(encodeURIComponent(query)));
-  }
+  };
 
   useEffect(() => {
     if (query === null) return;
 
     if (getContent) {
       dispatch(displaySearch(false))
-    }
-
-  }, [searching, getContent, query])
+    };
+  }, [searching, getContent, query]);
 
   return (
     <div className="block box-border min-w-full max-w-full mx-auto xs:px-0 md:px-2 2xl:h-full no-scrollbar">
-
       <div
         className="text-center w-full md:mx-auto">
-        <div className="w-full flex justify-center">
-          <h2
-            className="xs:text-lg md:text-xl lg:text-2xl tracking-tight font-light  text-white">
-            Search for articles
-          </h2>
-        </div>
-
         <div
           className="inline-flex flex-wrap items-center w-full">
           <div
@@ -58,10 +47,13 @@ export default function Search({ }) {
               fallback={<ErrMessage message="issue on search component" />}
             >
               <div
-                className="relative mt-4 lg:mb-4 xs:p-1 mx-auto flex justify-center items-center">
+                className="relative lg:mb-2 xs:p-1 mx-auto flex justify-center items-center">
 
-                <SearchBar empty={empty} getSearchInput={getSearchInput} handleSubmit={handleSubmit} />
-
+                <SearchBar
+                  empty={empty}
+                  getSearchInput={getSearchInput}
+                  handleSubmit={handleSubmit}
+                />
               </div>
             </ErrorBoundary>
 

@@ -3,7 +3,7 @@ import Challenge from '../../features/LandingPage/Components/Challenge';
 import ChartingFeatures from '../../features/LandingPage/Components/ChartingFeatures';
 import { useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/ReduxToolKit/store';
-import SignOutModal from '../../Session/forms/AuthForms/SignOutModal';
+import SignOutModal from '../../session/forms/AuthForms/SignOutModal';
 import AnimationWrapper from '../../features/LandingPage/containers/AnimationWrapper';
 import { getStoredPosts, searchBlueSky } from '@/ReduxToolKit/Reducers/BlueSky/BlueSkySlice';
 import { useDispatch } from 'react-redux';

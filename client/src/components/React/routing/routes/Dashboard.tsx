@@ -10,7 +10,7 @@ import { presentDashboard } from "@/ReduxToolKit/Reducers/UserContent/ProfileNav
 import FooterBarLoader from "../../features/dashboard/ProfileNavigation/skeletons/FooterBarSkeleton";
 import SidebarLoader from "../../features/dashboard/ProfileNavigation/skeletons/SidebarSkeleton";
 import { AnimatePresence } from "framer-motion";
-import SignOutModal from "../../Session/forms/AuthForms/SignOutModal";
+import SignOutModal from "../../session/forms/AuthForms/SignOutModal";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 const MobileProfileNav = lazy(() => import('../../features/dashboard/ProfileNavigation/mobile/ProfileMenu'));
 const SideBar = lazy(() => import('../../features/dashboard/ProfileNavigation/SideBar/Sidebar'));

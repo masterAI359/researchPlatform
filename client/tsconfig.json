@@ -18,6 +18,7 @@
     "baseUrl": ".",
     "allowImportingTsExtensions": true,
     "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
     "checkJs": false,
     "allowJs": true,
     "paths": {

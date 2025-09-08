@@ -1,8 +1,4 @@
-
-
-
 export default function EditorControls({ editor }) {
-
 
     return (
         <div className="control-group w-full flex  bg-white/10 rounded-md">

@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { shallowEqual, useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
-import SignOutModal from "@/components/React/Session/forms/AuthForms/SignOutModal";
+import SignOutModal from "@/components/React/session/forms/AuthForms/SignOutModal";
 
 
 export default function DashboardButton(): JSX.Element {

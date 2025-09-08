@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux"
-import { presentArticles, presentResearch, presentManagement, presentDashboard } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
+import { presentArticles, presentResearch, presentManagement, presentDashboard } from "@/ReduxToolKit/Reducers/UserContent/ProfileNavigationSlice";
 import { RootState } from "@/ReduxToolKit/store";
 import { createPortal } from "react-dom";
 import React from "react";

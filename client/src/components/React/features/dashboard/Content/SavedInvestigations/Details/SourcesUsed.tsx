@@ -1,8 +1,8 @@
 import { RootState } from "@/ReduxToolKit/store"
 import { useDispatch, useSelector } from "react-redux"
-import { readSavedArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
+import { readSavedArticle } from "@/ReduxToolKit/Reducers/UserContent/UserContentReducer"
 import ErrMessage from "@/components/React/Shared/ErrorBoundaries/messages/ErrMessage"
-import { presentThisArticle } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice"
+import { presentThisArticle } from "@/ReduxToolKit/Reducers/UserContent/ProfileNavigationSlice"
 
 export function SourcesFromResearch() {
   const sources = useSelector((state: RootState) => state.userWork.sourcesToReview);

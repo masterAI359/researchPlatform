@@ -2,7 +2,7 @@ import { useCallback, useMemo, useRef, useState } from "react";
 import { saveArticle } from "@/services/supabase/SupabaseData";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/ReduxToolKit/store";
-import { fetchSavedArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer";
+import { fetchSavedArticles } from "@/ReduxToolKit/Reducers/UserContent/UserContentReducer";
 import { NotificationState, ArticleToSave } from "@/env";
 
 export function useSaveArticle(article: ArticleToSave, setShowNotification) {

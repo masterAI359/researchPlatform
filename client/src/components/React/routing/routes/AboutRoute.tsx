@@ -1,7 +1,7 @@
 import { useEffect } from "react"
-import AboutHeader from "../../About/AboutHeader"
-import Stack from "../../About/Stack"
-import WhyElenchus from "../../About/WhyElenchus"
+import AboutHeader from "../../features/about/AboutHeader"
+import Stack from "../../features/about/Stack"
+import WhyElenchus from "../../features/about/WhyElenchus"
 import { ScrollUp } from "../../../../helpers/ScrollToTop"
 
 

@@ -8,7 +8,7 @@ import ArticleSkeleton from "@/components/React/Shared/Articles/skeletons/Articl
 import { motion } from "framer-motion";
 import { variants } from "@/motion/variants";
 import DetailView from "../../../ProfileNavigation/mobile/DetailView"
-import { presentArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice"
+import { presentArticles } from "@/ReduxToolKit/Reducers/UserContent/ProfileNavigationSlice"
 
 export default function ArticleReview() {
     const savedArticle = useSelector((state: RootState) => state.userdata.ArticleToReview);

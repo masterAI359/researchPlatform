@@ -4,7 +4,7 @@ import MetricsIcon from "@/components/React/Shared/IconComponents/MetricsIcon";
 import InvestigationsIcon from "@/components/React/Shared/IconComponents/InvestigateIcon";
 import { shallowEqual, useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
-import { presentDashboard, presentResearch, presentArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
+import { presentDashboard, presentResearch, presentArticles } from "@/ReduxToolKit/Reducers/UserContent/ProfileNavigationSlice";
 import React from "react";
 
 function DisplayOptions() {

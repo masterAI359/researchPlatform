@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { presentDeleteModal } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
+import { presentDeleteModal } from "@/ReduxToolKit/Reducers/UserContent/ProfileNavigationSlice";
 import { useNavigate } from "react-router-dom";
 import ScrolltoTop from "@/helpers/ScrollToTop";
 

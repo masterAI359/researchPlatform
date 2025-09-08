@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { supabaseSignIn } from "@/services/supabase/SupabaseData";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/ReduxToolKit/store";
-import { populateArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer"
-import { populateResearch } from "@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations"
+import { populateArticles } from "@/ReduxToolKit/Reducers/UserContent/UserContentReducer"
+import { populateResearch } from "@/ReduxToolKit/Reducers/UserContent/UserInvestigations"
 import { authenticate } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
 
 export const useSignIn = (

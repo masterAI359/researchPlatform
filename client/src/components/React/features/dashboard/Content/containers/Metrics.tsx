@@ -5,7 +5,7 @@ import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { RootState, AppDispatch } from "@/ReduxToolKit/store";
 import { variants } from "@/motion/variants";
 import { useEffect } from "react";
-import { getStatsBreakdown } from "@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations";
+import { getStatsBreakdown } from "@/ReduxToolKit/Reducers/UserContent/UserInvestigations";
 import type { StatBreakdownTypes } from "@/env";
 import ChartJsWrapper from "../UserCharts/ChartJsWrapper";
 import StatsSkeleton from "@/components/React/features/charts/skeletons/StatsSkeleton";

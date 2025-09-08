@@ -4,7 +4,7 @@ import DonutSkeleton from "@/components/React/features/charts/skeletons/DonutSke
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch } from "@/ReduxToolKit/store";
 import { RootState } from "@/ReduxToolKit/store";
-import { getBiasSnapshot, getReportingRatings } from "@/ReduxToolKit/Reducers/UserContent.ts/ChartSlice";
+import { getBiasSnapshot, getReportingRatings } from "@/ReduxToolKit/Reducers/UserContent/ChartSlice";
 const BiasChart = lazy(() => import('@/components/React/features/charts/DonutChart/BiasChart'))
 const IntegrityChart = lazy(() => import('@/components/React/features/charts/PieChart/IntegrityChart'));
 

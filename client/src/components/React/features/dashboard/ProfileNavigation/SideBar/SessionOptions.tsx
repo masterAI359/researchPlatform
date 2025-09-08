@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
-import { presentManagement } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
+import { presentManagement } from "@/ReduxToolKit/Reducers/UserContent/ProfileNavigationSlice";
 import { showSignOut } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
 import DashboardOption from "./DashboardOption";
 import SignoutIcon from "@/components/React/Shared/IconComponents/SignoutIcon";

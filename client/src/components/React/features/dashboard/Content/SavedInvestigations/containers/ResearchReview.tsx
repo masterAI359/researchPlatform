@@ -3,14 +3,14 @@ import { SourcesFromResearch } from "../Details/SourcesUsed"
 import { RootState } from "@/ReduxToolKit/store"
 import { useLayoutEffect } from "react"
 import { getInvestigationSources } from "@/services/supabase/SupabaseData"
-import { getSourcesToReview } from "@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations"
+import { getSourcesToReview } from "@/ReduxToolKit/Reducers/UserContent/UserInvestigations"
 import DetailsTable from "../Details/DetailsTable"
 import { Terms } from "../Details/WikipediaTerms"
 import ErrorBoundary from "@/components/React/Shared/ErrorBoundaries/ErrorBoundary"
 import LostData from "@/components/React/Shared/ErrorBoundaries/messages/LostData"
 import ScrolltoTop from "@/helpers/ScrollToTop"
 import DetailView from "../../../ProfileNavigation/mobile/DetailView"
-import { presentResearch } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice"
+import { presentResearch } from "@/ReduxToolKit/Reducers/UserContent/ProfileNavigationSlice"
 
 export default function ResearchReview() {
     const investigation = useSelector((state: RootState) => state.userWork.investigationToReview)

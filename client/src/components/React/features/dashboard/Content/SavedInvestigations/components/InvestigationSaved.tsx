@@ -1,7 +1,7 @@
 import Thumbnail from "./Thumbnail"
-import { reviewThisResearch } from "@/ReduxToolKit/Reducers/UserContent.ts/UserInvestigations"
+import { reviewThisResearch } from "@/ReduxToolKit/Reducers/UserContent/UserInvestigations"
 import { useDispatch } from "react-redux"
-import { presentThisInvestigation } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
+import { presentThisInvestigation } from "@/ReduxToolKit/Reducers/UserContent/ProfileNavigationSlice";
 import { limitString } from "@/helpers/Presentation";
 
 export default function PriorInvestigation({ investigation, inSeek }) {

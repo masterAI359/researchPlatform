@@ -9,10 +9,10 @@ import DisplayLoader from "../../Shared/Loaders/DisplayLoader";
 import AppWindowIcon from "../../Shared/IconComponents/AppWindowIcon";
 const Dashboard = lazy(() => import('../routes/Dashboard'));
 const InvestigateContainer = lazy(() => import('../routes/InvestigateRoute'));
-const Signup = lazy(() => import('../../Session/forms/AuthForms/Signup'));
-const Login = lazy(() => import('../../Session/forms/AuthForms/Login'));
-const UpdatePassword = lazy(() => import('../../Session/forms/AuthForms/UpdatePassword'));
-const EmailForReset = lazy(() => import('../../Session/forms/AuthForms/EmailForReset'));
+const Signup = lazy(() => import('../../session/forms/AuthForms/Signup'));
+const Login = lazy(() => import('../../session/forms/AuthForms/Login'));
+const UpdatePassword = lazy(() => import('../../session/forms/AuthForms/UpdatePassword'));
+const EmailForReset = lazy(() => import('../../session/forms/AuthForms/EmailForReset'));
 
 export default function AppRouter() {
 

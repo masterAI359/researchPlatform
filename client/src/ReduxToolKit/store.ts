@@ -1,14 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { InvestigateFeature } from './Reducers/Root/InvestigateReducer'
 import AuthenticateReducer from './Reducers/Athentication/Authentication'
-import UserContentSlice from './Reducers/UserContent.ts/UserContentReducer'
-import userInvestigationSlice from './Reducers/UserContent.ts/UserInvestigations'
-import ProfileNavigationSlice from './Reducers/UserContent.ts/ProfileNavigationSlice'
-import SaveInvestigationSlice from './Reducers/UserContent.ts/SaveInvestigationSlice'
+import UserContentSlice from './Reducers/UserContent/UserContentReducer'
+import userInvestigationSlice from './Reducers/UserContent/UserInvestigations'
+import ProfileNavigationSlice from './Reducers/UserContent/ProfileNavigationSlice'
+import SaveInvestigationSlice from './Reducers/UserContent/SaveInvestigationSlice'
 import NewUserSlice from './Reducers/Athentication/NewUserSlice'
 import FeedBackSlice from './Reducers/Feedback/FeedbackSlice'
 import BlueSkySlice from './Reducers/BlueSky/BlueSkySlice'
-import ChartSlice from './Reducers/UserContent.ts/ChartSlice';
+import ChartSlice from './Reducers/UserContent/ChartSlice';
 
 export const store = configureStore({
     reducer: {

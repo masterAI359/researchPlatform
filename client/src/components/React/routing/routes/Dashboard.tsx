@@ -6,12 +6,12 @@ import { RootState } from "@/ReduxToolKit/store";
 import { useEffect } from "react";
 import { ScrollUp } from "../../../../helpers/ScrollToTop";
 import Display from "../../features/dashboard/Content/containers/Display";
-import { presentDashboard } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
+import { presentDashboard } from "@/ReduxToolKit/Reducers/UserContent/ProfileNavigationSlice";
 import FooterBarLoader from "../../features/dashboard/ProfileNavigation/skeletons/FooterBarSkeleton";
 import SidebarLoader from "../../features/dashboard/ProfileNavigation/skeletons/SidebarSkeleton";
 import { AnimatePresence } from "framer-motion";
 import SignOutModal from "../../Session/forms/AuthForms/SignOutModal";
-import { fetchSavedArticles } from "@/ReduxToolKit/Reducers/UserContent.ts/UserContentReducer";
+import { fetchSavedArticles } from "@/ReduxToolKit/Reducers/UserContent/UserContentReducer";
 const MobileProfileNav = lazy(() => import('../../features/dashboard/ProfileNavigation/mobile/ProfileMenu'));
 const SideBar = lazy(() => import('../../features/dashboard/ProfileNavigation/SideBar/Sidebar'));
 

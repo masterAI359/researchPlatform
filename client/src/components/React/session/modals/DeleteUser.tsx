@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 import Lottie from "lottie-react";
 import blueCheck from '@/lotties/blueCheck.json'
 import Loader from "../../Shared/Loaders/Loader";
-import { presentDeleteModal } from "@/ReduxToolKit/Reducers/UserContent.ts/ProfileNavigationSlice";
+import { presentDeleteModal } from "@/ReduxToolKit/Reducers/UserContent/ProfileNavigationSlice";
 import { useNavigate } from "react-router-dom";
 import { clearAuthSlice } from "@/ReduxToolKit/Reducers/Athentication/Authentication";
 import { confirmFirstPassword, emailValidation } from "@/helpers/validation";

@@ -4,7 +4,7 @@ import { useSelector } from "react-redux"
 import { AppDispatch, RootState } from "@/ReduxToolKit/store"
 import { Link, useNavigate } from "react-router-dom"
 import ErrorBoundary from "@/components/React/Shared/ErrorBoundaries/ErrorBoundary"
-import { confirmPassword, emailValidation } from "@/helpers/validation"
+import { confirmPassword } from "@/helpers/validation"
 import { getFirstPassword, getSecondPassword, requestValidEmail, matchPasswords } from "@/ReduxToolKit/Reducers/Athentication/NewUserSlice"
 import { useDispatch } from "react-redux"
 import { AnimatePresence, motion } from "framer-motion"
@@ -14,13 +14,13 @@ import ConfirmNewPassword from "../InputFields/ConfirmNewPassword"
 import OAuthLogins from "../InputFields/OauthLogins"
 import NewPasswordGuide from "../InputGuides/NewPasswordGuide"
 import { newUser } from "@/services/supabase/SupabaseData"
-import { fetchUserCredentials } from "@/ReduxToolKit/Reducers/Athentication/Authentication"
-import { newAccStatus } from "@/components/React/Session/notifications/AuthStatus"
-import AuthNotification from "../../notifications/AuthNotification";
+import { newAccStatus } from "@/components/React/session/notifications/AuthStatus"
+import AuthNotification from "@/components/React/session/notifications/AuthNotification";
+import { authenticate } from "@/ReduxToolKit/Reducers/Athentication/Authentication"
 
 
 export default function Signup() {
-    const id = useSelector((state: RootState) => state.auth.user_id);
+    const activeSession = useSelector((state: RootState) => state.auth.activeSession);
     const [acceptedInput, setAcceptedInput] = useState<boolean>(null)
     const [first_pw_valid, setValidFirstPassword] = useState<boolean>(null)
     const [canSubmit, setCanSubmit] = useState<boolean>(null)
@@ -58,10 +58,10 @@ export default function Signup() {
             try {
                 const data = await newUser(newEmail, firstPassword, setCreatedUser, setCanSubmit, setAcceptedInput, setErrorMessage, setValidFirstPassword);
                 if (data) {
-                    dispatch(fetchUserCredentials(data));
+                    dispatch(authenticate(true));
                 };
             } catch (error) {
-                console.log(error)
+                console.error(error);
             }
         } else {
             setAcceptedInput(false)
@@ -109,14 +109,14 @@ export default function Signup() {
 
 
     useEffect(() => {
-        if (!id) return;
+        if (!activeSession) return;
 
         const timer = setTimeout(() => {
             navigate('/Profile')
         }, 1000);
 
         return () => clearTimeout(timer);
-    }, [id]);
+    }, [activeSession]);
 
     return (
 

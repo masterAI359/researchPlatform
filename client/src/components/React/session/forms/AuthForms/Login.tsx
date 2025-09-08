@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import { loginStatus } from "@/components/React/Session/notifications/AuthStatus";
-import AuthNotification from "../../notifications/AuthNotification";
+import { loginStatus } from "@/components/React/session/notifications/AuthStatus";
+import AuthNotification from "@/components/React/session/notifications/AuthNotification";
 import ScrolltoTop from "@/helpers/ScrollToTop";
 import LoginOperations from "@/components/React/session/forms/containers/LoginOperations";
 import { useCheckCredentials } from "@/Hooks/useCheckCredentials";

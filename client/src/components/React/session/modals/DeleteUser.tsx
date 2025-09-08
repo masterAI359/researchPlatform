@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { createPortal } from "react-dom";
 import { useDispatch } from "react-redux";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Lottie from "lottie-react";
 import blueCheck from '@/lotties/blueCheck.json'
 import Loader from "../../Shared/Loaders/Loader";

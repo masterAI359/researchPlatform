@@ -6,8 +6,8 @@ import { getAuthorEmail, getFeedBackMessage, stopAskingForFeedBack, declineFeedB
 import React, { useEffect, useState } from "react"
 import { RootState } from "@/ReduxToolKit/store"
 import { submitFeedback } from "@/services/supabase/SupabaseData"
-import AuthNotification from "../../notifications/AuthNotification"
-import { feedbackStatus } from "@/components/React/Session/notifications/AuthStatus"
+import AuthNotification from "@/components/React/session/notifications/AuthNotification";
+import { feedbackStatus } from "@/components/React/session/notifications/AuthStatus";
 
 export default function FeedBackForm() {
   const activeSession = useSelector((state: RootState) => state.auth.activeSession);

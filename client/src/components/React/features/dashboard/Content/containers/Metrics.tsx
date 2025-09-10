@@ -16,11 +16,7 @@ const StatsSection = lazy(() => import('../../../charts/ResearchStats/StatsSecti
 
 export default function Metrics() {
     const { userResearch, stats } = useSelector((state: RootState) => state.userWork, shallowEqual);
-    const userArticles = useSelector((state: RootState) => state.userdata.userArticles);
-    const map = useSelector((state: RootState) => state.userdata.articleMap);
     const hasInvestigations: boolean = Array.isArray(userResearch) && (userResearch.length > 0);
-    const hasArticles: boolean = Array.isArray(userArticles) && (userArticles.length > 0);
-    const noSavedData: boolean = (hasArticles === false) && (hasInvestigations === false);
     const statsPopulated: boolean = Object.values(stats).some((el: number) => el !== null);
     const dispatch = useDispatch<AppDispatch>();
 
@@ -29,15 +25,6 @@ export default function Metrics() {
         if (!hasInvestigations || statsPopulated) return;
 
         const worker = new StatsWorker();
-        //  const worker = new Worker(
-        //      new URL(
-        //          '../../../../../../services/workers/statsWorker.js',
-        //          import.meta.url),
-        //      {
-        //          type: 'module'
-        //      },
-        //  );
-        //
         let raf: any = 0;
 
         worker.onmessage = (e: MessageEvent) => {
@@ -72,13 +59,12 @@ export default function Metrics() {
         >
             <ScrolltoTop
             />
-            {noSavedData && <MetricsFallback />}
 
-            {hasArticles && <ChartJsWrapper />}
+            <ChartJsWrapper />
 
             {(hasInvestigations) && (statsPopulated) &&
                 <Suspense fallback={<StatsSkeleton />}>
-                    <StatsSection stats={stats} />
+                    {stats ? <StatsSection stats={stats} /> : <MetricsFallback />}
                 </Suspense>}
         </motion.section>
     );

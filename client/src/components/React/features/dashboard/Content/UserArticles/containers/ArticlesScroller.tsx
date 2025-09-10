@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/ReduxToolKit/store";
 import ArticleSaved from "../components/ArticleSaved";
 import { SkeletonMap } from "../skeletons/SkeletonMap";
-import { useVirtuoso } from "@/Hooks/useVirtuoso";
+import { useVirtuoso } from "@/hooks/useVirtuoso";
 import { readSavedArticle } from "@/ReduxToolKit/Reducers/UserContent/UserContentReducer"
 import { useCallback, useMemo, useState } from "react";
 import { presentThisArticle } from "@/ReduxToolKit/Reducers/UserContent/ProfileNavigationSlice";
@@ -14,7 +14,7 @@ import { deleteArticleStatus } from "@/components/React/session/notifications/Au
 import Title from "../components/Title";
 import ArticleThumbnail from "../components/ArticleThumbnail";
 import { articleScrollerStyles } from "../scrollerStyles/articleScrollStyles";
-import { useSkeletons } from "@/Hooks/useSkeletons";
+import { useSkeletons } from "@/hooks/useSkeletons";
 
 export default function ArticlesScroller() {
     const userArticles: SavedArticle[] | null = useSelector((state: RootState) => state.userdata.userArticles);

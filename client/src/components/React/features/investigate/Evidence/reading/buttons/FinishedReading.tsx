@@ -4,7 +4,7 @@ import { displayArticleContent, displayReadingTooltip, displayWrapUp } from "@/R
 import GuideDoneReading from "../../../tooltips/GuideDoneReading";
 import { RootState } from "@/ReduxToolKit/store";
 import { useEffect } from "react";
-import { useTooltipFlags } from "@/Hooks/useTooltipFlags";
+import { useTooltipFlags } from "@/hooks/useTooltipFlags";
 
 
 export function FinishedReading({ }) {

@@ -1,28 +1,27 @@
-import { AnimatePresence, motion } from "framer-motion"
-import { useDispatch, useSelector } from "react-redux"
-import { RootState } from "@/ReduxToolKit/store"
-import { displayGetArticlesModal, displaySelectionWarning, displaySelectTooltip } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
-import { AppDispatch } from "@/ReduxToolKit/store"
-import SelectionRequired from "../../notifications/SelectionRequired"
-import { useEffect } from "react"
-import GuideSelectingArticles from "@/components/React/features/investigate/tooltips/GuideSelectingArticles"
-import { useTooltipFlags } from "@/Hooks/useTooltipFlags"
+import { AnimatePresence, motion } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/ReduxToolKit/store";
+import { displayGetArticlesModal, displaySelectionWarning, displaySelectTooltip } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
+import { AppDispatch } from "@/ReduxToolKit/store";
+import SelectionRequired from "../../notifications/SelectionRequired";
+import { useEffect } from "react";
+import GuideSelectingArticles from "@/components/React/features/investigate/tooltips/GuideSelectingArticles";
+import { useTooltipFlags } from "@/hooks/useTooltipFlags";
 
 
 export default function SelectLinks() {
-  const investigateState = useSelector((state: RootState) => state.investigation)
-  const { display, search } = investigateState
-  const { articleOptions } = search
-  const { showSelectTooltip } = display
-  const { getArticle } = investigateState
-  const { showSelectWarning, showGetArticlesModal } = investigateState.display
-  const { chosenArticles } = getArticle
+  const investigateState = useSelector((state: RootState) => state.investigation);
+  const { display, search } = investigateState;
+  const { articleOptions } = search;
+  const { showSelectTooltip } = display;
+  const { getArticle } = investigateState;
+  const { showSelectWarning, showGetArticlesModal } = investigateState.display;
+  const { chosenArticles } = getArticle;
   const { getFlags, setFlag } = useTooltipFlags();
-  const dispatch = useDispatch<AppDispatch>()
+  const dispatch = useDispatch<AppDispatch>();
 
 
   useEffect(() => {
-
     const flags = getFlags();
 
     if (flags.selectingTooltip === false) {

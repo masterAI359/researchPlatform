@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import StoryPaginate from "../Evidence/reading/buttons/StoryPaginate";
-import { useIsMobile } from "@/Hooks/useIsMobile";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 export default function PanelContainer() {
     const investigateState = useSelector((state: RootState) => state.investigation)

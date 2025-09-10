@@ -1,5 +1,5 @@
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
-import { useIsMobile } from "@/Hooks/useIsMobile";
+import { useIsMobile } from "@/hooks/useIsMobile";
 import { lazy, Suspense, useLayoutEffect } from "react";
 import { AppDispatch } from "@/ReduxToolKit/store";
 import { RootState } from "@/ReduxToolKit/store";

@@ -15,24 +15,12 @@ export default function ChartJsWrapper() {
     const biasRatings = useSelector((state: RootState) => state.chart.biasRatings);
     const ratingData = useSelector((state: RootState) => state.chart.reportingIntegrity);
     const dispatch = useDispatch<AppDispatch>();
-    //  const integrityWebWorker: string = '../../../../../../services/workers/integrityWorker.js';
-    //  const biasWebWorker: string = '../../../../../../services/workers/biasSnapshot.js';
-
 
     useEffect(() => {
         if (!Array.isArray(userArticles) || (userArticles.length === 0)) return;
         if (Array.isArray(ratingData) && (ratingData.length > 0)) return;
 
         const worker = new IntegrityWebWorker();
-
-        // const worker = new Worker(
-        //     new URL(
-        //         integrityWebWorker,
-        //         import.meta.url
-        //     ),
-        //     { type: 'module' }
-        // );
-
         let raf: any = 0;
 
         worker.onmessage = (e: MessageEvent) => {
@@ -57,14 +45,6 @@ export default function ChartJsWrapper() {
         if (Array.isArray(biasRatings) && (biasRatings.length > 0)) return;
 
         const biasWorker = new BiasWebWorker();
-        // const biasWorker = new Worker(
-        //     new URL(
-        //         biasWebWorker,
-        //         import.meta.url
-        //     ),
-        //     { type: 'module' }
-        // );
-
         let raf: any = 0;
 
         biasWorker.onmessage = (e: MessageEvent) => {
@@ -75,7 +55,6 @@ export default function ChartJsWrapper() {
                 dispatch(getBiasSnapshot(payload));
             });
         };
-
 
         biasWorker.postMessage(userArticles);
 

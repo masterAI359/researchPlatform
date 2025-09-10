@@ -9,7 +9,7 @@ import { getStoredPosts, searchBlueSky } from '@/ReduxToolKit/Reducers/BlueSky/B
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { ScrollUp } from '@/helpers/ScrollToTop';
-import { useBodyLock } from '@/Hooks/useBodyLock';
+import { useBodyLock } from '@/hooks/useBodyLock';
 
 export default function Home({ }) {
     const signingOut = useSelector((state: RootState) => state.auth.signOut);

@@ -4,7 +4,7 @@ import { displaySearch, displayMindMap } from "@/ReduxToolKit/Reducers/Investiga
 import { RootState } from "@/ReduxToolKit/store"
 import { limitString } from "@/helpers/Presentation"
 import { variants } from "@/motion/variants"
-import { useIsMobile } from "@/Hooks/useIsMobile"
+import { useIsMobile } from "@/hooks/useIsMobile"
 
 export default function Step5() {
     const investigateState = useSelector((state: RootState) => state.investigation)

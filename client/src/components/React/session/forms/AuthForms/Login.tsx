@@ -5,9 +5,8 @@ import { loginStatus } from "@/components/React/session/notifications/AuthStatus
 import AuthNotification from "@/components/React/session/notifications/AuthNotification";
 import ScrolltoTop from "@/helpers/ScrollToTop";
 import LoginOperations from "@/components/React/session/forms/containers/LoginOperations";
-import { useCheckCredentials } from "@/Hooks/useCheckCredentials";
-import { useSignIn } from "@/Hooks/useSignIn";
-
+import { useCheckCredentials } from "@/hooks/useCheckCredentials";
+import { useSignIn } from "@/hooks/useSignIn";
 
 export default function Login(): JSX.Element {
     const [userEmail, setUserEmail] = useState<string | null>(null);

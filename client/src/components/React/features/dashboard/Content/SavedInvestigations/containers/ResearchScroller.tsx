@@ -1,5 +1,5 @@
 import { Virtuoso } from "react-virtuoso";
-import { useVirtuoso } from "@/Hooks/useVirtuoso";
+import { useVirtuoso } from "@/hooks/useVirtuoso";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import PriorInvestigation from "../components/InvestigationSaved";

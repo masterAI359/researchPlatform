@@ -1,6 +1,6 @@
 import MobileMenu from "@/components/React/Shared/Navigation/Mobile/MobileMenu";
-import DeskTopMenu from "./Desktop/containers/DeskTopMenu"
-import useMediaQuery from "@/Hooks/useMediaQuery"
+import DeskTopMenu from "./Desktop/containers/DeskTopMenu";
+import useMediaQuery from "@/hooks/useMediaQuery";
 import React from "react";
 
 function Navigation() {

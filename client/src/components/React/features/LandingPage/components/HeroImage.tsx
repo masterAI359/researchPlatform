@@ -59,7 +59,7 @@ export default function HeroImage() {
 								the evidence behind them.</span>
 						</p>
 						<div className='relative w-full sm:w-[75%]   mt-8'>
-							<div className="flex gap-x-6 items-center w-full">
+							<div className="flex gap-x-6 justify-center md:justify-start items-center w-full">
 								{!activeSession && <GetStarted />}
 								<LearnMore />
 							</div>

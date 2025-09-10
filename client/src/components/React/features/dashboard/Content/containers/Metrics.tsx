@@ -62,7 +62,7 @@ export default function Metrics() {
             <ChartJsWrapper />
 
             <Suspense fallback={<StatsSkeleton />}>
-                {stats ? <StatsSection /> : <MetricsFallback />}
+                {statsPopulated ? <StatsSection /> : <MetricsFallback />}
             </Suspense>
         </motion.section>
     );

@@ -20,7 +20,6 @@ export default function Metrics() {
     const statsPopulated: boolean = Object.values(stats).some((el: number) => el !== null);
     const dispatch = useDispatch<AppDispatch>();
 
-
     useEffect(() => {
         if (!hasInvestigations || statsPopulated) return;
 
@@ -63,7 +62,7 @@ export default function Metrics() {
             <ChartJsWrapper />
 
             <Suspense fallback={<StatsSkeleton />}>
-                {stats && (Array.isArray(userResearch) && (userResearch.length > 0)) ? <StatsSection stats={stats} /> : <MetricsFallback />}
+                {stats ? <StatsSection /> : <MetricsFallback />}
             </Suspense>
         </motion.section>
     );

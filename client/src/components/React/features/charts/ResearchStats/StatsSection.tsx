@@ -1,10 +1,8 @@
 import StatBreakdown from "./StatBreakdown";
 
-interface StatsProps {
-    stats: StatBreakdownTypes
-}
 
-export default function StatsSection({ stats }: StatsProps): JSX.Element {
+
+export default function StatsSection(): JSX.Element {
 
     return (
         <section
@@ -25,7 +23,7 @@ export default function StatsSection({ stats }: StatsProps): JSX.Element {
                         <p className="mt-6 text-sm text-white">
                             Over all of your investigations:
                         </p>
-                        <StatBreakdown percentChanged={stats.percentChanged} validated={stats.validated} neutral={stats.neutral} needMore={stats.neededMore} />
+                        <StatBreakdown />
                     </div>
                     <div className="relative mt-16 h-80 lg:mt-8">
                         {/* <img

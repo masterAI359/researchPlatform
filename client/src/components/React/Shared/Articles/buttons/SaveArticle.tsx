@@ -2,10 +2,10 @@ import NotifySavedArticle from "../notifications/NotifySaved";
 import { checkArticle } from "@/services/supabase/SupabaseData"
 import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch, RootState } from "@/ReduxToolKit/store"
-import { useEffect, useMemo } from "react"
+import { useEffect, useMemo } from "react";
 import SaveArticleTooltip from "../tooltips/SaveArticleTooltip";
-import { useSaveArticle } from "@/Hooks/useSaveArticle"
-import { AnimatePresence } from "framer-motion"
+import { useSaveArticle } from "@/hooks/useSaveArticle";
+import { AnimatePresence } from "framer-motion";
 
 export default function Bookmark({ article, showNotification, setShowNotification, open }: SaveArticleButton) {
     const userArticles = useSelector((state: RootState) => state.userdata.userArticles);

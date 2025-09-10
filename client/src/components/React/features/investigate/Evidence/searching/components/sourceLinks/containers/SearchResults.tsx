@@ -1,34 +1,28 @@
-import { motion, AnimatePresence } from "framer-motion"
-import { useDispatch, useSelector } from "react-redux"
-import { RootState } from "@/ReduxToolKit/store"
-import { useEffect } from "react"
-import { getPages } from "@/ReduxToolKit/Reducers/Investigate/SearchResults"
-import { formPages } from "@/helpers/Presentation"
+import { motion, AnimatePresence } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/ReduxToolKit/store";
+import { useEffect } from "react";
+import { getPages } from "@/ReduxToolKit/Reducers/Investigate/SearchResults";
+import { formPages } from "@/helpers/Presentation";
 import LinkPagination from "../buttons/LinkPagination";
-import Pages from "./Pages"
+import Pages from "./Pages";
 import SearchFailed from "../errors/SearchFailed";
-import ErrorBoundary from "@/components/React/Shared/ErrorBoundaries/ErrorBoundary"
-import { searchResultsVariants } from "@/motion/variants"
-import { useIsMobile } from "@/Hooks/useIsMobile"
-
+import ErrorBoundary from "@/components/React/Shared/ErrorBoundaries/ErrorBoundary";
+import { searchResultsVariants } from "@/motion/variants";
 
 export default function SearchResults() {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const { search } = investigateState
-    const { articleOptions, status, pages } = search
-    const isMobile = useIsMobile();
+    const { articleOptions, status } = search
     const dispatch = useDispatch()
-
 
     useEffect(() => {
 
         if (status === 'fulfilled' && articleOptions) {
             const formedPages = formPages(articleOptions)
             dispatch(getPages(formedPages))
-        }
-
-
-    }, [status, articleOptions])
+        };
+    }, [status, articleOptions]);
 
     return (
         <motion.div

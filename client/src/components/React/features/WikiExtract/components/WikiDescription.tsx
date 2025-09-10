@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import { useState, useRef } from "react";
-import { useScrollTrap } from "@/Hooks/useOverScrollTrap";
+import { useScrollTrap } from "@/hooks/useOverScrollTrap";
 import { AnimatePresence, motion } from "framer-motion";
 
 export default function Description() {

@@ -51,11 +51,7 @@ export function Terms() {
 
 
 function TermList({ wikipedia_extracts, excess }: TermsTypes) {
-
   const [page, setPage] = useState<number>(0);
-
-
-  console.log(page)
 
   const scrollToNext = (index: number, snapPoints) => {
 

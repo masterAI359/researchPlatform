@@ -168,8 +168,6 @@ export const saveArticle = async (
     articleExists?: boolean,
 ): Promise<SaveArticleResponse | null> => {
 
-    console.log(articleExists);
-
     try {
 
         const response = await fetch('/articleOperation', {

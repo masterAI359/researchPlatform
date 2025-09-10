@@ -38,7 +38,7 @@ export default function InvestigateContainer() {
     <main
       onClick={() => removeToolTip(showSelectTooltip, hasSearched)}
       className={`
-        max-w-full sm:max-w-dvw sm:w-full shrink-0 flex flex-col grow 
+        max-w-dvw sm:w-full shrink-0 flex flex-col grow 
         transition-opacity duration-200 ease-in-out h-full mx-auto justify-center
         items-center relative box-border min-h-svh
         ${signingOut || gettingHelp

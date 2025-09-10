@@ -4,8 +4,11 @@ export default function SearchHero(): JSX.Element {
 
     return (
         <section
-            className="min-w-88 sm:min-w-full h-auto mx-auto flex flex-col mt-10 2xl:mt-0 border-b border-white/10">
-            <main className="w-72 max-w-168 sm:w-4/5 xl:w-2/5 h-auto xs:mx-auto mb-2 xl:mt-16">
+            className="w-full max-w-168 sm:w-4/5 xl:w-2/5 sm:min-w-full 
+            h-auto mx-auto flex items-center justify-center 2xl:mt-0 border-b
+            border-white/10">
+            <main
+                className="w-80 sm:w-full h-auto mb-2 mt-12 md:mt-16">
                 <Search
                 />
             </main>

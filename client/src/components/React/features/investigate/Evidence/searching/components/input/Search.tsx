@@ -36,7 +36,7 @@ export default function Search({ }) {
   }, [searching, getContent, query]);
 
   return (
-    <div className="block box-border min-w-full max-w-full mx-auto xs:px-0 md:px-2 2xl:h-full no-scrollbar">
+    <div className="block box-border min-w-full max-w-full mx-auto md:px-2 2xl:h-full no-scrollbar">
       <div
         className="text-center w-full md:mx-auto">
         <div
@@ -47,7 +47,7 @@ export default function Search({ }) {
               fallback={<ErrMessage message="issue on search component" />}
             >
               <div
-                className="relative lg:mb-2 xs:p-1 mx-auto flex justify-center items-center">
+                className="relative lg:mb-2 mx-auto flex justify-center items-center">
 
                 <SearchBar
                   empty={empty}

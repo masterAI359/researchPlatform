@@ -34,6 +34,8 @@ const features: Feature[] = [
 ];
 
 const ChartingFeatures: React.FC = () => {
+
+
     return (
         <section className="lg:p-8">
             <div className="px-8 py-12 mx-auto md:px-12 lg:px-16 xl:px-36 2xl:max-w-7xl">

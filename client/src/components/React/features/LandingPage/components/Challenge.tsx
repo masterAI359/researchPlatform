@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 
 export default function Challenge() {
 
+
     return (
         <section className="lg:p-8 xs:p-4 animate-fade-in transition-opacity">
             <div className="px-8 py-12 lg:py-24 mx-auto md:px-12 lg:px-16 xl:px-36 lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl">

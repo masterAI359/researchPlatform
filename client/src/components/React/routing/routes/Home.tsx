@@ -1,6 +1,6 @@
-import HeroImage from '@/components/React/features/LandingPage/Components/HeroImage';
-import Challenge from '../../features/LandingPage/Components/Challenge';
-import ChartingFeatures from '../../features/LandingPage/Components/ChartingFeatures';
+import HeroImage from '@/components/React/features/LandingPage/components/HeroImage';
+import Challenge from '../../features/LandingPage/components/Challenge';
+import ChartingFeatures from '../../features/LandingPage/components/ChartingFeatures';
 import { useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/ReduxToolKit/store';
 import SignOutModal from '../../session/forms/AuthForms/SignOutModal';

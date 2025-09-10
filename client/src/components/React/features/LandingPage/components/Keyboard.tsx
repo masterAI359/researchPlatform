@@ -31,7 +31,6 @@ export default function ToolsForResearch({ playAnimation }: AnimateTools) {
 };
 
 
-
 function KeyboardScroller({ playAnimation }) {
 
     return (

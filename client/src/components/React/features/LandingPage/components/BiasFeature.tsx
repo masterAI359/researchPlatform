@@ -25,6 +25,8 @@ const sections: Section[] = [
     },
 ];
 
+
+
 export default function BiasFeature() {
     return (
         <section className="lg:p-8 w-full">

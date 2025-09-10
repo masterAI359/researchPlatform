@@ -1,8 +1,8 @@
 import { lazy, Suspense, useEffect } from 'react'
 import { useState, useRef } from 'react';
-import ToolsForResearch from '../Components/Keyboard';
+import ToolsForResearch from '../components/Keyboard';
 import BlueSkySkeleton from '../../blueSky/skeletons/BlueSkySkeleton';
-import WikiAndNotes from '../Components/WikiAndNotes';
+import WikiAndNotes from '../components/WikiAndNotes';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/ReduxToolKit/store';
 const BlueSkyPosts = lazy(() => import('@/components/React/features/blueSky/Containers/BlueSkyPosts'));

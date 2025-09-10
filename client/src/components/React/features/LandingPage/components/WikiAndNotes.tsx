@@ -1,10 +1,5 @@
 import React from "react";
 
-
-
-
-
-
 interface GridItem {
     category: string;
     title: string;

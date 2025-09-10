@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
-import LearnMore from "../Buttons/LearnMore";
-import GetStarted from "../Buttons/GetStarted";
+import LearnMore from "../buttons/LearnMore";
+import GetStarted from "../buttons/GetStarted";
 import React from "react";
 
 type FetchPriority = 'high' | 'low' | 'auto';

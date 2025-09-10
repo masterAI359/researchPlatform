@@ -37,9 +37,9 @@ export default function PieSkeleton() {
             animate='open'
             exit='closed'
             transition={{ type: 'tween', duration: 0.2, ease: "easeInOut" }}
-            className="relative flex flex-col items-center"
+            className="relative w-full md:w-4/5 h-auto flex justify-center md:justify-end items-center"
         >
-            <div className="relative w-64 h-64 lg:w-80 lg:h-80 animate-pulse">
+            <div className="relative w-72 h-72 lg:w-88 lg:h-88 animate-pulse">
                 {/* Base Circle */}
                 <div className="absolute inset-0 rounded-full bg-zinc-800/60" />
 

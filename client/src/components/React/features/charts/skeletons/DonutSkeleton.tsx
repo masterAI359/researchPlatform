@@ -38,16 +38,17 @@ export default function DonutSkeleton() {
             animate='open'
             exit='closed'
             transition={{ type: 'tween', duration: 0.2, ease: "easeInOut" }}
-            className="relative"
+            className="relative w-full md:w-4/5 h-auto flex items-center justify-center lg:justify-end px-4 lg:px-8"
         >
-            <div className="relative w-64 h-64 lg:w-80 lg:h-80 animate-pulse">
+            <div className="relative my-16 w-72 h-72 lg:w-88 lg:h-88 animate-pulse">
                 <div className="absolute inset-0 rounded-full border-[80px] border-zinc-700/50 border-t-zinc-800 border-l-zinc-800" />
+                <div className="absolute -bottom-8 left-1/2 w-32 h-6 -translate-x-1/2 mt-4">
+                    <p className="text-zinc-400 font-light tracking-tight text-sm text-center">
+                        {typed}
+                    </p>
+                </div>
             </div>
-            <div className="absolute -bottom-8 left-1/2 w-32 h-6 -translate-x-1/2 mt-4">
-                <p className="text-zinc-400 font-light tracking-tight text-sm text-center">
-                    {typed}
-                </p>
-            </div>
+
 
         </motion.div>
     )

@@ -5,9 +5,11 @@ export default function StatItem({ label, target }) {
   const ref = useRef<HTMLDivElement | null>(null);
   const hasStarted = useRef(false);
 
+
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting && !hasStarted.current) {
+        console.log(hasStarted.current);
         hasStarted.current = true;
         let current = 0;
         const interval = setInterval(() => {

@@ -26,7 +26,7 @@ const items = [
 export default function WhyElenchus() {
     return (
         <section className="lg:p-8">
-            <div className="px-8 py-12 lg:py-24 mx-auto md:px-12 lg:px-16 xl:px-36 2xl:max-w-7xl">
+            <div className="px-4 py-12 lg:py-24 mx-auto md:px-12 lg:px-16 xl:px-36 2xl:max-w-7xl">
                 <div className="relative isolate lg:flex-col overflow-hidden bg-gradientdown ring-1 ring-white/10 rounded-4xl px-6 p-10 lg:flex lg:p-20">
                     <div>
                         <span className="text-white">Benefits</span>

@@ -62,10 +62,9 @@ export default function Metrics() {
 
             <ChartJsWrapper />
 
-            {(hasInvestigations) && (statsPopulated) &&
-                <Suspense fallback={<StatsSkeleton />}>
-                    {stats ? <StatsSection stats={stats} /> : <MetricsFallback />}
-                </Suspense>}
+            <Suspense fallback={<StatsSkeleton />}>
+                {stats && (Array.isArray(userResearch) && (userResearch.length > 0)) ? <StatsSection stats={stats} /> : <MetricsFallback />}
+            </Suspense>
         </motion.section>
     );
 };

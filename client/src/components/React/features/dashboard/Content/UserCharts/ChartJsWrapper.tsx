@@ -66,15 +66,16 @@ export default function ChartJsWrapper() {
 
     return (
         <>
-            {Array.isArray(biasRatings) && (biasRatings.length > 0) &&
-                <Suspense fallback={<DonutSkeleton />}>
-                    <BiasChart />
-                </Suspense>}
+            <Suspense fallback={<DonutSkeleton />}>
+                {Array.isArray(biasRatings) &&
+                    (biasRatings.length > 0) && <BiasChart />}
+            </Suspense>
 
-            {Array.isArray(ratingData) && (ratingData.length > 0) &&
-                <Suspense fallback={<PieSkeleton />}>
-                    <IntegrityChart />
-                </Suspense>}
+
+            <Suspense fallback={<PieSkeleton />}>
+                {Array.isArray(ratingData) && (ratingData.length > 0) &&
+                    <IntegrityChart />}
+            </Suspense>
         </>
     );
 };

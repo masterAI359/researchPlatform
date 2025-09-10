@@ -1,9 +1,9 @@
 export default function AboutHeader() {
 
     return (
-        <section className="lg:p-8">
-            <div className="mx-auto 2xl:max-w-5xl py-24 lg:px-16 md:px-12 items-center lg:pt-24 relative w-full bg-gradientdown rounded-4xl">
-                <div className="max-w-xl mx-auto">
+        <section className="p-4 lg:p-8">
+            <div className="mx-auto 2xl:max-w-5xl py-24 lg:px-16 md:px-12 px-2 items-center lg:pt-24 relative w-full bg-gradientdown rounded-4xl">
+                <div className="max-w-xl mx-auto px-4">
                     <div>
                         <span className="relative rounded-full px-3 py-1 text-sm leading-6 text-white ring-1 ring-white/10">
                             About

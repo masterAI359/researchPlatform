@@ -1,18 +1,13 @@
 import { motion } from "framer-motion"
 import { useEffect } from "react"
-import { NotificationState, NotifySaved } from "@/env";
+import { NotifySaved } from "@/env";
 import { scaleUpDown } from "@/motion/variants";
 
-export default function NotifySavedArticle({ message, setNotification, setShowNotification }: NotifySaved) {
+export default function NotifySavedArticle({ message, setNotification }: NotifySaved) {
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setNotification((prev: NotificationState) => ({
-                ...prev,
-                message: null,
-            }));
-            setShowNotification(false);
-
+        const timer = window.setTimeout(() => {
+            setNotification(null)
         }, 2000)
 
         return () => clearTimeout(timer)

@@ -109,22 +109,20 @@ declare global {
     title: string,
     provider: string,
     authors: string[] | string,
-    url: string,
+    article_url: string,
     image_url: string,
     date: string,
     fallbackDate: string | null,
     summary: any,
     text: string,
-    id: number,
+    id: number | null,
     factual_reporting?: string | null,
     bias?: Bias,
     country?: string | null
   }
 
   interface SaveArticleButton {
-    article: any,
-    showNotification: boolean,
-    setShowNotification: (showNotification: boolean) => void,
+    article: ArticleToSave,
     open: boolean,
     reviewing?: boolean
   }
@@ -343,16 +341,10 @@ declare global {
     setActiveTab: (activeTab: Help) => void,
   }
 
-  type NotificationState = {
-    articleExists: boolean,
-    message: string | null,
-    anonUser: boolean,
-    article_id: number | null
-  }
+
 
   interface NotifySaved {
-    setNotification: React.Dispatch<React.SetStateAction<NotificationState>>,
-    setShowNotification: (showNotification: boolean) => void,
+    setNotification: React.Dispatch<React.SetStateAction<string | null>>,
     message: string | null
   }
 
@@ -426,7 +418,7 @@ export {
   ArticleType, OptionsTypes, SelectedArticle, Perspectives, State, PremiseProps, Help, SavedArticle,
   Calculations, PostsProps, SupabaseUser, ResetPW, Investigation, ScrapedArticle, TipTapProps, AuthStatus, AuthNotificationProps,
   Tooltips, SidebarItemData, LinkProps, SaveArticleResponse, WikiTerm, Bias, BiasCounts, LoadedArticle, ChartFallbackProps,
-  UserContent, LoginResponse, LoginFormProps, DashboardOption, HelpModal, NotificationState, NotifySaved, SaveArticleButton,
+  UserContent, LoginResponse, LoginFormProps, DashboardOption, HelpModal, NotifySaved, SaveArticleButton,
   WikiTypes, ArticleSavedComponent, Icon, ArticleToSave, SignInHook, WebWorkerResponse, WebWorkerRequest, ChartType, StatBreakdownTypes,
   DeleteStatus
 };

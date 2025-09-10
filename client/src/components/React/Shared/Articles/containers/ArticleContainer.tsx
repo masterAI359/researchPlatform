@@ -1,7 +1,7 @@
 import FailedLoading from "../Failed/FailedLoading";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { recordSources } from "@/ReduxToolKit/Reducers/UserContent/SaveInvestigationSlice";
 import ErrorBoundary from "../../ErrorBoundaries/ErrorBoundary";
@@ -13,10 +13,12 @@ export default function ArticleContainer({ }) {
   const investigateState = useSelector((state: RootState) => state.investigation);
   const { read } = investigateState;
   const sources = useSelector((state: RootState) => state.userWork.sourcesToReview);
+  const userArticles = useSelector((state: RootState) => state.userdata.userArticles);
   const sourcesToDispatch = sources;
   const { articles, failedNotifications, ContentStatus } = read;
   const firstRecordedSources = useRef<string>("");
   const dispatch = useDispatch();
+
 
   useEffect(() => {
 

@@ -1,28 +1,38 @@
-import { useState } from "react"
 import More from "./More"
 
-export default function MoreButton({ article_url, showNotification, open, setOpen, context, setShowAllAuthors, authors, setFullStory, fullStory, showAllAuthors }) {
-    //context prop is to set what options are available based on what area of the application this is used in
+export default function MoreButton({ article_url, open, setOpen, context, setShowAllAuthors, authors, showAllAuthors }) {
 
     return (
         <div className='w-full h-full xs:self-start md:self-center xs:mt-2 md:mt-0 relative'>
-            {open && !showNotification ? <More showAllAuthors={showAllAuthors} authors={authors} setShowAllAuthors={setShowAllAuthors} context={context} key={article_url} article_url={article_url} setOpen={setOpen} />
-                : null}
+            {open &&
+                <More
+                    showAllAuthors={showAllAuthors}
+                    authors={authors}
+                    setShowAllAuthors={setShowAllAuthors}
+                    context={context}
+                    key={article_url}
+                    article_url={article_url}
+                    setOpen={setOpen}
+                />
+            }
             <div className="group relative">
-                {!open && !showNotification ? <div className="relative">
-                    <div className="rounded-md xl:h-fit xl:w-16 flex xs:hidden md:block 
+
+                {!open &&
+                    <div className="relative">
+                        <div className="rounded-md xl:h-fit xl:w-16 flex xs:hidden md:block 
                   mx-auto group-hover:bg-white bg-white opacity-0 absolute xl:right-11
                   border border-black/20 md:group-hover:opacity-100 transition-all duration-200 ease-in-out">
 
-                        <h1 className="text-black xl:text-sm xl:p-1 font-light tracking-tight text-center w-full">
-                            More
-                        </h1>
+                            <h1 className="text-black xl:text-sm xl:p-1 font-light tracking-tight text-center w-full">
+                                More
+                            </h1>
 
-                        <div className="absolute top-1/2 -right-2 transform -translate-y-1/2 w-0 h-0 
+                            <div className="absolute top-1/2 -right-2 transform -translate-y-1/2 w-0 h-0 
                     border-t-4 border-b-6 border-l-8 border-transparent 
                     border-l-white"/>
-                    </div>
-                </div> : null}
+                        </div>
+                    </div>}
+
                 <div
                     onMouseUp={() => { setOpen(prev => !prev) }}
                     className='box-border flex items-center hover:bg-white/10 transition-all duration-200 

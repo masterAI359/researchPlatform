@@ -159,19 +159,8 @@ export const newUser = async (
             console.error(error);
             return null
         }
-    }
-}
-
-
-
-export const checkArticle = (
-    article_url: string,
-    urls: Set<string>
-): boolean => {
-    const exists = urls.has(article_url);
-    return exists;
+    };
 };
-
 
 
 export const saveArticle = async (

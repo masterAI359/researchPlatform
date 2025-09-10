@@ -12,7 +12,7 @@ export const saveArticleForUser = async (
     dataToSave: SavedArticle
 ): Promise<SavedResponse | null> => {
 
-    const { text, url, image_url, summary, title, authors, date, provider, fallbackDate, factual_reporting, bias, country } = dataToSave;
+    const { text, article_url, image_url, summary, title, authors, date, provider, fallbackDate, factual_reporting, bias, country } = dataToSave;
     try {
         const { data, error } = await supabase
             .from('articles')
@@ -25,7 +25,7 @@ export const saveArticleForUser = async (
                         full_text: text,
                         authors: authors,
                         date_published: date || fallbackDate,
-                        article_url: url,
+                        article_url: article_url,
                         summary: summary,
                         user_id: id,
                         bias: bias,

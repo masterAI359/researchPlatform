@@ -38,21 +38,17 @@ export default function ArticleHeader({ articleData, setFullStory, fullStory, in
                             {investigating && <SaveArticle
                                 open={open}
                                 article={articleData}
-                                showNotification={showNotification}
-                                setShowNotification={setShowNotification}
+
                             />}
                         </div>
                         <div className="w-auto h-auto">
                             <MoreButton
                                 showAllAuthors={showAllAuthors}
-                                fullStory={fullStory}
-                                setFullStory={setFullStory}
                                 authors={article_authors}
                                 setShowAllAuthors={setShowAllAuthors}
                                 context={'reading'} key={article_title}
                                 open={open} setOpen={setOpen}
                                 article_url={article_url}
-                                showNotification={showNotification}
                             />
                         </div>
                     </div>

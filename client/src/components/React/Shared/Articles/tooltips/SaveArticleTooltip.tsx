@@ -1,6 +1,10 @@
 
-export default function SaveArticleTooltip({ exists }) {
-    const message = exists ? 'remove' : 'save article';
+interface TooltipProperties {
+    isSaved: boolean | null
+};
+
+export default function SaveArticleTooltip({ isSaved }: TooltipProperties) {
+    const message = isSaved ? 'remove' : 'save article';
 
     return (
         <div

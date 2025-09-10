@@ -10,7 +10,7 @@ import WikiTermExtract from "../../../features/WikiExtract/components/WikiTermEx
 export default function FullText({ article_text, article_url }) {
     const investigateState = useSelector((state: RootState) => state.investigation);
     const dispatch = useDispatch<AppDispatch>();
-    const { wikiModalStages, status } = investigateState.wiki;
+    const { wikiModalStages } = investigateState.wiki;
 
 
     const handleHighlightStart = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -21,9 +21,8 @@ export default function FullText({ article_text, article_url }) {
             const y: number = e.pageY;
 
             dispatch(getModalPosition({ x, y }));
-        }
-
-    }
+        };
+    };
 
     const handleHighlightEnd = () => {
         if (wikiModalStages.highlight) {
@@ -31,12 +30,13 @@ export default function FullText({ article_text, article_url }) {
 
             if (selection && selection.rangeCount > 0) {
                 const selectedTextString = selection.toString().trim();
-                dispatch(modalStages({
-                    display: true,
-                    highlight: false,
-                    confirmExtract: true,
-                    text: selectedTextString
-                }))
+                selectedTextString.length > 3
+                    && dispatch(modalStages({
+                        display: true,
+                        highlight: false,
+                        confirmExtract: true,
+                        text: selectedTextString
+                    }));
             };
         };
     };

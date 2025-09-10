@@ -1,5 +1,6 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { act } from "react";
+import { RootState } from "@/ReduxToolKit/store";
+import { createSlice, createAsyncThunk, createSelector } from "@reduxjs/toolkit";
+
 
 interface UserContent {
     status: string,
@@ -36,7 +37,6 @@ export const fetchSavedArticles = createAsyncThunk(
             if (!response.ok) {
                 throw new Error(`Failed to fetch articles: ${response.statusText}`);
             }
-
             const results = await response.json();
             return results;
 
@@ -47,6 +47,14 @@ export const fetchSavedArticles = createAsyncThunk(
     }
 );
 
+export const selectUserArticles = (state: RootState) => state.userdata.userArticles ?? [];
+
+export const selectSavedUrlSet = createSelector(
+    [selectUserArticles],
+    arts => new Set(arts.map(a => a.article_url))
+);
+
+
 
 
 const UserContentSlice = createSlice({
@@ -56,7 +64,6 @@ const UserContentSlice = createSlice({
         clearUser: () => { return initialState },
         populateArticles: (state, action) => {
             state.userArticles = action.payload.articles;
-            state.articleMap = action.payload.articleMap;
         },
         supabaseContext: (state, action) => {
             state.contextForSupabase = action.payload
@@ -84,8 +91,7 @@ const UserContentSlice = createSlice({
             .addCase(fetchSavedArticles.fulfilled, (state, action) => {
                 state.status = 'succeeded';
                 if (state.userArticles) {
-                    state.userArticles = action.payload.articles;
-                    state.articleMap = action.payload.articleMap;
+                    state.userArticles = action.payload;
                 }
             })
             .addCase(fetchSavedArticles.rejected, (state, action) => {

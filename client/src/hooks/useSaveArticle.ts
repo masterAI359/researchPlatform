@@ -1,28 +1,32 @@
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { saveArticle } from "@/services/supabase/SupabaseData";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/ReduxToolKit/store";
 import { fetchSavedArticles } from "@/ReduxToolKit/Reducers/UserContent/UserContentReducer";
-import { NotificationState, ArticleToSave } from "@/env";
+import { ArticleToSave } from "@/env";
 
-export function useSaveArticle(article: ArticleToSave, setShowNotification) {
-    const userArticles = useSelector((state: RootState) => state.userdata.userArticles);
-    const [notification, setNotification] = useState<NotificationState>({
-        articleExists: false,
-        message: null,
-        anonUser: false,
-        article_id: null
-    });
+interface SaveArticleHook {
+    handleSaveArticle: () => Promise<void>,
+    result: string | null
+};
+
+interface SaveHookParams {
+    article: ArticleToSave,
+    isSaved: boolean | null
+}
+
+export function useSaveArticle({ article, isSaved }: SaveHookParams): SaveArticleHook {
+    const [result, setResult] = useState<string | null>(null);
     const dispatch = useDispatch<AppDispatch>();
-
+    const activeSession = useSelector((state: RootState) => state.auth.activeSession);
+    const userArticles = useSelector((state: RootState) => state.userdata.userArticles);
 
     const dbId = useMemo(() => {
         const saved = Array.isArray(userArticles)
-            ? userArticles.find(a => a.url === article.article_url)
+            ? userArticles.find(a => a.article_url === article.article_url)
             : undefined;
         return saved?.id ?? null;
     }, [userArticles, article.article_url]);
-
 
 
     const dataToSave: SavedArticle = useMemo(() => {
@@ -33,7 +37,7 @@ export function useSaveArticle(article: ArticleToSave, setShowNotification) {
             text: article.article_text,
             authors: article.article_authors,
             date: article.date_published ? article.date_published : article.article_pub_date,
-            url: article.article_url,
+            article_url: article.article_url,
             summary: article.summary,
             fallbackDate: article.article_pub_date,
             id: dbId,
@@ -57,52 +61,25 @@ export function useSaveArticle(article: ArticleToSave, setShowNotification) {
         dbId,
     ]);
 
-    const handleSaveArticle = useCallback(async () => {
-        if (!Array.isArray(userArticles) || userArticles.length === 0) {
-            setNotification((prev) => ({
-                ...prev,
-                message: "login to save articles!",
-                anonUser: true,
-            }));
-            setShowNotification(true);
+
+    const handleSaveArticle = useCallback(async (): Promise<void> => {
+        if (!activeSession) {
+            setResult("Login or join to save articles");
             return;
-        }
-
-        const articleAlreadySaved = userArticles.some(
-            (article) => article.url === dataToSave.url
-        );
-
-        const resp = await saveArticle(dataToSave, articleAlreadySaved);
-        if (resp?.data.message === 'Saved' && (notification.article_id === null)) {
-            setNotification((prev) => ({
-                ...prev,
-                articleExists: true,
-                message: 'saved!',
-                article_id: resp.data.id
-            }));
-        } else if (resp.data.message === 'Deleted') {
-            setNotification({
-                articleExists: false,
-                message: 'removed',
-                anonUser: false,
-                article_id: null
-            })
-
-        } else {
-            setNotification((prev) => ({
-                ...prev,
-                message: 'login to save articles!'
-            }));
-
         };
-        setShowNotification(true);
 
-        dispatch(fetchSavedArticles());
+        try {
+            const resp = await saveArticle(dataToSave, isSaved);
+            const res: unknown = resp?.data.message;
+            if (typeof res === 'string') setResult(res);
 
+            dispatch(fetchSavedArticles());
 
+        } catch (error) {
+            console.error(error);
+        };
 
-    }, [dispatch, dataToSave]);
+    }, [dispatch, dataToSave, isSaved]);
 
-
-    return { handleSaveArticle, setNotification, notification };
+    return { handleSaveArticle, result };
 };

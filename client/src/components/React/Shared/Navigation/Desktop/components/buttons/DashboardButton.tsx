@@ -9,15 +9,15 @@ export default function DashboardButton(): JSX.Element {
         shallowEqual);
     const location = useLocation();
     const active: boolean = (
-        location.pathname === '/Profile'
+        location.pathname === '/dashboard'
     )
         || (
-            location.pathname === '/Login'
+            location.pathname === '/login'
         );
 
     return (
         <div className="relative block">
-            <Link to={activeSession ? '/Profile' : '/Login'} >
+            <Link to={activeSession ? '/dashboard' : '/login'} >
                 <button
                     className="flex flex-nowrap group items-center justify-between 2xl:w-28
                                  2xl:gap-x-2 py-1.5 px-4 rounded-md  bg-gradient-to-tr from-ebony to-mirage shadow-thick border border-white/5

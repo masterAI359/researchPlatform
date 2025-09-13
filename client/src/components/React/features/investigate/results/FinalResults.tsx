@@ -3,10 +3,9 @@ import InvestigateMore from "./buttons/InvestigateMore"
 import { useSelector } from "react-redux"
 import { RootState } from "@/ReduxToolKit/store"
 import DataTable from "./DataTable"
-import { useEffect } from "react"
 import { AnimatePresence } from "framer-motion"
 import SavingResearch from "@/components/React/session/notifications/SavingResearch"
-import ViewMyInvestigations from "./buttons/ViewMyInvestigations"
+import GoToDashboard from "./buttons/GoToDashboard"
 import FeedBackForm from "@/components/React/session/forms/UserFeedback/FeedbackForm"
 
 
@@ -14,17 +13,10 @@ export default function FinalResults() {
     const investigateState = useSelector((state: RootState) => state.investigation)
     const saveStatus = useSelector((state: RootState) => state.saveResearch.status)
     const saved = useSelector((state: RootState) => state.saveResearch.saved)
-    const seenFeedbackForm = useSelector((state: RootState) => state.feedback.seen)
-    const declinedFeedBack = useSelector((state: RootState) => state.feedback.declined)
     const { display } = investigateState
     const { showFeedBackForm } = display
     const { pov } = investigateState
     const { idea } = pov
-
-
-    useEffect(() => {
-    }, [saved, showFeedBackForm, seenFeedbackForm, declinedFeedBack])
-
 
     return (
         <section className={`lg:p-8 h-full w-full flex justify-center mx-auto transition-all duration-200 ease-in-out 
@@ -57,7 +49,7 @@ export default function FinalResults() {
                 </div>
 
                 <div className="flex mt-16 gap-x-2 2xl:gap-x-6 w-1/2 justify-center mx-auto">
-                    {saved === true && showFeedBackForm !== null ? <ViewMyInvestigations /> : <SaveInvestigation />}
+                    {saved === true ? <GoToDashboard /> : <SaveInvestigation />}
                     <InvestigateMore />
                 </div>
             </div>

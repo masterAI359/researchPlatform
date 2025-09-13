@@ -1,12 +1,11 @@
 import { useNavigate } from "react-router-dom"
 
-export default function ViewMyInvestigations() {
+export default function GoToDashboard() {
     const navigate = useNavigate()
 
     const goToProfile = () => {
-
-        navigate('/Profile')
-    }
+        navigate('/dashboard');
+    };
 
     return (
         <button
@@ -18,5 +17,5 @@ export default function ViewMyInvestigations() {
                 Go to Dashboard <span className="ml-2">&#8594;</span>
             </p>
         </button>
-    )
-}
+    );
+};

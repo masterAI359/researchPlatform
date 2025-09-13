@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { BSPost } from "../Components/BSPost";
 
 
-export default function Scroller({ posts, context, setClicked }) {
+export default function Scroller({ posts }) {
 
     const variants = {
         open: { opacity: 1 },
@@ -19,7 +19,7 @@ export default function Scroller({ posts, context, setClicked }) {
                 transition={{ type: 'tween', duration: 0.3, ease: 'easeInOut' }}
             >
                 {posts.map((post: any, index: number) => (
-                    <BSPost context={context} key={post.record.text + index.toString()} post={post} setClicked={setClicked} />
+                    <BSPost key={post.record.text + index.toString()} post={post} />
                 ))}
             </motion.div>
         </AnimatePresence>

@@ -10,14 +10,11 @@ import { splitPosts } from "@/helpers/Presentation";
 import { variants } from "@/motion/variants";
 import { PostsProps } from "@/env";
 import Popover from "../Popovers/Popover";
-import SelectedPost from "../Popovers/SelectedPost";
 
-export default function Posts({ posts, context }: PostsProps) {
+export default function Posts({ posts, context, shouldRedirect }: PostsProps) {
   const status = useSelector((state: RootState) => state.bluesky.status);
   const [firstHalf, setFirstHalf] = useState<any>(null);
   const [secondHalf, setSecondHalf] = useState<any>(null);
-  const [clicked, setClicked] = useState<boolean>(false);
-  const popoverPost = useSelector((state: RootState) => state.bluesky.popoverPost);
   const selected = useSelector((state: RootState) => state.bluesky.selected);
   const dispatch = useDispatch();
 
@@ -56,7 +53,10 @@ export default function Posts({ posts, context }: PostsProps) {
       className="h-full"
     >
       <AnimatePresence>
-        {selected && popoverPost && <Popover />}
+        {selected &&
+          <Popover
+            shouldRedirect={shouldRedirect}
+          />}
       </AnimatePresence>
 
       <ErrorBoundary>
@@ -66,6 +66,7 @@ export default function Posts({ posts, context }: PostsProps) {
 
         {status !== 'pending' && <div className='relative mx-auto px-4 lg:px-16 overflow-y-hidden'>
           <div
+
             style={{
               animationPlayState: selected ? 'paused' : 'running'
             }}
@@ -79,8 +80,7 @@ export default function Posts({ posts, context }: PostsProps) {
 
               {firstHalf !== null &&
                 <Scroller
-                  context={context}
-                  setClicked={setClicked}
+
                   posts={firstHalf}
                 />
               }
@@ -93,8 +93,6 @@ export default function Posts({ posts, context }: PostsProps) {
 
               {secondHalf !== null &&
                 <Scroller
-                  context={context}
-                  setClicked={setClicked}
                   posts={secondHalf}
                 />
               }

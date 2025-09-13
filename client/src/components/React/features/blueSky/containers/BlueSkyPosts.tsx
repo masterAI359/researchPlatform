@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { useLayoutEffect } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useLayoutEffect } from "react";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import ErrorBoundary from "../../../Shared/ErrorBoundaries/ErrorBoundary";
 import { variants } from "@/motion/variants";
@@ -8,10 +8,22 @@ import Posts from "../Components/Posts";
 import SearchBlueSky from "../Components/SearchBlueSky";
 import BlueSkyHeader from "../Components/BlueSkyHeader";
 import CloseBlueSky from "../Components/buttons/CloseBlueSky";
+import { useNavigate } from "react-router-dom";
+import { preselected } from "@/ReduxToolKit/Reducers/Investigate/UserPOV";
+import { displayBlueSkySearch } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
 
-export default function BlueSkyPosts({ context }) {
-  const posts = useSelector((state: RootState) => state.bluesky.posts);
-  const status = useSelector((state: RootState) => state.bluesky.status);
+interface BlueSkyProps {
+  context: 'home' | 'investigate'
+};
+
+export default function BlueSkyPosts({ context }: BlueSkyProps) {
+  const { posts } = useSelector((state: RootState) => state.bluesky, shallowEqual);
+  const researchState = useSelector((state: RootState) => state.investigation);
+  const navigate = useNavigate();
+  const { idea } = researchState.pov;
+  const shouldRedirect: boolean = context === 'home';
+  const dispatch = useDispatch();
+
 
   useLayoutEffect(() => {
     if (posts) {
@@ -19,7 +31,22 @@ export default function BlueSkyPosts({ context }) {
       localStorage.setItem('bsPosts', JSON.stringify(storeThese));
     };
 
-  }, [status, posts]);
+  }, [posts]);
+
+  useEffect(() => {
+    if (!idea) return
+
+    const timer = window.setTimeout(() => {
+      if (idea && shouldRedirect) {
+        navigate('/investigate');
+      }
+      dispatch(displayBlueSkySearch(false));
+
+    }, 500);
+
+    return () => clearTimeout(timer);
+
+  }, [idea, shouldRedirect]);
 
 
   return (
@@ -53,6 +80,7 @@ export default function BlueSkyPosts({ context }) {
               key={'postsfetched'}
               context={context}
               posts={posts}
+              shouldRedirect={shouldRedirect}
             />
           </ErrorBoundary>
         </div>

@@ -5,6 +5,7 @@ import { Session } from "@supabase/supabase-js";
 import { Extracts } from "./ReduxToolKit/Reducers/Investigate/Review";
 import React, { ReactEventHandler, ReactNode } from "react";
 import { ActionCreatorWithoutPayload } from "@reduxjs/toolkit";
+import { User } from "@supabase/supabase-js";
 
 declare global {
   interface ImportMetaEnv {
@@ -136,7 +137,8 @@ declare global {
 
   interface PostsProps {
     posts: any[] | null,
-    context: string
+    context: string,
+    shouldRedirect: boolean
   }
 
 
@@ -307,10 +309,7 @@ declare global {
     userContent: UserContent;
   }
 
-  interface UserContent {
-    userArticles: SavedArticle[] | null;
-    userResearch: Investigation[] | null;
-  }
+
 
   interface LoginResponse {
     message: string,
@@ -341,7 +340,21 @@ declare global {
     setActiveTab: (activeTab: Help) => void,
   }
 
+  interface CurrentUser {
+    user: User,
+    data: UserContent
+  }
 
+  interface SavedArticleRes {
+    articles: SavedArticle[],
+    articleMap: Map<string, SavedArticle>
+  }
+
+
+  interface UserContent {
+    userArticles: SavedArticleRes | null;
+    userResearch: Investigation[] | null;
+  }
 
   interface NotifySaved {
     setNotification: React.Dispatch<React.SetStateAction<string | null>>,
@@ -420,5 +433,5 @@ export {
   Tooltips, SidebarItemData, LinkProps, SaveArticleResponse, WikiTerm, Bias, BiasCounts, LoadedArticle, ChartFallbackProps,
   UserContent, LoginResponse, LoginFormProps, DashboardOption, HelpModal, NotifySaved, SaveArticleButton,
   WikiTypes, ArticleSavedComponent, Icon, ArticleToSave, SignInHook, WebWorkerResponse, WebWorkerRequest, ChartType, StatBreakdownTypes,
-  DeleteStatus
+  DeleteStatus, SavedArticleRes, CurrentUser,
 };

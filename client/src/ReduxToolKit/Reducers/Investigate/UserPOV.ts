@@ -11,7 +11,8 @@ export interface UserPOVState {
     premises: string | null,
     query: string | null,
     searching: boolean | null,
-    loading: boolean | null
+    loading: boolean | null,
+    showOptions: boolean
 }
 
 const initialState: UserPOVState = {
@@ -23,7 +24,8 @@ const initialState: UserPOVState = {
     premises: '',
     query: '',
     searching: false,
-    loading: false
+    loading: false,
+    showOptions: true
 }
 
 
@@ -55,11 +57,14 @@ export const UserPOVSlice = createSlice({
         },
         loading: (state, action) => {
             state.loading = action.payload
+        },
+        preselected: (state) => {
+            state.showOptions = false;
         }
 
     }
 })
 
-export const { getIdea, getPerspective, getExpertise, getBiases, getPremises, getQuery, searchingArticles, loading } = UserPOVSlice.actions
+export const { getIdea, getPerspective, getExpertise, getBiases, getPremises, getQuery, searchingArticles, loading, preselected } = UserPOVSlice.actions
 
 export default UserPOVSlice.reducer

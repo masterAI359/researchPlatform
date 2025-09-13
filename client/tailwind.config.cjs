@@ -95,8 +95,8 @@ module.exports = {
         "spin-reverse": "spin-reverse 1s linear infinite",
         "spin-reverse-slow": "spin-reverse 4s linear infinite",
         "spin-reverse-slower": "spin-reverse 6s linear infinite",
-        scroller: "scroller 30s linear infinite",
-        scroller2: "scroller2 20s linear infinite",
+        scroller: "scroller 35s linear infinite",
+        scroller2: "scroller2 25s linear infinite",
         "fade-in": "fade-in 0.5s linear forwards",
         "shimmer": "shimmer 2s infinite linear",
         'stroke-shimmer': 'stroke-shimmer 1.25s linear infinite'
@@ -151,7 +151,7 @@ module.exports = {
             transform: "translateY(10em)",
           },
           "100%": {
-            transform: "translateY(-14em)",
+            transform: "translateY(-20em)",
           },
         },
         scroller2: {
@@ -159,7 +159,7 @@ module.exports = {
             transform: "translateY(10em)",
           },
           "100%": {
-            transform: "translateY(-14em)",
+            transform: "translateY(-20em)",
           },
         },
         "fade-in": {

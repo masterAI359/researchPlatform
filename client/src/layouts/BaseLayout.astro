@@ -13,21 +13,19 @@ import AppLoader from "@/components/Astro/AppLoader.astro";
   >
     <main class="flex h-auto min-h-dvh flex-col w-full grow">
       <slot />
-
-      <AppLoader />
     </main>
     <Footer />
 
     <script>
-      window.addEventListener("reactMounted", () => {
-        const loader = document.getElementById("appLoader");
-
-        if (loader) {
-          setTimeout(() => {
-            loader.remove();
-          }, 1500);
-        }
-      });
+      // window.addEventListener("reactMounted", () => {
+      //   const loader = document.getElementById("appLoader");
+      //
+      //   if (loader) {
+      //     setTimeout(() => {
+      //       loader.remove();
+      //     }, 1500);
+      //   }
+      // });
     </script>
   </body>
 </html>

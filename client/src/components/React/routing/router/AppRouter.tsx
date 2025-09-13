@@ -3,7 +3,6 @@ import { lazy, Suspense } from "react"
 import Home from "../routes/Home";
 import AboutContainer from "../routes/AboutRoute";
 import Navigation from "../../Shared/Navigation/Navigation";
-import RouteLoader from "../../Shared/Loaders/RouteLoader";
 import DashboardLoader from "../../Shared/Loaders/DashboardLoader";
 import DisplayLoader from "../../Shared/Loaders/DisplayLoader";
 import AppWindowIcon from "../../Shared/IconComponents/AppWindowIcon";

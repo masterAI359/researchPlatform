@@ -71,8 +71,8 @@ export default function AnimationWrapper() {
             <div ref={sentinelRef} className='h-1 w-full' />
 
             {showBlueSky &&
-                <Suspense fallback={<BlueSkySkeleton context={'home'} />}>
-                    {showBlueSky && <BlueSkyPosts context={'home'} />}
+                <Suspense fallback={<BlueSkySkeleton context='home' />}>
+                    {showBlueSky && <BlueSkyPosts context='home' />}
                 </Suspense>
             }
 

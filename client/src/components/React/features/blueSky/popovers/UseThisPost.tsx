@@ -1,33 +1,29 @@
 import { useDispatch } from "react-redux"
-import { displayBlueSkySearch } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer"
-import { useNavigate } from "react-router-dom"
 import { selectPost } from "@/ReduxToolKit/Reducers/BlueSky/BlueSkySlice"
-import { acceptedInput, denyIncrement } from "@/ReduxToolKit/Reducers/Investigate/Steps"
+import { getIdea, preselected } from "@/ReduxToolKit/Reducers/Investigate/UserPOV"
+import { useEffect, useRef } from "react";
+import { displayBlueSkySearch } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
+import { useNavigate } from "react-router-dom";
 
 interface UseThis {
-    context?: string,
-    post: any
-}
+    post: any,
+    shouldRedirect: boolean
+};
 
-export default function UseThisPost({ context, post }: UseThis) {
+export default function UseThisPost({ post, shouldRedirect }: UseThis) {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
-    const investigateThis = (cntxt: string) => {
-        if (cntxt === 'investigate') {
-            dispatch(denyIncrement(false));
-            dispatch(displayBlueSkySearch(false));
-            dispatch(acceptedInput(true))
-        } else {
-            navigate('/investigate');
-            dispatch(denyIncrement(false))
-            dispatch(displayBlueSkySearch(false))
-        }
-    }
+    const investigateThis = () => {
+        dispatch(preselected());
+        dispatch(getIdea(post.record.text));
+        dispatch(selectPost(null));
+    };
 
     const unselect = () => {
         dispatch(selectPost(null));
     };
+
+
 
     return (
         <div key={post.record.createdAt} className="bg-transparent relative h-auto w-auto flex justify-center items-center gap-x-8 rounded-3xl
@@ -40,7 +36,7 @@ export default function UseThisPost({ context, post }: UseThis) {
                 >
                     <button
                         aria-label="confirm post to investigate"
-                        onClick={() => investigateThis(context)}
+                        onClick={investigateThis}
                         type="button"
                         className="text-lg font-light py-2 w-full 2xl:w-24 px-4 border focus:ring-2 rounded-full border-transparent
                      bg-white lg:hover:bg-blue-500 text-black focus:ring-offset-2 focus:ring-white 

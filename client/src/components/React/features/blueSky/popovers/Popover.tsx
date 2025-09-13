@@ -10,7 +10,11 @@ const variants = {
   open: { opacity: 1 }
 };
 
-export default function Popover() {
+interface PopoverProps {
+  shouldRedirect: boolean
+};
+
+export default function Popover({ shouldRedirect }: PopoverProps) {
   const popoverPost = useSelector((state: RootState) => state.bluesky.popoverPost);
 
   const popover = (
@@ -31,6 +35,7 @@ export default function Popover() {
         />
         <UseThisPost
           post={popoverPost}
+          shouldRedirect={shouldRedirect}
         />
 
       </div>

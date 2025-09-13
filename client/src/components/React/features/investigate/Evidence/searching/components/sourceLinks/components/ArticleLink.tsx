@@ -19,11 +19,11 @@ type ImgProps = React.ImgHTMLAttributes<HTMLImageElement> & {
 
 
 const ArticleLink = memo(({ article, index, removingModal }: LinkProps) => {
-    const investigateState = useSelector((state: RootState) => state.investigation)
-    const { getArticle, display } = investigateState
-    const { showGetArticlesModal } = display
-    const { chosenArticles } = getArticle
-    const dispatch = useDispatch()
+    const investigateState = useSelector((state: RootState) => state.investigation);
+    const dispatch = useDispatch();
+    const { getArticle, display } = investigateState;
+    const { showGetArticlesModal } = display;
+    const { chosenArticles } = getArticle;
     const isPriority: boolean = index >= 8;
     const { name, provider, image, description, logo } = article;
     const isHilighted = chosenArticles.some(item => item.url === article.url)

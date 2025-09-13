@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { displayBlueSkySearch } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
+import { preselected } from "@/ReduxToolKit/Reducers/Investigate/UserPOV";
 
 
 export default function InputOptions() {
@@ -20,6 +21,16 @@ export default function InputOptions() {
     },
   ];
 
+  const searchBS = () => {
+    dispatch(displayBlueSkySearch(true));
+    dispatch(preselected());
+  };
+
+  const inputManually = () => {
+
+    dispatch(displayBlueSkySearch(false));
+    dispatch(preselected());
+  }
 
 
   const importFromBlueSky = actions[0];
@@ -56,7 +67,7 @@ export default function InputOptions() {
                   </div>
                   <div className="mt-8 w-full">
                     <button
-                      onClick={() => dispatch(displayBlueSkySearch(true))}
+                      onClick={searchBS}
                       type="button"
                       className="text-sm py-2 w-full px-4 border focus:ring-2 rounded-full border-transparent group
                           bg-white hover:bg-white/10 text-black duration-200 focus:ring-offset-2 focus:ring-white 
@@ -93,7 +104,7 @@ export default function InputOptions() {
                   </div>
                   <div className="mt-8 w-full">
                     <button
-                      onClick={() => dispatch(displayBlueSkySearch(false))}
+                      onClick={inputManually}
                       type="button"
                       className="text-sm py-2 w-full px-4 border focus:ring-2 rounded-full
                            border-transparent bg-white hover:bg-white/10 text-black duration-200 

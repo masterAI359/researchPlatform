@@ -16,7 +16,7 @@ export default function HeroContainer({
 
 
     return (
-        <section className={`w-full h-full shrink-0 mx-auto transition-opacity duration-200 ease-in-out 
+        <section className={`w-dvw h-full shrink-0 mx-auto transition-opacity duration-200 ease-in-out 
         flex items-center
         ${showWorkModal ? 'opacity-50' : 'opacity-100'}`}>
             <AnimatePresence mode="wait">

@@ -13,13 +13,17 @@ import BlueSkySkeleton from '../../blueSky/skeletons/BlueSkySkeleton';
 
 export default function InvestigationWorkSpace() {
     const investigateState = useSelector((state: RootState) => state.investigation);
-    const { display, notes } = investigateState;
+    const post = useSelector((state: RootState) => state.bluesky.popoverPost);
+    const { display, notes, pov } = investigateState;
+    const { idea, showOptions } = pov;
     const { showBlueSkySearch, showMindMap, showGetArticlesModal } = display;
     const { takingNotes } = notes;
     const notesRef = useRef(null);
     const containerRef = useRef(null);
     const [notePosition, setNotePosition] = useState({ x: 20, y: 200 });
     const [constraints, setConstraints] = useState(null);
+
+    console.log(showBlueSkySearch)
 
     function handleDragConstraints() {
         if (!containerRef.current || !notesRef.current) return;
@@ -47,15 +51,17 @@ export default function InvestigationWorkSpace() {
             id='workspace'
             className={`w-full h-auto flex flex-col grow 
             justify-start items-center transition-opacity duration-200 
-            ${showGetArticlesModal ? 'delay-0 opacity-50 pointer-events-none' : 'delay-500 opacity-100 pointer-events-auto'}
+            ${showGetArticlesModal
+                    ? 'delay-0 opacity-50 pointer-events-none'
+                    : 'delay-500 opacity-100 pointer-events-auto'}
             `}
         >
 
-            {showBlueSkySearch === null &&
+            {!idea && showOptions &&
                 <InputOptions />
             }
 
-            {showBlueSkySearch === false &&
+            {showBlueSkySearch === false && (showOptions === false) &&
                 <HeroContainer
                     key={'HeroContainer'} />
             }

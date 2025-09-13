@@ -7,7 +7,6 @@ import { saveUserInvestigation } from "@/ReduxToolKit/Reducers/UserContent/SaveI
 import { useEffect, useState } from "react"
 
 export default function SaveInvestigation({ }) {
-    const id = useSelector((state: RootState) => state.auth.user_id)
     const saved = useSelector((state: RootState) => state.saveResearch.saved)
     const sources = useSelector((state: RootState) => state.saveResearch.sources)
     const investigateState = useSelector((state: RootState) => state.investigation)
@@ -27,7 +26,7 @@ export default function SaveInvestigation({ }) {
         changed_opinion: movedOnIdea,
         takeaway: takeaway,
         had_merit: merit,
-        user_id: id,
+        user_id: null,
         sources: sources,
         wikipedia_extracts: extracts
     }
@@ -41,9 +40,9 @@ export default function SaveInvestigation({ }) {
     }, [saved]);
 
     const handleSave = () => {
-        dispatch(saveUserInvestigation(investigateData))
-        dispatch(fetchSavedInvestigations(id))
-    }
+        dispatch(saveUserInvestigation(investigateData));
+        dispatch(fetchSavedInvestigations());
+    };
 
     return (
         <button

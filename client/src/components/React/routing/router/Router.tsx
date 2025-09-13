@@ -42,6 +42,14 @@ export const router = createBrowserRouter([
                 }
             },
             {
+                path: 'signup',
+                async lazy() {
+                    const mod = await import('@/components/React/session/forms/AuthForms/Signup');
+                    return { Component: mod.default };
+                },
+
+            },
+            {
                 path: 'dashboard',
                 async lazy() {
                     const mod = await import('@/components/React/routing/routes/Dashboard');

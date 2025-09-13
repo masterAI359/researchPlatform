@@ -54,7 +54,7 @@ export default function MenuItem({ id, text, link, isOpen, toggle, icon }) {
 
 export function DashboardLink({ isOpen, toggle, activeSession }) {
 
-    const linkOptions = activeSession ? '/Profile' : '/Signup'
+    const linkOptions = activeSession ? '/dashboard' : '/signup'
 
     const variants = {
         open: {

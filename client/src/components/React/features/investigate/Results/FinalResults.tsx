@@ -32,7 +32,7 @@ export default function FinalResults() {
                 <div className="text-center max-w-xl mx-auto">
                     <span className="text-md 2xl:text-lg text-blue-500 font-light"> Results</span>
                     <h2 className="text-sm md:text-xl mt-6 tracking-tight font-light lg:text-2xl text-white">
-                        Your Investigation of the idea:  <span className="block text-zinc-400 mt-2"> {idea}</span>
+                        Idea Challenged:  <span className="block text-zinc-400 mt-2 text-base text-left"> {idea}</span>
                     </h2>
                 </div>
 

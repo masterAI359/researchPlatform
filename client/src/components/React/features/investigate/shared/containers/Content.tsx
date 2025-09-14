@@ -1,10 +1,10 @@
-import { motion, AnimatePresence } from "framer-motion"
-import SearchResults from "../phase2/results/containers/SearchResults"
-import ModalContainer from "./ModalContainer"
-import { useSelector } from "react-redux"
-import { RootState } from "@/ReduxToolKit/store"
-import ScrolltoTop from "../../../../../helpers/ScrollToTop"
-import ArticleContainer from "../../../Shared/Articles/containers/ArticleContainer"
+import { motion, AnimatePresence } from "framer-motion";
+import SearchResults from "@/components/React/features/investigate/phase2/results/containers/SearchResults";
+import ModalContainer from "@/components/React/features/investigate/shared/wrappers/ModalContainer";
+import { useSelector } from "react-redux";
+import { RootState } from "@/ReduxToolKit/store";
+import ScrolltoTop from "@/helpers/ScrollToTop";
+import ArticleContainer from "@/components/React/Shared/Articles/containers/ArticleContainer";
 
 export default function Content() {
     const investigateState = useSelector((state: RootState) => state.investigation);

@@ -18,7 +18,9 @@ import { useSkeletons } from "@/hooks/useSkeletons";
 
 export default function ArticlesScroller() {
     const userArticles: SavedArticle[] | null = useSelector((state: RootState) => state.userdata.userArticles);
-    const { visible, fullyLoaded, loadMore } = useVirtuoso(userArticles);
+    const artcs = [...userArticles];
+    const sortedArticles = artcs.sort((a: SavedArticle, b: SavedArticle) => b.id - a.id);
+    const { visible, fullyLoaded, loadMore } = useVirtuoso(sortedArticles);
     const { fastScroll, clockScrollSpeed } = useSkeletons(180);
     const [deleting, setDeleting] = useState<boolean>(false);
     const [deletedIds, setDeletedIds] = useState<Set<number>>(new Set());

@@ -1,8 +1,8 @@
-import InvestigateHero from "../GetPerspective/wrappers/InvestigateHero"
+import InvestigateHero from "../phase1/wrappers/InvestigateHero"
 import SearchHero from "../heros/SearchHero"
-import ReviewWrapper from "../GetPerspective/containers/ReviewContainer"
+import ReviewContainer from "../phase4/containers/ReviewContainer"
 import CompletionHero from "../heros/CompletionHero"
-import FinalResults from "../results/FinalResults"
+import FinalResults from "../phase5/FinalResults"
 import ScrolltoTop from "../../../../../helpers/ScrollToTop"
 import { AnimatePresence, motion } from "framer-motion"
 import { useSelector } from "react-redux"
@@ -60,7 +60,7 @@ export default function HeroContainer({
                     transition={{ type: 'tween', duration: 0.5, ease: 'easeInOut' }}
                     className={`w-full h-fit mx-auto`}
                 >
-                    <ReviewWrapper />
+                    <ReviewContainer />
                     <ScrolltoTop />
                 </motion.div>}
 

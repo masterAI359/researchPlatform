@@ -1,4 +1,4 @@
-import Completed from "../results/Completed"
+import Completed from "../phase5/Completed"
 
 
 export default function CompletionHero() {

@@ -1,5 +1,5 @@
 import { SummaryHelp } from "@/helpInfo/help"
-import HelpButton from "../Shared/Help/buttons/Question"
+import HelpButton from "@/components/React/Shared/Help/buttons/Question"
 
 export default function ReadingHero({ }) {
 

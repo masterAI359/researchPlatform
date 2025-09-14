@@ -23,8 +23,8 @@ function Title({ article, handleArticleSelection }: TitleTypes): React.ReactNode
             </h3>
 
             <p className="text-zinc-400 text-xs sm:text-[0.65rem] md:text-xs mt-3 lg:mt-6 w-full text-left">
-                {article.authors ? article.authors[0] : 'Authors not available'} - <span>
-                    <time className="text-blue-500 md:text-zinc-400 md:group-hover:text-blue-400 transition-all ease-in-out duration-200" dateTime={article.pubDate}>{article.date_published}</time>
+                {article.authors ? article.authors[0] : 'Date'} - <span>
+                    <time className="text-blue-500 md:text-zinc-400 md:group-hover:text-blue-400 transition-all ease-in-out duration-200" dateTime={article.pubDate}>{article.date_published ?? 'Visit source for date of publication'}</time>
                 </span>
             </p>
             <p className="text-zinc-400 text-xs sm:text-[0.65rem] md:text-xs mt-2 lg:mt-4 w-full text-left">

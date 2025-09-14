@@ -1,5 +1,5 @@
-import React, { Component, ErrorInfo } from 'react'
-import SearchFailed from '../../features/investigate/Evidence/searching/components/sourceLinks/errors/SearchFailed'
+import React, { Component, ErrorInfo } from 'react';
+import SearchFailed from '../../features/investigate/phase2/results/errors/SearchFailed';
 
 interface Props {
     children: React.ReactNode,

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/ReduxToolKit/store";
 import { ScrollUp } from "@/helpers/ScrollToTop";
 import InvestigationWorkSpace from "@/components/React/features/investigate/Containers/InvestigationWorkSpace";
-import SelectLinks from "../../features/investigate/Evidence/searching/components/sourceLinks/components/SelectLinks";
+import SelectLinks from "@/components/React/features/investigate/phase2/results/components/selection/SelectLinks";
 import { displaySelectTooltip } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
 import { useBodyLock } from "@/hooks/useBodyLock";
 

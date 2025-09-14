@@ -1,4 +1,4 @@
-import Search from "../Evidence/searching/components/input/Search"
+import Search from "../phase2/search/containers/Search";
 
 export default function SearchHero(): JSX.Element {
 

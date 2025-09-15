@@ -1,16 +1,13 @@
 import { useDispatch } from "react-redux"
 import { selectPost } from "@/ReduxToolKit/Reducers/BlueSky/BlueSkySlice"
 import { getIdea, preselected } from "@/ReduxToolKit/Reducers/Investigate/UserPOV"
-import { useEffect, useRef } from "react";
-import { displayBlueSkySearch } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
-import { useNavigate } from "react-router-dom";
 
 interface UseThis {
     post: any,
-    shouldRedirect: boolean
+    shouldRedirect?: boolean
 };
 
-export default function UseThisPost({ post, shouldRedirect }: UseThis) {
+export default function UseThisPost({ post }: UseThis) {
     const dispatch = useDispatch();
 
     const investigateThis = () => {

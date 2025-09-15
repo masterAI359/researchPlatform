@@ -1,10 +1,12 @@
 ---
 import BaseHead from "@/components/Astro/BaseHead.astro";
 import Footer from "@/components/Astro/global/Footer.astro";
-import AppLoader from "@/components/Astro/AppLoader.astro";
 ---
 
-<html lang="en" class="selection:text-white no-scrollbar scroll-smooth">
+<html
+  lang="en"
+  class="selection:text-white no-scrollbar scroll-smooth [scrollbar-gutter:stable_both-edges]"
+>
   <head>
     <BaseHead />
   </head>
@@ -15,17 +17,5 @@ import AppLoader from "@/components/Astro/AppLoader.astro";
       <slot />
     </main>
     <Footer />
-
-    <script>
-      // window.addEventListener("reactMounted", () => {
-      //   const loader = document.getElementById("appLoader");
-      //
-      //   if (loader) {
-      //     setTimeout(() => {
-      //       loader.remove();
-      //     }, 1500);
-      //   }
-      // });
-    </script>
   </body>
 </html>

@@ -42,7 +42,7 @@ export default function BlueSkyPosts({ context }: BlueSkyProps) {
       }
       dispatch(displayBlueSkySearch(false));
 
-    }, 500);
+    }, 300);
 
     return () => clearTimeout(timer);
 

@@ -4,11 +4,7 @@ import SelectedPost from "./SelectedPost";
 import UseThisPost from "./UseThisPost";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
-
-const variants = {
-  closed: { opacity: 0 },
-  open: { opacity: 1 }
-};
+import { variants } from "@/motion/variants";
 
 interface PopoverProps {
   shouldRedirect: boolean
@@ -23,6 +19,7 @@ export default function Popover({ shouldRedirect }: PopoverProps) {
       initial="closed"
       animate="open"
       exit="closed"
+      transition={{ type: 'tween', duration: 0.25, ease: 'easeInOut' }}
       className={`z-[900] fixed inset-0 flex justify-center items-center
         ${popoverPost ? 'overflow-y-hidden' : ''}
         `}

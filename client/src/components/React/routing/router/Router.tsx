@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
-import { rootLoader } from "../loaders/rootLoader";
-import Root from "./Root";
+import { rootLoader } from "../loaderFunctions/rootLoader";
+import Root from "../Root/Root";
 import Pageskeleton from "../skeletons/PageSkeleton";
 
 

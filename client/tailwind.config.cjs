@@ -256,6 +256,12 @@ module.exports = {
           '-ms-overflow-style': 'none',
           'scrollbar-width': 'none',
         },
+        '.scrollbar-gutter': {
+          'scrollbar-gutter': 'stable',
+        },
+        '.scrollbar-gutter-stable-both': {
+          'scrollbar-gutter': 'stable both-edges',
+        },
         '.show-scrollbar': {
           /* Re-enable scrollbar behavior */
           '-webkit-overflow-scrolling': 'auto',

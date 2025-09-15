@@ -39,8 +39,6 @@ export default function Article({ articleData, investigating }) {
 
             <ArticleHeader
                 articleData={articleData}
-                setFullStory={setFullStory}
-                fullStory={fullStory}
                 investigating={investigating}
             />
             <ArticleContent

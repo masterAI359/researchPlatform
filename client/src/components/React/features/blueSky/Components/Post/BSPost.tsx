@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/ReduxToolKit/store";
 import { getPopoverPost, selectPost } from "@/ReduxToolKit/Reducers/BlueSky/BlueSkySlice";
-import Avatar from './Post/Avatar';
-import Author from "./Post/Author";
-import PostContent from "./Post/PostContent";
+import Avatar from "./Avatar";
+import Author from "./Author";
+import PostContent from "./PostContent";
+
 
 interface BSPostProps {
   post: any,

@@ -11,7 +11,7 @@ import { variants } from "@/motion/variants";
 import { PostsProps } from "@/env";
 import Popover from "../Popovers/Popover";
 
-export default function Posts({ posts, context, shouldRedirect }: PostsProps) {
+export default function Feed({ posts, context, shouldRedirect }: PostsProps) {
   const status = useSelector((state: RootState) => state.bluesky.status);
   const [firstHalf, setFirstHalf] = useState<any>(null);
   const [secondHalf, setSecondHalf] = useState<any>(null);

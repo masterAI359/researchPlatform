@@ -5,7 +5,7 @@ import BlueSkySkeleton from '../../blueSky/skeletons/BlueSkySkeleton';
 import WikiAndNotes from '../components/WikiAndNotes';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/ReduxToolKit/store';
-const BlueSkyPosts = lazy(() => import('@/components/React/features/blueSky/Containers/BlueSkyPosts'));
+const BlueSkyPosts = lazy(() => import('@/components/React/features/blueSky/Containers/BlueSky'));
 
 export default function AnimationWrapper() {
     const [showBlueSky, setShowBlueSky] = useState<boolean>(false);

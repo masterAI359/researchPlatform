@@ -15,11 +15,9 @@ export default function Popover({ shouldRedirect }: PopoverProps) {
 
   const popover = (
     <motion.div
-      variants={variants}
-      initial="closed"
-      animate="open"
-      exit="closed"
-      transition={{ type: 'tween', duration: 0.25, ease: 'easeInOut' }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, transition: { delay: 0.3, duration: 0.2, type: 'tween' } }}
+      exit={{ opacity: 0, transition: { delay: 0, duration: 0.2, type: 'tween' } }}
       className={`z-[900] fixed inset-0 flex justify-center items-center
         ${popoverPost ? 'overflow-y-hidden' : ''}
         `}

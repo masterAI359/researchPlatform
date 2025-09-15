@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import ComponentLoader from '@/components/React/Shared/Loaders/ComponentLoader';
 import { AnimatePresence } from 'framer-motion';
 import InputOptions from '@/components/React/features/investigate/phase1/components/paths/InputOptions';
-const BlueSkyPosts = lazy(() => import('@/components/React/features/blueSky/Containers/BlueSkyPosts'));
+const BlueSkyPosts = lazy(() => import('@/components/React/features/blueSky/Containers/BlueSky'));
 import HeroContainer from '@/components/React/features/investigate/shared/containers/HeroContainer';
 const Content = lazy(() => import('@/components/React/features/investigate/shared/containers/Content'));
 import Notes from '@/components/React/features/investigate/notes/Notes';

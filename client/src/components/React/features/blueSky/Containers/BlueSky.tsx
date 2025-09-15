@@ -4,8 +4,8 @@ import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import ErrorBoundary from "../../../Shared/ErrorBoundaries/ErrorBoundary";
 import { variants } from "@/motion/variants";
-import Posts from "../Components/Posts";
-import SearchBlueSky from "../Components/SearchBlueSky";
+import Feed from "../Components/Feed";
+import SearchBlueSky from "../Components/input/SearchBlueSky";
 import BlueSkyHeader from "../Components/BlueSkyHeader";
 import CloseBlueSky from "../Components/buttons/CloseBlueSky";
 import { useNavigate } from "react-router-dom";
@@ -16,7 +16,7 @@ interface BlueSkyProps {
   context: 'home' | 'investigate'
 };
 
-export default function BlueSkyPosts({ context }: BlueSkyProps) {
+export default function BlueSky({ context }: BlueSkyProps) {
   const { posts } = useSelector((state: RootState) => state.bluesky, shallowEqual);
   const researchState = useSelector((state: RootState) => state.investigation);
   const navigate = useNavigate();
@@ -76,7 +76,7 @@ export default function BlueSkyPosts({ context }: BlueSkyProps) {
 
           <ErrorBoundary fallback={'Error occured'}
           >
-            <Posts
+            <Feed
               key={'postsfetched'}
               context={context}
               posts={posts}

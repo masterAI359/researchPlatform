@@ -1,7 +1,7 @@
 import { lazy, Suspense } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
-import StepWizard from "../../stepWizard/containers/StepWizard";
+import StepWizard from "@/components/React/features/investigate/phase1/components/stepWizard/containers/StepWizard";
 import ComponentLoader from "@/components/React/Shared/Loaders/ComponentLoader";
 const WindowWrapper = lazy(() => import('./WindowWrapper'));
 

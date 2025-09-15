@@ -5,7 +5,7 @@ import { displayGetArticlesModal, displaySelectionWarning, displaySelectTooltip 
 import { AppDispatch } from "@/ReduxToolKit/store";
 import SelectionRequired from "../../../notifications/SelectionRequired";
 import { useEffect } from "react";
-import GuideSelectingArticles from "@/components/React/features/investigate/tooltips/GuideSelectingArticles";
+import GuideSelectingArticles from "@/components/React/features/investigate/shared/tooltips/GuideSelectingArticles";
 import { useTooltipFlags } from "@/hooks/useTooltipFlags";
 
 

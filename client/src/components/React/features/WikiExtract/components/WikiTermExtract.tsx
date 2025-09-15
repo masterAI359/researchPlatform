@@ -34,7 +34,7 @@ export default function WikiTermExtract({ article_url, data }: WikiTerm) {
             animate='open'
             exit='closed'
             transition={{ type: "tween", duration: 0.2 }}
-            className="w-80 h-auto py-2 px-4 rounded-3xl  
+            className="w-72 xl:w-80 h-auto py-2 px-4 rounded-3xl  
             bg-black border border-border_gray
         flex flex-col items-center fixed md:left-4 lg:bottom-32 2xl:bottom-44"
         >

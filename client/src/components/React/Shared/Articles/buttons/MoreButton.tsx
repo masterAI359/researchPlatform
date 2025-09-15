@@ -2,6 +2,8 @@ import More from "./More"
 
 export default function MoreButton({ article_url, open, setOpen, context, setShowAllAuthors, authors, showAllAuthors }) {
 
+    //TODO: change 'more' options from showing all authors, to displaying more about the source bias information
+
     return (
         <div className='w-full h-full xs:self-start md:self-center xs:mt-2 md:mt-0 relative'>
             {open &&

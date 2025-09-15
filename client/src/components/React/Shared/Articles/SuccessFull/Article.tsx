@@ -30,7 +30,7 @@ export default function Article({ articleData, investigating }) {
                 }
             }}
             className={`relative top-0 left-0 right-0 flex flex-col grow px-4
-            w-full min-h-screen scrollbar-hide bg-black transition-all duration-200 ease-in-out
+            w-full lg:max-w-xl xl:max-w-4xl min-h-screen scrollbar-hide bg-black transition-all duration-200 ease-in-out
             
             `}
         >

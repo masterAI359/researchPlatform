@@ -29,8 +29,8 @@ export default function ArticleHeader({ articleData, setFullStory, fullStory, in
                 >
                     <FrontMatter article={articleData} />
                     <div
-                        className="self-end w-auto h-full flex 
-                        flex-col gap-y-1 md:gap-y-6 items-center"
+                        className="self-end w-auto h-full flex
+                        flex-col gap-y-1 md:gap-y-4 items-center"
                     >
                         <div
                             className="w-auto h-auto flex justify-start"

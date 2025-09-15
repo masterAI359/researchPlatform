@@ -22,7 +22,6 @@ export default function InvestigationWorkSpace() {
     const [notePosition, setNotePosition] = useState({ x: 20, y: 200 });
     const [constraints, setConstraints] = useState(null);
 
-    console.log(showBlueSkySearch)
 
     function handleDragConstraints() {
         if (!containerRef.current || !notesRef.current) return;

@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import { AnimatePresence, motion } from "framer-motion";
-import ErrorBoundary from "@/components/React/Shared/ErrorBoundaries/ErrorBoundary";
 import { RootState } from "@/ReduxToolKit/store";
 import BlueSkyLoader from "../Loaders/BlueSkyLoader";
 import { variants } from "@/motion/variants";
@@ -22,28 +21,37 @@ export default function FeedContainer({ posts, shouldRedirect }: PostsProps) {
             transition={{ type: 'tween', duration: 0.3 }}
             className="h-full"
         >
-            <AnimatePresence>
-                {selected &&
-                    <Popover
-                        key='popoverPost'
-                        shouldRedirect={shouldRedirect}
-                    />}
-            </AnimatePresence>
+            <div className="relative min-h-screen w-full">
 
-            <ErrorBoundary>
+                <AnimatePresence>
+                    {selected &&
+                        <Popover
+                            key='popoverPost'
+                            shouldRedirect={shouldRedirect}
+                        />}
+                </AnimatePresence>
+
                 <AnimatePresence mode="wait">
                     {status === 'pending' &&
                         <BlueSkyLoader key={'pendingPosts'}
                         />
                     }
+
                     {status !== 'pending' &&
-                        <Feed posts={posts}
+                        <Feed
+                            key='feed'
+                            posts={posts}
                         />
                     }
+
                 </AnimatePresence>
 
+                <AnimatePresence>
 
-            </ErrorBoundary>
+                </AnimatePresence>
+            </div>
+
+
         </motion.div>
     )
 };

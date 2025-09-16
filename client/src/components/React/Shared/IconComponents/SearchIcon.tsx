@@ -2,7 +2,7 @@ export default function SearchIcon() {
 
     return (
         <svg
-            className="text-white h-4 w-4 relative
+            className="text-white h-5 w-5 relative
                          bottom-0 right-2 fill-current"
             xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
             version="1.1" x="0px" y="0px" viewBox="0 0 56.966 56.966"

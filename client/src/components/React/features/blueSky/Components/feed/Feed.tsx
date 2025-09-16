@@ -46,7 +46,7 @@ export default function Feed({ posts }: FeedProps): React.ReactNode {
       initial="closed"
       animate="open"
       exit="closed"
-      transition={{ type: 'tween', duration: 0.3, ease: 'easeInOut' }}
+      transition={{ type: 'tween', duration: 0.2, ease: 'easeInOut' }}
       className='relative mx-auto px-4 lg:px-16 overflow-y-hidden'>
       <div
 

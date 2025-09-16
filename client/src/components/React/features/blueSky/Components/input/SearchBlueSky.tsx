@@ -41,14 +41,14 @@ export default function SearchBlueSky() {
                     autoComplete="off"
                     type="text"
                     name="q"
-                    className="bg-transparent text-white max-w-44 lg:max-w-52 lg:w-full h-fit 
+                    className="bg-transparent text-white max-w-44 lg:max-w-full lg:w-52 h-fit 
                          border-none md:h-12 p-2 rounded-full relative focus:ring-0
                          transition-colors text-base md:text-lg font-light flex items-center placeholder-slate-300"
                     placeholder="search BlueSky" />
                 <button
                     onClick={(e) => submitForPosts(e)}
                     type="submit"
-                    className="relative"
+                    className="relative pr-2 grow-0"
                 >
                     {
                         status === 'pending'

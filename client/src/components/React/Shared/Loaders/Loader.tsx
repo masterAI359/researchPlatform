@@ -4,8 +4,8 @@ export default function Loader() {
     <svg
       key='loaderSpinner'
       aria-hidden="true"
-      className="h-6 w-6
-          text-black animate-spin-fast fill-white relative right-1 bottom-0"
+      className="h-5 w-5
+          text-black animate-spin-fast fill-white relative right-2 bottom-0 grow-0"
       viewBox="0 0 100 101"
       fill="none"
       xmlns="http://www.w3.org/2000/svg">

@@ -24,8 +24,11 @@ export function BSPost({ post }: BSPostProps) {
   return (
     <div
       onClick={choosePost}
-      className={`relative rounded-3xl shadow-inset  my-8 lg:hover:opacity-100 py-2 px-2  lg:p-6 ring-1 ring-white/5 cursor-pointer flex flex-col gap-y-2
-        ${text === selected ? 'bg-white shadow-material border-2 border-black/20 lg:scale-105 z-40 pointer-events-none' : 'pointer-events-auto lg:opacity-90 bg-white/5'}
+      className={`relative rounded-3xl shadow-inset my-8 lg:hover:opacity-100 animate-fade-in transition-opacity 
+        py-2 px-2  lg:p-6 ring-1 ring-white/5 cursor-pointer flex flex-col gap-y-2
+        ${text === selected
+          ? 'bg-white shadow-material border-2 border-black/20 lg:scale-105 z-40 pointer-events-none'
+          : 'pointer-events-auto lg:opacity-90 bg-white/5'}
         `}
     >
       <figcaption className={`relative flex flex-row items-center gap-2 pb-6 border-b 

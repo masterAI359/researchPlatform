@@ -4,13 +4,12 @@ import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import ErrorBoundary from "../../../Shared/ErrorBoundaries/ErrorBoundary";
 import { variants } from "@/motion/variants";
-import Feed from "../Components/Feed";
 import SearchBlueSky from "../Components/input/SearchBlueSky";
 import BlueSkyHeader from "../Components/BlueSkyHeader";
 import CloseBlueSky from "../Components/buttons/CloseBlueSky";
 import { useNavigate } from "react-router-dom";
-import { preselected } from "@/ReduxToolKit/Reducers/Investigate/UserPOV";
 import { displayBlueSkySearch } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
+import FeedContainer from "./FeedContainer";
 
 interface BlueSkyProps {
   context: 'home' | 'investigate'
@@ -76,7 +75,7 @@ export default function BlueSky({ context }: BlueSkyProps) {
 
           <ErrorBoundary fallback={'Error occured'}
           >
-            <Feed
+            <FeedContainer
               key={'postsfetched'}
               context={context}
               posts={posts}

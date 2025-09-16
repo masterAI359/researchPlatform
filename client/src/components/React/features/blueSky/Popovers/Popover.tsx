@@ -18,7 +18,9 @@ export default function Popover({ shouldRedirect }: PopoverProps) {
       animate={{ opacity: 1, transition: { delay: 0.3, duration: 0.2, type: 'tween' } }}
       exit={{ opacity: 0, transition: { delay: 0, duration: 0.2, type: 'tween' } }}
       className={`z-[900] fixed inset-0 flex justify-center items-center
-        ${popoverPost ? 'overflow-y-hidden' : ''}
+        ${popoverPost
+          ? 'overflow-y-hidden'
+          : ''}
         `}
     >
       <div className="relative bg-black border border-border_gray

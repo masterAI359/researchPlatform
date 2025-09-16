@@ -137,7 +137,7 @@ declare global {
 
   interface PostsProps {
     posts: any[] | null,
-    context: string,
+    context?: string,
     shouldRedirect: boolean
   }
 

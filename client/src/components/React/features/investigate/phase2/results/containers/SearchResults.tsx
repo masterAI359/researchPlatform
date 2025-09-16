@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import { useEffect } from "react";
-import { getPages } from "@/ReduxToolKit/Reducers/Investigate/SearchResults";
+import { getPages, incrementPageBy } from "@/ReduxToolKit/Reducers/Investigate/SearchResults";
 import { formPages } from "@/helpers/Presentation";
 import LinkPagination from "../components/buttons/LinkPagination";
 import Pages from "./Pages";
@@ -22,7 +22,11 @@ export default function SearchResults() {
             const formedPages = formPages(articleOptions)
             dispatch(getPages(formedPages))
         };
+
+
     }, [status, articleOptions]);
+
+
 
     return (
         <motion.div

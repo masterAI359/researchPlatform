@@ -1,6 +1,21 @@
 import Search from "../phase2/search/containers/Search";
+import { useSelector, useDispatch } from "react-redux";
+import type { RootState, AppDispatch } from "@/ReduxToolKit/store";
+import { useEffect } from "react";
+import { displaySearch } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
 
 export default function SearchHero(): JSX.Element {
+    const investigateState = useSelector((state: RootState) => state.investigation);
+    const { read } = investigateState
+    const { getContent } = read
+    const dispatch = useDispatch<AppDispatch>();
+
+    useEffect(() => {
+
+        if (getContent) {
+            dispatch(displaySearch(false));
+        };
+    }, [getContent])
 
     return (
         <section

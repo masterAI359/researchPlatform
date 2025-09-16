@@ -2,12 +2,22 @@ import React from "react";
 import SearchButton from "../buttons/SearchButton";
 
 interface SearchBarProps {
-    empty: boolean,
     getSearchInput: (e: React.ChangeEvent<HTMLInputElement>) => void,
-    handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void
+    handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void,
+    flush: (val: string) => void,
+    commit?: (e: React.KeyboardEvent<HTMLInputElement>) => void
 }
 
-export default function SearchBar({ getSearchInput, handleSubmit, empty }: SearchBarProps): JSX.Element {
+export default function SearchBar({ getSearchInput, handleSubmit, flush }: SearchBarProps): JSX.Element {
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        const composing = (e.nativeEvent as KeyboardEvent).isComposing;
+        if (composing) return;
+        if (e.key === "Enter") {
+            e.preventDefault();
+            flush(e.currentTarget.value);
+        }
+    };
 
     return (
         <form
@@ -20,6 +30,8 @@ export default function SearchBar({ getSearchInput, handleSubmit, empty }: Searc
             <input
                 autoFocus
                 onChange={(e) => getSearchInput(e)}
+                onBlur={(e) => flush(e.currentTarget.value)}
+                onKeyDown={(e) => handleKeyDown}
                 autoComplete="off"
                 type="text"
                 name="q"
@@ -27,7 +39,7 @@ export default function SearchBar({ getSearchInput, handleSubmit, empty }: Searc
                border-none h-9 md:h-12 xs:p-3  md:p-2 rounded-full relative focus:ring-0
                transition-colors text-base md:text-lg flex items-center"
                 placeholder="search for articles" />
-            <SearchButton empty={empty} />
+            <SearchButton />
         </form>
     );
 };

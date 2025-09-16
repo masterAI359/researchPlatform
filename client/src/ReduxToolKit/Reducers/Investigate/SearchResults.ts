@@ -53,7 +53,6 @@ export const SearchResultsSlice = createSlice({
         searchResults: (state, action) => {
             state.articleOptions = action.payload.data;
             state.optionsMap = action.payload.optionsLookup;
-            console.log(state.optionsMap);
         },
         getPages: (state, action) => {
             state.pages = action.payload
@@ -71,17 +70,18 @@ export const SearchResultsSlice = createSlice({
         resetArticles: (state) => {
             state.articleOptions = null;
             state.optionsMap = null;
+            state.currentPage = 0;
         }
 
     },
     extraReducers: (builder) => {
 
         builder.addCase(RetrieveArticles.pending, (state, action) => {
-            state.status = 'pending'
+            state.status = 'pending';
         }),
             builder.addCase(RetrieveArticles.fulfilled, (state, action) => {
-                state.status = 'fulfilled'
-                state.articleOptions = action.payload.data
+                state.status = 'fulfilled';
+                state.articleOptions = action.payload.data;
             }),
             builder.addCase(RetrieveArticles.rejected, (state, action) => {
                 state.status = 'rejected';

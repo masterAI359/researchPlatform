@@ -2,16 +2,13 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import Loader from "@/components/React/Shared/Loaders/Loader";
 
-export default function SearchButton({ empty }) {
+export default function SearchButton() {
     const investigateState = useSelector((state: RootState) => state.investigation);
     const { status } = investigateState.search;
 
     return (
         <button type="submit"
-            className={`${empty
-                ? 'pointer-events-none'
-                : 'pointer-events-auto'
-                }
+            className={`
                       relative`
             }
         >

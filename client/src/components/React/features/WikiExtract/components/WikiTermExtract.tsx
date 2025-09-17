@@ -5,20 +5,26 @@ import { AppDispatch, RootState } from "@/ReduxToolKit/store";
 import { useEffect, useState } from "react";
 import WikiExtractLoader from "../loaders/WikiExtractLoader";
 import ExtractNotification from "../notifications/ExtractNotification";
-import { clearWikiSlice, modalStages } from "@/ReduxToolKit/Reducers/Investigate/WikipediaSlice";
+import { clearWikiSlice, modalStages, selectWikiDisambig, selectWikiSummary } from "@/ReduxToolKit/Reducers/Investigate/WikipediaSlice";
 import Description from "./WikiDescription";
 import TermFooter from "./TermFooter";
 import { variants } from "@/motion/variants";
 import { WikiTerm } from "@/env";
 import HighlightTextTip from "../tooltips/HighlightTextTip";
+import { InvestigateState } from "@/ReduxToolKit/Reducers/Root/InvestigateReducer";
+import { useAppSelector } from "@/ReduxToolKit/hooks/useAppSelector";
+import { WikiDisambigCandidate, WikiDisambigResponse, WikiSummaryResponse } from "@/services/wiki/wiki";
 
 export default function WikiTermExtract({ article_url, data }: WikiTerm) {
-    const investigateState = useSelector((state: RootState) => state.investigation);
-    const { extract, title } = investigateState.wiki;
+    const summary: WikiSummaryResponse = useAppSelector(selectWikiSummary);
+    const disambig: WikiDisambigResponse = useAppSelector(selectWikiDisambig);
+    const extract = summary ? summary : disambig;
+    const investigateState: InvestigateState = useSelector((state: RootState) => state.investigation);
     const { extracts } = investigateState.review;
     const dispatch = useDispatch<AppDispatch>();
     const [showNotification, setShowNotification] = useState<boolean>(null);
-    const saved: boolean | null = extract ? extracts.some((item: any) => item.title === title) : null;
+    // const saved: boolean | null = extract ? extracts.some((item: any) => item.title === title) : null;
+
 
     useEffect(() => {
 
@@ -51,7 +57,7 @@ export default function WikiTermExtract({ article_url, data }: WikiTerm) {
                 />
                 <TermFooter article_url={article_url} setShowNotification={setShowNotification} />
                 <AnimatePresence>
-                    {showNotification && <ExtractNotification saved={saved} setShowNotification={setShowNotification} />}
+                    {showNotification && <ExtractNotification setShowNotification={setShowNotification} />}
                 </AnimatePresence>
             </div>
         </motion.div>
@@ -63,8 +69,12 @@ export default function WikiTermExtract({ article_url, data }: WikiTerm) {
 
 
 function RenderExtractContents({ article_url, setShowNotification }) {
-    const investigateState = useSelector((state: RootState) => state.investigation);
-    const { extract, title, status, errormessage } = investigateState.wiki;
+    const summary: WikiSummaryResponse = useAppSelector(selectWikiSummary);
+    const disambig: WikiDisambigResponse = useAppSelector(selectWikiDisambig);
+    const investigate: InvestigateState = useSelector((state: RootState) => state.investigation);
+    const { status } = investigate.wiki;
+
+    const extract = summary ? summary : disambig;
 
     return (
         <AnimatePresence mode="wait">
@@ -78,11 +88,11 @@ function RenderExtractContents({ article_url, setShowNotification }) {
                 extract !== null &&
                 <Extract
                     key={'extract'}
-                    title={title}
+                    title={extract.title}
                 />
             }
             {status === 'rejected' &&
-                extract === null &&
+
                 <motion.div
                     key={'rejectedExtract'}
                     variants={variants}
@@ -91,16 +101,20 @@ function RenderExtractContents({ article_url, setShowNotification }) {
                     exit='closed'
                     transition={{ type: "tween", duration: 0.2 }}
                     className="text-white">
-                    {errormessage}
+                    Couldn't extract information for the submitted term
                 </motion.div>
             }
         </AnimatePresence>
-    )
-}
+    );
+};
 
 
 
 function Extract({ title }) {
+
+    const hasDisambiguation = /\bdisambiguation\b/i.test(title);
+
+
 
     return (
         <motion.div
@@ -113,7 +127,15 @@ function Extract({ title }) {
         >
             <figcaption className="flex flex-col h-fit w-full items-center gap-y-2">
 
-                <h1 className="text-zinc-400 font-light tracking-tight text-base mt-2"><em>'{title}'</em></h1>
+                <h1
+                    className="text-zinc-400 font-light tracking-tight text-base mt-2">
+                    <em>
+                        {
+                            hasDisambiguation
+                                ? 'Could refer to:'
+                                : title
+                        }
+                    </em></h1>
 
             </figcaption>
             <Description />

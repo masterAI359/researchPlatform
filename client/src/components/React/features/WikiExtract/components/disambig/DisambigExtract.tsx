@@ -1,0 +1,50 @@
+import { useState, useRef } from "react";
+import { useScrollTrap } from "@/hooks/useOverScrollTrap";
+import { AnimatePresence, motion } from "framer-motion";
+import { useAppSelector } from "@/ReduxToolKit/hooks/useAppSelector";
+import { selectWikiDisambig } from "@/ReduxToolKit/Reducers/Investigate/WikipediaSlice";
+import { WikiDisambigCandidate, WikiDisambigResponse, } from "@/services/wiki/wiki";
+import NavCandidates from "./buttons/NavDisambig";
+import Candidate from "./term/Candidate";
+
+export default function DisambigExtract() {
+    const disambig: WikiDisambigResponse = useAppSelector(selectWikiDisambig);
+    const [page, setPage] = useState<number>(0);
+    const scrollRef = useRef(null);
+    useScrollTrap(scrollRef);
+    const termsArr = [...disambig.candidates];
+    const terms = termsArr.filter((term: WikiDisambigCandidate) => term.extract !== "");
+
+    console.log(terms)
+
+    return (
+        <motion.main className="2xl:min-h-36 relative min-w-full max-w-full h-auto flex flex-col gap-y-6 mb-6 items-center justify-between transition-all duration-400 ease-in-out ">
+            <AnimatePresence mode="popLayout">
+
+                {terms[page] && <motion.div
+                    id="wiki_extract"
+                    layout
+                    key={'fullbackground'}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1, transition: { type: 'tween', duration: 0.2 } }}
+                    exit={{ opacity: 0, scale: 1, transition: { type: 'tween', duration: 0.2 } }}
+                    className="h-72 w-full border-b border-white/20 mt-4 overflow-y-hidden relative">
+                    <div
+                        ref={scrollRef}
+                        className="absolute inset-0 text-white 2xl:text-sm  overflow-y-scroll no-scrollbar lg:text-sm text-xs font-light tracking-tight">
+                        <Candidate candidate={terms[page]} />
+
+                    </div>
+                </motion.div>}
+            </AnimatePresence>
+            <NavCandidates
+                setPage={setPage}
+                candidates={terms}
+                page={page}
+            />
+        </motion.main>
+    )
+};
+
+
+

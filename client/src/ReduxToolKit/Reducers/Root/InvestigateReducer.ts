@@ -1,4 +1,4 @@
-import { combineReducers } from "@reduxjs/toolkit";
+import { combineReducers, ReducerType } from "@reduxjs/toolkit";
 import StepsReducer from '../Investigate/Steps'
 import UserPOVReducer from '../Investigate/UserPOV'
 import NoteReducer from '../Investigate/NoteTaking'
@@ -9,7 +9,8 @@ import ReviewReducer from '../Investigate/Review'
 import HelpReducer from '../Investigate/HelpModal'
 import EndInvestigateReducer from '../Investigate/EndInvestigation'
 import DisplayReducer from '../Investigate/DisplayReducer'
-import WikipediaSlice  from "../Investigate/WikipediaSlice";
+import WikipediaSlice from "../Investigate/WikipediaSlice";
+
 
 const investigateReducer = combineReducers({
     stepper: StepsReducer,
@@ -26,6 +27,7 @@ const investigateReducer = combineReducers({
 
 })
 
+export type InvestigateState = ReturnType<typeof investigateReducer>;
 
 export const InvestigateFeature = (state: any, action: any) => {
 

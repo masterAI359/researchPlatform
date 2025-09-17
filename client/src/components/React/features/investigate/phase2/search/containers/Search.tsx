@@ -50,7 +50,7 @@ export default function Search({ }) {
   };
 
   const send = () => {
-    const q = draftRef.current || lastCommitedInput.current;
+    const q = draftRef.current;
     // as an empty string may be the input value, opted for || operator as opposed to nullish coalescing
     if (!q) return;
     dispatch(clearChosenArticles());

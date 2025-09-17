@@ -1,50 +1,35 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { act } from "react";
+import { createSlice, createAsyncThunk, PayloadAction, createSelector } from "@reduxjs/toolkit";
+import { extractFromWiki, WikiResponse } from "@/services/wiki/wiki";
+import { RootState } from "@/ReduxToolKit/store";
 
-const options: OptionsTypes = {
-    method: 'GET',
-    headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-    }
-}
+type WikiReject = string;
 
-export const getWikiExtract = createAsyncThunk('investigate/getWikiExtract', async (
-    term: string, thunkAPI
-): Promise<any> => {
-
-    const encodedQuery: string = encodeURIComponent(term);
-    const url: string = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodedQuery}`;
-
-    try {
-        const result = await fetch(url, options);
-        if (!result.ok) {
-            const status = result.status;
-            let message = 'An unexpected error occurred while retrieving information.';
-            if (status === 404) {
-                message = 'No summary was found for the highlighted term. Be carefult to only highlight a short phrase or a short phrase, else we cannot retrieve any information';
-            } else if (status === 429) {
-                message = 'Too many requests. Please try again shortly.';
-            } else if (status >= 500) {
-                message = 'Wikipedia is currently unavailable. Please try again later.';
-            }
-            throw new Error(message);
-        }
-        const data = await result.json();
-        if (data) {
-            return data;
+export const getWikiExtract = createAsyncThunk<WikiResponse, string, { rejectValue: WikiReject }>(
+    'investigate/getWikiExtract',
+    async (term, thunkAPI) => {
+        try {
+            const result = await extractFromWiki(term);
+            return result;
+        } catch (e) {
+            const message =
+                e instanceof Error ? e.message : 'Unknown Error';
+            return thunkAPI.rejectWithValue(message);
         };
-
-    } catch (err) {
-        console.log(err);
-        return thunkAPI.rejectWithValue(`${err.message}` || 'Unknown Error')
     }
-})
+);
+
+
 
 interface modalXY {
     x: number,
     y: number
 };
+
+type builderObj = {
+    arg: string;
+    requestId: string;
+    requestStatus: "fulfilled";
+}
 
 export interface ModalStages {
     display: boolean,
@@ -58,12 +43,7 @@ interface WikiTypes {
     displayWikiModal: boolean,
     gettingSelection: boolean,
     status: string,
-    extract: string | null,
-    description: string | null,
-    title: string | null,
-    timestamp: string | null,
-    desktopLink: string | null,
-    mobileLink: string | null,
+    extract: WikiResponse | null,
     modalPosition: modalXY | null,
     selectedText: string | null,
     errormessage: any
@@ -80,15 +60,25 @@ const initialState: WikiTypes = {
     gettingSelection: false,
     status: 'idle',
     extract: null,
-    description: null,
-    title: null,
-    timestamp: null,
-    desktopLink: null,
-    mobileLink: null,
     modalPosition: null,
     selectedText: null,
     errormessage: null
-}
+};
+
+
+export const selectWikiExtract = (s: RootState) => s.investigation.wiki.extract;
+
+export const selectWikiSummary = createSelector(
+    selectWikiExtract,
+    (x) => (x?.kind === "summary" ? x : null)
+);
+
+export const selectWikiDisambig = createSelector(
+    selectWikiExtract,
+    (x) => (x?.kind === "disambiguation" ? x : null)
+);
+
+
 
 
 export const WikipediaSlice = createSlice({
@@ -120,10 +110,7 @@ export const WikipediaSlice = createSlice({
         })
         builder.addCase(getWikiExtract.fulfilled, (state, action) => {
             state.status = 'fulfilled';
-            state.extract = action.payload.extract;
-            state.title = action.payload.title;
-            state.timestamp = action.payload.timestamp;
-            state.description = action.payload.description;
+            state.extract = action.payload;
         })
         builder.addCase(getWikiExtract.rejected, (state, action) => {
             state.status = 'rejected';

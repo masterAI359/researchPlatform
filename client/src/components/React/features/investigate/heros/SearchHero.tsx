@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import type { RootState, AppDispatch } from "@/ReduxToolKit/store";
 import { useEffect } from "react";
 import { displaySearch } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
+import ErrorBoundary from "@/components/React/Shared/ErrorBoundaries/ErrorBoundary";
 
 export default function SearchHero(): JSX.Element {
     const investigateState = useSelector((state: RootState) => state.investigation);
@@ -24,8 +25,11 @@ export default function SearchHero(): JSX.Element {
             border-white/10">
             <main
                 className="w-80 sm:w-full h-auto mb-2 mt-12 md:mt-16">
-                <Search
-                />
+                <ErrorBoundary >
+                    <Search
+                    />
+                </ErrorBoundary>
+
             </main>
         </section>
     );

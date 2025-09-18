@@ -15,6 +15,8 @@ export default function Search({ }) {
   const timerRef = useRef<number | null>(null);
 
 
+
+
   const recordQuery = (raw: string): boolean => {
     const q = normalize(raw);
     if (q.length <= 2) return;
@@ -51,12 +53,13 @@ export default function Search({ }) {
 
   const send = () => {
     const q = draftRef.current;
-    // as an empty string may be the input value, opted for || operator as opposed to nullish coalescing
+    console.log(q)
     if (!q) return;
     dispatch(clearChosenArticles());
     dispatch(resetArticles());
-    dispatch(RetrieveArticles(lastCommitedInput.current));
+    dispatch(RetrieveArticles(q));
     lastCommitedInput.current = q;
+    console.log({ last: lastCommitedInput.current, draft: draftRef.current });
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {

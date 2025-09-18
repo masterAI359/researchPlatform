@@ -21,7 +21,7 @@ export default function TermFooter({ article_url, setShowNotification, saved }) 
     const summary: WikiSummaryResponse = useAppSelector(selectWikiSummary);
     const disambig: WikiDisambigResponse = useAppSelector(selectWikiDisambig);
     const investigate: InvestigateState = useSelector((state: RootState) => state.investigation);
-    const { status } = investigate.wiki;
+    const { status, extract } = investigate.wiki;
     const dispatch = useDispatch();
 
     const payload: SavePayload | null = useMemo(() => {
@@ -55,8 +55,12 @@ export default function TermFooter({ article_url, setShowNotification, saved }) 
                 summary={summary}
             />
             <div className="h-6 w-6 cursor-pointer group relative">
-                <SaveExtractTooltip />
-                <ExtractBookmark saved={saved} handleSave={handleSave} />
+                {extract &&
+                    <>
+                        <SaveExtractTooltip />
+                        <ExtractBookmark saved={saved} handleSave={handleSave} />
+                    </>}
+
             </div>
         </motion.footer>
     );

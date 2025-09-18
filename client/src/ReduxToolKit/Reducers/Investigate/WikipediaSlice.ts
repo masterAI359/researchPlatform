@@ -9,6 +9,7 @@ export const getWikiExtract = createAsyncThunk<WikiResponse, string, { rejectVal
     async (term, thunkAPI) => {
         try {
             const result = await extractFromWiki(term);
+            console.log(result);
             return result;
         } catch (e) {
             const message =
@@ -25,11 +26,6 @@ interface modalXY {
     y: number
 };
 
-type builderObj = {
-    arg: string;
-    requestId: string;
-    requestStatus: "fulfilled";
-}
 
 export interface ModalStages {
     display: boolean,
@@ -46,7 +42,7 @@ interface WikiTypes {
     extract: WikiResponse | null,
     modalPosition: modalXY | null,
     selectedText: string | null,
-    errormessage: any
+    errormessage: string | null
 };
 
 const initialState: WikiTypes = {
@@ -110,11 +106,14 @@ export const WikipediaSlice = createSlice({
         })
         builder.addCase(getWikiExtract.fulfilled, (state, action) => {
             state.status = 'fulfilled';
-            state.extract = action.payload;
+            if (action.payload.kind !== 'error') {
+                state.extract = action.payload;
+            } else {
+                state.errormessage = action.payload.message;
+            }
         })
         builder.addCase(getWikiExtract.rejected, (state, action) => {
             state.status = 'rejected';
-            state.errormessage = action.payload;
         })
     }
 })

@@ -51,9 +51,9 @@ export default function WikiTermExtract({ article_url, data }: WikiTerm) {
             animate='open'
             exit='closed'
             transition={{ type: "tween", duration: 0.2 }}
-            className="w-72 xl:w-80 h-auto py-2 px-4 rounded-3xl  
+            className="w-[17rem] xl:w-80 h-auto p-2 rounded-3xl  
             bg-black border border-border_gray
-        flex flex-col items-center fixed md:left-4 lg:bottom-32 2xl:bottom-44"
+        flex flex-col items-center fixed lg:left-0.5 lg:bottom-32 2xl:bottom-44"
         >
             <div
                 className="min-w-full max-w-full h-auto relative"
@@ -78,14 +78,16 @@ export default function WikiTermExtract({ article_url, data }: WikiTerm) {
 };
 
 
+type ExtractContent = WikiDisambigResponse | WikiSummaryResponse | null;
 
 function RenderExtractContents({ article_url, setShowNotification }) {
     const summary: WikiSummaryResponse = useAppSelector(selectWikiSummary);
     const disambig: WikiDisambigResponse = useAppSelector(selectWikiDisambig);
     const investigate: InvestigateState = useSelector((state: RootState) => state.investigation);
-    const { status } = investigate.wiki;
+    const { status, extract } = investigate.wiki;
 
-    const extract = summary ? summary : disambig;
+    const content: ExtractContent = extract ? (summary ?? disambig) : null;
+    const title = content ? content.title : null;
 
     return (
         <AnimatePresence mode="wait">
@@ -96,10 +98,9 @@ function RenderExtractContents({ article_url, setShowNotification }) {
                     key={'wikiloader'}
                 />}
             {status === 'fulfilled' &&
-                extract !== null &&
                 <Extract
                     key={'extract'}
-                    title={extract.title}
+                    title={title}
                 />
             }
             {status === 'rejected' &&
@@ -119,11 +120,13 @@ function RenderExtractContents({ article_url, setShowNotification }) {
     );
 };
 
+interface ExtractTitle {
+    title?: string | null
+};
 
+function Extract({ title }: ExtractTitle): JSX.Element | null {
 
-function Extract({ title }) {
-
-    const hasDisambiguation = /\bdisambiguation\b/i.test(title);
+    const hasDisambiguation = title ? /\bdisambiguation\b/i.test(title) : null;
 
 
 
@@ -136,10 +139,10 @@ function Extract({ title }) {
             exit='closed'
             transition={{ type: "tween", duration: 0.2 }}
         >
-            <figcaption className="flex flex-col h-fit w-full items-center gap-y-2">
+            <figcaption className="flex flex-col h-12 w-full items-center gap-y-2">
 
                 <h1
-                    className="text-zinc-400 font-light tracking-tight text-base mt-2">
+                    className="text-zinc-400 font-light text-center tracking-tight text-base mt-2">
                     <em>
                         {
                             hasDisambiguation
@@ -175,7 +178,7 @@ function WikiModalHeader() {
                     className="icon icon-tabler text-white icons-tabler-outline icon-tabler-x"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
             </div>
             <div className="w-fit gap-x-2 mx-auto h-fit min-h-14 flex items-center justify-center">
-                <div className="w-8 h-8 mx-auto">
+                <div className="w-7 h-7">
                     <svg xmlns="http://www.w3.org/2000/svg" width={'100%'} height={'100%'} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"
                         className="text-white icon icon-tabler icons-tabler-outline icon-tabler-brand-wikipedia"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 4.984h2" /><path d="M8 4.984h2.5" /><path d="M14.5 4.984h2.5" /><path d="M22 4.984h-2" /><path d="M4 4.984l5.455 14.516l6.545 -14.516" /><path d="M9 4.984l6 14.516l6 -14.516" /></svg>
                 </div>

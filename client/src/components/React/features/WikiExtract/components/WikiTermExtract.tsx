@@ -13,7 +13,7 @@ import { WikiTerm } from "@/env";
 import HighlightTextTip from "../tooltips/HighlightTextTip";
 import { InvestigateState } from "@/ReduxToolKit/Reducers/Root/InvestigateReducer";
 import { useAppSelector } from "@/ReduxToolKit/hooks/useAppSelector";
-import { WikiDisambigCandidate, WikiDisambigResponse, WikiSummaryResponse } from "@/services/wiki/wiki";
+import { WikiDisambigResponse, WikiSummaryResponse } from "@/services/wiki/wiki";
 import type { Extracts } from "@/ReduxToolKit/Reducers/Investigate/Review";
 
 export default function WikiTermExtract({ article_url, data }: WikiTerm) {
@@ -42,7 +42,6 @@ export default function WikiTermExtract({ article_url, data }: WikiTerm) {
             dispatch(clearWikiSlice());
         };
     }, []);
-
 
 
     const termExtracted = (

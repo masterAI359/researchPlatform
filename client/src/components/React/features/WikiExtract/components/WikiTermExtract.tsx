@@ -2,7 +2,7 @@ import { motion, AnimatePresence, MotionConfigProps } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { createPortal } from "react-dom";
 import { AppDispatch, RootState } from "@/ReduxToolKit/store";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import WikiExtractLoader from "../loaders/WikiExtractLoader";
 import ExtractNotification from "../notifications/ExtractNotification";
 import { clearWikiSlice, modalStages, selectWikiDisambig, selectWikiSummary } from "@/ReduxToolKit/Reducers/Investigate/WikipediaSlice";
@@ -14,21 +14,33 @@ import HighlightTextTip from "../tooltips/HighlightTextTip";
 import { InvestigateState } from "@/ReduxToolKit/Reducers/Root/InvestigateReducer";
 import { useAppSelector } from "@/ReduxToolKit/hooks/useAppSelector";
 import { WikiDisambigCandidate, WikiDisambigResponse, WikiSummaryResponse } from "@/services/wiki/wiki";
+import type { Extracts } from "@/ReduxToolKit/Reducers/Investigate/Review";
 
 export default function WikiTermExtract({ article_url, data }: WikiTerm) {
     const summary: WikiSummaryResponse = useAppSelector(selectWikiSummary);
     const disambig: WikiDisambigResponse = useAppSelector(selectWikiDisambig);
-    const extract = summary ? summary : disambig;
     const investigateState: InvestigateState = useSelector((state: RootState) => state.investigation);
     const { extracts } = investigateState.review;
     const dispatch = useDispatch<AppDispatch>();
     const [showNotification, setShowNotification] = useState<boolean>(null);
-    // const saved: boolean | null = extract ? extracts.some((item: any) => item.title === title) : null;
 
+    const isSaved: boolean = useMemo(() => {
+        if (!extracts) return false;
+
+        if (summary) {
+            return extracts.some((extr: Extracts) => extr.title === summary.title);
+        } else if (disambig) {
+            return extracts.some((extr: Extracts) => extr.title === disambig.title);
+        } else {
+            return false
+        };
+    }, [extracts, disambig, summary]);
 
     useEffect(() => {
 
-        return () => { dispatch(clearWikiSlice()) }
+        return () => {
+            dispatch(clearWikiSlice());
+        };
     }, []);
 
 
@@ -55,9 +67,9 @@ export default function WikiTermExtract({ article_url, data }: WikiTerm) {
                     article_url={article_url}
                     setShowNotification={setShowNotification}
                 />
-                <TermFooter article_url={article_url} setShowNotification={setShowNotification} />
+                <TermFooter saved={isSaved} article_url={article_url} setShowNotification={setShowNotification} />
                 <AnimatePresence>
-                    {showNotification && <ExtractNotification setShowNotification={setShowNotification} />}
+                    {showNotification && <ExtractNotification saved={isSaved} setShowNotification={setShowNotification} />}
                 </AnimatePresence>
             </div>
         </motion.div>

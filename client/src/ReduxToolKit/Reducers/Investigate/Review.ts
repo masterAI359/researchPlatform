@@ -1,11 +1,13 @@
+import { WikiDisambigCandidate } from "@/services/wiki/wiki";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { act } from "react";
 
 
 export interface Extracts {
     title: string,
-    extract: string,
-    associatedArticle: string
+    extract?: string,
+    associatedArticle: string,
+    candidates?: WikiDisambigCandidate[]
 }
 
 //ending perspective should be changed to a boolean value
@@ -38,8 +40,9 @@ const initialState: FinishedState = {
 
 type UpdateExtractPayload = {
     title: string;
-    extract: string;
-    associatedArticle: string
+    extract?: string;
+    associatedArticle: string,
+    candidates?: WikiDisambigCandidate[]
 }
 
 export const ReviewSlice = createSlice({
@@ -72,10 +75,10 @@ export const ReviewSlice = createSlice({
         },
         getExtract: (state, action: PayloadAction<UpdateExtractPayload>) => {
             const { title, extract, associatedArticle } = action.payload;
-            const extracted = {title: title, extract: extract, associatedArticle: associatedArticle}
+            const extracted = { title: title, extract: extract, associatedArticle: associatedArticle }
             const exists = state.extracts.some((obj: Extracts) => obj.title === extracted.title);
 
-            if(exists) {
+            if (exists) {
                 state.extracts = state.extracts.filter((obj) => obj.title !== extracted.title);
             } else {
                 state.extracts.push(extracted);

@@ -17,7 +17,7 @@ export default function ExtractNotification({ saved, setShowNotification }: Noti
 
     useEffect(() => {
 
-        const timer = setTimeout(() => {
+        const timer = window.setTimeout(() => {
 
             setShowNotification(false)
         }, 1500);

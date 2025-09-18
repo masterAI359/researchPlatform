@@ -5,7 +5,7 @@ interface CandidateProps {
 };
 
 export default function Candidate({ candidate }: CandidateProps): JSX.Element | null {
-    console.log(candidate.extract);
+    if (!candidate) return null;
 
     return (
         <div

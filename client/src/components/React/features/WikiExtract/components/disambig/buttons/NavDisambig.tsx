@@ -8,7 +8,7 @@ interface NavCandidateButtons {
 };
 
 export default function NavCandidates({ setPage, candidates, page }: NavCandidateButtons): JSX.Element | null {
-
+    if (!candidates.length) return null;
 
     const handleBack = () => {
         const val = (page - 1) % candidates.length;

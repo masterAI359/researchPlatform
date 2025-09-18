@@ -12,7 +12,6 @@ export default function Description(): JSX.Element | null {
     const scrollRef = useRef(null);
     useScrollTrap(scrollRef);
 
-    console.log(summary)
 
     return (
         <AnimatePresence >

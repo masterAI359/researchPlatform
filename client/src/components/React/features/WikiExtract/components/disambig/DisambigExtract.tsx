@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 import { useScrollTrap } from "@/hooks/useOverScrollTrap";
 import { AnimatePresence, motion } from "framer-motion";
 import { useAppSelector } from "@/ReduxToolKit/hooks/useAppSelector";
@@ -7,15 +7,16 @@ import { WikiDisambigCandidate, WikiDisambigResponse, } from "@/services/wiki/wi
 import NavCandidates from "./buttons/NavDisambig";
 import Candidate from "./term/Candidate";
 
-export default function DisambigExtract() {
+export default function DisambigExtract(): JSX.Element | null {
     const disambig: WikiDisambigResponse = useAppSelector(selectWikiDisambig);
-    const [page, setPage] = useState<number>(0);
+    const candidates = disambig?.candidates ?? [];
+    if (!candidates.length) return null;
     const scrollRef = useRef(null);
+    const [page, setPage] = useState<number>(0);
     useScrollTrap(scrollRef);
-    const termsArr = [...disambig.candidates];
-    const terms = termsArr.filter((term: WikiDisambigCandidate) => term.extract !== "");
-
-    console.log(terms)
+    const terms = useMemo(() => {
+        return candidates?.filter((term: WikiDisambigCandidate) => term.extract !== "");
+    }, [candidates]);
 
     return (
         <motion.main className="2xl:min-h-36 relative min-w-full max-w-full h-auto flex flex-col gap-y-6 mb-6 items-center justify-between transition-all duration-400 ease-in-out ">

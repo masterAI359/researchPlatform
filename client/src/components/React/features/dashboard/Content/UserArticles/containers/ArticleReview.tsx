@@ -1,6 +1,6 @@
-import { RootState } from "@/ReduxToolKit/store"
+import { AppDispatch, RootState } from "@/ReduxToolKit/store"
 import { lazy, Suspense } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 const Article = lazy(() => import('../../../../../Shared/Articles/SuccessFull/Article'))
 import ErrorBoundary from "@/components/React/Shared/ErrorBoundaries/ErrorBoundary"
 import LostData from "@/components/React/Shared/ErrorBoundaries/messages/LostData"
@@ -12,6 +12,7 @@ import { presentArticles } from "@/ReduxToolKit/Reducers/UserContent/ProfileNavi
 
 export default function ArticleReview() {
     const savedArticle = useSelector((state: RootState) => state.userdata.ArticleToReview);
+    const dispatch = useDispatch<AppDispatch>();
     const displayData = {
         summary: savedArticle.summary,
         article_image: savedArticle.image_url,
@@ -30,6 +31,11 @@ export default function ArticleReview() {
 
     if (!savedArticle) return null;
 
+    const backTo = () => {
+        dispatch(presentArticles());
+    };
+
+
     return (
 
         <motion.section
@@ -40,7 +46,7 @@ export default function ArticleReview() {
             transition={{ type: 'tween', duration: 0.4, delay: 0.7 }}
             className="min-h-full md:px-8 scroll-smooth w-full
                         mx-auto mt-0 md:mt-6 relative">
-            <DetailView backTo={presentArticles} />
+            <DetailView backTo={backTo} />
 
             <ErrorBoundary fallback={<LostData />}
             >

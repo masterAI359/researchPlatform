@@ -23,9 +23,9 @@ export default function DisambigExtract(): JSX.Element | null {
             <AnimatePresence mode="popLayout">
 
                 {terms[page] && <motion.div
+                    key={terms[page].pageid}
                     id="wiki_extract"
                     layout
-                    key={'fullbackground'}
                     initial={{ opacity: 0, scale: 0 }}
                     animate={{ opacity: 1, scale: 1, transition: { type: 'tween', duration: 0.2 } }}
                     exit={{ opacity: 0, scale: 1, transition: { type: 'tween', duration: 0.2 } }}

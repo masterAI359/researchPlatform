@@ -5,7 +5,7 @@ import { useLayoutEffect } from "react"
 import { getInvestigationSources } from "@/services/supabase/SupabaseData"
 import { getSourcesToReview } from "@/ReduxToolKit/Reducers/UserContent/UserInvestigations"
 import DetailsTable from "../Details/DetailsTable"
-import { Terms } from "../Details/WikipediaTerms"
+import { Terms } from "../Details/wiki/containers/WikipediaTerms"
 import ErrorBoundary from "@/components/React/Shared/ErrorBoundaries/ErrorBoundary"
 import LostData from "@/components/React/Shared/ErrorBoundaries/messages/LostData"
 import ScrolltoTop from "@/helpers/ScrollToTop"
@@ -28,16 +28,20 @@ export default function ResearchReview() {
         if (!sources && cachedSources) {
             dispatch(getSourcesToReview(cachedSources))
         }
-    }, [investigation])
+    }, [investigation]);
+
+
+    const backTo = (): void => {
+        dispatch(presentResearch());
+    };
 
 
     return (
         <section
-            className="min-h-full xs:px-2 md:px-8 scroll-smooth w-full
-                        mx-auto mt-0 md:mt-6 relative animate-fade-in duration-200">
-            <ScrolltoTop />
-            <DetailView backTo={presentResearch} />
-            <div className="w-full h-full flex flex-col gap-y-24 items-center justify-center">
+            className="h-full w-full
+         relative animate-fade-in duration-200">
+            <DetailView backTo={backTo} />
+            <div className="w-full h-full overscroll-contain overflow-y-scroll no-scrollbar grow flex flex-col gap-y-20 items-center justify-center">
                 <ErrorBoundary fallback={<LostData />}>
                     <DetailsTable />
                     <SourcesFromResearch />

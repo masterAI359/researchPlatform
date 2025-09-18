@@ -203,7 +203,7 @@ export const saveArticle = async (
 
 
 export const getInvestigationSources = (sources: string[], savedArticles: any) => {
-
+    if (!sources || !Array.isArray(sources)) return;
 
     function getSaved() {
         let savedSources = []

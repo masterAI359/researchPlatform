@@ -8,7 +8,7 @@ export default function DetailView({ backTo }): JSX.Element {
 
     const detailView = (
         <div
-            onClick={() => { dispatch(backTo()) }}
+            onClick={backTo}
             aria-label="detail view on saved article"
             className="fixed bottom-0 z-40 py-4 w-full px-4 backdrop-blur-xl bg-white/5 md:hover:bg-white/15 transition-all duration-200 ease-in-out backdrop-filter shadow-thick"
         >

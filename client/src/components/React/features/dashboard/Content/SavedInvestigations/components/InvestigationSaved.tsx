@@ -19,7 +19,7 @@ export default function PriorInvestigation({ investigation, inSeek }) {
 
     return (
         <div className={`
-        md:flex w-full max-w-full h-auto xl:h-128  xl:w-[1060px]`}>
+        md:flex w-full h-full lg:w-[656px] lg:h-[516px] xl:min-h-[32rem] xl:w-[919.19px] xl:h-[512px] 2xl:h-128  2xl:w-[1060px]`}>
             <h2 id="2023-03-16-heading" className="pl-7 md:w-2/3 md:pl-0 text-sm font-light tracking-tight md:pr-6 text-white md:text-right">
                 <span className='text-zinc-400'>From:</span> {investigation.created_at.split('').splice(0, 10).join('')}
             </h2>

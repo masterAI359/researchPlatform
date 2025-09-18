@@ -8,7 +8,6 @@ import AnimationWrapper from '../../features/LandingPage/containers/AnimationWra
 import { getStoredPosts, searchBlueSky } from '@/ReduxToolKit/Reducers/BlueSky/BlueSkySlice';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { ScrollUp } from '@/helpers/ScrollToTop';
 import { useBodyLock } from '@/hooks/useBodyLock';
 
 export default function Home({ }) {
@@ -27,9 +26,6 @@ export default function Home({ }) {
         } else if (!stored && !posts) {
             dispatch(searchBlueSky("morning"));
         };
-
-        ScrollUp();
-
     }, []);
 
 

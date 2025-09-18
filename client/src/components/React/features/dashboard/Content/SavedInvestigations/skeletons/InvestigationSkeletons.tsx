@@ -1,12 +1,11 @@
 
 export function InvestigationSkeleton() {
 
-    //TODO: finish matching dimensions exaclty to saved investigation components
 
 
     return (
         <div className={`md:flex justify-center
-        w-full h-full xl:min-h-[32rem] xl:h-128 xl:w-[1060px] relative`}>
+        w-full h-full lg:w-[656px] lg:h-[516px] xl:min-h-[32rem] xl:w-[919.19px] xl:h-[512px] 2xl:h-128 2xl:w-[1060px] relative`}>
             {/* Timestamp Skeleton */}
             <div className="relative pl-7 md:w-2/3 md:pl-0 text-sm font-light tracking-tight md:pr-6 text-white md:text-right">
                 <div className="h-4 w-32 absolute  bottom-1.5 sm:-bottom-1.5 right-32 sm:right-8 animate-shimmer bg-[length:200%_100%] 
@@ -62,7 +61,7 @@ export default function InvestigationSkeletons({ context }) {
                 flex-col items-end justify-center"
         >
             {!fullyLoaded &&
-                Array.from({ length: 1 }, (_, i) => (<InvestigationSkeleton key={i} />))
+                Array.from({ length: 2 }, (_, i) => (<InvestigationSkeleton key={i} />))
             }
         </div>
     );

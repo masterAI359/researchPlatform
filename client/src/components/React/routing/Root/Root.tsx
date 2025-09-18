@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Suspense } from "react";
 import { useDispatch } from "react-redux";
 import type { AppDispatch } from "@/ReduxToolKit/store";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, ScrollRestoration } from "react-router-dom";
 import type { RootPayload } from "../loaderFunctions/rootLoader";
 import Navigation from "../../Shared/Navigation/Navigation";
 import { Outlet } from "react-router-dom";
@@ -33,6 +33,7 @@ export default function Root() {
                 fallback={<Pageskeleton />}
             >
                 <Outlet />
+                <ScrollRestoration />
             </Suspense>
         </>
     );

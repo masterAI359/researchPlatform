@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { RootState } from "@/ReduxToolKit/store";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/ReduxToolKit/store";
-import { ScrollUp } from "@/helpers/ScrollToTop";
 import InvestigationWorkSpace from "@/components/React/features/investigate/InvestigationWorkSpace";
 import SelectLinks from "@/components/React/features/investigate/phase2/results/components/selection/SelectLinks";
 import { displaySelectTooltip } from "@/ReduxToolKit/Reducers/Investigate/DisplayReducer";
@@ -27,7 +26,6 @@ export default function InvestigateContainer() {
 
   useEffect(() => {
 
-    ScrollUp();
 
     return () => {
       dispatch({ type: 'clear' })

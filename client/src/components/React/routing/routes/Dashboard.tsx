@@ -1,12 +1,9 @@
-import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import { useSelector, shallowEqual } from "react-redux";
 import { useIsMobile } from "@/hooks/useIsMobile";
-import { lazy, Suspense, useLayoutEffect } from "react";
-import { AppDispatch } from "@/ReduxToolKit/store";
+import { lazy, Suspense } from "react";
 import { RootState } from "@/ReduxToolKit/store";
 import { useEffect } from "react";
-import { ScrollUp } from "../../../../helpers/ScrollToTop";
 import Display from "../../features/dashboard/Content/containers/Display";
-import { presentDashboard } from "@/ReduxToolKit/Reducers/UserContent/ProfileNavigationSlice";
 import FooterBarLoader from "../../features/dashboard/ProfileNavigation/skeletons/FooterBarSkeleton";
 import SidebarLoader from "../../features/dashboard/ProfileNavigation/skeletons/SidebarSkeleton";
 import { AnimatePresence } from "framer-motion";
@@ -27,25 +24,18 @@ export default function Dashboard(): JSX.Element {
         }),
         shallowEqual
     );
-    const dispatch = useDispatch<AppDispatch>();
 
     useEffect(() => {
-        ScrollUp();
 
         if (!activeSession) {
             navigate('/');
         };
     }, []);
 
-    useLayoutEffect(() => {
-        dispatch(presentDashboard());
-    }, []);
-
-
     return (
         <article
             className={
-                `w-full h-full grid relative grid-cols-1 scroll-smooth 
+                `w-full h-auto grid relative grid-cols-1 
             animate-fade-in transition-all duration-300 
             ease-in-out md:grid-cols-[auto,1fr] md:pt-8
             ${signingOut

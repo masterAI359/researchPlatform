@@ -21,11 +21,10 @@ export default function SavedResearchLayout() {
             animate='open'
             exit='closed'
             className="w-full">
-            <ScrolltoTop />
-            <div className="p-6 sm:p-4 md:p-12 h-fit w-full">
+            <div className="max-h-screen w-full">
 
                 {Array.isArray(timeline) && (timeline.length > 0) ? <div
-                    className="mx-auto w-full lg:w-4/5 mt-4 animate-fade-in">
+                    className="mx-auto w-full lg:w-4/5 mt-6 animate-fade-in">
                     <ResearchScroller />
                 </div>
                     : <InvestigationsFallback />

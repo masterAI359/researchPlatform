@@ -1,4 +1,4 @@
-import { WikiDisambigCandidate } from "@/services/wiki/wiki";
+import { WikiDisambigCandidate, WikiSummaryResponse } from "@/services/wiki/wiki";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { act } from "react";
 
@@ -74,14 +74,16 @@ export const ReviewSlice = createSlice({
             state.takeAway = action.payload
         },
         getExtract: (state, action: PayloadAction<UpdateExtractPayload>) => {
-            const { title, extract, associatedArticle } = action.payload;
-            const extracted = { title: title, extract: extract, associatedArticle: associatedArticle }
-            const exists = state.extracts.some((obj: Extracts) => obj.title === extracted.title);
+            const data = action.payload;
+            const extractData = data?.candidates
+                ? { title: data.title, associatedArticle: data.associatedArticle, candidates: data.candidates }
+                : { title: data.title, associatedArticle: data.associatedArticle, extract: data.extract }
+            const exists = state.extracts.some((obj: Extracts) => obj.title === extractData.title);
 
             if (exists) {
-                state.extracts = state.extracts.filter((obj) => obj.title !== extracted.title);
+                state.extracts = state.extracts.filter((obj) => obj.title !== extractData.title);
             } else {
-                state.extracts.push(extracted);
+                state.extracts.push(extractData);
             }
 
         }

@@ -5,15 +5,16 @@ import { useDispatch } from "react-redux"
 import { AppDispatch } from "@/ReduxToolKit/store"
 import { saveUserInvestigation } from "@/ReduxToolKit/Reducers/UserContent/SaveInvestigationSlice"
 import { useEffect, useState } from "react"
+import { InvestigateState } from "@/ReduxToolKit/Reducers/Root/InvestigateReducer"
 
 export default function SaveInvestigation({ }) {
     const saved = useSelector((state: RootState) => state.saveResearch.saved)
     const sources = useSelector((state: RootState) => state.saveResearch.sources)
-    const investigateState = useSelector((state: RootState) => state.investigation)
+    const investigateState: InvestigateState = useSelector((state: RootState) => state.investigation)
     const [prevWork, setPrevWork] = useState<any>(null)
     const { pov, review } = investigateState
     const { idea, premises, perspective, biases } = pov
-    const { endingPerspective, newConcepts, merit, takeaway, movedOnIdea, extracts } = review
+    const { endingPerspective, newConcepts, merit, movedOnIdea, extracts } = review
     const dispatch = useDispatch<AppDispatch>()
 
     const investigateData = {
@@ -24,7 +25,7 @@ export default function SaveInvestigation({ }) {
         ending_perspective: endingPerspective,
         new_concepts: newConcepts,
         changed_opinion: movedOnIdea,
-        takeaway: takeaway,
+        takeaway: null,
         had_merit: merit,
         user_id: null,
         sources: sources,

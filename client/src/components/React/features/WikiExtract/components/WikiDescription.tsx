@@ -17,7 +17,6 @@ export default function Description(): JSX.Element | null {
     const { errormessage } = investigate.wiki;
     const scrollRef = useRef(null);
     useScrollTrap(scrollRef);
-    console.log(errormessage);
 
 
     return (

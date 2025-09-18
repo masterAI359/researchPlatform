@@ -9,7 +9,6 @@ export const getWikiExtract = createAsyncThunk<WikiResponse, string, { rejectVal
     async (term, thunkAPI) => {
         try {
             const result = await extractFromWiki(term);
-            console.log(result);
             return result;
         } catch (e) {
             const message =

@@ -1,22 +1,15 @@
 import ErrMessage from "@/components/React/Shared/ErrorBoundaries/messages/ErrMessage";
 import { RootState } from "@/ReduxToolKit/store"
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useSelector } from "react-redux"
-
-
-type ExtractItem = {
-  associatedArtilce: string,
-  extract: string,
-  title: string
-}
-
-interface TermListItem {
-  item: ExtractItem,
-  index: number
-}
+import type { Extracts } from "@/ReduxToolKit/Reducers/Investigate/Review";
+import type { WikiDisambigCandidate } from "@/services/wiki/wiki";
+import { motion, AnimatePresence } from "framer-motion";
+import Candidate from "@/components/React/features/WikiExtract/components/disambig/term/Candidate";
+import NavCandidates from "@/components/React/features/WikiExtract/components/disambig/buttons/NavDisambig";
 
 interface TermsTypes {
-  wikipedia_extracts: TermListItem[],
+  wikipedia_extracts: Extracts[],
   excess: boolean | null
 }
 
@@ -28,7 +21,7 @@ export function Terms() {
 
 
   return (
-    <section className="w-full lg:w-2/3">
+    <section className="w-full xl:w-4/5">
       <div className="mx-auto py-12 md:px-12 px-8 items-center w-full">
         <div>
           <span className="text-blue-400">From Wikipedia</span>
@@ -112,16 +105,30 @@ function TermList({ wikipedia_extracts, excess }: TermsTypes) {
       </div>
       <section id="carousel" className="w-full 2xl:max-w-full 2xl:min-w-168 xl:max-w-5xl lg:max-w-5xl md:max-w-3xl h-fit overflow-x-auto no-scrollbar overflow-y-hidden" >
         <ul className={`flex flex-wrap gap-1 sm:gap-2 lg:gap-3 lg:flex-nowrap group h-full`}>
-          {wikipedia_extracts?.map((item, index) => (
-            <TermListItem key={index} item={item} index={index} numItems={wikipedia_extracts.length} />
+          {wikipedia_extracts?.map((extract: Extracts, index: number) => (
+            <TermListItem key={index} extract={extract} index={index} numItems={wikipedia_extracts.length} />
           ))}
         </ul>
       </section>
     </div>
   )
+};
+
+
+interface TermListItemProps {
+  index: number | null,
+  extract: Extracts | null,
+  numItems: number | null
 }
 
-function TermListItem({ index, item, numItems }) {
+function TermListItem({ index, extract, numItems }: TermListItemProps) {
+  const [page, setPage] = useState<number>(0);
+  const isDisambig = extract.candidates ? true : false;
+  const terms = useMemo(() => {
+    return extract.candidates ? extract.candidates?.filter((term: WikiDisambigCandidate) => term.extract !== "") : null;
+  }, [extract?.candidates]);
+
+
   const snapPoint = index % 4 === 0 ? 'snapPoint' : null;
 
   const widthClass =
@@ -133,9 +140,11 @@ function TermListItem({ index, item, numItems }) {
           ? "lg:w-[calc((100%-1.5rem)/3)]"
           : "lg:w-[calc((100%-3rem)/4)]";
 
+  const { title } = extract;
+
 
   return (
-    <li key={item.extract + index} data-value={snapPoint} className={`w-full sm:w-[calc((100%-2rem)/2)] ${widthClass} bg-ebony shadow-inset rounded-3xl p-4 grow-0 shrink-0`}>
+    <li key={extract.title + index} data-value={snapPoint} className={`w-full sm:w-[calc((100%-2rem)/2)] ${widthClass} bg-ebony shadow-inset rounded-3xl p-4 grow-0 shrink-0`}>
       <figure>
         <div className="pb-4" >
           <svg
@@ -154,16 +163,73 @@ function TermListItem({ index, item, numItems }) {
             <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
             <path d="M9 12l2 2l4 -4" />
           </svg>
-          <p className="font-medium leading-6 text-white mt-6">{item.title}</p>
-          <div className="h-52 w-full border-b border-white/20 mt-4 overflow-y-hidden relative">
-            <div className="absolute inset-0 text-white 2xl:text-sm overflow-y-scroll no-scrollbar lg:text-sm text-xs font-light tracking-tight">
-              <p className="text-xs 2xl:text-sm font-light mt-2 text-zinc-300 overflow-y-scroll no-scrollbar">{item.extract}</p>
-
-            </div>
-          </div>
+          <p className="font-medium leading-6 text-white mt-6">{title}</p>
+          <SavedWikiDescription page={page} terms={terms} isDisambig={isDisambig} extract={extract} />
 
         </div>
       </figure>
+
+      {isDisambig &&
+        <NavCandidates setPage={setPage} candidates={terms} page={page} />
+      }
     </li>
   )
+};
+
+interface SavedWikiDescription {
+  extract: Extracts,
+  isDisambig: boolean,
+  terms?: WikiDisambigCandidate[],
+  page?: number
+}
+
+function SavedWikiDescription({ extract, isDisambig, page, terms }: SavedWikiDescription) {
+
+  return (
+    <div className="h-52 w-full border-b border-white/20 mt-4 overflow-y-hidden relative">
+      <div className="absolute inset-0 text-white 2xl:text-sm overflow-y-scroll no-scrollbar lg:text-sm text-xs font-light tracking-tight">
+        {isDisambig ? <DisambigSaved page={page} terms={terms} /> : <p className="text-xs 2xl:text-sm font-light mt-2 text-zinc-300 overflow-y-scroll no-scrollbar">
+          {extract.extract}
+        </p>}
+
+
+      </div>
+    </div>
+  )
+};
+
+
+interface SavedDisambig {
+  terms: WikiDisambigCandidate[],
+  page: number
+}
+
+function DisambigSaved({ terms, page }: SavedDisambig) {
+
+  return (
+    <article>
+      <AnimatePresence mode="wait">
+        {terms[page] && <motion.div
+          id="wiki_extract"
+          layout
+          key={'fullbackground'}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1, transition: { type: 'tween', duration: 0.2 } }}
+          exit={{ opacity: 0, scale: 1, transition: { type: 'tween', duration: 0.2 } }}
+          className="h-72 w-full border-b border-white/20 mt-4 overflow-y-hidden relative">
+          <div className="h-full w-full border-b border-white/20 mt-4 overflow-y-hidden relative">
+            <div
+              className="absolute inset-0 text-white 2xl:text-sm  overflow-y-scroll no-scrollbar lg:text-sm text-xs font-light tracking-tight">
+              {terms[page] && (
+                <Candidate key={terms[page].pageid} candidate={terms[page]} />
+              )}
+            </div>
+          </div>
+
+        </motion.div>}
+      </AnimatePresence>
+    </article>
+  )
+
+
 }

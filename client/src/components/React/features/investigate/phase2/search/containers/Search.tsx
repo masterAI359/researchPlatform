@@ -53,13 +53,11 @@ export default function Search({ }) {
 
   const send = () => {
     const q = draftRef.current;
-    console.log(q)
     if (!q) return;
     dispatch(clearChosenArticles());
     dispatch(resetArticles());
     dispatch(RetrieveArticles(q));
     lastCommitedInput.current = q;
-    console.log({ last: lastCommitedInput.current, draft: draftRef.current });
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {

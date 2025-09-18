@@ -13,7 +13,7 @@ import { WikiTerm } from "@/env";
 import HighlightTextTip from "../tooltips/HighlightTextTip";
 import { InvestigateState } from "@/ReduxToolKit/Reducers/Root/InvestigateReducer";
 import { useAppSelector } from "@/ReduxToolKit/hooks/useAppSelector";
-import { WikiDisambigResponse, WikiSummaryResponse } from "@/services/wiki/wiki";
+import { WikiDisambigResponse, WikiResponse, WikiSummaryResponse } from "@/services/wiki/wiki";
 import type { Extracts } from "@/ReduxToolKit/Reducers/Investigate/Review";
 
 export default function WikiTermExtract({ article_url, data }: WikiTerm) {
@@ -78,7 +78,7 @@ export default function WikiTermExtract({ article_url, data }: WikiTerm) {
 };
 
 
-type ExtractContent = WikiDisambigResponse | WikiSummaryResponse | null;
+type ExtractContent = WikiResponse | null;
 
 function RenderExtractContents({ article_url, setShowNotification }) {
     const summary: WikiSummaryResponse = useAppSelector(selectWikiSummary);
@@ -87,7 +87,10 @@ function RenderExtractContents({ article_url, setShowNotification }) {
     const { status, extract } = investigate.wiki;
 
     const content: ExtractContent = extract ? (summary ?? disambig) : null;
-    const title = content ? content.title : null;
+    const title: string | null = content ? content.kind === 'disambiguation'
+        ? `${content.title} could refer to:`
+        : content.title
+        : null;
 
     return (
         <AnimatePresence mode="wait">
@@ -126,7 +129,6 @@ interface ExtractTitle {
 
 function Extract({ title }: ExtractTitle): JSX.Element | null {
 
-    const hasDisambiguation = title ? /\bdisambiguation\b/i.test(title) : null;
 
 
 
@@ -144,11 +146,7 @@ function Extract({ title }: ExtractTitle): JSX.Element | null {
                 <h1
                     className="text-zinc-400 font-light text-center tracking-tight text-base mt-2">
                     <em>
-                        {
-                            hasDisambiguation
-                                ? 'Could refer to:'
-                                : title
-                        }
+                        {title}
                     </em></h1>
 
             </figcaption>
@@ -177,7 +175,7 @@ function WikiModalHeader() {
                 <svg xmlns="http://www.w3.org/2000/svg" width={'100%'} height={'100%'} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"
                     className="icon icon-tabler text-white icons-tabler-outline icon-tabler-x"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
             </div>
-            <div className="w-fit gap-x-2 mx-auto h-fit min-h-14 flex items-center justify-center">
+            <div className="w-full gap-x-2 px-2 mx-auto h-fit min-h-14 flex items-center justify-start">
                 <div className="w-7 h-7">
                     <svg xmlns="http://www.w3.org/2000/svg" width={'100%'} height={'100%'} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"
                         className="text-white icon icon-tabler icons-tabler-outline icon-tabler-brand-wikipedia"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 4.984h2" /><path d="M8 4.984h2.5" /><path d="M14.5 4.984h2.5" /><path d="M22 4.984h-2" /><path d="M4 4.984l5.455 14.516l6.545 -14.516" /><path d="M9 4.984l6 14.516l6 -14.516" /></svg>
@@ -189,5 +187,5 @@ function WikiModalHeader() {
                 </div>
             </div>
         </>
-    )
-}
+    );
+};

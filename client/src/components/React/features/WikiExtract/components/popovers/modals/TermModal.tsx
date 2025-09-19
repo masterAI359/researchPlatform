@@ -4,13 +4,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "@/ReduxToolKit/store";
 import { InvestigateState } from "@/ReduxToolKit/Reducers/Root/InvestigateReducer";
 import { getWikiExtract, modalStages } from "@/ReduxToolKit/Reducers/Investigate/WikipediaSlice";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export default function TermModal(): JSX.Element | null {
     const investigate: InvestigateState = useSelector((state: RootState) => state.investigation);
     const { wiki } = investigate;
     const { wikiModalStages } = wiki;
-    const text: string | null = wikiModalStages?.text;
     const [inputText, setInputText] = useState<string | null>(wikiModalStages.text ?? null);
     const dispatch = useDispatch<AppDispatch>();
 

@@ -10,7 +10,7 @@ export function SourcesFromResearch() {
 
 
   return (
-    <ol role="list" className="grid gap-12 mt-24 max-w-5xl mx-auto lg:px-16 xl:px-0 md:px-12 px-8">
+    <ol role="list" className="grid gap-12 mt-24 max-w-7xl mx-auto lg:px-16 xl:px-0 md:px-12 px-8">
       <span className="text-blue-400">Sources used</span>
       {
         sources && sources.map((source) => (
@@ -59,7 +59,7 @@ function ArticleFromResearch({ source }) {
           </p>
         </div>
         <img
-          className="aspect-[16/9] w-4/5 rounded-3xl bg-zinc-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+          className="aspect-[16/9] w-4/5 rounded-3xl object-cover sm:aspect-[2/1] overflow-hidden lg:aspect-[3/2]"
           width="560"
           height="380"
           src={source.image_url}

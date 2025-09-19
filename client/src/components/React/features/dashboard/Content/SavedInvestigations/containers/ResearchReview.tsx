@@ -8,9 +8,9 @@ import DetailsTable from "../Details/DetailsTable"
 import { Terms } from "../Details/wiki/containers/WikipediaTerms"
 import ErrorBoundary from "@/components/React/Shared/ErrorBoundaries/ErrorBoundary"
 import LostData from "@/components/React/Shared/ErrorBoundaries/messages/LostData"
-import ScrolltoTop from "@/helpers/ScrollToTop"
 import DetailView from "../../../ProfileNavigation/mobile/DetailView"
 import { presentResearch } from "@/ReduxToolKit/Reducers/UserContent/ProfileNavigationSlice"
+import { ScrollUp } from "@/helpers/ScrollToTop"
 
 export default function ResearchReview() {
     const investigation = useSelector((state: RootState) => state.userWork.investigationToReview)
@@ -20,6 +20,7 @@ export default function ResearchReview() {
     const cachedSources = JSON.parse(localStorage.getItem('cachedSources'))
 
     useLayoutEffect(() => {
+
         const retrieved = getInvestigationSources(sources, savedArticles)
         if (retrieved) {
             dispatch(getSourcesToReview(retrieved))
@@ -33,6 +34,7 @@ export default function ResearchReview() {
 
     const backTo = (): void => {
         dispatch(presentResearch());
+        ScrollUp();
     };
 
 

@@ -57,7 +57,7 @@ export default function TermFooter({ article_url, setShowNotification, saved }) 
             <div className="h-6 w-6 cursor-pointer group relative">
                 {extract &&
                     <>
-                        <SaveExtractTooltip />
+                        <SaveExtractTooltip saved={saved} />
                         <ExtractBookmark saved={saved} handleSave={handleSave} />
                     </>}
 

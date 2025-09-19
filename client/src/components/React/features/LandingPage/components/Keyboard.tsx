@@ -4,7 +4,7 @@ interface AnimateTools {
 
 export default function ToolsForResearch({ playAnimation }: AnimateTools) {
     return (
-        <section className="lg:p-8 w-full">
+        <section className="lg:p-8 w-full opacity-0 animate-fade-in animation-delay-200ms transition-opacity ease-in">
             <div className="mx-auto 2xl:max-w-7xl py-24 lg:px-16 md:px-12 px-8 xl:px-36 items-center lg:py-24 relative w-full">
                 <div className="relative isolate lg:flex-col overflow-hidden bg-gradientdown ring-1 ring-white/10 rounded-4xl lg:flex p-3">
                     <div className="2xl:max-7xl border-zinc-800 rounded-2xl lg:rounded-3xl overflow-hidden">

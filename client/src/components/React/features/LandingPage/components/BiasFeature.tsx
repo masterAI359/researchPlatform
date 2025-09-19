@@ -29,7 +29,7 @@ const sections: Section[] = [
 
 export default function BiasFeature() {
     return (
-        <section className="lg:p-8 w-full">
+        <section className="lg:p-8 w-full opacity-0 animate-fade-in animation-delay-200ms transition-opacity ease-in">
             <div className="px-8 py-12 mx-auto md:px-12 lg:px-16 xl:px-36 2xl:max-w-7xl border">
                 <div className="lg:text-center max-w-2xl lg:mx-auto">
                     <span className="text-blue-400">Informed Analysis</span>

@@ -37,7 +37,7 @@ export default function InputOptions() {
   const writeOwnInput = actions[1];
 
   return (
-    <section className="lg:p-8">
+    <section className="lg:p-8 opacity-0 animate-fade-in animation-delay-300ms">
       <div className="mx-auto 2xl:max-w-7xl py-6 lg:px-16 md:px-12 px-8 xl:px-36 items-center lg:py-24 relative w-full">
         <div>
           <div className="grid grid-cols-1 lg:grid-cols-2 pb-6 gap-12 border-b border-white/10 items-end">

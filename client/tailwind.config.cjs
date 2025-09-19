@@ -97,7 +97,7 @@ module.exports = {
         "spin-reverse-slower": "spin-reverse 6s linear infinite",
         scroller: "scroller 35s linear infinite",
         scroller2: "scroller2 25s linear infinite",
-        "fade-in": "fade-in 0.5s linear forwards",
+        "fade-in": "fade-in 0.7s linear forwards",
         "shimmer": "shimmer 2s infinite linear",
         'stroke-shimmer': 'stroke-shimmer 1.25s linear infinite'
       },
@@ -246,6 +246,12 @@ module.exports = {
     },
     function ({ addUtilities }) {
       const newUtilities = {
+        '.animation-delay-200ms': {
+          'animation-delay': '200ms'
+        },
+        '.animation-delay-300ms': {
+          'animation-delay': '300ms'
+        },
         '.no-scrollbar': {
           /* Hide scrollbar for Chrome, Safari, and Opera */
           '-webkit-overflow-scrolling': 'touch',

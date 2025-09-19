@@ -1,11 +1,10 @@
 import { AppDispatch, RootState } from "@/ReduxToolKit/store"
 import { useDispatch, useSelector } from "react-redux"
-import { getModalPosition, getSelectedText, ModalStages, modalStages } from "@/ReduxToolKit/Reducers/Investigate/WikipediaSlice";
-import TextPopover from "../popovers/TextPopover";
-import { ExtractThis } from "../popovers/TextPopover";
+import { getModalPosition, modalStages } from "@/ReduxToolKit/Reducers/Investigate/WikipediaSlice";
 import { AnimatePresence } from "framer-motion";
 import WikiTermExtract from "../../../features/WikiExtract/components/WikiTermExtract";
-
+import TermModalContainer from "@/components/React/features/WikiExtract/components/popovers/containers/TermModalContainer";
+import TermModal from "@/components/React/features/WikiExtract/components/popovers/modals/TermModal";
 
 export default function FullText({ article_text, article_url }) {
     const investigateState = useSelector((state: RootState) => state.investigation);
@@ -52,9 +51,9 @@ export default function FullText({ article_text, article_url }) {
         >
             {wikiModalStages.text &&
                 wikiModalStages.confirmExtract &&
-                <TextPopover>
-                    <ExtractThis />
-                </TextPopover>}
+                <TermModalContainer>
+                    <TermModal />
+                </TermModalContainer>}
 
             <AnimatePresence>
                 {wikiModalStages.display && <WikiTermExtract article_url={article_url} />}

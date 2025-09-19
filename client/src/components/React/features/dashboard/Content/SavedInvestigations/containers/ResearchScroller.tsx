@@ -10,7 +10,7 @@ export default function ResearchScroller() {
     const [inSeek, setInSeek] = useState<boolean>(false)
     const investigations = useSelector((state: RootState) => state.userWork.userResearch);
     const newArr = Array.isArray(investigations) ? [...investigations] : [];
-    const timeline = newArr.reverse();
+    const timeline = newArr.sort((a, b) => b.id - a.id);
     const { visible, fullyLoaded, loadMore } = useVirtuoso(timeline);
     const scrollRef = useRef<number | null>(null)
     const enter_velocity: number = 550;

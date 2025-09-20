@@ -1,16 +1,20 @@
 import { Editor, EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/ReduxToolKit/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/ReduxToolKit/store";
 import Placeholder from "@tiptap/extension-placeholder";
 import { TipTapProps } from "@/env";
 import EditorControls from "./EditorControls";
 import { useEffect, useRef } from "react";
+import { InvestigateState } from "@/ReduxToolKit/Reducers/Root/InvestigateReducer";
 
 export default function StepsEditor({ setterFunction, context }: TipTapProps): JSX.Element | null {
     const dispatch = useDispatch<AppDispatch>();
+    const investigate: InvestigateState = useSelector((state: RootState) => state.investigation);
+    const { step } = investigate.stepper;
     const draftRef = useRef<string | null>(null);
     const debounce = useRef<number | null>(null);
+    const placeholderText = step === 0 ? 'type the idea to challenge here...' : 'type premises here...'
 
     const handleContent = () => {
         debounce.current = window.setTimeout(() => {
@@ -32,6 +36,9 @@ export default function StepsEditor({ setterFunction, context }: TipTapProps): J
 
     const editor: Editor = useEditor({
         content: context && context.trim().length > 0 ? context : null,
+        onCreate: ({ editor }) => {
+            requestAnimationFrame(() => editor.commands.focus('start'))
+        },
         extensions: [
             StarterKit.configure({
                 heading: {
@@ -39,9 +46,14 @@ export default function StepsEditor({ setterFunction, context }: TipTapProps): J
                 }
             }),
             Placeholder.configure({
-                placeholder: 'Type here...',
+                placeholder: placeholderText,
             }),
         ],
+        editorProps: {
+            attributes: {
+                class: 'tiptap focus:outline-none'
+            }
+        }
 
     });
 

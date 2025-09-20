@@ -39,12 +39,11 @@ export default function Step5() {
                         />
 
                         <div className="w-fit h-auto">
-                            <motion.button
+                            <button
                                 onClick={beginSearch}
-                                transition={{ type: 'tween', duration: 0.1 }}
                                 className="bg-white/10 rounded-full group 2xl:-translate-x-1 mb-2 sm:mb-0
                             w-32 h-8 xl:w-44 xl:h-10 mx-auto flex items-center 
-                            text-center hover:bg-white/20 shadow-material_2">
+                            text-center hover:bg-white/20 transition-all duration-200 ease-in-out shadow-sm">
                                 <div className="w-full h-full flex justify-between items-center">
                                     <div className="w-auto h-auto mx-auto">
                                         <p className="text-white group-hover:text-white font-light text-sm text-center xl:text-lg w-fit">
@@ -53,7 +52,7 @@ export default function Step5() {
                                     </div>
                                 </div>
 
-                            </motion.button>
+                            </button>
                         </div>
                     </main>
                 </div>
@@ -76,8 +75,8 @@ function PromptForSearch({ idea }) {
                     {shortened ? shortened : idea}
                 </span>
             </p>}
-            <p className="text-xs sm:text-sm lg:text-base xl:text-lg w-fit text-white font-light tracking-tight text-wrap">
-                Let's look for some evidence to support the idea you're evaluating
+            <p className="text-xs sm:text-sm lg:text-base xl:text-xl w-fit text-white font-light tracking-tight text-wrap">
+                Next, you'll search for news articles on the idea
             </p>
         </div>
     )

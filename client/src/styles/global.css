@@ -1,6 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer base {
+  /* Tiptap placeholder */
+  .tiptap p.is-editor-empty:first-child::before {
+    content: attr(data-placeholder);
+    @apply text-zinc-500 pointer-events-none float-left h-0 whitespace-pre-wrap font-light;
+  }
+};
 
 :root {
   font-family: Inter, sans-serif;

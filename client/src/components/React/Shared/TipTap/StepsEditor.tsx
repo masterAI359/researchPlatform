@@ -5,14 +5,29 @@ import { AppDispatch } from "@/ReduxToolKit/store";
 import Placeholder from "@tiptap/extension-placeholder";
 import { TipTapProps } from "@/env";
 import EditorControls from "./EditorControls";
+import { useEffect, useRef } from "react";
 
-export default function StepsEditor({ setterFunction, context }: TipTapProps) {
+export default function StepsEditor({ setterFunction, context }: TipTapProps): JSX.Element | null {
     const dispatch = useDispatch<AppDispatch>();
+    const draftRef = useRef<string | null>(null);
+    const debounce = useRef<number | null>(null);
 
     const handleContent = () => {
-        let input = editor.getText()
-        dispatch(setterFunction(input))
-    }
+        debounce.current = window.setTimeout(() => {
+            draftRef.current = editor.getText();
+            dispatch(setterFunction(draftRef.current));
+        }, 300);
+        debounce.current = null;
+    };
+
+    useEffect(() => {
+
+        return () => {
+            if (debounce.current !== null) {
+                clearTimeout(debounce.current);
+            };
+        };
+    }, []);
 
 
     const editor: Editor = useEditor({

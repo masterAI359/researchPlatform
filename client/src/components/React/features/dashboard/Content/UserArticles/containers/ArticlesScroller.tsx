@@ -69,7 +69,7 @@ export default function ArticlesScroller() {
 
     return (
         <div
-            className="relative w-dvw md:w-full h-svh overflow-x-hidden px-2"
+            className="relative w-dvw md:w-full h-dvh overflow-x-hidden px-2"
         >
             <AnimatePresence>
                 {deleting &&

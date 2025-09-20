@@ -15,7 +15,6 @@ export default function PriorInvestigation({ investigation, inSeek }) {
         }, 150);
     };
 
-    const topic = limitString(investigation.idea, 120).trim();
 
     return (
         <div className={`
@@ -29,11 +28,11 @@ export default function PriorInvestigation({ investigation, inSeek }) {
                 <div className="absolute -top-[1.0625rem] -left-1 h-[0.5625rem] w-[0.5625rem] rounded-full border-2 border-black/10 bg-blue-400 md:top-[0.4375rem]">
                 </div>
                 <div className="items-center w-fit">
-                    <div className='w-full'>
+                    <div className='w-full xl-[w-490px]'>
                         <Thumbnail investigation={investigation} />
-                        <TopicResearched topic={topic} />
-                        <div className="mt-4 h-9 w-32">
-                            <button onClick={() => reviewResearch()} className="text-sm py-2 px-6 border focus:ring-2 rounded-full border-transparent bg-white hover:bg-white/10
+                        <TopicResearched topic={investigation.idea} />
+                        <div className="mt-4 h-9 xl:h-10 w-32">
+                            <button onClick={() => reviewResearch()} className="text-sm w-full h-full px-6 border focus:ring-2 rounded-full border-transparent bg-white hover:bg-white/10
                             text-black duration-200 focus:ring-offset-2 focus:ring-black hover:text-white inline-flex items-center justify-start ring-1 ring-transparent">
                                 Review <span className="ml-2">&#8594;</span>
                             </button>
@@ -45,14 +44,19 @@ export default function PriorInvestigation({ investigation, inSeek }) {
     );
 };
 
+interface Topic {
+    topic: string
+}
 
-function TopicResearched({ topic }) {
+function TopicResearched({ topic }: Topic) {
+
+    const clipped = topic ? limitString(topic, 100) : null;
 
     return (
-        <div className="xl:w-[512px] xl:h-[80px]">
-            <h3 className="text-white font-light tracking-tight text-md mt-8 ">Topic</h3>
-            <p className="text-zinc-400 mt-2 text-md text-balance">
-                {topic}
+        <div className="xl:w-[490px] xl:h-[80px]">
+            <h3 className="text-white font-light tracking-tight text-md mt-4">Topic</h3>
+            <p className="text-zinc-400 mt-2 text-md text-wrap">
+                {clipped}
             </p>
         </div>
 

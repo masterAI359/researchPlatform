@@ -11,14 +11,17 @@ function SideBarMenu() {
 
     return (
         <aside id="separator-sidebar"
-            className="sticky top-0 z-30 w-full md:w-44 xl:w-52 h-screen transition-transform sm:translate-x-0 bg-black border-r border-white/10 overflow-y-auto" aria-label="Sidebar">
+            className="sticky left-0 top-8 z-30 w-full md:w-44 xl:w-52 h-screen transition-transform sm:translate-x-0 bg-black border-r border-white/10" aria-label="Sidebar">
             <AnimatePresence>
                 {showDeleteModal === true && <DeleteUserAccount />}
             </AnimatePresence>
 
-            <div className="h-full px-3 py-16 overflow-y-auto bg-black border-r border-white/10">
-                <DisplayOptions />
-                <SessionOptions />
+            <div className="h-dvh px-3 absolute left-0 top-0 bg-black">
+                <div className="relative top-12 h-auto w-auto">
+                    <DisplayOptions />
+                    <SessionOptions />
+
+                </div>
 
             </div>
         </aside>

@@ -3,7 +3,7 @@ import React from "react"
 
 function SideBar() {
     return (
-        <div className="relative md:left-0 h-full w-auto bg-black z-30">
+        <div className="relative md:left-0 w-full md:w-44 xl:w-52 h-full bg-black">
             <SideBarMenu />
         </div>
     )

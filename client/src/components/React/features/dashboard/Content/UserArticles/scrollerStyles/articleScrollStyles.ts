@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
 
 export const articleScrollerStyles: CSSProperties = {
-    height: '88%',
+    height: '95%',
     width: '100%',
     display: 'flex',
     flexDirection: 'column',

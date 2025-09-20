@@ -37,7 +37,7 @@ export default function StepsEditor({ setterFunction, context }: TipTapProps): J
     const editor: Editor = useEditor({
         content: context && context.trim().length > 0 ? context : null,
         onCreate: ({ editor }) => {
-            requestAnimationFrame(() => editor.commands.focus('start'))
+            requestAnimationFrame(() => editor.commands.focus('end'))
         },
         extensions: [
             StarterKit.configure({

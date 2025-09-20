@@ -42,7 +42,6 @@ export default function SearchResults() {
                 className="h-full w-full flex flex-col justify-start items-center mx-auto relative"
             >
                 <ErrorBoundary
-                    fallback={<SearchFailed />}
                 >
                     <LinkPagination key={'linkPagination'} />
                     <AnimatePresence

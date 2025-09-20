@@ -17,7 +17,7 @@ export default function Page({ pageContent }) {
             initial='closed'
             animate='open'
             exit='closed'
-            className="relative h-[100dvh] no-scrollbar overflow-x-hidden
+            className="relative h-full no-scrollbar overflow-x-hidden 
             w-full xl:max-w-6xl 2xl:w-full mx-auto justify-items-center
             grid grid-cols-1 sm:grid-cols-3 grid-flow-row 2xl:gap-y-10 2xl:gap-x-0 gap-2">
 

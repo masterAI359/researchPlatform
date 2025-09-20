@@ -30,13 +30,13 @@ export default function Pages() {
             animate='show'
             exit='hide'
             transition={{ type: 'tween', duration: 0.2 }}
-            className="relative min-h-0 h-full flex flex-col justify-center items-center grow w-full"
+            className="relative min-h-dvh h-full flex flex-col justify-center items-center grow w-full"
         >
             <AnimatePresence>
                 {status === 'pending' && <LinkSkeletons key={'linkSkeletons'} />}
             </AnimatePresence>
 
-            <div className="relative min-h-0 grow w-full h-full">
+            <div className="relative min-h-full grow w-full h-full">
                 <AnimatePresence mode="wait">
 
                     {(Array.isArray(pages)) &&

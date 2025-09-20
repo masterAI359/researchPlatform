@@ -1,5 +1,5 @@
 import React, { Component, ErrorInfo } from 'react';
-import SearchFailed from '../../features/investigate/phase2/results/errors/SearchFailed';
+import ErrMessage from './messages/ErrMessage';
 
 interface Props {
     children: React.ReactNode,
@@ -7,13 +7,14 @@ interface Props {
 }
 
 interface State {
-    hasError: Boolean
+    hasError: Boolean,
+    error: unknown
 }
 
-class ErrorBoundary extends Component<Props, State> {
+class ErrorBoundary extends Component<React.PropsWithChildren, State> {
     constructor(props: Props) {
         super(props)
-        this.state = { hasError: false }
+        this.state = { hasError: false, error: null }
     }
 
     componentDidCatch(error: Error, errorInfo: ErrorInfo) {
@@ -24,7 +25,9 @@ class ErrorBoundary extends Component<Props, State> {
     render() {
         if (this.state.hasError) {
             console.log("Error occurred in ErrorBoundary");
-            return this.props.fallback || <SearchFailed />;
+            return this.props.children && (
+                <ErrMessage message='' onRetry={() => this.setState({ hasError: false, error: null })} />
+            )
         }
         return this.props.children;
     }

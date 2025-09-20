@@ -21,8 +21,8 @@ const initialState: UserPOVState = {
     perspective: null,
     expertise: null,
     biases: null,
-    premises: '',
-    query: '',
+    premises: null,
+    query: null,
     searching: false,
     loading: false,
     showOptions: true

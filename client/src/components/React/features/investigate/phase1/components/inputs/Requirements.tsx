@@ -9,7 +9,7 @@ export default function Requirements({ acceptInput, }) {
                 {acceptInput === null
                     ? ''
                     : acceptInput === true
-                        ? <svg className="text-blue-500 bottom-2 right-2" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0,0,256,256" width="25px" height="25px"
+                        ? <svg className="text-green-400 bottom-2 right-2" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0,0,256,256" width="25px" height="25px"
                             fillRule="nonzero"><g fill="currentColor" fillRule="nonzero" stroke="none" strokeWidth={1} strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit={10} strokeDasharray=""
                                 strokeDashoffset={0} fontFamily="none" fontWeight="none" fontSize="none" textAnchor="none" style={{ mixBlendMode: 'normal' }}>
                                 <g transform="scale(16,16)"><path d="M7.5,1c-3.58203,0 -6.5,2.91797 -6.5,6.5c0,3.58203 2.91797,6.5 6.5,6.5c3.58203,0 6.5,-2.91797 6.5,-6.5c0,-3.58203 -2.91797,-6.5 -6.5,-6.5zM7.5,2c3.04297,0 5.5,2.45703 

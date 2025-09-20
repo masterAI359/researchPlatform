@@ -13,7 +13,7 @@ export const searchBlueSky = createAsyncThunk(
         }
 
         try {
-            const response = await fetch(`/searchBlueSky?q=${query}`, options);
+            const response = await fetch(`/searchBlueSky?q=${encodeURIComponent(query)}`, options);
             if (response.ok) {
                 const results = response.json();
                 return results;

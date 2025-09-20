@@ -49,14 +49,9 @@ export default function BlueSky({ context }: BlueSkyProps) {
 
 
   return (
-    <motion.div
-      key="BlueSkyModal"
-      variants={variants}
-      initial='hidden'
-      animate='open'
-      exit='hidden'
-      transition={{ type: "tween", duration: 0.3, ease: 'easeInOut', delay: 0.2 }}
-      className="lg:p-8 w-full relative"
+    <div
+
+      className="lg:p-8 w-full relative opacity-0 animate-fade-in animation-delay-200ms transition-opacity ease-in"
     >
       <div className='mt-12 md:mt-6 p-4 w-full py-6 mx-auto md:px-12 lg:px-0 xl:px-6  2xl:max-w-7xl h-full'
       >
@@ -84,7 +79,7 @@ export default function BlueSky({ context }: BlueSkyProps) {
           </ErrorBoundary>
         </div>
       </div>
-    </motion.div>
+    </div>
   )
 
 }

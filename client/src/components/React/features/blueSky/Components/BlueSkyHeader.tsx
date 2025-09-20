@@ -1,5 +1,9 @@
+interface BlueSkyHeader {
+    children: JSX.Element | null
+};
 
-export default function BlueSkyHeader({ children }) {
+
+export default function BlueSkyHeader({ children }: BlueSkyHeader): JSX.Element | null {
 
     return (
         <div

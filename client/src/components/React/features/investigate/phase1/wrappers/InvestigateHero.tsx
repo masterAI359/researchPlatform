@@ -7,8 +7,8 @@ export default function InvestigateHero({ }) {
   const { showBlueSkySearch } = investigateState.display;
 
   return (
-    <section className="transition-all animate-fade-in 
-    delay-1000 duration-500 ease-in-out w-full 
+    <section className="transition-opacity opacity-0 
+    animate-fade-in animation-delay-200ms ease-in w-full 
     2xl:mt-20 xl:mt-16 lg:mt-14 md:mt-6 h-auto"
     >
       <div className={`mx-auto 2xl:mt-6 2xl:pt-0 2xl:max-w-7xl xl:max-w-6xl lg:max-w-5xl md:max-w-4xl

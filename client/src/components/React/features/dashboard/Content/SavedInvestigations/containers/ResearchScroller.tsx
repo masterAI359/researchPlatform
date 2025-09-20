@@ -6,6 +6,7 @@ import PriorInvestigation from "../components/InvestigationSaved";
 import InvestigationSkeletons, { InvestigationSkeleton } from "../skeletons/InvestigationSkeletons";
 import { useState, useRef } from "react";
 
+
 export default function ResearchScroller() {
     const [inSeek, setInSeek] = useState<boolean>(false)
     const investigations = useSelector((state: RootState) => state.userWork.userResearch);

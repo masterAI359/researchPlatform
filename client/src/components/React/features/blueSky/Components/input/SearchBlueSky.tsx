@@ -3,30 +3,29 @@ import SearchIcon from "@/components/React/Shared/IconComponents/SearchIcon";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/ReduxToolKit/store";
 import { AppDispatch } from "@/ReduxToolKit/store";
-import { useState } from "react";
+import { useRef } from "react";
 import { searchBlueSky } from "@/ReduxToolKit/Reducers/BlueSky/BlueSkySlice";
 
 export default function SearchBlueSky() {
     const status = useSelector((state: RootState) => state.bluesky.status);
     const dispatch = useDispatch<AppDispatch>();
-    const [postQuery, setPostQuery] = useState<string>(null);
-    const encodedQuery = encodeURIComponent(postQuery);
+    const draftRef = useRef<string | null>(null);
+    const lastQuery = useRef<string | null>(null);
     const queried = new CustomEvent('newSearch');
 
     const retrieveInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const target = e.target.value;
-        setPostQuery(target)
-    }
+        const q: string | null = e.target.value;
+        draftRef.current = q;
+    };
 
     const submitForPosts = (e: React.FormEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        window.dispatchEvent(queried);
-        if (encodedQuery) {
-            dispatch(searchBlueSky(encodedQuery));
-        } else {
-            window.alert('You need to type a query to search!');
-        }
-    }
+        if (draftRef.current !== lastQuery.current) {
+            window.dispatchEvent(queried);
+            dispatch(searchBlueSky(draftRef.current));
+            lastQuery.current = draftRef.current;
+        };
+    };
 
     return (
         <div

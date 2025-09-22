@@ -96,7 +96,6 @@ export default function Search({ }) {
           <div
             className="w-full">
             <ErrorBoundary
-              fallback={<ErrMessage message="issue on search component" />}
             >
               <div
                 className="relative lg:mb-2 mx-auto flex justify-center items-center">

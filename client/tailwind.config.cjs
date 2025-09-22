@@ -246,6 +246,35 @@ module.exports = {
     },
     function ({ addUtilities }) {
       const newUtilities = {
+        '.scroll-shadow': {
+          position: 'relative',
+          overflowY: 'auto',
+          overflowX: 'hidden',
+          WebkitOverflowScrolling: 'touch',
+          overscrollBehavior: 'contain',
+          isolation: 'isolate',
+        },
+        '.scroll-shadow::before': {
+          content: '""',
+          top: 0, left: 0, right: 0,
+          height: '16px',
+          pointerEvents: 'none',
+          zIndex: '50',
+          background: 'linear-gradient(to bottom, rgba(255,255,255,0.30), transparent)',
+        },
+        '.scroll-shadow::after': {
+          content: '""',
+          bottom: 0, left: 0, right: 0,
+          height: '16px',
+          pointerEvents: 'none',
+          zIndex: '50',
+          background: 'linear-gradient(to top, rgba(255,255,255,0.30), transparent)',
+        },
+        /* Optional: pad content so shadows don't cover it */
+        '.scroll-shadow-content': {
+          paddingTop: '16px',
+          paddingBottom: '16px',
+        },
         '.animation-delay-200ms': {
           'animation-delay': '200ms'
         },

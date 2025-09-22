@@ -52,7 +52,7 @@ export function GetTheseArticles() {
             animate="open"
             exit="closed"
             transition={{ type: 'tween', duration: 0.25, ease: 'easeInOut' }}
-            className="fixed inset-0 z-40 flex items-center justify-center p-4"
+            className="fixed inset-0 flex items-center justify-center p-4"
         >
             <div className="flex flex-col items-center gap-6 rounded-3xl p-2 md:p-8 lg:p-4 w-[95dvw] sm:w-11/12 lg:w-4/5 xl:w-5/6 2xl:max-w-6xl h-auto
      sm:gap-y-10 sm:p-10 bg-black border border-border_gray mt-2 

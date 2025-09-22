@@ -74,7 +74,7 @@ const ArticleLink = memo(({ article, index, removingModal }: LinkProps) => {
 
             onClick={() => { chooseArticle(article) }}
             key={article.url}
-            className={`group cursor-pointer box-border list-none 
+            className={`group cursor-pointer box-border list-none flex-shrink-0 
             xl:min-h-72 xl:max-h-72 xl:min-w-80 xl:max-w-80
             lg:w-72 lg:h-72 md:h-60 md:w-60 sm:w-52 sm:h-52 h-72 w-76
             relative rounded-3xl sm:rounded-xl md:rounded-3xl text-white 
@@ -82,7 +82,7 @@ const ArticleLink = memo(({ article, index, removingModal }: LinkProps) => {
              transition-all ease-in-out 
             duration-200 overflow-y-hidden overflow-x-hidden
             
-            ${isHilighted && (!showGetArticlesModal) && (!removingModal) ? "shadow-blue-bottom bg-ebony" : "shadow-material bg-gradient-to-tr from-ebony to-mirage"}`}
+            ${isHilighted && (!showGetArticlesModal) && (!removingModal) ? "shadow-blue-bottom bg-ebony" : "shadow-material bg-ebony opacity-75"}`}
         >
 
             <div className='relative w-full overflow-hidden

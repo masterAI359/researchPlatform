@@ -1,5 +1,5 @@
-import { shallowEqual, useSelector, useDispatch } from "react-redux"
-import { AppDispatch, RootState } from "@/ReduxToolKit/store"
+import { shallowEqual, useSelector } from "react-redux"
+import { RootState } from "@/ReduxToolKit/store"
 import { AnimatePresence, motion } from "framer-motion"
 import { delays } from "@/motion/variants"
 import ScrolltoTop from "@/helpers/ScrollToTop"
@@ -7,10 +7,8 @@ import NoSavedArticles from "../fallbacks/NoSavedArticles"
 import ArticlesScroller from "./ArticlesScroller";
 
 export default function SavedArticles({ }) {
-    const { userArticles,
-    } = useSelector((state: RootState) => state.userdata, shallowEqual);
+    const userArticles = useSelector((state: RootState) => state.userdata.userArticles);
     const hasArticles: boolean = Array.isArray(userArticles) && (userArticles.length > 0);
-    const dispatch = useDispatch<AppDispatch>();
 
 
 

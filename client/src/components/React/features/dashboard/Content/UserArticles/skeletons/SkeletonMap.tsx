@@ -14,7 +14,7 @@ export function SkeletonMap({ context }: SkeletonMap) {
     return (
         <div
             id='skeleton-loaders'
-            className="relative h-auto w-auto flex 
+            className="relative h-auto w-auto flex mt-12
              mx-auto flex-col items-end justify-center"
         >
             {!fullyLoaded &&

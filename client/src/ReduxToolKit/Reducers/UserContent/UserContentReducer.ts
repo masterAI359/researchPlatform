@@ -14,7 +14,7 @@ interface UserContent {
 
 const initialState: UserContent = {
     status: 'idle',
-    userArticles: [],
+    userArticles: null,
     articleMap: null,
     error: null,
     contextForSupabase: null,

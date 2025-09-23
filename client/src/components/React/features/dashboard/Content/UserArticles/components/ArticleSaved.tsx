@@ -7,10 +7,10 @@ function ArticleSaved({ children }: ArticleSavedComponent): JSX.Element {
   return (
     <div
       className="cursor-pointer
-      relative rounded-3xl
+      relative rounded-3xl 
     overflow-hidden h-76 sm:h-40 
       lg:h-[12.8rem] 2xl:h-60 my-8 w-full md:w-11/12 
-      2xl:w-3/4 mx-auto"
+      2xl:w-full mx-auto group opacity-90"
     >
       <div
         className="bg-white/5 md:bg-white/5

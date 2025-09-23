@@ -13,8 +13,9 @@ import AuthNotification from "@/components/React/session/notifications/AuthNotif
 import { deleteArticleStatus } from "@/components/React/session/notifications/AuthStatus";
 import Title from "../components/Title";
 import ArticleThumbnail from "../components/ArticleThumbnail";
-import { articleScrollerStyles } from "../scrollerStyles/articleScrollStyles";
 import { useSkeletons } from "@/hooks/useSkeletons";
+import { useScrollWithShadow } from "@/hooks/useScrollWithShadow";
+import type { CSSProperties } from "react";
 
 export default function ArticlesScroller() {
     const userArticles: SavedArticle[] | null = useSelector((state: RootState) => state.userdata.userArticles);
@@ -22,10 +23,25 @@ export default function ArticlesScroller() {
     const sortedArticles = artcs.sort((a: SavedArticle, b: SavedArticle) => b.id - a.id);
     const { visible, fullyLoaded, loadMore } = useVirtuoso(sortedArticles);
     const { fastScroll, clockScrollSpeed } = useSkeletons(180);
+    const { boxShadow, onScrollHandler } = useScrollWithShadow();
     const [deleting, setDeleting] = useState<boolean>(false);
     const [deletedIds, setDeletedIds] = useState<Set<number>>(new Set());
     const [deleted, setDeleted] = useState<boolean | null>(null);
     const dispatch = useDispatch<AppDispatch>();
+
+
+    const articleScrollerStyles: CSSProperties = {
+        height: '93%',
+        paddingBottom: '20px',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'start',
+        justifyContent: 'end',
+        overscrollBehavior: 'none',
+        overflowX: 'hidden',
+        boxShadow: boxShadow
+    };
 
     const cleanup = () => {
         setDeleted(null);
@@ -69,7 +85,7 @@ export default function ArticlesScroller() {
 
     return (
         <div
-            className="relative w-dvw md:w-full h-dvh overflow-x-hidden px-2"
+            className="relative w-dvw md:w-full xl:w-[1100px]  2xl:w-[1250px] mx-auto h-dvh overflow-x-hidden px-2"
         >
             <AnimatePresence>
                 {deleting &&
@@ -82,13 +98,14 @@ export default function ArticlesScroller() {
             </AnimatePresence>
 
             <Virtuoso
+                onScroll={onScrollHandler}
                 components={{ Footer: SkeletonMap }}
                 computeItemKey={(_, article) => article.id}
                 itemContent={(_, article) => {
-                    return <ArticleSaved>
+                    return (<ArticleSaved>
                         <Title article={article} handleArticleSelection={handleArticleSelection} />
                         <ArticleThumbnail articleDeleted={deletedIds.has(article.id)} fastScroll={fastScroll} article={article} deleteHandler={deleteHandler} />
-                    </ArticleSaved>
+                    </ArticleSaved>)
                 }}
                 style={articleScrollerStyles}
                 className="no-scrollbar 2xl:gap-y-12"
@@ -102,3 +119,5 @@ export default function ArticlesScroller() {
         </div>
     );
 };
+
+

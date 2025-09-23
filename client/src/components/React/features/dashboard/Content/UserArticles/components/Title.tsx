@@ -12,7 +12,7 @@ function Title({ article, handleArticleSelection }: TitleTypes): React.ReactNode
     const limitedTitle = limitString(article.title, 60);
 
     return (
-        <div className={`group transition-opacity w-full h-full px-3 xl:p-4 duration-200 ease-in-out`}
+        <div className={`group w-full h-full px-3 xl:p-4`}
             onClick={handleArticleSelection(article)}
         >
             <h3

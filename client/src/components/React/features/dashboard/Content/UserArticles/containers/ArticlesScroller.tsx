@@ -111,7 +111,7 @@ export default function ArticlesScroller() {
                 className="no-scrollbar 2xl:gap-y-12"
                 data={visible}
                 endReached={loadMore}
-                increaseViewportBy={200}
+                increaseViewportBy={300}
                 isScrolling={clockScrollSpeed}
                 context={{ fullyLoaded }}
 

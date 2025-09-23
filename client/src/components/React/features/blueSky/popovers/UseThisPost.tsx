@@ -35,7 +35,7 @@ export default function UseThisPost({ post }: UseThis) {
                         aria-label="confirm post to investigate"
                         onClick={investigateThis}
                         type="button"
-                        className="text-lg font-light py-2 w-full 2xl:w-24 px-4 border focus:ring-2 rounded-full border-transparent
+                        className="text-lg font-light py-2 w-32 px-4 border focus:ring-2 rounded-full border-transparent
                      bg-white lg:hover:bg-blue-500 text-black focus:ring-offset-2 focus:ring-white 
                      hover:text-white inline-flex items-center justify-center ring-1 ring-transparent 
                      transition-all duration-200 ease-in-out"
@@ -46,7 +46,7 @@ export default function UseThisPost({ post }: UseThis) {
                         aria-label="unselect BlueSky post"
                         onClick={unselect}
                         type="button"
-                        className="text-lg font-light py-2 w-full 2xl:w-24 px-4 border focus:ring-2 rounded-full border-transparent
+                        className="text-lg font-light py-2 w-32 px-4 border focus:ring-2 rounded-full border-transparent
                      bg-white lg:hover:bg-mirage text-black focus:ring-offset-2 focus:ring-white 
                      hover:text-white inline-flex items-center justify-center ring-1 ring-transparent
                      transition-all duration-200 ease-in-out"

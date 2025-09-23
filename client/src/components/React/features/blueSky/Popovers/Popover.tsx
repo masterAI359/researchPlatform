@@ -24,9 +24,14 @@ export default function Popover({ shouldRedirect }: PopoverProps) {
         `}
     >
       <div className="relative bg-black border border-border_gray
-       h-fit w-auto p-8 rounded-3xl shadow-material z-[910]
+       h-fit w-88 sm:w-auto p-4 sm:p-8 rounded-3xl shadow-material z-[910]
       flex flex-col justify-center  items-center
       ">
+        <header className="w-full h-auto">
+          <h1 className="text-white font-light tracking-tight text-lg lg:text-xl xl:text-2xl text-center">
+            Investigate this?
+          </h1>
+        </header>
         <SelectedPost
         />
         <UseThisPost

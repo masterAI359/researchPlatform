@@ -24,7 +24,7 @@ function ArticleThumbnail({ article, deleteHandler, fastScroll, articleDeleted }
         loading: 'lazy',
         decoding: 'async',
         fetchpriority: 'auto',
-        className: 'w-full h-full object-cover rounded-t-3xl sm:rounded-r-3xl sm:rounded-t-none opacity-70 group-hover:opacity-100 transition-opacity duration-200 ease-in-out',
+        className: 'w-full h-full object-cover rounded-t-3xl sm:rounded-r-3xl sm:rounded-t-none opacity-70 hover:opacity-90 transition-opacity duration-200 ease-in-out',
         onError: (e) => {
             const img = e.currentTarget;
             img.onerror = null;
@@ -33,7 +33,7 @@ function ArticleThumbnail({ article, deleteHandler, fastScroll, articleDeleted }
     };
 
     return (
-        <div className="h-full w-full animate-fade-in opacity-80 group-hover:opacity-95 transition-opacity duration-200 ease-in-out
+        <div className="h-full w-full animate-fade-in transition-opacity duration-200 ease-in-out
         max-h-[9.6rem] sm:max-h-full md:max-w-60 lg:max-w-72 xl:max-w-112
         rounded-t-3xl sm:rounded-r-3xl sm:rounded-t-none
         object-cover relative overflow-hidden">

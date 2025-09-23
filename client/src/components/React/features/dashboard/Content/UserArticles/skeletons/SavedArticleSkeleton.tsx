@@ -19,7 +19,7 @@ export default function SavedArticleSkeleton() {
             h-76 sm:h-40 
             lg:h-[12.8rem] 2xl:h-60 w-full
             relative items-stretch
-            sm:justify-items-end 
+            sm:justify-items-between 
             md:items-start"
             >
                 <TitleSkeleton />

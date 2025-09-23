@@ -9,17 +9,17 @@ function TitleSkeleton() {
         <div
             className="relative flex flex-col justify-center items-center md:items-start bg-white/5
         h-32 sm:h-40 lg:h-52 2xl:h-full p-5 md:p-5 lg:p-8 xl:p-7 2xl:p-6 grow
-        w-full group transition-opacity duration-200 ease-in-out"
+        w-full xl:w-[596.19px] group transition-opacity duration-200 ease-in-out"
         >
-            <div className="h-4 lg:h-10 mt-4 lg:mt-6 w-full bg-[length:200%_100%] bg-[linear-gradient(110deg,#1a1c23_8%,#2b2f3a_18%,#1a1c23_33%)] rounded animate-shimmer"
+            <div className="h-4 lg:h-6 mt-4 lg:mt-6 w-4/5 bg-[length:200%_100%] bg-[linear-gradient(110deg,#1a1c23_8%,#2b2f3a_18%,#1a1c23_33%)] rounded animate-shimmer"
             />
-            <div className="h-4 lg:h-10 mt-4 lg:mt-6 w-full bg-[length:200%_100%] bg-[linear-gradient(110deg,#1a1c23_8%,#2b2f3a_18%,#1a1c23_33%)] rounded animate-shimmer"
+            <div className="h-4 lg:h-6 mt-4 lg:mt-6 w-4/5 bg-[length:200%_100%] bg-[linear-gradient(110deg,#1a1c23_8%,#2b2f3a_18%,#1a1c23_33%)] rounded animate-shimmer"
             />
-            <div className="h-auto flex gap-x-1.5 items-center justify-between w-full">
+            <div className="h-auto flex gap-x-1.5 items-center justify-between w-4/5">
                 <div className="h-2 mt-4 lg:mt-6  w-1/2 bg-[length:200%_100%] bg-[linear-gradient(110deg,#1a1c23_8%,#2b2f3a_18%,#1a1c23_33%)] rounded animate-shimmer" />
                 <div className="h-2 mt-4 lg:mt-6  w-1/2 bg-[length:200%_100%] bg-[linear-gradient(110deg,#1a1c23_8%,#2b2f3a_18%,#1a1c23_33%)] rounded animate-shimmer" />
             </div>
-            <div className="h-auto flex gap-x-1.5 items-center justify-between w-full">
+            <div className="h-auto flex gap-x-1.5 items-center justify-between w-4/5">
                 <div className="h-2 mt-4 lg:mt-6 w-1/2 bg-[length:200%_100%] bg-[linear-gradient(110deg,#1a1c23_8%,#2b2f3a_18%,#1a1c23_33%)] rounded animate-shimmer" />
                 <div className="h-2 mt-4 lg:mt-6 w-1/2 bg-[length:200%_100%] bg-[linear-gradient(110deg,#1a1c23_8%,#2b2f3a_18%,#1a1c23_33%)] rounded animate-shimmer" />
             </div>

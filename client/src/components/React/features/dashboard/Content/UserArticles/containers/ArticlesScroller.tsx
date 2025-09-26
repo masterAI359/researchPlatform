@@ -21,8 +21,7 @@ export default function ArticlesScroller() {
     const userArticles: SavedArticle[] | null = useSelector((state: RootState) => state.userdata.userArticles);
     const artcs = [...userArticles];
     const sortedArticles = artcs.sort((a: SavedArticle, b: SavedArticle) => b.id - a.id);
-    const initialLength = sortedArticles?.length > 16 ? 16 : null;
-    const { visible, fullyLoaded, loadMore } = useVirtuoso(sortedArticles, initialLength);
+    const { visible, fullyLoaded, loadMore } = useVirtuoso(sortedArticles);
     const { fastScroll, clockScrollSpeed } = useSkeletons(180);
     const { boxShadow, onScrollHandler } = useScrollWithShadow();
     const [deleting, setDeleting] = useState<boolean>(false);

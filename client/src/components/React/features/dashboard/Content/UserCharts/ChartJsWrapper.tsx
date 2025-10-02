@@ -67,7 +67,6 @@ export default function ChartJsWrapper() {
 
     return (
         <>
-
             <Suspense fallback={<ChartJsSkeleton>
                 <DonutSkeletonChart />
             </ChartJsSkeleton>}>

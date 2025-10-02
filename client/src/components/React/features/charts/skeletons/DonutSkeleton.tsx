@@ -10,7 +10,7 @@ export default function ChartJsSkeleton({ children }: ChartJsSkeleton): JSX.Elem
     return (
         <div
             className="relative
-            mt-16 lg:p-8 opacity-0 animate-fade-in transition-opacity animation-delay-300ms"
+            md:mt-16 lg:p-8 opacity-0 animate-fade-in transition-opacity animation-delay-300ms"
         >
             <ChartSkeletonWrapper>
                 {children}
@@ -28,7 +28,7 @@ export function ChartSkeletonWrapper({ children }): JSX.Element | null {
 
     return (
         <div className="mx-auto 2xl:max-w-7xl">
-            <div className="grid grid-cols-1 lg:grid-cols-2 pt-8 xl:pt-0 lg:gap-24 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 pt-8 xl:pt-0 gap-12 lg:gap-24 items-center">
                 <SourceDiversitySkeleton />
                 {children}
             </div>
@@ -68,15 +68,15 @@ export function DonutSkeletonChart(): JSX.Element | null {
 
 
     return (
-        <div className="relative h-96 w-96 animate-pulse">
+        <div className="relative pt-12 md:pt-0 h-80 w-80 lg:h-96 lg:w-96 animate-pulse">
             {/* Legend skeleton */}
-            <div className="absolute -top-16 left-1/2 -translate-x-1/2 grid grid-cols-3 gap-x-6 gap-y-2">
+            <div className="absolute w-full -top-12 left-1/2 -translate-x-1/2 grid grid-cols-3 gap-x-6 gap-y-2">
                 {Array.from({ length: 6 }).map((_, i) => (
                     <div key={i} className="flex items-center space-x-2">
                         {/* little colored square */}
-                        <div className="h-3 w-3 rounded-sm bg-zinc-700/50" />
+                        <div className="h-3 w-6 rounded-full bg-zinc-700/50" />
                         {/* text placeholder */}
-                        <div className="h-3 w-16 rounded bg-zinc-700/50" />
+                        <div className="h-3 w-32 rounded bg-zinc-700/50" />
                     </div>
                 ))}
             </div>
@@ -102,7 +102,7 @@ function SourceDiversitySkeleton() {
         <section
             role="status"
             aria-busy="true"
-            className={`rounded-2xl animate-shimmer bg-[length:200%_100%] 
+            className={`mb-8 md:mb-0 rounded-2xl animate-shimmer bg-[length:200%_100%] 
     bg-[linear-gradient(110deg,#1a1c23_8%,#2b2f3a_18%,#1a1c23_33%)] 
                  opacity-40
                   p-6 md:p-8`}

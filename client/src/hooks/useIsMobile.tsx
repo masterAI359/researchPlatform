@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
+
 
 export function useIsMobile(breakpoint = 768) {
     const [isMobile, setIsMobile] = useState<boolean>(false);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
 
         const mediaQuery = window.matchMedia(`(max-width: ${breakpoint}px)`);
 

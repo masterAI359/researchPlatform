@@ -99,6 +99,7 @@ export default function ArticlesScroller(): JSX.Element | null {
                 };
 
             } catch (err) {
+                setDeleted(false);
                 console.error(err);
             };
         }, [deleting]);

@@ -38,11 +38,6 @@ function SourceChart(): JSX.Element {
       className="w-auto h-96 lg:h-128 flex items-center md:justify-center"
     >
       <ErrorBoundary
-        fallback={
-          <ErrMessage
-            message="Error at <SourceChart/> component :/"
-          />
-        }
       >
         {biasRatings && <Doughnut key='biasChart' className="cursor-pointer" data={data} />}
       </ErrorBoundary>

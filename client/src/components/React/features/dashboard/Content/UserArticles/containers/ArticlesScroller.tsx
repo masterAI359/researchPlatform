@@ -2,7 +2,7 @@ import { Virtuoso } from "react-virtuoso";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/ReduxToolKit/store";
 import ArticleSaved from "../components/ArticleSaved";
-import { SkeletonMap } from "../skeletons/SkeletonMap";
+import SkeletonMap from "../skeletons/SkeletonMap";
 import { useVirtuoso } from "@/hooks/useVirtuoso";
 import { readSavedArticle } from "@/ReduxToolKit/Reducers/UserContent/UserContentReducer"
 import { useCallback, useMemo, useState } from "react";
@@ -16,12 +16,25 @@ import ArticleThumbnail from "../components/ArticleThumbnail";
 import { useSkeletons } from "@/hooks/useSkeletons";
 import { useScrollWithShadow } from "@/hooks/useScrollWithShadow";
 import type { CSSProperties } from "react";
+import ErrorBoundary from "@/components/React/Shared/ErrorBoundaries/ErrorBoundary";
 
-export default function ArticlesScroller() {
+
+export interface RenderingValues {
+    fullyLoaded: boolean | null,
+    numSkeletons: number | null
+};
+
+export default function ArticlesScroller(): JSX.Element | null {
     const userArticles: SavedArticle[] | null = useSelector((state: RootState) => state.userdata.userArticles);
-    const artcs = [...userArticles];
-    const sortedArticles = artcs.sort((a: SavedArticle, b: SavedArticle) => b.id - a.id);
-    const { visible, fullyLoaded, loadMore } = useVirtuoso(sortedArticles);
+    const sortedArticles = useMemo(() => {
+        const artcs = userArticles
+            ? userArticles.slice()
+            : null;
+        const sorted = artcs?.sort((a: SavedArticle, b: SavedArticle) => b.id - a.id);
+        return sorted;
+    }, []);
+    if (!sortedArticles) return null;
+    const { visible, fullyLoaded, loadMore, numSkeletons } = useVirtuoso(sortedArticles);
     const { fastScroll, clockScrollSpeed } = useSkeletons(180);
     const { boxShadow, onScrollHandler } = useScrollWithShadow();
     const [deleting, setDeleting] = useState<boolean>(false);
@@ -29,13 +42,20 @@ export default function ArticlesScroller() {
     const [deleted, setDeleted] = useState<boolean | null>(null);
     const dispatch = useDispatch<AppDispatch>();
 
+    const rendering_values: RenderingValues = useMemo(() => {
+        const context = {
+            fullyLoaded: fullyLoaded ?? null,
+            numSkeletons: numSkeletons ?? null
+        };
+        return context;
+    }, [fullyLoaded, numSkeletons]);
+
 
     const articleScrollerStyles: CSSProperties = {
         height: '93%',
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
-        paddingBottom: '20px',
         alignItems: 'start',
         justifyContent: 'end',
         overscrollBehavior: 'contain',
@@ -97,25 +117,29 @@ export default function ArticlesScroller() {
                     />}
             </AnimatePresence>
 
-            <Virtuoso
-                onScroll={onScrollHandler}
-                components={{ Footer: SkeletonMap }}
-                computeItemKey={(_, article) => article.id}
-                itemContent={(_, article) => {
-                    return (<ArticleSaved>
-                        <Title article={article} handleArticleSelection={handleArticleSelection} />
-                        <ArticleThumbnail articleDeleted={deletedIds.has(article.id)} fastScroll={fastScroll} article={article} deleteHandler={deleteHandler} />
-                    </ArticleSaved>)
-                }}
-                style={articleScrollerStyles}
-                className="no-scrollbar 2xl:gap-y-12"
-                data={visible}
-                endReached={loadMore}
-                increaseViewportBy={300}
-                isScrolling={clockScrollSpeed}
-                context={{ fullyLoaded }}
 
-            />
+            <ErrorBoundary>
+                <Virtuoso
+                    onScroll={onScrollHandler}
+                    components={{ Footer: SkeletonMap }}
+                    computeItemKey={(_, article) => article.id}
+                    itemContent={(_, article) => {
+                        return (<ArticleSaved>
+                            <Title article={article} handleArticleSelection={handleArticleSelection} />
+                            <ArticleThumbnail articleDeleted={deletedIds.has(article.id)} fastScroll={fastScroll} article={article} deleteHandler={deleteHandler} />
+                        </ArticleSaved>)
+                    }}
+                    style={articleScrollerStyles}
+                    className="no-scrollbar scrollbar-gutter:stable overscroll-contain"
+                    data={visible}
+                    endReached={loadMore}
+                    increaseViewportBy={800}
+                    isScrolling={clockScrollSpeed}
+                    context={rendering_values}
+
+                />
+            </ErrorBoundary>
+
         </div>
     );
 };

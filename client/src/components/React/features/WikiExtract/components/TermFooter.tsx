@@ -9,7 +9,7 @@ import { selectWikiSummary, selectWikiDisambig } from "@/ReduxToolKit/Reducers/I
 import SaveExtractTooltip from "../tooltips/SaveExtractTooltip";
 import ExtractBookmark from "./buttons/ExtractBookmark";
 import TimeStamp from "./timestamp/TimeStamp";
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 type SavePayload =
     | { kind: "summary"; title: string; extract: string; associatedArticle: string }
@@ -18,6 +18,8 @@ type SavePayload =
 
 
 export default function TermFooter({ article_url, setShowNotification, saved }) {
+    const [saving, setSaving] = useState<boolean>(false);
+    const timeRef = useRef<number | null>(null);
     const summary: WikiSummaryResponse = useAppSelector(selectWikiSummary);
     const disambig: WikiDisambigResponse = useAppSelector(selectWikiDisambig);
     const investigate: InvestigateState = useSelector((state: RootState) => state.investigation);
@@ -36,15 +38,31 @@ export default function TermFooter({ article_url, setShowNotification, saved }) 
 
     const handleSave = (): void => {
         if (!payload) return;
+        setSaving(true);
+
         try {
             dispatch(getExtract(payload));
 
         } catch (err) {
             console.log(err);
         } finally {
+            timeRef.current = window.setTimeout(() => {
+                setSaving(false);
+                timeRef.current = null;
+            }, 200);
             setShowNotification(true);
         }
     };
+
+
+    useEffect(() => {
+
+        return () => {
+            if (timeRef.current !== null) {
+                clearTimeout(timeRef.current);
+            };
+        }
+    }, []);
 
 
     return (
@@ -57,7 +75,7 @@ export default function TermFooter({ article_url, setShowNotification, saved }) 
             <div className="h-6 w-6 cursor-pointer group relative">
                 {extract &&
                     <>
-                        <SaveExtractTooltip saved={saved} />
+                        <SaveExtractTooltip saved={saved} saving={saving} />
                         <ExtractBookmark saved={saved} handleSave={handleSave} />
                     </>}
 

@@ -29,7 +29,7 @@ export const delays = {
         transition: {
             duration: 0.2,
             type: 'tween',
-            delay: 0.3
+            delay: 0.2
         }
     },
     closed: {

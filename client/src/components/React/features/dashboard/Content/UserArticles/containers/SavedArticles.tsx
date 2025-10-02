@@ -13,25 +13,21 @@ export default function SavedArticles({ }) {
 
 
     return (
-        <div className="w-full h-fit lg:px-10 xl:px-12 2xl:px-16">
+        <motion.section
+            variants={delays}
+            initial='closed'
+            animate='open'
+            exit='closed'
+            className="w-auto  md:w-full h-fit lg:px-10 xl:px-12 2xl:px-16 mx-auto">
             <ScrolltoTop />
-            <AnimatePresence mode="wait">
-                {hasArticles &&
-                    <motion.div
-                        key='savedArticles'
-                        variants={delays}
-                        initial='closed'
-                        animate='open'
-                        exit='closed'
-                        className="w-full 2xl:px-2 gap-3 h-full md:mt-12 xl:mt-4 flex justify-end">
+            <div
+                className="w-full md:px-0 2xl:px-2 gap-3 h-full md:mt-12 xl:mt-4 flex justify-center md:justify-end">
 
-                        <ArticlesScroller />
-                    </motion.div>
-                }
-                {!hasArticles && <NoSavedArticles key='noSavedArticles' />}
+                <ArticlesScroller />
+            </div>
+            {!hasArticles && <NoSavedArticles key='noSavedArticles' />}
 
-            </AnimatePresence>
-        </div>
+        </motion.section>
     );
 };
 
